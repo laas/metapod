@@ -1,0 +1,11 @@
+FILE_PATTERNS          = *.cc *.hh *.hxx \
+		       	 *.c *.h   	 \
+                         *.ice
+
+INPUT                  = @CMAKE_SOURCE_DIR@/include \
+                         @CMAKE_SOURCE_DIR@/doc
+
+HTML_HEADER            = @CMAKE_SOURCE_DIR@/doc/header.html
+HTML_FOOTER            = @CMAKE_SOURCE_DIR@/doc/footer.html
+
+TAGFILES               = 
