@@ -28,7 +28,6 @@ INCLUDE(cmake/boost.cmake)
 
 SET(PROJECT_NAME metapod)
 SET(PROJECT_DESCRIPTION "Implementation of a robot dynamics library")
-SET(PROJECT_VERSION 1.0.0)
 SET(PROJECT_URL "No webpage yet...")
 
 SETUP_PROJECT()
