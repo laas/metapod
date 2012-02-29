@@ -42,9 +42,9 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   // Set configuration vectors (q, dq, ddq) to reference values.
   vectorN q(Robot::nbDof), dq(Robot::nbDof), ddq(Robot::nbDof);
 
-  std::ifstream qconf("data/q.conf");
-  std::ifstream dqconf("data/dq.conf");
-  std::ifstream ddqconf("data/ddq.conf");
+  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
+  std::ifstream dqconf(TEST_DIRECTORY "/dq.conf");
+  std::ifstream ddqconf(TEST_DIRECTORY "/ddq.conf");
 
   initConf<Robot::Tree>(qconf, q);
   initConf<Robot::Tree>(dqconf, dq);
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   std::string jointname;
   std::string str1, str2;
   std::ifstream result_log("rnea.log");
-  std::ifstream ref_log("data/rnea.ref");
+  std::ifstream ref_log(TEST_DIRECTORY "/rnea.ref");
   while(result_log >> str1)
   {
     if(stringToDouble(str1))
