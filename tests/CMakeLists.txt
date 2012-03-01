@@ -27,6 +27,14 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
 # Make Boost.Test generates the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 
+# Specify the tests data files directory.
+ADD_DEFINITIONS(-DTEST_DIRECTORY="${CMAKE_SOURCE_DIR}/tests/data")
+
+# Set metapod_PERF_TEST flag if required
+IF(${PERF_TEST})
+  ADD_DEFINITIONS(-Dmetapod_PERF_TEST)
+ENDIF(${PERF_TEST})
+
 # ADD_TESTCASE(NAME)
 # ------------------------
 #

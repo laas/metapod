@@ -94,10 +94,5 @@ INSTALL(FILES ${${PROJECT_NAME}_TOOLS_HEADERS}
 
 ADD_SUBDIRECTORY(tests)
 
-# Set the data directory for tests reference files
-SET(_TEST_DIRECTORY_ "\"${CMAKE_SOURCE_DIR}/tests/data\"")
-
-CONFIG_FILES(include/${PROJECT_NAME}/tools/config.hh)
-
 SETUP_PROJECT_FINALIZE()
 SETUP_PROJECT_CPACK()
