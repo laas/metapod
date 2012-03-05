@@ -21,8 +21,8 @@
  * This file contains a method setting a configuration vector from a file.
  */
 
-#ifndef metapod_INITCONF_HH
-# define metapod_INITCONF_HH
+#ifndef METAPOD_INITCONF_HH
+# define METAPOD_INITCONF_HH
 
 # include "common.hh"
 

@@ -22,8 +22,8 @@
  * It contains the definition of all the robot bodies.
  */
 
-#ifndef metapod_SIMPLE_HUMANOID_BODY_HH
-# define metapod_SIMPLE_HUMANOID_BODY_HH
+#ifndef METAPOD_SIMPLE_HUMANOID_BODY_HH
+# define METAPOD_SIMPLE_HUMANOID_BODY_HH
 
 # include "metapod/tools/bodymacros.hh"
 

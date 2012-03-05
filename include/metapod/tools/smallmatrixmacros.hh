@@ -21,8 +21,8 @@
  * This file provides ad-hoc macros for fixed-size small matrix and vectors, for enhanced performances
  */
 
-#ifndef metapod_SMALL_MATRIX_MACROS_HH
-# define metapod_SMALL_MATRIX_MACROS_HH
+#ifndef METAPOD_SMALL_MATRIX_MACROS_HH
+# define METAPOD_SMALL_MATRIX_MACROS_HH
 
 namespace metapod
 {

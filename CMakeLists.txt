@@ -70,6 +70,7 @@ SET(${PROJECT_NAME}_ALGOS_HEADERS
   )
 
 SET(${PROJECT_NAME}_TOOLS_HEADERS
+  include/${PROJECT_NAME}/tools/fwd.hh
   include/${PROJECT_NAME}/tools/common.hh
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/smallmatrixmacros.hh

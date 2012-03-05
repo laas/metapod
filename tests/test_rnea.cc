@@ -21,8 +21,8 @@
  * This test applies the rnea on a test model with a reference configuration, then compares the computed torques with the reference torques
  */
 
-#ifndef metapod_TEST_RNEA_HH
-# define metapod_TEST_RNEA_HH
+#ifndef METAPOD_TEST_RNEA_HH
+# define METAPOD_TEST_RNEA_HH
 
 // Common test tools
 # include "common.hh"
@@ -32,7 +32,7 @@ using namespace simplehumanoid;
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
   // Perf test
-# ifdef metapod_PERF_TEST
+# ifdef METAPOD_PERF_TEST
   long TICKS_PER_SECOND = 1000000;
   struct timeval tv_start, tv_stop;
   struct timezone tz;
@@ -55,14 +55,14 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   ddqconf.close();
 
   // Apply the RNEA to the metapod multibody and print the result in a log file.
-# ifdef metapod_PERF_TEST
+# ifdef METAPOD_PERF_TEST
   ::gettimeofday(&tv_start, &tz);
   for(int i=0; i<N; i++)
   {
 # endif
     // Run the RNEA to compute the torque
     rnea<Robot::Tree>(q, dq, ddq);
-# ifdef metapod_PERF_TEST
+# ifdef METAPOD_PERF_TEST
   }
   ::gettimeofday(&tv_stop, &tz);
   long time_usec = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND + ( tv_stop.tv_usec - tv_start.tv_usec );

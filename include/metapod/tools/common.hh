@@ -21,8 +21,8 @@
  * This file contains the includes and class definitions necessary for the whole project.
  */
 
-#ifndef metapod_COMMON_HH
-# define metapod_COMMON_HH
+#ifndef METAPOD_COMMON_HH
+# define METAPOD_COMMON_HH
 
 # include "metapod/tools/fwd.hh"
 # include "metapod/tools/jointmacros.hh"

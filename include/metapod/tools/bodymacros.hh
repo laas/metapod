@@ -21,8 +21,8 @@
  * This file defines the macro that creates the bodies classes
  */
 
-#ifndef metapod_BODY_MACROS_HH
-# define metapod_BODY_MACROS_HH
+#ifndef METAPOD_BODY_MACROS_HH
+# define METAPOD_BODY_MACROS_HH
 
 namespace metapod
 {

@@ -22,8 +22,8 @@
  * It defines the tree structure of the robot.
  */
 
-#ifndef metapod_SIMPLE_HUMANOID_ROBOT_HH
-# define metapod_SIMPLE_HUMANOID_ROBOT_HH
+#ifndef METAPOD_SIMPLE_HUMANOID_ROBOT_HH
+# define METAPOD_SIMPLE_HUMANOID_ROBOT_HH
 
 # include "metapod/tools/common.hh"
 # include "body.hh"

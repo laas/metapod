@@ -22,8 +22,8 @@
  * It contains the definition of all the robot joints.
  */
 
-#ifndef metapod_SIMPLE_HUMANOID_JOINT_HH
-# define metapod_SIMPLE_HUMANOID_JOINT_HH
+#ifndef METAPOD_SIMPLE_HUMANOID_JOINT_HH
+# define METAPOD_SIMPLE_HUMANOID_JOINT_HH
 
 # include "metapod/tools/jointmacros.hh"
 

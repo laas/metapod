@@ -21,8 +21,8 @@
  * This file contains common tools and includes shared by the test suite
  */
 
-#ifndef metapod_TEST_COMMON_TOOLS
-# define metapod_TEST_COMMON_TOOLS
+#ifndef METAPOD_TEST_COMMON_TOOLS
+# define METAPOD_TEST_COMMON_TOOLS
 
 // Common includes
 # include <string>
@@ -36,12 +36,12 @@
 # include "metapod/tools/initconf.hh"
 
 // Boost test suite includes
-# define BOOST_TEST_MODULE metapod_RNEA
+# define BOOST_TEST_MODULE METAPOD_RNEA
 # include <boost/test/unit_test.hpp>
 
-// Performance test : some tests also output an average execution time of the tested component if metapod_PERF_TEST is defined
-//# define metapod_PERF_TEST 
-# ifdef metapod_PERF_TEST
+// Performance test : some tests also output an average execution time of the tested component if METAPOD_PERF_TEST is defined
+//# define METAPOD_PERF_TEST 
+# ifdef METAPOD_PERF_TEST
 #  include <sys/time.h>
 # endif
 

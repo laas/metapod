@@ -21,8 +21,8 @@
  * This file defines the macros that create the joints classes and define their jcalc routine.
  */
 
-#ifndef metapod_JOINT_MACROS_HH
-# define metapod_JOINT_MACROS_HH
+#ifndef METAPOD_JOINT_MACROS_HH
+# define METAPOD_JOINT_MACROS_HH
 
 namespace metapod
 {

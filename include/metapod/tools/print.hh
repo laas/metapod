@@ -21,8 +21,8 @@
  * This file contains print methods.
  */
 
-#ifndef metapod_PRINT_HH
-# define metapod_PRINT_HH
+#ifndef METAPOD_PRINT_HH
+# define METAPOD_PRINT_HH
 
 #include "metapod/tools/common.hh"
 

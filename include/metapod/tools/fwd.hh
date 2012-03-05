@@ -21,8 +21,8 @@
  * This files include the eigen library and makes the typedefs used throughout the project.
  */
 
-#ifndef metapod_FORWARD_HH
-# define metapod_FORWARD_HH
+#ifndef METAPOD_FORWARD_HH
+# define METAPOD_FORWARD_HH
 
 # define EIGEN_DEFAULT_TO_ROW_MAJOR
 # include "Eigen/Dense"

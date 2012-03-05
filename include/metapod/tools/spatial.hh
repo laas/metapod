@@ -23,8 +23,8 @@
  * Implementation of a spatial algebra.
  */
 
-#ifndef metapod_SPATIAL_ALGEBRA_HH
-# define metapod_SPATIAL_ALGEBRA_HH
+#ifndef METAPOD_SPATIAL_ALGEBRA_HH
+# define METAPOD_SPATIAL_ALGEBRA_HH
 
 # include "metapod/tools/fwd.hh"
 # include "metapod/tools/smallmatrixmacros.hh"

@@ -21,8 +21,8 @@
  * Implementation of the Newton Euler Algorithm, based on Featherstone's Rigid Body Dynamics Algorithms.
  */
 
-#ifndef metapod_RNEA_HH
-# define metapod_RNEA_HH
+#ifndef METAPOD_RNEA_HH
+# define METAPOD_RNEA_HH
 
 # include "metapod/tools/common.hh"
 
