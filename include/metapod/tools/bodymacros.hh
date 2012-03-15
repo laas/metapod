@@ -21,8 +21,8 @@
  * This file defines the macro that creates the bodies classes
  */
 
-#ifndef METAPOD_BODY_MACROS_HH
-# define METAPOD_BODY_MACROS_HH
+#ifndef metapod_BODY_MACROS_HH
+# define metapod_BODY_MACROS_HH
 
 namespace metapod
 {
@@ -41,9 +41,9 @@ namespace metapod
         static const double mass;                          \
         static const vector3d CoM;                         \
         static const matrix3d inertie;                     \
-        static PluckerTransform iX0;                       \
-        static Velocity vi;                                \
-        static Acceleration ai;                            \
+        static Transform iX0;                              \
+        static Motion vi;                                  \
+        static Motion ai;                                  \
         static Force Fext;                                 \
         static Inertia I;                                  \
         typedef parentname Parent;                         \

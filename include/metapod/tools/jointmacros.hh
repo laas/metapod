@@ -21,8 +21,8 @@
  * This file defines the macros that create the joints classes and define their jcalc routine.
  */
 
-#ifndef METAPOD_JOINT_MACROS_HH
-# define METAPOD_JOINT_MACROS_HH
+#ifndef metapod_JOINT_MACROS_HH
+# define metapod_JOINT_MACROS_HH
 
 namespace metapod
 {
@@ -37,11 +37,11 @@ namespace metapod
       static const int label;                                        \
       static const int nbDof;                                        \
       static const int positionInConf;                               \
-      static const PluckerTransform Xt;                              \
-      static PluckerTransform sXp;                                   \
-      static PluckerTransform Xj;                                    \
-      static vector6d cj;                                            \
-      static vector6d vj;                                            \
+      static const Transform Xt;                                     \
+      static Transform sXp;                                          \
+      static Transform Xj;                                           \
+      static Motion cj;                                              \
+      static Motion vj;                                              \
       static const matrixN S;                                        \
       static const matrixN dotS;                                     \
       static Force f;                                                \
@@ -60,11 +60,11 @@ namespace metapod
       static const int label;                                        \
       static const int nbDof;                                        \
       static const int positionInConf;                               \
-      static const PluckerTransform Xt;                              \
-      static PluckerTransform sXp;                                   \
-      static PluckerTransform Xj;                                    \
-      static vector6d cj;                                            \
-      static vector6d vj;                                            \
+      static const Transform Xt;                                     \
+      static Transform sXp;                                          \
+      static Transform Xj;                                           \
+      static Motion cj;                                              \
+      static Motion vj;                                              \
       static matrixN S;                                              \
       static matrixN dotS;                                           \
       static Force f;                                                \
@@ -78,44 +78,29 @@ namespace metapod
     {                                            \
       FloatType angle = qi[0];                   \
       matrix3d localR;                           \
-      vector3d t;                                \
       ROTX(angle, localR);                       \
       localR.transposeInPlace();                 \
-      S3_VECTOR_SET_ZERO(t);                     \
-      Xj = Spatial::PluckerTransform(localR, t); \
-      Spatial::PluckerTransform tmp = Xt;        \
-      sXp = Xj*tmp;                              \
-  /* TODO: tmp variable should useless. Doesn't compile as such without it though. */\
+      Xj = Spatial::Transform(localR, vector3d::Zero());        \
+      sXp = Xj*Xt;                              \
                                                  \
       /* maj vj */                               \
-      vj[3] = dqi[0];                            \
+      vj.w(vector3d(dqi[0], 0, 0));                            \
     }
   
   // Define Jcalc method for all free flyer classes (there should be only one)
   # define FREE_FLYER_JCALC                                                  \
     {                                                                        \
       /* maj sXp */                                                          \
-      vector3d qang, qlin;                                                   \
-      for(int i=0; i<3; i++)                                                 \
-      {                                                                      \
-        qlin[i] = qi[i];                                                     \
-        qang[i] = qi[i+3];                                                   \
-      }                                                                      \
+      vector3d qlin = qi.segment<3>(0),                                      \
+               qang = qi.segment<3>(3);                                      \
       matrix3d localR;                                                       \
-      vector3d t;                                                            \
       EULERXYZ(qang, localR);                                                \
-      for(int i=0; i<3; i++)                                                 \
-        for(int j=0; j<3; j++)                                               \
-          S(i,j) = S(i+3, j+3) = localR(j,i);                                \
       localR.transposeInPlace();                                             \
-      S3_VECTOR_SET_ZERO(t);                                                 \
-      Xj = Spatial::PluckerTransform(localR, t);                             \
-      matrix3d tmp1; S3x3_MATRIX_SET_IDENTITY(tmp1);                         \
-      Spatial::PluckerTransform tmp = Spatial::PluckerTransform(tmp1, qlin); \
-      sXp = Xj*tmp; \
-  \
-      /* maj vj */ \
-      vj = S*dqi; \
+      S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;                        \
+      Xj = Transform(localR, vector3d::Zero());                              \
+      sXp = Xj*Transform(matrix3d::Identity(), qlin);                        \
+      /* maj vj */                                                           \
+      vj = Motion(S*dqi);                                                    \
     }
   
   // Define a "no-joint" class, used as a dummy class for end of recursion purpose.
@@ -127,11 +112,11 @@ namespace metapod
       static const int label;                                        \
       static const int nbDof;                                        \
       static const int positionInConf;                               \
-      static const PluckerTransform Xt;                              \
-      static PluckerTransform sXp;                                   \
-      static PluckerTransform Xj;                                    \
-      static vector6d cj;                                            \
-      static vector6d vj;                                            \
+      static const Transform Xt;                                     \
+      static Transform sXp;                                          \
+      static Transform Xj;                                           \
+      static Motion cj;                                              \
+      static Motion vj;                                              \
       static matrixN S;                                              \
       static matrixN dotS;                                           \
       static Force f;                                                \

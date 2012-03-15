@@ -21,8 +21,8 @@
  * Implementation of the Newton Euler Algorithm, based on Featherstone's Rigid Body Dynamics Algorithms.
  */
 
-#ifndef METAPOD_RNEA_HH
-# define METAPOD_RNEA_HH
+#ifndef metapod_RNEA_HH
+# define metapod_RNEA_HH
 
 # include "metapod/tools/common.hh"
 
@@ -50,14 +50,13 @@ namespace metapod
       // iX0 = iXλ(i) * λ(i)X0
       // vi = iXλ(i) * vλ(i) + vj
       // ai = iXλ(i) * aλ(i) + Si * ddqi + cj + vi x vj
-      Node::Body::iX0 = Node::Joint::sXp * Node::Body::Parent::iX0;
-      Node::Body::vi = Node::Joint::sXp * Node::Body::Parent::vi + Node::Joint::vj;
-      {
-        vector6d tmp1 = Node::Joint::S * ddqi;
-        vector6d tmp2 = Node::Body::vi^Node::Joint::vj;
-        tmp1 = tmp1 + Node::Joint::cj + tmp2;
-        Node::Body::ai = Node::Joint::sXp * Node::Body::Parent::ai + tmp1;
-      }
+      Node::Body::iX0 = Node::Joint::sXp*Node::Body::Parent::iX0;
+      Node::Body::vi = Node::Joint::sXp.apply(Node::Body::Parent::vi) 
+                     + Node::Joint::vj;
+      Node::Body::ai = Node::Joint::sXp.apply(Node::Body::Parent::ai)
+                     + Motion(Node::Joint::S * ddqi)
+                     + Node::Joint::cj
+                     + (Node::Body::vi^Node::Joint::vj);
     }
     else
     {
@@ -66,17 +65,14 @@ namespace metapod
       // ai = Si * ddqi + cj + vi x vj
       Node::Body::iX0 = Node::Joint::sXp;
       Node::Body::vi = Node::Joint::vj;
-      {
-        vector6d tmp1 = Node::Joint::S * ddqi;
-        vector6d tmp2 = Node::Body::vi^Node::Joint::vj;
-        tmp1 = tmp1 + Node::Joint::cj + tmp2;
-        Node::Body::ai = tmp1;
-      }
+      Node::Body::ai = Motion(Node::Joint::S * ddqi)
+                     + Node::Joint::cj
+                     + (Node::Body::vi^Node::Joint::vj);
     }
   
     {
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      vector3d global_CoM = Node::Body::iX0.R().transpose()*Node::Body::CoM + Node::Body::iX0.p();
+      vector3d global_CoM = Node::Body::iX0.E().transpose()*Node::Body::CoM + Node::Body::iX0.r();
     
       vector3d gravity_force, gravity_torque;
       gravity_force[0] = 0;
@@ -86,14 +82,9 @@ namespace metapod
       gravity_torque[1] = global_CoM[2]*gravity_force[0] - global_CoM[0]*gravity_force[2];
       gravity_torque[2] = global_CoM[0]*gravity_force[1] + global_CoM[1]*gravity_force[0];
     
-      Spatial::Force Fext = Force(gravity_force,gravity_torque);
+      Force Fext = Force(gravity_torque,gravity_force);
     
-      Momentum tmp1 = Node::Body::I * Node::Body::vi;
-      Force tmp2 = Node::Body::vi ^ tmp1;
-      Force tmp3 = Node::Body::I * Node::Body::ai + tmp2;
-      tmp2 = Fext * Node::Body::mass - Node::Body::Fext;
-      Force tmp4 = Node::Body::iX0 * tmp2;
-      Node::Joint::f = tmp3 + tmp4;
+      Node::Joint::f = (Node::Body::I*Node::Body::ai) + (Node::Body::vi^(Node::Body::I*Node::Body::vi)) + Node::Body::iX0.apply(Node::Body::mass*Fext - Node::Body::Fext);
     }
   
     // recursion on children
@@ -110,24 +101,10 @@ namespace metapod
   
     // backward computations follow
     // τi = SiT * fi
-    {
-      vector3d fi = Node::Joint::f.f();
-      vector3d ni = Node::Joint::f.n0();
-      vector6d tmp;
-      for(int k=0; k<3; k++)
-      {
-        tmp(k) = fi(k);
-        tmp(k+3) = ni(k);
-      }
-        Node::Joint::torque = Node::Joint::S.transpose() * tmp;
-    }
+//    Node::Joint::torque = Node::Joint::S.transpose() * Node::Joint::f;
     // fλ(i) = fλ(i) + λ(i)Xi* * fi
-    {
-      PluckerTransformTranspose tmp1 = PluckerTransformTranspose(Node::Joint::sXp);
-      Force tmp2 = tmp1 * Node::Joint::f;
-      if(Node::Body::HAS_PARENT)
-        Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f + tmp2;
-    }
+    if(Node::Body::HAS_PARENT)
+      Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f + Node::Joint::sXp.applyInv(Node::Joint::f);
   }
   
   /**

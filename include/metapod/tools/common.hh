@@ -21,8 +21,8 @@
  * This file contains the includes and class definitions necessary for the whole project.
  */
 
-#ifndef METAPOD_COMMON_HH
-# define METAPOD_COMMON_HH
+#ifndef metapod_COMMON_HH
+# define metapod_COMMON_HH
 
 # include "metapod/tools/fwd.hh"
 # include "metapod/tools/jointmacros.hh"
@@ -55,17 +55,17 @@ namespace metapod
     public:
       enum { HAS_PARENT = 0 };
       static const std::string label;
-      static PluckerTransform iX0;
-      static Velocity vi; 
-      static Acceleration ai; 
+      static Transform iX0;
+      static Motion vi; 
+      static Motion ai; 
       static Force Fext;
       static Inertia I;
       typedef NJ Joint;
   };
 
   // Initialization of the NP class
-  Acceleration NP::ai;
-  PluckerTransform NP::iX0;
+  Motion NP::ai;
+  Transform NP::iX0;
 
   // Base class for Nodes. Provides the boolean "isNode", used to end recursions on the tree structure of the robot.
   class NodeBase
@@ -102,7 +102,7 @@ namespace metapod
     return m;
   }
   
-  // Constant size 3 vector initialization method.
+  // Constant size 6 vector initialization method.
   const vector6d vector6dMaker(double v1,
                                double v2,
                                double v3,
@@ -116,14 +116,15 @@ namespace metapod
   }
 
   // Constant Spatial::Inertia initialization method.
-  Spatial::Inertia spatialInertiaMaker(const matrix3d & inertie, const vector3d & CoM, const double mass)
+  Inertia spatialInertiaMaker(const double m, const vector3d & CoM, const matrix3d & inertia)
   {
-    matrix3d I = inertie;
+    matrix3d I = inertia;
     matrix3d tmp; SKEW(CoM,tmp);
     tmp = tmp*tmp.transpose();
-    I = I + tmp*mass;
-    vector3d h = CoM*mass;
-    return Inertia(I,h,mass);
+    I = I + tmp*m;
+    vector3d h = CoM*m;
+    Inertia M;
+    return Inertia(m, h, I);
   }
 
 } // end of namespace metapod.

@@ -22,8 +22,8 @@
  * It contains the definition of all the robot bodies.
  */
 
-#ifndef METAPOD_SIMPLE_HUMANOID_BODY_HH
-# define METAPOD_SIMPLE_HUMANOID_BODY_HH
+#ifndef metapod_SIMPLE_HUMANOID_BODY_HH
+# define metapod_SIMPLE_HUMANOID_BODY_HH
 
 # include "metapod/tools/bodymacros.hh"
 
@@ -48,11 +48,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform WAIST_LINK0::iX0;
-  Velocity WAIST_LINK0::vi;
-  Acceleration WAIST_LINK0::ai;
+  Transform WAIST_LINK0::iX0;
+  Motion WAIST_LINK0::vi;
+  Motion WAIST_LINK0::ai;
   Force WAIST_LINK0::Fext;
-  Inertia WAIST_LINK0::I = spatialInertiaMaker(WAIST_LINK0::inertie, WAIST_LINK0::CoM, WAIST_LINK0::mass);
+  Inertia WAIST_LINK0::I = spatialInertiaMaker(WAIST_LINK0::mass, WAIST_LINK0::CoM, WAIST_LINK0::inertie);
 
 
   // Forward declaration of WAIST_P class
@@ -70,11 +70,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform WAIST_LINK1::iX0;
-  Velocity WAIST_LINK1::vi;
-  Acceleration WAIST_LINK1::ai;
+  Transform WAIST_LINK1::iX0;
+  Motion WAIST_LINK1::vi;
+  Motion WAIST_LINK1::ai;
   Force WAIST_LINK1::Fext;
-  Inertia WAIST_LINK1::I = spatialInertiaMaker(WAIST_LINK1::inertie, WAIST_LINK1::CoM, WAIST_LINK1::mass);
+  Inertia WAIST_LINK1::I = spatialInertiaMaker(WAIST_LINK1::mass, WAIST_LINK1::CoM, WAIST_LINK1::inertie);
 
 
   // Forward declaration of WAIST_R class
@@ -92,11 +92,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform WAIST_LINK2::iX0;
-  Velocity WAIST_LINK2::vi;
-  Acceleration WAIST_LINK2::ai;
+  Transform WAIST_LINK2::iX0;
+  Motion WAIST_LINK2::vi;
+  Motion WAIST_LINK2::ai;
   Force WAIST_LINK2::Fext;
-  Inertia WAIST_LINK2::I = spatialInertiaMaker(WAIST_LINK2::inertie, WAIST_LINK2::CoM, WAIST_LINK2::mass);
+  Inertia WAIST_LINK2::I = spatialInertiaMaker(WAIST_LINK2::mass, WAIST_LINK2::CoM, WAIST_LINK2::inertie);
 
 
   // Forward declaration of CHEST class
@@ -114,11 +114,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform WAIST_LINK3::iX0;
-  Velocity WAIST_LINK3::vi;
-  Acceleration WAIST_LINK3::ai;
+  Transform WAIST_LINK3::iX0;
+  Motion WAIST_LINK3::vi;
+  Motion WAIST_LINK3::ai;
   Force WAIST_LINK3::Fext;
-  Inertia WAIST_LINK3::I = spatialInertiaMaker(WAIST_LINK3::inertie, WAIST_LINK3::CoM, WAIST_LINK3::mass);
+  Inertia WAIST_LINK3::I = spatialInertiaMaker(WAIST_LINK3::mass, WAIST_LINK3::CoM, WAIST_LINK3::inertie);
 
 
   // Forward declaration of LARM_SHOULDER_P class
@@ -136,11 +136,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK1::iX0;
-  Velocity LARM_LINK1::vi;
-  Acceleration LARM_LINK1::ai;
+  Transform LARM_LINK1::iX0;
+  Motion LARM_LINK1::vi;
+  Motion LARM_LINK1::ai;
   Force LARM_LINK1::Fext;
-  Inertia LARM_LINK1::I = spatialInertiaMaker(LARM_LINK1::inertie, LARM_LINK1::CoM, LARM_LINK1::mass);
+  Inertia LARM_LINK1::I = spatialInertiaMaker(LARM_LINK1::mass, LARM_LINK1::CoM, LARM_LINK1::inertie);
 
 
   // Forward declaration of LARM_SHOULDER_R class
@@ -158,11 +158,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK2::iX0;
-  Velocity LARM_LINK2::vi;
-  Acceleration LARM_LINK2::ai;
+  Transform LARM_LINK2::iX0;
+  Motion LARM_LINK2::vi;
+  Motion LARM_LINK2::ai;
   Force LARM_LINK2::Fext;
-  Inertia LARM_LINK2::I = spatialInertiaMaker(LARM_LINK2::inertie, LARM_LINK2::CoM, LARM_LINK2::mass);
+  Inertia LARM_LINK2::I = spatialInertiaMaker(LARM_LINK2::mass, LARM_LINK2::CoM, LARM_LINK2::inertie);
 
 
   // Forward declaration of LARM_SHOULDER_Y class
@@ -180,11 +180,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK3::iX0;
-  Velocity LARM_LINK3::vi;
-  Acceleration LARM_LINK3::ai;
+  Transform LARM_LINK3::iX0;
+  Motion LARM_LINK3::vi;
+  Motion LARM_LINK3::ai;
   Force LARM_LINK3::Fext;
-  Inertia LARM_LINK3::I = spatialInertiaMaker(LARM_LINK3::inertie, LARM_LINK3::CoM, LARM_LINK3::mass);
+  Inertia LARM_LINK3::I = spatialInertiaMaker(LARM_LINK3::mass, LARM_LINK3::CoM, LARM_LINK3::inertie);
 
 
   // Forward declaration of LARM_ELBOW class
@@ -202,11 +202,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK4::iX0;
-  Velocity LARM_LINK4::vi;
-  Acceleration LARM_LINK4::ai;
+  Transform LARM_LINK4::iX0;
+  Motion LARM_LINK4::vi;
+  Motion LARM_LINK4::ai;
   Force LARM_LINK4::Fext;
-  Inertia LARM_LINK4::I = spatialInertiaMaker(LARM_LINK4::inertie, LARM_LINK4::CoM, LARM_LINK4::mass);
+  Inertia LARM_LINK4::I = spatialInertiaMaker(LARM_LINK4::mass, LARM_LINK4::CoM, LARM_LINK4::inertie);
 
 
   // Forward declaration of LARM_WRIST_Y class
@@ -224,11 +224,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK5::iX0;
-  Velocity LARM_LINK5::vi;
-  Acceleration LARM_LINK5::ai;
+  Transform LARM_LINK5::iX0;
+  Motion LARM_LINK5::vi;
+  Motion LARM_LINK5::ai;
   Force LARM_LINK5::Fext;
-  Inertia LARM_LINK5::I = spatialInertiaMaker(LARM_LINK5::inertie, LARM_LINK5::CoM, LARM_LINK5::mass);
+  Inertia LARM_LINK5::I = spatialInertiaMaker(LARM_LINK5::mass, LARM_LINK5::CoM, LARM_LINK5::inertie);
 
 
   // Forward declaration of LARM_WRIST_P class
@@ -246,11 +246,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK6::iX0;
-  Velocity LARM_LINK6::vi;
-  Acceleration LARM_LINK6::ai;
+  Transform LARM_LINK6::iX0;
+  Motion LARM_LINK6::vi;
+  Motion LARM_LINK6::ai;
   Force LARM_LINK6::Fext;
-  Inertia LARM_LINK6::I = spatialInertiaMaker(LARM_LINK6::inertie, LARM_LINK6::CoM, LARM_LINK6::mass);
+  Inertia LARM_LINK6::I = spatialInertiaMaker(LARM_LINK6::mass, LARM_LINK6::CoM, LARM_LINK6::inertie);
 
 
   // Forward declaration of LARM_WRIST_R class
@@ -268,11 +268,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LARM_LINK7::iX0;
-  Velocity LARM_LINK7::vi;
-  Acceleration LARM_LINK7::ai;
+  Transform LARM_LINK7::iX0;
+  Motion LARM_LINK7::vi;
+  Motion LARM_LINK7::ai;
   Force LARM_LINK7::Fext;
-  Inertia LARM_LINK7::I = spatialInertiaMaker(LARM_LINK7::inertie, LARM_LINK7::CoM, LARM_LINK7::mass);
+  Inertia LARM_LINK7::I = spatialInertiaMaker(LARM_LINK7::mass, LARM_LINK7::CoM, LARM_LINK7::inertie);
 
 
   // Forward declaration of RARM_SHOULDER_P class
@@ -290,11 +290,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK1::iX0;
-  Velocity RARM_LINK1::vi;
-  Acceleration RARM_LINK1::ai;
+  Transform RARM_LINK1::iX0;
+  Motion RARM_LINK1::vi;
+  Motion RARM_LINK1::ai;
   Force RARM_LINK1::Fext;
-  Inertia RARM_LINK1::I = spatialInertiaMaker(RARM_LINK1::inertie, RARM_LINK1::CoM, RARM_LINK1::mass);
+  Inertia RARM_LINK1::I = spatialInertiaMaker(RARM_LINK1::mass, RARM_LINK1::CoM, RARM_LINK1::inertie);
 
 
   // Forward declaration of RARM_SHOULDER_R class
@@ -312,11 +312,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK2::iX0;
-  Velocity RARM_LINK2::vi;
-  Acceleration RARM_LINK2::ai;
+  Transform RARM_LINK2::iX0;
+  Motion RARM_LINK2::vi;
+  Motion RARM_LINK2::ai;
   Force RARM_LINK2::Fext;
-  Inertia RARM_LINK2::I = spatialInertiaMaker(RARM_LINK2::inertie, RARM_LINK2::CoM, RARM_LINK2::mass);
+  Inertia RARM_LINK2::I = spatialInertiaMaker(RARM_LINK2::mass, RARM_LINK2::CoM, RARM_LINK2::inertie);
 
 
   // Forward declaration of RARM_SHOULDER_Y class
@@ -334,11 +334,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK3::iX0;
-  Velocity RARM_LINK3::vi;
-  Acceleration RARM_LINK3::ai;
+  Transform RARM_LINK3::iX0;
+  Motion RARM_LINK3::vi;
+  Motion RARM_LINK3::ai;
   Force RARM_LINK3::Fext;
-  Inertia RARM_LINK3::I = spatialInertiaMaker(RARM_LINK3::inertie, RARM_LINK3::CoM, RARM_LINK3::mass);
+  Inertia RARM_LINK3::I = spatialInertiaMaker(RARM_LINK3::mass, RARM_LINK3::CoM, RARM_LINK3::inertie);
 
 
   // Forward declaration of RARM_ELBOW class
@@ -356,11 +356,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK4::iX0;
-  Velocity RARM_LINK4::vi;
-  Acceleration RARM_LINK4::ai;
+  Transform RARM_LINK4::iX0;
+  Motion RARM_LINK4::vi;
+  Motion RARM_LINK4::ai;
   Force RARM_LINK4::Fext;
-  Inertia RARM_LINK4::I = spatialInertiaMaker(RARM_LINK4::inertie, RARM_LINK4::CoM, RARM_LINK4::mass);
+  Inertia RARM_LINK4::I = spatialInertiaMaker(RARM_LINK4::mass, RARM_LINK4::CoM, RARM_LINK4::inertie);
 
 
   // Forward declaration of RARM_WRIST_Y class
@@ -378,11 +378,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK5::iX0;
-  Velocity RARM_LINK5::vi;
-  Acceleration RARM_LINK5::ai;
+  Transform RARM_LINK5::iX0;
+  Motion RARM_LINK5::vi;
+  Motion RARM_LINK5::ai;
   Force RARM_LINK5::Fext;
-  Inertia RARM_LINK5::I = spatialInertiaMaker(RARM_LINK5::inertie, RARM_LINK5::CoM, RARM_LINK5::mass);
+  Inertia RARM_LINK5::I = spatialInertiaMaker(RARM_LINK5::mass, RARM_LINK5::CoM, RARM_LINK5::inertie);
 
 
   // Forward declaration of RARM_WRIST_P class
@@ -400,11 +400,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK6::iX0;
-  Velocity RARM_LINK6::vi;
-  Acceleration RARM_LINK6::ai;
+  Transform RARM_LINK6::iX0;
+  Motion RARM_LINK6::vi;
+  Motion RARM_LINK6::ai;
   Force RARM_LINK6::Fext;
-  Inertia RARM_LINK6::I = spatialInertiaMaker(RARM_LINK6::inertie, RARM_LINK6::CoM, RARM_LINK6::mass);
+  Inertia RARM_LINK6::I = spatialInertiaMaker(RARM_LINK6::mass, RARM_LINK6::CoM, RARM_LINK6::inertie);
 
 
   // Forward declaration of RARM_WRIST_R class
@@ -422,11 +422,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RARM_LINK7::iX0;
-  Velocity RARM_LINK7::vi;
-  Acceleration RARM_LINK7::ai;
+  Transform RARM_LINK7::iX0;
+  Motion RARM_LINK7::vi;
+  Motion RARM_LINK7::ai;
   Force RARM_LINK7::Fext;
-  Inertia RARM_LINK7::I = spatialInertiaMaker(RARM_LINK7::inertie, RARM_LINK7::CoM, RARM_LINK7::mass);
+  Inertia RARM_LINK7::I = spatialInertiaMaker(RARM_LINK7::mass, RARM_LINK7::CoM, RARM_LINK7::inertie);
 
 
   // Forward declaration of LLEG_HIP_R class
@@ -444,11 +444,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LLEG_LINK1::iX0;
-  Velocity LLEG_LINK1::vi;
-  Acceleration LLEG_LINK1::ai;
+  Transform LLEG_LINK1::iX0;
+  Motion LLEG_LINK1::vi;
+  Motion LLEG_LINK1::ai;
   Force LLEG_LINK1::Fext;
-  Inertia LLEG_LINK1::I = spatialInertiaMaker(LLEG_LINK1::inertie, LLEG_LINK1::CoM, LLEG_LINK1::mass);
+  Inertia LLEG_LINK1::I = spatialInertiaMaker(LLEG_LINK1::mass, LLEG_LINK1::CoM, LLEG_LINK1::inertie);
 
 
   // Forward declaration of LLEG_HIP_P class
@@ -466,11 +466,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LLEG_LINK2::iX0;
-  Velocity LLEG_LINK2::vi;
-  Acceleration LLEG_LINK2::ai;
+  Transform LLEG_LINK2::iX0;
+  Motion LLEG_LINK2::vi;
+  Motion LLEG_LINK2::ai;
   Force LLEG_LINK2::Fext;
-  Inertia LLEG_LINK2::I = spatialInertiaMaker(LLEG_LINK2::inertie, LLEG_LINK2::CoM, LLEG_LINK2::mass);
+  Inertia LLEG_LINK2::I = spatialInertiaMaker(LLEG_LINK2::mass, LLEG_LINK2::CoM, LLEG_LINK2::inertie);
 
 
   // Forward declaration of LLEG_HIP_Y class
@@ -488,11 +488,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LLEG_LINK3::iX0;
-  Velocity LLEG_LINK3::vi;
-  Acceleration LLEG_LINK3::ai;
+  Transform LLEG_LINK3::iX0;
+  Motion LLEG_LINK3::vi;
+  Motion LLEG_LINK3::ai;
   Force LLEG_LINK3::Fext;
-  Inertia LLEG_LINK3::I = spatialInertiaMaker(LLEG_LINK3::inertie, LLEG_LINK3::CoM, LLEG_LINK3::mass);
+  Inertia LLEG_LINK3::I = spatialInertiaMaker(LLEG_LINK3::mass, LLEG_LINK3::CoM, LLEG_LINK3::inertie);
 
 
   // Forward declaration of LLEG_KNEE class
@@ -510,11 +510,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LLEG_LINK4::iX0;
-  Velocity LLEG_LINK4::vi;
-  Acceleration LLEG_LINK4::ai;
+  Transform LLEG_LINK4::iX0;
+  Motion LLEG_LINK4::vi;
+  Motion LLEG_LINK4::ai;
   Force LLEG_LINK4::Fext;
-  Inertia LLEG_LINK4::I = spatialInertiaMaker(LLEG_LINK4::inertie, LLEG_LINK4::CoM, LLEG_LINK4::mass);
+  Inertia LLEG_LINK4::I = spatialInertiaMaker(LLEG_LINK4::mass, LLEG_LINK4::CoM, LLEG_LINK4::inertie);
 
 
   // Forward declaration of LLEG_ANKLE_P class
@@ -532,11 +532,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LLEG_LINK5::iX0;
-  Velocity LLEG_LINK5::vi;
-  Acceleration LLEG_LINK5::ai;
+  Transform LLEG_LINK5::iX0;
+  Motion LLEG_LINK5::vi;
+  Motion LLEG_LINK5::ai;
   Force LLEG_LINK5::Fext;
-  Inertia LLEG_LINK5::I = spatialInertiaMaker(LLEG_LINK5::inertie, LLEG_LINK5::CoM, LLEG_LINK5::mass);
+  Inertia LLEG_LINK5::I = spatialInertiaMaker(LLEG_LINK5::mass, LLEG_LINK5::CoM, LLEG_LINK5::inertie);
 
 
   // Forward declaration of LLEG_ANKLE_R class
@@ -554,11 +554,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform LLEG_LINK6::iX0;
-  Velocity LLEG_LINK6::vi;
-  Acceleration LLEG_LINK6::ai;
+  Transform LLEG_LINK6::iX0;
+  Motion LLEG_LINK6::vi;
+  Motion LLEG_LINK6::ai;
   Force LLEG_LINK6::Fext;
-  Inertia LLEG_LINK6::I = spatialInertiaMaker(LLEG_LINK6::inertie, LLEG_LINK6::CoM, LLEG_LINK6::mass);
+  Inertia LLEG_LINK6::I = spatialInertiaMaker(LLEG_LINK6::mass, LLEG_LINK6::CoM, LLEG_LINK6::inertie);
 
 
   // Forward declaration of RLEG_HIP_R class
@@ -576,11 +576,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RLEG_LINK1::iX0;
-  Velocity RLEG_LINK1::vi;
-  Acceleration RLEG_LINK1::ai;
+  Transform RLEG_LINK1::iX0;
+  Motion RLEG_LINK1::vi;
+  Motion RLEG_LINK1::ai;
   Force RLEG_LINK1::Fext;
-  Inertia RLEG_LINK1::I = spatialInertiaMaker(RLEG_LINK1::inertie, RLEG_LINK1::CoM, RLEG_LINK1::mass);
+  Inertia RLEG_LINK1::I = spatialInertiaMaker(RLEG_LINK1::mass, RLEG_LINK1::CoM, RLEG_LINK1::inertie);
 
 
   // Forward declaration of RLEG_HIP_P class
@@ -598,11 +598,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RLEG_LINK2::iX0;
-  Velocity RLEG_LINK2::vi;
-  Acceleration RLEG_LINK2::ai;
+  Transform RLEG_LINK2::iX0;
+  Motion RLEG_LINK2::vi;
+  Motion RLEG_LINK2::ai;
   Force RLEG_LINK2::Fext;
-  Inertia RLEG_LINK2::I = spatialInertiaMaker(RLEG_LINK2::inertie, RLEG_LINK2::CoM, RLEG_LINK2::mass);
+  Inertia RLEG_LINK2::I = spatialInertiaMaker(RLEG_LINK2::mass, RLEG_LINK2::CoM, RLEG_LINK2::inertie);
 
 
   // Forward declaration of RLEG_HIP_Y class
@@ -620,11 +620,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RLEG_LINK3::iX0;
-  Velocity RLEG_LINK3::vi;
-  Acceleration RLEG_LINK3::ai;
+  Transform RLEG_LINK3::iX0;
+  Motion RLEG_LINK3::vi;
+  Motion RLEG_LINK3::ai;
   Force RLEG_LINK3::Fext;
-  Inertia RLEG_LINK3::I = spatialInertiaMaker(RLEG_LINK3::inertie, RLEG_LINK3::CoM, RLEG_LINK3::mass);
+  Inertia RLEG_LINK3::I = spatialInertiaMaker(RLEG_LINK3::mass, RLEG_LINK3::CoM, RLEG_LINK3::inertie);
 
 
   // Forward declaration of RLEG_KNEE class
@@ -642,11 +642,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RLEG_LINK4::iX0;
-  Velocity RLEG_LINK4::vi;
-  Acceleration RLEG_LINK4::ai;
+  Transform RLEG_LINK4::iX0;
+  Motion RLEG_LINK4::vi;
+  Motion RLEG_LINK4::ai;
   Force RLEG_LINK4::Fext;
-  Inertia RLEG_LINK4::I = spatialInertiaMaker(RLEG_LINK4::inertie, RLEG_LINK4::CoM, RLEG_LINK4::mass);
+  Inertia RLEG_LINK4::I = spatialInertiaMaker(RLEG_LINK4::mass, RLEG_LINK4::CoM, RLEG_LINK4::inertie);
 
 
   // Forward declaration of RLEG_ANKLE_P class
@@ -664,11 +664,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RLEG_LINK5::iX0;
-  Velocity RLEG_LINK5::vi;
-  Acceleration RLEG_LINK5::ai;
+  Transform RLEG_LINK5::iX0;
+  Motion RLEG_LINK5::vi;
+  Motion RLEG_LINK5::ai;
   Force RLEG_LINK5::Fext;
-  Inertia RLEG_LINK5::I = spatialInertiaMaker(RLEG_LINK5::inertie, RLEG_LINK5::CoM, RLEG_LINK5::mass);
+  Inertia RLEG_LINK5::I = spatialInertiaMaker(RLEG_LINK5::mass, RLEG_LINK5::CoM, RLEG_LINK5::inertie);
 
 
   // Forward declaration of RLEG_ANKLE_R class
@@ -686,11 +686,11 @@ namespace simplehumanoid
     1, 0, 0,
     0, 1, 0,
     0, 0, 1);
-  PluckerTransform RLEG_LINK6::iX0;
-  Velocity RLEG_LINK6::vi;
-  Acceleration RLEG_LINK6::ai;
+  Transform RLEG_LINK6::iX0;
+  Motion RLEG_LINK6::vi;
+  Motion RLEG_LINK6::ai;
   Force RLEG_LINK6::Fext;
-  Inertia RLEG_LINK6::I = spatialInertiaMaker(RLEG_LINK6::inertie, RLEG_LINK6::CoM, RLEG_LINK6::mass);
+  Inertia RLEG_LINK6::I = spatialInertiaMaker(RLEG_LINK6::mass, RLEG_LINK6::CoM, RLEG_LINK6::inertie);
 
 } // end of namespace simplehumanoid
 

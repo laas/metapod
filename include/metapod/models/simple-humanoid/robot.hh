@@ -40,10 +40,10 @@ namespace simplehumanoid
       static const int nbDof;
   
       // Definition of the multibody tree as a type.
-      typedef   Node< WAIST_LINK0,
-            WAIST,
+      typedef Node< WAIST_LINK0,
+                    WAIST,
                     Node< WAIST_LINK1,
-                                  WAIST_P,
+                          WAIST_P,
                           Node< WAIST_LINK2,
                                 WAIST_R,
                                 Node< WAIST_LINK3,
