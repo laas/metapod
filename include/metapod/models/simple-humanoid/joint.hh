@@ -33,9 +33,9 @@ namespace simplehumanoid
   // Init WAIST
   JOINT_FREE_FLYER(WAIST);
 
-  matrixN WAIST::S = matrixN::Zero(6,6);
-  matrixN WAIST::dotS = matrixN::Zero(6,6);
-  void WAIST::jcalc(const vectorN & qi, const vectorN & dqi) { FREE_FLYER_JCALC }
+  matrix6d WAIST::S = matrix6d::Zero();
+  matrix6d WAIST::dotS = matrix6d::Zero();
+  void WAIST::jcalc(const vector6d & qi, const vector6d & dqi) { FREE_FLYER_JCALC }
   const std::string WAIST::name = "WAIST";
   const int WAIST::label = 1;
   const int WAIST::nbDof = 6;
@@ -50,14 +50,14 @@ namespace simplehumanoid
   Motion WAIST::cj;
   Motion WAIST::vj;
   Force WAIST::f;
-  vectorN WAIST::torque;
+  vector6d WAIST::torque;
 
   // Init WAIST_P
   JOINT_REVOLUTE(WAIST_P);
 
-  const matrixN WAIST_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN WAIST_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void WAIST_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d WAIST_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d WAIST_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void WAIST_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string WAIST_P::name = "WAIST_P";
   const int WAIST_P::label = 2;
   const int WAIST_P::nbDof = 1;
@@ -72,14 +72,14 @@ namespace simplehumanoid
   Motion WAIST_P::cj;
   Motion WAIST_P::vj;
   Force WAIST_P::f;
-  vectorN WAIST_P::torque;
+  double WAIST_P::torque;
 
   // Init WAIST_R
   JOINT_REVOLUTE(WAIST_R);
 
-  const matrixN WAIST_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN WAIST_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void WAIST_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d WAIST_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d WAIST_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void WAIST_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string WAIST_R::name = "WAIST_R";
   const int WAIST_R::label = 3;
   const int WAIST_R::nbDof = 1;
@@ -94,14 +94,14 @@ namespace simplehumanoid
   Motion WAIST_R::cj;
   Motion WAIST_R::vj;
   Force WAIST_R::f;
-  vectorN WAIST_R::torque;
+  double WAIST_R::torque;
 
   // Init CHEST
   JOINT_REVOLUTE(CHEST);
 
-  const matrixN CHEST::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN CHEST::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void CHEST::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d CHEST::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d CHEST::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void CHEST::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string CHEST::name = "CHEST";
   const int CHEST::label = 4;
   const int CHEST::nbDof = 1;
@@ -116,14 +116,14 @@ namespace simplehumanoid
   Motion CHEST::cj;
   Motion CHEST::vj;
   Force CHEST::f;
-  vectorN CHEST::torque;
+  double CHEST::torque;
 
   // Init LARM_SHOULDER_P
   JOINT_REVOLUTE(LARM_SHOULDER_P);
 
-  const matrixN LARM_SHOULDER_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_SHOULDER_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_SHOULDER_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_SHOULDER_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_SHOULDER_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_SHOULDER_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_SHOULDER_P::name = "LARM_SHOULDER_P";
   const int LARM_SHOULDER_P::label = 5;
   const int LARM_SHOULDER_P::nbDof = 1;
@@ -138,14 +138,14 @@ namespace simplehumanoid
   Motion LARM_SHOULDER_P::cj;
   Motion LARM_SHOULDER_P::vj;
   Force LARM_SHOULDER_P::f;
-  vectorN LARM_SHOULDER_P::torque;
+  double LARM_SHOULDER_P::torque;
 
   // Init LARM_SHOULDER_R
   JOINT_REVOLUTE(LARM_SHOULDER_R);
 
-  const matrixN LARM_SHOULDER_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_SHOULDER_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_SHOULDER_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_SHOULDER_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_SHOULDER_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_SHOULDER_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_SHOULDER_R::name = "LARM_SHOULDER_R";
   const int LARM_SHOULDER_R::label = 6;
   const int LARM_SHOULDER_R::nbDof = 1;
@@ -160,14 +160,14 @@ namespace simplehumanoid
   Motion LARM_SHOULDER_R::cj;
   Motion LARM_SHOULDER_R::vj;
   Force LARM_SHOULDER_R::f;
-  vectorN LARM_SHOULDER_R::torque;
+  double LARM_SHOULDER_R::torque;
 
   // Init LARM_SHOULDER_Y
   JOINT_REVOLUTE(LARM_SHOULDER_Y);
 
-  const matrixN LARM_SHOULDER_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_SHOULDER_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_SHOULDER_Y::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_SHOULDER_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_SHOULDER_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_SHOULDER_Y::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_SHOULDER_Y::name = "LARM_SHOULDER_Y";
   const int LARM_SHOULDER_Y::label = 7;
   const int LARM_SHOULDER_Y::nbDof = 1;
@@ -182,14 +182,14 @@ namespace simplehumanoid
   Motion LARM_SHOULDER_Y::cj;
   Motion LARM_SHOULDER_Y::vj;
   Force LARM_SHOULDER_Y::f;
-  vectorN LARM_SHOULDER_Y::torque;
+  double LARM_SHOULDER_Y::torque;
 
   // Init LARM_ELBOW
   JOINT_REVOLUTE(LARM_ELBOW);
 
-  const matrixN LARM_ELBOW::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_ELBOW::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_ELBOW::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_ELBOW::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_ELBOW::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_ELBOW::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_ELBOW::name = "LARM_ELBOW";
   const int LARM_ELBOW::label = 8;
   const int LARM_ELBOW::nbDof = 1;
@@ -204,14 +204,14 @@ namespace simplehumanoid
   Motion LARM_ELBOW::cj;
   Motion LARM_ELBOW::vj;
   Force LARM_ELBOW::f;
-  vectorN LARM_ELBOW::torque;
+  double LARM_ELBOW::torque;
 
   // Init LARM_WRIST_Y
   JOINT_REVOLUTE(LARM_WRIST_Y);
 
-  const matrixN LARM_WRIST_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_WRIST_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_WRIST_Y::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_WRIST_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_WRIST_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_WRIST_Y::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_WRIST_Y::name = "LARM_WRIST_Y";
   const int LARM_WRIST_Y::label = 9;
   const int LARM_WRIST_Y::nbDof = 1;
@@ -226,14 +226,14 @@ namespace simplehumanoid
   Motion LARM_WRIST_Y::cj;
   Motion LARM_WRIST_Y::vj;
   Force LARM_WRIST_Y::f;
-  vectorN LARM_WRIST_Y::torque;
+  double LARM_WRIST_Y::torque;
 
   // Init LARM_WRIST_P
   JOINT_REVOLUTE(LARM_WRIST_P);
 
-  const matrixN LARM_WRIST_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_WRIST_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_WRIST_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_WRIST_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_WRIST_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_WRIST_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_WRIST_P::name = "LARM_WRIST_P";
   const int LARM_WRIST_P::label = 10;
   const int LARM_WRIST_P::nbDof = 1;
@@ -248,14 +248,14 @@ namespace simplehumanoid
   Motion LARM_WRIST_P::cj;
   Motion LARM_WRIST_P::vj;
   Force LARM_WRIST_P::f;
-  vectorN LARM_WRIST_P::torque;
+  double LARM_WRIST_P::torque;
 
   // Init LARM_WRIST_R
   JOINT_REVOLUTE(LARM_WRIST_R);
 
-  const matrixN LARM_WRIST_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LARM_WRIST_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LARM_WRIST_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LARM_WRIST_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LARM_WRIST_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LARM_WRIST_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LARM_WRIST_R::name = "LARM_WRIST_R";
   const int LARM_WRIST_R::label = 11;
   const int LARM_WRIST_R::nbDof = 1;
@@ -270,14 +270,14 @@ namespace simplehumanoid
   Motion LARM_WRIST_R::cj;
   Motion LARM_WRIST_R::vj;
   Force LARM_WRIST_R::f;
-  vectorN LARM_WRIST_R::torque;
+  double LARM_WRIST_R::torque;
 
   // Init RARM_SHOULDER_P
   JOINT_REVOLUTE(RARM_SHOULDER_P);
 
-  const matrixN RARM_SHOULDER_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_SHOULDER_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_SHOULDER_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_SHOULDER_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_SHOULDER_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_SHOULDER_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_SHOULDER_P::name = "RARM_SHOULDER_P";
   const int RARM_SHOULDER_P::label = 12;
   const int RARM_SHOULDER_P::nbDof = 1;
@@ -292,14 +292,14 @@ namespace simplehumanoid
   Motion RARM_SHOULDER_P::cj;
   Motion RARM_SHOULDER_P::vj;
   Force RARM_SHOULDER_P::f;
-  vectorN RARM_SHOULDER_P::torque;
+  double RARM_SHOULDER_P::torque;
 
   // Init RARM_SHOULDER_R
   JOINT_REVOLUTE(RARM_SHOULDER_R);
 
-  const matrixN RARM_SHOULDER_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_SHOULDER_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_SHOULDER_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_SHOULDER_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_SHOULDER_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_SHOULDER_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_SHOULDER_R::name = "RARM_SHOULDER_R";
   const int RARM_SHOULDER_R::label = 13;
   const int RARM_SHOULDER_R::nbDof = 1;
@@ -314,14 +314,14 @@ namespace simplehumanoid
   Motion RARM_SHOULDER_R::cj;
   Motion RARM_SHOULDER_R::vj;
   Force RARM_SHOULDER_R::f;
-  vectorN RARM_SHOULDER_R::torque;
+  double RARM_SHOULDER_R::torque;
 
   // Init RARM_SHOULDER_Y
   JOINT_REVOLUTE(RARM_SHOULDER_Y);
 
-  const matrixN RARM_SHOULDER_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_SHOULDER_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_SHOULDER_Y::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_SHOULDER_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_SHOULDER_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_SHOULDER_Y::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_SHOULDER_Y::name = "RARM_SHOULDER_Y";
   const int RARM_SHOULDER_Y::label = 14;
   const int RARM_SHOULDER_Y::nbDof = 1;
@@ -336,14 +336,14 @@ namespace simplehumanoid
   Motion RARM_SHOULDER_Y::cj;
   Motion RARM_SHOULDER_Y::vj;
   Force RARM_SHOULDER_Y::f;
-  vectorN RARM_SHOULDER_Y::torque;
+  double RARM_SHOULDER_Y::torque;
 
   // Init RARM_ELBOW
   JOINT_REVOLUTE(RARM_ELBOW);
 
-  const matrixN RARM_ELBOW::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_ELBOW::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_ELBOW::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_ELBOW::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_ELBOW::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_ELBOW::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_ELBOW::name = "RARM_ELBOW";
   const int RARM_ELBOW::label = 15;
   const int RARM_ELBOW::nbDof = 1;
@@ -358,14 +358,14 @@ namespace simplehumanoid
   Motion RARM_ELBOW::cj;
   Motion RARM_ELBOW::vj;
   Force RARM_ELBOW::f;
-  vectorN RARM_ELBOW::torque;
+  double RARM_ELBOW::torque;
 
   // Init RARM_WRIST_Y
   JOINT_REVOLUTE(RARM_WRIST_Y);
 
-  const matrixN RARM_WRIST_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_WRIST_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_WRIST_Y::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_WRIST_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_WRIST_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_WRIST_Y::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_WRIST_Y::name = "RARM_WRIST_Y";
   const int RARM_WRIST_Y::label = 16;
   const int RARM_WRIST_Y::nbDof = 1;
@@ -380,14 +380,14 @@ namespace simplehumanoid
   Motion RARM_WRIST_Y::cj;
   Motion RARM_WRIST_Y::vj;
   Force RARM_WRIST_Y::f;
-  vectorN RARM_WRIST_Y::torque;
+  double RARM_WRIST_Y::torque;
 
   // Init RARM_WRIST_P
   JOINT_REVOLUTE(RARM_WRIST_P);
 
-  const matrixN RARM_WRIST_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_WRIST_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_WRIST_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_WRIST_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_WRIST_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_WRIST_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_WRIST_P::name = "RARM_WRIST_P";
   const int RARM_WRIST_P::label = 17;
   const int RARM_WRIST_P::nbDof = 1;
@@ -402,14 +402,14 @@ namespace simplehumanoid
   Motion RARM_WRIST_P::cj;
   Motion RARM_WRIST_P::vj;
   Force RARM_WRIST_P::f;
-  vectorN RARM_WRIST_P::torque;
+  double RARM_WRIST_P::torque;
 
   // Init RARM_WRIST_R
   JOINT_REVOLUTE(RARM_WRIST_R);
 
-  const matrixN RARM_WRIST_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RARM_WRIST_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RARM_WRIST_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RARM_WRIST_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RARM_WRIST_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RARM_WRIST_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RARM_WRIST_R::name = "RARM_WRIST_R";
   const int RARM_WRIST_R::label = 18;
   const int RARM_WRIST_R::nbDof = 1;
@@ -424,14 +424,14 @@ namespace simplehumanoid
   Motion RARM_WRIST_R::cj;
   Motion RARM_WRIST_R::vj;
   Force RARM_WRIST_R::f;
-  vectorN RARM_WRIST_R::torque;
+  double RARM_WRIST_R::torque;
 
   // Init LLEG_HIP_R
   JOINT_REVOLUTE(LLEG_HIP_R);
 
-  const matrixN LLEG_HIP_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LLEG_HIP_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LLEG_HIP_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LLEG_HIP_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LLEG_HIP_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LLEG_HIP_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LLEG_HIP_R::name = "LLEG_HIP_R";
   const int LLEG_HIP_R::label = 19;
   const int LLEG_HIP_R::nbDof = 1;
@@ -446,14 +446,14 @@ namespace simplehumanoid
   Motion LLEG_HIP_R::cj;
   Motion LLEG_HIP_R::vj;
   Force LLEG_HIP_R::f;
-  vectorN LLEG_HIP_R::torque;
+  double LLEG_HIP_R::torque;
 
   // Init LLEG_HIP_P
   JOINT_REVOLUTE(LLEG_HIP_P);
 
-  const matrixN LLEG_HIP_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LLEG_HIP_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LLEG_HIP_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LLEG_HIP_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LLEG_HIP_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LLEG_HIP_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LLEG_HIP_P::name = "LLEG_HIP_P";
   const int LLEG_HIP_P::label = 20;
   const int LLEG_HIP_P::nbDof = 1;
@@ -468,14 +468,14 @@ namespace simplehumanoid
   Motion LLEG_HIP_P::cj;
   Motion LLEG_HIP_P::vj;
   Force LLEG_HIP_P::f;
-  vectorN LLEG_HIP_P::torque;
+  double LLEG_HIP_P::torque;
 
   // Init LLEG_HIP_Y
   JOINT_REVOLUTE(LLEG_HIP_Y);
 
-  const matrixN LLEG_HIP_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LLEG_HIP_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LLEG_HIP_Y::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LLEG_HIP_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LLEG_HIP_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LLEG_HIP_Y::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LLEG_HIP_Y::name = "LLEG_HIP_Y";
   const int LLEG_HIP_Y::label = 21;
   const int LLEG_HIP_Y::nbDof = 1;
@@ -490,14 +490,14 @@ namespace simplehumanoid
   Motion LLEG_HIP_Y::cj;
   Motion LLEG_HIP_Y::vj;
   Force LLEG_HIP_Y::f;
-  vectorN LLEG_HIP_Y::torque;
+  double LLEG_HIP_Y::torque;
 
   // Init LLEG_KNEE
   JOINT_REVOLUTE(LLEG_KNEE);
 
-  const matrixN LLEG_KNEE::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LLEG_KNEE::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LLEG_KNEE::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LLEG_KNEE::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LLEG_KNEE::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LLEG_KNEE::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LLEG_KNEE::name = "LLEG_KNEE";
   const int LLEG_KNEE::label = 22;
   const int LLEG_KNEE::nbDof = 1;
@@ -512,14 +512,14 @@ namespace simplehumanoid
   Motion LLEG_KNEE::cj;
   Motion LLEG_KNEE::vj;
   Force LLEG_KNEE::f;
-  vectorN LLEG_KNEE::torque;
+  double LLEG_KNEE::torque;
 
   // Init LLEG_ANKLE_P
   JOINT_REVOLUTE(LLEG_ANKLE_P);
 
-  const matrixN LLEG_ANKLE_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LLEG_ANKLE_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LLEG_ANKLE_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LLEG_ANKLE_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LLEG_ANKLE_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LLEG_ANKLE_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LLEG_ANKLE_P::name = "LLEG_ANKLE_P";
   const int LLEG_ANKLE_P::label = 23;
   const int LLEG_ANKLE_P::nbDof = 1;
@@ -534,14 +534,14 @@ namespace simplehumanoid
   Motion LLEG_ANKLE_P::cj;
   Motion LLEG_ANKLE_P::vj;
   Force LLEG_ANKLE_P::f;
-  vectorN LLEG_ANKLE_P::torque;
+  double LLEG_ANKLE_P::torque;
 
   // Init LLEG_ANKLE_R
   JOINT_REVOLUTE(LLEG_ANKLE_R);
 
-  const matrixN LLEG_ANKLE_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN LLEG_ANKLE_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void LLEG_ANKLE_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d LLEG_ANKLE_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d LLEG_ANKLE_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void LLEG_ANKLE_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string LLEG_ANKLE_R::name = "LLEG_ANKLE_R";
   const int LLEG_ANKLE_R::label = 24;
   const int LLEG_ANKLE_R::nbDof = 1;
@@ -556,14 +556,14 @@ namespace simplehumanoid
   Motion LLEG_ANKLE_R::cj;
   Motion LLEG_ANKLE_R::vj;
   Force LLEG_ANKLE_R::f;
-  vectorN LLEG_ANKLE_R::torque;
+  double LLEG_ANKLE_R::torque;
 
   // Init RLEG_HIP_R
   JOINT_REVOLUTE(RLEG_HIP_R);
 
-  const matrixN RLEG_HIP_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RLEG_HIP_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RLEG_HIP_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RLEG_HIP_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RLEG_HIP_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RLEG_HIP_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RLEG_HIP_R::name = "RLEG_HIP_R";
   const int RLEG_HIP_R::label = 25;
   const int RLEG_HIP_R::nbDof = 1;
@@ -578,14 +578,14 @@ namespace simplehumanoid
   Motion RLEG_HIP_R::cj;
   Motion RLEG_HIP_R::vj;
   Force RLEG_HIP_R::f;
-  vectorN RLEG_HIP_R::torque;
+  double RLEG_HIP_R::torque;
 
   // Init RLEG_HIP_P
   JOINT_REVOLUTE(RLEG_HIP_P);
 
-  const matrixN RLEG_HIP_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RLEG_HIP_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RLEG_HIP_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RLEG_HIP_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RLEG_HIP_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RLEG_HIP_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RLEG_HIP_P::name = "RLEG_HIP_P";
   const int RLEG_HIP_P::label = 26;
   const int RLEG_HIP_P::nbDof = 1;
@@ -600,14 +600,14 @@ namespace simplehumanoid
   Motion RLEG_HIP_P::cj;
   Motion RLEG_HIP_P::vj;
   Force RLEG_HIP_P::f;
-  vectorN RLEG_HIP_P::torque;
+  double RLEG_HIP_P::torque;
 
   // Init RLEG_HIP_Y
   JOINT_REVOLUTE(RLEG_HIP_Y);
 
-  const matrixN RLEG_HIP_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RLEG_HIP_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RLEG_HIP_Y::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RLEG_HIP_Y::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RLEG_HIP_Y::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RLEG_HIP_Y::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RLEG_HIP_Y::name = "RLEG_HIP_Y";
   const int RLEG_HIP_Y::label = 27;
   const int RLEG_HIP_Y::nbDof = 1;
@@ -622,14 +622,14 @@ namespace simplehumanoid
   Motion RLEG_HIP_Y::cj;
   Motion RLEG_HIP_Y::vj;
   Force RLEG_HIP_Y::f;
-  vectorN RLEG_HIP_Y::torque;
+  double RLEG_HIP_Y::torque;
 
   // Init RLEG_KNEE
   JOINT_REVOLUTE(RLEG_KNEE);
 
-  const matrixN RLEG_KNEE::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RLEG_KNEE::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RLEG_KNEE::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RLEG_KNEE::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RLEG_KNEE::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RLEG_KNEE::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RLEG_KNEE::name = "RLEG_KNEE";
   const int RLEG_KNEE::label = 28;
   const int RLEG_KNEE::nbDof = 1;
@@ -644,14 +644,14 @@ namespace simplehumanoid
   Motion RLEG_KNEE::cj;
   Motion RLEG_KNEE::vj;
   Force RLEG_KNEE::f;
-  vectorN RLEG_KNEE::torque;
+  double RLEG_KNEE::torque;
 
   // Init RLEG_ANKLE_P
   JOINT_REVOLUTE(RLEG_ANKLE_P);
 
-  const matrixN RLEG_ANKLE_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RLEG_ANKLE_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RLEG_ANKLE_P::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RLEG_ANKLE_P::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RLEG_ANKLE_P::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RLEG_ANKLE_P::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RLEG_ANKLE_P::name = "RLEG_ANKLE_P";
   const int RLEG_ANKLE_P::label = 29;
   const int RLEG_ANKLE_P::nbDof = 1;
@@ -666,14 +666,14 @@ namespace simplehumanoid
   Motion RLEG_ANKLE_P::cj;
   Motion RLEG_ANKLE_P::vj;
   Force RLEG_ANKLE_P::f;
-  vectorN RLEG_ANKLE_P::torque;
+  double RLEG_ANKLE_P::torque;
 
   // Init RLEG_ANKLE_R
   JOINT_REVOLUTE(RLEG_ANKLE_R);
 
-  const matrixN RLEG_ANKLE_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
-  const matrixN RLEG_ANKLE_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
-  void RLEG_ANKLE_R::jcalc(const vectorN & qi, const vectorN & dqi) { REVOLUTE_JOINT_JCALC }
+  const vector6d RLEG_ANKLE_R::S = vector6dMaker(1, 0, 0, 0, 0, 0);
+  const vector6d RLEG_ANKLE_R::dotS = vector6dMaker(0, 0, 0, 0, 0, 0);
+  void RLEG_ANKLE_R::jcalc(const vector1d & qi, const vector1d & dqi) { REVOLUTE_JOINT_JCALC }
   const std::string RLEG_ANKLE_R::name = "RLEG_ANKLE_R";
   const int RLEG_ANKLE_R::label = 30;
   const int RLEG_ANKLE_R::nbDof = 1;
@@ -688,7 +688,7 @@ namespace simplehumanoid
   Motion RLEG_ANKLE_R::cj;
   Motion RLEG_ANKLE_R::vj;
   Force RLEG_ANKLE_R::f;
-  vectorN RLEG_ANKLE_R::torque;
+  double RLEG_ANKLE_R::torque;
 
 } // end of namespace simplehumanoid
 

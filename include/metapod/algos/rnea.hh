@@ -36,10 +36,9 @@ namespace metapod
     typedef Tree Node;
   
     // Extract subvector corresponding to current Node
-    // TODO: See if fixed-size vector can be extracted using q.segment<SIZE>(INDEX) without -Wcast-qual flag giving off warning
-    vectorN qi = q.segment(Node::Joint::positionInConf,Node::Joint::NBDOF);
-    vectorN dqi = dq.segment(Node::Joint::positionInConf,Node::Joint::NBDOF);
-    vectorN ddqi = ddq.segment(Node::Joint::positionInConf,Node::Joint::NBDOF);
+    Eigen::Matrix< double, Node::Joint::NBDOF, 1 > qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+    Eigen::Matrix< double, Node::Joint::NBDOF, 1 > dqi = dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+    Eigen::Matrix< double, Node::Joint::NBDOF, 1 > ddqi = ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
   
     /* forward computations follow */
     // Jcalc: update sXp, S, dotS, cj, vj

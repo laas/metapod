@@ -42,12 +42,12 @@ namespace metapod
       static Transform Xj;                                           \
       static Motion cj;                                              \
       static Motion vj;                                              \
-      static const matrixN S;                                        \
-      static const matrixN dotS;                                     \
+      static const vector6d S;                                       \
+      static const vector6d dotS;                                    \
       static Force f;                                                \
-      static vectorN torque;                                         \
+      static double torque;                                          \
                                                                      \
-      static void jcalc(const vectorN & qi, const vectorN & dqi);    \
+      static void jcalc(const vector1d & qi, const vector1d & dqi);  \
     }
   
   // Create a free flyer class
@@ -65,12 +65,12 @@ namespace metapod
       static Transform Xj;                                           \
       static Motion cj;                                              \
       static Motion vj;                                              \
-      static matrixN S;                                              \
-      static matrixN dotS;                                           \
+      static matrix6d S;                                             \
+      static matrix6d dotS;                                          \
       static Force f;                                                \
-      static vectorN torque;                                         \
+      static vector6d torque;                                        \
                                                                      \
-      static void jcalc(const vectorN & qi, const vectorN & dqi);    \
+      static void jcalc(const vector6d & qi, const vector6d & dqi);  \
     }
   
   // Define Jcalc method for all revolute joint classes
