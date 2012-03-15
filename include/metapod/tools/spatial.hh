@@ -19,13 +19,17 @@
 
 /*
  * Implementation of a spatial algebra.
+ * It follows R. Featherstone guidelines, and implements :
+ * - Spatial Motion vectors
+ * - Spatial Force vectors
+ * - Spatial Rigid Body Inertia matrices
+ * - Spatial Transforms
  */
 
 #ifndef METAPOD_NEW_SPATIAL_ALGEBRA_HH
 # define METAPOD_NEW_SPATIAL_ALGEBRA_HH
 
 # include "metapod/tools/fwd.hh"
-# include "metapod/tools/smallmatrixmacros.hh"
 
 namespace metapod
 {
@@ -47,7 +51,7 @@ namespace metapod
     {
       public:
         // Constructors
-        Force() {}
+        Force() : m_n(), m_f() {}
         Force(vector3d n, vector3d f)
         {
           m_n = n;
@@ -63,14 +67,23 @@ namespace metapod
         const vector3d & n() const { return m_n; }
         const vector3d & f() const { return m_f; }
 
+        vector6d toVector()
+        {
+          vector6d v;
+          for(unsigned int i=0; i<3; i++)
+            v[i] = m_n[i];
+          for(unsigned int i=0; i<3; i++)
+            v[i+3] = m_f[i];
+          return v;
+        }
+
         // Arithmetic operators
-        Force operator=(vector6d & v) { return Force(v); }
-        Force operator+(Force & fv) { return Force(m_n+fv.n(), m_f+fv.f()); }
+        Force operator=(const vector6d & v) { return Force(v); }
         Force operator+(const Force & fv) { return Force(m_n+fv.n(), m_f+fv.f()); }
-        Force operator-(Force & fv) { return Force(m_n-fv.n(), m_f-fv.f()); }
+        Force operator-(const Force & fv) { return Force(m_n-fv.n(), m_f-fv.f()); }
         Force operator*(FloatType a) { return Force(m_n*a, m_f*a); }
 
-        friend Force operator*(FloatType a, Force & fv) { return Force(fv.n()*a, fv.f()*a); }
+        friend Force operator*(FloatType a, const Force & fv) { return Force(fv.n()*a, fv.f()*a); }
 
         // Print operator
         friend std::ostream & operator << (std::ostream & os, const Force & fv)
@@ -91,7 +104,7 @@ namespace metapod
     {
       public:
         // Constructors
-        Motion() {}
+        Motion() : m_w(), m_v() {}
         Motion(vector3d w, vector3d v)
         {
           m_w = w;
@@ -111,21 +124,14 @@ namespace metapod
         void w(const vector3d & v) { m_w = v; }
 
         // Arithmetic operators
-        Motion operator=(vector6d & v) { return Motion(v); }
-        Motion operator+(Motion & mv) { return Motion(m_w+mv.w(), m_v+mv.v()); }
+        Motion operator=(const vector6d & v) { return Motion(v); }
         Motion operator+(const Motion & mv) { return Motion(m_w+mv.w(), m_v+mv.v()); }
         Motion operator*(FloatType a) { return Motion(m_w*a, m_v*a); }
 
-        Motion operator^(Motion & mv)
+        Motion operator^(const Motion & mv)
         {
           return Motion(m_w.cross(mv.w()),
                         m_w.cross(mv.v()) + m_v.cross(mv.w()));
-        }
-
-        Force operator^(Force & fv)
-        {
-          return Force(m_w.cross(fv.n()) + m_v.cross(fv.f()),
-                       m_w.cross(fv.f()));
         }
 
         Force operator^(const Force & fv)
@@ -134,7 +140,7 @@ namespace metapod
                        m_w.cross(fv.f()));
         }
 
-        friend Motion operator*(FloatType a, Motion & mv)
+        friend Motion operator*(FloatType a, const Motion & mv)
         {
           return Motion(mv.w()*a, mv.v()*a);
         }
@@ -158,30 +164,25 @@ namespace metapod
     {
       public:
         // Constructors
-        Inertia() {}
-        Inertia(FloatType m, vector3d h, matrix3d I)
-        {
-          m_m = m;
-          m_h = h;
-          m_I = I;
-          m_hx = skew(h);
-        }
+        Inertia() : m_m(), m_h(), m_I() {}
+        Inertia(FloatType m, vector3d h, matrix3d I) : m_m(m),
+                                                       m_h(h),
+                                                       m_I(I) {}
 
         // Getters
         FloatType m() const { return m_m; }
         const vector3d & h() const { return m_h; }
         const matrix3d & I() const { return m_I; }
-        const matrix3d & hx() const { return m_hx; }
 
         // Arithmetic operators
         Inertia operator*(FloatType a) { return Inertia(m_m*a, m_h*a, m_I*a); }
-        Inertia operator+(Inertia & I) { return Inertia(m_m+I.m(),
+        Inertia operator+(const Inertia & I) { return Inertia(m_m+I.m(),
                                                         m_h+I.h(),
                                                         m_I+I.I()); }
-        Force operator*(Motion & mv) { return Force(m_I*mv.w() + m_hx*mv.v(),
-                                                    m_m*mv.v() - m_hx*mv.w()); }
+        Force operator*(const Motion & mv) { return Force(m_I*mv.w() + m_h.cross(mv.v()),
+                                                    m_m*mv.v() - m_h.cross(mv.w())); }
 
-        friend Inertia operator*(FloatType a, Inertia & I)
+        friend Inertia operator*(FloatType a, const Inertia & I)
         {
           return Inertia(I.m()*a, I.h()*a, I.I()*a);
         }
@@ -201,37 +202,28 @@ namespace metapod
         FloatType m_m;
         vector3d m_h;
         matrix3d m_I;
-        matrix3d m_hx;
     };
 
     class Transform
     {
       public:
         // Constructors
-        Transform() {}
-        Transform(matrix3d E, vector3d r)
-        {
-          m_E = E;
-          m_r = r;
-          m_ET = E.transpose();
-          m_rx = skew(r);
-        }
+        Transform() : m_E(), m_r() {}
+        Transform(matrix3d E, vector3d r) : m_E(E), m_r(r) {}
 
         // Getters
         const vector3d & r() const { return m_r; }
         const matrix3d & E() const { return m_E; }
-        const matrix3d & rx() const { return m_rx; }
-        const matrix3d & ET() const { return m_ET; }
 
         // Transformations
         Motion apply(const Motion & mv)
         {
-          return Motion(m_E * mv.w(), m_E * (mv.v() - m_rx * mv.w()));
+          return Motion(m_E * mv.w(), m_E * (mv.v() - m_r.cross(mv.w())));
         }
 
         Force apply(const Force & fv)
         {
-          return Force(m_E*(fv.n() - m_rx*fv.f()), m_E*fv.f());
+          return Force(m_E*(fv.n() - m_r.cross(fv.f())), m_E*fv.f());
         }
 
         Inertia apply(const Inertia & I)
@@ -239,46 +231,56 @@ namespace metapod
           vector3d tmp = I.h() - I.m()*m_r;
           return Inertia(I.m(),
                          m_E*tmp,
-                         m_E*(I.I() + m_rx*I.hx() + skew(tmp)*m_rx)*m_ET);
+                         m_E*(I.I() + skew(m_r)*skew(I.h()) + skew(tmp)*skew(m_r))*m_E.transpose());
         }
 
         Motion applyInv(const Motion & mv)
         {
-          vector3d ET_w = m_ET*mv.w();
-          return Motion(ET_w, m_ET*mv.v() + m_rx*ET_w);
+          vector3d ET_w = m_E.transpose()*mv.w();
+          return Motion(ET_w, m_E.transpose()*mv.v() + m_r.cross(ET_w));
         }
 
         Force applyInv(const Force & fv)
         {
-          vector3d ET_f = m_ET*fv.f();
-          return Force(m_ET*fv.n() + m_rx*ET_f, ET_f);
+          vector3d ET_f = m_E.transpose()*fv.f();
+          return Force(m_E.transpose()*fv.n() + m_r.cross(ET_f), ET_f);
         }
 
         Inertia applyInv(const Inertia & I)
         {
-          vector3d tmp1 = m_ET*I.h();
+          vector3d tmp1 = m_E.transpose()*I.h();
           vector3d tmp2 = tmp1 + I.m()*m_r;
           return Inertia(I.m(),
                          tmp2,
-                         m_ET*I.I()*m_E - m_rx*skew(tmp1) - skew(tmp2)*m_rx);
+                         m_E.transpose()*I.I()*m_E - skew(m_r)*skew(tmp1) - skew(tmp2)*skew(m_r));
         }
 
-        Transform inverse() { return Transform(m_ET, -m_E*m_r); }
+        Transform inverse() { return Transform(m_E.transpose(), -m_E*m_r); }
 
         // Arithmetic operators
-        Transform operator*(Transform & X)
-        {
-          return Transform(m_E*X.E(), X.r() + X.ET()*m_r);
-        }
-
         Transform operator*(const Transform & X)
         {
-          return Transform(m_E*X.E(), X.r() + X.ET()*m_r);
+          return Transform(m_E*X.E(), X.r() + X.E().transpose()*m_r);
         }
 
-        Motion operator*(Motion & mv) { return apply(mv); }
-        Force operator*(Force & fv) { return apply(fv); }
-        Inertia operator*(Inertia & I) { return apply(I); }
+        Motion operator*(const Motion & mv)
+        {
+          return Motion(m_E * mv.w(), m_E * (mv.v() - m_r.cross(mv.w())));
+        }
+
+        Force operator*(const Force & fv)
+        {
+          vector3d lf = fv.f();
+          return Force(m_E*(fv.n() - m_r.cross(lf)), m_E*lf);
+        }
+
+        Inertia operator*(const Inertia & I)
+        {
+          vector3d tmp = I.h() - I.m()*m_r;
+          return Inertia(I.m(),
+                         m_E*tmp,
+                         m_E*(I.I() + skew(m_r)*skew(I.h()) + skew(tmp)*skew(m_r))*m_E.transpose());
+        }
 
         // Print operator
         friend std::ostream & operator << (std::ostream & os,
@@ -294,8 +296,6 @@ namespace metapod
         // Private members
         vector3d m_r;
         matrix3d m_E;
-        matrix3d m_rx;
-        matrix3d m_ET;
     };
 
   } // end of namespace Spatial

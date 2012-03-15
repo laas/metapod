@@ -100,7 +100,7 @@ namespace metapod
   
     // backward computations follow
     // τi = SiT * fi
-//    Node::Joint::torque = Node::Joint::S.transpose() * Node::Joint::f;
+    Node::Joint::torque = Node::Joint::S.transpose()*Node::Joint::f.toVector();
     // fλ(i) = fλ(i) + λ(i)Xi* * fi
     if(Node::Body::HAS_PARENT)
       Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f + Node::Joint::sXp.applyInv(Node::Joint::f);
