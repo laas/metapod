@@ -31,7 +31,8 @@
 
 namespace simplehumanoid
 {
-  // Model of the robot. Contains data at the global robot level and the tree of Body/Joint
+  // Model of the robot. Contains data at the global robot level and the tree
+  // of Body/Joint
   class Robot
   {
     public:

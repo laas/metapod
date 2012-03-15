@@ -18,7 +18,7 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * This file provides ad-hoc macros for fixed-size small matrix and vectors, for enhanced performances
+ * This file provides ad-hoc macros for fixed-size small matrix and vectors
  */
 
 #ifndef METAPOD_SMALL_MATRIX_MACROS_HH
@@ -27,57 +27,6 @@
 namespace metapod
 {
 
-  // MATRIX
-  # define S3x3_MATRIX_SET_IDENTITY(matrix)   \
-    {                                         \
-      FloatType* rawM = matrix.data();        \
-      for(int i=0; i<9; i++){ rawM[i] = 0; }  \
-      for(int i=0; i<9; i+=4){ rawM[i] = 1; } \
-    }
-  
-  # define S3x3_MATRIX_SET_ZERO(matrix)      \
-    {                                        \
-      FloatType* rawM = matrix.data();       \
-      for(int i=0; i<9; i++){ rawM[i] = 0; } \
-    }
-  
-  # define S6x6_MATRIX_SET_ZERO(matrix)       \
-    {                                         \
-      FloatType* rawM = matrix.data();        \
-      for(int i=0; i<36; i++){ rawM[i] = 0; } \
-    }
-  
-  # define S6x6_MATRIX_SET_IDENTITY(matrix)    \
-    {                                          \
-      FloatType* rawM = matrix.data();         \
-      for(int i=0; i<36; i++){ rawM[i] = 0; }  \
-      for(int i=0; i<36; i+=7){ rawM[i] = 1; } \
-    }
-  
-  // VECTORS
-  # define S3_VECTOR_SET_ZERO(vector)          \
-    {                                          \
-      for(int i=0; i<3; i++){ vector[i] = 0; } \
-    }
-  
-  # define S3_VECTOR_FILL(vector, value)           \
-    {                                              \
-      for(int i=0; i<3; i++){ vector[i] = value; } \
-    }
-  
-  # define S3_VECTOR_CROSS_PRODUCT(res,v1,v2) \
-      if ((v1.size()==3) && (v2.size()==3))       \
-        {                                         \
-          res[0] = v1[1] * v2[2] - v2[1] * v1[2]; \
-          res[1] = v1[2] * v2[0] - v2[2] * v1[0]; \
-          res[2] = v1[0] * v2[1] - v2[0] * v1[1]; \
-        }
-  
-  # define S6_VECTOR_SET_ZERO(vector)          \
-    {                                          \
-      for(int i=0; i<6; i++){ vector[i] = 0; } \
-    }
-  
   # define SKEW(v, m)                                 \
     {                                                 \
       m(0,0) =  0;    m(0,1) = -v(2); m(0,2) =  v(1); \
@@ -102,9 +51,9 @@ namespace metapod
   
   # define EULERXYZ(qi_ang, localRot)                                \
     {                                                                \
-      FloatType CosTheta, SinTheta,                                     \
-             CosPhi, SinPhi,                                         \
-             CosPsi, SinPsi;                                         \
+      FloatType CosTheta, SinTheta,                                  \
+                CosPhi,   SinPhi,                                    \
+                CosPsi,   SinPsi;                                    \
                                                                      \
       CosPsi   = cos(qi_ang(0));                                     \
       SinPsi   = sin(qi_ang(0));                                     \

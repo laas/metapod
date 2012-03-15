@@ -26,8 +26,8 @@
  * - Spatial Transforms
  */
 
-#ifndef METAPOD_NEW_SPATIAL_ALGEBRA_HH
-# define METAPOD_NEW_SPATIAL_ALGEBRA_HH
+#ifndef METAPOD_SPATIAL_ALGEBRA_HH
+# define METAPOD_SPATIAL_ALGEBRA_HH
 
 # include "metapod/tools/fwd.hh"
 

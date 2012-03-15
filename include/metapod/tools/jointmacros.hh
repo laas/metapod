@@ -18,11 +18,12 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * This file defines the macros that create the joints classes and define their jcalc routine.
+ * This file defines the macros that create the joint classes and their
+ * corresponding jcalc routine.
  */
 
-#ifndef metapod_JOINT_MACROS_HH
-# define metapod_JOINT_MACROS_HH
+#ifndef METAPOD_JOINT_MACROS_HH
+# define METAPOD_JOINT_MACROS_HH
 
 namespace metapod
 {
@@ -74,36 +75,37 @@ namespace metapod
     }
   
   // Define Jcalc method for all revolute joint classes
-  # define REVOLUTE_JOINT_JCALC                  \
-    {                                            \
-      FloatType angle = qi[0];                   \
-      matrix3d localR;                           \
-      ROTX(angle, localR);                       \
-      localR.transposeInPlace();                 \
-      Xj = Spatial::Transform(localR, vector3d::Zero());        \
-      sXp = Xj*Xt;                              \
-                                                 \
-      /* maj vj */                               \
-      vj.w(vector3d(dqi[0], 0, 0));                            \
+  # define REVOLUTE_JOINT_JCALC                          \
+    {                                                    \
+      FloatType angle = qi[0];                           \
+      matrix3d localR;                                   \
+      ROTX(angle, localR);                               \
+      localR.transposeInPlace();                         \
+      Xj = Spatial::Transform(localR, vector3d::Zero()); \
+      sXp = Xj*Xt;                                       \
+                                                         \
+      /* maj vj */                                       \
+      vj.w(vector3d(dqi[0], 0, 0));                      \
     }
   
   // Define Jcalc method for all free flyer classes (there should be only one)
-  # define FREE_FLYER_JCALC                                                  \
-    {                                                                        \
-      /* maj sXp */                                                          \
-      vector3d qlin = qi.segment<3>(0),                                      \
-               qang = qi.segment<3>(3);                                      \
-      matrix3d localR;                                                       \
-      EULERXYZ(qang, localR);                                                \
-      localR.transposeInPlace();                                             \
-      S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;                        \
-      Xj = Transform(localR, vector3d::Zero());                              \
-      sXp = Xj*Transform(matrix3d::Identity(), qlin);                        \
-      /* maj vj */                                                           \
-      vj = Motion(S*dqi);                                                    \
+  # define FREE_FLYER_JCALC                              \
+    {                                                    \
+      /* maj sXp */                                      \
+      vector3d qlin = qi.segment<3>(0),                  \
+               qang = qi.segment<3>(3);                  \
+      matrix3d localR;                                   \
+      EULERXYZ(qang, localR);                            \
+      localR.transposeInPlace();                         \
+      S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;    \
+      Xj = Transform(localR, vector3d::Zero());          \
+      sXp = Xj*Transform(matrix3d::Identity(), qlin);    \
+      /* maj vj */                                       \
+      vj = Motion(S*dqi);                                \
     }
   
-  // Define a "no-joint" class, used as a dummy class for end of recursion purpose.
+  // Define a "no-joint" class, used as a dummy class for the end of the
+  // algorithms in the recursion process.
   # define NO_JOINT(classname)                                       \
     class classname                                                  \
     {                                                                \

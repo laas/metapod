@@ -18,11 +18,12 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * This file contains the includes and class definitions necessary for the whole project.
+ * This file contains the includes and class definitions necessary for the
+ * whole project.
  */
 
-#ifndef metapod_COMMON_HH
-# define metapod_COMMON_HH
+#ifndef METAPOD_COMMON_HH
+# define METAPOD_COMMON_HH
 
 # include "metapod/tools/fwd.hh"
 # include "metapod/tools/jointmacros.hh"
@@ -38,7 +39,8 @@ namespace metapod
 
   #define GRAVITY_CST 9.81
   
-  // Class No-Joint. Necessary to set the "joint" of the NP (No Parent) class, which is used to set the Parent of the base link.
+  // Class No-Joint. Necessary to set the "joint" of the NP (No Parent) class,
+  // which is used to set the Parent of the base link.
   NO_JOINT(NJ);
   Force NJ::f;
 
@@ -67,14 +69,16 @@ namespace metapod
   Motion NP::ai;
   Transform NP::iX0;
 
-  // Base class for Nodes. Provides the boolean "isNode", used to end recursions on the tree structure of the robot.
+  // Base class for Nodes. Provides the boolean "isNode",
+  // used to end recursions on the tree structure of the robot.
   class NodeBase
   {
     public:
       enum { isNode = 1 };
   };
 
-  // Class Node. Contains a Body, a Joint, and up to 3 Node children. Non-existant children make use of the NC class (No-Child).
+  // Class Node. Contains a Body, a Joint, and up to 3 Node children.
+  // Non-existant children make use of the NC class (No-Child).
   template< typename B,        // Body
             typename J,        // Joint
             typename C1 = NC,  // Children nodes
@@ -116,7 +120,9 @@ namespace metapod
   }
 
   // Constant Spatial::Inertia initialization method.
-  Inertia spatialInertiaMaker(const double m, const vector3d & CoM, const matrix3d & inertia)
+  Inertia spatialInertiaMaker(const double m,
+                              const vector3d & CoM,
+                              const matrix3d & inertia)
   {
     matrix3d I = inertia;
     matrix3d tmp; SKEW(CoM,tmp);

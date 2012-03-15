@@ -41,7 +41,8 @@ namespace metapod
     }
   }
   
-  // Return vector constructed from log file (as printed by the printConf method)
+  // Return vector constructed from log file,
+  // as printed by the printConf method.
   template< typename Tree >
   void initConf(std::ifstream & log, vectorN & v)
   {
