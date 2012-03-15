@@ -79,11 +79,22 @@ namespace metapod
 
         // Arithmetic operators
         Force operator=(const vector6d & v) { return Force(v); }
-        Force operator+(const Force & fv) { return Force(m_n+fv.n(), m_f+fv.f()); }
-        Force operator-(const Force & fv) { return Force(m_n-fv.n(), m_f-fv.f()); }
+        Force operator+(const Force & fv)
+        {
+          return Force(m_n+fv.n(), m_f+fv.f());
+        }
+
+        Force operator-(const Force & fv)
+        {
+          return Force(m_n-fv.n(), m_f-fv.f());
+        }
+
         Force operator*(FloatType a) { return Force(m_n*a, m_f*a); }
 
-        friend Force operator*(FloatType a, const Force & fv) { return Force(fv.n()*a, fv.f()*a); }
+        friend Force operator*(FloatType a, const Force & fv)
+        {
+          return Force(fv.n()*a, fv.f()*a);
+        }
 
         // Print operator
         friend std::ostream & operator << (std::ostream & os, const Force & fv)
@@ -125,7 +136,11 @@ namespace metapod
 
         // Arithmetic operators
         Motion operator=(const vector6d & v) { return Motion(v); }
-        Motion operator+(const Motion & mv) { return Motion(m_w+mv.w(), m_v+mv.v()); }
+        Motion operator+(const Motion & mv)
+        {
+          return Motion(m_w+mv.w(), m_v+mv.v());
+        
+}
         Motion operator*(FloatType a) { return Motion(m_w*a, m_v*a); }
 
         Motion operator^(const Motion & mv)
@@ -179,8 +194,11 @@ namespace metapod
         Inertia operator+(const Inertia & I) { return Inertia(m_m+I.m(),
                                                         m_h+I.h(),
                                                         m_I+I.I()); }
-        Force operator*(const Motion & mv) { return Force(m_I*mv.w() + m_h.cross(mv.v()),
-                                                    m_m*mv.v() - m_h.cross(mv.w())); }
+        Force operator*(const Motion & mv)
+        {
+          return Force(m_I*mv.w() + m_h.cross(mv.v()),
+                       m_m*mv.v() - m_h.cross(mv.w()));
+        }
 
         friend Inertia operator*(FloatType a, const Inertia & I)
         {
@@ -218,7 +236,8 @@ namespace metapod
         // Transformations
         Motion apply(const Motion & mv)
         {
-          return Motion(m_E * mv.w(), m_E * (mv.v() - m_r.cross(mv.w())));
+          return Motion(m_E * mv.w(),
+                        m_E * (mv.v() - m_r.cross(mv.w())));
         }
 
         Force apply(const Force & fv)
@@ -231,7 +250,9 @@ namespace metapod
           vector3d tmp = I.h() - I.m()*m_r;
           return Inertia(I.m(),
                          m_E*tmp,
-                         m_E*(I.I() + skew(m_r)*skew(I.h()) + skew(tmp)*skew(m_r))*m_E.transpose());
+                         m_E*(I.I()
+                         + skew(m_r)*skew(I.h())
+                         + skew(tmp)*skew(m_r))*m_E.transpose());
         }
 
         Motion applyInv(const Motion & mv)
@@ -252,7 +273,14 @@ namespace metapod
           vector3d tmp2 = tmp1 + I.m()*m_r;
           return Inertia(I.m(),
                          tmp2,
-                         m_E.transpose()*I.I()*m_E - skew(m_r)*skew(tmp1) - skew(tmp2)*skew(m_r));
+                         m_E.transpose()*I.I()*m_E
+                         - skew(m_r)*skew(tmp1)
+                         - skew(tmp2)*skew(m_r));
+        }
+
+        vector3d apply(const vector3d & v)
+        {
+          return vector3d(m_E.transpose()*v + m_r);
         }
 
         Transform inverse() { return Transform(m_E.transpose(), -m_E*m_r); }
@@ -279,7 +307,14 @@ namespace metapod
           vector3d tmp = I.h() - I.m()*m_r;
           return Inertia(I.m(),
                          m_E*tmp,
-                         m_E*(I.I() + skew(m_r)*skew(I.h()) + skew(tmp)*skew(m_r))*m_E.transpose());
+                         m_E*(I.I()
+                         + skew(m_r)*skew(I.h())
+                         + skew(tmp)*skew(m_r))*m_E.transpose());
+        }
+
+        vector3d operator*(const vector3d & v)
+        {
+          return vector3d(m_E.transpose()*v + m_r);
         }
 
         // Print operator
