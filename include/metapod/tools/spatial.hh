@@ -52,16 +52,8 @@ namespace metapod
       public:
         // Constructors
         Force() : m_n(), m_f() {}
-        Force(vector3d n, vector3d f)
-        {
-          m_n = n;
-          m_f = f;
-        }
-        Force(vector6d v)
-        {
-          m_n = v.segment<3>(0);
-          m_f = v.segment<3>(3);
-        }
+        Force(vector3d n, vector3d f) : m_n(n), m_f(f) {}
+        Force(vector6d v) : m_n(v.segment<3>(0)), m_f(v.segment<3>(3)) {}
 
         // Getters
         const vector3d & n() const { return m_n; }
@@ -116,16 +108,8 @@ namespace metapod
       public:
         // Constructors
         Motion() : m_w(), m_v() {}
-        Motion(vector3d w, vector3d v)
-        {
-          m_w = w;
-          m_v = v;
-        }
-        Motion(vector6d v)
-        {
-          m_w = v.segment<3>(0);
-          m_v = v.segment<3>(3);
-        }
+        Motion(vector3d w, vector3d v) : m_w(w), m_v(v) {}
+        Motion(vector6d v) : m_w(v.segment<3>(0)), m_v(v.segment<3>(3)) {}
 
         // Getters
         const vector3d & w() const { return m_w; } 
@@ -139,8 +123,8 @@ namespace metapod
         Motion operator+(const Motion & mv)
         {
           return Motion(m_w+mv.w(), m_v+mv.v());
-        
-}
+        }
+
         Motion operator*(FloatType a) { return Motion(m_w*a, m_v*a); }
 
         Motion operator^(const Motion & mv)
@@ -191,9 +175,11 @@ namespace metapod
 
         // Arithmetic operators
         Inertia operator*(FloatType a) { return Inertia(m_m*a, m_h*a, m_I*a); }
-        Inertia operator+(const Inertia & I) { return Inertia(m_m+I.m(),
-                                                        m_h+I.h(),
-                                                        m_I+I.I()); }
+        Inertia operator+(const Inertia & I)
+        {
+          return Inertia(m_m+I.m(), m_h+I.h(), m_I+I.I());
+        }
+
         Force operator*(const Motion & mv)
         {
           return Force(m_I*mv.w() + m_h.cross(mv.v()),
