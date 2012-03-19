@@ -18,7 +18,7 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * Implementation of the Newton Euler Algorithm,
+ * Implementation of the Recursive Newton Euler Algorithm,
  * based on Featherstone's Rigid Body Dynamics Algorithms.
  */
 
