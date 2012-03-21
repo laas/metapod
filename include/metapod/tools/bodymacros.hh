@@ -38,7 +38,7 @@ namespace metapod
         enum { HAS_PARENT = hasparent };                   \
         static const std::string name;                     \
         static const int label;                            \
-        static const double mass;                          \
+        static const FloatType mass;                       \
         static const vector3d CoM;                         \
         static const matrix3d inertie;                     \
         static Transform iX0;                              \
@@ -48,7 +48,11 @@ namespace metapod
         static Inertia I;                                  \
         typedef parentname Parent;                         \
         typedef jointname Joint;                           \
-  }
+    };                                                     \
+    Transform classname::iX0;                              \
+    Motion classname::vi;                                  \
+    Motion classname::ai;                                  \
+    Force classname::Fext
 
 } // end of namespace metapod
 

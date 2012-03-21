@@ -15,7 +15,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Lesser Public License for more details.
 // You should have received a copy of the GNU Lesser General Public License
-// along with metapod.  If not, see <http://www.gnu.org/licenses/>.
+// along with metapod.  If not, see <http://www.gnu.org/licenses/>.(2);
 
 /*
  * Implementation of a spatial algebra.
@@ -41,9 +41,9 @@ namespace metapod
     inline matrix3d skew(const vector3d & v)
     {
       matrix3d m;
-      m <<   0 , -v(2),  v(1),
-           v(2),    0 , -v(0),
-          -v(1),  v(0),    0 ;
+      m(0,0) = 0;    m(0,1) = -v(2); m(0,2) = v(1);
+      m(1,0) = v(2); m(1,1) = 0    ; m(1,2) = -v(0);
+      m(2,0) = -v(1);m(2,1)=  v(0) ; m(2,2) =  0 ;
       return m;
     }
 
@@ -112,8 +112,8 @@ namespace metapod
         Motion(vector6d v) : m_w(v.segment<3>(0)), m_v(v.segment<3>(3)) {}
 
         // Getters
-        const vector3d & w() const { return m_w; } 
-        const vector3d & v() const { return m_v; } 
+        const vector3d & w() const { return m_w; }
+        const vector3d & v() const { return m_v; }
 
         // Setters
         void w(const vector3d & v) { m_w = v; }
@@ -318,6 +318,31 @@ namespace metapod
         vector3d m_r;
         matrix3d m_E;
     };
+
+    Motion sum(const Motion & mv1,
+               const Motion & mv2,
+               const Motion & mv3,
+               const Motion & mv4)
+    {
+      return Motion(mv1.w() + mv2.w() + mv3.w() + mv4.w(),
+                    mv1.v() + mv2.v() + mv3.v() + mv4.v());
+    }
+
+    Motion sum(const Motion & mv1,
+               const Motion & mv2,
+               const Motion & mv3)
+    {
+      return Motion(mv1.w() + mv2.w() + mv3.w(),
+                    mv1.v() + mv2.v() + mv3.v());
+    }
+
+    Force sum(const Force & fv1,
+              const Force & fv2,
+              const Force & fv3)
+    {
+      return Force(fv1.n() + fv2.n() + fv3.n(),
+                   fv1.f() + fv2.f() + fv3.f());
+    }
 
   } // end of namespace Spatial
 

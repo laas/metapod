@@ -31,51 +31,27 @@
 # include "metapod/tools/spatial.hh"
 # include <fstream>
 # include <iostream>
-# include <vector>
 
 namespace metapod
 {
   using namespace Spatial;
 
   #define GRAVITY_CST 9.81
-  
-  // Class No-Joint. Necessary to set the "joint" of the NP (No Parent) class,
-  // which is used to set the Parent of the base link.
-  NO_JOINT(NJ);
-  Force NJ::f;
+
+  inline matrix3d Skew(const vector3d & v)
+  {
+    matrix3d m;
+    m(0,0) = 0;     m(0,1) = -v(2); m(0,2) = v(1);
+    m(1,0) = v(2);  m(1,1) = 0    ; m(1,2) = -v(0);
+    m(2,0) = -v(1); m(2,1) =  v(0); m(2,2) =  0 ;
+    return m;
+  }
 
   // Class No-Child. Necessary to end the recursion on the multibody tree.
-  class NC
-  {
-    public:
-      enum { isNode = 0 };
-  };
+  class NC {};
 
   // Class No-Parent. Used to set the parent body of the freeflyer.
-  class NP
-  {
-    public:
-      enum { HAS_PARENT = 0 };
-      static const std::string label;
-      static Transform iX0;
-      static Motion vi; 
-      static Motion ai; 
-      static Force Fext;
-      static Inertia I;
-      typedef NJ Joint;
-  };
-
-  // Initialization of the NP class
-  Motion NP::ai;
-  Transform NP::iX0;
-
-  // Base class for Nodes. Provides the boolean "isNode",
-  // used to end recursions on the tree structure of the robot.
-  class NodeBase
-  {
-    public:
-      enum { isNode = 1 };
-  };
+  class NP {};
 
   // Class Node. Contains a Body, a Joint, and up to 3 Node children.
   // Non-existant children make use of the NC class (No-Child).
@@ -84,7 +60,7 @@ namespace metapod
             typename C1 = NC,  // Children nodes
             typename C2 = NC,
             typename C3 = NC >
-  class Node : public NodeBase
+  class Node
   {
     public:
       typedef B Body;
@@ -95,42 +71,36 @@ namespace metapod
   };
 
   // Constant 3x3 matrix initialization method.
-  const matrix3d matrix3dMaker(double v1, double v2, double v3, 
-                               double v4, double v5, double v6, 
-                               double v7, double v8, double v9) 
+  const matrix3d matrix3dMaker(FloatType m00, FloatType m01, FloatType m02,
+                               FloatType m10, FloatType m11, FloatType m12,
+                               FloatType m20, FloatType m21, FloatType m22)
   {
     matrix3d m;
-    m << v1, v2, v3, 
-         v4, v5, v6, 
-         v7, v8, v9; 
+    m(0,0) = m00; m(0,1) = m01; m(0,2) = m02;
+    m(1,0) = m10; m(1,1) = m11; m(1,2) = m12;
+    m(2,0) = m20; m(2,1) = m21; m(2,2) = m22;
     return m;
   }
-  
+
   // Constant size 6 vector initialization method.
-  const vector6d vector6dMaker(double v1,
-                               double v2,
-                               double v3,
-                               double v4,
-                               double v5,
-                               double v6)
+  const vector6d vector6dMaker(FloatType v0,
+                               FloatType v1,
+                               FloatType v2,
+                               FloatType v3,
+                               FloatType v4,
+                               FloatType v5)
   {
     vector6d v;
-    v << v1, v2, v3, v4, v5, v6;
+    v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
     return v;
   }
 
   // Constant Spatial::Inertia initialization method.
-  Inertia spatialInertiaMaker(const double m,
+  Inertia spatialInertiaMaker(const FloatType m,
                               const vector3d & CoM,
                               const matrix3d & inertia)
   {
-    matrix3d I = inertia;
-    matrix3d tmp; SKEW(CoM,tmp);
-    tmp = tmp*tmp.transpose();
-    I = I + tmp*m;
-    vector3d h = CoM*m;
-    Inertia M;
-    return Inertia(m, h, I);
+    return Inertia(m, CoM*m, inertia + m*(Skew(CoM)*Skew(CoM).transpose()));
   }
 
 } // end of namespace metapod.

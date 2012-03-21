@@ -34,90 +34,131 @@ namespace metapod
     * Takes the multibody tree type as template parameter,
     * and recursively proceeds on the Nodes.
     */
-  template< typename Tree >
-  void rnea(const vectorN & q, const vectorN & dq, const vectorN & ddq)
+  template< typename Tree, bool HasParent = false > struct rnea {};
+
+  template< typename Tree > struct rnea< Tree, true >
   {
     typedef Tree Node;
-  
-    // Extract subvector corresponding to current Node
-    Eigen::Matrix< double, Node::Joint::NBDOF, 1 > qi =
-      q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-    Eigen::Matrix< double, Node::Joint::NBDOF, 1 > dqi =
-      dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-    Eigen::Matrix< double, Node::Joint::NBDOF, 1 > ddqi =
-      ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-  
-    /* forward computations follow */
-    // Jcalc: update sXp, S, dotS, cj, vj
-    Node::Joint::jcalc(qi, dqi);
-  
-    if(Node::Body::HAS_PARENT)
+
+    static void run(const vectorN & q,
+                    const vectorN & dq,
+                    const vectorN & ddq) __attribute__ ((hot))
     {
+      // Extract subvector corresponding to current Node
+      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
+        q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > dqi =
+        dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
+        ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+
+      /* forward computations follow */
+      // Jcalc: update sXp, S, dotS, cj, vj
+      Node::Joint::jcalc(qi, dqi);
+
       // iX0 = iXλ(i) * λ(i)X0
       // vi = iXλ(i) * vλ(i) + vj
       // ai = iXλ(i) * aλ(i) + Si * ddqi + cj + vi x vj
       Node::Body::iX0 = Node::Joint::sXp*Node::Body::Parent::iX0;
-      Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi 
+      Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
                      + Node::Joint::vj;
-      Node::Body::ai = Node::Joint::sXp*Node::Body::Parent::ai
-                     + Motion(Node::Joint::S * ddqi)
-                     + Node::Joint::cj
-                     + (Node::Body::vi^Node::Joint::vj);
+      Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
+                           Motion(Node::Joint::S * ddqi),
+                           Node::Joint::cj,
+                           (Node::Body::vi^Node::Joint::vj));
+
+      // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
+      vector3d global_CoM = Node::Body::iX0*Node::Body::CoM;
+
+      vector3d gravity_force = vector3d(0, 0, GRAVITY_CST);
+      vector3d gravity_torque = global_CoM.cross(gravity_force);
+
+      Force Fext = Force(gravity_torque,gravity_force);
+
+      Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
+                           (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
+                           (Node::Body::iX0 * ( Node::Body::mass * Fext
+                                              - Node::Body::Fext )));
+
+      // recursion on children
+      rnea< typename Node::Child1, true >::run(q, dq, ddq);
+      rnea< typename Node::Child2, true >::run(q, dq, ddq);
+      rnea< typename Node::Child3, true >::run(q, dq, ddq);
+
+      // backward computations follow
+      // τi = SiT * fi
+      Node::Joint::torque = Node::Joint::S.transpose()*Node::Joint::f.toVector();
+      // fλ(i) = fλ(i) + λ(i)Xi* * fi
+      Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f
+                                   + Node::Joint::sXp.applyInv(Node::Joint::f);
     }
-    else
+  };
+
+  template< typename Tree > struct rnea< Tree, false >
+  {
+    typedef Tree Node;
+
+    static void run(const vectorN & q,
+                    const vectorN & dq,
+                    const vectorN & ddq)
     {
+      // Extract subvector corresponding to current Node
+      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
+        q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > dqi =
+        dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
+        ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+
+      /* forward computations follow */
+      // Jcalc: update sXp, S, dotS, cj, vj
+      Node::Joint::jcalc(qi, dqi);
+
+
       // iX0 = iXλ(i)
       // vi = vj
       // ai = Si * ddqi + cj + vi x vj
       Node::Body::iX0 = Node::Joint::sXp;
       Node::Body::vi = Node::Joint::vj;
-      Node::Body::ai = Motion(Node::Joint::S * ddqi)
-                     + Node::Joint::cj
-                     + (Node::Body::vi^Node::Joint::vj);
-    }
-  
-    {
+      Node::Body::ai = sum(Motion(Node::Joint::S * ddqi),
+                           Node::Joint::cj,
+                           (Node::Body::vi^Node::Joint::vj));
+
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
       vector3d global_CoM = Node::Body::iX0*Node::Body::CoM;
-    
+
       vector3d gravity_force = vector3d(0, 0, GRAVITY_CST);
       vector3d gravity_torque = global_CoM.cross(gravity_force);
-    
+
       Force Fext = Force(gravity_torque,gravity_force);
-    
-      Node::Joint::f = (Node::Body::I * Node::Body::ai)
-                     + (Node::Body::vi^( Node::Body::I *Node::Body::vi ))
-                     + Node::Body::iX0 * ( Node::Body::mass*Fext
-                                         - Node::Body::Fext );
+
+      Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
+                           (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
+                           (Node::Body::iX0 * ( Node::Body::mass * Fext
+                                              - Node::Body::Fext )));
+
+      // recursion on children
+      rnea< typename Node::Child1, true >::run(q, dq, ddq);
+      rnea< typename Node::Child2, true >::run(q, dq, ddq);
+      rnea< typename Node::Child3, true >::run(q, dq, ddq);
+
+      // backward computations follow
+      // τi = SiT * fi
+      Node::Joint::torque = Node::Joint::S.transpose()
+                          * Node::Joint::f.toVector();
     }
-  
-    // recursion on children
-    if(Node::Child1::isNode)
-    {
-      rnea<typename Node::Child1>(q, dq, ddq);
-      if(Node::Child2::isNode)
-      {
-        rnea<typename Node::Child2>(q, dq, ddq);
-        if(Node::Child3::isNode)
-          rnea<typename Node::Child3>(q, dq, ddq);
-      }
-    }
-  
-    // backward computations follow
-    // τi = SiT * fi
-    Node::Joint::torque = Node::Joint::S.transpose()*Node::Joint::f.toVector();
-    // fλ(i) = fλ(i) + λ(i)Xi* * fi
-    if(Node::Body::HAS_PARENT)
-      Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f
-                                   + Node::Joint::sXp.applyInv(Node::Joint::f);
-  }
-  
+  };
+
   /**
     \brief  Specialization, to stop recursion on leaves of the Tree
   */
-  template<>
-  inline void rnea<NC>(const vectorN &, const vectorN &, const vectorN &){}
-  
+  template<> struct rnea< NC, true >
+  {
+    static void run(const vectorN &,
+                    const vectorN &,
+                    const vectorN &) {}
+  };
+
 } // end of namespace metapod.
 
 #endif

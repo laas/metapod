@@ -28,6 +28,7 @@
 # include "common.hh"
 
 using namespace simplehumanoid;
+//typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
 
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
@@ -38,22 +39,22 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   std::ifstream dqconf(TEST_DIRECTORY "/dq.conf");
   std::ifstream ddqconf(TEST_DIRECTORY "/ddq.conf");
 
-  initConf<Robot::Tree>(qconf, q);
-  initConf<Robot::Tree>(dqconf, dq);
-  initConf<Robot::Tree>(ddqconf, ddq);
+  initConf< Robot::Tree >::run(qconf, q);
+  initConf< Robot::Tree >::run(dqconf, dq);
+  initConf< Robot::Tree >::run(ddqconf, ddq);
 
   qconf.close();
   dqconf.close();
   ddqconf.close();
 
   // Apply the RNEA to the metapod multibody and print the result in a log file.
-  rnea<Robot::Tree>(q, dq, ddq);
+  rnea< Robot::Tree >::run(q, dq, ddq);
   std::ofstream log("rnea.log", std::ofstream::out);
   printTorques<Robot::Tree>(log);
   log.close();
 
   // Compare results with reference file
-  double x,y;
+  FloatType x,y;
   std::string jointname;
   std::string str1, str2;
   std::ifstream result_log("rnea.log");
@@ -90,7 +91,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
 # ifdef METAPOD_PERF_TEST
   long TICKS_PER_SECOND = 1e6;
   struct timeval tv_start, tv_stop;
-  int N1 = 1000;
+  int N1 = 10000;
   int N2 = 100;
 
   std::ofstream perf_log("rnea_perf.log", std::ofstream::out);
@@ -107,7 +108,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
     // Inner loop : The timer precision is 1µs, which is not high enough to
     // give proper result on a single iteration 
     for(int k=0; k<N2; k++)
-      rnea<Robot::Tree>(q, dq, ddq);
+      rnea< Robot::Tree >::run(q, dq, ddq);
     ::gettimeofday(&tv_stop, NULL);
     
     inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND

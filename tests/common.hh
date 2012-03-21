@@ -39,8 +39,8 @@
 # define BOOST_TEST_MODULE METAPOD_RNEA
 # include <boost/test/unit_test.hpp>
 
-// Performance test : some tests also output an average execution time of the tested component if METAPOD_PERF_TEST is defined
-//# define METAPOD_PERF_TEST 
+// Performance test : some tests also output an average execution time of the
+// tested component if METAPOD_PERF_TEST is defined
 # ifdef METAPOD_PERF_TEST
 #  include <sys/time.h>
 # endif

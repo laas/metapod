@@ -49,49 +49,44 @@ void printState(std::ofstream & os)
     << "τ :\n" << Node::Joint::torque << std::endl
     << std::endl;
 
-  if(Node::Child1::isNode)
-  {
-    printState<typename Node::Child1>(os);
-    if(Node::Child2::isNode)
-    {
-      printState<typename Node::Child2>(os);
-      if(Node::Child3::isNode)
-        printState<typename Node::Child3>(os);
-    }
-  }
+  printState<typename Node::Child1>(os);
+  printState<typename Node::Child2>(os);
+  printState<typename Node::Child3>(os);
 }
 
-template<>
-inline void printState<NC>(std::ofstream &){}
+template<> inline void printState<NC>(std::ofstream &){}
 
 
-// Print q, dq and ddq on stream. Can be used to log a configuration that can later be loaded through the initConf method.
-template< typename Tree >
-void printConf(const vectorN & q, const vectorN & dq, const vectorN & ddq, std::ofstream & qlog, std::ofstream & dqlog, std::ofstream & ddqlog)
+/*
+ * Print q, dq and ddq on stream.
+ * Can be used to log a configuration that can later be loaded through the
+ * initConf method.
+ */
+template< typename Tree > void printConf(const vectorN & q,
+                                         const vectorN & dq,
+                                         const vectorN & ddq,
+                                         std::ofstream & qlog,
+                                         std::ofstream & dqlog,
+                                         std::ofstream & ddqlog)
 {
   typedef Tree Node;
 
-  vectorN qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf); 
-  vectorN dqi = dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf); 
-  vectorN ddqi = ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf); 
+  vectorN qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+  vectorN dqi = dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+  vectorN ddqi = ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
-    qlog << Node::Joint::name << std::endl << qi << std::endl;
-    dqlog << Node::Joint::name << std::endl << dqi << std::endl;
-    ddqlog << Node::Joint::name << std::endl << ddqi << std::endl;
-  if(Node::Child1::isNode)
-  {
-    printConf<typename Node::Child1>(q, dq, ddq, qlog, dqlog, ddqlog);
-    if(Node::Child2::isNode)
-    {
-      printConf<typename Node::Child2>(q, dq, ddq, qlog, dqlog, ddqlog);
-      if(Node::Child3::isNode)
-        printConf<typename Node::Child3>(q, dq, ddq, qlog, dqlog, ddqlog);
-    }
-  }
+  qlog << Node::Joint::name << std::endl << qi << std::endl;
+  dqlog << Node::Joint::name << std::endl << dqi << std::endl;
+  ddqlog << Node::Joint::name << std::endl << ddqi << std::endl;
+
+  printConf<typename Node::Child1>(q, dq, ddq, qlog, dqlog, ddqlog);
+  printConf<typename Node::Child2>(q, dq, ddq, qlog, dqlog, ddqlog);
+  printConf<typename Node::Child3>(q, dq, ddq, qlog, dqlog, ddqlog);
 }
 
 template<>
-inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &, std::ofstream &, std::ofstream &, std::ofstream &){}
+inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &,
+                          std::ofstream &, std::ofstream &, std::ofstream &){}
 
 // Print Torques of the robot.
 template< typename Tree >
@@ -103,16 +98,9 @@ void printTorques(std::ofstream & os)
      << Node::Joint::torque << std::endl
      << std::endl;
 
-  if(Node::Child1::isNode)
-  {
-    printTorques<typename Node::Child1>(os);
-    if(Node::Child2::isNode)
-    {
-      printTorques<typename Node::Child2>(os);
-      if(Node::Child3::isNode)
-        printTorques<typename Node::Child3>(os);
-    }
-  }
+  printTorques<typename Node::Child1>(os);
+  printTorques<typename Node::Child2>(os);
+  printTorques<typename Node::Child3>(os);
 }
 
 template<>
@@ -126,22 +114,15 @@ void getTorques(vectorN& torques, unsigned& i)
 
   unsigned j = 0;
   while (j < Node::Joint::nbDof)
-    {
-      torques[i] = Node::Joint::torque[j];
-      ++i;
-      ++j;
-    }
-  
-  if(Node::Child1::isNode)
   {
-    getTorques<typename Node::Child1>(torques, i);
-    if(Node::Child2::isNode)
-    {
-      getTorques<typename Node::Child2>(torques, i);
-      if(Node::Child3::isNode)
-        getTorques<typename Node::Child3>(torques, i);
-    }
+    torques[i] = Node::Joint::torque[j];
+    ++i;
+    ++j;
   }
+
+  getTorques<typename Node::Child1>(torques, i);
+  getTorques<typename Node::Child2>(torques, i);
+  getTorques<typename Node::Child3>(torques, i);
 }
 
 template<>
