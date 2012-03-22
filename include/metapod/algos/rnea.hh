@@ -34,23 +34,23 @@ namespace metapod
     * Takes the multibody tree type as template parameter,
     * and recursively proceeds on the Nodes.
     */
-  template< typename Tree, bool HasParent = false > struct rnea {};
+  template< typename Tree, typename confVector, bool HasParent = false > struct rnea {};
 
-  template< typename Tree > struct rnea< Tree, true >
+  template< typename Tree, typename confVector > struct rnea< Tree, confVector, true >
   {
     typedef Tree Node;
 
-    static void run(const vectorN & q,
-                    const vectorN & dq,
-                    const vectorN & ddq) __attribute__ ((hot))
+    static void run(const confVector & q,
+                    const confVector & dq,
+                    const confVector & ddq) __attribute__ ((hot))
     {
       // Extract subvector corresponding to current Node
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
-        q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+        q.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > dqi =
-        dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+        dq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
-        ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+        ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
       /* forward computations follow */
       // Jcalc: update sXp, S, dotS, cj, vj
@@ -81,9 +81,9 @@ namespace metapod
                                               - Node::Body::Fext )));
 
       // recursion on children
-      rnea< typename Node::Child1, true >::run(q, dq, ddq);
-      rnea< typename Node::Child2, true >::run(q, dq, ddq);
-      rnea< typename Node::Child3, true >::run(q, dq, ddq);
+      rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
+      rnea< typename Node::Child2, confVector, true >::run(q, dq, ddq);
+      rnea< typename Node::Child3, confVector, true >::run(q, dq, ddq);
 
       // backward computations follow
       // τi = SiT * fi
@@ -94,21 +94,21 @@ namespace metapod
     }
   };
 
-  template< typename Tree > struct rnea< Tree, false >
+  template< typename Tree, typename confVector > struct rnea< Tree, confVector, false >
   {
     typedef Tree Node;
 
-    static void run(const vectorN & q,
-                    const vectorN & dq,
-                    const vectorN & ddq)
+    static void run(const confVector & q,
+                    const confVector & dq,
+                    const confVector & ddq)
     {
       // Extract subvector corresponding to current Node
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
-        q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+        q.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > dqi =
-        dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+        dq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
-        ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+        ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
       /* forward computations follow */
       // Jcalc: update sXp, S, dotS, cj, vj
@@ -138,9 +138,9 @@ namespace metapod
                                               - Node::Body::Fext )));
 
       // recursion on children
-      rnea< typename Node::Child1, true >::run(q, dq, ddq);
-      rnea< typename Node::Child2, true >::run(q, dq, ddq);
-      rnea< typename Node::Child3, true >::run(q, dq, ddq);
+      rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
+      rnea< typename Node::Child2, confVector, true >::run(q, dq, ddq);
+      rnea< typename Node::Child3, confVector, true >::run(q, dq, ddq);
 
       // backward computations follow
       // τi = SiT * fi
@@ -152,11 +152,11 @@ namespace metapod
   /**
     \brief  Specialization, to stop recursion on leaves of the Tree
   */
-  template<> struct rnea< NC, true >
+  template< typename confVector > struct rnea< NC, confVector, true >
   {
-    static void run(const vectorN &,
-                    const vectorN &,
-                    const vectorN &) {}
+    static void run(const confVector &,
+                    const confVector &,
+                    const confVector &) {}
   };
 
 } // end of namespace metapod.

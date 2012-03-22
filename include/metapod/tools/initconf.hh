@@ -43,23 +43,23 @@ namespace metapod
   
   // Return vector constructed from log file,
   // as printed by the printConf method.
-  template< typename Tree > struct initConf
+  template< typename Tree, typename confVector > struct initConf
   {
-    static void run(std::ifstream & log, vectorN & v)
+    static void run(std::ifstream & log, confVector & v)
     {
       typedef Tree Node;
       findString(Node::Joint::name, log);
       for(int i=0; i<Node::Joint::NBDOF; i++)
         log >> v[Node::Joint::positionInConf+i];
-      initConf<typename Node::Child1 >::run(log,v);
-      initConf<typename Node::Child2 >::run(log,v);
-      initConf<typename Node::Child3 >::run(log,v);
+      initConf<typename Node::Child1, confVector >::run(log,v);
+      initConf<typename Node::Child2, confVector >::run(log,v);
+      initConf<typename Node::Child3, confVector >::run(log,v);
     }
   };
   
-  template<> struct initConf< NC >
+  template< typename confVector > struct initConf< NC, confVector >
   {
-    static void run(std::ifstream &, vectorN &){}
+    static void run(std::ifstream &, confVector &){}
   };
 
 } // end of namespace metapod.

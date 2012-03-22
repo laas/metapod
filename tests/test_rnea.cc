@@ -28,27 +28,27 @@
 # include "common.hh"
 
 using namespace simplehumanoid;
-//typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
+typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
 
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
   // Set configuration vectors (q, dq, ddq) to reference values.
-  vectorN q(Robot::nbDof), dq(Robot::nbDof), ddq(Robot::nbDof);
+  confVector q, dq, ddq;
 
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
   std::ifstream dqconf(TEST_DIRECTORY "/dq.conf");
   std::ifstream ddqconf(TEST_DIRECTORY "/ddq.conf");
 
-  initConf< Robot::Tree >::run(qconf, q);
-  initConf< Robot::Tree >::run(dqconf, dq);
-  initConf< Robot::Tree >::run(ddqconf, ddq);
+  initConf< Robot::Tree, confVector >::run(qconf, q);
+  initConf< Robot::Tree, confVector >::run(dqconf, dq);
+  initConf< Robot::Tree, confVector >::run(ddqconf, ddq);
 
   qconf.close();
   dqconf.close();
   ddqconf.close();
 
   // Apply the RNEA to the metapod multibody and print the result in a log file.
-  rnea< Robot::Tree >::run(q, dq, ddq);
+  rnea< Robot::Tree, confVector, false >::run(q, dq, ddq);
   std::ofstream log("rnea.log", std::ofstream::out);
   printTorques<Robot::Tree>(log);
   log.close();
@@ -101,14 +101,14 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   // Outer loop : generate random configuration
   for(int i=0; i<N1; i++)
   {
-    q = vectorN::Random(Robot::nbDof);
-    dq = vectorN::Random(Robot::nbDof);
-    ddq = vectorN::Random(Robot::nbDof);
+    q = confVector::Random();
+    dq = confVector::Random();
+    ddq = confVector::Random();
     ::gettimeofday(&tv_start, NULL);
     // Inner loop : The timer precision is 1µs, which is not high enough to
     // give proper result on a single iteration 
     for(int k=0; k<N2; k++)
-      rnea< Robot::Tree >::run(q, dq, ddq);
+      rnea< Robot::Tree, confVector >::run(q, dq, ddq);
     ::gettimeofday(&tv_stop, NULL);
     
     inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND
