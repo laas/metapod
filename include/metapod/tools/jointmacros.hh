@@ -63,8 +63,10 @@ namespace metapod
     {                                                               \
       FloatType angle = qi[0];                                      \
       matrix3d localR;                                              \
-      ROTX(angle, localR);                                          \
-      localR.transposeInPlace();                                    \
+      FloatType c = cos(angle), s = sin(angle);                     \
+      localR(0,0) =  1; localR(0,1) =  0; localR(0,2) =  0;         \
+      localR(1,0) =  0; localR(1,1) =  c; localR(1,2) =  s;         \
+      localR(2,0) =  0; localR(2,1) = -s; localR(2,2) =  c;         \
       Xj = Spatial::Transform(localR, vector3d::Zero());            \
       sXp = Xj*Xt;                                                  \
                                                                     \
@@ -108,14 +110,22 @@ namespace metapod
                           const vector6d & dqi)                     \
     {                                                               \
       /* maj sXp */                                                 \
-      vector3d qlin = qi.segment<3>(0),                             \
-               qang = qi.segment<3>(3);                             \
       matrix3d localR;                                              \
-      EULERXYZ(qang, localR);                                       \
-      localR.transposeInPlace();                                    \
+      FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
+                cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
+                cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
+      localR(0,0) = cTheta * cPhi;                                  \
+      localR(0,1) = cTheta * sPhi;                                  \
+      localR(0,2) = -sTheta;                                        \
+      localR(1,0) = -cPsi * sPhi + cPhi * sPsi * sTheta;            \
+      localR(1,1) = cPsi * cPhi + sPsi * sTheta * sPhi;             \
+      localR(1,2) = cTheta * sPsi;                                  \
+      localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;             \
+      localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
+      localR(2,2) = cPsi * cTheta;                                  \
       S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;               \
       Xj = Transform(localR, vector3d::Zero());                     \
-      sXp = Xj*Transform(matrix3d::Identity(), qlin);               \
+      sXp = Xj*Transform(matrix3d::Identity(), qi.segment<3>(0));   \
       /* maj vj */                                                  \
       vj = Motion(S*dqi);                                           \
     }                                                               \

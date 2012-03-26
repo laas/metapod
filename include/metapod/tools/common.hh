@@ -27,7 +27,6 @@
 
 # include "metapod/tools/fwd.hh"
 # include "metapod/tools/jointmacros.hh"
-# include "metapod/tools/smallmatrixmacros.hh"
 # include "metapod/tools/spatial.hh"
 # include <fstream>
 # include <iostream>

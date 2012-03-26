@@ -38,7 +38,7 @@ SETUP_PROJECT()
 #----------------------------------------------
 IF(CMAKE_BUILD_TYPE MATCHES "RELEASE")
   IF(CMAKE_COMPILER_IS_GNUCXX)
-    SET (${PROJECT_NAME}_CXXFLAGS "-O3 -funroll-loops -march=native -mfpmath=sse -ggdb3 ${${PROJECT_NAME}_CXXFLAGS}")
+    SET (${PROJECT_NAME}_CXXFLAGS "-Ofast -march=native -mfpmath=sse -fwhole-program ${${PROJECT_NAME}_CXXFLAGS}")
   ENDIF(CMAKE_COMPILER_IS_GNUCXX)
 ENDIF(CMAKE_BUILD_TYPE MATCHES "RELEASE")
 

@@ -34,11 +34,9 @@ namespace metapod
   
   typedef Eigen::Matrix< FloatType, 1, 1 > vector1d;
   typedef Eigen::Matrix< FloatType, 3, 1 > vector3d;
-  typedef Eigen::Matrix< FloatType, 4, 1 > vector4d;
   typedef Eigen::Matrix< FloatType, 6, 1 > vector6d;
 
   typedef Eigen::Matrix< FloatType, 3, 3 > matrix3d;
-  typedef Eigen::Matrix< FloatType, 4, 4 > matrix4d;
   typedef Eigen::Matrix< FloatType, 6, 6 > matrix6d;
 
   typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > matrixN;
