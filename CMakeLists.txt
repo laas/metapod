@@ -30,6 +30,8 @@ SET(PROJECT_NAME metapod)
 SET(PROJECT_DESCRIPTION "Implementation of a robot dynamics library")
 SET(PROJECT_URL "No webpage yet...")
 
+SET(CXX_DISABLE_WERROR True)
+
 SETUP_PROJECT()
 
 
