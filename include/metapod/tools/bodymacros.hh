@@ -48,10 +48,16 @@ namespace metapod
         static Inertia I;                                  \
         typedef parentname Parent;                         \
         typedef jointname Joint;                           \
+        static Motion vi_symbol;                           \
+        static Motion ai_symbol;                           \
+        static Force Fext_in_0_symbol;                     \
     };                                                     \
     Transform classname::iX0;                              \
     Motion classname::vi;                                  \
     Motion classname::ai;                                  \
+    Motion classname::vi_symbol;                           \
+    Motion classname::ai_symbol;                           \
+    Force classname::Fext_in_0_symbol;                     \
     Force classname::Fext
 
 } // end of namespace metapod

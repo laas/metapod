@@ -107,6 +107,15 @@ namespace metapod
         }
 //*/
 
+        void collect(const GiNaC::lst & lst)
+        {
+          for(int i=0; i<3; i++)
+          {
+            m_n[i] = m_n[i].collect(lst);
+            m_f[i] = m_f[i].collect(lst);
+          }
+        }
+
       private:
         // Private members
         vector3d m_n;
@@ -173,6 +182,15 @@ namespace metapod
         }
 //*/
 
+        void collect(const GiNaC::lst & lst)
+        {
+          for(int i=0; i<3; i++)
+          {
+            m_w[i] = m_w[i].collect(lst);
+            m_v[i] = m_v[i].collect(lst);
+          }
+        }
+
       private:
         // Private members
         vector3d m_w;
@@ -233,6 +251,17 @@ namespace metapod
           return os;
         }
 //*/
+
+        void collect(const GiNaC::lst & lst)
+        {
+          m_m = m_m.collect(lst);
+          for(int i=0; i<3; i++)
+          {
+            m_h[i] = m_h[i].collect(lst);
+            for(int j=0; j<3; j++)
+              m_I(i,j) = m_I(i,j).collect(lst);
+          }
+        }
 
       private:
         // Private members
@@ -358,6 +387,16 @@ namespace metapod
           return os;
         }
 //*/
+
+        void collect(const GiNaC::lst & lst)
+        {
+          for(int i=0; i<3; i++)
+          {
+            m_r[i] = m_r[i].collect(lst);
+            for(int j=0; j<3; j++)
+              m_E(i,j) = m_E(i,j).collect(lst);
+          }
+        }
 
       private:
         // Private members

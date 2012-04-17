@@ -75,9 +75,12 @@ namespace metapod
 //        dq_str = Node::Joint::name + "::q[" + boost::lexical_cast<std::string>(i) + "]";
 //        ddq_str = Node::Joint::name + "::q[" + boost::lexical_cast<std::string>(i) + "]";
 
-        q_str = "q" + boost::lexical_cast<std::string>(Node::Joint::label) + "_" + boost::lexical_cast<std::string>(i);
-        dq_str = "dq" + boost::lexical_cast<std::string>(Node::Joint::label) + "_" + boost::lexical_cast<std::string>(i);
-        ddq_str = "ddq" + boost::lexical_cast<std::string>(Node::Joint::label) + "_" + boost::lexical_cast<std::string>(i);
+        q_str = "q[" + boost::lexical_cast<std::string>(Node::Joint::positionInConf+i) + "]";
+        dq_str = "dq[" + boost::lexical_cast<std::string>(Node::Joint::positionInConf+i) + "]";
+        ddq_str = "ddq[" + boost::lexical_cast<std::string>(Node::Joint::positionInConf+i) + "]";
+//        q_str = "q" + boost::lexical_cast<std::string>(Node::Joint::label) + "_" + boost::lexical_cast<std::string>(i);
+//        dq_str = "dq" + boost::lexical_cast<std::string>(Node::Joint::label) + "_" + boost::lexical_cast<std::string>(i);
+//        ddq_str = "ddq" + boost::lexical_cast<std::string>(Node::Joint::label) + "_" + boost::lexical_cast<std::string>(i);
 
         q[Node::Joint::positionInConf + i] = GiNaC::symbol(q_str);
         dq[Node::Joint::positionInConf + i] = GiNaC::symbol(dq_str);
@@ -162,6 +165,46 @@ namespace metapod
   struct jcalcSymbolic< NC, confVector >
   {
     static void run(const confVector &, const confVector &) {}
+  };
+
+  template< typename Tree > struct initSymbols
+  {
+    typedef Tree Node;
+    static void run()
+    {
+      vector3d vi_w = vector3d(GiNaC::symbol(Node::Body::name + "::vi.w()[0]"),
+                               GiNaC::symbol(Node::Body::name + "::vi.w()[1]"),
+                               GiNaC::symbol(Node::Body::name + "::vi.w()[2]"));
+      vector3d vi_v = vector3d(GiNaC::symbol(Node::Body::name + "::vi.v()[0]"),
+                               GiNaC::symbol(Node::Body::name + "::vi.v()[1]"),
+                               GiNaC::symbol(Node::Body::name + "::vi.v()[2]"));
+      Node::Body::vi_symbol = Spatial::Motion(vi_w, vi_v);          
+
+      vector3d ai_w = vector3d(GiNaC::symbol(Node::Body::name + "::ai.w()[0]"),
+                               GiNaC::symbol(Node::Body::name + "::ai.w()[1]"),
+                               GiNaC::symbol(Node::Body::name + "::ai.w()[2]"));
+      vector3d ai_v = vector3d(GiNaC::symbol(Node::Body::name + "::ai.v()[0]"),
+                               GiNaC::symbol(Node::Body::name + "::ai.v()[1]"),
+                               GiNaC::symbol(Node::Body::name + "::ai.v()[2]"));
+      Node::Body::ai_symbol = Spatial::Motion(ai_w, ai_v);
+
+      vector3d F_n = vector3d(GiNaC::symbol(Node::Body::name + "::Fext.n()[0]"),
+                               GiNaC::symbol(Node::Body::name + "::Fext.n()[1]"),
+                               GiNaC::symbol(Node::Body::name + "::Fext.n()[2]"));
+      vector3d F_f = vector3d(GiNaC::symbol(Node::Body::name + "::Fext.f()[0]"),
+                               GiNaC::symbol(Node::Body::name + "::Fext.f()[1]"),
+                               GiNaC::symbol(Node::Body::name + "::Fext.f()[2]"));
+      Node::Body::Fext_in_0_symbol = Spatial::Force(F_n, F_f);
+
+      initSymbols< typename Node::Child1 >::run();
+      initSymbols< typename Node::Child2 >::run();
+      initSymbols< typename Node::Child3 >::run();
+    }
+  };
+
+  template<> struct initSymbols<NC>
+  {
+    static void run() {}
   };
 
 } // end of namespace metapod.

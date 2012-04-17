@@ -21,8 +21,8 @@
  * This test applies the rnea on a test model with a reference configuration, then compares the computed torques with the reference torques
  */
 
-#ifndef METAPOD_TEST_RNEA_HH
-# define METAPOD_TEST_RNEA_HH
+#ifndef METAPOD_TEST_GINAC_CC
+# define METAPOD_TEST_GINAC_CC
 
 // Common test tools
 # include "common.hh"
@@ -30,14 +30,15 @@
 using namespace simplehumanoid;
 typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
 
-BOOST_AUTO_TEST_CASE (test_rnea)
+BOOST_AUTO_TEST_CASE (test_ginac)
 {
   confVector q, dq, ddq;
 
+  initSymbols< Robot::Tree >::run();
   initConfSymbolic< Robot::Tree, confVector >::run(q, dq, ddq);
 //  jcalcSymbolic< Robot::Tree, confVector >::run(q, dq);
 
-  rnea< Robot::Tree, confVector, false >::run(q, dq, ddq);
+  rnea< Robot::Tree, confVector >::run(q, dq, ddq);
   std::ofstream log("rnea.log", std::ofstream::out);
 //  printTorquesSymbolic<Robot::Tree>(log);
 
@@ -53,8 +54,6 @@ BOOST_AUTO_TEST_CASE (test_rnea)
 //  log << WAIST::name << "::torque[0] =\n" << WAIST::torque[0] << std::endl;
 //  log << WAIST::name << "::torque[2] =\n" << WAIST::torque[2] << std::endl;
 //  log << WAIST::name << "::torque[4] =\n" << WAIST::torque[4] << std::endl;
-
-  GiNaC::ex ex1 = LLEG_ANKLE_R::torque.expand();
 
   GiNaC::lst lst1;
   lst1 = cos(q(0)), sin(q(0)),
@@ -166,9 +165,9 @@ BOOST_AUTO_TEST_CASE (test_rnea)
          cos(q(1)), sin(q(1)),
          cos(q(0)), sin(q(0)),
 
-  ex1 = ex1.collect(lst1);
-
-  log << "LLEG_ANKLE_R::torque\n" << ex1 << std::endl;
+//  GiNaC::ex ex1 = LLEG_ANKLE_R::torque.expand();
+//  ex1 = ex1.collect(lst1);
+//  log << "LLEG_ANKLE_R::torque\n" << ex1 << std::endl;
 
   log.close();
 }
