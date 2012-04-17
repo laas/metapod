@@ -35,6 +35,7 @@ namespace metapod
       public:                                                       \
       enum { NBDOF = 1 };                                           \
       static const std::string name;                                \
+      static const int type;                                        \
       static const int label;                                       \
       static const int nbDof;                                       \
       static const int positionInConf;                              \
@@ -50,6 +51,7 @@ namespace metapod
                                                                     \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
+    const int classname::type = metapod::REVOLUTE;                  \
     Transform classname::sXp;                                       \
     Transform classname::Xj;                                        \
     Motion classname::cj;                                           \
@@ -82,6 +84,7 @@ namespace metapod
       public:                                                       \
       enum { NBDOF = 6 };                                           \
       static const std::string name;                                \
+      static const int type;                                        \
       static const int label;                                       \
       static const int nbDof;                                       \
       static const int positionInConf;                              \
@@ -98,6 +101,7 @@ namespace metapod
       static void jcalc(const vector6d & qi, const vector6d & dqi); \
     };                                                              \
                                                                     \
+    const int classname::type = metapod::FREE_FLYER;                \
     Transform classname::sXp;                                       \
     Transform classname::Xj;                                        \
     Motion classname::cj;                                           \

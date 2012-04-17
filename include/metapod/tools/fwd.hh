@@ -25,12 +25,20 @@
 #ifndef METAPOD_FORWARD_HH
 # define METAPOD_FORWARD_HH
 
+//# define EIGEN_USE_MKL_ALL
 # define EIGEN_DEFAULT_TO_ROW_MAJOR
 # include "Eigen/Dense"
+# include "metapod/tools/define_ginac_symbols.hh"
 
 namespace metapod
 {
-  typedef double FloatType;
+  enum
+  {
+    REVOLUTE,
+    FREE_FLYER
+  };
+
+  typedef GiNaC::ex FloatType;
   
   typedef Eigen::Matrix< FloatType, 1, 1 > vector1d;
   typedef Eigen::Matrix< FloatType, 3, 1 > vector3d;

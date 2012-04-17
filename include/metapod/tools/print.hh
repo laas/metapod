@@ -106,6 +106,23 @@ void printTorques(std::ofstream & os)
 template<>
 inline void printTorques<NC>(std::ofstream &){}
 
+template< typename Tree > void printTorquesSymbolic(std::ofstream & os)
+{
+  typedef Tree Node;
+  os << Node::Joint::name << std::endl;
+  for(int i=0; i<Node::Joint::NBDOF; i++)
+{
+    os << Node::Joint::torque[i] << "\n";
+}
+  os << std::endl;
+
+  printTorquesSymbolic<typename Node::Child1>(os);
+  printTorquesSymbolic<typename Node::Child2>(os);
+  printTorquesSymbolic<typename Node::Child3>(os);
+}
+
+template<> inline void printTorquesSymbolic<NC>(std::ofstream &) {}
+
 // Get Torques of the robot.
 template< typename Tree >
 void getTorques(vectorN& torques, unsigned& i)

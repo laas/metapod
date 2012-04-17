@@ -30,6 +30,8 @@ SET(PROJECT_NAME metapod)
 SET(PROJECT_DESCRIPTION "Implementation of a robot dynamics library")
 SET(PROJECT_URL "No webpage yet...")
 
+SET(CXX_DISABLE_WERROR True)
+
 SETUP_PROJECT()
 
 
@@ -57,6 +59,11 @@ SEARCH_FOR_BOOST()
 # Search for Eigen.
 ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.0")
 INCLUDE_DIRECTORIES(${EIGEN3_INCLUDE_DIRS})
+
+# Search for Ginac.
+#ADD_REQUIRED_DEPENDENCY("ginac >= 1.6.2")
+ADD_REQUIRED_DEPENDENCY("ginac >= 1.0.0")
+MESSAGE("ginac : ${GINAC_LIBRARIES}")
 
 # Set header files.
 SET(${PROJECT_NAME}_SIMPLE_HUMANOID_MODEL_HEADERS

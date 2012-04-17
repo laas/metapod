@@ -89,6 +89,7 @@ namespace metapod
         }
 
         // Print operator
+/*//
         friend std::ostream & operator << (std::ostream & os, const Force & fv)
         {
           os
@@ -96,6 +97,15 @@ namespace metapod
             << "f =\n" << fv.f() << std::endl;
           return os;
         }
+/*/
+        friend std::ostream & operator << (std::ostream & os, const Force & fv)
+        {
+          os
+            << "n =\n" << fv.n()[0] << "\t" << fv.n()[1] << "\t" << fv.n()[2] << "\t" << std::endl
+            << "f =\n" << fv.f()[0] << "\t" << fv.f()[1] << "\t" << fv.f()[2] << "\t" << std::endl;
+          return os;
+        }
+//*/
 
       private:
         // Private members
@@ -145,6 +155,7 @@ namespace metapod
         }
 
         // Print operator
+/*//
         friend std::ostream & operator << (std::ostream & os, const Motion & mv)
         {
           os
@@ -152,6 +163,15 @@ namespace metapod
             << "v =\n" << mv.v() << std::endl;
           return os;
         }
+/*/
+        friend std::ostream & operator << (std::ostream & os, const Motion & mv)
+        {
+          os
+            << "w =\n" << mv.w()[0] << "\t" << mv.w()[1] << "\t" << mv.w()[2] << "\t" << std::endl
+            << "v =\n" << mv.v()[0] << "\t" << mv.v()[1] << "\t" << mv.v()[2] << "\t" << std::endl;
+          return os;
+        }
+//*/
 
       private:
         // Private members
@@ -192,6 +212,7 @@ namespace metapod
         }
 
         // Print operator
+/*//
         friend std::ostream & operator << (std::ostream & os, const Inertia & I)
         {
           os
@@ -200,6 +221,18 @@ namespace metapod
             << "I =\n" << I.I() << std::endl;
           return os;
         }
+/*/
+        friend std::ostream & operator << (std::ostream & os, const Inertia & I)
+        {
+          os
+            << "m =\n" << I.m() << std::endl
+            << "h =\n" << I.h()[0] << "\t" << I.h()[1] << "\t" << I.h()[2] << "\t" << std::endl
+            << "I =\n" << I.I()(0,0) << "\t" << I.I()(0,1) << "\t" << I.I()(0,2) << "\t" << std::endl
+            <<            I.I()(1,0) << "\t" << I.I()(1,1) << "\t" << I.I()(1,2) << "\t" << std::endl
+            <<            I.I()(2,0) << "\t" << I.I()(2,1) << "\t" << I.I()(2,2) << "\t" << std::endl;
+          return os;
+        }
+//*/
 
       private:
         // Private members
@@ -304,6 +337,7 @@ namespace metapod
         }
 
         // Print operator
+/*//
         friend std::ostream & operator << (std::ostream & os,
                                            const Transform & X)
         {
@@ -312,6 +346,18 @@ namespace metapod
             << "  r =\n" << X.r().transpose() << std::endl;
           return os;
         }
+/*/
+        friend std::ostream & operator << (std::ostream & os,
+                                           const Transform & X)
+        {
+          os
+            << "  E =\n" << X.E()(0,0) << "\t" << X.E()(0,1) << "\t" << X.E()(0,2) << "\t" << std::endl
+            <<              X.E()(1,0) << "\t" << X.E()(1,1) << "\t" << X.E()(1,2) << "\t" << std::endl
+            <<              X.E()(2,0) << "\t" << X.E()(2,1) << "\t" << X.E()(2,2) << "\t" << std::endl
+            << "  r =\n" << X.r()[0] << "\t" << X.r()[1] << "\t" << X.r()[2] << "\t" << std::endl;
+          return os;
+        }
+//*/
 
       private:
         // Private members

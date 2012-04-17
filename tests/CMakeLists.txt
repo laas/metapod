@@ -49,7 +49,8 @@ MACRO(ADD_TESTCASE NAME)
 
   # Link against Boost.
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
+  PKG_CONFIG_USE_DEPENDENCY(${NAME} ginac)
 ENDMACRO(ADD_TESTCASE)
 
 # Generated test.
-ADD_TESTCASE(test_rnea)
+ADD_TESTCASE(test_ginac)
