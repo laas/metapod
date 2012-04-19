@@ -51,6 +51,7 @@ namespace metapod
         static Motion vi_symbol;                           \
         static Motion ai_symbol;                           \
         static Force Fext_in_0_symbol;                     \
+        static Force Fext_in_0;                            \
     };                                                     \
     Transform classname::iX0;                              \
     Motion classname::vi;                                  \
@@ -58,6 +59,7 @@ namespace metapod
     Motion classname::vi_symbol;                           \
     Motion classname::ai_symbol;                           \
     Force classname::Fext_in_0_symbol;                     \
+    Force classname::Fext_in_0;                            \
     Force classname::Fext
 
 } // end of namespace metapod

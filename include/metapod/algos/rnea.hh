@@ -33,6 +33,18 @@ namespace metapod
   static GiNaC::lst lst_vi, lst_ai, lst_vi_ai;
   static std::ofstream RNEA("symbolic_rnea.hh", std::ofstream::out);
 
+//  template< typename Tree > void writeNode(std::ofstream & of)
+//  {
+//    typedef Tree Node;
+//
+//    of << "class " << Node::Body::name << std::endl
+//       << "{"                          << std::endl
+//       << "  public:"                  << std::endl
+//       << "    static const std::string name;" << std::endl;
+//  }
+//
+//  template<> void writeNode< NC >(std::ofstream &) {}
+
   /** Templated Recursive Newton-Euler Algorithm.
     * Takes the multibody tree type as template parameter,
     * and recursively proceeds on the Nodes.
@@ -65,9 +77,11 @@ namespace metapod
         lst.append(dq(i)); lst.append(ddq(i));
       }
 
+/*
       std::ofstream SLOG;
       std::string logdir = "symbolic_log/";
       std::string logname;
+*/
 
       // Extract subvector corresponding to current Node
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
@@ -81,11 +95,13 @@ namespace metapod
       // Jcalc: update sXp, S, dotS, cj, vj
       Node::Joint::jcalc(qi, dqi);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Joint::name + "_sXp.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Joint::sXp << std::endl;
       SLOG.close();
+*/
 
       // iX0 = iXλ(i) * λ(i)X0
       // vi = iXλ(i) * vλ(i) + vj
@@ -93,21 +109,25 @@ namespace metapod
       Node::Body::iX0 = Node::Joint::sXp*Node::Body::Parent::iX0;
       Node::Body::iX0.collect(lst);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_iX0.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Body::iX0 << std::endl;
       SLOG.close();
+*/
 
       Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
                      + Node::Joint::vj;
       Node::Body::vi.collect(lst);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_vi.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Body::vi << std::endl;
       SLOG.close();
+*/
 
       Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
                            Motion(Node::Joint::S * ddqi),
@@ -115,11 +135,13 @@ namespace metapod
                            (Node::Body::vi_symbol^Node::Joint::vj));
       Node::Body::ai.collect(lst_vi);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_ai.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Body::ai << std::endl;
       SLOG.close();
+*/
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
       vector3d global_CoM = Node::Body::iX0*Node::Body::CoM;
@@ -128,20 +150,74 @@ namespace metapod
       vector3d gravity_torque = global_CoM.cross(gravity_force);
 
       Force Fext = Force(gravity_torque,gravity_force);
-      Force Fext_in_0 = Force(Node::Body::iX0 * ( Node::Body::mass * Fext
-                                                - Node::Body::Fext ));
+      Node::Body::Fext_in_0 = Force(Node::Body::iX0 * ( Node::Body::mass * Fext
+                                                      - Node::Body::Fext ));
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_Fext.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
-      SLOG << Fext_in_0 << std::endl;
+      SLOG << Node::Body::Fext_in_0 << std::endl;
       SLOG.close();
+*/
 
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai_symbol),
                            (Node::Body::vi_symbol^( Node::Body::I * Node::Body::vi_symbol )),
                            (Node::Body::Fext_in_0_symbol));
 //                           (Node::Body::iX0 * ( Node::Body::mass * Fext
 //                                              - Node::Body::Fext )));
+
+//*
+      // WRITE SYMBOLIC EXPRESSIONS IN .CC FILE
+      // sXp
+      for(int i=0; i<3; i++)
+      {
+        for(int j=0; j<3; j++)
+          RNEA << "E(" << i << "," << j << ") = " << Node::Joint::sXp.E()(i,j) << ";" << std::endl;
+        RNEA << "r[" << i << "] = " << Node::Joint::sXp.r()[i] << ";" << std::endl;
+      }
+      RNEA << Node::Joint::name << "::sXp = Transform(E,r);" << std::endl;
+
+      // iX0
+      for(int i=0; i<3; i++)
+      {
+        for(int j=0; j<3; j++)
+          RNEA << "E(" << i << "," << j << ") = " << Node::Body::iX0.E()(i,j) << ";" << std::endl;
+        RNEA << "r[" << i << "] = " << Node::Body::iX0.r()[i] << ";" << std::endl;
+      }
+      RNEA << Node::Body::name << "::iX0 = Transform(E,r);" << std::endl;
+
+      // vi
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "w[" << i << "] = " << Node::Body::vi.w()[i] << ";" << std::endl
+          << "v[" << i << "] = " << Node::Body::vi.v()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Body::name << "::vi = Motion(w,v);" << std::endl;
+        
+      // ai
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "w[" << i << "] = " << Node::Body::ai.w()[i] << ";" << std::endl
+          << "v[" << i << "] = " << Node::Body::ai.v()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Body::name << "::ai = Motion(w,v);" << std::endl;
+
+      // Fext_in_0
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "n[" << i << "] = " << Node::Body::Fext_in_0.n()[i] << ";" << std::endl
+          << "f[" << i << "] = " << Node::Body::Fext_in_0.f()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Body::name << "::Fext_in_0 = Force(n,f);" << std::endl;
+//*/
+
 
       // recursion on children
       rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
@@ -150,26 +226,42 @@ namespace metapod
 
       // backward computations follow
       // τi = SiT * fi
-      Node::Joint::torque = Node::Joint::S.transpose()*Node::Joint::f.toVector();
+//      Node::Joint::torque = Node::Joint::S.transpose()*Node::Joint::f.toVector();
 //      Node::Joint::torque.collect(lst);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Joint::name + "_torque.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Joint::torque << std::endl;
       SLOG.close();
+*/
 
       // fλ(i) = fλ(i) + λ(i)Xi* * fi
       Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f
                                    + Node::Joint::sXp.applyInv(Node::Joint::f);
-//      Node::Body::Parent::Joint::f.collect(GiNaC::lst(cos(q(Node::Joint::positionInConf)), sin(q(Node::Joint::positionInConf))));
-//      Node::Body::Parent::Joint::f.collect(lst_vi_ai);
+      Node::Body::Parent::Joint::f.collect(lst_vi_ai);
 
+      // f
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "n[" << i << "] = " << Node::Joint::f.n()[i] << ";" << std::endl
+          << "f[" << i << "] = " << Node::Joint::f.f()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Joint::name << "::f = Force(n,f);" << std::endl;
+
+      // torque
+//        RNEA << Node::Joint::name << "::torque = " << Node::Joint::torque << ";" << std::endl;
+
+/*
       // SYMBOLIC
       logname = logdir + Node::Joint::name + "_f.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Joint::f << std::endl;
       SLOG.close();
+*/
 
     }
   };
@@ -182,6 +274,42 @@ namespace metapod
                     const confVector & dq,
                     const confVector & ddq)
     {
+      RNEA << "#include \"common.hh\""                                 << std::endl
+           << "using namespace simplehumanoid;"                    << std::endl
+           << "typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;" << std::endl
+           << std::endl
+           << "BOOST_AUTO_TEST_CASE (test_symbolic_rnea)"          << std::endl
+           << "{"                                                  << std::endl
+           << "  matrix3d E;"                                      << std::endl
+           << "  vector3d r;"                                      << std::endl
+           << "  vector3d v, w;"                                   << std::endl
+           << "  vector3d n, f;"                                   << std::endl
+           << "  confVector q, dq, ddq;"                           << std::endl
+           << "  q = confVector::Random();"                        << std::endl
+           << "  dq = confVector::Random();"                       << std::endl
+           << "  ddq = confVector::Random();"                      << std::endl
+           << std::endl
+           << "  long TICKS_PER_SECOND = 1e6;" << std::endl
+           << "  struct timeval tv_start, tv_stop;" << std::endl
+           << "  int N1 = 10000;" << std::endl
+           << "  int N2 = 1;" << std::endl
+           << std::endl
+           << "  std::ofstream perf_log(\"rnea_perf.log\", std::ofstream::out);" << std::endl
+           << std::endl
+           << "  long time_usec = 0;" << std::endl
+           << "  long inner_loop_time;" << std::endl
+           << "  // Outer loop : generate random configuration" << std::endl
+           << "  for(int i=0; i<N1; i++)" << std::endl
+           << "  {" << std::endl
+           << "    q = confVector::Random();" << std::endl
+           << "    dq = confVector::Random();" << std::endl
+           << "    ddq = confVector::Random();" << std::endl
+           << "    ::gettimeofday(&tv_start, NULL);" << std::endl
+           << "    // Inner loop : The timer precision is 1µs, which is not high enough to" << std::endl
+           << "    // give proper result on a single iteration " << std::endl
+           << "    for(int k=0; k<N2; k++)" << std::endl
+           << "    {"                       << std::endl
+           << std::endl;
       for(int i=0; i<3; i++)
       {
         lst_vi.append(Node::Body::vi_symbol.w()[i]);
@@ -200,9 +328,11 @@ namespace metapod
         lst.append(dq(i)); lst.append(ddq(i));
       }
 
+/*
       std::ofstream SLOG;
       std::string logdir = "symbolic_log/";
       std::string logname;
+*/
 
       // Extract subvector corresponding to current Node
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
@@ -216,11 +346,13 @@ namespace metapod
       // Jcalc: update sXp, S, dotS, cj, vj
       Node::Joint::jcalc(qi, dqi);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Joint::name + "_sXp.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Joint::sXp << std::endl;
       SLOG.close();
+*/
 
       // iX0 = iXλ(i)
       // vi = vj
@@ -230,22 +362,26 @@ namespace metapod
 
       Node::Body::vi = Node::Joint::vj;
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_iX0.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Body::iX0 << std::endl;
       SLOG.close();
+*/
 
       Node::Body::ai = sum(Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
                            (Node::Body::vi_symbol^Node::Joint::vj));
       Node::Body::ai.collect(lst_vi);
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_ai.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       SLOG << Node::Body::ai << std::endl;
       SLOG.close();
+*/
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
       vector3d global_CoM = Node::Body::iX0*Node::Body::CoM;
@@ -254,20 +390,72 @@ namespace metapod
       vector3d gravity_torque = global_CoM.cross(gravity_force);
 
       Force Fext = Force(gravity_torque,gravity_force);
-      Force Fext_in_0 = Force(Node::Body::iX0 * ( Node::Body::mass * Fext
-                                                - Node::Body::Fext ));
+      Node::Body::Fext_in_0 = Force(Node::Body::iX0 * ( Node::Body::mass * Fext
+                                                      - Node::Body::Fext ));
 
+/*
       // SYMBOLIC
       logname = logdir + Node::Body::name + "_Fext.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
-      SLOG << Fext_in_0 << std::endl;
+      SLOG << Node::Body::Fext_in_0 << std::endl;
       SLOG.close();
+*/
 
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai_symbol),
                            (Node::Body::vi_symbol^( Node::Body::I * Node::Body::vi_symbol )),
                            (Node::Body::Fext_in_0_symbol));
 //                           (Node::Body::iX0 * ( Node::Body::mass * Fext
 //                                              - Node::Body::Fext )));
+
+      // WRITE SYMBOLIC EXPRESSIONS IN .CC FILE
+      // sXp
+      for(int i=0; i<3; i++)
+      {
+        for(int j=0; j<3; j++)
+          RNEA << "E(" << i << "," << j << ") = " << Node::Joint::sXp.E()(i,j) << ";" << std::endl;
+        RNEA << "r[" << i << "] = " << Node::Joint::sXp.r()[i] << ";" << std::endl;
+      }
+      RNEA << Node::Joint::name << "::sXp = Transform(E,r);" << std::endl;
+
+      // iX0
+      for(int i=0; i<3; i++)
+      {
+        for(int j=0; j<3; j++)
+          RNEA << "E(" << i << "," << j << ") = " << Node::Body::iX0.E()(i,j) << ";" << std::endl;
+        RNEA << "r[" << i << "] = " << Node::Body::iX0.r()[i] << ";" << std::endl;
+      }
+      RNEA << Node::Body::name << "::iX0 = Transform(E,r);" << std::endl;
+
+      // vi
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "w[" << i << "] = " << Node::Body::vi.w()[i] << ";" << std::endl
+          << "v[" << i << "] = " << Node::Body::vi.v()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Body::name << "::vi = Motion(w,v);" << std::endl;
+        
+      // ai
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "w[" << i << "] = " << Node::Body::ai.w()[i] << ";" << std::endl
+          << "v[" << i << "] = " << Node::Body::ai.v()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Body::name << "::ai = Motion(w,v);" << std::endl;
+
+      // Fext_in_0
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "n[" << i << "] = " << Node::Body::Fext_in_0.n()[i] << ";" << std::endl
+          << "f[" << i << "] = " << Node::Body::Fext_in_0.f()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Body::name << "::Fext_in_0 = Force(n,f);" << std::endl;
+
 
       // recursion on children
       rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
@@ -276,16 +464,54 @@ namespace metapod
 
       // backward computations follow
       // τi = SiT * fi
+/*
       Node::Joint::torque = Node::Joint::S.transpose()
                           * Node::Joint::f.toVector();
+*/
 
+      // f
+      for(int i=0; i<3; i++)
+      {
+        RNEA
+          << "n[" << i << "] = " << Node::Joint::f.n()[i] << ";" << std::endl
+          << "f[" << i << "] = " << Node::Joint::f.f()[i] << ";" << std::endl
+          << std::endl;
+      }
+      RNEA << Node::Joint::name << "::f = Force(n,f);" << std::endl;
+
+/*
+      // torque
+      for(int i=0; i<6; i++)
+      {
+        RNEA
+          << Node::Joint::name << "::torque[" << i << "] = " << Node::Joint::torque[i] << ";" << std::endl;
+      }
+*/
+
+/*
       // SYMBOLIC
       logname = logdir + Node::Joint::name + "_torque.log";
       SLOG.open(logname.c_str(), std::ofstream::out);
       for(int i=0; i<6; i++)
         SLOG << Node::Joint::torque[i] << std::endl;
       SLOG.close();
+*/
 
+      RNEA << "  }"                                 << std::endl
+           << "    ::gettimeofday(&tv_stop, NULL);" << std::endl
+           << std::endl
+           << "    inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND" << std::endl
+           << "               + ( tv_stop.tv_usec - tv_start.tv_usec );" << std::endl
+           << "    time_usec += inner_loop_time;" << std::endl
+           << "    // Log inner_loop_time to allow for statistical computations " << std::endl
+           << "    perf_log << (double)inner_loop_time/(double)N2 << std::endl;" << std::endl
+           << "  }" << std::endl
+           << "  // Output global average execution time" << std::endl
+           << "  std::cout" << std::endl
+           << "    << \"RNEA execution time = \" << (double)time_usec/(double)(N1*N2) << \"µs\"" << std::endl
+           << "    << std::endl;" << std::endl
+           << "  perf_log.close();" << std::endl
+           << "}" << std::endl;
       RNEA.close();
     }
   };

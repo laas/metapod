@@ -54,3 +54,4 @@ ENDMACRO(ADD_TESTCASE)
 
 # Generated test.
 ADD_TESTCASE(test_ginac)
+#ADD_TESTCASE(test_symbolic_rnea)

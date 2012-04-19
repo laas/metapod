@@ -32,97 +32,145 @@ typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
 
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
-  // Set configuration vectors (q, dq, ddq) to reference values.
   confVector q, dq, ddq;
 
-  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  std::ifstream dqconf(TEST_DIRECTORY "/dq.conf");
-  std::ifstream ddqconf(TEST_DIRECTORY "/ddq.conf");
+  initConfSymbolic< Robot::Tree, confVector >::run(q, dq, ddq);
+//  jcalcSymbolic< Robot::Tree, confVector >::run(q, dq);
 
-  initConf< Robot::Tree, confVector >::run(qconf, q);
-  initConf< Robot::Tree, confVector >::run(dqconf, dq);
-  initConf< Robot::Tree, confVector >::run(ddqconf, ddq);
-
-  qconf.close();
-  dqconf.close();
-  ddqconf.close();
-
-  // Apply the RNEA to the metapod multibody and print the result in a log file.
   rnea< Robot::Tree, confVector, false >::run(q, dq, ddq);
   std::ofstream log("rnea.log", std::ofstream::out);
-  printTorques<Robot::Tree>(log);
+//  printTorquesSymbolic<Robot::Tree>(log);
+
+//  std::cout << LLEG_ANKLE_R::name << "::sXp = \n" << LLEG_ANKLE_R::sXp << std::endl;
+//  std::cout << LLEG_ANKLE_R::name << "::vj = \n" << LLEG_ANKLE_R::vj << std::endl;
+//  std::cout << LLEG_LINK6::name << "::vi = \n" << LLEG_LINK6::vi << std::endl;
+
+//  log << LLEG_ANKLE_R::name << "::torque =\n" << LLEG_ANKLE_R::torque << std::endl;
+//  log << LARM_WRIST_R::name << "::torque =\n" << LARM_WRIST_R::torque << std::endl;
+//  log << LARM_ELBOW::name << "::torque =\n" << LARM_ELBOW::torque << std::endl;
+//  log << LARM_SHOULDER_P::name << "::torque =\n" << LARM_SHOULDER_P::torque << std::endl;
+//  log << CHEST::name << "::torque =\n" << CHEST::torque << std::endl;
+//  log << WAIST::name << "::torque[0] =\n" << WAIST::torque[0] << std::endl;
+//  log << WAIST::name << "::torque[2] =\n" << WAIST::torque[2] << std::endl;
+//  log << WAIST::name << "::torque[4] =\n" << WAIST::torque[4] << std::endl;
+
+  GiNaC::ex ex1 = LLEG_ANKLE_R::torque.expand();
+
+  GiNaC::lst lst1;
+  lst1 = cos(q(0)), sin(q(0)),
+         dq(0), ddq(0),
+         cos(q(1)), sin(q(1)),
+         dq(1), ddq(1),
+         cos(q(2)), sin(q(2)),
+         dq(2), ddq(2),
+         cos(q(3)), sin(q(3)),
+         dq(3), ddq(3),
+         cos(q(4)), sin(q(4)),
+         dq(4), ddq(4),
+         cos(q(5)), sin(q(5)),
+         dq(5), ddq(5),
+         cos(q(6)), sin(q(6)),
+         dq(6), ddq(6),
+         cos(q(7)), sin(q(7)),
+         dq(7), ddq(7),
+         cos(q(8)), sin(q(8)),
+         dq(8), ddq(8),
+         cos(q(9)), sin(q(9)),
+         dq(9), ddq(9),
+         cos(q(10)), sin(q(10)),
+         dq(10), ddq(10),
+         cos(q(11)), sin(q(11)),
+         dq(11), ddq(11),
+         cos(q(12)), sin(q(12)),
+         dq(12), ddq(12),
+         cos(q(13)), sin(q(13)),
+         dq(13), ddq(13),
+         cos(q(14)), sin(q(14)),
+         dq(14), ddq(14),
+         cos(q(15)), sin(q(15)),
+         dq(15), ddq(15),
+         cos(q(16)), sin(q(16)),
+         dq(16), ddq(16),
+         cos(q(17)), sin(q(17)),
+         dq(17), ddq(17),
+         cos(q(18)), sin(q(18)),
+         dq(18), ddq(18),
+         cos(q(19)), sin(q(19)),
+         dq(19), ddq(19),
+         cos(q(20)), sin(q(20)),
+         dq(20), ddq(20),
+         cos(q(21)), sin(q(21)),
+         dq(21), ddq(21),
+         cos(q(22)), sin(q(22)),
+         dq(22), ddq(22),
+         cos(q(23)), sin(q(23)),
+         dq(23), ddq(23),
+         cos(q(24)), sin(q(24)),
+         dq(24), ddq(24),
+         cos(q(25)), sin(q(25)),
+         dq(25), ddq(25),
+         cos(q(26)), sin(q(26)),
+         dq(26), ddq(26),
+         cos(q(27)), sin(q(27)),
+         dq(27), ddq(27),
+         cos(q(28)), sin(q(28)),
+         dq(28), ddq(28),
+         cos(q(29)), sin(q(29)),
+         dq(29), ddq(29),
+         cos(q(30)), sin(q(30)),
+         dq(30), ddq(30),
+         cos(q(31)), sin(q(31)),
+         dq(31), ddq(31),
+         cos(q(32)), sin(q(32)),
+         dq(32), ddq(32),
+         cos(q(33)), sin(q(33)),
+         dq(33), ddq(33),
+         cos(q(34)), sin(q(34)),
+         dq(34), ddq(34);
+
+  GiNaC::lst lst2;
+  lst2 = 
+         cos(q(34)), sin(q(34)),
+         cos(q(33)), sin(q(33)),
+         cos(q(32)), sin(q(32)),
+         cos(q(31)), sin(q(31)),
+         cos(q(30)), sin(q(30)),
+         cos(q(29)), sin(q(29)),
+         cos(q(28)), sin(q(28)),
+         cos(q(27)), sin(q(27)),
+         cos(q(26)), sin(q(26)),
+         cos(q(25)), sin(q(25)),
+         cos(q(24)), sin(q(24)),
+         cos(q(23)), sin(q(23)),
+         cos(q(22)), sin(q(22)),
+         cos(q(21)), sin(q(21)),
+         cos(q(20)), sin(q(20)),
+         cos(q(19)), sin(q(19)),
+         cos(q(18)), sin(q(18)),
+         cos(q(17)), sin(q(17)),
+         cos(q(16)), sin(q(16)),
+         cos(q(15)), sin(q(15)),
+         cos(q(14)), sin(q(14)),
+         cos(q(13)), sin(q(13)),
+         cos(q(12)), sin(q(12)),
+         cos(q(11)), sin(q(11)),
+         cos(q(10)), sin(q(10)),
+         cos(q(9)), sin(q(9)),
+         cos(q(8)), sin(q(8)),
+         cos(q(7)), sin(q(7)),
+         cos(q(6)), sin(q(6)),
+         cos(q(5)), sin(q(5)),
+         cos(q(4)), sin(q(4)),
+         cos(q(3)), sin(q(3)),
+         cos(q(2)), sin(q(2)),
+         cos(q(1)), sin(q(1)),
+         cos(q(0)), sin(q(0)),
+
+  ex1 = ex1.collect(lst1);
+
+  log << "LLEG_ANKLE_R::torque\n" << ex1 << std::endl;
+
   log.close();
-
-  // Compare results with reference file
-  FloatType x,y;
-  std::string jointname;
-  std::string str1, str2;
-  std::ifstream result_log("rnea.log");
-  std::ifstream ref_log(TEST_DIRECTORY "/rnea.ref");
-  while(result_log >> str1)
-  {
-    if(stringToDouble(str1))
-    {
-      x = stringToDouble(str1);
-      y = getNextDouble(ref_log);
-      if(y != 0)
-      {
-        BOOST_CHECK(compareDouble(x,y,1e-3)
-                 && "Difference found in log and reference files\
-                    (rnea.log and rnea.ref).");
-        if(!compareDouble(x,y,1e-3))
-          std::cerr << jointname << "\n\t" << x << "\n\t" << y << std::endl;
-      }
-    }
-    else
-    {
-      ref_log.clear(); ref_log.seekg(0);
-      jointname = str1;
-      do
-      {
-        ref_log >> str2;
-      } while(str2.compare(jointname) && !ref_log.eof());
-    }
-  }
-  result_log.close();
-  ref_log.close();
-
-  // Perf test
-# ifdef METAPOD_PERF_TEST
-  long TICKS_PER_SECOND = 1e6;
-  struct timeval tv_start, tv_stop;
-  int N1 = 10000;
-  int N2 = 100;
-
-  std::ofstream perf_log("rnea_perf.log", std::ofstream::out);
-
-  long time_usec = 0;
-  long inner_loop_time;
-  // Outer loop : generate random configuration
-  for(int i=0; i<N1; i++)
-  {
-    q = confVector::Random();
-    dq = confVector::Random();
-    ddq = confVector::Random();
-    ::gettimeofday(&tv_start, NULL);
-    // Inner loop : The timer precision is 1µs, which is not high enough to
-    // give proper result on a single iteration 
-    for(int k=0; k<N2; k++)
-      rnea< Robot::Tree, confVector >::run(q, dq, ddq);
-    ::gettimeofday(&tv_stop, NULL);
-    
-    inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND
-               + ( tv_stop.tv_usec - tv_start.tv_usec );
-    time_usec += inner_loop_time;
-    // Log inner_loop_time to allow for statistical computations 
-    perf_log << (double)inner_loop_time/(double)N2 << std::endl;
-  }
-  // Output global average execution time
-  std::cout
-    << "RNEA execution time = " << (double)time_usec/(double)(N1*N2) << "µs"
-    << std::endl;
-  perf_log.close();
-# endif
 }
 
 #endif

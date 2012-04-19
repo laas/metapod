@@ -47,10 +47,12 @@ namespace metapod
       static const vector6d S;                                      \
       static const vector6d dotS;                                   \
       static Force f;                                               \
+      static Force f_symbolic;                                      \
       static FloatType torque;                                      \
                                                                     \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
+    Force classname::f_symbolic;                                    \
     const int classname::type = metapod::REVOLUTE;                  \
     Transform classname::sXp;                                       \
     Transform classname::Xj;                                        \
@@ -96,10 +98,12 @@ namespace metapod
       static matrix6d S;                                            \
       static matrix6d dotS;                                         \
       static Force f;                                               \
+      static Force f_symbolic;                                      \
       static vector6d torque;                                       \
                                                                     \
       static void jcalc(const vector6d & qi, const vector6d & dqi); \
     };                                                              \
+    Force classname::f_symbolic;                                    \
                                                                     \
     const int classname::type = metapod::FREE_FLYER;                \
     Transform classname::sXp;                                       \
