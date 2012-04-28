@@ -172,6 +172,32 @@ namespace metapod
     typedef Tree Node;
     static void run()
     {
+      matrix3d iX0_E;
+      for(int i=0; i<3; i++)
+        for(int j=0; j<3; j++)
+        {
+          iX0_E(i,j) = GiNaC::symbol(Node::Body::name + "::iX0.E()("
+                       + boost::lexical_cast<std::string>(i) + ","
+                       + boost::lexical_cast<std::string>(j) + ")");
+        }
+      vector3d iX0_r = vector3d(GiNaC::symbol(Node::Body::name + "::iX0.r()[0]"),
+                                GiNaC::symbol(Node::Body::name + "::iX0.r()[1]"),
+                                GiNaC::symbol(Node::Body::name + "::iX0.r()[2]"));
+      Node::Body::iX0_symbol = Spatial::Transform(iX0_E, iX0_r);
+
+      matrix3d sXp_E;
+      for(int i=0; i<3; i++)
+        for(int j=0; j<3; j++)
+        {
+          sXp_E(i,j) = GiNaC::symbol(Node::Joint::name + "::sXp.E()("
+                       + boost::lexical_cast<std::string>(i) + ","
+                       + boost::lexical_cast<std::string>(j) + ")");
+        }
+      vector3d sXp_r = vector3d(GiNaC::symbol(Node::Joint::name + "::sXp.r()[0]"),
+                                GiNaC::symbol(Node::Joint::name + "::sXp.r()[1]"),
+                                GiNaC::symbol(Node::Joint::name + "::sXp.r()[2]"));
+      Node::Joint::sXp_symbol = Spatial::Transform(sXp_E, sXp_r);
+
       vector3d vi_w = vector3d(GiNaC::symbol(Node::Body::name + "::vi.w()[0]"),
                                GiNaC::symbol(Node::Body::name + "::vi.w()[1]"),
                                GiNaC::symbol(Node::Body::name + "::vi.w()[2]"));
@@ -195,6 +221,14 @@ namespace metapod
                                GiNaC::symbol(Node::Body::name + "::Fext.f()[1]"),
                                GiNaC::symbol(Node::Body::name + "::Fext.f()[2]"));
       Node::Body::Fext_in_0_symbol = Spatial::Force(F_n, F_f);
+
+      F_n = vector3d(GiNaC::symbol(Node::Joint::name + "::f.n()[0]"),
+                               GiNaC::symbol(Node::Joint::name + "::f.n()[1]"),
+                               GiNaC::symbol(Node::Joint::name + "::f.n()[2]"));
+      F_f = vector3d(GiNaC::symbol(Node::Joint::name + "::f.f()[0]"),
+                               GiNaC::symbol(Node::Joint::name + "::f.f()[1]"),
+                               GiNaC::symbol(Node::Joint::name + "::f.f()[2]"));
+      Node::Joint::f_symbol = Spatial::Force(F_n, F_f);
 
       initSymbols< typename Node::Child1 >::run();
       initSymbols< typename Node::Child2 >::run();

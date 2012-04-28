@@ -33,18 +33,6 @@ namespace metapod
   static GiNaC::lst lst_vi, lst_ai, lst_vi_ai;
   static std::ofstream RNEA("symbolic_rnea.hh", std::ofstream::out);
 
-//  template< typename Tree > void writeNode(std::ofstream & of)
-//  {
-//    typedef Tree Node;
-//
-//    of << "class " << Node::Body::name << std::endl
-//       << "{"                          << std::endl
-//       << "  public:"                  << std::endl
-//       << "    static const std::string name;" << std::endl;
-//  }
-//
-//  template<> void writeNode< NC >(std::ofstream &) {}
-
   /** Templated Recursive Newton-Euler Algorithm.
     * Takes the multibody tree type as template parameter,
     * and recursively proceeds on the Nodes.
@@ -106,7 +94,7 @@ namespace metapod
       // iX0 = iXλ(i) * λ(i)X0
       // vi = iXλ(i) * vλ(i) + vj
       // ai = iXλ(i) * aλ(i) + Si * ddqi + cj + vi x vj
-      Node::Body::iX0 = Node::Joint::sXp*Node::Body::Parent::iX0;
+      Node::Body::iX0 = Node::Joint::sXp*Node::Body::Parent::iX0_symbol;
       Node::Body::iX0.collect(lst);
 
 /*
@@ -117,7 +105,7 @@ namespace metapod
       SLOG.close();
 */
 
-      Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
+      Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi_symbol
                      + Node::Joint::vj;
       Node::Body::vi.collect(lst);
 
@@ -129,11 +117,12 @@ namespace metapod
       SLOG.close();
 */
 
-      Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
+      Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai_symbol,
                            Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
-                           (Node::Body::vi_symbol^Node::Joint::vj));
-      Node::Body::ai.collect(lst_vi);
+                           (Node::Body::vi^Node::Joint::vj));
+//      Node::Body::ai.collect(lst_vi);
+      Node::Body::ai.collect(lst);
 
 /*
       // SYMBOLIC
@@ -161,9 +150,9 @@ namespace metapod
       SLOG.close();
 */
 
-      Node::Joint::f = sum((Node::Body::I * Node::Body::ai_symbol),
-                           (Node::Body::vi_symbol^( Node::Body::I * Node::Body::vi_symbol )),
-                           (Node::Body::Fext_in_0_symbol));
+      Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
+                           (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
+                           (Node::Body::Fext_in_0));
 //                           (Node::Body::iX0 * ( Node::Body::mass * Fext
 //                                              - Node::Body::Fext )));
 
@@ -173,19 +162,24 @@ namespace metapod
       for(int i=0; i<3; i++)
       {
         for(int j=0; j<3; j++)
+          RNEA << Node::Joint::name << "::sXp.m_E(" << i << "," << j << ") = " << Node::Joint::sXp.E()(i,j) << ";" << std::endl;
+        RNEA << Node::Joint::name << "::sXp.m_r[" << i << "] = " << Node::Joint::sXp.r()[i] << ";" << std::endl;
+      }
+/*
           RNEA << "E(" << i << "," << j << ") = " << Node::Joint::sXp.E()(i,j) << ";" << std::endl;
         RNEA << "r[" << i << "] = " << Node::Joint::sXp.r()[i] << ";" << std::endl;
       }
       RNEA << Node::Joint::name << "::sXp = Transform(E,r);" << std::endl;
+*/
 
       // iX0
       for(int i=0; i<3; i++)
       {
         for(int j=0; j<3; j++)
-          RNEA << "E(" << i << "," << j << ") = " << Node::Body::iX0.E()(i,j) << ";" << std::endl;
-        RNEA << "r[" << i << "] = " << Node::Body::iX0.r()[i] << ";" << std::endl;
+          RNEA << Node::Body::name << "::iX0.m_E(" << i << "," << j << ") = " << Node::Body::iX0.E()(i,j) << ";" << std::endl;
+        RNEA << Node::Body::name << "::iX0.m_r[" << i << "] = " << Node::Body::iX0.r()[i] << ";" << std::endl;
       }
-      RNEA << Node::Body::name << "::iX0 = Transform(E,r);" << std::endl;
+//      RNEA << Node::Body::name << "::iX0 = Transform(E,r);" << std::endl;
 
       // vi
       for(int i=0; i<3; i++)
@@ -239,8 +233,8 @@ namespace metapod
 
       // fλ(i) = fλ(i) + λ(i)Xi* * fi
       Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f
-                                   + Node::Joint::sXp.applyInv(Node::Joint::f);
-      Node::Body::Parent::Joint::f.collect(lst_vi_ai);
+                                   + Node::Joint::sXp_symbol.applyInv(Node::Joint::f_symbol);
+//      Node::Body::Parent::Joint::f.collect(lst_vi_ai);
 
       // f
       for(int i=0; i<3; i++)
@@ -285,9 +279,7 @@ namespace metapod
            << "  vector3d v, w;"                                   << std::endl
            << "  vector3d n, f;"                                   << std::endl
            << "  confVector q, dq, ddq;"                           << std::endl
-           << "  q = confVector::Random();"                        << std::endl
-           << "  dq = confVector::Random();"                       << std::endl
-           << "  ddq = confVector::Random();"                      << std::endl
+           << "  confVector cq, sq;"                               << std::endl
            << std::endl
            << "  long TICKS_PER_SECOND = 1e6;" << std::endl
            << "  struct timeval tv_start, tv_stop;" << std::endl
@@ -304,6 +296,10 @@ namespace metapod
            << "    q = confVector::Random();" << std::endl
            << "    dq = confVector::Random();" << std::endl
            << "    ddq = confVector::Random();" << std::endl
+           << "    for(int i=0; i<Robot::nbDof; i++)" << std::endl
+           << "      cq[i] = cos(q[i]);"              << std::endl
+           << "    for(int i=0; i<Robot::nbDof; i++)" << std::endl
+           << "      sq[i] = sin(q[i]);"              << std::endl
            << "    ::gettimeofday(&tv_start, NULL);" << std::endl
            << "    // Inner loop : The timer precision is 1µs, which is not high enough to" << std::endl
            << "    // give proper result on a single iteration " << std::endl
@@ -372,7 +368,7 @@ namespace metapod
 
       Node::Body::ai = sum(Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
-                           (Node::Body::vi_symbol^Node::Joint::vj));
+                           (Node::Body::vi^Node::Joint::vj));
       Node::Body::ai.collect(lst_vi);
 
 /*
@@ -403,7 +399,7 @@ namespace metapod
 
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai_symbol),
                            (Node::Body::vi_symbol^( Node::Body::I * Node::Body::vi_symbol )),
-                           (Node::Body::Fext_in_0_symbol));
+                           (Node::Body::Fext_in_0));
 //                           (Node::Body::iX0 * ( Node::Body::mass * Fext
 //                                              - Node::Body::Fext )));
 

@@ -42,6 +42,7 @@ namespace metapod
         static const vector3d CoM;                         \
         static const matrix3d inertie;                     \
         static Transform iX0;                              \
+        static Transform iX0_symbol;                       \
         static Motion vi;                                  \
         static Motion ai;                                  \
         static Force Fext;                                 \
@@ -54,6 +55,7 @@ namespace metapod
         static Force Fext_in_0;                            \
     };                                                     \
     Transform classname::iX0;                              \
+    Transform classname::iX0_symbol;                       \
     Motion classname::vi;                                  \
     Motion classname::ai;                                  \
     Motion classname::vi_symbol;                           \

@@ -41,20 +41,22 @@ namespace metapod
       static const int positionInConf;                              \
       static const Transform Xt;                                    \
       static Transform sXp;                                         \
+      static Transform sXp_symbol;                                  \
       static Transform Xj;                                          \
       static Motion cj;                                             \
       static Motion vj;                                             \
       static const vector6d S;                                      \
       static const vector6d dotS;                                   \
       static Force f;                                               \
-      static Force f_symbolic;                                      \
+      static Force f_symbol;                                      \
       static FloatType torque;                                      \
                                                                     \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
-    Force classname::f_symbolic;                                    \
+    Force classname::f_symbol;                                    \
     const int classname::type = metapod::REVOLUTE;                  \
     Transform classname::sXp;                                       \
+    Transform classname::sXp_symbol;                                \
     Transform classname::Xj;                                        \
     Motion classname::cj;                                           \
     Motion classname::vj;                                           \
@@ -92,21 +94,23 @@ namespace metapod
       static const int positionInConf;                              \
       static const Transform Xt;                                    \
       static Transform sXp;                                         \
+      static Transform sXp_symbol;                                  \
       static Transform Xj;                                          \
       static Motion cj;                                             \
       static Motion vj;                                             \
       static matrix6d S;                                            \
       static matrix6d dotS;                                         \
       static Force f;                                               \
-      static Force f_symbolic;                                      \
+      static Force f_symbol;                                      \
       static vector6d torque;                                       \
                                                                     \
       static void jcalc(const vector6d & qi, const vector6d & dqi); \
     };                                                              \
-    Force classname::f_symbolic;                                    \
+    Force classname::f_symbol;                                    \
                                                                     \
     const int classname::type = metapod::FREE_FLYER;                \
     Transform classname::sXp;                                       \
+    Transform classname::sXp_symbol;                                \
     Transform classname::Xj;                                        \
     Motion classname::cj;                                           \
     Motion classname::vj;                                           \
