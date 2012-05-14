@@ -73,7 +73,6 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/fwd.hh
   include/${PROJECT_NAME}/tools/common.hh
   include/${PROJECT_NAME}/tools/spatial.hh
-  include/${PROJECT_NAME}/tools/smallmatrixmacros.hh
   include/${PROJECT_NAME}/tools/jointmacros.hh
   include/${PROJECT_NAME}/tools/bodymacros.hh
   include/${PROJECT_NAME}/tools/initconf.hh
