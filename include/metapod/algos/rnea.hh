@@ -68,17 +68,9 @@ namespace metapod
                            (Node::Body::vi^Node::Joint::vj));
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      vector3d global_CoM = Node::Body::iX0*Node::Body::CoM;
-
-      vector3d gravity_force = vector3d(0, 0, GRAVITY_CST);
-      vector3d gravity_torque = global_CoM.cross(gravity_force);
-
-      Force Fext = Force(gravity_torque,gravity_force);
-
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
                            (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
-                           (Node::Body::iX0 * ( Node::Body::mass * Fext
-                                              - Node::Body::Fext )));
+                           (Node::Body::iX0 * Node::Body::Fext ));
 
       // recursion on children
       rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
@@ -122,20 +114,14 @@ namespace metapod
       Node::Body::vi = Node::Joint::vj;
       Node::Body::ai = sum(Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
-                           (Node::Body::vi^Node::Joint::vj));
+                           (Node::Body::vi^Node::Joint::vj),
+                           (Node::Body::iX0*g));
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      vector3d global_CoM = Node::Body::iX0*Node::Body::CoM;
-
-      vector3d gravity_force = vector3d(0, 0, GRAVITY_CST);
-      vector3d gravity_torque = global_CoM.cross(gravity_force);
-
-      Force Fext = Force(gravity_torque,gravity_force);
-
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
                            (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
-                           (Node::Body::iX0 * ( Node::Body::mass * Fext
-                                              - Node::Body::Fext )));
+                           (Node::Body::iX0 * -Node::Body::Fext));
+
 
       // recursion on children
       rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);

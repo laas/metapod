@@ -37,6 +37,16 @@ namespace metapod
 
   #define GRAVITY_CST 9.81
 
+  Motion set_gravity();
+  static const Motion g = set_gravity();
+
+  Motion set_gravity()
+  {
+    vector6d g_tmp;
+    g_tmp << 0,0,0,0,0,GRAVITY_CST;
+    return Motion(g_tmp);
+  }
+
   inline matrix3d Skew(const vector3d & v)
   {
     matrix3d m;

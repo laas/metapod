@@ -76,6 +76,11 @@ namespace metapod
           return Force(m_n+fv.n(), m_f+fv.f());
         }
 
+        Force operator-()
+        {
+          return Force(-m_n, -m_f);
+        }
+
         Force operator-(const Force & fv)
         {
           return Force(m_n-fv.n(), m_f-fv.f());
