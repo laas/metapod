@@ -178,6 +178,16 @@ namespace metapod
         const vector3d & h() const { return m_h; }
         const matrix3d & I() const { return m_I; }
 
+        matrix6d toMatrix()
+        {
+          matrix6d M;
+          M.block<3,3>(0,0) = m_I;
+          M.block<3,3>(0,3) = skew(m_h);
+          M.block<3,3>(3,0) = -skew(m_h);
+          M.block<3,3>(3,3) = m_m*matrix3d::Identity();
+          return M;
+        }
+
         // Arithmetic operators
         Inertia operator*(FloatType a) { return Inertia(m_m*a, m_h*a, m_I*a); }
         Inertia operator+(const Inertia & I)
@@ -244,6 +254,26 @@ namespace metapod
                          m_E*(I.I()
                          + skew(m_r)*skew(I.h())
                          + skew(tmp)*skew(m_r))*m_E.transpose());
+        }
+
+        matrix6d toMatrix() const
+        {
+          matrix6d M;
+          M.block<3,3>(0,0) = m_E;
+          M.block<3,3>(0,3) = matrix3d::Zero();
+          M.block<3,3>(3,0) = -m_E * skew(m_r);
+          M.block<3,3>(3,3) = m_E;
+          return M;
+        }
+
+        matrix6d toMatrixTranspose() const
+        {
+          matrix6d M;
+          M.block<3,3>(0,0) = m_E;
+          M.block<3,3>(0,3) = -m_E * skew(m_r);
+          M.block<3,3>(3,0) = matrix3d::Zero();
+          M.block<3,3>(3,3) = m_E;
+          return M;
         }
 
         Motion applyInv(const Motion & mv)

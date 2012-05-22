@@ -60,7 +60,12 @@ namespace metapod
   class NC {};
 
   // Class No-Parent. Used to set the parent body of the freeflyer.
-  class NP {};
+  class NP
+  {
+    public:
+      static Inertia Iic;
+  };
+  Inertia NP::Iic;
 
   // Class Node. Contains a Body, a Joint, and up to 3 Node children.
   // Non-existant children make use of the NC class (No-Child).

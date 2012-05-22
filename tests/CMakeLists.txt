@@ -53,3 +53,4 @@ ENDMACRO(ADD_TESTCASE)
 
 # Generated test.
 ADD_TESTCASE(test_rnea)
+ADD_TESTCASE(test_crba)
