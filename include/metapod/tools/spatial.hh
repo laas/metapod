@@ -269,6 +269,16 @@ namespace metapod
         matrix6d toMatrixTranspose() const
         {
           matrix6d M;
+          M.block<3,3>(0,0) = m_E.transpose();
+          M.block<3,3>(3,0) = matrix3d::Zero();
+          M.block<3,3>(0,3) = (-m_E * skew(m_r)).transpose();
+          M.block<3,3>(3,3) = m_E.transpose();
+          return M;
+        }
+
+        matrix6d toMatrixTransposeInverse() const
+        {
+          matrix6d M;
           M.block<3,3>(0,0) = m_E;
           M.block<3,3>(0,3) = -m_E * skew(m_r);
           M.block<3,3>(3,0) = matrix3d::Zero();

@@ -87,24 +87,21 @@ namespace metapod
 
     static void run()
     {
-//      if(BJ::HAS_PARENT)
-      {
-        Robot::F = Body_j::Joint::sXp.toMatrixTranspose().inverse() * Robot::F;
-        Robot::H.block(Body_i::Joint::positionInConf,
-                       Parent::Joint::positionInConf,
-                       Body_i::Joint::NBDOF,
-                       Parent::Joint::NBDOF)
-                       = Robot::F.transpose() * Parent::Joint::S;
-        Robot::H.block(Parent::Joint::positionInConf,
-                       Body_i::Joint::positionInConf,
-                       Parent::Joint::NBDOF,
-                       Body_i::Joint::NBDOF)
-                       = Robot::H.block(Body_i::Joint::positionInConf,
-                                        Parent::Joint::positionInConf,
-                                        Body_i::Joint::NBDOF,
-                                        Parent::Joint::NBDOF).transpose();
-        crba_backward_propagation< Robot, BI, Parent, typename Parent::Parent >::run();
-      }
+      Robot::F = Body_j::Joint::sXp.toMatrixTranspose() * Robot::F;
+      Robot::H.block(Body_i::Joint::positionInConf,
+                     Parent::Joint::positionInConf,
+                     Body_i::Joint::NBDOF,
+                     Parent::Joint::NBDOF)
+                     = Robot::F.transpose() * Parent::Joint::S;
+      Robot::H.block(Parent::Joint::positionInConf,
+                     Body_i::Joint::positionInConf,
+                     Parent::Joint::NBDOF,
+                     Body_i::Joint::NBDOF)
+                     = Robot::H.block(Body_i::Joint::positionInConf,
+                                      Parent::Joint::positionInConf,
+                                      Body_i::Joint::NBDOF,
+                                      Parent::Joint::NBDOF).transpose();
+      crba_backward_propagation< Robot, BI, Parent, typename Parent::Parent >::run();
     }
   };
 
