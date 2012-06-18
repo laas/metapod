@@ -28,6 +28,7 @@
 # include "metapod/tools/fwd.hh"
 # include "metapod/tools/jointmacros.hh"
 # include "metapod/tools/spatial.hh"
+# include "metapod/tools/jcalc.hh"
 # include <fstream>
 # include <iostream>
 

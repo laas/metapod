@@ -37,7 +37,9 @@ namespace metapod
   template< typename Tree, typename confVector, bool HasParent = false >
   struct rnea_internal {};
 
-  template< typename Robot > struct rnea
+  template< typename Robot, bool jcalc = true > struct rnea{};
+
+  template< typename Robot > struct rnea< Robot, true >
   {
     typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
 
@@ -45,7 +47,20 @@ namespace metapod
                     const confVector & dq,
                     const confVector & ddq)
     {
-      rnea_internal< typename Robot::Tree, confVector, false >::run(q, dq, ddq);
+      jcalc< Robot >::run(q, dq);
+      rnea_internal< typename Robot::Tree, confVector >::run(q, dq, ddq);
+    }
+  };
+
+  template< typename Robot > struct rnea< Robot, false >
+  {
+    typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
+
+    static void run(const confVector & q,
+                    const confVector & dq,
+                    const confVector & ddq)
+    {
+      rnea_internal< typename Robot::Tree, confVector >::run(q, dq, ddq);
     }
   };
 
@@ -59,16 +74,8 @@ namespace metapod
                     const confVector & ddq) __attribute__ ((hot))
     {
       // Extract subvector corresponding to current Node
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
-        q.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > dqi =
-        dq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
         ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-
-      /* forward computations follow */
-      // Jcalc: update sXp, S, dotS, cj, vj
-      Node::Joint::jcalc(qi, dqi);
 
       // iX0 = iXλ(i) * λ(i)X0
       // vi = iXλ(i) * vλ(i) + vj
@@ -110,17 +117,8 @@ namespace metapod
                     const confVector & ddq)
     {
       // Extract subvector corresponding to current Node
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > qi =
-        q.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > dqi =
-        dq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
         ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-
-      /* forward computations follow */
-      // Jcalc: update sXp, S, dotS, cj, vj
-      Node::Joint::jcalc(qi, dqi);
-
 
       // iX0 = iXλ(i)
       // vi = vj
