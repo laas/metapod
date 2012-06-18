@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
   Robot::H = matrixN::Zero(Robot::NBDOF, Robot::NBDOF);
 
   // Apply the CRBA to the metapod multibody and print the result in a log file
-  rnea< Robot::Tree, confVector, false >::run(q, zero, zero); // Update geometry.
+  rnea< Robot >::run(q, zero, zero); // Update geometry.
   crba<Robot>(q);
   std::ofstream log("crba.log", std::ofstream::out);
   log << Robot::H << std::endl;

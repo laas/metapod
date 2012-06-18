@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   ddqconf.close();
 
   // Apply the RNEA to the metapod multibody and print the result in a log file.
-  rnea< Robot::Tree, confVector, false >::run(q, dq, ddq);
+  rnea< Robot >::run(q, dq, ddq);
   std::ofstream log("rnea.log", std::ofstream::out);
   printTorques<Robot::Tree>(log);
   log.close();
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
 # ifdef METAPOD_PERF_TEST
   long TICKS_PER_SECOND = 1e6;
   struct timeval tv_start, tv_stop;
-  int N1 = 10000;
+  int N1 = 1000;
   int N2 = 100;
 
   std::ofstream perf_log("rnea_perf.log", std::ofstream::out);
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
     // Inner loop : The timer precision is 1µs, which is not high enough to
     // give proper result on a single iteration 
     for(int k=0; k<N2; k++)
-      rnea< Robot::Tree, confVector >::run(q, dq, ddq);
+      rnea< Robot >::run(q, dq, ddq);
     ::gettimeofday(&tv_stop, NULL);
     
     inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND

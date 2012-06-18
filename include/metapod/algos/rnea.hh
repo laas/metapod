@@ -34,9 +34,23 @@ namespace metapod
     * Takes the multibody tree type as template parameter,
     * and recursively proceeds on the Nodes.
     */
-  template< typename Tree, typename confVector, bool HasParent = false > struct rnea {};
+  template< typename Tree, typename confVector, bool HasParent = false >
+  struct rnea_internal {};
 
-  template< typename Tree, typename confVector > struct rnea< Tree, confVector, true >
+  template< typename Robot > struct rnea
+  {
+    typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
+
+    static void run(const confVector & q,
+                    const confVector & dq,
+                    const confVector & ddq)
+    {
+      rnea_internal< typename Robot::Tree, confVector, false >::run(q, dq, ddq);
+    }
+  };
+
+  template< typename Tree, typename confVector >
+  struct rnea_internal< Tree, confVector, true >
   {
     typedef Tree Node;
 
@@ -73,9 +87,9 @@ namespace metapod
                            (Node::Body::iX0 * Node::Body::Fext ));
 
       // recursion on children
-      rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
-      rnea< typename Node::Child2, confVector, true >::run(q, dq, ddq);
-      rnea< typename Node::Child3, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child2, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child3, confVector, true >::run(q, dq, ddq);
 
       // backward computations follow
       // τi = SiT * fi
@@ -86,7 +100,8 @@ namespace metapod
     }
   };
 
-  template< typename Tree, typename confVector > struct rnea< Tree, confVector, false >
+  template< typename Tree, typename confVector >
+  struct rnea_internal< Tree, confVector, false >
   {
     typedef Tree Node;
 
@@ -124,9 +139,9 @@ namespace metapod
 
 
       // recursion on children
-      rnea< typename Node::Child1, confVector, true >::run(q, dq, ddq);
-      rnea< typename Node::Child2, confVector, true >::run(q, dq, ddq);
-      rnea< typename Node::Child3, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child2, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child3, confVector, true >::run(q, dq, ddq);
 
       // backward computations follow
       // τi = SiT * fi
@@ -138,7 +153,7 @@ namespace metapod
   /**
     \brief  Specialization, to stop recursion on leaves of the Tree
   */
-  template< typename confVector > struct rnea< NC, confVector, true >
+  template< typename confVector > struct rnea_internal< NC, confVector, true >
   {
     static void run(const confVector &,
                     const confVector &,
