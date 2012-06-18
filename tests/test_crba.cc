@@ -35,18 +35,46 @@ typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
 
 BOOST_AUTO_TEST_CASE (test_crba)
 {
-  // set configuration vector
-  vectorN q(Robot::nbDof);
-  q = vectorN::Random(Robot::nbDof);
+  // set configuration vector q to reference value.
+  confVector q;
+  std::ifstream qconf(TEST_DIRECTORY "q.conf");
+  initConf< Robot::Tree, confVector >::run(qconf, q);
+  qconf.close();
+  confVector zero = confVector::Zero();
 
-//  model.display(S_);
-  std::ofstream log("H.log", std::ofstream::out);
-  rnea< Robot::Tree, confVector, false >::run(q, q, q);
+  // Initialize the Joint-Space Inertia Matrix to Zero.
   Robot::H = matrixN::Zero(Robot::NBDOF, Robot::NBDOF);
-  crba<Robot>(q);
-  log << Robot::H << std::endl;
 
+  // Apply the CRBA to the metapod multibody and print the result in a log file
+  rnea< Robot::Tree, confVector, false >::run(q, zero, zero); // Update geometry.
+  crba<Robot>(q);
+  std::ofstream log("crba.log", std::ofstream::out);
+  log << Robot::H << std::endl;
   log.close();
+
+  // Compare results with reference file
+  FloatType x,y;
+  std::string str1, str2;
+  std::ifstream result_log("crba.log");
+  std::ifstream ref_log(TEST_DIRECTORY "/crba.ref");
+  while(result_log >> str1)
+  {
+      ref_log >> str2;
+      x = stringToDouble(str1);
+      y = stringToDouble(str2);
+      if(y != 0)
+      {
+        BOOST_CHECK(compareDouble(x,y,1e-3)
+                 && "Difference found in log and reference files\
+                    (crba.log and crba.ref).");
+      }
+      else if( x != 0)
+        BOOST_CHECK(false
+                 && "Difference found in log and reference files\
+                    (crba.log and crba.ref).");
+  }
+  result_log.close();
+  ref_log.close();
 
   // Perf test
 # ifdef METAPOD_PERF_TEST
@@ -67,13 +95,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
     // Inner loop : The timer precision is 1µs, which is not high enough to
     // give proper result on a single iteration 
     for(int k=0; k<N2; k++)
-    {
-/*
-      model.updateKinematics(q);
-      CRBA(&model, q);
-// */
       crba<Robot>(q);
-    }
     ::gettimeofday(&tv_stop, NULL);
     
     inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND
