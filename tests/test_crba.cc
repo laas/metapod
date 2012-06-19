@@ -31,7 +31,7 @@
 # include "metapod/algos/rnea.hh"
 
 using namespace simplehumanoid;
-typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
+typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
 
 BOOST_AUTO_TEST_CASE (test_crba)
 {

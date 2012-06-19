@@ -41,7 +41,7 @@ namespace metapod
 
   template< typename Robot > struct rnea< Robot, true >
   {
-    typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
+    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
 
     static void run(const confVector & q,
                     const confVector & dq,
