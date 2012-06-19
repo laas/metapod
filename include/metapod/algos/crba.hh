@@ -34,18 +34,31 @@ namespace metapod
   template< typename Robot, typename BI, typename BJ, typename Parent > 
   struct crba_backward_propagation;
 
-  template < typename Robot >
-  void crba(const vectorN & q, bool updateKinematics = false)
-  {
-/*
-    // Update joint transforms if required
-    if(updateKinematics)
-      updateKinematics< Node >(q);
-*/
-    crba_forward_propagation< Robot, typename Robot::Tree >::run();
-  }
+  template< typename Robot, bool jcalc = true > struct crba {};
 
-  template < typename Robot, typename Tree > struct crba_forward_propagation
+  template< typename Robot > struct crba< Robot, false >
+  {
+    typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
+
+    static void run(const confVector & q)
+    {
+      crba_forward_propagation< Robot, typename Robot::Tree >::run();
+    }
+  };
+
+  template< typename Robot > struct crba< Robot, true >
+  {
+    typedef Eigen::Matrix< FloatType, Robot::nbDof, 1 > confVector;
+
+    static void run(const confVector & q)
+    {
+      jcalc< Robot >::run(q, confVector::Zero());
+      crba_forward_propagation< Robot, typename Robot::Tree >::run();
+    }
+  };
+
+  template < typename Robot, typename Tree >
+  struct crba_forward_propagation
   {
     typedef Tree Node;
     typedef typename Node::Body BI;
@@ -72,7 +85,8 @@ namespace metapod
     }
   };
 
-  template< typename Robot > struct crba_forward_propagation< Robot, NC >
+  template< typename Robot >
+  struct crba_forward_propagation< Robot, NC >
   {
     static void run() {}
   };
@@ -108,12 +122,6 @@ namespace metapod
   template< typename Robot,
             typename BI,
             typename BJ > struct crba_backward_propagation< Robot, BI, BJ, NP >
-  {
-    static void run() {}
-  };
-
-  template< typename Robot,
-            typename BI > struct crba_backward_propagation< Robot, BI, NP, NP >
   {
     static void run() {}
   };

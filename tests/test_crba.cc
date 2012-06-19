@@ -46,8 +46,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
   Robot::H = matrixN::Zero(Robot::NBDOF, Robot::NBDOF);
 
   // Apply the CRBA to the metapod multibody and print the result in a log file
-  rnea< Robot >::run(q, zero, zero); // Update geometry.
-  crba<Robot>(q);
+  crba< Robot, true >::run(q); // Update geometry and run the CRBA
   std::ofstream log("crba.log", std::ofstream::out);
   log << Robot::H << std::endl;
   log.close();
@@ -65,13 +64,11 @@ BOOST_AUTO_TEST_CASE (test_crba)
       if(y != 0)
       {
         BOOST_CHECK(compareDouble(x,y,1e-3)
-                 && "Difference found in log and reference files\
-                    (crba.log and crba.ref).");
+          && "Difference in log and reference files (crba.log and crba.ref).");
       }
       else if( x != 0)
         BOOST_CHECK(false
-                 && "Difference found in log and reference files\
-                    (crba.log and crba.ref).");
+          && "Difference in log and reference files (crba.log and crba.ref).");
   }
   result_log.close();
   ref_log.close();
@@ -80,7 +77,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
 # ifdef METAPOD_PERF_TEST
   long TICKS_PER_SECOND = 1e6;
   struct timeval tv_start, tv_stop;
-  int N1 = 1000;
+  int N1 = 100;
   int N2 = 100;
 
   std::ofstream perf_log("crba_perf.log", std::ofstream::out);
@@ -90,12 +87,12 @@ BOOST_AUTO_TEST_CASE (test_crba)
   // Outer loop : generate random configuration
   for(int i=0; i<N1; i++)
   {
-    q = vectorN::Random(Robot::nbDof);
+    q = confVector::Random();
     ::gettimeofday(&tv_start, NULL);
     // Inner loop : The timer precision is 1µs, which is not high enough to
     // give proper result on a single iteration 
     for(int k=0; k<N2; k++)
-      crba<Robot>(q);
+      crba< Robot >::run(q);
     ::gettimeofday(&tv_stop, NULL);
     
     inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND
