@@ -75,11 +75,11 @@ namespace metapod
         Node::Body::Parent::Iic = Node::Body::Parent::Iic
                                 + Node::Joint::sXp.applyInv(Node::Body::Iic);
   
-      Robot::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
+      Node::Body::Joint::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
   
       Robot::H.block(Node::Joint::positionInConf, Node::Joint::positionInConf,
                      Node::Joint::NBDOF, Node::Joint::NBDOF)
-                       = Node::Joint::S.transpose() * Robot::F;
+                       = Node::Joint::S.transpose() * Node::Body::Joint::F;
   
       crba_backward_propagation< Robot, BI, BI, typename BI::Parent >::run();
     }
@@ -91,37 +91,38 @@ namespace metapod
     static void run() {}
   };
 
-  template< typename Robot,
-            typename BI,
-            typename BJ,
-            typename Parent > struct crba_backward_propagation
+  template< typename Robot, typename BI, typename BJ, typename Parent >
+  struct crba_backward_propagation
   {
     typedef BI Body_i;
     typedef BJ Body_j;
+    typedef typename Body_i::Joint Joint_i;
+    typedef typename Body_j::Joint Joint_j;
 
     static void run()
     {
-      Robot::F = Body_j::Joint::sXp.toMatrixTranspose() * Robot::F;
-      Robot::H.block(Body_i::Joint::positionInConf,
-                     Parent::Joint::positionInConf,
-                     Body_i::Joint::NBDOF,
-                     Parent::Joint::NBDOF)
-                     = Robot::F.transpose() * Parent::Joint::S;
-      Robot::H.block(Parent::Joint::positionInConf,
-                     Body_i::Joint::positionInConf,
-                     Parent::Joint::NBDOF,
-                     Body_i::Joint::NBDOF)
-                     = Robot::H.block(Body_i::Joint::positionInConf,
-                                      Parent::Joint::positionInConf,
-                                      Body_i::Joint::NBDOF,
-                                      Parent::Joint::NBDOF).transpose();
-      crba_backward_propagation< Robot, BI, Parent, typename Parent::Parent >::run();
+      Joint_i::F = Joint_j::sXp.toMatrixTranspose() * Joint_i::F;
+
+      Robot::H.template
+        block< Joint_i::NBDOF, Parent::Joint::NBDOF >
+             ( Joint_i::positionInConf, Parent::Joint::positionInConf )
+        = Joint_i::F.transpose() * Parent::Joint::S;
+      Robot::H.template
+        block< Parent::Joint::NBDOF, Joint_i::NBDOF >
+             ( Parent::Joint::positionInConf, Joint_i::positionInConf )
+        = Robot::H.block( Joint_i::positionInConf,
+                          Parent::Joint::positionInConf,
+                          Joint_i::NBDOF,
+                          Parent::Joint::NBDOF ).transpose();
+      crba_backward_propagation< Robot,
+                                 BI,
+                                 Parent,
+                                 typename Parent::Parent >::run();
     }
   };
 
-  template< typename Robot,
-            typename BI,
-            typename BJ > struct crba_backward_propagation< Robot, BI, BJ, NP >
+  template< typename Robot, typename BI, typename BJ >
+  struct crba_backward_propagation< Robot, BI, BJ, NP >
   {
     static void run() {}
   };

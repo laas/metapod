@@ -40,7 +40,6 @@ BOOST_AUTO_TEST_CASE (test_crba)
   std::ifstream qconf(TEST_DIRECTORY "q.conf");
   initConf< Robot::Tree, confVector >::run(qconf, q);
   qconf.close();
-  confVector zero = confVector::Zero();
 
   // Initialize the Joint-Space Inertia Matrix to Zero.
   Robot::H = matrixN::Zero(Robot::NBDOF, Robot::NBDOF);
@@ -67,8 +66,10 @@ BOOST_AUTO_TEST_CASE (test_crba)
           && "Difference in log and reference files (crba.log and crba.ref).");
       }
       else if( x != 0)
+      {
         BOOST_CHECK(false
           && "Difference in log and reference files (crba.log and crba.ref).");
+      }
   }
   result_log.close();
   ref_log.close();
@@ -92,7 +93,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
     // Inner loop : The timer precision is 1µs, which is not high enough to
     // give proper result on a single iteration 
     for(int k=0; k<N2; k++)
-      crba< Robot >::run(q);
+      crba< Robot, true >::run(q);
     ::gettimeofday(&tv_stop, NULL);
     
     inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND

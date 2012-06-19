@@ -47,6 +47,7 @@ namespace metapod
       static const vector6d dotS;                                   \
       static Force f;                                               \
       static FloatType torque;                                      \
+      static vector6d F;                                            \
                                                                     \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
@@ -73,6 +74,7 @@ namespace metapod
       /* maj vj */                                                  \
       vj.w(vector3d(dqi[0], 0, 0));                                 \
     }                                                               \
+    vector6d classname::F;                                          \
     const int classname::nbDof = 1
   
   // Create a free flyer class
@@ -94,6 +96,7 @@ namespace metapod
       static matrix6d dotS;                                         \
       static Force f;                                               \
       static vector6d torque;                                       \
+      static matrix6d F;                                            \
                                                                     \
       static void jcalc(const vector6d & qi, const vector6d & dqi); \
     };                                                              \
@@ -129,6 +132,7 @@ namespace metapod
       /* maj vj */                                                  \
       vj = Motion(S*dqi);                                           \
     }                                                               \
+    matrix6d classname::F;                                          \
     const int classname::nbDof = 6
 
 } // end of namespace metapod.

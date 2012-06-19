@@ -40,7 +40,6 @@ namespace simplehumanoid
       static const int nbBodies;
       static const int nbDof;
       enum { NBDOF = 35 };
-      static matrixN F;
       static Eigen::Matrix< FloatType, NBDOF, NBDOF > H;
   
       // Definition of the multibody tree as a type.
@@ -135,7 +134,6 @@ namespace simplehumanoid
   // Initialization of the robot global constants
   const int Robot::nbBodies = 30;
   const int Robot::nbDof = 35;
-  matrixN Robot::F;
   Eigen::Matrix< FloatType, Robot::NBDOF, Robot::NBDOF > Robot::H;
 
 } // end of namespace simplehumanoid
