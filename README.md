@@ -2,11 +2,14 @@ metapod
 ========
 
 This software provides robot dynamics algorithms.
-It uses a combination of a specific representation of robot models and C++ templates,
-such that each algorithm remains model-independant, yet is optimized for a particular robot at compile-time.
+It uses a combination of a specific representation of robot models and C++
+templates, such that each algorithm remains model-independant, yet is optimized
+for a particular robot at compile-time.
 
 As of today, the following algorithms have been implemented:
  - RNEA (Recursive Newton Euler Algorithm) for inverse dynamics
+ - CRBA (Composite Rigid Body Algorithm) to compute the Joint-Space Inertia
+    Matrix.
 
 Setup
 -----
