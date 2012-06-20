@@ -69,6 +69,7 @@ SET(${PROJECT_NAME}_SIMPLE_HUMANOID_MODEL_HEADERS
 
 SET(${PROJECT_NAME}_ALGOS_HEADERS
   include/${PROJECT_NAME}/algos/rnea.hh
+  include/${PROJECT_NAME}/algos/crba.hh
   )
 
 SET(${PROJECT_NAME}_TOOLS_HEADERS
@@ -79,6 +80,7 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/bodymacros.hh
   include/${PROJECT_NAME}/tools/initconf.hh
   include/${PROJECT_NAME}/tools/print.hh
+  include/${PROJECT_NAME}/tools/jcalc.hh
   )
 
 # Set header files installation prefix.
