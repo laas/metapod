@@ -55,14 +55,20 @@ double stringToDouble( const std::string& s )
    return x;
  }
 
-// Returns true if the normalized difference between two doubles is strictly inferior to the threshold parameter, false otherwise
+// Returns true if the normalized difference between two doubles is strictly
+// inferior to the threshold parameter, false otherwise
 bool compareDouble(double x, double y, double epsilon)
 {
-  double normalized_diff = fabs((x-y)/y);
-  return normalized_diff<epsilon?1:0;
+  if(fabs(y) > epsilon)
+  {
+    double normalized_diff = fabs((x-y)/y);
+    return normalized_diff<epsilon?1:0;
+  }
+  else return fabs(x)>epsilon?0:1;
 }
 
-// Extracts the next double encountered in a stream file and returns it. Returns 0 if none is found.
+// Extracts the next double encountered in a stream file and returns it.
+// Returns 0 if none is found.
 double getNextDouble( std::ifstream & is )
 {
   std::string s;

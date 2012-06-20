@@ -18,7 +18,8 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /* 
- * This test applies the rnea on a test model with a reference configuration, then compares the computed torques with the reference torques
+ * This test applies the rnea on a test model with a reference configuration,
+ * then compares the computed torques with the reference torques
  */
 
 #ifndef METAPOD_TEST_RNEA_HH
@@ -54,6 +55,7 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   log.close();
 
   // Compare results with reference file
+  double epsilon = 1e-3;
   FloatType x,y;
   std::string jointname;
   std::string str1, str2;
@@ -65,14 +67,10 @@ BOOST_AUTO_TEST_CASE (test_rnea)
     {
       x = stringToDouble(str1);
       y = getNextDouble(ref_log);
-      if(y != 0)
-      {
-        BOOST_CHECK(compareDouble(x,y,1e-3)
-                 && "Difference found in log and reference files\
-                    (rnea.log and rnea.ref).");
-        if(!compareDouble(x,y,1e-3))
-          std::cerr << jointname << "\n\t" << x << "\n\t" << y << std::endl;
-      }
+      BOOST_CHECK(compareDouble(x, y, epsilon)
+        && "Difference in log and reference files (rnea.log and rnea.ref).");
+      if(!compareDouble(x, y, epsilon))
+        std::cerr << jointname << "\n\t" << x << "\n\t" << y << std::endl;
     }
     else
     {

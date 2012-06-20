@@ -51,25 +51,27 @@ BOOST_AUTO_TEST_CASE (test_crba)
   log.close();
 
   // Compare results with reference file
+  double epsilon = 1e-3;
   FloatType x,y;
   std::string str1, str2;
   std::ifstream result_log("crba.log");
   std::ifstream ref_log(TEST_DIRECTORY "/crba.ref");
+  int i = 0, row, col;
   while(result_log >> str1)
   {
-      ref_log >> str2;
-      x = stringToDouble(str1);
-      y = stringToDouble(str2);
-      if(y != 0)
-      {
-        BOOST_CHECK(compareDouble(x,y,1e-3)
-          && "Difference in log and reference files (crba.log and crba.ref).");
-      }
-      else if( x != 0)
-      {
-        BOOST_CHECK(false
-          && "Difference in log and reference files (crba.log and crba.ref).");
-      }
+    col = i%Robot::NBDOF;
+    row = i/Robot::NBDOF;
+    ref_log >> str2;
+    x = stringToDouble(str1);
+    y = stringToDouble(str2);
+    BOOST_CHECK(compareDouble(x, y, epsilon)
+      && "Difference in log and reference files (crba.log and crba.ref).");
+    if(!compareDouble(x, y, epsilon))
+    {
+      std::cerr << "H(" << row << "," << col << ")\n\t" << x << "\n\t" << y
+                << std::endl;
+    }
+    i++;
   }
   result_log.close();
   ref_log.close();
@@ -79,7 +81,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
   long TICKS_PER_SECOND = 1e6;
   struct timeval tv_start, tv_stop;
   int N1 = 100;
-  int N2 = 100;
+  int N2 = 1000;
 
   std::ofstream perf_log("crba_perf.log", std::ofstream::out);
 
