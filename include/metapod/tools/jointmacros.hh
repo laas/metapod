@@ -46,7 +46,7 @@ namespace metapod
       static const vector6d S;                                      \
       static const vector6d dotS;                                   \
       static Force f;                                               \
-      static FloatType torque;                                      \
+      static vector1d torque;                                       \
       static vector6d F;                                            \
                                                                     \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
@@ -56,7 +56,7 @@ namespace metapod
     Motion classname::cj;                                           \
     Motion classname::vj;                                           \
     Force classname::f;                                             \
-    FloatType classname::torque;                                    \
+    vector1d classname::torque;                                     \
     const vector6d classname::S = vector6dMaker(1, 0, 0, 0, 0, 0);  \
     const vector6d classname::dotS = vector6d::Zero();              \
     void classname::jcalc(const vector1d & qi,                      \
