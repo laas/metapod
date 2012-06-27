@@ -34,24 +34,6 @@ SET(CXX_DISABLE_WERROR True)
 
 SETUP_PROJECT()
 
-
-
-# Optimisation flags when building with RELEASE
-#----------------------------------------------
-IF(CMAKE_BUILD_TYPE MATCHES "RELEASE")
-  IF(CMAKE_COMPILER_IS_GNUCXX)
-    SET (${PROJECT_NAME}_CXXFLAGS "-Ofast -march=native -mfpmath=sse -fwhole-program ${${PROJECT_NAME}_CXXFLAGS}")
-  ENDIF(CMAKE_COMPILER_IS_GNUCXX)
-ENDIF(CMAKE_BUILD_TYPE MATCHES "RELEASE")
-
-# Profiling flags when building with DEBUG
-#-----------------------------------------
-IF(CMAKE_BUILD_TYPE MATCHES "DEBUG")
-  IF(CMAKE_COMPILER_IS_GNUCXX)
-    SET (${PROJECT_NAME}_CXXFLAGS "-ggdb3 ${${PROJECT_NAME}_CXXFLAGS}")
-  ENDIF(CMAKE_COMPILER_IS_GNUCXX)
-ENDIF(CMAKE_BUILD_TYPE MATCHES "DEBUG")
-
 # Search for Boost.
 # Boost.Test is used by the test suite.
 SEARCH_FOR_BOOST()
