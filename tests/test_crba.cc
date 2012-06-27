@@ -27,8 +27,8 @@
 
 // Common test tools
 # include "common.hh"
+// Include CRBA
 # include "metapod/algos/crba.hh"
-# include "metapod/algos/rnea.hh"
 
 using namespace simplehumanoid;
 typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;

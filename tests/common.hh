@@ -31,7 +31,6 @@
 
 // metapod includes
 # include "metapod/models/simple-humanoid/robot.hh"
-# include "metapod/algos/rnea.hh"
 # include "metapod/tools/print.hh"
 # include "metapod/tools/initconf.hh"
 

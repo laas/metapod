@@ -27,6 +27,8 @@
 
 // Common test tools
 # include "common.hh"
+// Include RNEA
+# include "metapod/algos/rnea.hh"
 
 using namespace simplehumanoid;
 typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
