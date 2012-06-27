@@ -63,6 +63,7 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/initconf.hh
   include/${PROJECT_NAME}/tools/print.hh
   include/${PROJECT_NAME}/tools/jcalc.hh
+  include/${PROJECT_NAME}/tools/bcalc.hh
   )
 
 # Set header files installation prefix.
