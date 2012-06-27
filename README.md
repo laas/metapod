@@ -5,6 +5,8 @@ This software provides robot dynamics algorithms.
 It uses a combination of a specific representation of robot models and C++
 templates, such that each algorithm remains model-independant, yet is optimized
 for a particular robot at compile-time.
+It makes use of R. Featherstone's Spatial Algebra to describe forces, motions
+and inertias (cf. Rigid Body Dynamics Algorithms, Roy Featherstone).
 
 As of today, the following algorithms have been implemented:
  - RNEA (Recursive Newton Euler Algorithm) for inverse dynamics
