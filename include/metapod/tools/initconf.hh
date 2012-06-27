@@ -43,7 +43,18 @@ namespace metapod
   
   // Return vector constructed from log file,
   // as printed by the printConf method.
-  template< typename Tree, typename confVector > struct initConf
+  template< typename Tree, typename confVector > struct initConf_internal;
+
+  template< typename Robot > struct initConf
+  {
+    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
+    static void run(std::ifstream & log, confVector & v)
+    {
+      initConf_internal< typename Robot::Tree, confVector >::run(log, v);
+    }
+  };
+
+  template< typename Tree, typename confVector > struct initConf_internal
   {
     static void run(std::ifstream & log, confVector & v)
     {
@@ -51,13 +62,13 @@ namespace metapod
       findString(Node::Joint::name, log);
       for(int i=0; i<Node::Joint::NBDOF; i++)
         log >> v[Node::Joint::positionInConf+i];
-      initConf<typename Node::Child1, confVector >::run(log,v);
-      initConf<typename Node::Child2, confVector >::run(log,v);
-      initConf<typename Node::Child3, confVector >::run(log,v);
+      initConf_internal<typename Node::Child1, confVector >::run(log,v);
+      initConf_internal<typename Node::Child2, confVector >::run(log,v);
+      initConf_internal<typename Node::Child3, confVector >::run(log,v);
     }
   };
   
-  template< typename confVector > struct initConf< NC, confVector >
+  template< typename confVector > struct initConf_internal< NC, confVector >
   {
     static void run(std::ifstream &, confVector &){}
   };

@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
   // set configuration vector q to reference value.
   confVector q;
   std::ifstream qconf(TEST_DIRECTORY "q.conf");
-  initConf< Robot::Tree, confVector >::run(qconf, q);
+  initConf< Robot >::run(qconf, q);
   qconf.close();
 
   // Initialize the Joint-Space Inertia Matrix to Zero.

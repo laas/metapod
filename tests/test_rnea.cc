@@ -40,9 +40,9 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   std::ifstream dqconf(TEST_DIRECTORY "/dq.conf");
   std::ifstream ddqconf(TEST_DIRECTORY "/ddq.conf");
 
-  initConf< Robot::Tree, confVector >::run(qconf, q);
-  initConf< Robot::Tree, confVector >::run(dqconf, dq);
-  initConf< Robot::Tree, confVector >::run(ddqconf, ddq);
+  initConf< Robot >::run(qconf, q);
+  initConf< Robot >::run(dqconf, dq);
+  initConf< Robot >::run(ddqconf, ddq);
 
   qconf.close();
   dqconf.close();
