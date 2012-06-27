@@ -74,8 +74,7 @@ namespace metapod
       /* maj vj */                                                  \
       vj.w(vector3d(dqi[0], 0, 0));                                 \
     }                                                               \
-    vector6d classname::F;                                          \
-    const int classname::nbDof = 1
+    vector6d classname::F                                           \
   
   // Create a free flyer class
   # define JOINT_FREE_FLYER(classname)                              \
@@ -132,8 +131,7 @@ namespace metapod
       /* maj vj */                                                  \
       vj = Motion(S*dqi);                                           \
     }                                                               \
-    matrix6d classname::F;                                          \
-    const int classname::nbDof = 6
+    matrix6d classname::F                                           \
 
 } // end of namespace metapod.
 
