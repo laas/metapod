@@ -29,8 +29,6 @@
 
 namespace metapod
 {
-  class NC;
-
   template< typename Tree, typename confVector > struct jcalc_internal;
 
   template< typename Robot > struct jcalc
