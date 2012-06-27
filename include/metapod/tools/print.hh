@@ -88,7 +88,7 @@ template<>
 inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &,
                           std::ofstream &, std::ofstream &, std::ofstream &){}
 
-// Print Torques of the robot.
+// Print Torques of the robot in file.
 template< typename Tree >
 void printTorques(std::ofstream & os)
 {
@@ -105,6 +105,24 @@ void printTorques(std::ofstream & os)
 
 template<>
 inline void printTorques<NC>(std::ofstream &){}
+
+// Print Torques of the robot in stream.
+template< typename Tree >
+void printTorques(std::ostream & os)
+{
+  typedef Tree Node;
+
+  os << Node::Joint::name << std::endl
+     << Node::Joint::torque << std::endl
+     << std::endl;
+
+  printTorques<typename Node::Child1>(os);
+  printTorques<typename Node::Child2>(os);
+  printTorques<typename Node::Child3>(os);
+}
+
+template<>
+inline void printTorques<NC>(std::ostream &){}
 
 // Get Torques of the robot.
 template< typename Tree >
