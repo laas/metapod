@@ -39,7 +39,7 @@ namespace metapod
   #define GRAVITY_CST 9.81
 
   Motion set_gravity();
-  static const Motion g = set_gravity();
+  static const Motion minus_g = set_gravity();
 
   Motion set_gravity()
   {

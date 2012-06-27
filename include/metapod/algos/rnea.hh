@@ -91,7 +91,7 @@ namespace metapod
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
                            (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
-                           (Node::Body::iX0 * Node::Body::Fext ));
+                           (Node::Body::iX0 * -Node::Body::Fext ));
 
       // recursion on children
       rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
@@ -122,13 +122,15 @@ namespace metapod
 
       // iX0 = iXλ(i)
       // vi = vj
-      // ai = Si * ddqi + cj + vi x vj
+      // ai = Si * ddqi + cj + vi x vj (with a0 = -g, cf. Rigid Body Dynamics 
+      // Algorithms for a detailed explanation of how the gravity force is
+      // applied)
       Node::Body::iX0 = Node::Joint::sXp;
       Node::Body::vi = Node::Joint::vj;
       Node::Body::ai = sum(Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
                            (Node::Body::vi^Node::Joint::vj),
-                           (Node::Body::iX0*g));
+                           (Node::Body::iX0*minus_g));
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai),

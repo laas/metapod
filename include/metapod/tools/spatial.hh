@@ -125,6 +125,12 @@ namespace metapod
 
         // Arithmetic operators
         Motion operator=(const vector6d & v) { return Motion(v); }
+
+        Motion operator-() const
+        {
+          return Motion(-m_w, -m_v);
+        }
+
         Motion operator+(const Motion & mv)
         {
           return Motion(m_w+mv.w(), m_v+mv.v());
