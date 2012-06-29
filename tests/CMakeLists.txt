@@ -30,11 +30,6 @@ ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 # Specify the tests data files directory.
 ADD_DEFINITIONS(-DTEST_DIRECTORY="${CMAKE_SOURCE_DIR}/tests/data")
 
-# Set METAPOD_PERF_TEST flag if required
-IF(${PERF_TEST})
-  ADD_DEFINITIONS(-DMETAPOD_PERF_TEST)
-ENDIF(${PERF_TEST})
-
 # ADD_TESTCASE(NAME)
 # ------------------------
 #

@@ -28,9 +28,13 @@ INCLUDE(cmake/boost.cmake)
 
 SET(PROJECT_NAME metapod)
 SET(PROJECT_DESCRIPTION "Implementation of a robot dynamics library")
-SET(PROJECT_URL "No webpage yet...")
+SET(PROJECT_URL "https://github.com/laas/metapod")
 
 SET(CXX_DISABLE_WERROR True)
+
+# Options
+CMAKE_POLICY(SET CMP0012 NEW)
+OPTION(BENCHMARK "Build the benchmarking tool" OFF)
 
 SETUP_PROJECT()
 
@@ -80,6 +84,10 @@ INSTALL(FILES ${${PROJECT_NAME}_TOOLS_HEADERS}
   )
 
 ADD_SUBDIRECTORY(tests)
+
+IF(${BENCHMARK})
+  ADD_SUBDIRECTORY(benchmark)
+ENDIF(${BENCHMARK})
 
 SETUP_PROJECT_FINALIZE()
 SETUP_PROJECT_CPACK()
