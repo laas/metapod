@@ -39,6 +39,7 @@ namespace simplehumanoid
       // Global constants or variable of the robot
       enum { NBDOF = 35 };
       static Eigen::Matrix< FloatType, NBDOF, NBDOF > H;
+      typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;
   
       // Definition of the multibody tree as a type.
       typedef Node< WAIST_LINK0,

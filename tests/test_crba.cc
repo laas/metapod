@@ -22,21 +22,17 @@
  * then compares the computed inertia matrix with the reference inertia matrix.
  */
 
-#ifndef METAPOD_TEST_CRBA_HH
-# define METAPOD_TEST_CRBA_HH
-
 // Common test tools
 # include "common.hh"
 // Include CRBA
 # include "metapod/algos/crba.hh"
 
 using namespace simplehumanoid;
-typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
 
 BOOST_AUTO_TEST_CASE (test_crba)
 {
   // set configuration vector q to reference value.
-  confVector q;
+  Robot::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "q.conf");
   initConf< Robot >::run(qconf, q);
   qconf.close();
@@ -75,41 +71,4 @@ BOOST_AUTO_TEST_CASE (test_crba)
   }
   result_log.close();
   ref_log.close();
-
-  // Perf test
-# ifdef METAPOD_PERF_TEST
-  long TICKS_PER_SECOND = 1e6;
-  struct timeval tv_start, tv_stop;
-  int N1 = 100;
-  int N2 = 1000;
-
-  std::ofstream perf_log("crba_perf.log", std::ofstream::out);
-
-  long time_usec = 0;
-  long inner_loop_time;
-  // Outer loop : generate random configuration
-  for(int i=0; i<N1; i++)
-  {
-    q = confVector::Random();
-    ::gettimeofday(&tv_start, NULL);
-    // Inner loop : The timer precision is 1µs, which is not high enough to
-    // give proper result on a single iteration 
-    for(int k=0; k<N2; k++)
-      crba< Robot, true >::run(q);
-    ::gettimeofday(&tv_stop, NULL);
-    
-    inner_loop_time = ( tv_stop.tv_sec - tv_start.tv_sec ) * TICKS_PER_SECOND
-               + ( tv_stop.tv_usec - tv_start.tv_usec );
-    time_usec += inner_loop_time;
-    // Log inner_loop_time to allow for statistical computations 
-    perf_log << (double)inner_loop_time/(double)N2 << std::endl;
-  }
-  // Output global average execution time
-  std::cout
-    << "CRBA execution time = " << (double)time_usec/(double)(N1*N2) << "µs"
-    << std::endl;
-  perf_log.close();
-# endif
 }
-
-#endif
