@@ -366,8 +366,8 @@ namespace metapod
 
       private:
         // Private members
-        vector3d m_r;
         matrix3d m_E;
+        vector3d m_r;
     };
 
     Motion sum(const Motion & mv1,
