@@ -86,7 +86,7 @@ namespace metapod
 
     template< typename Robot, int Function > struct call_function;
     
-    template< typename Robot, int Function > struct bench
+    template< typename Robot, int Function > struct bench_internal
     {
       static void run(int n1 = N1, int n2 = N2)
       {
@@ -124,9 +124,7 @@ namespace metapod
             function = "crba (without jcalc)";
             break;
         }
-        std::cout << "Model NBDOF : " << Robot::NBDOF << "\n  ";
-        std::cout << function << " average execution time = "
-                  << timer.get()/double(n1*n2) << "µs\n\n";
+        std::cout << function << ": " << timer.get()/double(n1*n2) << "µs\n";
       }
     };
 
@@ -178,6 +176,42 @@ namespace metapod
       static void run(confVector & q, confVector & dq, confVector & ddq)
       {
         crba< Robot, false >::run(q);
+      }
+    };
+
+    class Setup
+    {
+      public:
+        static bool JCALC,
+                    RNEA,
+                    RNEA_WITHOUT_JCALC,
+                    CRBA,
+                    CRBA_WITHOUT_JCALC;
+    };
+    bool Setup::JCALC,
+         Setup::RNEA,
+         Setup::RNEA_WITHOUT_JCALC,
+         Setup::CRBA,
+         Setup::CRBA_WITHOUT_JCALC;
+
+    template< typename Robot, typename T > struct bench
+    {
+      static void run()
+      {
+        std::cout << "*************\n"
+                  << "Model NBDOF : " << Robot::NBDOF << "\n  "
+                  << "  average execution time :\n";
+        if(T::JCALC)
+          bench_internal< Robot, JCALC >::run();
+        if(T::RNEA)
+          bench_internal< Robot, RNEA >::run();
+        if(T::CRBA)
+          bench_internal< Robot, CRBA >::run();
+        if(T::RNEA_WITHOUT_JCALC)
+          bench_internal< Robot, RNEA_WITHOUT_JCALC >::run();
+        if(T::CRBA_WITHOUT_JCALC)
+          bench_internal< Robot, CRBA_WITHOUT_JCALC >::run();
+        std::cout << std::endl;
       }
     };
   } // end of namespace benchmark

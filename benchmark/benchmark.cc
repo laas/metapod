@@ -24,14 +24,30 @@
 # include "benchmark.hh"
 
 # include "metapod/models/simple-humanoid/robot.hh"
+# include "models/model_3_dof_robot.hh"
+# include "models/model_7_dof_robot.hh"
+# include "models/model_15_dof_robot.hh"
+# include "models/model_31_dof_robot.hh"
+# include "models/model_63_dof_robot.hh"
 
 using namespace metapod::benchmark;
 
+
 int main()
 {
-  bench< simplehumanoid::Robot, JCALC >::run();
-  bench< simplehumanoid::Robot, RNEA >::run();
-  bench< simplehumanoid::Robot, RNEA_WITHOUT_JCALC >::run();
-  bench< simplehumanoid::Robot, CRBA >::run();
-  bench< simplehumanoid::Robot, CRBA_WITHOUT_JCALC >::run();
+  // Choose what to bench
+  Setup::JCALC = true;
+  Setup::RNEA = true;
+  Setup::CRBA = true;
+  Setup::RNEA_WITHOUT_JCALC = true;
+  Setup::CRBA_WITHOUT_JCALC = true;
+
+
+  bench< model_3_dof::Robot, Setup >::run();
+  bench< model_7_dof::Robot, Setup >::run();
+  bench< model_15_dof::Robot, Setup >::run();
+  bench< model_31_dof::Robot, Setup >::run();
+  bench< model_63_dof::Robot, Setup >::run();
+
+  bench< simplehumanoid::Robot, Setup >::run();
 }

@@ -24,6 +24,8 @@
 #ifndef METAPOD_BUILD_ROBOT_HH
 # define METAPOD_BUILD_ROBOT_HH
 
+# include "common.hh"
+
 namespace metapod
 {
   enum { FREE_FLYER, REVOLUTE };
@@ -36,29 +38,30 @@ namespace metapod
                   FloatType mass,
                   const vector3d & CoM,
                   const matrix3d & inertie,
+                  const std::string & tab,
                   int has_parent = true)
   {
-    os << "// Declaration of " << name << "class\n"
-       << "CREATE_BODY("
-         << name << ", "
-         << has_parent << ", "
-         << parent_name << ", "
-         << joint_name << ");\n"
-       << "const int " << name << "::name = \"" << name << "\";\n"
-       << "const int " << name << "::label = " << label << ";\n"
-       << "const FloatType " << name << "::mass = " << mass << ";\n"
-       << "const vector3d " << name << "::CoM = vector3d("
-         << CoM[0] << ", "
-         << CoM[1] << ", "
-         << CoM[2] << ");\n"
-       << "const matrix3d " << name << "::inertie = matrix3dMaker(\n"
-       << inertie(0,0) << ", " << inertie(0,1) << ", " << inertie(0,1) << ",\n"
-       << inertie(1,0) << ", " << inertie(1,1) << ", " << inertie(1,1) << ",\n"
-       << inertie(2,0) << ", " << inertie(2,1) << ", " << inertie(2,1) << ");\n"
-       << "Inertia" << name << "::I = spatialInertiaMaker("
-         << name << "::mass,\n"
-         << name << "::CoM,\n"
-         << name << "::inertie);\n"
+    os << tab << "// Declaration of " << name << " class\n"
+       << tab << "CREATE_BODY("
+         << tab << name << ", "
+         << tab << has_parent << ", "
+         << tab << parent_name << ", "
+         << tab << joint_name << ");\n"
+       << tab << "const std::string " << name << "::name = \"" << name << "\";\n"
+       << tab << "const int " << name << "::label = " << label << ";\n"
+       << tab << "const FloatType " << name << "::mass = " << mass << ";\n"
+       << tab << "const vector3d " << name << "::CoM = vector3d("
+         << tab << CoM[0] << ", "
+         << tab << CoM[1] << ", "
+         << tab << CoM[2] << ");\n"
+       << tab << "const matrix3d " << name << "::inertie = matrix3dMaker(\n"
+       << tab << inertie(0,0) << ", " << inertie(0,1) << ", " << inertie(0,1) << ",\n"
+       << tab << inertie(1,0) << ", " << inertie(1,1) << ", " << inertie(1,1) << ",\n"
+       << tab << inertie(2,0) << ", " << inertie(2,1) << ", " << inertie(2,1) << ");\n"
+       << tab << "Inertia " << name << "::I = spatialInertiaMaker("
+         << tab << name << "::mass,\n"
+         << tab << name << "::CoM,\n"
+         << tab << name << "::inertie);\n"
        << std::endl;
   }
 
@@ -68,30 +71,30 @@ namespace metapod
                    int label,
                    int positionInConf,
                    const matrix3d & Xt_E,
-                   const vector3d & Xt_r)
+                   const vector3d & Xt_r,
+                   const std::string & tab)
   {
     switch(joint_type)
     {
       case FREE_FLYER:
-        os << "JOINT_FREE_FLYER(" << name << ")\n;";
+        os << tab << "JOINT_FREE_FLYER(" << name << ");\n";
         break;
       case REVOLUTE:
-        os << "JOINT_REVOLUTE(" << name << ")\n;";
+        os << tab << "JOINT_REVOLUTE(" << name << ");\n";
         break;
     }
-    os << "const std::string " << name << "::name = \"" << name << "\";\n"
-       << "const int " << name << "::label = " << label << ";\n"
-       << "const int " << name << "::positionInConf = " << positionInConf << ";\n"
-       << "const Transform " << name << "::Xt = Transform(\n"
-       << "  matrix3dMaker(\n"
-       << "    " << Xt_E(0,0) << ", " << Xt_E(0,1) << ", " << Xt_E(0,2) << ",\n"
-       << "    " << Xt_E(1,0) << ", " << Xt_E(1,1) << ", " << Xt_E(1,2) << ",\n"
-       << "    " << Xt_E(2,0) << ", " << Xt_E(2,1) << ", " << Xt_E(2,2) << "),\n"
-       << "  vector3d(\n"
-       << "    " << Xt_r[0] << ", " << Xt_r[1] << ", " << Xt_r[2] << "));\n"
+    os << tab << "const std::string " << name << "::name = \"" << name << "\";\n"
+       << tab << "const int " << name << "::label = " << label << ";\n"
+       << tab << "const int " << name << "::positionInConf = " << positionInConf << ";\n"
+       << tab << "const Transform " << name << "::Xt = Transform(\n"
+       << tab << "  matrix3dMaker(\n"
+       << tab << "    " << Xt_E(0,0) << ", " << Xt_E(0,1) << ", " << Xt_E(0,2) << ",\n"
+       << tab << "    " << Xt_E(1,0) << ", " << Xt_E(1,1) << ", " << Xt_E(1,2) << ",\n"
+       << tab << "    " << Xt_E(2,0) << ", " << Xt_E(2,1) << ", " << Xt_E(2,2) << "),\n"
+       << tab << "  vector3d(\n"
+       << tab << "    " << Xt_r[0] << ", " << Xt_r[1] << ", " << Xt_r[2] << "));\n"
        << std::endl;
   }
-                   
 } // end of namespace metapod
 
 #endif
