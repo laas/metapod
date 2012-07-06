@@ -38,15 +38,14 @@ namespace metapod
 
   #define GRAVITY_CST 9.81
 
-  Motion set_gravity();
-  static const Motion minus_g = set_gravity();
-
-  Motion set_gravity()
+  inline Motion set_gravity()
   {
     vector6d g_tmp;
     g_tmp << 0,0,0,0,0,GRAVITY_CST;
     return Motion(g_tmp);
   }
+
+  static const Motion minus_g = set_gravity();
 
   inline matrix3d Skew(const vector3d & v)
   {
@@ -66,7 +65,7 @@ namespace metapod
     public:
       static Inertia Iic;
   };
-  Inertia NP::Iic;
+//  Inertia NP::Iic;
 
   // Class Node. Contains a Body, a Joint, and up to 3 Node children.
   // Non-existant children make use of the NC class (No-Child).
@@ -86,9 +85,10 @@ namespace metapod
   };
 
   // Constant 3x3 matrix initialization method.
-  const matrix3d matrix3dMaker(FloatType m00, FloatType m01, FloatType m02,
-                               FloatType m10, FloatType m11, FloatType m12,
-                               FloatType m20, FloatType m21, FloatType m22)
+  inline const matrix3d matrix3dMaker(
+    FloatType m00, FloatType m01, FloatType m02,
+    FloatType m10, FloatType m11, FloatType m12,
+    FloatType m20, FloatType m21, FloatType m22)
   {
     matrix3d m;
     m(0,0) = m00; m(0,1) = m01; m(0,2) = m02;
@@ -98,12 +98,12 @@ namespace metapod
   }
 
   // Constant size 6 vector initialization method.
-  const vector6d vector6dMaker(FloatType v0,
-                               FloatType v1,
-                               FloatType v2,
-                               FloatType v3,
-                               FloatType v4,
-                               FloatType v5)
+  inline const vector6d vector6dMaker(FloatType v0,
+                                      FloatType v1,
+                                      FloatType v2,
+                                      FloatType v3,
+                                      FloatType v4,
+                                      FloatType v5)
   {
     vector6d v;
     v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
@@ -111,9 +111,9 @@ namespace metapod
   }
 
   // Constant Spatial::Inertia initialization method.
-  Inertia spatialInertiaMaker(const FloatType m,
-                              const vector3d & CoM,
-                              const matrix3d & inertia)
+  inline Inertia spatialInertiaMaker(const FloatType m,
+                                     const vector3d & CoM,
+                                     const matrix3d & inertia)
   {
     return Inertia(m, CoM*m, inertia + m*(Skew(CoM)*Skew(CoM).transpose()));
   }

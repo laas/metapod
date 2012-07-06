@@ -370,7 +370,7 @@ namespace metapod
         vector3d m_r;
     };
 
-    Motion sum(const Motion & mv1,
+    inline Motion sum(const Motion & mv1,
                const Motion & mv2,
                const Motion & mv3,
                const Motion & mv4)
@@ -379,7 +379,7 @@ namespace metapod
                     mv1.v() + mv2.v() + mv3.v() + mv4.v());
     }
 
-    Motion sum(const Motion & mv1,
+    inline Motion sum(const Motion & mv1,
                const Motion & mv2,
                const Motion & mv3)
     {
@@ -387,7 +387,7 @@ namespace metapod
                     mv1.v() + mv2.v() + mv3.v());
     }
 
-    Force sum(const Force & fv1,
+    inline Force sum(const Force & fv1,
               const Force & fv2,
               const Force & fv3)
     {

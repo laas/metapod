@@ -51,15 +51,7 @@ namespace metapod
                                                                     \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
-    Transform classname::sXp;                                       \
-    Transform classname::Xj;                                        \
-    Motion classname::cj;                                           \
-    Motion classname::vj;                                           \
-    Force classname::f;                                             \
-    vector1d classname::torque;                                     \
-    const vector6d classname::S = vector6dMaker(1, 0, 0, 0, 0, 0);  \
-    const vector6d classname::dotS = vector6d::Zero();              \
-    void classname::jcalc(const vector1d & qi,                      \
+    inline void classname::jcalc(const vector1d & qi,               \
                           const vector1d & dqi)                     \
     {                                                               \
       FloatType angle = qi[0];                                      \
@@ -74,6 +66,16 @@ namespace metapod
       /* maj vj */                                                  \
       vj.w(vector3d(dqi[0], 0, 0));                                 \
     }                                                               \
+
+  # define INITIALIZE_JOINT_REVOLUTE(classname)                     \
+    Transform classname::sXp;                                       \
+    Transform classname::Xj;                                        \
+    Motion classname::cj;                                           \
+    Motion classname::vj;                                           \
+    Force classname::f;                                             \
+    vector1d classname::torque;                                     \
+    const vector6d classname::S = vector6dMaker(1, 0, 0, 0, 0, 0);  \
+    const vector6d classname::dotS = vector6d::Zero();              \
     vector6d classname::F                                           \
   
   // Create a free flyer class
@@ -99,16 +101,7 @@ namespace metapod
                                                                     \
       static void jcalc(const vector6d & qi, const vector6d & dqi); \
     };                                                              \
-                                                                    \
-    Transform classname::sXp;                                       \
-    Transform classname::Xj;                                        \
-    Motion classname::cj;                                           \
-    Motion classname::vj;                                           \
-    Force classname::f;                                             \
-    vector6d classname::torque;                                     \
-    matrix6d classname::S = matrix6d::Zero();                       \
-    matrix6d classname::dotS = matrix6d::Zero();                    \
-    void classname::jcalc(const vector6d & qi,                      \
+    inline void classname::jcalc(const vector6d & qi,               \
                           const vector6d & dqi)                     \
     {                                                               \
       /* maj sXp */                                                 \
@@ -131,6 +124,16 @@ namespace metapod
       /* maj vj */                                                  \
       vj = Motion(S*dqi);                                           \
     }                                                               \
+
+  # define INITIALIZE_JOINT_FREE_FLYER(classname)                   \
+    Transform classname::sXp;                                       \
+    Transform classname::Xj;                                        \
+    Motion classname::cj;                                           \
+    Motion classname::vj;                                           \
+    Force classname::f;                                             \
+    vector6d classname::torque;                                     \
+    matrix6d classname::S = matrix6d::Zero();                       \
+    matrix6d classname::dotS = matrix6d::Zero();                    \
     matrix6d classname::F                                           \
 
 } // end of namespace metapod.

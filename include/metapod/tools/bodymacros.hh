@@ -41,7 +41,7 @@ namespace metapod
         static const FloatType mass;                       \
         static const vector3d CoM;                         \
         static const matrix3d inertie;                     \
-        static Transform iX0;                              \
+        static metapod::Spatial::Transform iX0;            \
         static Motion vi;                                  \
         static Motion ai;                                  \
         static Force Fext;                                 \
@@ -49,8 +49,10 @@ namespace metapod
         static Inertia Iic;                                \
         typedef parentname Parent;                         \
         typedef jointname Joint;                           \
-    };                                                     \
-    Transform classname::iX0;                              \
+    }                                                      \
+
+  # define INITIALIZE_BODY(classname);                     \
+    metapod::Spatial::Transform classname::iX0;            \
     Motion classname::vi;                                  \
     Motion classname::ai;                                  \
     Inertia classname::Iic;                                \
