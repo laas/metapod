@@ -51,7 +51,7 @@ namespace metapod
         typedef jointname Joint;                           \
     }                                                      \
 
-  # define INITIALIZE_BODY(classname);                     \
+  # define INITIALIZE_BODY(classname)                      \
     metapod::Spatial::Transform classname::iX0;            \
     Motion classname::vi;                                  \
     Motion classname::ai;                                  \
