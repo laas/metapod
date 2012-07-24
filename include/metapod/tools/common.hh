@@ -26,6 +26,7 @@
 # define METAPOD_COMMON_HH
 
 # include "metapod/tools/fwd.hh"
+# include "metapod/config.hh"
 # include "metapod/tools/jointmacros.hh"
 # include "metapod/tools/spatial.hh"
 # include "metapod/tools/jcalc.hh"
