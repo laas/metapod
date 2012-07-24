@@ -27,7 +27,8 @@
 // Include CRBA
 # include "metapod/algos/crba.hh"
 
-using namespace simplehumanoid;
+using namespace metapod;
+using namespace metapod::simple_humanoid;
 
 BOOST_AUTO_TEST_CASE (test_crba)
 {

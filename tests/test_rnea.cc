@@ -27,7 +27,8 @@
 // Include RNEA
 # include "metapod/algos/rnea.hh"
 
-using namespace simplehumanoid;
+using namespace metapod;
+using namespace metapod::simple_humanoid;
 
 BOOST_AUTO_TEST_CASE (test_rnea)
 {

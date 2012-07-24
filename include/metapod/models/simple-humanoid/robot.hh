@@ -26,114 +26,112 @@
 # define METAPOD_SIMPLE_HUMANOID_ROBOT_HH
 
 # include "metapod/tools/common.hh"
-# include "body.hh"
 # include "joint.hh"
+# include "body.hh"
 
-namespace simplehumanoid
+namespace metapod
 {
-  // Model of the robot. Contains data at the global robot level and the tree
-  // of Body/Joint
-  class Robot
+  namespace simple_humanoid
   {
-    public:
-      // Global constants or variable of the robot
-      enum { NBDOF = 35 };
-      static Eigen::Matrix< FloatType, NBDOF, NBDOF > H;
-      typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;
-  
-      // Definition of the multibody tree as a type.
-      typedef Node< WAIST_LINK0,
-                    WAIST,
-                    Node< WAIST_LINK1,
-                          WAIST_P,
-                          Node< WAIST_LINK2,
-                                WAIST_R,
-                                Node< WAIST_LINK3,
-                                      CHEST,
-                                      Node< LARM_LINK1,
-                                            LARM_SHOULDER_P,
-                                            Node< LARM_LINK2,
-                                                  LARM_SHOULDER_R,
-                                                  Node< LARM_LINK3,
-                                                        LARM_SHOULDER_Y,
-                                                        Node< LARM_LINK4,
-                                                              LARM_ELBOW,
-                                                              Node< LARM_LINK5,
-                                                                    LARM_WRIST_Y,
-                                                                    Node< LARM_LINK6,
-                                                                          LARM_WRIST_P,
-                                                                          Node< LARM_LINK7,LARM_WRIST_R >
-    
-                                                                    >
-                                                              >
-                                                        >
-                                                  >
-                                            >
-                                      >,
-                                      Node< RARM_LINK1,
-                                            RARM_SHOULDER_P,
-                                            Node< RARM_LINK2,
-                                                  RARM_SHOULDER_R,
-                                                  Node< RARM_LINK3,
-                                                        RARM_SHOULDER_Y,
-                                                        Node< RARM_LINK4,
-                                                              RARM_ELBOW,
-                                                              Node< RARM_LINK5,
-                                                                    RARM_WRIST_Y,
-                                                                    Node< RARM_LINK6,
-                                                                          RARM_WRIST_P,
-                                                                          Node< RARM_LINK7,RARM_WRIST_R >
-    
-                                                                    >
-                                                              >
-                                                        >
-                                                  >
-                                            >
-                                      >
-                                >
-                          >
-                    >,
-                    Node< LLEG_LINK1,
-                          LLEG_HIP_R,
-                          Node< LLEG_LINK2,
-                                LLEG_HIP_P,
-                                Node< LLEG_LINK3,
-                                      LLEG_HIP_Y,
-                                      Node< LLEG_LINK4,
-                                            LLEG_KNEE,
-                                            Node< LLEG_LINK5,
-                                                  LLEG_ANKLE_P,
-                                                  Node< LLEG_LINK6,LLEG_ANKLE_R >
-    
-                                            >
-                                      >
-                                >
-                          >
-                    >,
-                    Node< RLEG_LINK1,
-                          RLEG_HIP_R,
-                          Node< RLEG_LINK2,
-                                RLEG_HIP_P,
-                                Node< RLEG_LINK3,
-                                      RLEG_HIP_Y,
-                                      Node< RLEG_LINK4,
-                                            RLEG_KNEE,
-                                            Node< RLEG_LINK5,
-                                                  RLEG_ANKLE_P,
-                                                  Node< RLEG_LINK6,RLEG_ANKLE_R >
-    
-                                            >
-                                      >
-                                >
-                          >
-                    >
-      > Tree;
-  };
+    // Model of the robot. Contains data at the global robot level and the tree
+    // of Body/Joint
+    class METAPOD_DLLEXPORT Robot
+    {
+      public:
+        // Global constants or variable of the robot
+        enum { NBDOF = 35 };
+        static Eigen::Matrix< FloatType, NBDOF, NBDOF > H;
+        typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;
 
-  // Initialization of the robot global constants
-//  const int Robot::nbDof = 35;
-  Eigen::Matrix< FloatType, Robot::NBDOF, Robot::NBDOF > Robot::H;
+        // Definition of the multibody tree as a type.
+        typedef Node< WAIST_LINK0,
+                      WAIST,
+                      Node< WAIST_LINK1,
+                            WAIST_P,
+                            Node< WAIST_LINK2,
+                                  WAIST_R,
+                                  Node< WAIST_LINK3,
+                                        CHEST,
+                                        Node< LARM_LINK1,
+                                              LARM_SHOULDER_P,
+                                              Node< LARM_LINK2,
+                                                    LARM_SHOULDER_R,
+                                                    Node< LARM_LINK3,
+                                                          LARM_SHOULDER_Y,
+                                                          Node< LARM_LINK4,
+                                                                LARM_ELBOW,
+                                                                Node< LARM_LINK5,
+                                                                      LARM_WRIST_Y,
+                                                                      Node< LARM_LINK6,
+                                                                            LARM_WRIST_P,
+                                                                            Node< LARM_LINK7,LARM_WRIST_R >
 
-} // end of namespace simplehumanoid
+                                                                      >
+                                                                >
+                                                          >
+                                                    >
+                                              >
+                                        >,
+                                        Node< RARM_LINK1,
+                                              RARM_SHOULDER_P,
+                                              Node< RARM_LINK2,
+                                                    RARM_SHOULDER_R,
+                                                    Node< RARM_LINK3,
+                                                          RARM_SHOULDER_Y,
+                                                          Node< RARM_LINK4,
+                                                                RARM_ELBOW,
+                                                                Node< RARM_LINK5,
+                                                                      RARM_WRIST_Y,
+                                                                      Node< RARM_LINK6,
+                                                                            RARM_WRIST_P,
+                                                                            Node< RARM_LINK7,RARM_WRIST_R >
+
+                                                                      >
+                                                                >
+                                                          >
+                                                    >
+                                              >
+                                        >
+                                  >
+                            >
+                      >,
+                      Node< LLEG_LINK1,
+                            LLEG_HIP_R,
+                            Node< LLEG_LINK2,
+                                  LLEG_HIP_P,
+                                  Node< LLEG_LINK3,
+                                        LLEG_HIP_Y,
+                                        Node< LLEG_LINK4,
+                                              LLEG_KNEE,
+                                              Node< LLEG_LINK5,
+                                                    LLEG_ANKLE_P,
+                                                    Node< LLEG_LINK6,LLEG_ANKLE_R >
+
+                                              >
+                                        >
+                                  >
+                            >
+                      >,
+                      Node< RLEG_LINK1,
+                            RLEG_HIP_R,
+                            Node< RLEG_LINK2,
+                                  RLEG_HIP_P,
+                                  Node< RLEG_LINK3,
+                                        RLEG_HIP_Y,
+                                        Node< RLEG_LINK4,
+                                              RLEG_KNEE,
+                                              Node< RLEG_LINK5,
+                                                    RLEG_ANKLE_P,
+                                                    Node< RLEG_LINK6,RLEG_ANKLE_R >
+
+                                              >
+                                        >
+                                  >
+                            >
+                      >
+        > Tree;
+    };
+  } // end of namespace simple_humanoid
+} // end of namespace metapod
 
 #endif
