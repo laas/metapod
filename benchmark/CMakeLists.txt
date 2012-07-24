@@ -1,6 +1,5 @@
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/benchmark)
 
-ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-humanoid/simple_humanoid.cc)
 ADD_LIBRARY(sample_3_dof SHARED models/sample_3_dof/sample_3_dof.cc)
 ADD_LIBRARY(sample_7_dof SHARED models/sample_7_dof/sample_7_dof.cc)
 ADD_LIBRARY(sample_15_dof SHARED models/sample_15_dof/sample_15_dof.cc)

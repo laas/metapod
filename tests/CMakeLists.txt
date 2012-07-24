@@ -30,6 +30,8 @@ ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 # Specify the tests data files directory.
 ADD_DEFINITIONS(-DTEST_DIRECTORY="${CMAKE_SOURCE_DIR}/tests/data")
 
+ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-humanoid/simple_humanoid.cc)
+
 # ADD_TESTCASE(NAME)
 # ------------------------
 #
@@ -44,6 +46,9 @@ MACRO(ADD_TESTCASE NAME)
 
   # Link against Boost.
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
+
+  # Link against the simple_humanoid test model.
+  TARGET_LINK_LIBRARIES(${NAME} simple_humanoid)
 ENDMACRO(ADD_TESTCASE)
 
 # Generated test.

@@ -24,8 +24,6 @@
 
 // Common test tools
 # include "common.hh"
-// Include CRBA
-# include "metapod/algos/crba.hh"
 
 using namespace metapod;
 using namespace metapod::simple_humanoid;

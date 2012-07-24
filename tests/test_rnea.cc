@@ -24,8 +24,6 @@
 
 // Common test tools
 # include "common.hh"
-// Include RNEA
-# include "metapod/algos/rnea.hh"
 
 using namespace metapod;
 using namespace metapod::simple_humanoid;

@@ -30,7 +30,7 @@
 # include <fstream>
 
 // metapod includes
-# include "metapod/models/simple-humanoid/robot.hh"
+# include "metapod/models/simple-humanoid/simple_humanoid.hh"
 # include "metapod/tools/print.hh"
 # include "metapod/tools/initconf.hh"
 
