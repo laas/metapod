@@ -18,36 +18,26 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /* 
- * This file run performance tests on metapods algorithms.
+ * This file run performance tests on metapods algorithms, on several sample
+ * models.
  */
 
-# include "benchmark.hh"
-
+# include "models/sample_3_dof/sample_3_dof.hh"
+# include "models/sample_7_dof/sample_7_dof.hh"
+# include "models/sample_15_dof/sample_15_dof.hh"
+# include "models/sample_31_dof/sample_31_dof.hh"
+# include "models/sample_63_dof/sample_63_dof.hh"
 # include "metapod/models/simple-humanoid/robot.hh"
-# include "models/model_3_dof_robot.hh"
-# include "models/model_7_dof_robot.hh"
-# include "models/model_15_dof_robot.hh"
-# include "models/model_31_dof_robot.hh"
-# include "models/model_63_dof_robot.hh"
 
+# include "benchmark.hh"
 using namespace metapod::benchmark;
-
 
 int main()
 {
-  // Choose what to bench
-  Setup::JCALC = true;
-  Setup::RNEA = true;
-  Setup::CRBA = true;
-  Setup::RNEA_WITHOUT_JCALC = true;
-  Setup::CRBA_WITHOUT_JCALC = true;
-
-
-  bench< model_3_dof::Robot, Setup >::run();
-  bench< model_7_dof::Robot, Setup >::run();
-  bench< model_15_dof::Robot, Setup >::run();
-  bench< model_31_dof::Robot, Setup >::run();
-  bench< model_63_dof::Robot, Setup >::run();
-
-  bench< simplehumanoid::Robot, Setup >::run();
+  BENCHMARK(metapod::simple_humanoid);
+  BENCHMARK(metapod::sample_3_dof);
+  BENCHMARK(metapod::sample_7_dof);
+  BENCHMARK(metapod::sample_15_dof);
+  BENCHMARK(metapod::sample_31_dof);
+  BENCHMARK(metapod::sample_63_dof);
 }

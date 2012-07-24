@@ -46,9 +46,6 @@
 # include <iostream>
 # include <sys/time.h>
 
-# include "metapod/algos/rnea.hh"
-# include "metapod/algos/crba.hh"
-
 namespace metapod
 {
   namespace benchmark
@@ -84,136 +81,83 @@ namespace metapod
 
     static Timer timer;
 
-    template< typename Robot, int Function > struct call_function;
-    
-    template< typename Robot, int Function > struct bench_internal
-    {
-      static void run(int n1 = N1, int n2 = N2)
-      {
-        typedef typename Robot::confVector confVector;
-        confVector q, dq, ddq;
-        timer.reinit();
-        for(int i=0; i<n1; i++)
-        {
-          q = confVector::Random();
-          dq = confVector::Random();
-          ddq = confVector::Random();
-          timer.start();
-          for(int j=0; j<n2; j++)
-          {
-            call_function< Robot, Function >::run(q, dq, ddq);
-          }
-          timer.stop();
-        }
-        std::string function;
-        switch(Function)
-        {
-          case JCALC:
-            function = "jcalc";
-            break;
-          case RNEA:
-            function = "rnea";
-            break;
-          case RNEA_WITHOUT_JCALC:
-            function = "rnea (without jcalc)";
-            break;
-          case CRBA:
-            function = "crba";
-            break;
-          case CRBA_WITHOUT_JCALC:
-            function = "crba (without jcalc)";
-            break;
-        }
-        std::cout << function << ": " << timer.get()/double(n1*n2) << "µs\n";
-      }
-    };
+    #define BENCHMARK(robot)                                          \
+    {                                                                 \
+      std::cout << "*************\n"                                  \
+                << "Model NBDOF : " << robot::Robot::NBDOF << "\n  "  \
+                << "  average execution time :\n";                    \
+      typedef typename robot::Robot::confVector confVector;           \
+      confVector q, dq, ddq;                                          \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+          dq = confVector::Random();                                  \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::jcalc< robot::Robot >::run(q, dq);               \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "jcalc: " << timer.get()/double(N1*N2) << "µs\n"; \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+          dq = confVector::Random();                                  \
+          ddq = confVector::Random();                                 \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::rnea< robot::Robot, true >::run(q, dq, ddq);     \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "rnea: " << timer.get()/double(N1*N2) << "µs\n"; \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+          dq = confVector::Random();                                  \
+          ddq = confVector::Random();                                 \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::rnea< robot::Robot, false >::run(q, dq, ddq);    \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "rnea (without jcalc): "                         \
+                  << timer.get()/double(N1*N2) << "µs\n";             \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::crba< robot::Robot, true >::run(q);              \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "crba: " << timer.get()/double(N1*N2) << "µs\n"; \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::crba< robot::Robot, false >::run(q);             \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "crba (without jcalc): "                         \
+                  << timer.get()/double(N1*N2) << "µs\n";             \
+        std::cout << std::endl;                                       \
+    }                                                                       
 
-    template< typename Robot, int Function > struct call_function
-    {
-      typedef typename Robot::confVector confVector;
-      static void run(confVector & q, confVector & dq, confVector & ddq) {};
-    };
-
-    template< typename Robot > struct call_function< Robot, JCALC >
-    {
-      typedef typename Robot::confVector confVector;
-      static void run(confVector & q, confVector & dq, confVector & ddq)
-      {
-        jcalc< Robot >::run(q, dq);
-      }
-    };
-    
-    template< typename Robot > struct call_function< Robot, RNEA >
-    {
-      typedef typename Robot::confVector confVector;
-      static void run(confVector & q, confVector & dq, confVector & ddq)
-      {
-        rnea< Robot, true >::run(q, dq, ddq);
-      }
-    };
-    
-    template< typename Robot > struct call_function< Robot, RNEA_WITHOUT_JCALC >
-    {
-      typedef typename Robot::confVector confVector;
-      static void run(confVector & q, confVector & dq, confVector & ddq)
-      {
-        rnea< Robot, false >::run(q, dq, ddq);
-      }
-    };
-    
-    template< typename Robot > struct call_function< Robot, CRBA >
-    {
-      typedef typename Robot::confVector confVector;
-      static void run(confVector & q, confVector & dq, confVector & ddq)
-      {
-        crba< Robot, true >::run(q);
-      }
-    };
-    
-    template< typename Robot > struct call_function< Robot, CRBA_WITHOUT_JCALC >
-    {
-      typedef typename Robot::confVector confVector;
-      static void run(confVector & q, confVector & dq, confVector & ddq)
-      {
-        crba< Robot, false >::run(q);
-      }
-    };
-
-    class Setup
-    {
-      public:
-        static bool JCALC,
-                    RNEA,
-                    RNEA_WITHOUT_JCALC,
-                    CRBA,
-                    CRBA_WITHOUT_JCALC;
-    };
-    bool Setup::JCALC,
-         Setup::RNEA,
-         Setup::RNEA_WITHOUT_JCALC,
-         Setup::CRBA,
-         Setup::CRBA_WITHOUT_JCALC;
-
-    template< typename Robot, typename T > struct bench
-    {
-      static void run()
-      {
-        std::cout << "*************\n"
-                  << "Model NBDOF : " << Robot::NBDOF << "\n  "
-                  << "  average execution time :\n";
-        if(T::JCALC)
-          bench_internal< Robot, JCALC >::run();
-        if(T::RNEA)
-          bench_internal< Robot, RNEA >::run();
-        if(T::CRBA)
-          bench_internal< Robot, CRBA >::run();
-        if(T::RNEA_WITHOUT_JCALC)
-          bench_internal< Robot, RNEA_WITHOUT_JCALC >::run();
-        if(T::CRBA_WITHOUT_JCALC)
-          bench_internal< Robot, CRBA_WITHOUT_JCALC >::run();
-        std::cout << std::endl;
-      }
-    };
   } // end of namespace benchmark
 } // end of namespace metapod
 
