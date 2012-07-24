@@ -66,6 +66,7 @@ namespace metapod
       /* maj vj */                                                  \
       vj.w(vector3d(dqi[0], 0, 0));                                 \
     }                                                               \
+    struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
   # define INITIALIZE_JOINT_REVOLUTE(classname)                     \
     Transform classname::sXp;                                       \
@@ -124,6 +125,7 @@ namespace metapod
       /* maj vj */                                                  \
       vj = Motion(S*dqi);                                           \
     }                                                               \
+    struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
   # define INITIALIZE_JOINT_FREE_FLYER(classname)                   \
     Transform classname::sXp;                                       \
