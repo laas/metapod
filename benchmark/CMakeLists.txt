@@ -15,3 +15,6 @@ TARGET_LINK_LIBRARIES(benchmark
   sample_63_dof
   simple_humanoid
 )
+
+ADD_EXECUTABLE(make_model make_model.cc)
+TARGET_LINK_LIBRARIES(make_model ${Boost_LIBRARIES})
