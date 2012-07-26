@@ -36,7 +36,6 @@ namespace metapod
       enum { NBDOF = 1 };                                           \
       static const std::string name;                                \
       static const int label;                                       \
-      static const int nbDof;                                       \
       static const int positionInConf;                              \
       static const Spatial::Transform Xt;                           \
       static Spatial::Transform sXp;                                \

@@ -131,7 +131,7 @@ void getTorques(vectorN& torques, unsigned& i)
   typedef Tree Node;
 
   unsigned j = 0;
-  while (j < Node::Joint::nbDof)
+  while (j < Node::Joint::NBDOF)
   {
     torques[i] = Node::Joint::torque[j];
     ++i;
