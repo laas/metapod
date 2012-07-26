@@ -38,14 +38,14 @@ namespace metapod
       static const int label;                                       \
       static const int nbDof;                                       \
       static const int positionInConf;                              \
-      static const Transform Xt;                                    \
-      static Transform sXp;                                         \
-      static Transform Xj;                                          \
-      static Motion cj;                                             \
-      static Motion vj;                                             \
+      static const Spatial::Transform Xt;                           \
+      static Spatial::Transform sXp;                                \
+      static Spatial::Transform Xj;                                 \
+      static Spatial::Motion cj;                                    \
+      static Spatial::Motion vj;                                    \
       static const vector6d S;                                      \
       static const vector6d dotS;                                   \
-      static Force f;                                               \
+      static Spatial::Force f;                                      \
       static vector1d torque;                                       \
       static vector6d F;                                            \
                                                                     \
@@ -69,11 +69,11 @@ namespace metapod
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
   # define INITIALIZE_JOINT_REVOLUTE(classname)                     \
-    Transform classname::sXp;                                       \
-    Transform classname::Xj;                                        \
-    Motion classname::cj;                                           \
-    Motion classname::vj;                                           \
-    Force classname::f;                                             \
+    Spatial::Transform classname::sXp;                              \
+    Spatial::Transform classname::Xj;                               \
+    Spatial::Motion classname::cj;                                  \
+    Spatial::Motion classname::vj;                                  \
+    Spatial::Force classname::f;                                    \
     vector1d classname::torque;                                     \
     const vector6d classname::S = vector6dMaker(1, 0, 0, 0, 0, 0);  \
     const vector6d classname::dotS = vector6d::Zero();              \
@@ -89,14 +89,14 @@ namespace metapod
       static const int label;                                       \
       static const int nbDof;                                       \
       static const int positionInConf;                              \
-      static const Transform Xt;                                    \
-      static Transform sXp;                                         \
-      static Transform Xj;                                          \
-      static Motion cj;                                             \
-      static Motion vj;                                             \
+      static const Spatial::Transform Xt;                           \
+      static Spatial::Transform sXp;                                \
+      static Spatial::Transform Xj;                                 \
+      static Spatial::Motion cj;                                    \
+      static Spatial::Motion vj;                                    \
       static matrix6d S;                                            \
       static matrix6d dotS;                                         \
-      static Force f;                                               \
+      static Spatial::Force f;                                      \
       static vector6d torque;                                       \
       static matrix6d F;                                            \
                                                                     \
@@ -120,19 +120,19 @@ namespace metapod
       localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
       localR(2,2) = cPsi * cTheta;                                  \
       S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;               \
-      Xj = Transform(localR, vector3d::Zero());                     \
-      sXp = Xj*Transform(matrix3d::Identity(), qi.segment<3>(0));   \
+      Xj = Spatial::Transform(localR, vector3d::Zero());            \
+      sXp = Xj*Spatial::Transform(matrix3d::Identity(), qi.segment<3>(0)); \
       /* maj vj */                                                  \
-      vj = Motion(S*dqi);                                           \
+      vj = Spatial::Motion(S*dqi);                                  \
     }                                                               \
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
   # define INITIALIZE_JOINT_FREE_FLYER(classname)                   \
-    Transform classname::sXp;                                       \
-    Transform classname::Xj;                                        \
-    Motion classname::cj;                                           \
-    Motion classname::vj;                                           \
-    Force classname::f;                                             \
+    Spatial::Transform classname::sXp;                              \
+    Spatial::Transform classname::Xj;                               \
+    Spatial::Motion classname::cj;                                  \
+    Spatial::Motion classname::vj;                                  \
+    Spatial::Force classname::f;                                    \
     vector6d classname::torque;                                     \
     matrix6d classname::S = matrix6d::Zero();                       \
     matrix6d classname::dotS = matrix6d::Zero();                    \

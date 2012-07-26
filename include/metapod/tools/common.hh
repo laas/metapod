@@ -35,18 +35,16 @@
 
 namespace metapod
 {
-  using namespace Spatial;
-
   #define GRAVITY_CST 9.81
 
-  inline Motion set_gravity()
+  inline Spatial::Motion set_gravity()
   {
     vector6d g_tmp;
     g_tmp << 0,0,0,0,0,GRAVITY_CST;
-    return Motion(g_tmp);
+    return Spatial::Motion(g_tmp);
   }
 
-  static const Motion minus_g = set_gravity();
+  static const Spatial::Motion minus_g = set_gravity();
 
   inline matrix3d Skew(const vector3d & v)
   {
@@ -64,7 +62,7 @@ namespace metapod
   class NP
   {
     public:
-      static Inertia Iic;
+      static Spatial::Inertia Iic;
   };
 //  Inertia NP::Iic;
 
@@ -112,11 +110,11 @@ namespace metapod
   }
 
   // Constant Spatial::Inertia initialization method.
-  inline Inertia spatialInertiaMaker(const FloatType m,
-                                     const vector3d & CoM,
-                                     const matrix3d & inertia)
+  inline Spatial::Inertia spatialInertiaMaker(const FloatType m,
+                                              const vector3d & CoM,
+                                              const matrix3d & inertia)
   {
-    return Inertia(m, CoM*m, inertia + m*(Skew(CoM)*Skew(CoM).transpose()));
+    return Spatial::Inertia(m, CoM*m, inertia + m*(Skew(CoM)*Skew(CoM).transpose()));
   }
 
 } // end of namespace metapod.

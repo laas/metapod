@@ -36,7 +36,7 @@ namespace metapod
     const std::string WAIST::name = "WAIST";
     const int WAIST::label = 1;
     const int WAIST::positionInConf = 0;
-    const Transform WAIST::Xt = Transform(
+    const Spatial::Transform WAIST::Xt = Spatial::Transform(
       matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
@@ -47,7 +47,7 @@ namespace metapod
     const std::string WAIST_P::name = "WAIST_P";
     const int WAIST_P::label = 2;
     const int WAIST_P::positionInConf = 32;
-    const Transform WAIST_P::Xt = Transform(
+    const Spatial::Transform WAIST_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -58,7 +58,7 @@ namespace metapod
     const std::string WAIST_R::name = "WAIST_R";
     const int WAIST_R::label = 3;
     const int WAIST_R::positionInConf = 33;
-    const Transform WAIST_R::Xt = Transform(
+    const Spatial::Transform WAIST_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -69,7 +69,7 @@ namespace metapod
     const std::string CHEST::name = "CHEST";
     const int CHEST::label = 4;
     const int CHEST::positionInConf = 34;
-    const Transform CHEST::Xt = Transform(
+    const Spatial::Transform CHEST::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     1, 0, 0,
                     0, 1, 0),
@@ -80,7 +80,7 @@ namespace metapod
     const std::string LARM_SHOULDER_P::name = "LARM_SHOULDER_P";
     const int LARM_SHOULDER_P::label = 5;
     const int LARM_SHOULDER_P::positionInConf = 25;
-    const Transform LARM_SHOULDER_P::Xt = Transform(
+    const Spatial::Transform LARM_SHOULDER_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -91,7 +91,7 @@ namespace metapod
     const std::string LARM_SHOULDER_R::name = "LARM_SHOULDER_R";
     const int LARM_SHOULDER_R::label = 6;
     const int LARM_SHOULDER_R::positionInConf = 26;
-    const Transform LARM_SHOULDER_R::Xt = Transform(
+    const Spatial::Transform LARM_SHOULDER_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -102,7 +102,7 @@ namespace metapod
     const std::string LARM_SHOULDER_Y::name = "LARM_SHOULDER_Y";
     const int LARM_SHOULDER_Y::label = 7;
     const int LARM_SHOULDER_Y::positionInConf = 27;
-    const Transform LARM_SHOULDER_Y::Xt = Transform(
+    const Spatial::Transform LARM_SHOULDER_Y::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     1, 0, 0,
                     0, 1, 0),
@@ -113,7 +113,7 @@ namespace metapod
     const std::string LARM_ELBOW::name = "LARM_ELBOW";
     const int LARM_ELBOW::label = 8;
     const int LARM_ELBOW::positionInConf = 28;
-    const Transform LARM_ELBOW::Xt = Transform(
+    const Spatial::Transform LARM_ELBOW::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -124,7 +124,7 @@ namespace metapod
     const std::string LARM_WRIST_Y::name = "LARM_WRIST_Y";
     const int LARM_WRIST_Y::label = 9;
     const int LARM_WRIST_Y::positionInConf = 29;
-    const Transform LARM_WRIST_Y::Xt = Transform(
+    const Spatial::Transform LARM_WRIST_Y::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, -1,
                     0, 1, 0,
                     1, 0, 0),
@@ -135,7 +135,7 @@ namespace metapod
     const std::string LARM_WRIST_P::name = "LARM_WRIST_P";
     const int LARM_WRIST_P::label = 10;
     const int LARM_WRIST_P::positionInConf = 30;
-    const Transform LARM_WRIST_P::Xt = Transform(
+    const Spatial::Transform LARM_WRIST_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -146,7 +146,7 @@ namespace metapod
     const std::string LARM_WRIST_R::name = "LARM_WRIST_R";
     const int LARM_WRIST_R::label = 11;
     const int LARM_WRIST_R::positionInConf = 31;
-    const Transform LARM_WRIST_R::Xt = Transform(
+    const Spatial::Transform LARM_WRIST_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -157,7 +157,7 @@ namespace metapod
     const std::string RARM_SHOULDER_P::name = "RARM_SHOULDER_P";
     const int RARM_SHOULDER_P::label = 12;
     const int RARM_SHOULDER_P::positionInConf = 12;
-    const Transform RARM_SHOULDER_P::Xt = Transform(
+    const Spatial::Transform RARM_SHOULDER_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -168,7 +168,7 @@ namespace metapod
     const std::string RARM_SHOULDER_R::name = "RARM_SHOULDER_R";
     const int RARM_SHOULDER_R::label = 13;
     const int RARM_SHOULDER_R::positionInConf = 13;
-    const Transform RARM_SHOULDER_R::Xt = Transform(
+    const Spatial::Transform RARM_SHOULDER_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -179,7 +179,7 @@ namespace metapod
     const std::string RARM_SHOULDER_Y::name = "RARM_SHOULDER_Y";
     const int RARM_SHOULDER_Y::label = 14;
     const int RARM_SHOULDER_Y::positionInConf = 14;
-    const Transform RARM_SHOULDER_Y::Xt = Transform(
+    const Spatial::Transform RARM_SHOULDER_Y::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     1, 0, 0,
                     0, 1, 0),
@@ -190,7 +190,7 @@ namespace metapod
     const std::string RARM_ELBOW::name = "RARM_ELBOW";
     const int RARM_ELBOW::label = 15;
     const int RARM_ELBOW::positionInConf = 15;
-    const Transform RARM_ELBOW::Xt = Transform(
+    const Spatial::Transform RARM_ELBOW::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -201,7 +201,7 @@ namespace metapod
     const std::string RARM_WRIST_Y::name = "RARM_WRIST_Y";
     const int RARM_WRIST_Y::label = 16;
     const int RARM_WRIST_Y::positionInConf = 16;
-    const Transform RARM_WRIST_Y::Xt = Transform(
+    const Spatial::Transform RARM_WRIST_Y::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, -1,
                     0, 1, 0,
                     1, 0, 0),
@@ -212,7 +212,7 @@ namespace metapod
     const std::string RARM_WRIST_P::name = "RARM_WRIST_P";
     const int RARM_WRIST_P::label = 17;
     const int RARM_WRIST_P::positionInConf = 17;
-    const Transform RARM_WRIST_P::Xt = Transform(
+    const Spatial::Transform RARM_WRIST_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -223,7 +223,7 @@ namespace metapod
     const std::string RARM_WRIST_R::name = "RARM_WRIST_R";
     const int RARM_WRIST_R::label = 18;
     const int RARM_WRIST_R::positionInConf = 18;
-    const Transform RARM_WRIST_R::Xt = Transform(
+    const Spatial::Transform RARM_WRIST_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -234,7 +234,7 @@ namespace metapod
     const std::string LLEG_HIP_R::name = "LLEG_HIP_R";
     const int LLEG_HIP_R::label = 19;
     const int LLEG_HIP_R::positionInConf = 19;
-    const Transform LLEG_HIP_R::Xt = Transform(
+    const Spatial::Transform LLEG_HIP_R::Xt = Spatial::Transform(
       matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
@@ -245,7 +245,7 @@ namespace metapod
     const std::string LLEG_HIP_P::name = "LLEG_HIP_P";
     const int LLEG_HIP_P::label = 20;
     const int LLEG_HIP_P::positionInConf = 20;
-    const Transform LLEG_HIP_P::Xt = Transform(
+    const Spatial::Transform LLEG_HIP_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -256,7 +256,7 @@ namespace metapod
     const std::string LLEG_HIP_Y::name = "LLEG_HIP_Y";
     const int LLEG_HIP_Y::label = 21;
     const int LLEG_HIP_Y::positionInConf = 21;
-    const Transform LLEG_HIP_Y::Xt = Transform(
+    const Spatial::Transform LLEG_HIP_Y::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, -1,
                     0, 1, 0,
                     1, 0, 0),
@@ -267,7 +267,7 @@ namespace metapod
     const std::string LLEG_KNEE::name = "LLEG_KNEE";
     const int LLEG_KNEE::label = 22;
     const int LLEG_KNEE::positionInConf = 22;
-    const Transform LLEG_KNEE::Xt = Transform(
+    const Spatial::Transform LLEG_KNEE::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -278,7 +278,7 @@ namespace metapod
     const std::string LLEG_ANKLE_P::name = "LLEG_ANKLE_P";
     const int LLEG_ANKLE_P::label = 23;
     const int LLEG_ANKLE_P::positionInConf = 23;
-    const Transform LLEG_ANKLE_P::Xt = Transform(
+    const Spatial::Transform LLEG_ANKLE_P::Xt = Spatial::Transform(
       matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
@@ -289,7 +289,7 @@ namespace metapod
     const std::string LLEG_ANKLE_R::name = "LLEG_ANKLE_R";
     const int LLEG_ANKLE_R::label = 24;
     const int LLEG_ANKLE_R::positionInConf = 24;
-    const Transform LLEG_ANKLE_R::Xt = Transform(
+    const Spatial::Transform LLEG_ANKLE_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -300,7 +300,7 @@ namespace metapod
     const std::string RLEG_HIP_R::name = "RLEG_HIP_R";
     const int RLEG_HIP_R::label = 25;
     const int RLEG_HIP_R::positionInConf = 6;
-    const Transform RLEG_HIP_R::Xt = Transform(
+    const Spatial::Transform RLEG_HIP_R::Xt = Spatial::Transform(
       matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
@@ -311,7 +311,7 @@ namespace metapod
     const std::string RLEG_HIP_P::name = "RLEG_HIP_P";
     const int RLEG_HIP_P::label = 26;
     const int RLEG_HIP_P::positionInConf = 7;
-    const Transform RLEG_HIP_P::Xt = Transform(
+    const Spatial::Transform RLEG_HIP_P::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -322,7 +322,7 @@ namespace metapod
     const std::string RLEG_HIP_Y::name = "RLEG_HIP_Y";
     const int RLEG_HIP_Y::label = 27;
     const int RLEG_HIP_Y::positionInConf = 8;
-    const Transform RLEG_HIP_Y::Xt = Transform(
+    const Spatial::Transform RLEG_HIP_Y::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, -1,
                     0, 1, 0,
                     1, 0, 0),
@@ -333,7 +333,7 @@ namespace metapod
     const std::string RLEG_KNEE::name = "RLEG_KNEE";
     const int RLEG_KNEE::label = 28;
     const int RLEG_KNEE::positionInConf = 9;
-    const Transform RLEG_KNEE::Xt = Transform(
+    const Spatial::Transform RLEG_KNEE::Xt = Spatial::Transform(
       matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                     -1, 0, 0),
@@ -344,7 +344,7 @@ namespace metapod
     const std::string RLEG_ANKLE_P::name = "RLEG_ANKLE_P";
     const int RLEG_ANKLE_P::label = 29;
     const int RLEG_ANKLE_P::positionInConf = 10;
-    const Transform RLEG_ANKLE_P::Xt = Transform(
+    const Spatial::Transform RLEG_ANKLE_P::Xt = Spatial::Transform(
       matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
@@ -355,7 +355,7 @@ namespace metapod
     const std::string RLEG_ANKLE_R::name = "RLEG_ANKLE_R";
     const int RLEG_ANKLE_R::label = 30;
     const int RLEG_ANKLE_R::positionInConf = 11;
-    const Transform RLEG_ANKLE_R::Xt = Transform(
+    const Spatial::Transform RLEG_ANKLE_R::Xt = Spatial::Transform(
       matrix3dMaker(0, 1, 0,
                     1, 0, 0,
                     0, 0, -1),
@@ -371,7 +371,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia WAIST_LINK0::I = spatialInertiaMaker(WAIST_LINK0::mass,
+    Spatial::Inertia WAIST_LINK0::I = spatialInertiaMaker(WAIST_LINK0::mass,
                                                  WAIST_LINK0::CoM,
                                                  WAIST_LINK0::inertie);
 
@@ -385,7 +385,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia WAIST_LINK1::I = spatialInertiaMaker(WAIST_LINK1::mass,
+    Spatial::Inertia WAIST_LINK1::I = spatialInertiaMaker(WAIST_LINK1::mass,
                                                  WAIST_LINK1::CoM,
                                                  WAIST_LINK1::inertie);
 
@@ -399,7 +399,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia WAIST_LINK2::I = spatialInertiaMaker(WAIST_LINK2::mass,
+    Spatial::Inertia WAIST_LINK2::I = spatialInertiaMaker(WAIST_LINK2::mass,
                                                  WAIST_LINK2::CoM,
                                                  WAIST_LINK2::inertie);
 
@@ -413,7 +413,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia WAIST_LINK3::I = spatialInertiaMaker(WAIST_LINK3::mass,
+    Spatial::Inertia WAIST_LINK3::I = spatialInertiaMaker(WAIST_LINK3::mass,
                                                  WAIST_LINK3::CoM,
                                                  WAIST_LINK3::inertie);
 
@@ -427,7 +427,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK1::I = spatialInertiaMaker(LARM_LINK1::mass,
+    Spatial::Inertia LARM_LINK1::I = spatialInertiaMaker(LARM_LINK1::mass,
                                                 LARM_LINK1::CoM,
                                                 LARM_LINK1::inertie);
 
@@ -441,7 +441,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK2::I = spatialInertiaMaker(LARM_LINK2::mass,
+    Spatial::Inertia LARM_LINK2::I = spatialInertiaMaker(LARM_LINK2::mass,
                                                 LARM_LINK2::CoM,
                                                 LARM_LINK2::inertie);
 
@@ -455,7 +455,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK3::I = spatialInertiaMaker(LARM_LINK3::mass,
+    Spatial::Inertia LARM_LINK3::I = spatialInertiaMaker(LARM_LINK3::mass,
                                                 LARM_LINK3::CoM,
                                                 LARM_LINK3::inertie);
 
@@ -469,7 +469,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK4::I = spatialInertiaMaker(LARM_LINK4::mass,
+    Spatial::Inertia LARM_LINK4::I = spatialInertiaMaker(LARM_LINK4::mass,
                                                 LARM_LINK4::CoM,
                                                 LARM_LINK4::inertie);
 
@@ -483,7 +483,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK5::I = spatialInertiaMaker(LARM_LINK5::mass,
+    Spatial::Inertia LARM_LINK5::I = spatialInertiaMaker(LARM_LINK5::mass,
                                                 LARM_LINK5::CoM,
                                                 LARM_LINK5::inertie);
 
@@ -497,7 +497,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK6::I = spatialInertiaMaker(LARM_LINK6::mass,
+    Spatial::Inertia LARM_LINK6::I = spatialInertiaMaker(LARM_LINK6::mass,
                                                 LARM_LINK6::CoM,
                                                 LARM_LINK6::inertie);
 
@@ -511,7 +511,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LARM_LINK7::I = spatialInertiaMaker(LARM_LINK7::mass,
+    Spatial::Inertia LARM_LINK7::I = spatialInertiaMaker(LARM_LINK7::mass,
                                                 LARM_LINK7::CoM,
                                                 LARM_LINK7::inertie);
 
@@ -525,7 +525,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK1::I = spatialInertiaMaker(RARM_LINK1::mass,
+    Spatial::Inertia RARM_LINK1::I = spatialInertiaMaker(RARM_LINK1::mass,
                                                 RARM_LINK1::CoM,
                                                 RARM_LINK1::inertie);
 
@@ -539,7 +539,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK2::I = spatialInertiaMaker(RARM_LINK2::mass,
+    Spatial::Inertia RARM_LINK2::I = spatialInertiaMaker(RARM_LINK2::mass,
                                                 RARM_LINK2::CoM,
                                                 RARM_LINK2::inertie);
 
@@ -553,7 +553,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK3::I = spatialInertiaMaker(RARM_LINK3::mass,
+    Spatial::Inertia RARM_LINK3::I = spatialInertiaMaker(RARM_LINK3::mass,
                                                 RARM_LINK3::CoM,
                                                 RARM_LINK3::inertie);
 
@@ -567,7 +567,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK4::I = spatialInertiaMaker(RARM_LINK4::mass,
+    Spatial::Inertia RARM_LINK4::I = spatialInertiaMaker(RARM_LINK4::mass,
                                                 RARM_LINK4::CoM,
                                                 RARM_LINK4::inertie);
 
@@ -581,7 +581,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK5::I = spatialInertiaMaker(RARM_LINK5::mass,
+    Spatial::Inertia RARM_LINK5::I = spatialInertiaMaker(RARM_LINK5::mass,
                                                 RARM_LINK5::CoM,
                                                 RARM_LINK5::inertie);
 
@@ -595,7 +595,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK6::I = spatialInertiaMaker(RARM_LINK6::mass,
+    Spatial::Inertia RARM_LINK6::I = spatialInertiaMaker(RARM_LINK6::mass,
                                                 RARM_LINK6::CoM,
                                                 RARM_LINK6::inertie);
 
@@ -609,7 +609,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RARM_LINK7::I = spatialInertiaMaker(RARM_LINK7::mass,
+    Spatial::Inertia RARM_LINK7::I = spatialInertiaMaker(RARM_LINK7::mass,
                                                 RARM_LINK7::CoM,
                                                 RARM_LINK7::inertie);
 
@@ -623,7 +623,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LLEG_LINK1::I = spatialInertiaMaker(LLEG_LINK1::mass,
+    Spatial::Inertia LLEG_LINK1::I = spatialInertiaMaker(LLEG_LINK1::mass,
                                                 LLEG_LINK1::CoM,
                                                 LLEG_LINK1::inertie);
 
@@ -637,7 +637,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LLEG_LINK2::I = spatialInertiaMaker(LLEG_LINK2::mass,
+    Spatial::Inertia LLEG_LINK2::I = spatialInertiaMaker(LLEG_LINK2::mass,
                                                 LLEG_LINK2::CoM,
                                                 LLEG_LINK2::inertie);
 
@@ -651,7 +651,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LLEG_LINK3::I = spatialInertiaMaker(LLEG_LINK3::mass,
+    Spatial::Inertia LLEG_LINK3::I = spatialInertiaMaker(LLEG_LINK3::mass,
                                                 LLEG_LINK3::CoM,
                                                 LLEG_LINK3::inertie);
 
@@ -665,7 +665,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LLEG_LINK4::I = spatialInertiaMaker(LLEG_LINK4::mass,
+    Spatial::Inertia LLEG_LINK4::I = spatialInertiaMaker(LLEG_LINK4::mass,
                                                 LLEG_LINK4::CoM,
                                                 LLEG_LINK4::inertie);
 
@@ -679,7 +679,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LLEG_LINK5::I = spatialInertiaMaker(LLEG_LINK5::mass,
+    Spatial::Inertia LLEG_LINK5::I = spatialInertiaMaker(LLEG_LINK5::mass,
                                                 LLEG_LINK5::CoM,
                                                 LLEG_LINK5::inertie);
 
@@ -693,7 +693,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia LLEG_LINK6::I = spatialInertiaMaker(LLEG_LINK6::mass,
+    Spatial::Inertia LLEG_LINK6::I = spatialInertiaMaker(LLEG_LINK6::mass,
                                                 LLEG_LINK6::CoM,
                                                 LLEG_LINK6::inertie);
 
@@ -707,7 +707,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RLEG_LINK1::I = spatialInertiaMaker(RLEG_LINK1::mass,
+    Spatial::Inertia RLEG_LINK1::I = spatialInertiaMaker(RLEG_LINK1::mass,
                                                 RLEG_LINK1::CoM,
                                                 RLEG_LINK1::inertie);
 
@@ -721,7 +721,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RLEG_LINK2::I = spatialInertiaMaker(RLEG_LINK2::mass,
+    Spatial::Inertia RLEG_LINK2::I = spatialInertiaMaker(RLEG_LINK2::mass,
                                                 RLEG_LINK2::CoM,
                                                 RLEG_LINK2::inertie);
 
@@ -735,7 +735,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RLEG_LINK3::I = spatialInertiaMaker(RLEG_LINK3::mass,
+    Spatial::Inertia RLEG_LINK3::I = spatialInertiaMaker(RLEG_LINK3::mass,
                                                 RLEG_LINK3::CoM,
                                                 RLEG_LINK3::inertie);
 
@@ -749,7 +749,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RLEG_LINK4::I = spatialInertiaMaker(RLEG_LINK4::mass,
+    Spatial::Inertia RLEG_LINK4::I = spatialInertiaMaker(RLEG_LINK4::mass,
                                                 RLEG_LINK4::CoM,
                                                 RLEG_LINK4::inertie);
 
@@ -763,7 +763,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RLEG_LINK5::I = spatialInertiaMaker(RLEG_LINK5::mass,
+    Spatial::Inertia RLEG_LINK5::I = spatialInertiaMaker(RLEG_LINK5::mass,
                                                 RLEG_LINK5::CoM,
                                                 RLEG_LINK5::inertie);
 
@@ -777,7 +777,7 @@ namespace metapod
       1, 0, 0,
       0, 1, 0,
       0, 0, 1);
-    Inertia RLEG_LINK6::I = spatialInertiaMaker(RLEG_LINK6::mass,
+    Spatial::Inertia RLEG_LINK6::I = spatialInertiaMaker(RLEG_LINK6::mass,
                                                 RLEG_LINK6::CoM,
                                                 RLEG_LINK6::inertie);
   } // end of namespace simple_humanoid

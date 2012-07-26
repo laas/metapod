@@ -40,7 +40,7 @@ namespace metapod
     const std::string J0::name = "J0";
     const int J0::label = 0;
     const int J0::positionInConf = 0;
-    const Transform J0::Xt = Transform(
+    const Spatial::Transform J0::Xt = Spatial::Transform(
       matrix3dMaker(
         0.59688, 0.823295, -0.604897,
         -0.329554, 0.536459, -0.444451,
@@ -57,7 +57,7 @@ namespace metapod
       -0.270431, 0.0268018, 0.0268018,
       0.83239, 0.271423, 0.271423,
       -0.716795, 0.213938, 0.213938);
-    Inertia B0::I = spatialInertiaMaker(B0::mass, B0::CoM, B0::inertie);
+    Spatial::Inertia B0::I = spatialInertiaMaker(B0::mass, B0::CoM, B0::inertie);
 
     INITIALIZE_BODY(B1);
     const std::string B1::name = "B1";
@@ -68,13 +68,13 @@ namespace metapod
       -0.686642, -0.198111, -0.198111,
       -0.782382, 0.997849, 0.997849,
       0.0258648, 0.678224, 0.678224);
-    Inertia B1::I = spatialInertiaMaker(B1::mass, B1::CoM, B1::inertie);
+    Spatial::Inertia B1::I = spatialInertiaMaker(B1::mass, B1::CoM, B1::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J1);
     const std::string J1::name = "J1";
     const int J1::label = 1;
     const int J1::positionInConf = 1;
-    const Transform J1::Xt = Transform(
+    const Spatial::Transform J1::Xt = Spatial::Transform(
       matrix3dMaker(
         0.542715, 0.05349, 0.539828,
         -0.199543, 0.783059, -0.433371,
@@ -91,13 +91,13 @@ namespace metapod
       -0.860489, 0.898654, 0.898654,
       -0.827888, -0.615572, -0.615572,
       0.780465, -0.302214, -0.302214);
-    Inertia B2::I = spatialInertiaMaker(B2::mass, B2::CoM, B2::inertie);
+    Spatial::Inertia B2::I = spatialInertiaMaker(B2::mass, B2::CoM, B2::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J2);
     const std::string J2::name = "J2";
     const int J2::label = 2;
     const int J2::positionInConf = 2;
-    const Transform J2::Xt = Transform(
+    const Spatial::Transform J2::Xt = Spatial::Transform(
       matrix3dMaker(
         0.70184, -0.466669, 0.0795207,
         -0.249586, 0.520497, 0.0250707,

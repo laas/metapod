@@ -41,22 +41,22 @@ namespace metapod
         static const FloatType mass;                       \
         static const vector3d CoM;                         \
         static const matrix3d inertie;                     \
-        static metapod::Spatial::Transform iX0;            \
-        static Motion vi;                                  \
-        static Motion ai;                                  \
-        static Force Fext;                                 \
-        static Inertia I;                                  \
-        static Inertia Iic;                                \
+        static Spatial::Transform iX0;                     \
+        static Spatial::Motion vi;                         \
+        static Spatial::Motion ai;                         \
+        static Spatial::Force Fext;                        \
+        static Spatial::Inertia I;                         \
+        static Spatial::Inertia Iic;                       \
         typedef parentname Parent;                         \
         typedef jointname Joint;                           \
     }                                                      \
 
   # define INITIALIZE_BODY(classname)                      \
-    metapod::Spatial::Transform classname::iX0;            \
-    Motion classname::vi;                                  \
-    Motion classname::ai;                                  \
-    Inertia classname::Iic;                                \
-    Force classname::Fext
+    Spatial::Transform classname::iX0;                     \
+    Spatial::Motion classname::vi;                         \
+    Spatial::Motion classname::ai;                         \
+    Spatial::Inertia classname::Iic;                       \
+    Spatial::Force classname::Fext
 
 } // end of namespace metapod
 

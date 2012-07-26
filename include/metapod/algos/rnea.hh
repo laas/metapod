@@ -84,7 +84,7 @@ namespace metapod
       Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
                      + Node::Joint::vj;
       Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
-                           Motion(Node::Joint::S * ddqi),
+                           Spatial::Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
                            (Node::Body::vi^Node::Joint::vj));
 
@@ -127,7 +127,7 @@ namespace metapod
       // applied)
       Node::Body::iX0 = Node::Joint::sXp;
       Node::Body::vi = Node::Joint::vj;
-      Node::Body::ai = sum(Motion(Node::Joint::S * ddqi),
+      Node::Body::ai = sum(Spatial::Motion(Node::Joint::S * ddqi),
                            Node::Joint::cj,
                            (Node::Body::vi^Node::Joint::vj),
                            (Node::Body::iX0*minus_g));
