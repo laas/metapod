@@ -29,9 +29,9 @@
 namespace metapod
 {
 
-// Print state of the robot.
+// Print state of the robot in a stream.
 template< typename Tree >
-void printState(std::ofstream & os)
+void printState(std::ostream & os)
 {
   typedef Tree Node;
 
@@ -54,20 +54,20 @@ void printState(std::ofstream & os)
   printState<typename Node::Child3>(os);
 }
 
-template<> inline void printState<NC>(std::ofstream &){}
+template<> inline void printState<NC>(std::ostream &){}
 
 
 /*
- * Print q, dq and ddq on stream.
+ * Print q, dq and ddq in a stream.
  * Can be used to log a configuration that can later be loaded through the
  * initConf method.
  */
 template< typename Tree > void printConf(const vectorN & q,
                                          const vectorN & dq,
                                          const vectorN & ddq,
-                                         std::ofstream & qlog,
-                                         std::ofstream & dqlog,
-                                         std::ofstream & ddqlog)
+                                         std::ostream & qlog,
+                                         std::ostream & dqlog,
+                                         std::ostream & ddqlog)
 {
   typedef Tree Node;
 
@@ -86,27 +86,9 @@ template< typename Tree > void printConf(const vectorN & q,
 
 template<>
 inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &,
-                          std::ofstream &, std::ofstream &, std::ofstream &){}
+                          std::ostream &, std::ostream &, std::ostream &){}
 
-// Print Torques of the robot in file.
-template< typename Tree >
-void printTorques(std::ofstream & os)
-{
-  typedef Tree Node;
-
-  os << Node::Joint::name << std::endl
-     << Node::Joint::torque << std::endl
-     << std::endl;
-
-  printTorques<typename Node::Child1>(os);
-  printTorques<typename Node::Child2>(os);
-  printTorques<typename Node::Child3>(os);
-}
-
-template<>
-inline void printTorques<NC>(std::ofstream &){}
-
-// Print Torques of the robot in stream.
+// Print Torques of the robot in a stream.
 template< typename Tree >
 void printTorques(std::ostream & os)
 {
