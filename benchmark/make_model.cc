@@ -228,10 +228,10 @@ void metapod::benchmark::makeLibraryHeader(std::ofstream & lib_hh, int nbdof)
 }
 
 void metapod::benchmark::addHeader(std::ofstream & body_hh,
-               std::ofstream & joint_hh,
-               std::ofstream & robot_hh,
-               std::ofstream & lib_cc, 
-               int nbdof)
+                                   std::ofstream & joint_hh,
+                                   std::ofstream & robot_hh,
+                                   std::ofstream & lib_cc, 
+                                   int nbdof)
 {
   addLicense(body_hh);
   addLicense(joint_hh);

@@ -22,7 +22,7 @@
  * It contains the initialization of all the robot bodies and joints.
  */
 
-# include "robot.hh"
+# include "simple_humanoid.hh"
 
 namespace metapod
 {
