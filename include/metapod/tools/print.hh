@@ -88,6 +88,25 @@ template<>
 inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &,
                           std::ostream &, std::ostream &, std::ostream &){}
 
+// Print Transforms of the robot bodies in a stream.
+template< typename Tree >
+void printTransforms(std::ostream & os)
+{
+  typedef Tree Node;
+
+  os << Node::Body::name << "\n"
+     << Node::Body::iX0.E() << "\n"
+     << Node::Body::iX0.r().transpose() << "\n"
+     << std::endl;
+
+  printTransforms<typename Node::Child1>(os);
+  printTransforms<typename Node::Child2>(os);
+  printTransforms<typename Node::Child3>(os);
+}
+
+template<>
+inline void printTransforms<NC>(std::ostream &){}
+
 // Print Torques of the robot in a stream.
 template< typename Tree >
 void printTorques(std::ostream & os)
