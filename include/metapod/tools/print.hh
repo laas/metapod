@@ -35,18 +35,18 @@ void printState(std::ostream & os)
 {
   typedef Tree Node;
 
-  os << Node::Body::name << " :" << std::endl
-    << "sXp :\n" << Node::Joint::sXp << std::endl
-    << "Xt :\n" << Node::Joint::Xt << std::endl
-    << "Xj :\n" << Node::Joint::Xj << std::endl
-    << "S :\n" << Node::Joint::S << std::endl
-    << "dotS :\n" << Node::Joint::dotS << std::endl
-    << "iX0 :\n" << Node::Body::iX0 << std::endl
-    << "vi :\n" << Node::Body::vi << std::endl
-    << "ai :\n" << Node::Body::ai << std::endl
-    << "I :\n" << Node::Body::I << std::endl
-    << "f :\n" << Node::Joint::f << std::endl
-    << "τ :\n" << Node::Joint::torque << std::endl
+  os << Node::Body::name << " :\n"
+    << "sXp :\n" << Node::Joint::sXp << "\n"
+    << "Xt :\n" << Node::Joint::Xt << "\n"
+    << "Xj :\n" << Node::Joint::Xj << "\n"
+    << "S :\n" << Node::Joint::S << "\n"
+    << "dotS :\n" << Node::Joint::dotS << "\n"
+    << "iX0 :\n" << Node::Body::iX0 << "\n"
+    << "vi :\n" << Node::Body::vi << "\n"
+    << "ai :\n" << Node::Body::ai << "\n"
+    << "I :\n" << Node::Body::I << "\n"
+    << "f :\n" << Node::Joint::f << "\n"
+    << "τ :\n" << Node::Joint::torque << "\n"
     << std::endl;
 
   printState<typename Node::Child1>(os);
@@ -75,9 +75,9 @@ template< typename Tree > void printConf(const vectorN & q,
   vectorN dqi = dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
   vectorN ddqi = ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
-  qlog << Node::Joint::name << std::endl << qi << std::endl;
-  dqlog << Node::Joint::name << std::endl << dqi << std::endl;
-  ddqlog << Node::Joint::name << std::endl << ddqi << std::endl;
+  qlog << Node::Joint::name << "\n" << qi << std::endl;
+  dqlog << Node::Joint::name << "\n" << dqi << std::endl;
+  ddqlog << Node::Joint::name << "\n" << ddqi << std::endl;
 
   printConf<typename Node::Child1>(q, dq, ddq, qlog, dqlog, ddqlog);
   printConf<typename Node::Child2>(q, dq, ddq, qlog, dqlog, ddqlog);
@@ -94,8 +94,8 @@ void printTorques(std::ostream & os)
 {
   typedef Tree Node;
 
-  os << Node::Joint::name << std::endl
-     << Node::Joint::torque << std::endl
+  os << Node::Joint::name << "\n"
+     << Node::Joint::torque << "\n"
      << std::endl;
 
   printTorques<typename Node::Child1>(os);
