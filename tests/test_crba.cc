@@ -57,8 +57,10 @@ BOOST_AUTO_TEST_CASE (test_crba)
     col = i%Robot::NBDOF;
     row = i/Robot::NBDOF;
     ref_log >> str2;
-    x = stringToDouble(str1);
-    y = stringToDouble(str2);
+    bool str1_ok = stringToDouble(str1, x);
+    bool str2_ok = stringToDouble(str2, y);
+    BOOST_CHECK(str1_ok && "Error reading value in crba.log");
+    BOOST_CHECK(str2_ok && "Error reading value in crba.ref");
     BOOST_CHECK(compareDouble(x, y, epsilon)
       && "Difference in log and reference files (crba.log and crba.ref).");
     if(!compareDouble(x, y, epsilon))

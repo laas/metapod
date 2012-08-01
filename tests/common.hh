@@ -45,13 +45,11 @@
 # endif
 
 // Converts a string to a double if possible, returns 0 otherwise
-double stringToDouble( const std::string& s )
+bool stringToDouble( const std::string& s, double& x )
  {
    std::istringstream i(s);
-   double x;
-   if (!(i >> x))
-     return 0;
-   return x;
+   i >> x;
+   return !(i.fail() || i.bad());
  }
 
 // Returns true if the normalized difference between two doubles is strictly
@@ -68,14 +66,14 @@ bool compareDouble(double x, double y, double epsilon)
 
 // Extracts the next double encountered in a stream file and returns it.
 // Returns 0 if none is found.
-double getNextDouble( std::ifstream & is )
+bool getNextDouble( std::ifstream & is, double& x)
 {
   std::string s;
   while(!is.eof())
   {
     is >> s;
-    if(stringToDouble(s))
-      return stringToDouble(s);
+    if(stringToDouble(s, x))
+      return true;
   }
   return 0;
 }

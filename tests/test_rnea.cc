@@ -60,10 +60,10 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   std::ifstream ref_log(TEST_DIRECTORY "/rnea.ref");
   while(result_log >> str1)
   {
-    if(stringToDouble(str1))
+    if(stringToDouble(str1, x))
     {
-      x = stringToDouble(str1);
-      y = getNextDouble(ref_log);
+      bool get_y_ok = getNextDouble(ref_log, y);
+      BOOST_CHECK(get_y_ok && "could not read reference value in rnea.ref");
       BOOST_CHECK(compareDouble(x, y, epsilon)
         && "Difference in log and reference files (rnea.log and rnea.ref).");
       if(!compareDouble(x, y, epsilon))
