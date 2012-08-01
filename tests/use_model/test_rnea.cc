@@ -23,10 +23,10 @@
  */
 
 // Common test tools
-# include "common.hh"
+# include "../common.hh"
 
 using namespace metapod;
-using namespace metapod::simple_humanoid;
+using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_rnea)
 {

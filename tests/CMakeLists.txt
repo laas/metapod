@@ -1,8 +1,7 @@
-# Copyright 2011, 2012, 
+# Copyright 2011, 2012,
 #
-# Maxime Reis
-#
-# JRL/LAAS, CNRS/AIST
+# Maxime Reis (JRL/LAAS, CNRS/AIST)
+# Sébastien Barthélémy (Aldebaran Robotics)
 #
 # This file is part of metapod.
 # metapod is free software: you can redistribute it and/or modify
@@ -27,9 +26,6 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
 # Make Boost.Test generates the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 
-# Specify the tests data files directory.
-ADD_DEFINITIONS(-DTEST_DIRECTORY="${CMAKE_SOURCE_DIR}/tests/data")
-
 ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-humanoid/simple_humanoid.cc)
 
 # ADD_TESTCASE(NAME)
@@ -40,8 +36,8 @@ ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/
 # This macro will create a binary from `NAME.cc', link it against
 # Boost and add it to the test suite.
 #
-MACRO(ADD_TESTCASE NAME)
-  ADD_EXECUTABLE(${NAME} ${NAME}.cc)
+MACRO(ADD_TESTCASE NAME SOURCE_FILE)
+    ADD_EXECUTABLE(${NAME} ${SOURCE_FILE})
   ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
 
   # Link against Boost.
@@ -51,6 +47,11 @@ MACRO(ADD_TESTCASE NAME)
   TARGET_LINK_LIBRARIES(${NAME} simple_humanoid)
 ENDMACRO(ADD_TESTCASE)
 
-# Generated test.
-ADD_TESTCASE(test_rnea)
-ADD_TESTCASE(test_crba)
+# the "use_model" subfolder is included once per tested model. The tests
+# defined within it should use the "CURRENT_MODEL" macro to use the
+# corresponding solver.
+# For each inclusion of the folder, a different binary folder is used. It acts
+# as a namespace for CMake. This makes it possible to use different values
+# for "CURRENT_MODEL" when calling add_definitions(), without conflicts.
+set(CURRENT_MODEL "simple_humanoid")
+add_subdirectory(use_model use_simple_humanoid)
