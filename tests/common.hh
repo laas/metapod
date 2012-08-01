@@ -31,6 +31,7 @@
 
 // metapod includes
 # include "metapod/models/simple-humanoid/simple_humanoid.hh"
+# include "metapod/models/simple-arm/simple_arm.hh"
 # include "metapod/tools/print.hh"
 # include "metapod/tools/initconf.hh"
 

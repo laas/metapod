@@ -27,6 +27,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 
 ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-humanoid/simple_humanoid.cc)
+ADD_LIBRARY(simple_arm SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-arm/simple_arm.cc)
 
 # ADD_TESTCASE(NAME)
 # ------------------------
@@ -43,8 +44,8 @@ MACRO(ADD_TESTCASE NAME SOURCE_FILE)
   # Link against Boost.
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
 
-  # Link against the simple_humanoid test model.
-  TARGET_LINK_LIBRARIES(${NAME} simple_humanoid)
+  # Link against the test models.
+  TARGET_LINK_LIBRARIES(${NAME} simple_humanoid simple_arm)
 ENDMACRO(ADD_TESTCASE)
 
 # the "use_model" subfolder is included once per tested model. The tests
@@ -55,3 +56,5 @@ ENDMACRO(ADD_TESTCASE)
 # for "CURRENT_MODEL" when calling add_definitions(), without conflicts.
 set(CURRENT_MODEL "simple_humanoid")
 add_subdirectory(use_model use_simple_humanoid)
+set(CURRENT_MODEL "simple_arm")
+add_subdirectory(use_model use_simple_arm)
