@@ -338,7 +338,7 @@ namespace metapod
         }
 
         Transform inverse() const
-        { 
+        {
           return Transform(m_E.transpose(), -m_E*m_r);
         }
 
