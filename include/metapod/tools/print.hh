@@ -29,24 +29,24 @@
 namespace metapod
 {
 
-// Print state of the robot.
+// Print state of the robot in a stream.
 template< typename Tree >
-void printState(std::ofstream & os)
+void printState(std::ostream & os)
 {
   typedef Tree Node;
 
-  os << Node::Body::name << " :" << std::endl
-    << "sXp :\n" << Node::Joint::sXp << std::endl
-    << "Xt :\n" << Node::Joint::Xt << std::endl
-    << "Xj :\n" << Node::Joint::Xj << std::endl
-    << "S :\n" << Node::Joint::S << std::endl
-    << "dotS :\n" << Node::Joint::dotS << std::endl
-    << "iX0 :\n" << Node::Body::iX0 << std::endl
-    << "vi :\n" << Node::Body::vi << std::endl
-    << "ai :\n" << Node::Body::ai << std::endl
-    << "I :\n" << Node::Body::I << std::endl
-    << "f :\n" << Node::Joint::f << std::endl
-    << "τ :\n" << Node::Joint::torque << std::endl
+  os << Node::Body::name << " :\n"
+    << "sXp :\n" << Node::Joint::sXp << "\n"
+    << "Xt :\n" << Node::Joint::Xt << "\n"
+    << "Xj :\n" << Node::Joint::Xj << "\n"
+    << "S :\n" << Node::Joint::S << "\n"
+    << "dotS :\n" << Node::Joint::dotS << "\n"
+    << "iX0 :\n" << Node::Body::iX0 << "\n"
+    << "vi :\n" << Node::Body::vi << "\n"
+    << "ai :\n" << Node::Body::ai << "\n"
+    << "I :\n" << Node::Body::I << "\n"
+    << "f :\n" << Node::Joint::f << "\n"
+    << "τ :\n" << Node::Joint::torque << "\n"
     << std::endl;
 
   printState<typename Node::Child1>(os);
@@ -54,20 +54,20 @@ void printState(std::ofstream & os)
   printState<typename Node::Child3>(os);
 }
 
-template<> inline void printState<NC>(std::ofstream &){}
+template<> inline void printState<NC>(std::ostream &){}
 
 
 /*
- * Print q, dq and ddq on stream.
+ * Print q, dq and ddq in a stream.
  * Can be used to log a configuration that can later be loaded through the
  * initConf method.
  */
 template< typename Tree > void printConf(const vectorN & q,
                                          const vectorN & dq,
                                          const vectorN & ddq,
-                                         std::ofstream & qlog,
-                                         std::ofstream & dqlog,
-                                         std::ofstream & ddqlog)
+                                         std::ostream & qlog,
+                                         std::ostream & dqlog,
+                                         std::ostream & ddqlog)
 {
   typedef Tree Node;
 
@@ -75,9 +75,9 @@ template< typename Tree > void printConf(const vectorN & q,
   vectorN dqi = dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
   vectorN ddqi = ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
-  qlog << Node::Joint::name << std::endl << qi << std::endl;
-  dqlog << Node::Joint::name << std::endl << dqi << std::endl;
-  ddqlog << Node::Joint::name << std::endl << ddqi << std::endl;
+  qlog << Node::Joint::name << "\n" << qi << std::endl;
+  dqlog << Node::Joint::name << "\n" << dqi << std::endl;
+  ddqlog << Node::Joint::name << "\n" << ddqi << std::endl;
 
   printConf<typename Node::Child1>(q, dq, ddq, qlog, dqlog, ddqlog);
   printConf<typename Node::Child2>(q, dq, ddq, qlog, dqlog, ddqlog);
@@ -86,34 +86,16 @@ template< typename Tree > void printConf(const vectorN & q,
 
 template<>
 inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &,
-                          std::ofstream &, std::ofstream &, std::ofstream &){}
+                          std::ostream &, std::ostream &, std::ostream &){}
 
-// Print Torques of the robot in file.
-template< typename Tree >
-void printTorques(std::ofstream & os)
-{
-  typedef Tree Node;
-
-  os << Node::Joint::name << std::endl
-     << Node::Joint::torque << std::endl
-     << std::endl;
-
-  printTorques<typename Node::Child1>(os);
-  printTorques<typename Node::Child2>(os);
-  printTorques<typename Node::Child3>(os);
-}
-
-template<>
-inline void printTorques<NC>(std::ofstream &){}
-
-// Print Torques of the robot in stream.
+// Print Torques of the robot in a stream.
 template< typename Tree >
 void printTorques(std::ostream & os)
 {
   typedef Tree Node;
 
-  os << Node::Joint::name << std::endl
-     << Node::Joint::torque << std::endl
+  os << Node::Joint::name << "\n"
+     << Node::Joint::torque << "\n"
      << std::endl;
 
   printTorques<typename Node::Child1>(os);
