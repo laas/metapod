@@ -337,11 +337,6 @@ namespace metapod
                          - skew(tmp2)*skew(m_r));
         }
 
-        vector3d apply(const vector3d & v) const
-        {
-          return vector3d(m_E.transpose()*v + m_r);
-        }
-
         Transform inverse() const
         { 
           return Transform(m_E.transpose(), -m_E*m_r);
@@ -372,11 +367,6 @@ namespace metapod
                          m_E*(I.I()
                          + skew(m_r)*skew(I.h())
                          + skew(tmp)*skew(m_r))*m_E.transpose());
-        }
-
-        vector3d operator*(const vector3d & v) const
-        {
-          return vector3d(m_E.transpose()*v + m_r);
         }
 
         // Print operator
