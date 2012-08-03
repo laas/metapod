@@ -47,38 +47,11 @@ BOOST_AUTO_TEST_CASE (test_rnea)
 
   // Apply the RNEA to the metapod multibody and print the result in a log file.
   rnea< Robot, true >::run(q, dq, ddq);
-  std::ofstream log("rnea.log", std::ofstream::out);
+  const char result_file[] = "rnea.log";
+  std::ofstream log(result_file, std::ofstream::out);
   printTorques<Robot::Tree>(log);
   log.close();
 
   // Compare results with reference file
-  double epsilon = 1e-3;
-  FloatType x,y;
-  std::string jointname;
-  std::string str1, str2;
-  std::ifstream result_log("rnea.log");
-  std::ifstream ref_log(TEST_DIRECTORY "/rnea.ref");
-  while(result_log >> str1)
-  {
-    if(stringToDouble(str1, x))
-    {
-      bool get_y_ok = getNextDouble(ref_log, y);
-      BOOST_CHECK(get_y_ok && "could not read reference value in rnea.ref");
-      BOOST_CHECK(compareDouble(x, y, epsilon)
-        && "Difference in log and reference files (rnea.log and rnea.ref).");
-      if(!compareDouble(x, y, epsilon))
-        std::cerr << jointname << "\n\t" << x << "\n\t" << y << std::endl;
-    }
-    else
-    {
-      ref_log.clear(); ref_log.seekg(0);
-      jointname = str1;
-      do
-      {
-        ref_log >> str2;
-      } while(str2.compare(jointname) && !ref_log.eof());
-    }
-  }
-  result_log.close();
-  ref_log.close();
+  compareLogs(result_file, TEST_DIRECTORY "/rnea.ref", 1e-3);
 }

@@ -78,4 +78,56 @@ bool getNextDouble( std::ifstream & is, double& x)
   return 0;
 }
 
+// Compare two log files
+// This function returns nothing, but uses boost::test assertions
+// to report discrepancies
+// The log files should contain succession of labels and
+// real values. The labels will matched from one file to the other and
+// the real values will be compared. The labels cannot contain spaces
+//
+// Here is an example of a valid log file:
+//
+// spaceless_label
+// 1   .1  12.2
+// 1 23.    0
+// mass
+// 2.5
+void compareLogs(
+    const std::string& result_file,
+    const std::string& reference_file,
+    double epsilon)
+{
+  metapod::FloatType result_value, reference_value;
+  std::string name;
+  std::string result_string, reference_string;
+  std::ifstream result_stream(result_file.c_str());
+  std::ifstream ref_stream(reference_file.c_str());
+  std::stringstream message0, message1;
+  message0 << "Could not read reference value in "
+      << reference_file;
+  message1 << "Difference in result and reference files ("
+      << result_file << reference_file << ")";
+  while(result_stream >> result_string)
+  {
+    if(stringToDouble(result_string, result_value))
+    {
+      bool get_y_ok = getNextDouble(ref_stream, reference_value);
+      BOOST_CHECK(get_y_ok && message0.str().c_str());
+      BOOST_CHECK(compareDouble(result_value, reference_value, epsilon)
+        && message1.str().c_str());
+      if(!compareDouble(result_value, reference_value, epsilon))
+        std::cerr << name << "\n\t" << result_value << "\n\t" << reference_value << std::endl;
+    }
+    else
+    {
+      ref_stream.clear(); ref_stream.seekg(0);
+      name = result_string;
+      do
+      {
+        ref_stream >> reference_string;
+      } while(reference_string.compare(name) && !ref_stream.eof());
+    }
+  }
+
+}
 #endif
