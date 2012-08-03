@@ -101,31 +101,42 @@ void compareLogs(
   std::string name;
   std::string result_string, reference_string;
   std::ifstream result_stream(result_file.c_str());
-  std::ifstream ref_stream(reference_file.c_str());
-  std::stringstream message0, message1;
-  message0 << "Could not read reference value in "
-      << reference_file;
-  message1 << "Difference in result and reference files ("
-      << result_file << reference_file << ")";
+  std::ifstream reference_stream(reference_file.c_str());
   while(result_stream >> result_string)
   {
+    unsigned int i = 0;
     if(stringToDouble(result_string, result_value))
     {
-      bool get_y_ok = getNextDouble(ref_stream, reference_value);
-      BOOST_CHECK(get_y_ok && message0.str().c_str());
-      BOOST_CHECK(compareDouble(result_value, reference_value, epsilon)
-        && message1.str().c_str());
-      if(!compareDouble(result_value, reference_value, epsilon))
-        std::cerr << name << "\n\t" << result_value << "\n\t" << reference_value << std::endl;
+      bool get_y_ok = getNextDouble(reference_stream, reference_value);
+      BOOST_CHECK(get_y_ok);
+      if(!get_y_ok)
+      {
+        std::cerr << "Could not read reference value "
+                  << name << "(" << i << ") in " << reference_file
+                  << std::endl;
+      }
+      else
+      {
+        bool compare_ok = compareDouble(result_value, reference_value, epsilon);
+        BOOST_CHECK(compare_ok);
+        if(!compare_ok)
+          std::cerr << "Difference in result and reference files ("
+                    << result_file << reference_file << ")\n"
+                    << name << "(" << i << ")\n\t"
+                    << result_value << "\n\t"
+                    << reference_value << std::endl;
+      }
+      ++i;
     }
     else
     {
-      ref_stream.clear(); ref_stream.seekg(0);
+      i = 0;
+      reference_stream.clear(); reference_stream.seekg(0);
       name = result_string;
       do
       {
-        ref_stream >> reference_string;
-      } while(reference_string.compare(name) && !ref_stream.eof());
+        reference_stream >> reference_string;
+      } while(reference_string.compare(name) && !reference_stream.eof());
     }
   }
 
