@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
 {
   // set configuration vector q to reference value.
   Robot::confVector q;
-  std::ifstream qconf(TEST_DIRECTORY "q.conf");
+  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
   initConf< Robot >::run(qconf, q);
   qconf.close();
 
