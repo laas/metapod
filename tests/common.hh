@@ -121,7 +121,7 @@ void compareLogs(
         BOOST_CHECK(compare_ok);
         if(!compare_ok)
           std::cerr << "Difference in result and reference files ("
-                    << result_file << reference_file << ")\n"
+                    << result_file << " " << reference_file << ")\n"
                     << name << "(" << i << ")\n\t"
                     << result_value << "\n\t"
                     << reference_value << std::endl;
