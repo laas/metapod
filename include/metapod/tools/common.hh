@@ -70,17 +70,21 @@ namespace metapod
   // Non-existant children make use of the NC class (No-Child).
   template< typename B,        // Body
             typename J,        // Joint
-            typename C1 = NC,  // Children nodes
+            typename C0 = NC,  // Children nodes
+            typename C1 = NC,
             typename C2 = NC,
-            typename C3 = NC >
+            typename C3 = NC,
+            typename C4 = NC >
   class Node
   {
     public:
       typedef B Body;
       typedef J Joint;
+      typedef C0 Child0;
       typedef C1 Child1;
       typedef C2 Child2;
       typedef C3 Child3;
+      typedef C4 Child4;
   };
 
   // Constant 3x3 matrix initialization method.

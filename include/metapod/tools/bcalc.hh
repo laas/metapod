@@ -52,9 +52,11 @@ namespace metapod
     {
       Node::Body::iX0 = Node::Joint::sXp;
 
+      bcalc_internal< typename Node::Child0, confVector >::run(q);
       bcalc_internal< typename Node::Child1, confVector >::run(q);
       bcalc_internal< typename Node::Child2, confVector >::run(q);
       bcalc_internal< typename Node::Child3, confVector >::run(q);
+      bcalc_internal< typename Node::Child4, confVector >::run(q);
     }
   };
 
@@ -67,9 +69,11 @@ namespace metapod
     {
       Node::Body::iX0 = Node::Joint::sXp * Node::Body::Parent::iX0;
 
+      bcalc_internal< typename Node::Child0, confVector >::run(q);
       bcalc_internal< typename Node::Child1, confVector >::run(q);
       bcalc_internal< typename Node::Child2, confVector >::run(q);
       bcalc_internal< typename Node::Child3, confVector >::run(q);
+      bcalc_internal< typename Node::Child4, confVector >::run(q);
     }
   };
 

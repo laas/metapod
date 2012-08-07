@@ -49,9 +49,11 @@ void printState(std::ostream & os)
     << "τ :\n" << Node::Joint::torque << "\n"
     << std::endl;
 
+  printState<typename Node::Child0>(os);
   printState<typename Node::Child1>(os);
   printState<typename Node::Child2>(os);
   printState<typename Node::Child3>(os);
+  printState<typename Node::Child4>(os);
 }
 
 template<> inline void printState<NC>(std::ostream &){}
@@ -79,9 +81,11 @@ template< typename Tree > void printConf(const vectorN & q,
   dqlog << Node::Joint::name << "\n" << dqi << std::endl;
   ddqlog << Node::Joint::name << "\n" << ddqi << std::endl;
 
+  printConf<typename Node::Child0>(q, dq, ddq, qlog, dqlog, ddqlog);
   printConf<typename Node::Child1>(q, dq, ddq, qlog, dqlog, ddqlog);
   printConf<typename Node::Child2>(q, dq, ddq, qlog, dqlog, ddqlog);
   printConf<typename Node::Child3>(q, dq, ddq, qlog, dqlog, ddqlog);
+  printConf<typename Node::Child4>(q, dq, ddq, qlog, dqlog, ddqlog);
 }
 
 template<>
@@ -98,9 +102,11 @@ void printTorques(std::ostream & os)
      << Node::Joint::torque << "\n"
      << std::endl;
 
+  printTorques<typename Node::Child0>(os);
   printTorques<typename Node::Child1>(os);
   printTorques<typename Node::Child2>(os);
   printTorques<typename Node::Child3>(os);
+  printTorques<typename Node::Child4>(os);
 }
 
 template<>
@@ -120,9 +126,11 @@ void getTorques(vectorN& torques, unsigned& i)
     ++j;
   }
 
+  getTorques<typename Node::Child0>(torques, i);
   getTorques<typename Node::Child1>(torques, i);
   getTorques<typename Node::Child2>(torques, i);
   getTorques<typename Node::Child3>(torques, i);
+  getTorques<typename Node::Child4>(torques, i);
 }
 
 template<>
