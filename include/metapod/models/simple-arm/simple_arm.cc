@@ -45,7 +45,7 @@ namespace metapod
     // Initialization of the robot global constants
     Eigen::Matrix< FloatType, Robot::NBDOF, Robot::NBDOF > Robot::H;
 
-    INITIALIZE_JOINT_REVOLUTE_AXIS_X(SHOULDER);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(SHOULDER, 1, 0, 0);
     const std::string SHOULDER::name = "SHOULDER";
     const int SHOULDER::label = 1;
     const int SHOULDER::positionInConf = 0;
@@ -55,7 +55,7 @@ namespace metapod
                    -1, 0, 0),
       vector3d(0, 0, 1));
 
-    INITIALIZE_JOINT_REVOLUTE_AXIS_X(ELBOW);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(ELBOW, 1, 0, 0);
     const std::string ELBOW::name = "ELBOW";
     const int ELBOW::label = 2;
     const int ELBOW::positionInConf = 1;
@@ -65,7 +65,7 @@ namespace metapod
                     0, 0, 1),
       vector3d(0, 0, -0.45));
 
-    INITIALIZE_JOINT_REVOLUTE_AXIS_X(WRIST);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(WRIST, 1, 0, 0);
     const std::string WRIST::name = "WRIST";
     const int WRIST::label = 3;
     const int WRIST::positionInConf = 2;

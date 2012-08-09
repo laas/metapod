@@ -31,9 +31,9 @@ namespace metapod
 {
   namespace simple_arm
   {
-    JOINT_REVOLUTE_AXIS_X(SHOULDER);
-    JOINT_REVOLUTE_AXIS_X(ELBOW);
-    JOINT_REVOLUTE_AXIS_X(WRIST);
+    JOINT_REVOLUTE_AXIS_ANY(SHOULDER, 1, 0, 0);
+    JOINT_REVOLUTE_AXIS_ANY(ELBOW, 1, 0, 0);
+    JOINT_REVOLUTE_AXIS_ANY(WRIST, 1, 0, 0);
   } // end of namespace simple_arm
 } // end of namespace metapod
 
