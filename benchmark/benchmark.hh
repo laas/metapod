@@ -86,7 +86,7 @@ namespace metapod
       std::cout << "*************\n"                                  \
                 << "Model NBDOF : " << robot::Robot::NBDOF << "\n  "  \
                 << "  average execution time :\n";                    \
-      typedef typename robot::Robot::confVector confVector;           \
+      typedef robot::Robot::confVector confVector;                    \
       confVector q, dq, ddq;                                          \
         timer.reinit();                                               \
         for(int i=0; i<N1; i++)                                       \
