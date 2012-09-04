@@ -40,7 +40,7 @@ namespace metapod
         break;
     }
   }
-  
+
   // Return vector constructed from log file,
   // as printed by the printConf method.
   template< typename Tree, typename confVector > struct initConf_internal;
@@ -62,12 +62,14 @@ namespace metapod
       findString(Node::Joint::name, log);
       for(int i=0; i<Node::Joint::NBDOF; i++)
         log >> v[Node::Joint::positionInConf+i];
+      initConf_internal<typename Node::Child0, confVector >::run(log,v);
       initConf_internal<typename Node::Child1, confVector >::run(log,v);
       initConf_internal<typename Node::Child2, confVector >::run(log,v);
       initConf_internal<typename Node::Child3, confVector >::run(log,v);
+      initConf_internal<typename Node::Child4, confVector >::run(log,v);
     }
   };
-  
+
   template< typename confVector > struct initConf_internal< NC, confVector >
   {
     static void run(std::ifstream &, confVector &){}

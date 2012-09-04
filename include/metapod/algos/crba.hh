@@ -67,20 +67,22 @@ namespace metapod
     {
       Node::Body::Iic = Node::Body::I;
 
+      crba_forward_propagation< Robot, typename Node::Child0 >::run();
       crba_forward_propagation< Robot, typename Node::Child1 >::run();
       crba_forward_propagation< Robot, typename Node::Child2 >::run();
       crba_forward_propagation< Robot, typename Node::Child3 >::run();
-  
+      crba_forward_propagation< Robot, typename Node::Child4 >::run();
+
       if(Node::Body::HAS_PARENT)
         Node::Body::Parent::Iic = Node::Body::Parent::Iic
                                 + Node::Joint::sXp.applyInv(Node::Body::Iic);
-  
+
       Node::Body::Joint::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
-  
+
       Robot::H.block(Node::Joint::positionInConf, Node::Joint::positionInConf,
                      Node::Joint::NBDOF, Node::Joint::NBDOF)
                        = Node::Joint::S.transpose() * Node::Body::Joint::F;
-  
+
       crba_backward_propagation< Robot, BI, BI, typename BI::Parent >::run();
     }
   };

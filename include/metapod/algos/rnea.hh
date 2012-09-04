@@ -94,9 +94,11 @@ namespace metapod
                            (Node::Body::iX0 * -Node::Body::Fext ));
 
       // recursion on children
+      rnea_internal< typename Node::Child0, confVector, true >::run(q, dq, ddq);
       rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
       rnea_internal< typename Node::Child2, confVector, true >::run(q, dq, ddq);
       rnea_internal< typename Node::Child3, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child4, confVector, true >::run(q, dq, ddq);
 
       // backward computations follow
       // τi = SiT * fi
@@ -139,9 +141,11 @@ namespace metapod
 
 
       // recursion on children
+      rnea_internal< typename Node::Child0, confVector, true >::run(q, dq, ddq);
       rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
       rnea_internal< typename Node::Child2, confVector, true >::run(q, dq, ddq);
       rnea_internal< typename Node::Child3, confVector, true >::run(q, dq, ddq);
+      rnea_internal< typename Node::Child4, confVector, true >::run(q, dq, ddq);
 
       // backward computations follow
       // τi = SiT * fi

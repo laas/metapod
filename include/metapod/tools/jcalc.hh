@@ -52,9 +52,11 @@ namespace metapod
         dq.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf)
       );
 
+      jcalc_internal< typename Node::Child0, confVector >::run(q, dq);
       jcalc_internal< typename Node::Child1, confVector >::run(q, dq);
       jcalc_internal< typename Node::Child2, confVector >::run(q, dq);
       jcalc_internal< typename Node::Child3, confVector >::run(q, dq);
+      jcalc_internal< typename Node::Child4, confVector >::run(q, dq);
     }
   };
 
