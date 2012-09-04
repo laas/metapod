@@ -54,9 +54,9 @@ namespace metapod
     const FloatType B0::mass = 1;
     const vector3d B0::CoM = vector3d(0.192681, -0.882279, 0.121744);
     const matrix3d B0::inertie = matrix3dMaker(
-      -0.578617, 0.213084, 0.213084,
-      -0.780445, -0.252888, -0.252888,
-      0.29304, 0.185384, 0.185384);
+      -0.578617, 0.213084, 0.730867,
+      -0.780445, -0.252888, -0.601995,
+      0.29304, 0.185384, 0.353108);
     Spatial::Inertia B0::I = spatialInertiaMaker(B0::mass, B0::CoM, B0::inertie);
 
     INITIALIZE_BODY(B1);
@@ -65,9 +65,9 @@ namespace metapod
     const FloatType B1::mass = 1;
     const vector3d B1::CoM = vector3d(0.866545, -0.653871, -0.104037);
     const matrix3d B1::inertie = matrix3dMaker(
-      0.127235, -0.514748, -0.514748,
-      -0.312317, -0.981853, -0.981853,
-      0.202853, 0.541372, 0.541372);
+      0.127235, -0.514748, -0.962178,
+      -0.312317, -0.981853, 0.847385,
+      0.202853, 0.541372, 0.774394);
     Spatial::Inertia B1::I = spatialInertiaMaker(B1::mass, B1::CoM, B1::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J1);
@@ -88,9 +88,9 @@ namespace metapod
     const FloatType B2::mass = 1;
     const vector3d B2::CoM = vector3d(-0.594046, 0.25225, -0.647522);
     const matrix3d B2::inertie = matrix3dMaker(
-      0.893281, -0.755348, -0.755348,
-      0.246389, 0.437333, 0.437333,
-      -0.631868, -0.435432, -0.435432);
+      0.893281, -0.755348, 0.731358,
+      0.246389, 0.437333, 0.849079,
+      -0.631868, -0.435432, -0.665669);
     Spatial::Inertia B2::I = spatialInertiaMaker(B2::mass, B2::CoM, B2::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J2);
@@ -111,9 +111,9 @@ namespace metapod
     const FloatType B3::mass = 1;
     const vector3d B3::CoM = vector3d(-0.136313, 0.627807, 0.506765);
     const matrix3d B3::inertie = matrix3dMaker(
-      -0.212508, -0.00713807, -0.00713807,
-      -0.413645, -0.511863, -0.511863,
-      0.132329, -0.618582, -0.618582);
+      -0.212508, -0.00713807, -0.12683,
+      -0.413645, -0.511863, 0.824781,
+      0.132329, -0.618582, -0.930567);
     Spatial::Inertia B3::I = spatialInertiaMaker(B3::mass, B3::CoM, B3::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J3);
@@ -134,9 +134,9 @@ namespace metapod
     const FloatType B4::mass = 1;
     const vector3d B4::CoM = vector3d(-0.621873, 0.182221, -0.893121);
     const matrix3d B4::inertie = matrix3dMaker(
-      0.533402, 0.60666, 0.60666,
-      0.363843, 0.808374, 0.808374,
-      0.504957, -0.404134, -0.404134);
+      0.533402, 0.60666, 0.397426,
+      0.363843, 0.808374, -0.374121,
+      0.504957, -0.404134, 0.618741);
     Spatial::Inertia B4::I = spatialInertiaMaker(B4::mass, B4::CoM, B4::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J4);
@@ -157,9 +157,9 @@ namespace metapod
     const FloatType B5::mass = 1;
     const vector3d B5::CoM = vector3d(-0.549529, -0.471656, 0.26717);
     const matrix3d B5::inertie = matrix3dMaker(
-      0.174022, -0.662326, -0.662326,
-      -0.0472907, 0.631098, 0.631098,
-      0.0530451, 0.1645, 0.1645);
+      0.174022, -0.662326, 0.16917,
+      -0.0472907, 0.631098, 0.852135,
+      0.0530451, 0.1645, 0.458795);
     Spatial::Inertia B5::I = spatialInertiaMaker(B5::mass, B5::CoM, B5::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J5);
@@ -180,9 +180,9 @@ namespace metapod
     const FloatType B6::mass = 1;
     const vector3d B6::CoM = vector3d(0.201525, -0.357045, 0.33592);
     const matrix3d B6::inertie = matrix3dMaker(
-      0.406372, -0.334216, -0.334216,
-      0.518417, -0.483777, -0.483777,
-      -0.967645, 0.690246, 0.690246);
+      0.406372, -0.334216, -0.570952,
+      0.518417, -0.483777, 0.367148,
+      -0.967645, 0.690246, 0.704822);
     Spatial::Inertia B6::I = spatialInertiaMaker(B6::mass, B6::CoM, B6::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J6);
@@ -203,9 +203,9 @@ namespace metapod
     const FloatType B7::mass = 1;
     const vector3d B7::CoM = vector3d(0.0148191, -0.0650583, -0.843484);
     const matrix3d B7::inertie = matrix3dMaker(
-      -0.312081, -0.280116, -0.280116,
-      -0.952274, -0.989848, -0.989848,
-      -0.414229, 0.416525, 0.416525);
+      -0.312081, -0.280116, -0.912169,
+      -0.952274, -0.989848, -0.0254917,
+      -0.414229, 0.416525, 0.640292);
     Spatial::Inertia B7::I = spatialInertiaMaker(B7::mass, B7::CoM, B7::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J7);
@@ -226,9 +226,9 @@ namespace metapod
     const FloatType B8::mass = 1;
     const vector3d B8::CoM = vector3d(0.575285, 0.89287, -0.797039);
     const matrix3d B8::inertie = matrix3dMaker(
-      -0.0481053, 0.514564, 0.514564,
-      -0.98604, 0.157225, 0.157225,
-      0.487454, 0.845144, 0.845144);
+      -0.0481053, 0.514564, 0.55501,
+      -0.98604, 0.157225, 0.472924,
+      0.487454, 0.845144, -0.807192);
     Spatial::Inertia B8::I = spatialInertiaMaker(B8::mass, B8::CoM, B8::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J8);
@@ -249,9 +249,9 @@ namespace metapod
     const FloatType B9::mass = 1;
     const vector3d B9::CoM = vector3d(-0.244006, -0.726088, 0.319755);
     const matrix3d B9::inertie = matrix3dMaker(
-      -0.316921, 0.384927, 0.384927,
-      -0.131204, 0.308057, 0.308057,
-      0.200984, -0.740048, -0.740048);
+      -0.316921, 0.384927, -0.0869716,
+      -0.131204, 0.308057, -0.352034,
+      0.200984, -0.740048, -0.83747);
     Spatial::Inertia B9::I = spatialInertiaMaker(B9::mass, B9::CoM, B9::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J9);
@@ -272,9 +272,9 @@ namespace metapod
     const FloatType B10::mass = 1;
     const vector3d B10::CoM = vector3d(-0.0761019, -0.831631, 0.560501);
     const matrix3d B10::inertie = matrix3dMaker(
-      -0.2014, -0.576869, -0.576869,
-      -0.679676, -0.383506, -0.383506,
-      -0.98913, 0.299573, 0.299573);
+      -0.2014, -0.576869, -0.0947003,
+      -0.679676, -0.383506, -0.132483,
+      -0.98913, 0.299573, -0.747556);
     Spatial::Inertia B10::I = spatialInertiaMaker(B10::mass, B10::CoM, B10::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J10);
@@ -295,9 +295,9 @@ namespace metapod
     const FloatType B11::mass = 1;
     const vector3d B11::CoM = vector3d(-0.251598, -0.236225, -0.805019);
     const matrix3d B11::inertie = matrix3dMaker(
-      0.276819, 0.400679, 0.400679,
-      -0.18677, 0.644852, 0.644852,
-      0.843102, -0.556548, -0.556548);
+      0.276819, 0.400679, 0.0788268,
+      -0.18677, 0.644852, 0.155357,
+      0.843102, -0.556548, 0.578487);
     Spatial::Inertia B11::I = spatialInertiaMaker(B11::mass, B11::CoM, B11::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J11);
@@ -318,9 +318,9 @@ namespace metapod
     const FloatType B12::mass = 1;
     const vector3d B12::CoM = vector3d(0.470623, -0.631949, 0.333414);
     const matrix3d B12::inertie = matrix3dMaker(
-      0.343682, -0.941048, -0.941048,
-      0.199413, -0.721998, -0.721998,
-      -0.608204, 0.55482, 0.55482);
+      0.343682, -0.941048, 0.511891,
+      0.199413, -0.721998, -0.712117,
+      -0.608204, 0.55482, 0.688562);
     Spatial::Inertia B12::I = spatialInertiaMaker(B12::mass, B12::CoM, B12::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J12);
@@ -341,9 +341,9 @@ namespace metapod
     const FloatType B13::mass = 1;
     const vector3d B13::CoM = vector3d(0.258719, 0.665109, 0.625994);
     const matrix3d B13::inertie = matrix3dMaker(
-      0.556925, 0.872698, 0.872698,
-      -0.410797, 0.122015, 0.122015,
-      0.746828, -0.534304, -0.534304);
+      0.556925, 0.872698, -0.715763,
+      -0.410797, 0.122015, 0.28904,
+      0.746828, -0.534304, 0.347992);
     Spatial::Inertia B13::I = spatialInertiaMaker(B13::mass, B13::CoM, B13::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J13);
@@ -364,9 +364,9 @@ namespace metapod
     const FloatType B14::mass = 1;
     const vector3d B14::CoM = vector3d(0.499438, -0.202449, -0.266407);
     const matrix3d B14::inertie = matrix3dMaker(
-      -0.113915, -0.242579, -0.242579,
-      -0.798629, -0.348577, -0.348577,
-      0.215201, -0.791652, -0.791652);
+      -0.113915, -0.242579, 0.295044,
+      -0.798629, -0.348577, 0.73888,
+      0.215201, -0.791652, 0.611578);
     Spatial::Inertia B14::I = spatialInertiaMaker(B14::mass, B14::CoM, B14::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J14);
@@ -387,9 +387,9 @@ namespace metapod
     const FloatType B15::mass = 1;
     const vector3d B15::CoM = vector3d(-0.733224, -0.413657, -0.630845);
     const matrix3d B15::inertie = matrix3dMaker(
-      -0.507858, 0.153442, 0.153442,
-      -0.74784, 0.498886, 0.498886,
-      -0.0282685, -0.615028, -0.615028);
+      -0.507858, 0.153442, -0.397662,
+      -0.74784, 0.498886, -0.039689,
+      -0.0282685, -0.615028, 0.717732);
     Spatial::Inertia B15::I = spatialInertiaMaker(B15::mass, B15::CoM, B15::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J15);
@@ -410,9 +410,9 @@ namespace metapod
     const FloatType B16::mass = 1;
     const vector3d B16::CoM = vector3d(-0.613015, 0.675972, -0.690579);
     const matrix3d B16::inertie = matrix3dMaker(
-      -0.585487, 0.988392, 0.988392,
-      0.335817, -0.0683305, -0.0683305,
-      0.784648, 0.423812, 0.423812);
+      -0.585487, 0.988392, 0.0722291,
+      0.335817, -0.0683305, 0.657093,
+      0.784648, 0.423812, -0.189465);
     Spatial::Inertia B16::I = spatialInertiaMaker(B16::mass, B16::CoM, B16::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J16);
@@ -433,9 +433,9 @@ namespace metapod
     const FloatType B17::mass = 1;
     const vector3d B17::CoM = vector3d(-0.899067, -0.81136, 0.61871);
     const matrix3d B17::inertie = matrix3dMaker(
-      0.386741, -0.111805, -0.111805,
-      0.306173, -0.56169, -0.56169,
-      0.0287034, -0.147177, -0.147177);
+      0.386741, -0.111805, -0.52728,
+      0.306173, -0.56169, -0.301352,
+      0.0287034, -0.147177, -0.31296);
     Spatial::Inertia B17::I = spatialInertiaMaker(B17::mass, B17::CoM, B17::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J17);
@@ -456,9 +456,9 @@ namespace metapod
     const FloatType B18::mass = 1;
     const vector3d B18::CoM = vector3d(-0.208632, -0.0886192, 0.0646838);
     const matrix3d B18::inertie = matrix3dMaker(
-      -0.146891, -0.79322, -0.79322,
-      0.935388, -0.781533, -0.781533,
-      -0.681351, 0.605207, 0.605207);
+      -0.146891, -0.79322, 0.200811,
+      0.935388, -0.781533, 0.738179,
+      -0.681351, 0.605207, -0.373626);
     Spatial::Inertia B18::I = spatialInertiaMaker(B18::mass, B18::CoM, B18::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J18);
@@ -479,9 +479,9 @@ namespace metapod
     const FloatType B19::mass = 1;
     const vector3d B19::CoM = vector3d(-0.595535, 0.606453, 0.34512);
     const matrix3d B19::inertie = matrix3dMaker(
-      0.556781, 0.245583, 0.245583,
-      -0.0770222, -0.182044, -0.182044,
-      0.203654, 0.671065, 0.671065);
+      0.556781, 0.245583, -0.852724,
+      -0.0770222, -0.182044, -0.080127,
+      0.203654, 0.671065, 0.126653);
     Spatial::Inertia B19::I = spatialInertiaMaker(B19::mass, B19::CoM, B19::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J19);
@@ -502,9 +502,9 @@ namespace metapod
     const FloatType B20::mass = 1;
     const vector3d B20::CoM = vector3d(-0.476228, 0.497357, -0.927008);
     const matrix3d B20::inertie = matrix3dMaker(
-      0.857355, -0.82069, -0.82069,
-      0.936789, 0.0175978, 0.0175978,
-      -0.623504, -0.425621, -0.425621);
+      0.857355, -0.82069, 0.641851,
+      0.936789, 0.0175978, -0.990547,
+      -0.623504, -0.425621, 0.255036);
     Spatial::Inertia B20::I = spatialInertiaMaker(B20::mass, B20::CoM, B20::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J20);
@@ -525,9 +525,9 @@ namespace metapod
     const FloatType B21::mass = 1;
     const vector3d B21::CoM = vector3d(-0.986092, 0.396193, 0.779022);
     const matrix3d B21::inertie = matrix3dMaker(
-      -0.272545, 0.850839, 0.850839,
-      -0.470752, 0.602048, 0.602048,
-      -0.627943, 0.459403, 0.459403);
+      -0.272545, 0.850839, -0.80143,
+      -0.470752, 0.602048, -0.417886,
+      -0.627943, 0.459403, -0.238576);
     Spatial::Inertia B21::I = spatialInertiaMaker(B21::mass, B21::CoM, B21::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J21);
@@ -548,9 +548,9 @@ namespace metapod
     const FloatType B22::mass = 1;
     const vector3d B22::CoM = vector3d(0.912222, -0.651729, -0.624614);
     const matrix3d B22::inertie = matrix3dMaker(
-      -0.554044, -0.774178, -0.774178,
-      0.721568, 0.0915689, 0.0915689,
-      0.713652, 0.819024, 0.819024);
+      -0.554044, -0.774178, -0.0946377,
+      0.721568, 0.0915689, -0.0775005,
+      0.713652, 0.819024, -0.226661);
     Spatial::Inertia B22::I = spatialInertiaMaker(B22::mass, B22::CoM, B22::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J22);
@@ -571,9 +571,9 @@ namespace metapod
     const FloatType B23::mass = 1;
     const vector3d B23::CoM = vector3d(-0.646687, -0.349646, -0.331968);
     const matrix3d B23::inertie = matrix3dMaker(
-      0.23894, 0.387384, 0.387384,
-      0.790707, -0.51717, -0.51717,
-      0.447951, -0.0712142, -0.0712142);
+      0.23894, 0.387384, 0.0402365,
+      0.790707, -0.51717, 0.35064,
+      0.447951, -0.0712142, 0.576463);
     Spatial::Inertia B23::I = spatialInertiaMaker(B23::mass, B23::CoM, B23::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J23);
@@ -594,9 +594,9 @@ namespace metapod
     const FloatType B24::mass = 1;
     const vector3d B24::CoM = vector3d(-0.165653, 0.478933, -0.0463);
     const matrix3d B24::inertie = matrix3dMaker(
-      0.490309, 0.0611044, 0.0611044,
-      -0.506021, -0.550713, -0.550713,
-      0.794111, 0.688226, 0.688226);
+      0.490309, 0.0611044, 0.0474907,
+      -0.506021, -0.550713, 0.083486,
+      0.794111, 0.688226, -0.52913);
     Spatial::Inertia B24::I = spatialInertiaMaker(B24::mass, B24::CoM, B24::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J24);
@@ -617,9 +617,9 @@ namespace metapod
     const FloatType B25::mass = 1;
     const vector3d B25::CoM = vector3d(-0.355098, 0.273313, 0.48035);
     const matrix3d B25::inertie = matrix3dMaker(
-      0.751864, 0.0296976, 0.0296976,
-      0.307519, 0.289024, 0.289024,
-      0.597412, -0.220667, -0.220667);
+      0.751864, 0.0296976, 0.943636,
+      0.307519, 0.289024, 0.969959,
+      0.597412, -0.220667, 0.0310637);
     Spatial::Inertia B25::I = spatialInertiaMaker(B25::mass, B25::CoM, B25::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J25);
@@ -640,9 +640,9 @@ namespace metapod
     const FloatType B26::mass = 1;
     const vector3d B26::CoM = vector3d(0.58184, -0.74639, -0.665518);
     const matrix3d B26::inertie = matrix3dMaker(
-      0.568284, -0.72231, -0.72231,
-      -0.53487, 0.194227, 0.194227,
-      0.638203, -0.053909, -0.053909);
+      0.568284, -0.72231, 0.4106,
+      -0.53487, 0.194227, -0.98424,
+      0.638203, -0.053909, 0.0454578);
     Spatial::Inertia B26::I = spatialInertiaMaker(B26::mass, B26::CoM, B26::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J26);
@@ -663,9 +663,9 @@ namespace metapod
     const FloatType B27::mass = 1;
     const vector3d B27::CoM = vector3d(0.718883, -0.35461, -0.236795);
     const matrix3d B27::inertie = matrix3dMaker(
-      0.879299, 0.576531, 0.576531,
-      0.453692, -0.388025, -0.388025,
-      -0.691717, -0.819741, -0.819741);
+      0.879299, 0.576531, 0.44308,
+      0.453692, -0.388025, 0.291288,
+      -0.691717, -0.819741, 0.568978);
     Spatial::Inertia B27::I = spatialInertiaMaker(B27::mass, B27::CoM, B27::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J27);
@@ -686,9 +686,9 @@ namespace metapod
     const FloatType B28::mass = 1;
     const vector3d B28::CoM = vector3d(-0.13052, -0.371914, 0.146244);
     const matrix3d B28::inertie = matrix3dMaker(
-      -0.384474, -0.936694, -0.936694,
-      -0.929922, 0.295095, 0.295095,
-      0.4264, 0.174394, 0.174394);
+      -0.384474, -0.936694, -0.465834,
+      -0.929922, 0.295095, -0.0422618,
+      0.4264, 0.174394, -0.465731);
     Spatial::Inertia B28::I = spatialInertiaMaker(B28::mass, B28::CoM, B28::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J28);
@@ -709,9 +709,9 @@ namespace metapod
     const FloatType B29::mass = 1;
     const vector3d B29::CoM = vector3d(-0.176898, 0.198581, -0.103355);
     const matrix3d B29::inertie = matrix3dMaker(
-      -0.834846, -0.715421, -0.715421,
-      0.979083, -0.487023, -0.487023,
-      -0.711064, 0.128503, 0.128503);
+      -0.834846, -0.715421, 0.538149,
+      0.979083, -0.487023, 0.538243,
+      -0.711064, 0.128503, 0.601549);
     Spatial::Inertia B29::I = spatialInertiaMaker(B29::mass, B29::CoM, B29::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J29);
@@ -732,9 +732,9 @@ namespace metapod
     const FloatType B30::mass = 1;
     const vector3d B30::CoM = vector3d(-0.325699, -0.775589, -0.351807);
     const matrix3d B30::inertie = matrix3dMaker(
-      -0.240251, 0.877927, 0.877927,
-      0.0152343, -0.919826, -0.919826,
-      0.136152, -0.754672, -0.754672);
+      -0.240251, 0.877927, -0.319359,
+      0.0152343, -0.919826, 0.850637,
+      0.136152, -0.754672, -0.864784);
     Spatial::Inertia B30::I = spatialInertiaMaker(B30::mass, B30::CoM, B30::inertie);
 
     INITIALIZE_JOINT_REVOLUTE(J30);
