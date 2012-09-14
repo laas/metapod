@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -28,8 +27,57 @@
 namespace metapod
 {
 
+  // Create a REVOLUTE_AXIS_ANY joint class
+  # define JOINT_REVOLUTE_AXIS_ANY(classname, axisx, axisy, axisz)  \
+    class classname                                                 \
+    {                                                               \
+      public:                                                       \
+      enum { NBDOF = 1 };                                           \
+      static const std::string name;                                \
+      static const int label;                                       \
+      static const int positionInConf;                              \
+      static const Spatial::Transform Xt;                           \
+      static Spatial::Transform sXp;                                \
+      static Spatial::Transform Xj;                                 \
+      static Spatial::Motion cj;                                    \
+      static Spatial::Motion vj;                                    \
+      static const vector6d S;                                      \
+      static const vector6d dotS;                                   \
+      static Spatial::Force f;                                      \
+      static vector1d torque;                                       \
+      static vector6d F;                                            \
+                                                                    \
+      static void jcalc(const vector1d & qi, const vector1d & dqi); \
+    };                                                              \
+    inline void classname::jcalc(const vector1d & qi,               \
+                          const vector1d & dqi)                     \
+    {                                                               \
+      FloatType angle = qi[0];                                      \
+      matrix3d localR;                                              \
+      localR =                                                      \
+          Eigen::AngleAxisd(-angle, vector3d(axisx, axisy, axisz)); \
+      Xj = Spatial::Transform(localR, vector3d::Zero());            \
+      sXp = Xj*Xt;                                                  \
+                                                                    \
+      /* maj vj */                                                  \
+      vj.w(vector3d(dqi[0], 0, 0));                                 \
+    }                                                               \
+    struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
+
+  # define INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(classname, axisx, axisy, axisz)\
+    Spatial::Transform classname::sXp;                              \
+    Spatial::Transform classname::Xj;                               \
+    Spatial::Motion classname::cj;                                  \
+    Spatial::Motion classname::vj;                                  \
+    Spatial::Force classname::f;                                    \
+    vector1d classname::torque;                                     \
+    const vector6d classname::S =                                   \
+        vector6dMaker(axisx, axisy, axisz, 0, 0, 0);                \
+    const vector6d classname::dotS = vector6d::Zero();              \
+    vector6d classname::F                                           \
+
   // Create a REVOLUTE_AXIS_X joint class
-  # define JOINT_REVOLUTE_AXIS_X(classname)                              \
+  # define JOINT_REVOLUTE_AXIS_X(classname)                         \
     class classname                                                 \
     {                                                               \
       public:                                                       \
@@ -67,7 +115,7 @@ namespace metapod
     }                                                               \
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
-  # define INITIALIZE_JOINT_REVOLUTE_AXIS_X(classname)                   \
+  # define INITIALIZE_JOINT_REVOLUTE_AXIS_X(classname)              \
     Spatial::Transform classname::sXp;                              \
     Spatial::Transform classname::Xj;                               \
     Spatial::Motion classname::cj;                                  \
@@ -77,7 +125,7 @@ namespace metapod
     const vector6d classname::S = vector6dMaker(1, 0, 0, 0, 0, 0);  \
     const vector6d classname::dotS = vector6d::Zero();              \
     vector6d classname::F                                           \
-  
+
   // Create a free flyer class
   # define JOINT_FREE_FLYER(classname)                              \
     class classname                                                 \

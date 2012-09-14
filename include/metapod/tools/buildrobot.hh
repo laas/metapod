@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -28,7 +27,7 @@
 
 namespace metapod
 {
-  enum { FREE_FLYER, REVOLUTE_AXIS_X };
+  enum { FREE_FLYER, REVOLUTE_AXIS_X, REVOLUTE_AXIS_ANY };
 
   void createBody(std::ofstream & body_hh,
                   std::ofstream & init_cc,
@@ -76,7 +75,10 @@ namespace metapod
                    int positionInConf,
                    const matrix3d & Xt_E,
                    const vector3d & Xt_r,
-                   const std::string & tab)
+                   const std::string & tab,
+                   FloatType axis_x = 1.,
+                   FloatType axis_y = 0.,
+                   FloatType axis_z = 0.)
   {
     switch(joint_type)
     {
@@ -87,6 +89,12 @@ namespace metapod
       case REVOLUTE_AXIS_X:
         joint_hh << tab << "JOINT_REVOLUTE_AXIS_X(" << name << ");\n";
         init_cc << tab << "INITIALIZE_JOINT_REVOLUTE_AXIS_X(" << name << ");\n";
+        break;
+      case REVOLUTE_AXIS_ANY:
+        joint_hh << tab << "JOINT_REVOLUTE_AXIS_ANY(" << name
+            << ", " << axis_x << ", " << axis_y << ", " << axis_z << ");\n";
+        init_cc << tab << "INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(" << name
+            << ", " << axis_x << ", " << axis_y << ", " << axis_z << ");\n";
         break;
     }
     init_cc
