@@ -28,8 +28,8 @@
 namespace metapod
 {
 
-  // Create a revolute joint class
-  # define JOINT_REVOLUTE(classname)                                \
+  // Create a REVOLUTE_AXIS_X joint class
+  # define JOINT_REVOLUTE_AXIS_X(classname)                              \
     class classname                                                 \
     {                                                               \
       public:                                                       \
@@ -67,7 +67,7 @@ namespace metapod
     }                                                               \
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
-  # define INITIALIZE_JOINT_REVOLUTE(classname)                     \
+  # define INITIALIZE_JOINT_REVOLUTE_AXIS_X(classname)                   \
     Spatial::Transform classname::sXp;                              \
     Spatial::Transform classname::Xj;                               \
     Spatial::Motion classname::cj;                                  \

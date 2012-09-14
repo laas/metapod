@@ -36,7 +36,7 @@ namespace metapod
   {
     Eigen::Matrix< FloatType, Robot::NBDOF, Robot::NBDOF > Robot::H;
 
-    INITIALIZE_JOINT_REVOLUTE(J0);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J0);
     const std::string J0::name = "J0";
     const int J0::label = 0;
     const int J0::positionInConf = 0;
@@ -70,7 +70,7 @@ namespace metapod
       0.900505, 0.840257, -0.70468);
     Spatial::Inertia B1::I = spatialInertiaMaker(B1::mass, B1::CoM, B1::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J1);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J1);
     const std::string J1::name = "J1";
     const int J1::label = 1;
     const int J1::positionInConf = 1;
@@ -93,7 +93,7 @@ namespace metapod
       0.36889, -0.233623, 0.499542);
     Spatial::Inertia B2::I = spatialInertiaMaker(B2::mass, B2::CoM, B2::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J2);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J2);
     const std::string J2::name = "J2";
     const int J2::label = 2;
     const int J2::positionInConf = 2;
@@ -116,7 +116,7 @@ namespace metapod
       0.278917, 0.51947, -0.813039);
     Spatial::Inertia B3::I = spatialInertiaMaker(B3::mass, B3::CoM, B3::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J3);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J3);
     const std::string J3::name = "J3";
     const int J3::label = 3;
     const int J3::positionInConf = 3;
@@ -139,7 +139,7 @@ namespace metapod
       0.187784, -0.639255, -0.673737);
     Spatial::Inertia B4::I = spatialInertiaMaker(B4::mass, B4::CoM, B4::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J4);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J4);
     const std::string J4::name = "J4";
     const int J4::label = 4;
     const int J4::positionInConf = 4;
@@ -162,7 +162,7 @@ namespace metapod
       0.746543, 0.662075, 0.958868);
     Spatial::Inertia B5::I = spatialInertiaMaker(B5::mass, B5::CoM, B5::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J5);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J5);
     const std::string J5::name = "J5";
     const int J5::label = 5;
     const int J5::positionInConf = 5;
@@ -185,7 +185,7 @@ namespace metapod
       0.0213719, 0.942931, -0.439916);
     Spatial::Inertia B6::I = spatialInertiaMaker(B6::mass, B6::CoM, B6::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J6);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J6);
     const std::string J6::name = "J6";
     const int J6::label = 6;
     const int J6::positionInConf = 6;

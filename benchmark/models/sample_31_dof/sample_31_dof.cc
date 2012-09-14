@@ -36,7 +36,7 @@ namespace metapod
   {
     Eigen::Matrix< FloatType, Robot::NBDOF, Robot::NBDOF > Robot::H;
 
-    INITIALIZE_JOINT_REVOLUTE(J0);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J0);
     const std::string J0::name = "J0";
     const int J0::label = 0;
     const int J0::positionInConf = 0;
@@ -70,7 +70,7 @@ namespace metapod
       0.202853, 0.541372, 0.774394);
     Spatial::Inertia B1::I = spatialInertiaMaker(B1::mass, B1::CoM, B1::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J1);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J1);
     const std::string J1::name = "J1";
     const int J1::label = 1;
     const int J1::positionInConf = 1;
@@ -93,7 +93,7 @@ namespace metapod
       -0.631868, -0.435432, -0.665669);
     Spatial::Inertia B2::I = spatialInertiaMaker(B2::mass, B2::CoM, B2::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J2);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J2);
     const std::string J2::name = "J2";
     const int J2::label = 2;
     const int J2::positionInConf = 2;
@@ -116,7 +116,7 @@ namespace metapod
       0.132329, -0.618582, -0.930567);
     Spatial::Inertia B3::I = spatialInertiaMaker(B3::mass, B3::CoM, B3::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J3);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J3);
     const std::string J3::name = "J3";
     const int J3::label = 3;
     const int J3::positionInConf = 3;
@@ -139,7 +139,7 @@ namespace metapod
       0.504957, -0.404134, 0.618741);
     Spatial::Inertia B4::I = spatialInertiaMaker(B4::mass, B4::CoM, B4::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J4);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J4);
     const std::string J4::name = "J4";
     const int J4::label = 4;
     const int J4::positionInConf = 4;
@@ -162,7 +162,7 @@ namespace metapod
       0.0530451, 0.1645, 0.458795);
     Spatial::Inertia B5::I = spatialInertiaMaker(B5::mass, B5::CoM, B5::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J5);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J5);
     const std::string J5::name = "J5";
     const int J5::label = 5;
     const int J5::positionInConf = 5;
@@ -185,7 +185,7 @@ namespace metapod
       -0.967645, 0.690246, 0.704822);
     Spatial::Inertia B6::I = spatialInertiaMaker(B6::mass, B6::CoM, B6::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J6);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J6);
     const std::string J6::name = "J6";
     const int J6::label = 6;
     const int J6::positionInConf = 6;
@@ -208,7 +208,7 @@ namespace metapod
       -0.414229, 0.416525, 0.640292);
     Spatial::Inertia B7::I = spatialInertiaMaker(B7::mass, B7::CoM, B7::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J7);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J7);
     const std::string J7::name = "J7";
     const int J7::label = 7;
     const int J7::positionInConf = 7;
@@ -231,7 +231,7 @@ namespace metapod
       0.487454, 0.845144, -0.807192);
     Spatial::Inertia B8::I = spatialInertiaMaker(B8::mass, B8::CoM, B8::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J8);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J8);
     const std::string J8::name = "J8";
     const int J8::label = 8;
     const int J8::positionInConf = 8;
@@ -254,7 +254,7 @@ namespace metapod
       0.200984, -0.740048, -0.83747);
     Spatial::Inertia B9::I = spatialInertiaMaker(B9::mass, B9::CoM, B9::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J9);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J9);
     const std::string J9::name = "J9";
     const int J9::label = 9;
     const int J9::positionInConf = 9;
@@ -277,7 +277,7 @@ namespace metapod
       -0.98913, 0.299573, -0.747556);
     Spatial::Inertia B10::I = spatialInertiaMaker(B10::mass, B10::CoM, B10::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J10);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J10);
     const std::string J10::name = "J10";
     const int J10::label = 10;
     const int J10::positionInConf = 10;
@@ -300,7 +300,7 @@ namespace metapod
       0.843102, -0.556548, 0.578487);
     Spatial::Inertia B11::I = spatialInertiaMaker(B11::mass, B11::CoM, B11::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J11);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J11);
     const std::string J11::name = "J11";
     const int J11::label = 11;
     const int J11::positionInConf = 11;
@@ -323,7 +323,7 @@ namespace metapod
       -0.608204, 0.55482, 0.688562);
     Spatial::Inertia B12::I = spatialInertiaMaker(B12::mass, B12::CoM, B12::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J12);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J12);
     const std::string J12::name = "J12";
     const int J12::label = 12;
     const int J12::positionInConf = 12;
@@ -346,7 +346,7 @@ namespace metapod
       0.746828, -0.534304, 0.347992);
     Spatial::Inertia B13::I = spatialInertiaMaker(B13::mass, B13::CoM, B13::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J13);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J13);
     const std::string J13::name = "J13";
     const int J13::label = 13;
     const int J13::positionInConf = 13;
@@ -369,7 +369,7 @@ namespace metapod
       0.215201, -0.791652, 0.611578);
     Spatial::Inertia B14::I = spatialInertiaMaker(B14::mass, B14::CoM, B14::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J14);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J14);
     const std::string J14::name = "J14";
     const int J14::label = 14;
     const int J14::positionInConf = 14;
@@ -392,7 +392,7 @@ namespace metapod
       -0.0282685, -0.615028, 0.717732);
     Spatial::Inertia B15::I = spatialInertiaMaker(B15::mass, B15::CoM, B15::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J15);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J15);
     const std::string J15::name = "J15";
     const int J15::label = 15;
     const int J15::positionInConf = 15;
@@ -415,7 +415,7 @@ namespace metapod
       0.784648, 0.423812, -0.189465);
     Spatial::Inertia B16::I = spatialInertiaMaker(B16::mass, B16::CoM, B16::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J16);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J16);
     const std::string J16::name = "J16";
     const int J16::label = 16;
     const int J16::positionInConf = 16;
@@ -438,7 +438,7 @@ namespace metapod
       0.0287034, -0.147177, -0.31296);
     Spatial::Inertia B17::I = spatialInertiaMaker(B17::mass, B17::CoM, B17::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J17);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J17);
     const std::string J17::name = "J17";
     const int J17::label = 17;
     const int J17::positionInConf = 17;
@@ -461,7 +461,7 @@ namespace metapod
       -0.681351, 0.605207, -0.373626);
     Spatial::Inertia B18::I = spatialInertiaMaker(B18::mass, B18::CoM, B18::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J18);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J18);
     const std::string J18::name = "J18";
     const int J18::label = 18;
     const int J18::positionInConf = 18;
@@ -484,7 +484,7 @@ namespace metapod
       0.203654, 0.671065, 0.126653);
     Spatial::Inertia B19::I = spatialInertiaMaker(B19::mass, B19::CoM, B19::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J19);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J19);
     const std::string J19::name = "J19";
     const int J19::label = 19;
     const int J19::positionInConf = 19;
@@ -507,7 +507,7 @@ namespace metapod
       -0.623504, -0.425621, 0.255036);
     Spatial::Inertia B20::I = spatialInertiaMaker(B20::mass, B20::CoM, B20::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J20);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J20);
     const std::string J20::name = "J20";
     const int J20::label = 20;
     const int J20::positionInConf = 20;
@@ -530,7 +530,7 @@ namespace metapod
       -0.627943, 0.459403, -0.238576);
     Spatial::Inertia B21::I = spatialInertiaMaker(B21::mass, B21::CoM, B21::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J21);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J21);
     const std::string J21::name = "J21";
     const int J21::label = 21;
     const int J21::positionInConf = 21;
@@ -553,7 +553,7 @@ namespace metapod
       0.713652, 0.819024, -0.226661);
     Spatial::Inertia B22::I = spatialInertiaMaker(B22::mass, B22::CoM, B22::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J22);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J22);
     const std::string J22::name = "J22";
     const int J22::label = 22;
     const int J22::positionInConf = 22;
@@ -576,7 +576,7 @@ namespace metapod
       0.447951, -0.0712142, 0.576463);
     Spatial::Inertia B23::I = spatialInertiaMaker(B23::mass, B23::CoM, B23::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J23);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J23);
     const std::string J23::name = "J23";
     const int J23::label = 23;
     const int J23::positionInConf = 23;
@@ -599,7 +599,7 @@ namespace metapod
       0.794111, 0.688226, -0.52913);
     Spatial::Inertia B24::I = spatialInertiaMaker(B24::mass, B24::CoM, B24::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J24);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J24);
     const std::string J24::name = "J24";
     const int J24::label = 24;
     const int J24::positionInConf = 24;
@@ -622,7 +622,7 @@ namespace metapod
       0.597412, -0.220667, 0.0310637);
     Spatial::Inertia B25::I = spatialInertiaMaker(B25::mass, B25::CoM, B25::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J25);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J25);
     const std::string J25::name = "J25";
     const int J25::label = 25;
     const int J25::positionInConf = 25;
@@ -645,7 +645,7 @@ namespace metapod
       0.638203, -0.053909, 0.0454578);
     Spatial::Inertia B26::I = spatialInertiaMaker(B26::mass, B26::CoM, B26::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J26);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J26);
     const std::string J26::name = "J26";
     const int J26::label = 26;
     const int J26::positionInConf = 26;
@@ -668,7 +668,7 @@ namespace metapod
       -0.691717, -0.819741, 0.568978);
     Spatial::Inertia B27::I = spatialInertiaMaker(B27::mass, B27::CoM, B27::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J27);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J27);
     const std::string J27::name = "J27";
     const int J27::label = 27;
     const int J27::positionInConf = 27;
@@ -691,7 +691,7 @@ namespace metapod
       0.4264, 0.174394, -0.465731);
     Spatial::Inertia B28::I = spatialInertiaMaker(B28::mass, B28::CoM, B28::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J28);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J28);
     const std::string J28::name = "J28";
     const int J28::label = 28;
     const int J28::positionInConf = 28;
@@ -714,7 +714,7 @@ namespace metapod
       -0.711064, 0.128503, 0.601549);
     Spatial::Inertia B29::I = spatialInertiaMaker(B29::mass, B29::CoM, B29::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J29);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J29);
     const std::string J29::name = "J29";
     const int J29::label = 29;
     const int J29::positionInConf = 29;
@@ -737,7 +737,7 @@ namespace metapod
       0.136152, -0.754672, -0.864784);
     Spatial::Inertia B30::I = spatialInertiaMaker(B30::mass, B30::CoM, B30::inertie);
 
-    INITIALIZE_JOINT_REVOLUTE(J30);
+    INITIALIZE_JOINT_REVOLUTE_AXIS_X(J30);
     const std::string J30::name = "J30";
     const int J30::label = 30;
     const int J30::positionInConf = 30;

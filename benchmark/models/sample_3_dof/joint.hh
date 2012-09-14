@@ -32,9 +32,9 @@ namespace metapod
 {
   namespace sample_3_dof
   {
-    JOINT_REVOLUTE(J0);
-    JOINT_REVOLUTE(J1);
-    JOINT_REVOLUTE(J2);
+    JOINT_REVOLUTE_AXIS_X(J0);
+    JOINT_REVOLUTE_AXIS_X(J1);
+    JOINT_REVOLUTE_AXIS_X(J2);
   } // end of namespace sample_3_dof
 } // end of namespace metapod
 
