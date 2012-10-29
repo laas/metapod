@@ -1,6 +1,7 @@
 // Copyright 2012,
 //
-// Maxime Reis
+// Maxime Reis,
+// Antonio El Khoury,
 //
 // JRL/LAAS, CNRS/AIST
 //
@@ -50,6 +51,8 @@ namespace metapod
 
     static void run(const confVector & q)
     {
+      Node::Joint::bcalc
+        (q.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf));
       Node::Body::iX0 = Node::Joint::sXp;
 
       bcalc_internal< typename Node::Child0, confVector, true >::run(q);
@@ -67,7 +70,10 @@ namespace metapod
 
     static void run(const confVector & q)
     {
+      Node::Joint::bcalc
+        (q.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf));
       Node::Body::iX0 = Node::Joint::sXp * Node::Body::Parent::iX0;
+
       bcalc_internal< typename Node::Child0, confVector, true >::run(q);
       bcalc_internal< typename Node::Child1, confVector, true >::run(q);
       bcalc_internal< typename Node::Child2, confVector, true >::run(q);
