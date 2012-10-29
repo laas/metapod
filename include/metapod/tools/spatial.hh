@@ -133,6 +133,7 @@ namespace metapod
 
         // Setters
         void w(const vector3d & v) { m_w = v; }
+        void v(const vector3d & v) { m_v = v; }
 
         // Arithmetic operators
         Motion & operator=(const vector6d & v)
