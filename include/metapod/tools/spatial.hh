@@ -344,6 +344,11 @@ namespace metapod
         }
 
         // Arithmetic operators
+        Transform operator*(const FloatType & a) const
+        {
+          return Transform(a*m_E, a*m_r);
+        }
+
         Transform operator*(const Transform & X) const
         {
           return Transform(m_E*X.E(), X.r() + X.E().transpose()*m_r);
