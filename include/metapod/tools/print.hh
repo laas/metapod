@@ -103,9 +103,11 @@ void printTransforms(std::ostream & os)
      << Node::Body::iX0.r().transpose() << "\n"
      << std::endl;
 
+  printTransforms<typename Node::Child0>(os);
   printTransforms<typename Node::Child1>(os);
   printTransforms<typename Node::Child2>(os);
   printTransforms<typename Node::Child3>(os);
+  printTransforms<typename Node::Child4>(os);
 }
 
 template<>
