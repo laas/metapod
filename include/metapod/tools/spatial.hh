@@ -1,6 +1,7 @@
 // Copyright 2012,
 //
 // Maxime Reis
+// Antonio El Khoury
 //
 // JRL/LAAS, CNRS/AIST
 //
@@ -362,6 +363,14 @@ namespace metapod
         Transform operator*(const Transform & X) const
         {
           return Transform(m_E*X.E(), X.r() + X.E().transpose()*m_r);
+        }
+
+        // Specialization of transform multiplication.Compute
+        // transform pXA from BXA, with p vector expressed in B
+        // coordinates: pXA = pXB*BXA
+        Transform toPointFrame(const vector3d& p) const
+        {
+          return Transform (m_E, m_r + m_E.transpose()*p);
         }
 
         Motion operator*(const Motion & mv) const
