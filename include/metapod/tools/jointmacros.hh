@@ -1,6 +1,7 @@
 // Copyright 2011, 2012,
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Antonio El Khoury (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
@@ -61,11 +62,11 @@ namespace metapod
     }                                                               \
                                                                     \
     inline void classname::jcalc(const vector1d & qi,               \
-                          const vector1d & dqi)                     \
+                                 const vector1d & dqi)              \
     {                                                               \
       bcalc(qi);                                                    \
       /* maj vj */                                                  \
-      vj.w(vector3d(dqi[0], 0, 0));                                 \
+      vj.w(vector3d(axisx*dqi[0], axisy*dqi[0], axisz*dqi[0]));     \
     }                                                               \
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
