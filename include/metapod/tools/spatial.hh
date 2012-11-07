@@ -285,6 +285,11 @@ namespace metapod
                          + skew(tmp)*skew(m_r))*m_E.transpose());
         }
 
+        vector3d apply(const vector3d& p) const
+        {
+          return m_E*(p - m_r);
+        }
+
         matrix6d toMatrix() const
         {
           matrix6d M;
@@ -336,6 +341,11 @@ namespace metapod
                          m_E.transpose()*I.I()*m_E
                          - skew(m_r)*skew(tmp1)
                          - skew(tmp2)*skew(m_r));
+        }
+
+        vector3d applyInv(const vector3d& p) const
+        {
+          return m_E.transpose()*p + m_r;
         }
 
         Transform inverse() const
