@@ -196,7 +196,7 @@ namespace metapod
       public:
         // Constructors
         Inertia() : m_m(), m_h(), m_I() {}
-        Inertia(const FloatType & m, const vector3d & h, const matrix3d & I) 
+        Inertia(FloatType m, const vector3d & h, const matrix3d & I)
           : m_m(m), m_h(h), m_I(I) {}
 
         // Getters
@@ -258,7 +258,7 @@ namespace metapod
       public:
         // Constructors
         Transform() : m_E(), m_r() {}
-        Transform(matrix3d E, vector3d r) : m_E(E), m_r(r) {}
+        Transform(const matrix3d & E, const vector3d & r) : m_E(E), m_r(r) {}
 
         // Getters
         const vector3d & r() const { return m_r; }
@@ -355,7 +355,7 @@ namespace metapod
         }
 
         // Arithmetic operators
-        Transform operator*(const FloatType & a) const
+        Transform operator*(FloatType a) const
         {
           return Transform(a*m_E, a*m_r);
         }
