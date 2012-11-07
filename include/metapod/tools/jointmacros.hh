@@ -48,9 +48,19 @@ namespace metapod
       static vector1d torque;                                       \
       static vector6d F;                                            \
                                                                     \
+      static vector6d applyToS(const Spatial::Transform & X);       \
       static void bcalc(const vector1d & qi);                       \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
+    inline vector6d                                                 \
+    classname::applyToS(const Spatial::Transform & X)               \
+    {                                                               \
+      vector6d tmp = vector6d::Zero();                              \
+      tmp.segment<3>(0) = X.E()*S.segment<3>(0);                    \
+      tmp.segment<3>(3) = -X.E()*X.r().cross(vector3d(axisx,axisy,axisz)); \
+      return tmp;                                                   \
+    }                                                               \
+                                                                    \
     inline void classname::bcalc(const vector1d & qi)               \
     {                                                               \
       FloatType angle = qi[0];                                      \
@@ -102,9 +112,19 @@ namespace metapod
       static vector1d torque;                                       \
       static vector6d F;                                            \
                                                                     \
+      static vector6d applyToS(const Spatial::Transform & X);       \
       static void bcalc(const vector1d & qi);                       \
       static void jcalc(const vector1d & qi, const vector1d & dqi); \
     };                                                              \
+    inline vector6d                                                 \
+    classname::applyToS(const Spatial::Transform & X)               \
+    {                                                               \
+      vector6d tmp = vector6d::Zero();                              \
+      tmp.segment<3>(0) = X.E().col(0);                             \
+      tmp.segment<3>(3) = X.E()*vector3d(0,-X.r()[2],X.r()[1]);     \
+      return tmp;                                                   \
+    }                                                               \
+                                                                    \
     inline void classname::bcalc(const vector1d & qi)               \
     {                                                               \
       FloatType angle = qi[0];                                      \
@@ -158,9 +178,20 @@ namespace metapod
       static vector6d torque;                                       \
       static matrix6d F;                                            \
                                                                     \
+      static matrix6d applyToS(const Spatial::Transform & X);       \
       static void bcalc(const vector6d & qi);                       \
       static void jcalc(const vector6d & qi, const vector6d & dqi); \
     };                                                              \
+    inline matrix6d                                                 \
+    classname::applyToS(const Spatial::Transform & X)               \
+    {                                                               \
+      matrix6d tmp = matrix6d::Zero();                              \
+      tmp.block<3,3>(0,3) = X.E() * S.block<3,3>(0,3);              \
+      tmp.block<3,3>(3,0) = X.E() * S.block<3,3>(3,0);              \
+      tmp.block<3,3>(3,3) = -X.E() * Spatial::skew(X.r()) * S.block<3,3>(0,3); \
+      return tmp;                                                   \
+    }                                                               \
+                                                                    \
     inline void classname::bcalc(const vector6d & qi)               \
     {                                                               \
       /* maj sXp */                                                 \
