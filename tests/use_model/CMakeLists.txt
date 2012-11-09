@@ -22,3 +22,4 @@ ADD_DEFINITIONS(
 ADD_TESTCASE(test_rnea_${CURRENT_MODEL} test_rnea.cc)
 ADD_TESTCASE(test_crba_${CURRENT_MODEL} test_crba.cc)
 ADD_TESTCASE(test_bcalc_${CURRENT_MODEL} test_bcalc.cc)
+ADD_TESTCASE(test_jac_point_${CURRENT_MODEL} test_jac_point.cc)

@@ -52,7 +52,8 @@ namespace metapod
   {
     const int N1 = 100;
     const int N2 = 1000;
-    enum{ JCALC, RNEA, RNEA_WITHOUT_JCALC, CRBA, CRBA_WITHOUT_JCALC };
+    enum{ JCALC, RNEA, RNEA_WITHOUT_JCALC, CRBA, CRBA_WITHOUT_JCALC,
+	  JAC_POINT_ROBOT, JAC_POINT_ROBOT_WITHOUT_BCALC };
     const int TICKS_PER_SECOND = 1e6;
     
     class Timer
@@ -154,6 +155,33 @@ namespace metapod
           timer.stop();                                               \
         }                                                             \
         std::cout << "crba (without jcalc): "                         \
+                  << timer.get()/double(N1*N2) << "µs\n";             \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+	  metapod::jac_point_robot< robot::Robot >::jacobian_t J;     \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+	    {							      \
+	      metapod::jac_point_robot< robot::Robot, true >::run(q,J);	\
+	    }							      \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "jac_point_robot: " << timer.get()/double(N1*N2) << "µs\n"; \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
+	  metapod::jac_point_robot< robot::Robot >::jacobian_t J;     \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::jac_point_robot< robot::Robot, false >::run(q, J); \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "jac_point_robot (without bcalc): "	      \
                   << timer.get()/double(N1*N2) << "µs\n";             \
         std::cout << std::endl;                                       \
     }                                                                       

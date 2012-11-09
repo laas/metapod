@@ -62,6 +62,7 @@ SET(${PROJECT_NAME}_SIMPLE_ARM_MODEL_HEADERS
 SET(${PROJECT_NAME}_ALGOS_HEADERS
   include/${PROJECT_NAME}/algos/rnea.hh
   include/${PROJECT_NAME}/algos/crba.hh
+  include/${PROJECT_NAME}/algos/jac_point.hh
   )
 
 SET(${PROJECT_NAME}_TOOLS_HEADERS

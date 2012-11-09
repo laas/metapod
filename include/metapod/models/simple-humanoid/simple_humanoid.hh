@@ -27,12 +27,15 @@
 # include "metapod/tools/common.hh"
 # include "metapod/algos/rnea.hh"
 # include "metapod/algos/crba.hh"
+# include "metapod/algos/jac_point.hh"
 
 # include "robot.hh"
 
 extern template struct metapod::crba< metapod::simple_humanoid::Robot , true >;
 extern template struct metapod::rnea< metapod::simple_humanoid::Robot , true >;
+extern template struct metapod::jac_point_robot< metapod::simple_humanoid::Robot , true >;
 extern template struct metapod::crba< metapod::simple_humanoid::Robot , false >;
 extern template struct metapod::rnea< metapod::simple_humanoid::Robot , false >;
+extern template struct metapod::jac_point_robot< metapod::simple_humanoid::Robot , false >;
 
 #endif

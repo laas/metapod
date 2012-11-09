@@ -38,6 +38,7 @@ namespace metapod
     {
       public:
         enum { NBDOF = 7 };
+        enum { NBBODIES = 7 };
         static Eigen::Matrix< FloatType, NBDOF, NBDOF > H;
         typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;
         typedef Node< B0,

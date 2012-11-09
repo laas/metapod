@@ -90,6 +90,7 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
     << "    {\n"
     << "      public:\n"
     << "        enum { NBDOF = " << NBDOF << " };\n"
+    << "        enum { NBBODIES = " << NBDOF << " };\n"
     << "        static Eigen::Matrix< FloatType, NBDOF, NBDOF > H;\n"
     << "        typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;\n";
   lib_cc

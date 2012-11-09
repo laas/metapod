@@ -35,8 +35,10 @@
 
 template struct metapod::crba< metapod::simple_arm::Robot , true >;
 template struct metapod::rnea< metapod::simple_arm::Robot , true >;
+template struct metapod::jac_point_robot< metapod::simple_arm::Robot , true >;
 template struct metapod::crba< metapod::simple_arm::Robot , false >;
 template struct metapod::rnea< metapod::simple_arm::Robot , false >;
+template struct metapod::jac_point_robot< metapod::simple_arm::Robot , false >;
 
 namespace metapod
 {
