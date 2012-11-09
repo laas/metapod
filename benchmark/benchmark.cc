@@ -27,7 +27,7 @@
 # include "models/sample_15_dof/sample_15_dof.hh"
 # include "models/sample_31_dof/sample_31_dof.hh"
 # include "models/sample_63_dof/sample_63_dof.hh"
-# include "metapod/models/simple-humanoid/robot.hh"
+# include "metapod/models/simple-humanoid/simple_humanoid.hh"
 
 # include "benchmark.hh"
 using namespace metapod::benchmark;
