@@ -82,8 +82,8 @@ namespace metapod
     }
   };
 
-  /// \brief Specialization of jac_point: Update all body transforms
-  /// with respect to configuration vector.
+  /// \brief Specialization of jac_point: Do not update body
+  /// transforms with respect to configuration vector.
   template< typename Robot, typename Body >
   struct jac_point< Robot, Body, false >
   {
