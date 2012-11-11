@@ -91,6 +91,9 @@ namespace metapod
     typedef Eigen::Matrix< FloatType, 6, Robot::NBDOF >
     jacobian_t;
 
+    /// \brief Compute the articular jacobian J.
+    ///
+    /// \sa jac_point< Robot, Body, true >::run().
     static void run(const confVector & q,
                     const vector3d & b_p,
                     jacobian_t & J)
@@ -105,6 +108,8 @@ namespace metapod
       jac_point_internal< Robot, Body >::run(p, J);
     }
   };
+
+  /// \}
 
   /// \brief Internal point articular jacobian algorithm routine.
   ///
@@ -145,8 +150,6 @@ namespace metapod
                     jacobian_t &) {}
   };
 
-  /// \}
-  ///
   /// \addtogroup jac_point_robot Point Articular Jacobian Test Algorithm
   ///
   /// Compute point articular jacobian for all robot bodies by calling
@@ -181,6 +184,9 @@ namespace metapod
       jac_point_robot_internal< Robot, typename Robot::Tree, bcalc >::run(q, J);
     }
   };
+
+  /// \}
+  ///
 
   /// \brief Internal point articular jacobian algorithm routine.
   ///
@@ -232,8 +238,6 @@ namespace metapod
     static void run(const confVector &,
                     robotJacobian_t &) {}
   };
-
-  /// \}
 
 } // end of namespace metapod.
 
