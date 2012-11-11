@@ -27,9 +27,11 @@
 template struct metapod::crba< metapod::simple_humanoid::Robot , true >;
 template struct metapod::rnea< metapod::simple_humanoid::Robot , true >;
 template struct metapod::jac_point_robot< metapod::simple_humanoid::Robot , true >;
+template struct metapod::jac_point_chain_robot< metapod::simple_humanoid::Robot , true >;
 template struct metapod::crba< metapod::simple_humanoid::Robot , false >;
 template struct metapod::rnea< metapod::simple_humanoid::Robot , false >;
 template struct metapod::jac_point_robot< metapod::simple_humanoid::Robot , false >;
+template struct metapod::jac_point_chain_robot< metapod::simple_humanoid::Robot , false >;
 
 namespace metapod
 {
