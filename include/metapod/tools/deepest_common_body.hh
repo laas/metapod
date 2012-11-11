@@ -55,7 +55,7 @@ namespace metapod
     /// chains linking the root to the start and end body
     /// respectively.
     ///
-    /// \retvalue Returned body label.
+    /// \retval Returned body label.
     static void run(int & label)
     {
       deepest_common_body_internal_start< StartBody, EndBody >::run(label);
