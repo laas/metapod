@@ -79,8 +79,8 @@ namespace metapod
 
       Node::Body::Joint::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
 
-      Robot::H.block(Node::Joint::positionInConf, Node::Joint::positionInConf,
-                     Node::Joint::NBDOF, Node::Joint::NBDOF)
+      Robot::H.template block<Node::Joint::NBDOF, Node::Joint::NBDOF>(
+              Node::Joint::positionInConf, Node::Joint::positionInConf)
                        = Node::Joint::S.transpose() * Node::Body::Joint::F;
 
       crba_backward_propagation< Robot, BI, BI, typename BI::Parent >::run();
