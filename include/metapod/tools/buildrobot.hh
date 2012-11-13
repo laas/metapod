@@ -23,7 +23,9 @@
 #ifndef METAPOD_BUILD_ROBOT_HH
 # define METAPOD_BUILD_ROBOT_HH
 
-# include "common.hh"
+# include "fwd.hh"
+# include <fstream>
+# include <iostream>
 
 namespace metapod
 {
