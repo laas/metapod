@@ -106,6 +106,19 @@ namespace metapod
         for(int i=0; i<N1; i++)                                       \
         {                                                             \
           q = confVector::Random();                                   \
+          timer.start();                                              \
+          for(int j=0; j<N2; j++)                                     \
+          {                                                           \
+            metapod::bcalc< robot::Robot >::run(q);                   \
+          }                                                           \
+          timer.stop();                                               \
+        }                                                             \
+        std::cout << "bcalc: "                                        \
+                  << timer.get()/double(N1*N2) << "µs\n";             \
+        timer.reinit();                                               \
+        for(int i=0; i<N1; i++)                                       \
+        {                                                             \
+          q = confVector::Random();                                   \
           dq = confVector::Random();                                  \
           ddq = confVector::Random();                                 \
           timer.start();                                              \
