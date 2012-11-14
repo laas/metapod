@@ -1,9 +1,8 @@
-# Copyright 2011, 2012, 
+# Copyright 2011, 2012,
 #
-# Maxime Reis,
-# Antonio El Khoury
-#
-# JRL/LAAS, CNRS/AIST
+# Maxime Reis (JRL/LAAS, CNRS/AIST)
+# Antonio El Khoury (JRL/LAAS, CNRS/AIST)
+# Sébastien Barthélémy (Aldebaran Robotics)
 #
 # This file is part of metapod.
 # metapod is free software: you can redistribute it and/or modify
