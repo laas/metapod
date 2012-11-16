@@ -18,14 +18,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.(2);
 
-/*
- * Implementation of a spatial algebra.
- * It follows R. Featherstone guidelines, and implements :
- * - Spatial Motion vectors
- * - Spatial Force vectors
- * - Spatial Rigid Body Inertia matrices
- * - Spatial Transforms
- */
 
 #ifndef METAPOD_SPATIAL_ALGEBRA_HH
 # define METAPOD_SPATIAL_ALGEBRA_HH
@@ -37,6 +29,12 @@ namespace metapod
 
   namespace Spatial
   {
+    /// Implementation of a spatial algebra.
+    /// It follows R. Featherstone guidelines, and implements :
+    /// - Spatial Motion vectors (a.k.a. twists)
+    /// - Spatial Force vectors (a.k.a. wrenches)
+    /// - Spatial Rigid Body Inertia matrices
+    /// - Spatial Transforms (a.k.a. homogeneous matrices, elements of SE(3))
 
     // Tool methods
     inline matrix3d skew(const vector3d & v)
@@ -76,7 +74,7 @@ namespace metapod
         {
           m_n = v.segment<3>(0);
           m_f = v.segment<3>(3);
-          return *this; 
+          return *this;
         }
 
         Force operator+(const Force & fv) const
@@ -220,9 +218,9 @@ namespace metapod
           return Inertia(m_m*a, m_h*a, m_I*a);
         }
 
-        Inertia operator+(const Inertia & I) const
+        Inertia operator+(const Inertia & other) const
         {
-          return Inertia(m_m+I.m(), m_h+I.h(), m_I+I.I());
+          return Inertia(m_m+other.m(), m_h+other.h(), m_I+other.I());
         }
 
         Force operator*(const Motion & mv) const
@@ -253,6 +251,15 @@ namespace metapod
         matrix3d m_I;
     };
 
+    /// Given two frames a and b, one can define the transform bXa, which
+    /// changes coordinates between the two. bXa is composed of a rotation
+    /// matrix E, which changes vector coordinates from a to b, and a vector
+    /// r, which gives the position of the origin of b, expressed in the a
+    /// frame.
+    /// So if v is a vector and p is a point, we have:
+    ///
+    ///   vb = bXa.E * va
+    ///   pb = bXa.E * (pa - bXa.r)
     class Transform
     {
       public:
@@ -265,17 +272,21 @@ namespace metapod
         const matrix3d & E() const { return m_E; }
 
         // Transformations
+
+        /// Vb = bXa.apply(Va)
         Motion apply(const Motion & mv) const
         {
           return Motion(m_E * mv.w(),
                         m_E * (mv.v() - m_r.cross(mv.w())));
         }
 
+        /// Fb = bXa.apply(Fa)
         Force apply(const Force & fv) const
         {
           return Force(m_E*(fv.n() - m_r.cross(fv.f())), m_E*fv.f());
         }
 
+        /// Ib = bXa.apply(Ia)
         Inertia apply(const Inertia & I) const
         {
           vector3d tmp = I.h() - I.m()*m_r;
@@ -286,11 +297,13 @@ namespace metapod
                          + skew(tmp)*skew(m_r))*m_E.transpose());
         }
 
+        /// Pb = bXa.apply(Pa)
         vector3d apply(const vector3d& p) const
         {
           return m_E*(p - m_r);
         }
 
+        /// Vb.toVector() = bXa.toMatrix() * Va.toVector()
         matrix6d toMatrix() const
         {
           matrix6d M;
@@ -301,6 +314,7 @@ namespace metapod
           return M;
         }
 
+        /// Fa.toVector() = bXa.toMatrixTranspose() * Fb.toVector()
         matrix6d toMatrixTranspose() const
         {
           matrix6d M;
@@ -311,6 +325,7 @@ namespace metapod
           return M;
         }
 
+        /// Fb.toVector() = bXa.toMatrixTransposeInverse() * Fa.toVector()
         matrix6d toMatrixTransposeInverse() const
         {
           matrix6d M;
@@ -321,18 +336,21 @@ namespace metapod
           return M;
         }
 
+        /// Va = bXa.applyInv(Vb)
         Motion applyInv(const Motion & mv) const
         {
           vector3d ET_w = m_E.transpose()*mv.w();
           return Motion(ET_w, m_E.transpose()*mv.v() + m_r.cross(ET_w));
         }
 
+        /// Fa = bXa.applyInv(Fb)
         Force applyInv(const Force & fv) const
         {
           vector3d ET_f = m_E.transpose()*fv.f();
           return Force(m_E.transpose()*fv.n() + m_r.cross(ET_f), ET_f);
         }
 
+        /// Ia = bXa.applyInv(Ib)
         Inertia applyInv(const Inertia & I) const
         {
           vector3d tmp1 = m_E.transpose()*I.h();
@@ -344,11 +362,14 @@ namespace metapod
                          - skew(tmp2)*skew(m_r));
         }
 
+
+        /// Pa = bXa.applyInv(Pb)
         vector3d applyInv(const vector3d& p) const
         {
           return m_E.transpose()*p + m_r;
         }
 
+        /// aXb = bXa.inverse()
         Transform inverse() const
         {
           return Transform(m_E.transpose(), -m_E*m_r);
@@ -360,30 +381,39 @@ namespace metapod
           return Transform(a*m_E, a*m_r);
         }
 
+        // bXz = bXa * aXz
         Transform operator*(const Transform & X) const
         {
           return Transform(m_E*X.E(), X.r() + X.E().transpose()*m_r);
         }
 
-        // Specialization of transform multiplication.Compute
-        // transform pXA from BXA, with p vector expressed in B
-        // coordinates: pXA = pXB*BXA
+        /// Specialization of transform multiplication.
+        /// Compute transform cXa from bXa, with cXb a translation defined by
+        /// the vector Pb (expressed in frame b).
+        ///
+        /// In a nutshell:
+        ///
+        /// cXb == Transform(Eye, Pb)
+        /// cXa == cXb * bXa == bXa.toPointFrame(Pb)
         Transform toPointFrame(const vector3d& p) const
         {
           return Transform (m_E, m_r + m_E.transpose()*p);
         }
 
+        /// Vb = bXa * Va
         Motion operator*(const Motion & mv) const
         {
           return Motion(m_E * mv.w(), m_E * (mv.v() - m_r.cross(mv.w())));
         }
 
+        /// Fb = bXa * Fa
         Force operator*(const Force & fv) const
         {
           vector3d lf = fv.f();
           return Force(m_E*(fv.n() - m_r.cross(lf)), m_E*lf);
         }
 
+        /// Ib = bXa * Ia
         Inertia operator*(const Inertia & I) const
         {
           vector3d tmp = I.h() - I.m()*m_r;

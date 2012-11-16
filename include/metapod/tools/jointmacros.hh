@@ -199,6 +199,7 @@ namespace metapod
       FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
                 cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
                 cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
+      /* localR = rx(Psi) * ry(Theta) * rz(Phi) */                  \
       localR(0,0) = cTheta * cPhi;                                  \
       localR(0,1) = cTheta * sPhi;                                  \
       localR(0,2) = -sTheta;                                        \
@@ -221,6 +222,7 @@ namespace metapod
       FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
                 cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
                 cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
+      /* localR = rx(Psi) * ry(Theta) * rz(Phi) */                  \
       localR(0,0) = cTheta * cPhi;                                  \
       localR(0,1) = cTheta * sPhi;                                  \
       localR(0,2) = -sTheta;                                        \
