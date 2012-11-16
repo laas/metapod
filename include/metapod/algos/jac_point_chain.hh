@@ -1,8 +1,7 @@
 // Copyright 2012,
 //
-// Antonio El Khoury
-//
-// JRL/LAAS, CNRS/AIST
+// Antonio El Khoury (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -85,7 +84,6 @@ namespace metapod
   struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
                           true >
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef Eigen::Matrix< FloatType, 6,
                            Robot::NBDOF
                            + offset
@@ -100,7 +98,7 @@ namespace metapod
     /// \param e_p Coordinates of point in EndBody coordinates.
     /// \retval J Computed jacobian of size 6x(NBDOF+offset) if
     /// free-flyer is included, 6x(NBDOF-6+offset) otherwise.
-    static void run(const confVector & q,
+    static void run(const typename Robot::confVector & q,
                     const vector3d & e_p,
                     jacobian_t & J)
     {
@@ -134,7 +132,6 @@ namespace metapod
   struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
                           false >
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef Eigen::Matrix< FloatType, 6,
                            Robot::NBDOF
                            + offset
@@ -144,7 +141,7 @@ namespace metapod
     /// \brief Compute the articular jacobian J.
     ///
     /// \sa jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer, true >::run().
-    static void run(const confVector & q,
+    static void run(const typename Robot::confVector & q,
                     const vector3d & e_p,
                     jacobian_t & J)
     {
@@ -350,12 +347,11 @@ namespace metapod
   template< typename Robot, bool bcalc = true >
   struct jac_point_chain_robot
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef Eigen::Matrix< FloatType, 6*Robot::NBBODIES*Robot::NBBODIES,
                            Robot::NBDOF, Eigen::RowMajor >
     jacobian_t;
 
-    static void run(const confVector & q,
+    static void run(const typename Robot::confVector & q,
                     jacobian_t & J)
     {
       J.setZero ();
@@ -372,13 +368,12 @@ namespace metapod
   template< typename Robot, typename Tree, bool bcalc >
   struct jac_point_chain_robot_internal_loop1
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef typename jac_point_chain_robot< Robot, bcalc>::jacobian_t
     robotJacobian_t;
 
     typedef Tree Node;
 
-    static void run(const confVector & q,
+    static void run(const typename Robot::confVector & q,
                     robotJacobian_t & J)
     {
       // Call second internal loop.
@@ -404,11 +399,10 @@ namespace metapod
   template< typename Robot, bool bcalc >
   struct jac_point_chain_robot_internal_loop1< Robot, NC, bcalc>
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef typename jac_point_chain_robot< Robot, bcalc>::jacobian_t
     robotJacobian_t;
-    
-    static void run(const confVector &,
+
+    static void run(const typename Robot::confVector &,
                     robotJacobian_t &) {}
   };
 
@@ -416,7 +410,6 @@ namespace metapod
             bool bcalc >
   struct jac_point_chain_robot_internal_loop2
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef typename jac_point_chain_robot< Robot, bcalc>::jacobian_t
     robotJacobian_t;
     typedef typename jac_point_chain< Robot,
@@ -432,7 +425,7 @@ namespace metapod
     typedef typename Node1::Body Body1;
     typedef typename Node2::Body Body2;
 
-    static void run(const confVector & q,
+    static void run(const typename Robot::confVector & q,
                     robotJacobian_t & J)
     {
       // Compute jacobian sub-block.
@@ -461,7 +454,6 @@ namespace metapod
   template< typename Robot, typename Tree1, typename Tree2, bool bcalc >
   struct jac_point_chain_robot_internal_loop2< Robot, Tree1, Tree2, 6, bcalc>
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef typename jac_point_chain_robot< Robot, bcalc>::jacobian_t
     robotJacobian_t;
     typedef typename jac_point_chain< Robot,
@@ -477,7 +469,7 @@ namespace metapod
     typedef typename Node1::Body Body1;
     typedef typename Node2::Body Body2;
 
-    static void run(const confVector & q,
+    static void run(const typename Robot::confVector & q,
                     robotJacobian_t & J)
     {
       // Compute jacobian sub-block.
@@ -507,11 +499,10 @@ namespace metapod
   struct jac_point_chain_robot_internal_loop2< Robot, Tree1, NC, rootNbDof,
                                                bcalc>
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef typename jac_point_chain_robot< Robot, bcalc>::jacobian_t
     robotJacobian_t;
-    
-    static void run(const confVector &,
+
+    static void run(const typename Robot::confVector &,
                     robotJacobian_t &) {}
   };
 
@@ -521,11 +512,10 @@ namespace metapod
   template< typename Robot, typename Tree1, bool bcalc >
   struct jac_point_chain_robot_internal_loop2< Robot, Tree1, NC, 6, bcalc>
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef typename jac_point_chain_robot< Robot, bcalc>::jacobian_t
     robotJacobian_t;
-    
-    static void run(const confVector &,
+
+    static void run(const typename Robot::confVector &,
                     robotJacobian_t &) {}
   };
 

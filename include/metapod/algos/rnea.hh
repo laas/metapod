@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -41,26 +40,22 @@ namespace metapod
 
   template< typename Robot > struct rnea< Robot, true >
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-
-    static void run(const confVector & q,
-                    const confVector & dq,
-                    const confVector & ddq)
+    static void run(const typename Robot::confVector & q,
+                    const typename Robot::confVector & dq,
+                    const typename Robot::confVector & ddq)
     {
       jcalc< Robot >::run(q, dq);
-      rnea_internal< typename Robot::Tree, confVector >::run(q, dq, ddq);
+      rnea_internal< typename Robot::Tree, typename Robot::confVector >::run(q, dq, ddq);
     }
   };
 
   template< typename Robot > struct rnea< Robot, false >
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-
-    static void run(const confVector & q,
-                    const confVector & dq,
-                    const confVector & ddq)
+    static void run(const typename Robot::confVector & q,
+                    const typename Robot::confVector & dq,
+                    const typename Robot::confVector & ddq)
     {
-      rnea_internal< typename Robot::Tree, confVector >::run(q, dq, ddq);
+      rnea_internal< typename Robot::Tree, typename Robot::confVector >::run(q, dq, ddq);
     }
   };
 
@@ -124,7 +119,7 @@ namespace metapod
 
       // iX0 = iXλ(i)
       // vi = vj
-      // ai = Si * ddqi + cj + vi x vj (with a0 = -g, cf. Rigid Body Dynamics 
+      // ai = Si * ddqi + cj + vi x vj (with a0 = -g, cf. Rigid Body Dynamics
       // Algorithms for a detailed explanation of how the gravity force is
       // applied)
       Node::Body::iX0 = Node::Joint::sXp;

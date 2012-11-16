@@ -1,9 +1,8 @@
 // Copyright 2012,
 //
-// Maxime Reis,
-// Antonio El Khoury,
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Antonio El Khoury (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -36,11 +35,9 @@ namespace metapod
 
   template< typename Robot > struct bcalc
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-
-    static void run(const confVector & q)
+    static void run(const typename Robot::confVector & q)
     {
-      bcalc_internal< typename Robot::Tree, confVector >::run(q);
+      bcalc_internal< typename Robot::Tree, typename Robot::confVector >::run(q);
     }
   };
 

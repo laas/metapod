@@ -1,8 +1,7 @@
 // Copyright 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -33,11 +32,9 @@ namespace metapod
 
   template< typename Robot > struct jcalc
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-
-    static void run(const confVector & q, const confVector & dq)
+    static void run(const typename Robot::confVector & q, const typename Robot::confVector & dq)
     {
-      jcalc_internal< typename Robot::Tree, confVector >::run(q, dq);
+      jcalc_internal< typename Robot::Tree, typename Robot::confVector >::run(q, dq);
     }
   };
 

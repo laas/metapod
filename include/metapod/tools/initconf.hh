@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -47,10 +46,9 @@ namespace metapod
 
   template< typename Robot > struct initConf
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-    static void run(std::ifstream & log, confVector & v)
+    static void run(std::ifstream & log, typename Robot::confVector & v)
     {
-      initConf_internal< typename Robot::Tree, confVector >::run(log, v);
+      initConf_internal< typename Robot::Tree, typename Robot::confVector >::run(log, v);
     }
   };
 
