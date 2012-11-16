@@ -25,13 +25,12 @@
 #ifndef METAPOD_FORWARD_HH
 # define METAPOD_FORWARD_HH
 
-# define EIGEN_DEFAULT_TO_ROW_MAJOR
 # include "Eigen/Dense"
 
 namespace metapod
 {
   typedef double FloatType;
-  
+
   typedef Eigen::Matrix< FloatType, 1, 1 > vector1d;
   typedef Eigen::Matrix< FloatType, 3, 1 > vector3d;
   typedef Eigen::Matrix< FloatType, 6, 1 > vector6d;
