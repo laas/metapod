@@ -66,7 +66,7 @@ namespace metapod
       FloatType angle = qi[0];                                      \
       matrix3d localR;                                              \
       localR =                                                      \
-          Eigen::AngleAxisd(-angle, vector3d(axisx, axisy, axisz)); \
+          AngleAxisd(-angle, vector3d(axisx, axisy, axisz));        \
       Xj = Spatial::Transform(localR, vector3d::Zero());            \
       sXp = Xj*Xt;                                                  \
     }                                                               \
