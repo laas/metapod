@@ -98,7 +98,7 @@ void compareLogs(
     const std::string& reference_file,
     double epsilon)
 {
-  metapod::FloatType result_value, reference_value;
+  double result_value, reference_value;
   std::string name;
   std::string result_string, reference_string;
   std::ifstream result_stream(result_file.c_str());

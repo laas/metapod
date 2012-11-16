@@ -41,6 +41,7 @@ namespace metapod
 
   typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > matrixN;
   typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > vectorN;
+  typedef Eigen::AngleAxis< FloatType > AngleAxisd;
 
   class NC;
 }
