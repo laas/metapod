@@ -173,7 +173,9 @@ namespace metapod
   struct jac_point_robot
   {
     typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-    typedef Eigen::Matrix< FloatType, 6*Robot::NBBODIES, Robot::NBDOF > jacobian_t;
+    typedef Eigen::Matrix< FloatType, 6*Robot::NBBODIES, Robot::NBDOF,
+                           Eigen::RowMajor >
+    jacobian_t;
 
     static void run(const confVector & q,
                     jacobian_t & J)

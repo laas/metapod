@@ -352,7 +352,7 @@ namespace metapod
   {
     typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
     typedef Eigen::Matrix< FloatType, 6*Robot::NBBODIES*Robot::NBBODIES,
-                           Robot::NBDOF >
+                           Robot::NBDOF, Eigen::RowMajor >
     jacobian_t;
 
     static void run(const confVector & q,
