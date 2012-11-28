@@ -60,37 +60,28 @@ template<> inline void printState<NC>(std::ostream &){}
 
 
 /*
- * Print q, dq and ddq in a stream.
+ * Print a conf vector in a stream.
  * Can be used to log a configuration that can later be loaded through the
  * initConf method.
  */
 template< typename Tree > void printConf(const vectorN & q,
-                                         const vectorN & dq,
-                                         const vectorN & ddq,
-                                         std::ostream & qlog,
-                                         std::ostream & dqlog,
-                                         std::ostream & ddqlog)
+                                         std::ostream & qlog)
 {
   typedef Tree Node;
 
   vectorN qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-  vectorN dqi = dq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-  vectorN ddqi = ddq.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
   qlog << Node::Joint::name << "\n" << qi << std::endl;
-  dqlog << Node::Joint::name << "\n" << dqi << std::endl;
-  ddqlog << Node::Joint::name << "\n" << ddqi << std::endl;
 
-  printConf<typename Node::Child0>(q, dq, ddq, qlog, dqlog, ddqlog);
-  printConf<typename Node::Child1>(q, dq, ddq, qlog, dqlog, ddqlog);
-  printConf<typename Node::Child2>(q, dq, ddq, qlog, dqlog, ddqlog);
-  printConf<typename Node::Child3>(q, dq, ddq, qlog, dqlog, ddqlog);
-  printConf<typename Node::Child4>(q, dq, ddq, qlog, dqlog, ddqlog);
+  printConf<typename Node::Child0>(q, qlog);
+  printConf<typename Node::Child1>(q, qlog);
+  printConf<typename Node::Child2>(q, qlog);
+  printConf<typename Node::Child3>(q, qlog);
+  printConf<typename Node::Child4>(q, qlog);
 }
 
 template<>
-inline void printConf<NC>(const vectorN &, const vectorN &, const vectorN &,
-                          std::ostream &, std::ostream &, std::ostream &){}
+inline void printConf<NC>(const vectorN &, std::ostream &){}
 
 // Print Transforms of the robot bodies in a stream.
 template< typename Tree >

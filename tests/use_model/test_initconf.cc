@@ -26,29 +26,17 @@ using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_initconf)
 {
-  // Set configuration vectors (q, dq, ddq) to reference values.
-  Robot::confVector q, dq, ddq;
+  // Set configuration vector to reference values.
+  Robot::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  std::ifstream dqconf(TEST_DIRECTORY "/dq.conf");
-  std::ifstream ddqconf(TEST_DIRECTORY "/ddq.conf");
   initConf< Robot >::run(qconf, q);
-  initConf< Robot >::run(dqconf, dq);
-  initConf< Robot >::run(ddqconf, ddq);
   qconf.close();
-  dqconf.close();
-  ddqconf.close();
 
-  // Write them back to files
+  // Write it back to a file
   std::ofstream q_log("q.log", std::ofstream::out);
-  std::ofstream dq_log("dq.log", std::ofstream::out);
-  std::ofstream ddq_log("ddq.log", std::ofstream::out);
-  printConf<Robot::Tree>(q, dq, ddq, q_log, dq_log, ddq_log);
+  printConf<Robot::Tree>(q, q_log);
   q_log.close();
-  dq_log.close();
-  ddq_log.close();
 
-  // Compare result files with reference files
+  // Compare resulting file with reference file
   compareLogs("q.log", TEST_DIRECTORY "/q.conf", 1e-5);
-  compareLogs("dq.log", TEST_DIRECTORY "/dq.conf", 1e-5);
-  compareLogs("ddq.log", TEST_DIRECTORY "/ddq.conf", 1e-5);
 }
