@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -31,16 +30,14 @@ namespace metapod
 {
   template< typename Robot, typename Tree > struct crba_forward_propagation;
 
-  template< typename Robot, typename BI, typename BJ, typename Parent > 
+  template< typename Robot, typename BI, typename BJ, typename Parent >
   struct crba_backward_propagation;
 
   template< typename Robot, bool jcalc = true > struct crba {};
 
   template< typename Robot > struct crba< Robot, false >
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-
-    static void run(const confVector & q)
+    static void run(const typename Robot::confVector & q)
     {
       crba_forward_propagation< Robot, typename Robot::Tree >::run();
     }
@@ -48,11 +45,9 @@ namespace metapod
 
   template< typename Robot > struct crba< Robot, true >
   {
-    typedef Eigen::Matrix< FloatType, Robot::NBDOF, 1 > confVector;
-
-    static void run(const confVector & q)
+    static void run(const typename Robot::confVector & q)
     {
-      jcalc< Robot >::run(q, confVector::Zero());
+      jcalc< Robot >::run(q, Robot::confVector::Zero());
       crba_forward_propagation< Robot, typename Robot::Tree >::run();
     }
   };
