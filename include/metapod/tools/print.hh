@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -84,25 +83,24 @@ template<>
 inline void printConf<NC>(const vectorN &, std::ostream &){}
 
 // Print Transforms of the robot bodies in a stream.
-template< typename Tree >
+template < typename Node > struct PrintTransformsVisitor
+{
+  static void discover(std::ostream & os)
+  {
+    os << Node::Body::name << "\n"
+       << Node::Body::iX0.E() << "\n"
+       << Node::Body::iX0.r().transpose() << "\n"
+       << std::endl;
+  }
+
+  static void finish(std::ostream & os) {}
+};
+
+template< typename Robot >
 void printTransforms(std::ostream & os)
 {
-  typedef Tree Node;
-
-  os << Node::Body::name << "\n"
-     << Node::Body::iX0.E() << "\n"
-     << Node::Body::iX0.r().transpose() << "\n"
-     << std::endl;
-
-  printTransforms<typename Node::Child0>(os);
-  printTransforms<typename Node::Child1>(os);
-  printTransforms<typename Node::Child2>(os);
-  printTransforms<typename Node::Child3>(os);
-  printTransforms<typename Node::Child4>(os);
-}
-
-template<>
-inline void printTransforms<NC>(std::ostream &){}
+  depth_first_traversal<PrintTransformsVisitor, Robot>::run(os);
+};
 
 // Print Torques of the robot in a stream.
 template< typename Tree >
