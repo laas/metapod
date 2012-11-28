@@ -1,0 +1,6 @@
+discover: SHOULDER -- ARM
+	discover: ELBOW -- FOREARM
+		discover: WRIST -- HAND
+		finish: WRIST -- HAND
+	finish: ELBOW -- FOREARM
+finish: SHOULDER -- ARM

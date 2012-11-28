@@ -25,6 +25,7 @@
 # define METAPOD_SIMPLE_HUMANOID_HH
 
 # include "metapod/tools/common.hh"
+# include "metapod/tools/depth_first_traversal.hh"
 # include "metapod/algos/rnea.hh"
 # include "metapod/algos/crba.hh"
 # include "metapod/algos/jac_point.hh"
