@@ -39,7 +39,7 @@ void printState(std::ostream & os)
     << "sXp :\n" << Node::Joint::sXp << "\n"
     << "Xt :\n" << Node::Joint::Xt << "\n"
     << "Xj :\n" << Node::Joint::Xj << "\n"
-    << "S :\n" << Node::Joint::S << "\n"
+     << "S :\n" << Node::Joint::S.S() << "\n"
     << "dotS :\n" << Node::Joint::dotS << "\n"
     << "iX0 :\n" << Node::Body::iX0 << "\n"
     << "vi :\n" << Node::Body::vi << "\n"
