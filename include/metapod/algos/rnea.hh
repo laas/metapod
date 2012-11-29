@@ -79,7 +79,7 @@ namespace metapod
       Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
                      + Node::Joint::vj;
       Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
-                           Spatial::Motion(Node::Joint::S * ddqi),
+                           Spatial::Motion(Node::Joint::S.S() * ddqi),
                            Node::Joint::cj,
                            (Node::Body::vi^Node::Joint::vj));
 
@@ -97,7 +97,7 @@ namespace metapod
 
       // backward computations follow
       // τi = SiT * fi
-      Node::Joint::torque = Node::Joint::S.transpose()*Node::Joint::f.toVector();
+      Node::Joint::torque = Node::Joint::S.S().transpose()*Node::Joint::f.toVector();
       // fλ(i) = fλ(i) + λ(i)Xi* * fi
       Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f
                                    + Node::Joint::sXp.applyInv(Node::Joint::f);
@@ -124,16 +124,16 @@ namespace metapod
       // applied)
       Node::Body::iX0 = Node::Joint::sXp;
       Node::Body::vi = Node::Joint::vj;
-      Node::Body::ai = sum(Spatial::Motion(Node::Joint::S * ddqi),
-                           Node::Joint::cj,
-                           (Node::Body::vi^Node::Joint::vj),
-                           (Node::Body::iX0*minus_g));
-
+      Node::Body::ai = sum(Spatial::Motion(Node::Joint::S.S() * ddqi),
+			   Node::Joint::cj,
+			   (Node::Body::vi^Node::Joint::vj),
+			   (Node::Body::iX0*minus_g));
+      
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
       Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
-                           (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
-                           (Node::Body::iX0 * -Node::Body::Fext));
-
+			   (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
+			   (Node::Body::iX0 * -Node::Body::Fext));
+      
 
       // recursion on children
       rnea_internal< typename Node::Child0, confVector, true >::run(q, dq, ddq);

@@ -72,8 +72,7 @@ namespace metapod
         Node::Body::Parent::Iic = Node::Body::Parent::Iic
                                 + Node::Joint::sXp.applyInv(Node::Body::Iic);
 
-      Node::Body::Joint::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
-
+      Node::Body::Joint::F = Node::Body::Iic * Node::Joint::S;
       Robot::H.template block<Node::Joint::NBDOF, Node::Joint::NBDOF>(
               Node::Joint::positionInConf, Node::Joint::positionInConf)
                        = Node::Joint::S.transpose() * Node::Body::Joint::F;
@@ -98,12 +97,12 @@ namespace metapod
 
     static void run()
     {
-      Joint_i::F = Joint_j::sXp.toMatrixTranspose() * Joint_i::F;
+      Joint_i::F = Joint_j::sXp.mulbyMatrixTranspose(Joint_i::F);
 
       Robot::H.template
         block< Joint_i::NBDOF, Parent::Joint::NBDOF >
              ( Joint_i::positionInConf, Parent::Joint::positionInConf )
-        = Joint_i::F.transpose() * Parent::Joint::S;
+        = Joint_i::F.transpose() * Parent::Joint::S.S();
       Robot::H.template
         block< Parent::Joint::NBDOF, Joint_i::NBDOF >
              ( Parent::Joint::positionInConf, Joint_i::positionInConf )

@@ -25,6 +25,8 @@
 #ifndef METAPOD_JOINT_MACROS_HH
 # define METAPOD_JOINT_MACROS_HH
 
+#include "metapod/tools/spatial.hh"
+
 namespace metapod
 {
 
@@ -42,7 +44,7 @@ namespace metapod
       static Spatial::Transform Xj;                                 \
       static Spatial::Motion cj;                                    \
       static Spatial::Motion vj;                                    \
-      static const vector6d S;                                      \
+      static const Spatial::ConstraintMotionAnyAxis S;		    \
       static const vector6d dotS;                                   \
       static Spatial::Force f;                                      \
       static vector1d torque;                                       \
@@ -56,7 +58,7 @@ namespace metapod
     classname::applyToS(const Spatial::Transform & X)               \
     {                                                               \
       vector6d tmp = vector6d::Zero();                              \
-      tmp.segment<3>(0) = X.E()*S.segment<3>(0);                    \
+      tmp.segment<3>(0) = X.E()*S.S().segment<3>(0);		\
       tmp.segment<3>(3) = -X.E()*X.r().cross(vector3d(axisx,axisy,axisz)); \
       return tmp;                                                   \
     }                                                               \
@@ -87,8 +89,7 @@ namespace metapod
     Spatial::Motion classname::vj;                                  \
     Spatial::Force classname::f;                                    \
     vector1d classname::torque;                                     \
-    const vector6d classname::S =                                   \
-        vector6dMaker(axisx, axisy, axisz, 0, 0, 0);                \
+    const Spatial::ConstraintMotionAnyAxis classname::S(axisx, axisy, axisz); \
     const vector6d classname::dotS = vector6d::Zero();              \
     vector6d classname::F                                           \
 
@@ -106,7 +107,7 @@ namespace metapod
       static Spatial::Transform Xj;                                 \
       static Spatial::Motion cj;                                    \
       static Spatial::Motion vj;                                    \
-      static const vector6d S;                                      \
+      static const Spatial::ConstraintMotionOneAxis<Spatial::AxisX> S;	\
       static const vector6d dotS;                                   \
       static Spatial::Force f;                                      \
       static vector1d torque;                                       \
@@ -153,10 +154,9 @@ namespace metapod
     Spatial::Motion classname::vj;                                  \
     Spatial::Force classname::f;                                    \
     vector1d classname::torque;                                     \
-    const vector6d classname::S = vector6dMaker(1, 0, 0, 0, 0, 0);  \
+    const Spatial::ConstraintMotionOneAxis<Spatial::AxisX> classname::S;				    \
     const vector6d classname::dotS = vector6d::Zero();              \
     vector6d classname::F                                           \
-
   // Create a free flyer class
   # define JOINT_FREE_FLYER(classname)                              \
     class classname                                                 \
@@ -171,7 +171,7 @@ namespace metapod
       static Spatial::Transform Xj;                                 \
       static Spatial::Motion cj;                                    \
       static Spatial::Motion vj;                                    \
-      static matrix6d S;                                            \
+      static Spatial::ConstraintMotionFreeFlyer S;		    \
       static matrix6d dotS;                                         \
       static Spatial::Force f;                                      \
       static vector6d torque;                                       \
@@ -185,16 +185,18 @@ namespace metapod
     classname::applyToS(const Spatial::Transform & X)               \
     {                                                               \
       matrix6d tmp = matrix6d::Zero();                              \
-      tmp.block<3,3>(0,3) = X.E() * S.block<3,3>(0,3);              \
-      tmp.block<3,3>(3,0) = X.E() * S.block<3,3>(3,0);              \
-      tmp.block<3,3>(3,3) = -X.E() * Spatial::skew(X.r()) * S.block<3,3>(0,3); \
+      tmp.block<3,3>(0,3) = X.E() * S.S().block<3,3>(0,3);	    \
+      tmp.block<3,3>(3,0) = X.E() * S.S().block<3,3>(3,0);		\
+      tmp.block<3,3>(3,3) = -X.E() * Spatial::skew(X.r()) * S.S().block<3,3>(0,3); \
       return tmp;                                                   \
     }                                                               \
                                                                     \
     inline void classname::bcalc(const vector6d & qi)               \
     {                                                               \
       /* maj sXp */                                                 \
-      matrix3d localR;                                              \
+      matrix3d localR;						    \
+      matrix6d lS;                                                  \
+      lS = matrix6d::Zero();                                        \
       FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
                 cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
                 cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
@@ -208,7 +210,7 @@ namespace metapod
       localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;             \
       localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
       localR(2,2) = cPsi * cTheta;                                  \
-      S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;               \
+      S.setlocalR(localR); \
       Xj = Spatial::Transform(localR, qi.segment<3>(0));            \
       sXp = Xj*Xt;                                                  \
     }                                                               \
@@ -218,6 +220,8 @@ namespace metapod
     {                                                               \
       /* maj sXp */                                                 \
       matrix3d localR;                                              \
+      matrix6d lS;                                                  \
+      lS = matrix6d::Zero();                                        \
       FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
                 cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
                 cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
@@ -231,11 +235,11 @@ namespace metapod
       localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;             \
       localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
       localR(2,2) = cPsi * cTheta;                                  \
-      S.block<3,3>(0,3) = S.block<3,3>(3,0) = localR;               \
+      S.setlocalR(localR); \
       Xj = Spatial::Transform(localR, vector3d::Zero());            \
       sXp = Xj*Spatial::Transform(matrix3d::Identity(), qi.segment<3>(0)); \
       /* maj vj */                                                  \
-      vj = Spatial::Motion(S*dqi);                                  \
+      vj = Spatial::Motion(S.S()*dqi);				    \
     }                                                               \
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
@@ -246,7 +250,7 @@ namespace metapod
     Spatial::Motion classname::vj;                                  \
     Spatial::Force classname::f;                                    \
     vector6d classname::torque;                                     \
-    matrix6d classname::S = matrix6d::Zero();                       \
+    Spatial::ConstraintMotionFreeFlyer classname::S;                \
     matrix6d classname::dotS = matrix6d::Zero();                    \
     matrix6d classname::F                                           \
 
