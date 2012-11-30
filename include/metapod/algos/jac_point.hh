@@ -91,7 +91,7 @@ namespace metapod
     /// \brief Compute the articular jacobian J.
     ///
     /// \sa jac_point< Robot, Body, true >::run().
-    static void run(const typename Robot::confVector & q,
+    static void run(const typename Robot::confVector & ,
                     const vector3d & b_p,
                     jacobian_t & J)
     {

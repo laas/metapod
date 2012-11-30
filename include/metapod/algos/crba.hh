@@ -37,7 +37,7 @@ namespace metapod
 
   template< typename Robot > struct crba< Robot, false >
   {
-    static void run(const typename Robot::confVector & q)
+    static void run(const typename Robot::confVector & )
     {
       crba_forward_propagation< Robot, typename Robot::Tree >::run();
     }

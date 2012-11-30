@@ -141,7 +141,7 @@ namespace metapod
     /// \brief Compute the articular jacobian J.
     ///
     /// \sa jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer, true >::run().
-    static void run(const typename Robot::confVector & q,
+    static void run(const typename Robot::confVector & ,
                     const vector3d & e_p,
                     jacobian_t & J)
     {
@@ -217,7 +217,7 @@ namespace metapod
                                      offset, includeFreeFlyer >::jacobian_t
     jacobian_t;
 
-    static void run(const int & label,
+    static void run(const int & ,
                     const vector3d &,
                     jacobian_t &) {}
   };
