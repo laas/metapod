@@ -86,9 +86,6 @@ namespace metapod
       { return OperatorMul<T,U,S>::mul(u,s); }
 
       
-      friend 
-      vector6d operator*(const Inertia &m, 
-			 const ConstraintMotionAnyAxis &a);
      
       private:
         // Private members
