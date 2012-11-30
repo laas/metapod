@@ -69,8 +69,14 @@ namespace metapod
                     const confVector & ddq) __attribute__ ((hot))
     {
       // Extract subvector corresponding to current Node
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
-        ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+      Spatial::Motion Sddqi;
+
+      if (Node::Joint::NBDOF!=0)
+	{
+	  Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
+	    ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+	  Sddqi = Node::Joint::S.S() * ddqi;
+	}
 
       // iX0 = iXλ(i) * λ(i)X0
       // vi = iXλ(i) * vλ(i) + vj
@@ -79,7 +85,7 @@ namespace metapod
       Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
                      + Node::Joint::vj;
       Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
-                           Spatial::Motion(Node::Joint::S.S() * ddqi),
+                           Sddqi,
                            Node::Joint::cj,
                            (Node::Body::vi^Node::Joint::vj));
 
@@ -114,8 +120,15 @@ namespace metapod
                     const confVector & ddq)
     {
       // Extract subvector corresponding to current Node
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
-        ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+      Spatial::Motion Sddqi;
+
+      if (Node::Joint::NBDOF!=0)
+	{
+	  Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
+	    ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+	  Sddqi = Node::Joint::S.S() * ddqi;
+	}
+
 
       // iX0 = iXλ(i)
       // vi = vj
@@ -124,7 +137,7 @@ namespace metapod
       // applied)
       Node::Body::iX0 = Node::Joint::sXp;
       Node::Body::vi = Node::Joint::vj;
-      Node::Body::ai = sum(Spatial::Motion(Node::Joint::S.S() * ddqi),
+      Node::Body::ai = sum(Sddqi,
 			   Node::Joint::cj,
 			   (Node::Body::vi^Node::Joint::vj),
 			   (Node::Body::iX0*minus_g));
