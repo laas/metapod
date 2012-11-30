@@ -39,6 +39,11 @@ namespace metapod
         Motion(const vector6d & v) : m_w(v.segment<3>(0)),
                                      m_v(v.segment<3>(3)) {}
 
+        static const Motion Zero()
+        {
+	  return Motion (vector3d::Zero(), vector3d::Zero());
+        }
+
         // Getters
         const vector3d & w() const { return m_w; }
         const vector3d & v() const { return m_v; }
