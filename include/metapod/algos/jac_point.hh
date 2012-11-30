@@ -126,9 +126,10 @@ namespace metapod
       // where pX0 is the word transform in the point frame,
       // iX0 is the world transform in the ith body frame,
       // Si is the ith joint motion subspace matrix.
-      J.template
-        block<6,Joint::NBDOF>(0,Joint::positionInConf) =
-        Joint::applyToS(Body::iX0.inverse ().toPointFrame (p));
+      if (Joint::NBDOF!=0)
+	J.template
+	  block<6,Joint::NBDOF>(0,Joint::positionInConf) =
+	  Body::iX0.inverse ().toPointFrame (p).apply(Joint::S);
 
       // Recurse over body parent.
       jac_point_internal< Robot, typename Body::Parent >::run(p, J);
