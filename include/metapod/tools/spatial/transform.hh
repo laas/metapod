@@ -22,6 +22,10 @@
 #ifndef METAPOD_SPATIAL_ALGEBRA_TRANSFORM_HH
 # define METAPOD_SPATIAL_ALGEBRA_TRANSFORM_HH
 
+# include <metapod/tools/spatial/cm-anyaxis.hh>
+# include <metapod/tools/spatial/cm-oneaxis.hh>
+# include <metapod/tools/spatial/cm-freeflyer.hh>
+
 namespace metapod
 {
 
@@ -82,6 +86,41 @@ namespace metapod
         vector3d apply(const vector3d& p) const
         {
           return m_E*(p - m_r);
+        }
+
+        /// Sb = bXa.apply(Sa)
+        ///
+        /// Specialization for JOINT_REVOLUTE_AXIS_ANY
+        vector6d apply(const ConstraintMotionAnyAxis& S) const
+        {
+	  vector6d tmp = vector6d::Zero();
+	  tmp.head<3>() = m_E*S.S().head<3>();
+	  tmp.tail<3>() = -m_E*m_r.cross(S.S().head<3>());
+	  return tmp;
+        }
+
+        /// Sb = bXa.apply(Sa)
+        ///
+        /// Specialization for JOINT_REVOLUTE_AXIS_X
+        vector6d apply(const ConstraintMotionAxisX& S) const
+        {
+	  vector6d tmp = vector6d::Zero();
+	  tmp.head<3>() = m_E.col(0);
+	  tmp.tail<3>() = m_E*vector3d(0,-m_r[2],m_r[1]);
+	  return tmp;
+        }
+
+        /// Sb = bXa.apply(Sa)
+        ///
+        /// Specialization for JOINT_FREE_FLYER
+        matrix6d apply(const ConstraintMotionFreeFlyer& S) const
+        {
+	  matrix6d tmp = matrix6d::Zero();
+	  tmp.topRightCorner<3,3>() = m_E * S.S().topRightCorner<3,3>();
+	  tmp.bottomLeftCorner<3,3>() = m_E * S.S().bottomLeftCorner<3,3>();
+	  tmp.bottomRightCorner<3,3>()
+	    = -m_E * Spatial::skew(m_r) * S.S().topRightCorner<3,3>();
+	  return tmp;
         }
 
         /// Vb.toVector() = bXa.toMatrix() * Va.toVector()
