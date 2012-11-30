@@ -42,8 +42,6 @@ namespace metapod
       }
     };
 
-    class Transform;
-
     template <int axis>
     class ConstraintMotionOneAxis
     {

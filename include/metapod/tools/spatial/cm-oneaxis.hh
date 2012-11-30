@@ -21,6 +21,8 @@
 #ifndef METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_ONEAXIS_HH
 # define METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_ONEAXIS_HH
 
+# include <metapod/tools/spatial/constraintmotionfwd.hh>
+
 namespace metapod
 {
 

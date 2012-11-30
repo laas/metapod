@@ -24,11 +24,11 @@
 
 # include "metapod/tools/fwd.hh"
 
-# include "metapod/tools/spatial/force.hh"
 # include "metapod/tools/spatial/motion.hh"
-# include "metapod/tools/spatial/constraintmotionfwd.hh"
+# include "metapod/tools/spatial/force.hh"
 # include "metapod/tools/spatial/inertia.hh"
 # include "metapod/tools/spatial/transform.hh"
+# include "metapod/tools/spatial/constraintmotionfwd.hh"
 # include "metapod/tools/spatial/constraintmotion.hh"
 
 # include "metapod/tools/backward.hh"

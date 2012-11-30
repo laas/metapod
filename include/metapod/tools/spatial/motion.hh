@@ -22,13 +22,13 @@
 #ifndef METAPOD_SPATIAL_ALGEBRA_MOTION_HH
 # define METAPOD_SPATIAL_ALGEBRA_MOTION_HH
 
+# include "metapod/tools/spatial/force.hh"
+
 namespace metapod
 {
 
   namespace Spatial
   {
-
-
 
     class Motion
     {

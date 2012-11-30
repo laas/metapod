@@ -29,8 +29,6 @@ namespace metapod
 
   namespace Spatial
   {
-    class ConstraintMotionAnyAxis;
-
     class Inertia
     {
       public:
