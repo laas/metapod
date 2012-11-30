@@ -43,6 +43,11 @@ namespace metapod
         Transform() : m_E(), m_r() {}
         Transform(const matrix3d & E, const vector3d & r) : m_E(E), m_r(r) {}
 
+        static const Transform Identity()
+        {
+	  return Transform (matrix3d::Identity(), vector3d::Zero());
+        }
+
         // Getters
         const vector3d & r() const { return m_r; }
         const matrix3d & E() const { return m_E; }
