@@ -101,7 +101,7 @@ namespace metapod
           return M;
         }
 
-      vector6d mulbyMatrixTranspose(vector6d &aF) const
+      vector6d mulMatrixTransposeBy(vector6d &aF) const
         {
 	  vector6d M;
 	  M[0] = m_E(0,0)*aF(0) + m_E(1,0)*aF(1) + m_E(2,0)*aF(2);

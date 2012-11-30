@@ -98,7 +98,7 @@ namespace metapod
 
     static void run()
     {
-      Joint_i::F = Joint_j::sXp.mulbyMatrixTranspose(Joint_i::F);
+      Joint_i::F = Joint_j::sXp.mulMatrixTransposeBy(Joint_i::F);
 
       Robot::H.template
         block< Joint_i::NBDOF, Parent::Joint::NBDOF >
