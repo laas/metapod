@@ -51,7 +51,6 @@ namespace metapod
 	  m_S(axis) = 1.0;
 	}
 
-        vector6d operator*(const Spatial::Transform &X) const;
       private:
         vector6d m_S;
       public:

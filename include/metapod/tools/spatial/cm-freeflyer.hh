@@ -36,7 +36,6 @@ namespace metapod
       ConstraintMotionFreeFlyer()
       { m_S = matrix6d::Zero(); };
 
-      matrix6d operator*(const Spatial::Transform &X) const;
       matrix6d operator*(double d) const;
 
       private:
@@ -48,16 +47,6 @@ namespace metapod
       const matrix6d & S() const {return m_S;}
       matrix6d transpose() const {return m_S.transpose();}
     };
-
-    matrix6d ConstraintMotionFreeFlyer::operator*
-    (const Spatial::Transform &X) const
-    {
-      matrix6d tmp = matrix6d::Zero();                              
-      tmp.block<3,3>(0,3) = X.E() * m_S.block<3,3>(0,3);              
-      tmp.block<3,3>(3,0) = X.E() * m_S.block<3,3>(3,0);              
-      tmp.block<3,3>(3,3) = -X.E() * Spatial::skew(X.r()) * m_S.block<3,3>(0,3); 
-      return tmp;                                                   
-    }
 
     matrix6d ConstraintMotionFreeFlyer::operator*
     (double x) const

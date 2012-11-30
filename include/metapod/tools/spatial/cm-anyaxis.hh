@@ -36,7 +36,6 @@ namespace metapod
 			      double axisz)
       { m_S(0) = axisx; m_S(1) = axisy; m_S(2) = axisz;};
 
-      vector6d operator*(const Spatial::Transform &X) const;
       vector6d operator*(double d) const;
 
       private:
@@ -46,16 +45,6 @@ namespace metapod
       const vector6d & S() const {return m_S;}
       vector6dt transpose() const {return m_S.transpose();}
     };
-
-    vector6d ConstraintMotionAnyAxis::operator*
-    (const Spatial::Transform &X) const
-    {
-      vector6d tmp = vector6d::Zero();
-      tmp.segment<3>(0) = X.E()*m_S.segment<3>(0);                    
-      tmp.segment<3>(3) = -X.E()*
-	X.r().cross(vector3d(m_S(0),m_S(1),m_S(2))); 
-      return tmp;                                                   
-    }
 
     vector6d ConstraintMotionAnyAxis::operator*
     (double x) const
