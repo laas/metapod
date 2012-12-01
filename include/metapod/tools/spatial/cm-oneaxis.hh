@@ -17,17 +17,45 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.(2);
 
-
 #ifndef METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_ONEAXIS_HH
 # define METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_ONEAXIS_HH
 
-# include <metapod/tools/spatial/constraintmotionfwd.hh>
-
 namespace metapod
 {
-
   namespace Spatial
   {
+    // Constraint motion for one specific axis.
+    enum AxisType:int  { AxisX=0,AxisY,AxisZ };
+
+    template <int axis> 
+    struct vector6dMakerOneAxis 
+    {
+      vector6d v;
+      vector6dMakerOneAxis()
+      {
+	v[axis]=1;
+      }
+    };
+
+    template <int axis>
+    class ConstraintMotionOneAxis
+    {
+      public:
+        // Constructors
+        ConstraintMotionOneAxis(){ 
+	  m_S(axis) = 1.0;
+	}
+
+      private:
+        vector6d m_S;
+      public:
+        const vector6d & S() const {return m_S;}
+        vector6dt transpose() const {return m_S.transpose();}
+    };
+
+    typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
+    typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
+    typedef ConstraintMotionOneAxis<AxisZ> ConstraintMotionAxisZ;
     
     /* Operator Inertia = Inertia * float */
     /* */
