@@ -85,7 +85,7 @@ namespace metapod
         /// Pb = bXa.apply(Pa)
         vector3d apply(const vector3d& p) const
         {
-          return m_E*(p - m_r);
+          return (vector3d)(m_E*(p - m_r));
         }
 
         /// Sb = bXa.apply(Sa)
@@ -184,22 +184,22 @@ namespace metapod
         /// Va = bXa.applyInv(Vb)
         Motion applyInv(const Motion & mv) const
         {
-          vector3d ET_w = m_E.transpose()*mv.w();
+          vector3d ET_w = (vector3d)(m_E.transpose()*mv.w());
           return Motion(ET_w, m_E.transpose()*mv.v() + m_r.cross(ET_w));
         }
 
         /// Fa = bXa.applyInv(Fb)
         Force applyInv(const Force & fv) const
         {
-          vector3d ET_f = m_E.transpose()*fv.f();
+          vector3d ET_f = (vector3d)(m_E.transpose()*fv.f());
           return Force(m_E.transpose()*fv.n() + m_r.cross(ET_f), ET_f);
         }
 
         /// Ia = bXa.applyInv(Ib)
         Inertia applyInv(const Inertia & I) const
         {
-          vector3d tmp1 = m_E.transpose()*I.h();
-          vector3d tmp2 = tmp1 + I.m()*m_r;
+          vector3d tmp1 = (vector3d)(m_E.transpose()*I.h());
+          vector3d tmp2 = (vector3d)(tmp1 + I.m()*m_r);
           return Inertia(I.m(),
                          tmp2,
                          m_E.transpose()*I.I()*m_E

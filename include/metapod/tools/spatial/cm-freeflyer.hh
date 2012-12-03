@@ -38,6 +38,12 @@ namespace metapod
 
       matrix6d operator*(double d) const;
 
+      vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
+      {
+	vector6d r = (vector6d)(m_S *ddqi);
+	return r;
+      }
+
       private:
         matrix6d m_S;
 
