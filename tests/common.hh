@@ -143,4 +143,38 @@ void compareLogs(
   }
 
 }
+
+// Compare two text files
+// This function returns nothing, but uses boost::test assertions
+// to report discrepancies
+// The text files are compared, all non-blank characters should be identical.
+void compareTexts(
+    const std::string& result_file,
+    const std::string& reference_file)
+{
+  std::string result_string, reference_string;
+  std::ifstream result_stream(result_file.c_str());
+  std::ifstream reference_stream(reference_file.c_str());
+  // ensure the reference file is really there
+  BOOST_CHECK(reference_stream);
+  while(reference_stream >> reference_string)
+  {
+    result_stream >> result_string;
+    bool tokens_are_identical = result_string == reference_string;
+    BOOST_CHECK(tokens_are_identical);
+    if(!tokens_are_identical)
+    {
+      std::cerr << "Difference in result and reference files ("
+                << result_file << " " << reference_file << ")" << std::endl;
+      return; // No point in continuing
+    }
+  }
+  bool end_of_result_is_reached = !(result_stream >> result_string);
+  BOOST_CHECK(end_of_result_is_reached);
+  if(!end_of_result_is_reached)
+  {
+    std::cerr << "Result file is longer than reference file:" << result_string << " ("
+              << result_file << " " << reference_file << ")" << std::endl;
+  }
+}
 #endif
