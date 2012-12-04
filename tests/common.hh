@@ -75,7 +75,7 @@ bool getNextDouble( std::ifstream & is, double& x)
     if(stringToDouble(s, x))
       return true;
   }
-  return 0;
+  return false;
 }
 
 // Compare two log files
