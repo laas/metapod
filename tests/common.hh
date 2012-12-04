@@ -1,8 +1,7 @@
 // Copyright 2011, 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -103,17 +102,19 @@ void compareLogs(
   std::string result_string, reference_string;
   std::ifstream result_stream(result_file.c_str());
   std::ifstream reference_stream(reference_file.c_str());
-  while(result_stream >> result_string)
+  // ensure the reference file is really there
+  BOOST_CHECK(reference_stream);
+  while(reference_stream >> reference_string)
   {
     unsigned int i = 0;
-    if(stringToDouble(result_string, result_value))
+    if(stringToDouble(reference_string, reference_value))
     {
-      bool get_y_ok = getNextDouble(reference_stream, reference_value);
+      bool get_y_ok = getNextDouble(result_stream, result_value);
       BOOST_CHECK(get_y_ok);
       if(!get_y_ok)
       {
-        std::cerr << "Could not read reference value "
-                  << name << "(" << i << ") in " << reference_file
+        std::cerr << "Could not read result value "
+                  << name << "(" << i << ") in " << result_file
                   << std::endl;
       }
       else
@@ -132,12 +133,12 @@ void compareLogs(
     else
     {
       i = 0;
-      reference_stream.clear(); reference_stream.seekg(0);
-      name = result_string;
+      result_stream.clear(); result_stream.seekg(0);
+      name = reference_string;
       do
       {
-        reference_stream >> reference_string;
-      } while(reference_string.compare(name) && !reference_stream.eof());
+        result_stream >> result_string;
+      } while(result_string.compare(name) && !result_stream.eof());
     }
   }
 
