@@ -55,7 +55,7 @@ namespace metapod
             unsigned int offset = 0, bool includeFreeFlyer = true >
   struct jac_point_chain_internal_freeflyer;
 
-  /// \brief Point in Chain Aritcular Jacobian Algorithm.
+  /// \brief Point in Chain Articular Jacobian Algorithm.
   ///
   /// \tparam Robot Robot type for which jacobian is computed.
   /// \tparam StartBody Start body type in sub-chain for which
