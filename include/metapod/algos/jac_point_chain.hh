@@ -66,24 +66,13 @@ namespace metapod
   /// \tparam includeFreeFlyer Boolean type to specify the
   /// contribution of a fictive free-flyer joint superposed with the
   /// joint of StartBody.
-  /// \tparam bcalc Boolean type to specify whether all body
+  /// \tparam call_bcalc Boolean type to specify whether all body
   /// transforms need to be updated with respect to the robot
   /// configuration.
-  ///
-  /// \note Use specializations jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer, true >
-  /// and jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer, false >.
   template< typename Robot, typename StartBody, typename EndBody,
             unsigned int offset = 0, bool includeFreeFlyer = true,
-            bool bcalc = true >
-  struct jac_point_chain {};
-
-  /// \brief Specialization of jac_point_chain: Update all body
-  /// transforms with respect to configuration vector.
-  template< typename Robot, typename StartBody, typename EndBody,
-            unsigned int offset, bool includeFreeFlyer >
-  struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
-                          true >
-  {
+            bool call_bcalc = true >
+  struct jac_point_chain {
     typedef Eigen::Matrix< FloatType, 6,
                            Robot::NBDOF
                            + offset
@@ -106,7 +95,10 @@ namespace metapod
       J.setZero ();
 
       // Update body transformations.
-      bcalc< Robot >::run(q);
+      if (call_bcalc)
+      {
+        bcalc < Robot >::run(q);
+      }
 
       // Compute point coordinates in world frame.
       vector3d p = EndBody::iX0.applyInv(e_p);
@@ -124,47 +116,6 @@ namespace metapod
         offset, includeFreeFlyer >::run(p, J);
     }
   };
-
-  /// \brief Specialization of jac_point_chain: Do not update body
-  /// transforms with respect to configuration vector.
-  template< typename Robot, typename StartBody, typename EndBody,
-            unsigned int offset, bool includeFreeFlyer >
-  struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
-                          false >
-  {
-    typedef Eigen::Matrix< FloatType, 6,
-                           Robot::NBDOF
-                           + offset
-                           - 6*(1-includeFreeFlyer) >
-    jacobian_t;
-
-    /// \brief Compute the articular jacobian J.
-    ///
-    /// \sa jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer, true >::run().
-    static void run(const typename Robot::confVector & q,
-                    const vector3d & e_p,
-                    jacobian_t & J)
-    {
-      // Reset jacobian.
-      J.setZero ();
-
-      // Compute point coordinates in world frame.
-      vector3d p = EndBody::iX0.applyInv(e_p);
-
-      // Get deepest common body label.
-      int label;
-      deepest_common_body< StartBody, EndBody >::run(label);
-
-      // Call internal jacobian routines.
-      jac_point_chain_internal_start< Robot, StartBody,
-        offset, includeFreeFlyer >::run(label, p, J);
-      jac_point_chain_internal_end< Robot, EndBody,
-        offset, includeFreeFlyer >::run(label, p, J);
-      jac_point_chain_internal_freeflyer< Robot, StartBody,
-        offset, includeFreeFlyer >::run(p, J);
-    }
-  };
-
   /// \}
 
   /// \brief Internal point in chain articular jacobian algorithm

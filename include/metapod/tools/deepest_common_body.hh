@@ -61,7 +61,7 @@ namespace metapod
       deepest_common_body_internal_start< StartBody, EndBody >::run(label);
     }
   };
-  
+
   /// \}
 
   template< typename BI, typename BJ >
