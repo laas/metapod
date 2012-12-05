@@ -36,7 +36,7 @@
 # include "metapod/tools/initconf.hh"
 
 // Boost test suite includes
-# define BOOST_TEST_MODULE METAPOD_RNEA
+# define BOOST_TEST_MODULE METAPOD
 # include <boost/test/unit_test.hpp>
 
 // Performance test : some tests also output an average execution time of the
