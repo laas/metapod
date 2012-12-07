@@ -66,9 +66,6 @@ namespace metapod
                     const vector3d & b_p,
                     jacobian_t & J)
     {
-      // Reset jacobian.
-      J.setZero ();
-
       // Update body transformations.
       bcalc< Robot >::run(q);
 

@@ -1,8 +1,7 @@
 // Copyright 2012,
 //
-// Antonio El Khoury
-//
-// JRL/LAAS, CNRS/AIST
+// Antonio El Khoury (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -17,7 +16,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/* 
+/*
  * This test computes the jacobian on a test model with a reference
  * configuration, then compares the computed jacobian with the
  * reference jacobian
@@ -38,7 +37,8 @@ BOOST_AUTO_TEST_CASE (test_jac_point_chain)
   qconf.close();
 
   // Compute the jacobian and print the result in a log file.
-  jac_point_chain_robot< Robot >::jacobian_t J;
+  jac_point_chain_robot< Robot >::jacobian_t J =
+      jac_point_chain_robot< Robot >::jacobian_t::Zero();
   jac_point_chain_robot< Robot >::run(q, J);
   const char result_file[] = "jac_point_chain.log";
   std::ofstream log(result_file, std::ofstream::out);
