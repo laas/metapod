@@ -35,10 +35,8 @@
 extern template struct metapod::crba< metapod::simple_arm::Robot , true >;
 extern template struct metapod::rnea< metapod::simple_arm::Robot , true >;
 extern template struct metapod::jac_point_robot< metapod::simple_arm::Robot , true >;
-extern template struct metapod::jac_point_chain_robot< metapod::simple_arm::Robot , true >;
 extern template struct metapod::crba< metapod::simple_arm::Robot , false >;
 extern template struct metapod::rnea< metapod::simple_arm::Robot , false >;
 extern template struct metapod::jac_point_robot< metapod::simple_arm::Robot , false >;
-extern template struct metapod::jac_point_chain_robot< metapod::simple_arm::Robot , false >;
 
 #endif
