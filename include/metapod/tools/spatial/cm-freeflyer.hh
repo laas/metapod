@@ -40,7 +40,7 @@ namespace metapod
 
       vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
       {
-	vector6d r = (vector6d)(m_S *ddqi);
+	vector6d r = static_cast<vector6d>(m_S *ddqi);
 	return r;
       }
 
