@@ -60,7 +60,7 @@ namespace metapod
     /* Operator Inertia = Inertia * float */
     /* */
     vector6d operator*(const Inertia & m,
-		       const ConstraintMotionOneAxisAxisX &) 
+		       const ConstraintMotionAxisX &) 
     {
      vector6d r;
       r[0] = m.I()(0,0); r[1] = m.I()(1,0);r[2] = m.I()(2,0);      
@@ -69,7 +69,7 @@ namespace metapod
     }
 
     vector6d operator*(const Inertia & m,
-		       const ConstraintMotionOneAxisAxisY &) 
+		       const ConstraintMotionAxisY &) 
     {
      vector6d r;
       r[0] = m.I()(0,1); r[1] = m.I()(1,1);r[2] = m.I()(2,1);      
@@ -78,7 +78,7 @@ namespace metapod
     }
 
     vector6d operator*(const Inertia & m,
-		       const ConstraintMotionOneAxisAxisZ &) 
+		       const ConstraintMotionAxisZ &) 
     {
      vector6d r;
       r[0] = m.I()(0,2); r[1] = m.I()(1,2);r[2] = m.I()(2,2);      
