@@ -60,7 +60,7 @@ template<> inline void printState<NC>(std::ostream &){}
 
 
 /*
- * Print a conf Vector in a stream.
+ * Print a conf vector in a stream.
  * Can be used to log a configuration that can later be loaded through the
  * initConf method.
  */

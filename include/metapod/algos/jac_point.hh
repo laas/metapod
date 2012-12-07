@@ -28,7 +28,7 @@ namespace metapod
   ///
   /// Compute articular jacobian J of a point (in body coordinates)
   /// attached to a body. This jacobian is such that v = J*dq is the
-  /// point frame spatial motion Vector in world coordinates.
+  /// point frame spatial motion vector in world coordinates.
   ///
   /// \{
 
@@ -49,7 +49,7 @@ namespace metapod
   struct jac_point {};
 
   /// \brief Specialization of jac_point: Update all body transforms
-  /// with respect to configuration Vector.
+  /// with respect to configuration vector.
   template< typename Robot, typename Body >
   struct jac_point< Robot, Body, true >
   {
@@ -57,7 +57,7 @@ namespace metapod
 
     /// \brief Compute the articular jacobian J.
     ///
-    /// \param q Configuration Vector: it is used to update all body
+    /// \param q Configuration vector: it is used to update all body
     /// spatial transforms if bcalc is equal to true.
     ///
     /// \param b_p Coordinates of point in Body coordinates.
@@ -81,7 +81,7 @@ namespace metapod
   };
 
   /// \brief Specialization of jac_point: Do not update body
-  /// transforms with respect to configuration Vector.
+  /// transforms with respect to configuration vector.
   template< typename Robot, typename Body >
   struct jac_point< Robot, Body, false >
   {
@@ -125,7 +125,7 @@ namespace metapod
       // Ji = pX0 * (iX0)^(-1) * Si,
       // where pX0 is the word transform in the point frame,
       // iX0 is the world transform in the ith body frame,
-      // Si is the ith joint motion subspace Matrix.
+      // Si is the ith joint motion subspace matrix.
       J.template
 	block<6,Joint::NBDOF>(0,Joint::positionInConf) =
 	Body::iX0.inverse ().toPointFrame (p).apply(Joint::S);

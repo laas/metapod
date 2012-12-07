@@ -50,8 +50,8 @@ namespace metapod
   {
     /// Implementation of a spatial algebra.
     /// It follows R. Featherstone guidelines, and implements :
-    /// - Spatial Motion Vectors (a.k.a. twists)
-    /// - Spatial Force Vectors (a.k.a. wrenches)
+    /// - Spatial Motion vectors (a.k.a. twists)
+    /// - Spatial Force vectors (a.k.a. wrenches)
     /// - Spatial Rigid Body Inertia matrices
     /// - Spatial Transforms (a.k.a. homogeneous matrices, elements of SE(3))
 

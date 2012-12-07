@@ -34,7 +34,7 @@ namespace metapod
   /// Compute articular jacobian J of a point (in body coordinates)
   /// attached to a body in a specific sub-chain of the robot
   /// kinematic tree. This jacobian is such that v = J*dq is the point
-  /// frame spatial motion Vector in world coordinates, under the sole
+  /// frame spatial motion vector in world coordinates, under the sole
   /// influence of joints in the sub-chain and (optionally) a fictive
   /// free-flyer joint at the base of the sub-chain.
   ///
@@ -78,7 +78,7 @@ namespace metapod
   struct jac_point_chain {};
 
   /// \brief Specialization of jac_point_chain: Update all body
-  /// transforms with respect to configuration Vector.
+  /// transforms with respect to configuration vector.
   template< typename Robot, typename StartBody, typename EndBody,
             unsigned int offset, bool includeFreeFlyer >
   struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
@@ -92,7 +92,7 @@ namespace metapod
 
     /// \brief Compute the articular jacobian J.
     ///
-    /// \param q Configuration Vector: it is used to update all body
+    /// \param q Configuration vector: it is used to update all body
     /// spatial transforms if bcalc is equal to true.
     ///
     /// \param e_p Coordinates of point in EndBody coordinates.
@@ -126,7 +126,7 @@ namespace metapod
   };
 
   /// \brief Specialization of jac_point_chain: Do not update body
-  /// transforms with respect to configuration Vector.
+  /// transforms with respect to configuration vector.
   template< typename Robot, typename StartBody, typename EndBody,
             unsigned int offset, bool includeFreeFlyer >
   struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,

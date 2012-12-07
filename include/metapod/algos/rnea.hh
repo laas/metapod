@@ -68,7 +68,7 @@ namespace metapod
                     const confVector & dq,
                     const confVector & ddq) __attribute__ ((hot))
     {
-      // Extract subVector corresponding to current Node
+      // Extract subvector corresponding to current Node
       Spatial::Motion Sddqi;
 
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
@@ -116,7 +116,7 @@ namespace metapod
                     const confVector & dq,
                     const confVector & ddq)
     {
-      // Extract subVector corresponding to current Node
+      // Extract subvector corresponding to current Node
       Spatial::Motion Sddqi;
 
       Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =

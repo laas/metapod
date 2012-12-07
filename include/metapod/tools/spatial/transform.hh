@@ -33,10 +33,10 @@ namespace metapod
   {
     /// Given two frames a and b, one can define the transform bXa, which
     /// changes coordinates between the two. bXa is composed of a rotation
-    /// Matrix E, which changes Vector coordinates from a to b, and a Vector
+    /// matrix E, which changes vector coordinates from a to b, and a vector
     /// r, which gives the position of the origin of b, expressed in the a
     /// frame.
-    /// So if v is a Vector and p is a point, we have:
+    /// So if v is a vector and p is a point, we have:
     ///
     ///   vb = bXa.E * va
     ///   pb = bXa.E * (pa - bXa.r)
@@ -234,7 +234,7 @@ namespace metapod
 
         /// Specialization of transform multiplication.
         /// Compute transform cXa from bXa, with cXb a translation defined by
-        /// the Vector Pb (expressed in frame b).
+        /// the vector Pb (expressed in frame b).
         ///
         /// In a nutshell:
         ///

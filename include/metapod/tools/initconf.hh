@@ -17,7 +17,7 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * This file contains a method setting a configuration Vector from a file.
+ * This file contains a method setting a configuration vector from a file.
  */
 
 #ifndef METAPOD_INITCONF_HH
@@ -40,7 +40,7 @@ namespace metapod
     }
   }
 
-  // Return Vector constructed from log file,
+  // Return vector constructed from log file,
   // as printed by the printConf method.
   template< typename Tree, typename confVector > struct initConf_internal;
 
