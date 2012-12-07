@@ -54,37 +54,37 @@ namespace metapod
     const int SHOULDER::label = 1;
     const int SHOULDER::positionInConf = 0;
     const Spatial::Transform SHOULDER::Xt = Spatial::Transform(
-      matrix3dMaker(0, 0, 1,
+      Matrix3dMaker(0, 0, 1,
                     0, 1, 0,
                    -1, 0, 0),
-      vector3d(0, 0, 1));
+      Vector3d(0, 0, 1));
 
     INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(ELBOW, 1, 0, 0);
     const std::string ELBOW::name = "ELBOW";
     const int ELBOW::label = 2;
     const int ELBOW::positionInConf = 1;
     const Spatial::Transform ELBOW::Xt = Spatial::Transform(
-      matrix3dMaker(1, 0, 0,
+      Matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
-      vector3d(0, 0, -0.45));
+      Vector3d(0, 0, -0.45));
 
     INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(WRIST, 1, 0, 0);
     const std::string WRIST::name = "WRIST";
     const int WRIST::label = 3;
     const int WRIST::positionInConf = 2;
     const Spatial::Transform WRIST::Xt = Spatial::Transform(
-      matrix3dMaker(1, 0, 0,
+      Matrix3dMaker(1, 0, 0,
                     0, 1, 0,
                     0, 0, 1),
-      vector3d(0, 0, -0.4));
+      Vector3d(0, 0, -0.4));
 
     INITIALIZE_BODY(ARM);
     const std::string ARM::name = "ARM";
     const int ARM::label = 0;
     const FloatType ARM::mass = 2.75;
-    const vector3d ARM::CoM = vector3d(0, 0, -0.225);
-    const matrix3d ARM::inertie = matrix3dMaker(
+    const Vector3d ARM::CoM = Vector3d(0, 0, -0.225);
+    const Matrix3d ARM::inertie = Matrix3dMaker(
       4.68703125e-02, 0.0,            0.0,
       0.0,            4.68703125e-02, 0.0,
       0.0,            0.0,            9.28125000e-04);
@@ -96,8 +96,8 @@ namespace metapod
     const std::string FOREARM::name = "FOREARM";
     const int FOREARM::label = 1;
     const FloatType FOREARM::mass = 1.75;
-    const vector3d FOREARM::CoM = vector3d(0, 0, -0.2);
-    const matrix3d FOREARM::inertie = matrix3dMaker(
+    const Vector3d FOREARM::CoM = Vector3d(0, 0, -0.2);
+    const Matrix3d FOREARM::inertie = Matrix3dMaker(
       2.35666667e-02, 0.0,            0.0,
       0.0,            2.35666667e-02, 0.0,
       0.0,            0.0,            4.66666667e-04);
@@ -109,8 +109,8 @@ namespace metapod
     const std::string HAND::name = "HAND";
     const int HAND::label = 2;
     const FloatType HAND::mass = 0.5;
-    const vector3d HAND::CoM = vector3d(0, 0, -0.075);
-    const matrix3d HAND::inertie = matrix3dMaker(
+    const Vector3d HAND::CoM = Vector3d(0, 0, -0.075);
+    const Matrix3d HAND::inertie = Matrix3dMaker(
       9.46875000e-04, 0.0,            0.0,
       0.0,            9.46875000e-04, 0.0,
       0.0,            0.0,            1.87500000e-05);

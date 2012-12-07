@@ -33,17 +33,17 @@ namespace metapod
       public:
         // Constructors
         Force() : m_n(), m_f() {}
-        Force(const vector3d & n, const vector3d & f) : m_n(n), m_f(f) {}
-        Force(const vector6d & v) : m_n(v.segment<3>(0)),
+        Force(const Vector3d & n, const Vector3d & f) : m_n(n), m_f(f) {}
+        Force(const Vector6d & v) : m_n(v.segment<3>(0)),
                                     m_f(v.segment<3>(3)) {}
 
         // Getters
-        const vector3d & n() const { return m_n; }
-        const vector3d & f() const { return m_f; }
+        const Vector3d & n() const { return m_n; }
+        const Vector3d & f() const { return m_f; }
 
-        vector6d toVector() const
+        Vector6d toVector() const
         {
-          vector6d v;
+          Vector6d v;
           for(unsigned int i=0; i<3; i++)
             v[i] = m_n[i];
           for(unsigned int i=0; i<3; i++)
@@ -52,7 +52,7 @@ namespace metapod
         }
 
         // Arithmetic operators
-        Force & operator=(const vector6d & v)
+        Force & operator=(const Vector6d & v)
         {
           m_n = v.segment<3>(0);
           m_f = v.segment<3>(3);
@@ -95,8 +95,8 @@ namespace metapod
 
       private:
         // Private members
-        vector3d m_n;
-        vector3d m_f;
+        Vector3d m_n;
+        Vector3d m_f;
     };
   } // end of namespace Spatial
 

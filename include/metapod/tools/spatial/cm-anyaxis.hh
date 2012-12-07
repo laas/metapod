@@ -36,35 +36,35 @@ namespace metapod
 			      double axisz)
       { m_S(0) = axisx; m_S(1) = axisy; m_S(2) = axisz;};
 
-      vector6d operator*(double d) const;
+      Vector6d operator*(double d) const;
 
       private:
-        vector6d m_S;
+        Vector6d m_S;
 
       public:
-      const vector6d & S() const {return m_S;}
-      vector6dt transpose() const {return m_S.transpose();}
+      const Vector6d & S() const {return m_S;}
+      Vector6dt transpose() const {return m_S.transpose();}
     };
 
-    vector6d ConstraintMotionAnyAxis::operator*
+    Vector6d ConstraintMotionAnyAxis::operator*
     (double x) const
     {
-      vector6d tmp = vector6d::Zero();
+      Vector6d tmp = Vector6d::Zero();
       tmp.segment<3>(0) = x*m_S.segment<3>(0);                    
       return tmp;                                                   
     }
 
     template<>
-    vector6d OperatorMul< vector6d, Inertia, ConstraintMotionAnyAxis>::
+    Vector6d OperatorMul< Vector6d, Inertia, ConstraintMotionAnyAxis>::
       mul(const Inertia & m,
 	  const ConstraintMotionAnyAxis &a) const
     {
-      vector6d r;
+      Vector6d r;
       for(unsigned int i=0;i<3;i++)
 	r[i] = m.m_I(i,0)*a.S()[0]+ 
 	  m.m_I(i,1)*a.S()[1]+
 	  m.m_I(i,2)*a.S()[2];
-      matrix3d msh = -skew(m.m_h);
+      Matrix3d msh = -skew(m.m_h);
       for(unsigned int i=0;i<3;i++)
 	r[i+3] = msh(i,0)*a.S()[0]+ 
 	  msh(i,1)*a.S()[1]+
@@ -72,10 +72,10 @@ namespace metapod
       return r;
     }
     
-    vector6d operator*(const Inertia & m,
+    Vector6d operator*(const Inertia & m,
 		       const ConstraintMotionAnyAxis &a) 
     {
-      OperatorMul<vector6d,Inertia, ConstraintMotionAnyAxis > om;
+      OperatorMul<Vector6d,Inertia, ConstraintMotionAnyAxis > om;
       return om.mul(m,a);
     }
   }

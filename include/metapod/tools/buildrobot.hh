@@ -38,8 +38,8 @@ namespace metapod
                   const std::string joint_name,
                   int label,
                   FloatType mass,
-                  const vector3d & CoM,
-                  const matrix3d & inertie,
+                  const Vector3d & CoM,
+                  const Matrix3d & inertie,
                   const std::string & tab,
                   int has_parent = true)
   {
@@ -54,11 +54,11 @@ namespace metapod
       << tab << "const std::string " << name << "::name = \"" << name << "\";\n"
       << tab << "const int " << name << "::label = " << label << ";\n"
       << tab << "const FloatType " << name << "::mass = " << mass << ";\n"
-      << tab << "const vector3d " << name << "::CoM = vector3d("
+      << tab << "const Vector3d " << name << "::CoM = Vector3d("
         << CoM[0] << ", "
         << CoM[1] << ", "
         << CoM[2] << ");\n"
-      << tab << "const matrix3d " << name << "::inertie = matrix3dMaker(\n"
+      << tab << "const Matrix3d " << name << "::inertie = Matrix3dMaker(\n"
       << tab << "  " << inertie(0,0) << ", " << inertie(0,1) << ", " << inertie(0,2) << ",\n"
       << tab << "  " << inertie(1,0) << ", " << inertie(1,1) << ", " << inertie(1,2) << ",\n"
       << tab << "  " << inertie(2,0) << ", " << inertie(2,1) << ", " << inertie(2,2) << ");\n"
@@ -75,8 +75,8 @@ namespace metapod
                    const std::string & name,
                    int label,
                    int positionInConf,
-                   const matrix3d & Xt_E,
-                   const vector3d & Xt_r,
+                   const Matrix3d & Xt_E,
+                   const Vector3d & Xt_r,
                    const std::string & tab,
                    FloatType axis_x = 1.,
                    FloatType axis_y = 0.,
@@ -104,11 +104,11 @@ namespace metapod
       << tab << "const int " << name << "::label = " << label << ";\n"
       << tab << "const int " << name << "::positionInConf = " << positionInConf << ";\n"
       << tab << "const Spatial::Transform " << name << "::Xt = Spatial::Transform(\n"
-      << tab << "  matrix3dMaker(\n"
+      << tab << "  Matrix3dMaker(\n"
       << tab << "    " << Xt_E(0,0) << ", " << Xt_E(0,1) << ", " << Xt_E(0,2) << ",\n"
       << tab << "    " << Xt_E(1,0) << ", " << Xt_E(1,1) << ", " << Xt_E(1,2) << ",\n"
       << tab << "    " << Xt_E(2,0) << ", " << Xt_E(2,1) << ", " << Xt_E(2,2) << "),\n"
-      << tab << "  vector3d(\n"
+      << tab << "  Vector3d(\n"
       << tab << "    " << Xt_r[0] << ", " << Xt_r[1] << ", " << Xt_r[2] << "));\n"
       << std::endl;
   }

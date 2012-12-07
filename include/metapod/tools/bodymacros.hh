@@ -39,8 +39,8 @@ namespace metapod
         static const std::string name;                     \
         static const int label;                            \
         static const FloatType mass;                       \
-        static const vector3d CoM;                         \
-        static const matrix3d inertie;                     \
+        static const Vector3d CoM;                         \
+        static const Matrix3d inertie;                     \
         static Spatial::Transform iX0;                     \
         static Spatial::Motion vi;                         \
         static Spatial::Motion ai;                         \

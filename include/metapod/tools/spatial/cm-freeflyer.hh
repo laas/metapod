@@ -34,41 +34,41 @@ namespace metapod
       public:
         // Constructors
       ConstraintMotionFreeFlyer()
-      { m_S = matrix6d::Zero(); };
+      { m_S = Matrix6d::Zero(); };
 
-      matrix6d operator*(double d) const;
+      Matrix6d operator*(double d) const;
 
-      vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
+      Vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
       {
-	vector6d r = static_cast<vector6d>(m_S *ddqi);
+	Vector6d r = static_cast<Vector6d>(m_S *ddqi);
 	return r;
       }
 
       private:
-        matrix6d m_S;
+        Matrix6d m_S;
 
       public:
-      void setlocalR(const matrix3d &localR)  
+      void setlocalR(const Matrix3d &localR)  
       {       m_S.block<3,3>(0,3) = m_S.block<3,3>(3,0) = localR; }
-      const matrix6d & S() const {return m_S;}
-      matrix6d transpose() const {return m_S.transpose();}
+      const Matrix6d & S() const {return m_S;}
+      Matrix6d transpose() const {return m_S.transpose();}
     };
 
-    matrix6d ConstraintMotionFreeFlyer::operator*
+    Matrix6d ConstraintMotionFreeFlyer::operator*
     (double x) const
     {
-      matrix6d tmp = matrix6d::Zero();
+      Matrix6d tmp = Matrix6d::Zero();
       tmp = x*m_S;                    
       return tmp;                                                   
     }
 
     template<>
-    matrix6d OperatorMul< matrix6d, Inertia, ConstraintMotionFreeFlyer>::
+    Matrix6d OperatorMul< Matrix6d, Inertia, ConstraintMotionFreeFlyer>::
       mul(const Inertia & m,
 	  const ConstraintMotionFreeFlyer &a) const
     {
-      matrix6d r;
-      r=matrix6d::Zero();
+      Matrix6d r;
+      r=Matrix6d::Zero();
       r.block<3,3>(0,0)=skew(m.h())*a.S().block<3,3>(3,0);
       r.block<3,3>(0,3)=m.I()*a.S().block<3,3>(0,3);
       r.block<3,3>(3,0)=m.m()*a.S().block<3,3>(3,0);
@@ -76,10 +76,10 @@ namespace metapod
       return r;
     }
     
-    matrix6d operator*(const Inertia & m,
+    Matrix6d operator*(const Inertia & m,
 		       const ConstraintMotionFreeFlyer &a) 
     {
-      OperatorMul<matrix6d,Inertia, ConstraintMotionFreeFlyer > om;
+      OperatorMul<Matrix6d,Inertia, ConstraintMotionFreeFlyer > om;
       return om.mul(m,a);
     }
   } // End of spatial namespace

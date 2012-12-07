@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
   qconf.close();
 
   // Initialize the Joint-Space Inertia Matrix to Zero.
-  Robot::H = matrixN::Zero(Robot::NBDOF, Robot::NBDOF);
+  Robot::H = MatrixN::Zero(Robot::NBDOF, Robot::NBDOF);
 
   // Apply the CRBA to the metapod multibody and print the result in a log file
   crba< Robot, true >::run(q); // Update geometry and run the CRBA

@@ -40,16 +40,16 @@ namespace metapod
 
   inline Spatial::Motion set_gravity()
   {
-    vector6d g_tmp;
+    Vector6d g_tmp;
     g_tmp << 0,0,0,0,0,GRAVITY_CST;
     return Spatial::Motion(g_tmp);
   }
 
   static const Spatial::Motion minus_g = set_gravity();
 
-  inline matrix3d Skew(const vector3d & v)
+  inline Matrix3d Skew(const Vector3d & v)
   {
-    matrix3d m;
+    Matrix3d m;
     m(0,0) = 0;     m(0,1) = -v(2); m(0,2) = v(1);
     m(1,0) = v(2);  m(1,1) = 0    ; m(1,2) = -v(0);
     m(2,0) = -v(1); m(2,1) =  v(0); m(2,2) =  0 ;
@@ -88,36 +88,36 @@ namespace metapod
       typedef C4 Child4;
   };
 
-  // Constant 3x3 matrix initialization method.
-  inline const matrix3d matrix3dMaker(
+  // Constant 3x3 Matrix initialization method.
+  inline const Matrix3d Matrix3dMaker(
     FloatType m00, FloatType m01, FloatType m02,
     FloatType m10, FloatType m11, FloatType m12,
     FloatType m20, FloatType m21, FloatType m22)
   {
-    matrix3d m;
+    Matrix3d m;
     m(0,0) = m00; m(0,1) = m01; m(0,2) = m02;
     m(1,0) = m10; m(1,1) = m11; m(1,2) = m12;
     m(2,0) = m20; m(2,1) = m21; m(2,2) = m22;
     return m;
   }
 
-  // Constant size 6 vector initialization method.
-  inline const vector6d vector6dMaker(FloatType v0,
+  // Constant size 6 Vector initialization method.
+  inline const Vector6d Vector6dMaker(FloatType v0,
                                       FloatType v1,
                                       FloatType v2,
                                       FloatType v3,
                                       FloatType v4,
                                       FloatType v5)
   {
-    vector6d v;
+    Vector6d v;
     v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
     return v;
   }
 
   // Constant Spatial::Inertia initialization method.
   inline Spatial::Inertia spatialInertiaMaker(const FloatType m,
-                                              const vector3d & CoM,
-                                              const matrix3d & inertia)
+                                              const Vector3d & CoM,
+                                              const Matrix3d & inertia)
   {
     return Spatial::Inertia(m, CoM*m, inertia + m*(Skew(CoM)*Skew(CoM).transpose()));
   }

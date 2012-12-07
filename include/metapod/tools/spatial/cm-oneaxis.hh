@@ -28,10 +28,10 @@ namespace metapod
     enum AxisType:int  { AxisX=0,AxisY,AxisZ };
 
     template <int axis> 
-    struct vector6dMakerOneAxis 
+    struct Vector6dMakerOneAxis 
     {
-      vector6d v;
-      vector6dMakerOneAxis()
+      Vector6d v;
+      Vector6dMakerOneAxis()
       {
 	v[axis]=1;
       }
@@ -47,10 +47,10 @@ namespace metapod
 	}
 
       private:
-        vector6d m_S;
+        Vector6d m_S;
       public:
-        const vector6d & S() const {return m_S;}
-        vector6dt transpose() const {return m_S.transpose();}
+        const Vector6d & S() const {return m_S;}
+        Vector6dt transpose() const {return m_S.transpose();}
     };
 
     typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
@@ -59,28 +59,28 @@ namespace metapod
     
     /* Operator Inertia = Inertia * float */
     /* */
-    vector6d operator*(const Inertia & m,
+    Vector6d operator*(const Inertia & m,
 		       const ConstraintMotionAxisX &) 
     {
-     vector6d r;
+     Vector6d r;
       r[0] = m.I()(0,0); r[1] = m.I()(1,0);r[2] = m.I()(2,0);      
       r[3] = 0.0; r[4] = -m.h()(2); r[5] = m.h()(1);
       return r;
     }
 
-    vector6d operator*(const Inertia & m,
+    Vector6d operator*(const Inertia & m,
 		       const ConstraintMotionAxisY &) 
     {
-     vector6d r;
+     Vector6d r;
       r[0] = m.I()(0,1); r[1] = m.I()(1,1);r[2] = m.I()(2,1);      
       r[3] = m.h()(2); r[4] = 0.0; r[5] = -m.h()(0);
       return r;
     }
 
-    vector6d operator*(const Inertia & m,
+    Vector6d operator*(const Inertia & m,
 		       const ConstraintMotionAxisZ &) 
     {
-     vector6d r;
+     Vector6d r;
       r[0] = m.I()(0,2); r[1] = m.I()(1,2);r[2] = m.I()(2,2);      
       r[3] = -m.h()(1); r[4] = m.h()(0); r[5] = 0.0;
       return r;

@@ -31,17 +31,17 @@ namespace metapod
 {
   typedef double FloatType;
 
-  typedef Eigen::Matrix< FloatType, 1, 1 > vector1d;
-  typedef Eigen::Matrix< FloatType, 3, 1 > vector3d;
-  typedef Eigen::Matrix< FloatType, 6, 1 > vector6d;
+  typedef Eigen::Matrix< FloatType, 1, 1 > Vector1d;
+  typedef Eigen::Matrix< FloatType, 3, 1 > Vector3d;
+  typedef Eigen::Matrix< FloatType, 6, 1 > Vector6d;
 
-  typedef Eigen::Matrix< FloatType, 1, 6 > vector6dt;
+  typedef Eigen::Matrix< FloatType, 1, 6 > Vector6dt;
 
-  typedef Eigen::Matrix< FloatType, 3, 3 > matrix3d;
-  typedef Eigen::Matrix< FloatType, 6, 6 > matrix6d;
+  typedef Eigen::Matrix< FloatType, 3, 3 > Matrix3d;
+  typedef Eigen::Matrix< FloatType, 6, 6 > Matrix6d;
 
-  typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > matrixN;
-  typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > vectorN;
+  typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > MatrixN;
+  typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > VectorN;
   typedef Eigen::AngleAxis< FloatType > AngleAxisd;
 
   class NC;
@@ -50,22 +50,22 @@ namespace metapod
   {
     /// Implementation of a spatial algebra.
     /// It follows R. Featherstone guidelines, and implements :
-    /// - Spatial Motion vectors (a.k.a. twists)
-    /// - Spatial Force vectors (a.k.a. wrenches)
+    /// - Spatial Motion Vectors (a.k.a. twists)
+    /// - Spatial Force Vectors (a.k.a. wrenches)
     /// - Spatial Rigid Body Inertia matrices
     /// - Spatial Transforms (a.k.a. homogeneous matrices, elements of SE(3))
 
     // Tool methods
-    inline matrix3d skew(const vector3d & v)
+    inline Matrix3d skew(const Vector3d & v)
     {
-      matrix3d m;
+      Matrix3d m;
       m(0,0) = 0;    m(0,1) = -v(2); m(0,2) = v(1);
       m(1,0) = v(2); m(1,1) = 0    ; m(1,2) = -v(0);
       m(2,0) = -v(1);m(2,1)=  v(0) ; m(2,2) =  0 ;
       return m;
     }
 
-    // Template for operator * with inertia matrix I
+    // Template for operator * with inertia Matrix I
     // T = I * S
     template <class T, class U, class S>
     struct OperatorMul

@@ -35,25 +35,25 @@ namespace metapod
       public:
         // Constructors
         Motion() : m_w(), m_v() {}
-        Motion(const vector3d & w, const vector3d & v) : m_w(w), m_v(v) {}
-        Motion(const vector6d & v) : m_w(v.segment<3>(0)),
+        Motion(const Vector3d & w, const Vector3d & v) : m_w(w), m_v(v) {}
+        Motion(const Vector6d & v) : m_w(v.segment<3>(0)),
                                      m_v(v.segment<3>(3)) {}
 
         static const Motion Zero()
         {
-	  return Motion (vector3d::Zero(), vector3d::Zero());
+	  return Motion (Vector3d::Zero(), Vector3d::Zero());
         }
 
         // Getters
-        const vector3d & w() const { return m_w; }
-        const vector3d & v() const { return m_v; }
+        const Vector3d & w() const { return m_w; }
+        const Vector3d & v() const { return m_v; }
 
         // Setters
-        void w(const vector3d & v) { m_w = v; }
-        void v(const vector3d & v) { m_v = v; }
+        void w(const Vector3d & v) { m_w = v; }
+        void v(const Vector3d & v) { m_v = v; }
 
         // Arithmetic operators
-        Motion & operator=(const vector6d & v)
+        Motion & operator=(const Vector6d & v)
         {
           m_w = v.segment<3>(0);
           m_v = v.segment<3>(3);
@@ -103,8 +103,8 @@ namespace metapod
 
       private:
         // Private members
-        vector3d m_w;
-        vector3d m_v;
+        Vector3d m_w;
+        Vector3d m_v;
     };
 
   } // end of namespace Spatial

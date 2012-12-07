@@ -34,7 +34,7 @@ namespace metapod
   /// Compute articular jacobian J of a point (in body coordinates)
   /// attached to a body in a specific sub-chain of the robot
   /// kinematic tree. This jacobian is such that v = J*dq is the point
-  /// frame spatial motion vector in world coordinates, under the sole
+  /// frame spatial motion Vector in world coordinates, under the sole
   /// influence of joints in the sub-chain and (optionally) a fictive
   /// free-flyer joint at the base of the sub-chain.
   ///
@@ -78,7 +78,7 @@ namespace metapod
   struct jac_point_chain {};
 
   /// \brief Specialization of jac_point_chain: Update all body
-  /// transforms with respect to configuration vector.
+  /// transforms with respect to configuration Vector.
   template< typename Robot, typename StartBody, typename EndBody,
             unsigned int offset, bool includeFreeFlyer >
   struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
@@ -92,14 +92,14 @@ namespace metapod
 
     /// \brief Compute the articular jacobian J.
     ///
-    /// \param q Configuration vector: it is used to update all body
+    /// \param q Configuration Vector: it is used to update all body
     /// spatial transforms if bcalc is equal to true.
     ///
     /// \param e_p Coordinates of point in EndBody coordinates.
     /// \retval J Computed jacobian of size 6x(NBDOF+offset) if
     /// free-flyer is included, 6x(NBDOF-6+offset) otherwise.
     static void run(const typename Robot::confVector & q,
-                    const vector3d & e_p,
+                    const Vector3d & e_p,
                     jacobian_t & J)
     {
       // Reset jacobian.
@@ -109,7 +109,7 @@ namespace metapod
       bcalc< Robot >::run(q);
 
       // Compute point coordinates in world frame.
-      vector3d p = EndBody::iX0.applyInv(e_p);
+      Vector3d p = EndBody::iX0.applyInv(e_p);
 
       // Get deepest common body label.
       int label;
@@ -126,7 +126,7 @@ namespace metapod
   };
 
   /// \brief Specialization of jac_point_chain: Do not update body
-  /// transforms with respect to configuration vector.
+  /// transforms with respect to configuration Vector.
   template< typename Robot, typename StartBody, typename EndBody,
             unsigned int offset, bool includeFreeFlyer >
   struct jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer,
@@ -142,14 +142,14 @@ namespace metapod
     ///
     /// \sa jac_point_chain< Robot, StartBody, EndBody, offset, includeFreeFlyer, true >::run().
     static void run(const typename Robot::confVector & ,
-                    const vector3d & e_p,
+                    const Vector3d & e_p,
                     jacobian_t & J)
     {
       // Reset jacobian.
       J.setZero ();
 
       // Compute point coordinates in world frame.
-      vector3d p = EndBody::iX0.applyInv(e_p);
+      Vector3d p = EndBody::iX0.applyInv(e_p);
 
       // Get deepest common body label.
       int label;
@@ -183,7 +183,7 @@ namespace metapod
     jacobian_t;
 
     static void run(const int & label,
-                    const vector3d & p,
+                    const Vector3d & p,
                     jacobian_t & J) __attribute__ ((hot))
     {
       // FIXME: Stop condition: avoid if condition and use template
@@ -195,7 +195,7 @@ namespace metapod
       // Ji = - pX0 * (iX0)^(-1) * Si,
       // where pX0 is the word transform in the point frame,
       // iX0 is the world transform in the ith body frame,
-      // Si is the ith joint motion subspace matrix.
+      // Si is the ith joint motion subspace Matrix.
       J.template
 	block<6,Joint::NBDOF>(0,Joint::positionInConf
 			      + offset
@@ -218,7 +218,7 @@ namespace metapod
     jacobian_t;
 
     static void run(const int & ,
-                    const vector3d &,
+                    const Vector3d &,
                     jacobian_t &) {}
   };
 
@@ -238,7 +238,7 @@ namespace metapod
     jacobian_t;
 
     static void run(const int & label,
-                    const vector3d & p,
+                    const Vector3d & p,
                     jacobian_t & J) __attribute__ ((hot))
     {
       // FIXME: Stop condition: avoid if condition and use template
@@ -250,7 +250,7 @@ namespace metapod
       // Ji = pX0 * (iX0)^(-1) * Si,
       // where pX0 is the word transform in the point frame,
       // iX0 is the world transform in the ith body frame,
-      // Si is the ith joint motion subspace matrix.
+      // Si is the ith joint motion subspace Matrix.
       J.template
 	block<6,Joint::NBDOF>(0,Joint::positionInConf
 			      + offset
@@ -273,7 +273,7 @@ namespace metapod
     jacobian_t;
 
     static void run(const int,
-                    const vector3d &,
+                    const Vector3d &,
                     jacobian_t &) {}
   };
 
@@ -291,17 +291,17 @@ namespace metapod
                                      offset, true >::jacobian_t
     jacobian_t;
 
-    static void run(const vector3d & p,
+    static void run(const Vector3d & p,
                     jacobian_t & J)
     {
       // Compute jacobian block for freeflyer. Formula is given by:
       // Ji = pX0 * (sX0)^(-1) * Sff,
       // where pX0 is the word transform in the point frame,
       // sX0 is the world transform in the start body frame,
-      // Sff is the motion subspace matrix of a fictive free-flyer
+      // Sff is the motion subspace Matrix of a fictive free-flyer
       // located at the start body joint.
-      J.template block<3,3>(0,3+offset) = matrix3d::Identity ();
-      J.template block<3,3>(3,offset) = matrix3d::Identity ();
+      J.template block<3,3>(0,3+offset) = Matrix3d::Identity ();
+      J.template block<3,3>(3,offset) = Matrix3d::Identity ();
       Spatial::Transform pXs = StartBody::iX0.inverse ().toPointFrame (p);
       J.template block<3,3>(3,3+offset) = Spatial::skew (- pXs.E() * pXs.r());
     }
@@ -316,7 +316,7 @@ namespace metapod
                                      offset, false >::jacobian_t
     jacobian_t;
 
-    static void run(const vector3d &,
+    static void run(const Vector3d &,
                     jacobian_t &) {}
   };
 
@@ -431,7 +431,7 @@ namespace metapod
       // Compute jacobian sub-block.
       bodyJacobian_t subJ = bodyJacobian_t::Zero();
       jac_point_chain< Robot, Body1, Body2, 6, false, bcalc >
-        ::run(q, vector3d(0,0,0), subJ);
+        ::run(q, Vector3d(0,0,0), subJ);
       J.template block<6,Robot::NBDOF>
         (6*Robot::NBBODIES*Body1::label + 6*Body2::label, 0) = subJ;
 
@@ -475,7 +475,7 @@ namespace metapod
       // Compute jacobian sub-block.
       bodyJacobian_t subJ = bodyJacobian_t::Zero();
       jac_point_chain< Robot, Body1, Body2, 0, true, bcalc >
-        ::run(q, vector3d(0,0,0), subJ);
+        ::run(q, Vector3d(0,0,0), subJ);
       J.template block<6,Robot::NBDOF>
         (6*Robot::NBBODIES*Body1::label + 6*Body2::label, 0) = subJ;
 

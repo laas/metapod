@@ -110,13 +110,13 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
   std::string tab = "    ";
   // Create Root Joint
   createJoint(joint_hh, lib_cc, REVOLUTE_AXIS_X, "J0", 0, 0,
-              matrix3d::Random(), 
-              vector3d::Random(), tab);
+              Matrix3d::Random(), 
+              Vector3d::Random(), tab);
 
   // Create Root Body
   createBody(body_hh, lib_cc, "B0", "NP", "J0", 0, 1.,
-             vector3d::Random(),
-             matrix3d::Random(),
+             Vector3d::Random(),
+             Matrix3d::Random(),
              tab,
              false);
 
@@ -192,9 +192,9 @@ void metapod::benchmark::addNode(std::ofstream & body_hh,
   joint_name << "J" << label;
   std::string tab = "    ";
   createBody(body_hh, lib_cc, name.str(), parent_name.str(), joint_name.str(),
-             label, 1., vector3d::Random(), matrix3d::Random(), tab, true);
+             label, 1., Vector3d::Random(), Matrix3d::Random(), tab, true);
   createJoint(joint_hh, lib_cc, REVOLUTE_AXIS_X, joint_name.str(), label, label,
-              matrix3d::Random(), vector3d::Random(), tab);
+              Matrix3d::Random(), Vector3d::Random(), tab);
 }
 
 void metapod::benchmark::makeLibraryHeader(std::ofstream & lib_hh, int nbdof)

@@ -34,21 +34,21 @@ namespace metapod
       public:
         // Constructors
         Inertia() : m_m(), m_h(), m_I() {}
-        Inertia(FloatType m, const vector3d & h, const matrix3d & I)
+        Inertia(FloatType m, const Vector3d & h, const Matrix3d & I)
           : m_m(m), m_h(h), m_I(I) {}
 
         // Getters
         FloatType m() const { return m_m; }
-        const vector3d & h() const { return m_h; }
-        const matrix3d & I() const { return m_I; }
+        const Vector3d & h() const { return m_h; }
+        const Matrix3d & I() const { return m_I; }
 
-        matrix6d toMatrix() const
+        Matrix6d toMatrix() const
         {
-          matrix6d M;
+          Matrix6d M;
           M.block<3,3>(0,0) = m_I;
           M.block<3,3>(0,3) = skew(m_h);
           M.block<3,3>(3,0) = -skew(m_h);
-          M.block<3,3>(3,3) = m_m*matrix3d::Identity();
+          M.block<3,3>(3,3) = m_m*Matrix3d::Identity();
           return M;
         }
 
@@ -88,8 +88,8 @@ namespace metapod
       private:
         // Private members
         FloatType m_m;
-        vector3d m_h;
-        matrix3d m_I;
+        Vector3d m_h;
+        Matrix3d m_I;
     };
 
     template<>

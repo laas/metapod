@@ -33,10 +33,10 @@ namespace metapod
   {
     /// Given two frames a and b, one can define the transform bXa, which
     /// changes coordinates between the two. bXa is composed of a rotation
-    /// matrix E, which changes vector coordinates from a to b, and a vector
+    /// Matrix E, which changes Vector coordinates from a to b, and a Vector
     /// r, which gives the position of the origin of b, expressed in the a
     /// frame.
-    /// So if v is a vector and p is a point, we have:
+    /// So if v is a Vector and p is a point, we have:
     ///
     ///   vb = bXa.E * va
     ///   pb = bXa.E * (pa - bXa.r)
@@ -45,16 +45,16 @@ namespace metapod
       public:
         // Constructors
         Transform() : m_E(), m_r() {}
-        Transform(const matrix3d & E, const vector3d & r) : m_E(E), m_r(r) {}
+        Transform(const Matrix3d & E, const Vector3d & r) : m_E(E), m_r(r) {}
 
         static const Transform Identity()
         {
-	  return Transform (matrix3d::Identity(), vector3d::Zero());
+	  return Transform (Matrix3d::Identity(), Vector3d::Zero());
         }
 
         // Getters
-        const vector3d & r() const { return m_r; }
-        const matrix3d & E() const { return m_E; }
+        const Vector3d & r() const { return m_r; }
+        const Matrix3d & E() const { return m_E; }
 
         // Transformations
 
@@ -74,7 +74,7 @@ namespace metapod
         /// Ib = bXa.apply(Ia)
         Inertia apply(const Inertia & I) const
         {
-          vector3d tmp = I.h() - I.m()*m_r;
+          Vector3d tmp = I.h() - I.m()*m_r;
           return Inertia(I.m(),
                          m_E*tmp,
                          m_E*(I.I()
@@ -83,17 +83,17 @@ namespace metapod
         }
 
         /// Pb = bXa.apply(Pa)
-        vector3d apply(const vector3d& p) const
+        Vector3d apply(const Vector3d& p) const
         {
-          return static_cast<vector3d>(m_E*(p - m_r));
+          return static_cast<Vector3d>(m_E*(p - m_r));
         }
 
         /// Sb = bXa.apply(Sa)
         ///
         /// Specialization for JOINT_REVOLUTE_AXIS_ANY
-        vector6d apply(const ConstraintMotionAnyAxis& S) const
+        Vector6d apply(const ConstraintMotionAnyAxis& S) const
         {
-	  vector6d tmp = vector6d::Zero();
+	  Vector6d tmp = Vector6d::Zero();
 	  tmp.head<3>() = m_E*S.S().head<3>();
 	  tmp.tail<3>() = -m_E*m_r.cross(S.S().head<3>());
 	  return tmp;
@@ -102,20 +102,20 @@ namespace metapod
         /// Sb = bXa.apply(Sa)
         ///
         /// Specialization for JOINT_REVOLUTE_AXIS_X
-        vector6d apply(const ConstraintMotionAxisX& ) const
+        Vector6d apply(const ConstraintMotionAxisX& ) const
         {
-	  vector6d tmp = vector6d::Zero();
+	  Vector6d tmp = Vector6d::Zero();
 	  tmp.head<3>() = m_E.col(0);
-	  tmp.tail<3>() = m_E*vector3d(0,-m_r[2],m_r[1]);
+	  tmp.tail<3>() = m_E*Vector3d(0,-m_r[2],m_r[1]);
 	  return tmp;
         }
 
         /// Sb = bXa.apply(Sa)
         ///
         /// Specialization for JOINT_FREE_FLYER
-        matrix6d apply(const ConstraintMotionFreeFlyer& S) const
+        Matrix6d apply(const ConstraintMotionFreeFlyer& S) const
         {
-	  matrix6d tmp = matrix6d::Zero();
+	  Matrix6d tmp = Matrix6d::Zero();
 	  tmp.topRightCorner<3,3>() = m_E * S.S().topRightCorner<3,3>();
 	  tmp.bottomLeftCorner<3,3>() = m_E * S.S().bottomLeftCorner<3,3>();
 	  tmp.bottomRightCorner<3,3>()
@@ -124,30 +124,30 @@ namespace metapod
         }
 
         /// Vb.toVector() = bXa.toMatrix() * Va.toVector()
-        matrix6d toMatrix() const
+        Matrix6d toMatrix() const
         {
-          matrix6d M;
+          Matrix6d M;
           M.block<3,3>(0,0) = m_E;
-          M.block<3,3>(0,3) = matrix3d::Zero();
+          M.block<3,3>(0,3) = Matrix3d::Zero();
           M.block<3,3>(3,0) = -m_E * skew(m_r);
           M.block<3,3>(3,3) = m_E;
           return M;
         }
 
         /// Fa.toVector() = bXa.toMatrixTranspose() * Fb.toVector()
-        matrix6d toMatrixTranspose() const
+        Matrix6d toMatrixTranspose() const
         {
-          matrix6d M;
+          Matrix6d M;
           M.block<3,3>(0,0) = m_E.transpose();
-          M.block<3,3>(3,0) = matrix3d::Zero();
+          M.block<3,3>(3,0) = Matrix3d::Zero();
           M.block<3,3>(0,3) = (-m_E * skew(m_r)).transpose();
           M.block<3,3>(3,3) = m_E.transpose();
           return M;
         }
 
-      vector6d mulMatrixTransposeBy(vector6d &aF) const
+      Vector6d mulMatrixTransposeBy(Vector6d &aF) const
         {
-	  vector6d M;
+	  Vector6d M;
 	  M[0] = m_E(0,0)*aF(0) + m_E(1,0)*aF(1) + m_E(2,0)*aF(2);
 	  M[1] = m_E(0,1)*aF(0) + m_E(1,1)*aF(1) + m_E(2,1)*aF(2);
 	  M[2] = m_E(0,2)*aF(0) + m_E(1,2)*aF(1) + m_E(2,2)*aF(2);
@@ -171,12 +171,12 @@ namespace metapod
           return M;
         }
         /// Fb.toVector() = bXa.toMatrixTransposeInverse() * Fa.toVector()
-        matrix6d toMatrixTransposeInverse() const
+        Matrix6d toMatrixTransposeInverse() const
         {
-          matrix6d M;
+          Matrix6d M;
           M.block<3,3>(0,0) = m_E;
           M.block<3,3>(0,3) = -m_E * skew(m_r);
-          M.block<3,3>(3,0) = matrix3d::Zero();
+          M.block<3,3>(3,0) = Matrix3d::Zero();
           M.block<3,3>(3,3) = m_E;
           return M;
         }
@@ -184,22 +184,22 @@ namespace metapod
         /// Va = bXa.applyInv(Vb)
         Motion applyInv(const Motion & mv) const
         {
-          vector3d ET_w = static_cast<vector3d>(m_E.transpose()*mv.w());
+          Vector3d ET_w = static_cast<Vector3d>(m_E.transpose()*mv.w());
           return Motion(ET_w, m_E.transpose()*mv.v() + m_r.cross(ET_w));
         }
 
         /// Fa = bXa.applyInv(Fb)
         Force applyInv(const Force & fv) const
         {
-          vector3d ET_f = static_cast<vector3d>(m_E.transpose()*fv.f());
+          Vector3d ET_f = static_cast<Vector3d>(m_E.transpose()*fv.f());
           return Force(m_E.transpose()*fv.n() + m_r.cross(ET_f), ET_f);
         }
 
         /// Ia = bXa.applyInv(Ib)
         Inertia applyInv(const Inertia & I) const
         {
-          vector3d tmp1 = static_cast<vector3d>(m_E.transpose()*I.h());
-          vector3d tmp2 = static_cast<vector3d>(tmp1 + I.m()*m_r);
+          Vector3d tmp1 = static_cast<Vector3d>(m_E.transpose()*I.h());
+          Vector3d tmp2 = static_cast<Vector3d>(tmp1 + I.m()*m_r);
           return Inertia(I.m(),
                          tmp2,
                          m_E.transpose()*I.I()*m_E
@@ -209,7 +209,7 @@ namespace metapod
 
 
         /// Pa = bXa.applyInv(Pb)
-        vector3d applyInv(const vector3d& p) const
+        Vector3d applyInv(const Vector3d& p) const
         {
           return m_E.transpose()*p + m_r;
         }
@@ -234,13 +234,13 @@ namespace metapod
 
         /// Specialization of transform multiplication.
         /// Compute transform cXa from bXa, with cXb a translation defined by
-        /// the vector Pb (expressed in frame b).
+        /// the Vector Pb (expressed in frame b).
         ///
         /// In a nutshell:
         ///
         /// cXb == Transform(Eye, Pb)
         /// cXa == cXb * bXa == bXa.toPointFrame(Pb)
-        Transform toPointFrame(const vector3d& p) const
+        Transform toPointFrame(const Vector3d& p) const
         {
           return Transform (m_E, m_r + m_E.transpose()*p);
         }
@@ -254,14 +254,14 @@ namespace metapod
         /// Fb = bXa * Fa
         Force operator*(const Force & fv) const
         {
-          vector3d lf = fv.f();
+          Vector3d lf = fv.f();
           return Force(m_E*(fv.n() - m_r.cross(lf)), m_E*lf);
         }
 
         /// Ib = bXa * Ia
         Inertia operator*(const Inertia & I) const
         {
-          vector3d tmp = I.h() - I.m()*m_r;
+          Vector3d tmp = I.h() - I.m()*m_r;
           return Inertia(I.m(),
                          m_E*tmp,
                          m_E*(I.I()
@@ -281,8 +281,8 @@ namespace metapod
 
       private:
         // Private members
-        matrix3d m_E;
-        vector3d m_r;
+        Matrix3d m_E;
+        Vector3d m_r;
     };
   } // end of namespace Spatial
 

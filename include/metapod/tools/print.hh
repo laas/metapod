@@ -60,16 +60,16 @@ template<> inline void printState<NC>(std::ostream &){}
 
 
 /*
- * Print a conf vector in a stream.
+ * Print a conf Vector in a stream.
  * Can be used to log a configuration that can later be loaded through the
  * initConf method.
  */
-template< typename Tree > void printConf(const vectorN & q,
+template< typename Tree > void printConf(const VectorN & q,
                                          std::ostream & qlog)
 {
   typedef Tree Node;
 
-  vectorN qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+  VectorN qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
 
   qlog << Node::Joint::name << "\n" << qi << std::endl;
 
@@ -81,7 +81,7 @@ template< typename Tree > void printConf(const vectorN & q,
 }
 
 template<>
-inline void printConf<NC>(const vectorN &, std::ostream &){}
+inline void printConf<NC>(const VectorN &, std::ostream &){}
 
 // Print Transforms of the robot bodies in a stream.
 template< typename Tree >
@@ -126,7 +126,7 @@ inline void printTorques<NC>(std::ostream &){}
 
 // Get Torques of the robot.
 template< typename Tree >
-void getTorques(vectorN& torques, unsigned& i)
+void getTorques(VectorN& torques, unsigned& i)
 {
   typedef Tree Node;
 
@@ -146,7 +146,7 @@ void getTorques(vectorN& torques, unsigned& i)
 }
 
 template<>
-inline void getTorques<NC>(vectorN&, unsigned&){}
+inline void getTorques<NC>(VectorN&, unsigned&){}
 
 } // end of namespace metapod.
 
