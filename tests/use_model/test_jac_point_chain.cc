@@ -28,6 +28,67 @@
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;
 
+// start at the hand and finish with the arm
+#ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
+# define START_NODE LARM_LINK7
+# define END_NODE LARM_LINK3
+  static const int offset = 0;
+#else
+# define START_NODE HAND
+# define END_NODE ARM
+  static const int offset = 6; // offset >3 is needed to ensure J.cols() >0
+#endif
+
+BOOST_AUTO_TEST_CASE (test_jac_point_chain)
+{
+  // Set configuration vectors (q) to reference values.
+  Robot::confVector q;
+  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
+  initConf< Robot >::run(qconf, q);
+  qconf.close();
+
+  static const bool includeFreeFlyer = true;
+  typedef jac_point_chain< Robot,
+      CURRENT_MODEL_NAMESPACE::START_NODE,
+      CURRENT_MODEL_NAMESPACE::END_NODE,
+      offset, includeFreeFlyer > jac;
+  // Compute the jacobian and print the result in a log file.
+  jac::jacobian_t J = jac::jacobian_t::Zero();
+  jac::run(q, vector3d(0,0,0), J);
+  const char result_file[] = "jac_point_chain.log";
+  std::ofstream log(result_file, std::ofstream::out);
+  log << J << std::endl;;
+  log.close();
+
+  // Compare results with reference file
+  compareLogs(result_file, TEST_DIRECTORY "/jac_point_chain.ref", 1e-3);
+}
+
+BOOST_AUTO_TEST_CASE (test_jac_point_chain_no_free_flyer)
+{
+  // Set configuration vectors (q) to reference values.
+  Robot::confVector q;
+  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
+  initConf< Robot >::run(qconf, q);
+  qconf.close();
+
+  static const bool includeFreeFlyer = false;
+  typedef jac_point_chain< Robot,
+      CURRENT_MODEL_NAMESPACE::START_NODE,
+      CURRENT_MODEL_NAMESPACE::END_NODE,
+      offset, includeFreeFlyer > jac;
+  // Compute the jacobian and print the result in a log file.
+  jac::jacobian_t J = jac::jacobian_t::Zero();
+  jac::run(q, vector3d(0,0,0), J);
+  const char result_file[] = "jac_point_chain_no_free_flyer.log";
+  std::ofstream log(result_file, std::ofstream::out);
+  log << J << std::endl;;
+  log.close();
+
+  // Compare results with reference file
+  compareLogs(result_file, TEST_DIRECTORY "/jac_point_chain_no_free_flyer.ref", 1e-3);
+}
+
 namespace metapod
 {
   /// \addtogroup jac_point_chain_robot Point in Chain Articular Jacobian Test Algorithm
