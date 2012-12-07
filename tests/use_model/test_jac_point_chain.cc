@@ -28,7 +28,7 @@
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;
 
-BOOST_AUTO_TEST_CASE (test_jac_point_chain)
+BOOST_AUTO_TEST_CASE (test_jac_point_chain_robot)
 {
   // Set configuration vectors (q) to reference values.
   Robot::confVector q;
@@ -40,11 +40,11 @@ BOOST_AUTO_TEST_CASE (test_jac_point_chain)
   jac_point_chain_robot< Robot >::jacobian_t J =
       jac_point_chain_robot< Robot >::jacobian_t::Zero();
   jac_point_chain_robot< Robot >::run(q, J);
-  const char result_file[] = "jac_point_chain.log";
+  const char result_file[] = "jac_point_chain_robot.log";
   std::ofstream log(result_file, std::ofstream::out);
   log << J << std::endl;;
   log.close();
 
   // Compare results with reference file
-  compareLogs(result_file, TEST_DIRECTORY "/jac_point_chain.ref", 1e-3);
+  compareLogs(result_file, TEST_DIRECTORY "/jac_point_chain_robot.ref", 1e-3);
 }
