@@ -89,7 +89,7 @@ namespace metapod
   };
 
   // Constant 3x3 Matrix initialization method.
-  inline const Matrix3d Matrix3dMaker(
+  inline const Matrix3d matrix3dMaker(
     FloatType m00, FloatType m01, FloatType m02,
     FloatType m10, FloatType m11, FloatType m12,
     FloatType m20, FloatType m21, FloatType m22)
@@ -102,7 +102,7 @@ namespace metapod
   }
 
   // Constant size 6 Vector initialization method.
-  inline const Vector6d Vector6dMaker(FloatType v0,
+  inline const Vector6d vector6dMaker(FloatType v0,
                                       FloatType v1,
                                       FloatType v2,
                                       FloatType v3,
