@@ -91,9 +91,6 @@ namespace metapod
                     const Vector3d & e_p,
                     jacobian_t & J)
     {
-      // Reset jacobian.
-      J.setZero ();
-
       // Update body transformations.
       if (call_bcalc)
       {
