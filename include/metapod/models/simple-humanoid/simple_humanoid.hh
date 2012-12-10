@@ -26,6 +26,7 @@
 
 # include "metapod/tools/common.hh"
 # include "metapod/tools/is_ancestor.hh"
+# include "metapod/tools/deepest_common_ancestor.hh"
 # include "metapod/tools/depth_first_traversal.hh"
 # include "metapod/tools/backward_traversal.hh"
 # include "metapod/tools/backward_traversal_prev.hh"
