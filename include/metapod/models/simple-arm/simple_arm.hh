@@ -32,6 +32,7 @@
 # include "metapod/tools/backward_traversal_prev.hh"
 # include "metapod/algos/rnea.hh"
 # include "metapod/algos/crba.hh"
+# include "metapod/algos/jac_point_relative.hh"
 # include "metapod/algos/jac_point.hh"
 # include "metapod/algos/jac_point_chain.hh"
 
