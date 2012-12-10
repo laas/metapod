@@ -20,7 +20,7 @@
 # define METAPOD_JAC_POINT_ROBOT_HH
 
 # include "metapod/tools/common.hh"
-# include "metapod/algos/jac_point.hh"
+# include "metapod/algos/jac_point_relative.hh"
 
 namespace metapod
 {
@@ -70,10 +70,10 @@ namespace metapod
   struct jac_point_robot_internal
   {
     typedef typename jac_point_robot< Robot, bcalc>::jacobian_t
-    robotJacobian_t;
-    typedef typename jac_point< Robot, typename Robot::Tree::Body,
-                                bcalc>::jacobian_t
-    bodyJacobian_t;
+        robotJacobian_t;
+    typedef jac_point_relative< Robot, NP, typename Tree::Body,
+            0, bcalc> solver;
+    typedef typename solver::jacobian_t bodyJacobian_t;
 
     typedef Tree Node;
 
@@ -82,8 +82,7 @@ namespace metapod
     {
       // Compute jacobian sub-block.
       bodyJacobian_t subJ = bodyJacobian_t::Zero();
-      jac_point< Robot, typename Node::Body, bcalc >
-        ::run(q, vector3d(0,0,0), subJ);
+      solver::run(q, vector3d(0,0,0), subJ);
       J.template block<6,Robot::NBDOF>(6*Node::Body::label, 0) = subJ;
 
       // recursion on children
@@ -106,7 +105,7 @@ namespace metapod
   struct jac_point_robot_internal< Robot, NC, bcalc>
   {
     typedef typename jac_point_robot< Robot, bcalc>::jacobian_t
-    robotJacobian_t;
+        robotJacobian_t;
 
     static void run(const typename Robot::confVector &,
                     robotJacobian_t &) {}
