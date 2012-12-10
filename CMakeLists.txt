@@ -71,6 +71,7 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/jointmacros.hh
   include/${PROJECT_NAME}/tools/bodymacros.hh
+  include/${PROJECT_NAME}/tools/is_ancestor.hh
   include/${PROJECT_NAME}/tools/depth_first_traversal.hh
   include/${PROJECT_NAME}/tools/initconf.hh
   include/${PROJECT_NAME}/tools/print.hh
