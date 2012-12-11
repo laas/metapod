@@ -29,6 +29,34 @@ namespace metapod
 
   namespace Spatial
   {
+
+    struct ltI
+    {
+      const Vector6d m_ltI;
+      ltI() { m_ltI = Vector6d::Zero(); }
+      ltI(const Matrix3d &I) 
+      { 
+	m_ltI(0) = I(0,0);
+	m_ltI(1) = I(1,0); m_ltI(2) = I(1,1);
+	m_ltI(3) = I(2,0); m_ltI(4) = I(2,1); m_ltI(5) = I(2,2);
+      }
+
+      const Matrix3d & toMatrix()
+      {
+	Matrix3d tmp;
+	tmp(0,0) = m_ltI(0); tmp(0,1) = m_ltI(1); tmp(0,2) = m_ltI(3);
+	tmp(1,0) = m_ltI(1); tmp(1,1) = m_ltI(2); tmp(1,2) = m_ltI(4);
+	tmp(2,0) = m_ltI(3); tmp(2,1) = m_ltI(4); tmp(2,2) = m_ltI(5);
+	return tmp;
+      }
+    }
+
+    Matrix3d operator=(const ltI & altI)
+    {
+      Matrix3d tmp = altI.toMatrix();
+      return tmp;
+    }
+
     class Inertia
     {
       public:
@@ -89,7 +117,7 @@ namespace metapod
         // Private members
         FloatType m_m;
         Vector3d m_h;
-        Matrix3d m_I;
+        ltI m_I;
     };
 
     template<>
