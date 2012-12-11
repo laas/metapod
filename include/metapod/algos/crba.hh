@@ -74,7 +74,7 @@ namespace metapod
           Node::Body::Parent::Iic = Node::Body::Parent::Iic
                                   + Node::Joint::sXp.applyInv(Node::Body::Iic);
 
-        Node::Body::Joint::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
+        Node::Body::Joint::F = Node::Body::Iic * Node::Joint::S;
 
         Robot::H.template block<Node::Joint::NBDOF, Node::Joint::NBDOF>(
                 Node::Joint::positionInConf, Node::Joint::positionInConf)
