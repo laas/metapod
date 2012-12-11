@@ -82,7 +82,7 @@ namespace metapod
     {
       // Compute jacobian sub-block.
       bodyJacobian_t subJ = bodyJacobian_t::Zero();
-      solver::run(q, vector3d(0,0,0), subJ);
+      solver::run(q, Vector3d(0,0,0), subJ);
       J.template block<6,Robot::NBDOF>(6*Node::Body::label, 0) = subJ;
 
       // recursion on children

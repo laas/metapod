@@ -116,7 +116,7 @@ namespace metapod
                     jacobian_t & J)
     {
       // Compute point coordinates in world frame.
-      vector3d p = EndBody::iX0.applyInv(e_p);
+      Vector3d p = EndBody::iX0.applyInv(e_p);
       // Compute jacobian block for freeflyer. Formula is given by:
       // Ji = pX0 * (sX0)^(-1) * Sff,
       // where pX0 is the word transform in the point frame,

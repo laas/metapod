@@ -35,7 +35,7 @@ namespace metapod
   template< typename Body >
   struct convert_to_world
   {
-    static vector3d run(const vector3d & b_p)
+    static Vector3d run(const Vector3d & b_p)
     {
       return Body::iX0.applyInv(b_p);
     }
@@ -46,7 +46,7 @@ namespace metapod
   template<>
   struct convert_to_world<NP>
   {
-    static vector3d run(const vector3d & b_p)
+    static Vector3d run(const Vector3d & b_p)
     {
       return b_p;
     }
@@ -88,7 +88,7 @@ namespace metapod
     template <typename Node> struct StartToAncestorVisitor
     {
         typedef Node Body;
-        static void discover(const vector3d & p,
+        static void discover(const Vector3d & p,
                              jacobian_t & J)
         {
           // Compute jacobian block for current node. Formula is given by:
@@ -101,14 +101,14 @@ namespace metapod
               (0, Node::Joint::positionInConf + offset) = -
                   Node::Joint::applyToS(Body::iX0.inverse ().toPointFrame (p));
         }
-        static void finish(const vector3d &,
+        static void finish(const Vector3d &,
                            jacobian_t &) {};
     };
 
     template <typename Node> struct EndToAncestorVisitor
     {
         typedef Node Body;
-        static void discover(const vector3d & p,
+        static void discover(const Vector3d & p,
                              jacobian_t & J)
         {
           // Compute jacobian block for current node. Formula is given by:
@@ -121,7 +121,7 @@ namespace metapod
             (0,  Node::Joint::positionInConf + offset) =
                 Node::Joint::applyToS(Body::iX0.inverse ().toPointFrame (p));
         }
-        static void finish(const vector3d &,
+        static void finish(const Vector3d &,
                            jacobian_t &) {};
     };
 
@@ -137,7 +137,7 @@ namespace metapod
     /// presumably zero J before passing it to the algorithm for the first
     /// time.
     static void run(const typename Robot::confVector & q,
-                    const vector3d & e_p,
+                    const Vector3d & e_p,
                     jacobian_t & J)
     {
       // Update body transformations.
@@ -149,7 +149,7 @@ namespace metapod
       // Compute point coordinates in world frame.h
       // We need to delegate this computation to account for the cases
       // where EndNode == NP.
-      vector3d p = convert_to_world<EndNode>::run(e_p);
+      Vector3d p = convert_to_world<EndNode>::run(e_p);
 
       backward_traversal< StartToAncestorVisitor, Robot,
           StartNode, AncestorNode>::run(p, J);
