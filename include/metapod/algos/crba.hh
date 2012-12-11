@@ -50,7 +50,7 @@ namespace metapod
           Robot::H.template
             block< NI::Joint::NBDOF, NJ::Joint::NBDOF >
                  ( NI::Joint::positionInConf, NJ::Joint::positionInConf )
-            = NI::Joint::F.transpose() * NJ::Joint::S;
+            = NI::Joint::F.transpose() * NJ::Joint::S.S();
           Robot::H.template
             block< NJ::Joint::NBDOF, NI::Joint::NBDOF >
                  ( NJ::Joint::positionInConf, NI::Joint::positionInConf )

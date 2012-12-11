@@ -99,7 +99,7 @@ namespace metapod
           J.template
               block<6, Node::Joint::NBDOF>
               (0, Node::Joint::positionInConf + offset) = -
-                  Node::Joint::applyToS(Body::iX0.inverse ().toPointFrame (p));
+	    Body::iX0.inverse ().toPointFrame (p).apply(Node::Joint::S);
         }
         static void finish(const Vector3d &,
                            jacobian_t &) {};
@@ -119,7 +119,8 @@ namespace metapod
           J.template
             block<6, Node::Joint::NBDOF>
             (0,  Node::Joint::positionInConf + offset) =
-                Node::Joint::applyToS(Body::iX0.inverse ().toPointFrame (p));
+	    //      Node::Joint::applyToS(Body::iX0.inverse ().toPointFrame (p));
+	    Body::iX0.inverse ().toPointFrame (p).apply( Node::Joint::S);
         }
         static void finish(const Vector3d &,
                            jacobian_t &) {};
