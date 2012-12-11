@@ -25,103 +25,82 @@
 # define METAPOD_CRBA_HH
 
 # include "metapod/tools/common.hh"
+# include "metapod/tools/depth_first_traversal.hh"
+# include "metapod/tools/backward_traversal_prev.hh"
 
 namespace metapod
 {
-  template< typename Robot, typename Tree > struct crba_forward_propagation;
-
-  template< typename Robot, typename BI, typename BJ, typename Parent >
-  struct crba_backward_propagation;
-
+  // frontend
   template< typename Robot, bool jcalc = true > struct crba {};
-
-  template< typename Robot > struct crba< Robot, false >
+  template< typename Robot > struct crba<Robot, false>
   {
-    static void run(const typename Robot::confVector & )
+    template <typename Node >
+    struct DftVisitor
     {
-      crba_forward_propagation< Robot, typename Robot::Tree >::run();
+      typedef typename Node::Body BI;
+      typedef Node NI;
+
+      // Update NJ with data from PrevNJ
+      template< typename NJ, typename PrevNJ >
+      struct BwdtVisitor
+      {
+        static void discover()
+        {
+          NI::Joint::F = PrevNJ::Joint::sXp.toMatrixTranspose() * NI::Joint::F;
+          Robot::H.template
+            block< NI::Joint::NBDOF, NJ::Joint::NBDOF >
+                 ( NI::Joint::positionInConf, NJ::Joint::positionInConf )
+            = NI::Joint::F.transpose() * NJ::Joint::S;
+          Robot::H.template
+            block< NJ::Joint::NBDOF, NI::Joint::NBDOF >
+                 ( NJ::Joint::positionInConf, NI::Joint::positionInConf )
+            = Robot::H.template
+                block< NI::Joint::NBDOF, NJ::Joint::NBDOF >
+                     ( NI::Joint::positionInConf, NJ::Joint::positionInConf ).transpose();
+        }
+
+        static void finish() {}
+      };
+
+      // forward propagation
+      static void discover()
+      {
+        Node::Body::Iic = Node::Body::I;
+      }
+
+      static void finish()
+      {
+        if(Node::Body::HAS_PARENT)
+          Node::Body::Parent::Iic = Node::Body::Parent::Iic
+                                  + Node::Joint::sXp.applyInv(Node::Body::Iic);
+
+        Node::Body::Joint::F = Node::Body::Iic.toMatrix() * Node::Joint::S;
+
+        Robot::H.template block<Node::Joint::NBDOF, Node::Joint::NBDOF>(
+                Node::Joint::positionInConf, Node::Joint::positionInConf)
+                         = Node::Joint::S.transpose() * Node::Body::Joint::F;
+        backward_traversal_prev< BwdtVisitor, Robot, BI >::run();
+      }
+    };
+
+    static void run(const typename Robot::confVector & q)
+    {
+      depth_first_traversal< DftVisitor, Robot >::run();
+    }
+    static void run()
+    {
+      depth_first_traversal< DftVisitor, Robot >::run();
     }
   };
 
+  // frontend
   template< typename Robot > struct crba< Robot, true >
   {
     static void run(const typename Robot::confVector & q)
     {
       jcalc< Robot >::run(q, Robot::confVector::Zero());
-      crba_forward_propagation< Robot, typename Robot::Tree >::run();
+      crba< Robot, false >::run();
     }
-  };
-
-  template < typename Robot, typename Tree >
-  struct crba_forward_propagation
-  {
-    typedef Tree Node;
-    typedef typename Node::Body BI;
-
-    static void run()
-    {
-      Node::Body::Iic = Node::Body::I;
-
-      crba_forward_propagation< Robot, typename Node::Child0 >::run();
-      crba_forward_propagation< Robot, typename Node::Child1 >::run();
-      crba_forward_propagation< Robot, typename Node::Child2 >::run();
-      crba_forward_propagation< Robot, typename Node::Child3 >::run();
-      crba_forward_propagation< Robot, typename Node::Child4 >::run();
-
-      if(Node::Body::HAS_PARENT)
-        Node::Body::Parent::Iic = Node::Body::Parent::Iic
-                                + Node::Joint::sXp.applyInv(Node::Body::Iic);
-
-      Node::Body::Joint::F = Node::Body::Iic * Node::Joint::S;
-      if (Node::Joint::NBDOF)
-	Robot::H.template block<Node::Joint::NBDOF, Node::Joint::NBDOF>(
-	  Node::Joint::positionInConf, Node::Joint::positionInConf)
-	    = Node::Joint::S.transpose() * Node::Body::Joint::F;
-
-      crba_backward_propagation< Robot, BI, BI, typename BI::Parent >::run();
-    }
-  };
-
-  template< typename Robot >
-  struct crba_forward_propagation< Robot, NC >
-  {
-    static void run() {}
-  };
-
-  template< typename Robot, typename BI, typename BJ, typename Parent >
-  struct crba_backward_propagation
-  {
-    typedef BI Body_i;
-    typedef BJ Body_j;
-    typedef typename Body_i::Joint Joint_i;
-    typedef typename Body_j::Joint Joint_j;
-
-    static void run()
-    {
-      Joint_i::F = Joint_j::sXp.mulMatrixTransposeBy(Joint_i::F);
-
-      Robot::H.template
-        block< Joint_i::NBDOF, Parent::Joint::NBDOF >
-             ( Joint_i::positionInConf, Parent::Joint::positionInConf )
-        = Joint_i::F.transpose() * Parent::Joint::S.S();
-      Robot::H.template
-        block< Parent::Joint::NBDOF, Joint_i::NBDOF >
-             ( Parent::Joint::positionInConf, Joint_i::positionInConf )
-        = Robot::H.block( Joint_i::positionInConf,
-                          Parent::Joint::positionInConf,
-                          Joint_i::NBDOF,
-                          Parent::Joint::NBDOF ).transpose();
-      crba_backward_propagation< Robot,
-                                 BI,
-                                 Parent,
-                                 typename Parent::Parent >::run();
-    }
-  };
-
-  template< typename Robot, typename BI, typename BJ >
-  struct crba_backward_propagation< Robot, BI, BJ, NP >
-  {
-    static void run() {}
   };
 
 } // end of namespace metapod

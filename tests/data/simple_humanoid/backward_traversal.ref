@@ -1,0 +1,22 @@
+discover: curr:LARM_WRIST_R -- LARM_LINK7
+	discover: curr:LARM_WRIST_P -- LARM_LINK6
+		discover: curr:LARM_WRIST_Y -- LARM_LINK5
+			discover: curr:LARM_ELBOW -- LARM_LINK4
+				discover: curr:LARM_SHOULDER_Y -- LARM_LINK3
+					discover: curr:LARM_SHOULDER_R -- LARM_LINK2
+						discover: curr:LARM_SHOULDER_P -- LARM_LINK1
+							discover: curr:CHEST -- WAIST_LINK3
+								discover: curr:WAIST_R -- WAIST_LINK2
+									discover: curr:WAIST_P -- WAIST_LINK1
+										discover: curr:WAIST -- WAIST_LINK0
+										finish: curr:WAIST -- WAIST_LINK0
+									finish: curr:WAIST_P -- WAIST_LINK1
+								finish: curr:WAIST_R -- WAIST_LINK2
+							finish: curr:CHEST -- WAIST_LINK3
+						finish: curr:LARM_SHOULDER_P -- LARM_LINK1
+					finish: curr:LARM_SHOULDER_R -- LARM_LINK2
+				finish: curr:LARM_SHOULDER_Y -- LARM_LINK3
+			finish: curr:LARM_ELBOW -- LARM_LINK4
+		finish: curr:LARM_WRIST_Y -- LARM_LINK5
+	finish: curr:LARM_WRIST_P -- LARM_LINK6
+finish: curr:LARM_WRIST_R -- LARM_LINK7

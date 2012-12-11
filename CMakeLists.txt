@@ -61,7 +61,7 @@ SET(${PROJECT_NAME}_SIMPLE_ARM_MODEL_HEADERS
 SET(${PROJECT_NAME}_ALGOS_HEADERS
   include/${PROJECT_NAME}/algos/rnea.hh
   include/${PROJECT_NAME}/algos/crba.hh
-  include/${PROJECT_NAME}/algos/jac_point.hh
+  include/${PROJECT_NAME}/algos/jac_point_relative.hh
   include/${PROJECT_NAME}/algos/jac_point_chain.hh
   )
 
@@ -71,11 +71,16 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/jointmacros.hh
   include/${PROJECT_NAME}/tools/bodymacros.hh
+  include/${PROJECT_NAME}/tools/is_ancestor.hh
+  include/${PROJECT_NAME}/tools/deepest_common_ancestor.hh
+  include/${PROJECT_NAME}/tools/depth_first_traversal.hh
+  include/${PROJECT_NAME}/tools/backward_traversal.hh
+  include/${PROJECT_NAME}/tools/backward_traversal_prev.hh
   include/${PROJECT_NAME}/tools/initconf.hh
   include/${PROJECT_NAME}/tools/print.hh
   include/${PROJECT_NAME}/tools/jcalc.hh
   include/${PROJECT_NAME}/tools/bcalc.hh
-  include/${PROJECT_NAME}/tools/deepest_common_body.hh
+  include/${PROJECT_NAME}/tools/jac_point_robot.hh
   )
 
 # Set header files installation prefix.

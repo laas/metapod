@@ -1,0 +1,8 @@
+discover: curr:LARM_WRIST_R -- LARM_LINK7
+	discover: curr:LARM_WRIST_P -- LARM_LINK6
+		discover: curr:LARM_WRIST_Y -- LARM_LINK5
+			discover: curr:LARM_ELBOW -- LARM_LINK4
+			finish: curr:LARM_ELBOW -- LARM_LINK4
+		finish: curr:LARM_WRIST_Y -- LARM_LINK5
+	finish: curr:LARM_WRIST_P -- LARM_LINK6
+finish: curr:LARM_WRIST_R -- LARM_LINK7

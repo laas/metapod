@@ -28,6 +28,6 @@ using namespace CURRENT_MODEL_NAMESPACE;
 BOOST_AUTO_TEST_CASE (test_printstate)
 {
   std::ofstream state_log("state.log", std::ofstream::out);
-  printState<Robot::Tree>(state_log);
+  printState<Robot>(state_log);
   state_log.close();
 }

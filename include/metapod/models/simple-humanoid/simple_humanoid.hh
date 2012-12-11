@@ -25,9 +25,15 @@
 # define METAPOD_SIMPLE_HUMANOID_HH
 
 # include "metapod/tools/common.hh"
+# include "metapod/tools/is_ancestor.hh"
+# include "metapod/tools/deepest_common_ancestor.hh"
+# include "metapod/tools/depth_first_traversal.hh"
+# include "metapod/tools/backward_traversal.hh"
+# include "metapod/tools/backward_traversal_prev.hh"
 # include "metapod/algos/rnea.hh"
 # include "metapod/algos/crba.hh"
-# include "metapod/algos/jac_point.hh"
+# include "metapod/algos/jac_point_relative.hh"
+# include "metapod/tools/jac_point_robot.hh"
 # include "metapod/algos/jac_point_chain.hh"
 
 # include "robot.hh"

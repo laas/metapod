@@ -1,6 +1,5 @@
-// Copyright 2011, 2012,
+// Copyright 2012,
 //
-// Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
@@ -16,11 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
- * This test solves the forward kinematics problem on a test model with a
- * reference configuration, then compares the computed transforms with the
- * reference ones
- */
+// This test traverses the tree depth-first and prints events
 
 // Common test tools
 # include "../common.hh"
@@ -28,22 +23,33 @@
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;
 
-BOOST_AUTO_TEST_CASE (test_bcalc)
+// Print events while traversing the tree with indentation showing the level
+// of recursion
+template < typename Node > struct PrintDFTraversalVisitor
 {
-  // Set configuration vectors (q) to reference values.
-  Robot::confVector q;
-  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<Robot>::run(qconf, q);
-  qconf.close();
+  static void discover(std::ostream & os, int & depth)
+  {
+    const std::string prefix(depth, '\t');
+    os << prefix << "discover: "
+        << Node::Joint::name << " -- " << Node::Body::name << "\n";
+    ++depth;
+  }
+  static void finish(std::ostream & os, int & depth)
+  {
+    --depth;
+    const std::string prefix(depth, '\t');
+    os << prefix << "finish: "
+        << Node::Joint::name << " -- " << Node::Body::name << "\n";
+  }
+};
 
-  // Apply the body calculations to the metapod multibody and print
-  // the result in a log file.
-  bcalc< Robot >::run(q);
-  const char result_file[] = "bcalc.log";
+BOOST_AUTO_TEST_CASE (test_depth_first_traversal)
+{
+  const char result_file[] = "depth_first_traversal.log";
   std::ofstream log(result_file, std::ofstream::out);
-  printTransforms<Robot>(log);
+  int depth = 0;
+  depth_first_traversal<PrintDFTraversalVisitor, Robot>::run(log, depth);
   log.close();
-
   // Compare results with reference file
-  compareLogs(result_file, TEST_DIRECTORY "/bcalc.ref", 1e-3);
+  compareTexts(result_file, TEST_DIRECTORY "/depth_first_traversal.ref");
 }

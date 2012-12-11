@@ -25,6 +25,7 @@
 # define METAPOD_RNEA_HH
 
 # include "metapod/tools/common.hh"
+# include "metapod/tools/depth_first_traversal.hh"
 
 namespace metapod
 {
@@ -38,6 +39,109 @@ namespace metapod
 
   template< typename Robot, bool jcalc = true > struct rnea{};
 
+  template< typename Robot > struct rnea< Robot, false >
+  {
+    // update body kinematics from parent body and joint
+    template< typename Node, typename ParentBody >
+    struct update_kinematics
+    {
+      static void run(
+          const Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > & ddqi)
+      {
+        // iX0 = iXλ(i) * λ(i)X0
+        // vi = iXλ(i) * vλ(i) + vj
+        // ai = iXλ(i) * aλ(i) + Si * ddqi + cj + vi x vj
+        Node::Body::iX0 = Node::Joint::sXp * ParentBody::iX0;
+        Node::Body::vi = Node::Joint::sXp * ParentBody::vi
+                         + Node::Joint::vj;
+        Node::Body::ai = sum(Node::Joint::sXp * ParentBody::ai,
+                             Spatial::Motion(Node::Joint::S * ddqi),
+                             Node::Joint::cj,
+                             (Node::Body::vi^Node::Joint::vj));
+      }
+    };
+
+    // specialization when Parent == NP
+    template< typename Node >
+    struct update_kinematics<Node, NP>
+    {
+      static void run(
+          const Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > & ddqi)
+      {
+        // iX0 = iXλ(i)
+        // vi = vj
+        // ai = iXλ(i) * aλ(i) + Si * ddqi + cj + vi x vj
+        // (with aλ(i) = a0 = -g, cf. Rigid Body Dynamics Algorithms for a
+        // detailed explanation of how the gravity force is applied)
+        Node::Body::iX0 = Node::Joint::sXp;
+        Node::Body::vi = Node::Joint::vj;
+        Node::Body::ai = sum((Node::Body::iX0 * minus_g),
+                             Spatial::Motion(Node::Joint::S * ddqi),
+                             Node::Joint::cj,
+                             (Node::Body::vi^Node::Joint::vj));
+      }
+
+    };
+    // update parent force
+    template< typename Node, typename Parent>
+    struct update_force
+    {
+      static void run()
+      {
+        // fλ(i) = fλ(i) + λ(i)Xi* * fi
+        Parent::Joint::f = Parent::Joint::f
+                         + Node::Joint::sXp.applyInv(Node::Joint::f);
+      }
+    };
+
+    // specialization when Parent == NP
+    template< typename Node >
+    struct update_force<Node, NP>
+    {
+      static void run() {}
+    };
+
+    template <typename Node> struct DftVisitor
+    {
+      typedef typename Robot::confVector confVector;
+
+      static void discover(const confVector & q,
+                           const confVector & dq,
+                           const confVector & ddq) __attribute__ ((hot))
+      {
+        // Extract subvector corresponding to current Node
+        const Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
+          ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
+
+        // delegate the actual computation, because the computation is
+        // different when the node has a parent and when it does not.
+        update_kinematics<Node, typename Node::Body::Parent>::run(ddqi);
+
+        // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
+        Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
+                             (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
+                             (Node::Body::iX0 * -Node::Body::Fext ));
+      }
+      static void finish(const confVector & q,
+                         const confVector & dq,
+                         const confVector & ddq) __attribute__ ((hot))
+      {
+        // backward computations follow
+        // τi = SiT * fi
+        Node::Joint::torque = Node::Joint::S.transpose()
+                              * Node::Joint::f.toVector();
+        update_force<Node, typename Node::Body::Parent>::run();
+      }
+
+    };
+    static void run(const typename Robot::confVector & q,
+                    const typename Robot::confVector & dq,
+                    const typename Robot::confVector & ddq)
+    {
+      depth_first_traversal<DftVisitor, Robot>::run(q, dq, ddq);
+    }
+  };
+
   template< typename Robot > struct rnea< Robot, true >
   {
     static void run(const typename Robot::confVector & q,
@@ -45,127 +149,9 @@ namespace metapod
                     const typename Robot::confVector & ddq)
     {
       jcalc< Robot >::run(q, dq);
-      rnea_internal< typename Robot::Tree, typename Robot::confVector >::run(q, dq, ddq);
+      rnea< Robot, false >::run(q, dq, ddq);
     }
   };
-
-  template< typename Robot > struct rnea< Robot, false >
-  {
-    static void run(const typename Robot::confVector & q,
-                    const typename Robot::confVector & dq,
-                    const typename Robot::confVector & ddq)
-    {
-      rnea_internal< typename Robot::Tree, typename Robot::confVector >::run(q, dq, ddq);
-    }
-  };
-
-  template< typename Tree, typename confVector >
-  struct rnea_internal< Tree, confVector, true >
-  {
-    typedef Tree Node;
-
-    static void run(const confVector & q,
-                    const confVector & dq,
-                    const confVector & ddq) __attribute__ ((hot))
-    {
-      // Extract subvector corresponding to current Node
-      Spatial::Motion Sddqi;
-
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
-	ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-      Sddqi = Node::Joint::S.S() * ddqi;
-
-      // iX0 = iXλ(i) * λ(i)X0
-      // vi = iXλ(i) * vλ(i) + vj
-      // ai = iXλ(i) * aλ(i) + Si * ddqi + cj + vi x vj
-      Node::Body::iX0 = Node::Joint::sXp*Node::Body::Parent::iX0;
-      Node::Body::vi = Node::Joint::sXp*Node::Body::Parent::vi
-                     + Node::Joint::vj;
-      Node::Body::ai = sum(Node::Joint::sXp*Node::Body::Parent::ai,
-                           Sddqi,
-                           Node::Joint::cj,
-                           (Node::Body::vi^Node::Joint::vj));
-
-      // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
-                           (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
-                           (Node::Body::iX0 * -Node::Body::Fext ));
-
-      // recursion on children
-      rnea_internal< typename Node::Child0, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child2, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child3, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child4, confVector, true >::run(q, dq, ddq);
-
-      // backward computations follow
-      // τi = SiT * fi
-      Node::Joint::torque = Node::Joint::S.S().transpose()*Node::Joint::f.toVector();
-      // fλ(i) = fλ(i) + λ(i)Xi* * fi
-      Node::Body::Parent::Joint::f = Node::Body::Parent::Joint::f
-                                   + Node::Joint::sXp.applyInv(Node::Joint::f);
-    }
-  };
-
-  template< typename Tree, typename confVector >
-  struct rnea_internal< Tree, confVector, false >
-  {
-    typedef Tree Node;
-
-    static void run(const confVector & q,
-                    const confVector & dq,
-                    const confVector & ddq)
-    {
-      // Extract subvector corresponding to current Node
-      Spatial::Motion Sddqi;
-
-      Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > ddqi =
-	ddq.template segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-      Sddqi = Node::Joint::S.S() * ddqi;
-
-
-      // iX0 = iXλ(i)
-      // vi = vj
-      // ai = Si * ddqi + cj + vi x vj (with a0 = -g, cf. Rigid Body Dynamics
-      // Algorithms for a detailed explanation of how the gravity force is
-      // applied)
-      Node::Body::iX0 = Node::Joint::sXp;
-      Node::Body::vi = Node::Joint::vj;
-      Node::Body::ai = sum(Sddqi,
-			   Node::Joint::cj,
-			   (Node::Body::vi^Node::Joint::vj),
-			   (Node::Body::iX0*minus_g));
-      
-      // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      Node::Joint::f = sum((Node::Body::I * Node::Body::ai),
-			   (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
-			   (Node::Body::iX0 * -Node::Body::Fext));
-      
-
-      // recursion on children
-      rnea_internal< typename Node::Child0, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child1, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child2, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child3, confVector, true >::run(q, dq, ddq);
-      rnea_internal< typename Node::Child4, confVector, true >::run(q, dq, ddq);
-
-      // backward computations follow
-      // τi = SiT * fi
-      Node::Joint::torque = Node::Joint::S.transpose()
-                          * Node::Joint::f.toVector();
-    }
-  };
-
-  /**
-    \brief  Specialization, to stop recursion on leaves of the Tree
-  */
-  template< typename confVector > struct rnea_internal< NC, confVector, true >
-  {
-    static void run(const confVector &,
-                    const confVector &,
-                    const confVector &) {}
-  };
-
 } // end of namespace metapod.
 
 #endif
