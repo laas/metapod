@@ -105,8 +105,8 @@ namespace metapod
     {
       typedef typename Robot::confVector confVector;
 
-      static void discover(const confVector & q,
-                           const confVector & dq,
+      static void discover(const confVector & ,
+                           const confVector & ,
                            const confVector & ddq) __attribute__ ((hot))
       {
         // Extract subvector corresponding to current Node
@@ -122,9 +122,9 @@ namespace metapod
                              (Node::Body::vi^( Node::Body::I * Node::Body::vi )),
                              (Node::Body::iX0 * -Node::Body::Fext ));
       }
-      static void finish(const confVector & q,
-                         const confVector & dq,
-                         const confVector & ddq) __attribute__ ((hot))
+      static void finish(const confVector & ,
+                         const confVector & ,
+                         const confVector & ) __attribute__ ((hot))
       {
         // backward computations follow
         // τi = SiT * fi

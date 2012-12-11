@@ -111,13 +111,13 @@ namespace metapod
     static void run() {}
 
     template<typename Arg>
-    static void run(Arg & arg) {}
+    static void run(Arg & ) {}
 
     template<typename Arg0, typename Arg1>
-    static void run(Arg0 & arg0, Arg1 & arg1) {}
+    static void run(Arg0 & , Arg1 & ) {}
 
     template<typename Arg0, typename Arg1, typename Arg2>
-    static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2) {}
+    static void run(Arg0 & , Arg1 & , Arg2 & ) {}
   };
 
   template< template <typename Node> class Visitor,

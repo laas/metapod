@@ -47,14 +47,14 @@ template < typename Node > struct PrintStateVisitor
        << "τ :\n" << Node::Joint::torque << "\n"
        << std::endl;
   }
-  static void finish(std::ostream & os) {}
+  static void finish(std::ostream & ) {}
 };
 
 template< typename Robot >
 void printState(std::ostream & os)
 {
   depth_first_traversal<PrintStateVisitor, Robot>::run(os);
-};
+}
 
 /*
  * Print a conf vector in a stream.
@@ -91,14 +91,14 @@ template < typename Node > struct PrintTransformsVisitor
        << std::endl;
   }
 
-  static void finish(std::ostream & os) {}
+  static void finish(std::ostream & ) {}
 };
 
 template< typename Robot >
 void printTransforms(std::ostream & os)
 {
   depth_first_traversal<PrintTransformsVisitor, Robot>::run(os);
-};
+}
 
 // Print Torques of the robot in a stream.
 template< typename Tree >

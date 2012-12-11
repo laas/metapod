@@ -83,7 +83,7 @@ namespace metapod
       }
     };
 
-    static void run(const typename Robot::confVector & q)
+    static void run(const typename Robot::confVector & )
     {
       depth_first_traversal< DftVisitor, Robot >::run();
     }

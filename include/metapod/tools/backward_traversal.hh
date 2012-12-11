@@ -100,7 +100,7 @@ namespace metapod
     static void run(Arg0 & arg0) {}
 
     template<typename Arg0, typename Arg1>
-    static void run(Arg0 & arg0, Arg1 & arg1) {}
+    static void run(Arg0 &, Arg1 & ) {}
   };
 
   // the Robot template argument is currently unused but is kept for
@@ -141,10 +141,10 @@ namespace metapod
     static void run() {}
 
     template<typename Arg0>
-    static void run(Arg0 & arg0) {}
+    static void run(Arg0 & ) {}
 
     template<typename Arg0, typename Arg1>
-    static void run(Arg0 & arg0, Arg1 & arg1) {}
+    static void run(Arg0 & , Arg1 & ) {}
   };
 }
 #endif
