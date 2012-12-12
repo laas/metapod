@@ -22,6 +22,7 @@
 #ifndef METAPOD_JAC_POINT_CHAIN_HH
 # define METAPOD_JAC_POINT_CHAIN_HH
 
+# include <boost/static_assert.hpp>
 # include <metapod/tools/common.hh>
 # include <metapod/algos/jac_point_relative.hh>
 
@@ -43,8 +44,9 @@ namespace metapod
   /// Note that the 6 first degrees of freedom of the jacobian are always wiped
   /// out: they are either excluded from the jacobian or overwritten by the
   /// fictive free-flyer contribution. As a consequence, this function is
-  /// probably only useful for systems with a root free flyer joint. It is
-  /// included for compatibility with the jrl-dynamics library.
+  /// probably only useful for systems with a root free flyer joint.
+  /// It will not compile if the robot has less than 6 degrees of freedom.
+  /// It is included for compatibility with the jrl-dynamics library.
   /// \{
 
   template< typename Robot, typename StartBody, typename EndBody,
@@ -69,6 +71,8 @@ namespace metapod
             int offset = 0, bool includeFreeFlyer = true,
             bool call_bcalc = true >
   struct jac_point_chain {
+    BOOST_STATIC_ASSERT_MSG(Robot::NBDOF >= 6,
+        "jac_point_chain does not support robots with less than 6 DoFs");
     typedef jac_point_relative<Robot, StartBody, EndBody,
           offset - 6*(1-includeFreeFlyer), call_bcalc > solver;
     typedef typename solver::jacobian_t jacobian_t;
