@@ -40,13 +40,11 @@ namespace metapod
                   FloatType mass,
                   const Vector3d & CoM,
                   const Matrix3d & inertie,
-                  const std::string & tab,
-                  int has_parent = true)
+                  const std::string & tab)
   {
     body_hh
       << tab << "CREATE_BODY("
         << name << ", "
-        << has_parent << ", "
         << parent_name << ", "
         << joint_name << ");\n";
     init_cc

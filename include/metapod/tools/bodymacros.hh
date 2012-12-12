@@ -29,13 +29,11 @@ namespace metapod
 
   // Create a body
   #define CREATE_BODY(classname,                           \
-                      hasparent,                           \
                       parentname,                          \
                       jointname)                           \
     class classname                                        \
     {                                                      \
       public:                                              \
-        enum { HAS_PARENT = hasparent };                   \
         static const std::string name;                     \
         static const int label;                            \
         static const FloatType mass;                       \
