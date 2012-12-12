@@ -25,6 +25,7 @@
 # define METAPOD_CRBA_HH
 
 # include "metapod/tools/common.hh"
+# include "metapod/tools/has_parent.hh"
 # include "metapod/tools/depth_first_traversal.hh"
 # include "metapod/tools/backward_traversal_prev.hh"
 
@@ -70,7 +71,7 @@ namespace metapod
 
       static void finish()
       {
-        if(Node::Body::HAS_PARENT)
+        if(has_parent<Node>::value)
           Node::Body::Parent::Iic = Node::Body::Parent::Iic
                                   + Node::Joint::sXp.applyInv(Node::Body::Iic);
 
