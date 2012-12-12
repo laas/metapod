@@ -17,13 +17,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/* 
+/*
  * This test applies the rnea on a test model with a reference configuration,
  * then compares the computed torques with the reference torques
  */
 
 // Common test tools
-# include "../common.hh"
+#include "../common.hh"
+#include <metapod/algos/rnea.hh>
 
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;

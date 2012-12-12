@@ -17,8 +17,9 @@
 
 // This test traverses the tree backward and prints events
 
-// Common test tools
+//Common test tools
 # include "../common.hh"
+#include <metapod/tools/backward_traversal_prev.hh>
 
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;

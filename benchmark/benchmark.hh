@@ -46,6 +46,12 @@
 # include <iostream>
 # include <sys/time.h>
 
+# include <metapod/tools/jac_point_robot.hh>
+# include <metapod/algos/rnea.hh>
+# include <metapod/algos/crba.hh>
+# include <metapod/tools/jcalc.hh>
+# include <metapod/tools/bcalc.hh>
+
 namespace metapod
 {
   namespace benchmark

@@ -23,7 +23,8 @@
  */
 
 // Common test tools
-# include "../common.hh"
+#include "../common.hh"
+#include <metapod/tools/bcalc.hh>
 
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;

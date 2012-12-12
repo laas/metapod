@@ -23,7 +23,8 @@
  */
 
 // Common test tools
-# include "../common.hh"
+#include "../common.hh"
+#include <metapod/algos/crba.hh>
 
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;

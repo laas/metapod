@@ -24,6 +24,7 @@
 # define METAPOD_PRINT_HH
 
 #include "metapod/tools/common.hh"
+#include "metapod/tools/depth_first_traversal.hh"
 
 namespace metapod
 {

@@ -17,19 +17,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/* 
+/*
  * This file run performance tests on metapods algorithms, on several sample
  * models.
  */
 
-# include "models/sample_3_dof/sample_3_dof.hh"
-# include "models/sample_7_dof/sample_7_dof.hh"
-# include "models/sample_15_dof/sample_15_dof.hh"
-# include "models/sample_31_dof/sample_31_dof.hh"
-# include "models/sample_63_dof/sample_63_dof.hh"
-# include "metapod/models/simple-humanoid/simple_humanoid.hh"
+#include "models/sample_3_dof/sample_3_dof.hh"
+#include "models/sample_7_dof/sample_7_dof.hh"
+#include "models/sample_15_dof/sample_15_dof.hh"
+#include "models/sample_31_dof/sample_31_dof.hh"
+#include "models/sample_63_dof/sample_63_dof.hh"
+#include "metapod/models/simple-humanoid/simple_humanoid.hh"
 
-# include "benchmark.hh"
+#include "benchmark.hh"
 using namespace metapod::benchmark;
 
 int main()

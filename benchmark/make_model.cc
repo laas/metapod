@@ -96,11 +96,6 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
   lib_cc
     << "# include \"sample_" << NBDOF << "_dof.hh\"\n"
     << "\n"
-    << "template struct metapod::crba< metapod::sample_" << NBDOF << "_dof::Robot , true >;\n"
-    << "template struct metapod::rnea< metapod::sample_" << NBDOF << "_dof::Robot , true >;\n"
-    << "template struct metapod::crba< metapod::sample_" << NBDOF << "_dof::Robot , false >;\n"
-    << "template struct metapod::rnea< metapod::sample_" << NBDOF << "_dof::Robot , false >;\n"
-    << "\n"
     << "namespace metapod\n"
     << "{\n"
     << "  namespace sample_" << NBDOF << "_dof\n"
@@ -209,20 +204,7 @@ void metapod::benchmark::makeLibraryHeader(std::ofstream & lib_hh, int nbdof)
     << "#ifndef METAPOD_SAMPLE_" << nbdof << "_DOF_HH\n"
     << "# define METAPOD_SAMPLE_" << nbdof << "_DOF_HH\n"
     << std::endl
-    << "# include \"metapod/tools/common.hh\"\n"
-    << "# include \"metapod/algos/rnea.hh\"\n"
-    << "# include \"metapod/algos/crba.hh\"\n"
-    << std::endl
     << "# include \"robot.hh\"\n"
-    << std::endl
-    << "extern template struct metapod::crba< metapod::sample_" << nbdof
-      << "_dof::Robot , true >;\n"
-    << "extern template struct metapod::rnea< metapod::sample_" << nbdof
-      << "_dof::Robot , true >;\n"
-    << "extern template struct metapod::crba< metapod::sample_" << nbdof
-      << "_dof::Robot , false >;\n"
-    << "extern template struct metapod::rnea< metapod::sample_" << nbdof
-      << "_dof::Robot , false >;\n"
     << std::endl
     << "#endif";
 }

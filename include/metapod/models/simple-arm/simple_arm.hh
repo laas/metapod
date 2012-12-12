@@ -24,25 +24,6 @@
 #ifndef METAPOD_SIMPLE_ARM_HH
 # define METAPOD_SIMPLE_ARM_HH
 
-# include "metapod/tools/common.hh"
-# include "metapod/tools/is_ancestor.hh"
-# include "metapod/tools/deepest_common_ancestor.hh"
-# include "metapod/tools/depth_first_traversal.hh"
-# include "metapod/tools/backward_traversal.hh"
-# include "metapod/tools/backward_traversal_prev.hh"
-# include "metapod/algos/rnea.hh"
-# include "metapod/algos/crba.hh"
-# include "metapod/algos/jac_point_relative.hh"
-# include "metapod/tools/jac_point_robot.hh"
-# include "metapod/algos/jac_point_chain.hh"
-
 # include "robot.hh"
-
-extern template struct metapod::crba< metapod::simple_arm::Robot , true >;
-extern template struct metapod::rnea< metapod::simple_arm::Robot , true >;
-extern template struct metapod::jac_point_robot< metapod::simple_arm::Robot , true >;
-extern template struct metapod::crba< metapod::simple_arm::Robot , false >;
-extern template struct metapod::rnea< metapod::simple_arm::Robot , false >;
-extern template struct metapod::jac_point_robot< metapod::simple_arm::Robot , false >;
 
 #endif

@@ -23,7 +23,8 @@
  */
 
 // Common test tools
-# include "../common.hh"
+#include "../common.hh"
+#include <metapod/algos/jac_point_chain.hh>
 
 using namespace metapod;
 using namespace CURRENT_MODEL_NAMESPACE;
