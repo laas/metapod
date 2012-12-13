@@ -24,6 +24,16 @@
 #ifndef METAPOD_SIMPLE_HUMANOID_HH
 # define METAPOD_SIMPLE_HUMANOID_HH
 
+# ifdef _MSC_VER
+#  pragma warning( push )
+// disable warning C4251: need to have DLL interface
+#  pragma warning( disable: 4251 )
+# endif
+
 # include "robot.hh"
+
+# ifdef _MSC_VER
+#  pragma warning( pop )
+# endif
 
 #endif
