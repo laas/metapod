@@ -25,15 +25,15 @@
 #ifndef METAPOD_SIMPLE_ARM_JOINT_HH
 # define METAPOD_SIMPLE_ARM_JOINT_HH
 
-# include "metapod/tools/jointmacros.hh"
+# include <metapod/tools/jointmacros.hh>
 
 namespace metapod
 {
   namespace simple_arm
   {
-    JOINT_REVOLUTE_AXIS_ANY(SHOULDER, 1, 0, 0);
-    JOINT_REVOLUTE_AXIS_ANY(ELBOW, 1, 0, 0);
-    JOINT_REVOLUTE_AXIS_ANY(WRIST, 1, 0, 0);
+    JOINT_REVOLUTE_AXIS_ANY(METAPOD_SIMPLE_ARM, SHOULDER, 1, 0, 0);
+    JOINT_REVOLUTE_AXIS_ANY(METAPOD_SIMPLE_ARM, ELBOW, 1, 0, 0);
+    JOINT_REVOLUTE_AXIS_ANY(METAPOD_SIMPLE_ARM, WRIST, 1, 0, 0);
   } // end of namespace simple_arm
 } // end of namespace metapod
 

@@ -17,18 +17,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/* 
+/*
  * Build the models used in the benchmark.
  */
 
 #include "make_model.hh"
+# include <algorithm>
+# include <string>
 
 int main()
 {
   const int MAX_DEPTH = 5; // NBDOF = (depth+1)² - 1;
   for(int i=1; i<=MAX_DEPTH; i++)
   {
-    int NBDOF = (int)(pow(2,i+1) - 1);
+    int NBDOF = static_cast<int>(pow(2,i+1)) - 1;
     std::stringstream ss_name;
     ss_name << "sample_" << NBDOF << "_dof";
     metapod::benchmark::generate_model(ss_name.str(), i);
@@ -37,7 +39,7 @@ int main()
 
 void metapod::benchmark::generate_model(const std::string & name, int depth)
 {
-  int NBDOF = (int)(pow(2,depth+1) - 1);
+  int NBDOF = static_cast<int>(pow(2,depth+1)) - 1;
 
   std::stringstream ss_body, ss_joint, ss_robot, ss_lib_cc, ss_lib_hh;
   std::stringstream ss_path;
@@ -75,9 +77,17 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
     << "{\n"
     << "  namespace " << name << "\n"
     << "  {\n";
+
+  std::string libname_uc(name);
+  std::transform(name.begin(), name.end(),
+      libname_uc.begin(), ::toupper);
   robot_hh
     << "#ifndef METAPOD_SAMPLE_" << NBDOF << "_DOF_ROBOT_HH\n"
     << "# define METAPOD_SAMPLE_" << NBDOF << "_DOF_ROBOT_HH\n\n"
+    << "# include \"config.hh\"\n"
+    << "# ifdef " << name << "_EXPORTS\n"
+    << "#   define metapod_EXPORTS\n"
+    << "# endif\n"
     << "# include \"metapod/tools/common.hh\"\n"
     << "# include \"joint.hh\"\n"
     << "# include \"body.hh\"\n"
@@ -86,7 +96,7 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
     << "{\n"
     << "  namespace " << name << "\n"
     << "  {\n"
-    << "    class METAPOD_DLLEXPORT Robot\n"
+    << "    class " << libname_uc << "_DLLAPI Robot\n"
     << "    {\n"
     << "      public:\n"
     << "        enum { NBDOF = " << NBDOF << " };\n"
@@ -102,14 +112,14 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
     << "  {\n"
     << "    Eigen::Matrix< FloatType, Robot::NBDOF, Robot::NBDOF > Robot::H;\n\n";
 
-  std::string tab = "    ";
+  const std::string tab = "    ";
   // Create Root Joint
-  createJoint(joint_hh, lib_cc, REVOLUTE_AXIS_X, "J0", 0, 0,
+  createJoint(joint_hh, lib_cc, name.c_str(), REVOLUTE_AXIS_X, "J0", 0, 0,
               Matrix3d::Random(),
               Vector3d::Random(), tab);
 
   // Create Root Body
-  createBody(body_hh, lib_cc, "B0", "NP", "J0", 0, 1.,
+  createBody(body_hh, lib_cc, name.c_str(), "B0", "NP", "J0", 0, 1.,
              Vector3d::Random(),
              Matrix3d::Random(),
              tab);
@@ -118,7 +128,7 @@ void metapod::benchmark::generate_model(const std::string & name, int depth)
            << "                      J0,\n";
   int label = 0;
 
-  buildTree(robot_hh, joint_hh, body_hh, lib_cc, &label, depth);
+  buildTree(robot_hh, joint_hh, body_hh, lib_cc, name, &label, depth);
 
   joint_hh
     << "  } // end of namespace " << name << std::endl
@@ -143,6 +153,7 @@ void metapod::benchmark::buildTree(std::ofstream & robot_hh,
              std::ofstream & joint_hh,
              std::ofstream & body_hh,
              std::ofstream & lib_cc,
+             const std::string & libname,
              int* label,
              int max_depth,
              int depth)
@@ -157,20 +168,21 @@ void metapod::benchmark::buildTree(std::ofstream & robot_hh,
     for(int i=0; i<2; i++)
     {
       *label = *label+1;
-      addNode(body_hh, joint_hh, lib_cc, *label, parent_label);
+      addNode(body_hh, joint_hh, lib_cc, libname, *label, parent_label);
       robot_hh << tab.str() << "Node< B" << *label << ",\n"
                << tab.str() << "      J" << *label << ",\n";
-      buildTree(robot_hh, joint_hh, body_hh, lib_cc, label, max_depth, depth+1);
+      buildTree(robot_hh, joint_hh, body_hh, lib_cc, libname,
+                label, max_depth, depth+1);
       robot_hh << tab.str() << "    >" << (i==0?",":"") << "\n";
     }
   }
   else
   {
     *label = *label+1;
-    addNode(body_hh, joint_hh, lib_cc, *label, parent_label);
+    addNode(body_hh, joint_hh, lib_cc, libname, *label, parent_label);
     robot_hh << tab.str() << "Node< B" << *label << ", J" << *label << ">,\n";
     *label = *label+1;
-    addNode(body_hh, joint_hh, lib_cc, *label, parent_label);
+    addNode(body_hh, joint_hh, lib_cc, libname, *label, parent_label);
     robot_hh << tab.str() << "Node< B" << *label << ", J" << *label << ">\n";
   }
 }
@@ -178,16 +190,19 @@ void metapod::benchmark::buildTree(std::ofstream & robot_hh,
 void metapod::benchmark::addNode(std::ofstream & body_hh,
                    std::ofstream & joint_hh,
                    std::ofstream & lib_cc,
+                   const std::string & libname,
                    int label, int parent_label)
 {
   std::stringstream name, parent_name, joint_name;
   name << "B" << label;
   parent_name << "B" << parent_label;
   joint_name << "J" << label;
-  std::string tab = "    ";
-  createBody(body_hh, lib_cc, name.str(), parent_name.str(), joint_name.str(),
+  const std::string tab = "    ";
+  createBody(body_hh, lib_cc, libname.c_str(), name.str(),
+             parent_name.str(), joint_name.str(),
              label, 1., Vector3d::Random(), Matrix3d::Random(), tab);
-  createJoint(joint_hh, lib_cc, REVOLUTE_AXIS_X, joint_name.str(), label, label,
+  createJoint(joint_hh, lib_cc, libname.c_str(),
+              REVOLUTE_AXIS_X, joint_name.str(), label, label,
               Matrix3d::Random(), Vector3d::Random(), tab);
 }
 

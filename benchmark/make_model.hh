@@ -17,7 +17,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/* 
+/*
  * Build the models used in the benchmark.
  */
 
@@ -51,6 +51,7 @@ namespace metapod
                    std::ofstream & joint_hh,
                    std::ofstream & body_hh,
                    std::ofstream & lib_cc,
+                   const std::string & libname,
                    int* label,
                    int max_depth,
                    int depth = 1);
@@ -59,6 +60,7 @@ namespace metapod
     void addNode(std::ofstream & body_hh,
                  std::ofstream & joint_hh,
                  std::ofstream & lib_cc,
+                 const std::string & libname,
                  int label, int parent_label);
 
     // Generate a model of the desired depth, structured as a binary tree.

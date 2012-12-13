@@ -25,9 +25,10 @@
 #ifndef METAPOD_SIMPLE_HUMANOID_ROBOT_HH
 # define METAPOD_SIMPLE_HUMANOID_ROBOT_HH
 
-# include "metapod/tools/common.hh"
-# include "joint.hh"
-# include "body.hh"
+# include <metapod/models/simple_humanoid/config.hh>
+# include <metapod/tools/common.hh>
+# include <metapod/models/simple_humanoid/joint.hh>
+# include <metapod/models/simple_humanoid/body.hh>
 
 namespace metapod
 {
@@ -35,7 +36,7 @@ namespace metapod
   {
     // Model of the robot. Contains data at the global robot level and the tree
     // of Body/Joint
-    class METAPOD_DLLEXPORT Robot
+    class METAPOD_SIMPLE_HUMANOID_DLLAPI Robot
     {
       public:
         // Global constants or variable of the robot

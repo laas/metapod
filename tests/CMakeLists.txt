@@ -26,9 +26,6 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
 # Make Boost.Test generate the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 
-ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-humanoid/simple_humanoid.cc)
-ADD_LIBRARY(simple_arm SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-arm/simple_arm.cc)
-
 # ADD_TESTCASE(NAME)
 # ------------------------
 #
@@ -51,8 +48,12 @@ ENDMACRO(ADD_TESTCASE)
 # For each inclusion of the folder, a different binary folder is used. It acts
 # as a namespace for CMake. This makes it possible to use different values
 # for "CURRENT_MODEL" when calling add_definitions(), without conflicts.
-SET(CURRENT_MODEL "simple_humanoid")
-ADD_SUBDIRECTORY(use_model use_simple_humanoid)
-SET(CURRENT_MODEL "simple_arm")
-ADD_SUBDIRECTORY(use_model use_simple_arm)
+IF(${WITH_SIMPLE_HUMANOID})
+  SET(CURRENT_MODEL "simple_humanoid")
+  ADD_SUBDIRECTORY(use_model use_simple_humanoid)
+ENDIF()
+IF(${WITH_SIMPLE_ARM})
+  SET(CURRENT_MODEL "simple_arm")
+  ADD_SUBDIRECTORY(use_model use_simple_arm)
+ENDIF()
 ADD_SUBDIRECTORY(spatial)

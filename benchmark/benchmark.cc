@@ -22,19 +22,23 @@
  * models.
  */
 
+#ifdef WITH_SIMPLE_HUMANOID
+# include "metapod/models/simple_humanoid/simple_humanoid.hh"
+#endif
 #include "models/sample_3_dof/sample_3_dof.hh"
 #include "models/sample_7_dof/sample_7_dof.hh"
 #include "models/sample_15_dof/sample_15_dof.hh"
 #include "models/sample_31_dof/sample_31_dof.hh"
 #include "models/sample_63_dof/sample_63_dof.hh"
-#include "metapod/models/simple-humanoid/simple_humanoid.hh"
 
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
 int main()
 {
+#ifdef WITH_SIMPLE_HUMANOID
   BENCHMARK(metapod::simple_humanoid);
+#endif
   BENCHMARK(metapod::sample_3_dof);
   BENCHMARK(metapod::sample_7_dof);
   BENCHMARK(metapod::sample_15_dof);

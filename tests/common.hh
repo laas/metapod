@@ -29,10 +29,14 @@
 # include <fstream>
 
 // metapod includes
-# include "metapod/models/simple-humanoid/simple_humanoid.hh"
-# include "metapod/models/simple-arm/simple_arm.hh"
-# include "metapod/tools/print.hh"
-# include "metapod/tools/initconf.hh"
+# ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
+#  include <metapod/models/simple_humanoid/simple_humanoid.hh>
+# endif
+# ifdef CURRENT_MODEL_IS_SIMPLE_ARM
+#  include <metapod/models/simple_arm/simple_arm.hh>
+# endif
+# include <metapod/tools/print.hh>
+# include <metapod/tools/initconf.hh>
 
 // Boost test suite includes
 # define BOOST_TEST_MODULE METAPOD

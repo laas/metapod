@@ -26,6 +26,8 @@
 # include "fwd.hh"
 # include <fstream>
 # include <iostream>
+# include <algorithm>
+# include <string>
 
 namespace metapod
 {
@@ -33,6 +35,7 @@ namespace metapod
 
   void createBody(std::ofstream & body_hh,
                   std::ofstream & init_cc,
+                  const std::string & libname,
                   const std::string & name,
                   const std::string parent_name,
                   const std::string joint_name,
@@ -42,8 +45,11 @@ namespace metapod
                   const Matrix3d & inertie,
                   const std::string & tab)
   {
+    std::string libname_uc(libname);
+    std::transform(libname.begin(), libname.end(), libname_uc.begin(), ::toupper);
     body_hh
       << tab << "CREATE_BODY("
+        << libname_uc << ", "
         << name << ", "
         << parent_name << ", "
         << joint_name << ");\n";
@@ -69,6 +75,7 @@ namespace metapod
 
   void createJoint(std::ofstream & joint_hh,
                    std::ofstream & init_cc,
+                   const std::string & libname,
                    int joint_type,
                    const std::string & name,
                    int label,
@@ -80,18 +87,20 @@ namespace metapod
                    FloatType axis_y = 0.,
                    FloatType axis_z = 0.)
   {
+    std::string libname_uc(libname);
+    std::transform(libname.begin(), libname.end(), libname_uc.begin(), ::toupper);
     switch(joint_type)
     {
       case FREE_FLYER:
-        joint_hh << tab << "JOINT_FREE_FLYER(" << name << ");\n";
+        joint_hh << tab << "JOINT_FREE_FLYER(" << libname_uc << ", " << name << ");\n";
         init_cc << tab << "INITIALIZE_JOINT_FREE_FLYER(" << name << ");\n";
         break;
       case REVOLUTE_AXIS_X:
-        joint_hh << tab << "JOINT_REVOLUTE_AXIS_X(" << name << ");\n";
+        joint_hh << tab << "JOINT_REVOLUTE_AXIS_X(" << libname_uc << ", " << name << ");\n";
         init_cc << tab << "INITIALIZE_JOINT_REVOLUTE_AXIS_X(" << name << ");\n";
         break;
       case REVOLUTE_AXIS_ANY:
-        joint_hh << tab << "JOINT_REVOLUTE_AXIS_ANY(" << name
+        joint_hh << tab << "JOINT_REVOLUTE_AXIS_ANY(" << libname_uc << ", " << name
             << ", " << axis_x << ", " << axis_y << ", " << axis_z << ");\n";
         init_cc << tab << "INITIALIZE_JOINT_REVOLUTE_AXIS_ANY(" << name
             << ", " << axis_x << ", " << axis_y << ", " << axis_z << ");\n";

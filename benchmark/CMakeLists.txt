@@ -20,14 +20,21 @@
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/benchmark)
 
 # Returns the list of source files for sample_${dof}_dof model
-FUNCTION(GET_SAMPLE_SOURCE_FILES output dof)
-    SET("${output}"
-        ${CMAKE_CURRENT_BINARY_DIR}/models/sample_${dof}_dof/sample_${dof}_dof.hh
-        ${CMAKE_CURRENT_BINARY_DIR}/models/sample_${dof}_dof/sample_${dof}_dof.cc
-        ${CMAKE_CURRENT_BINARY_DIR}/models/sample_${dof}_dof/body.hh
-        ${CMAKE_CURRENT_BINARY_DIR}/models/sample_${dof}_dof/joint.hh
-        ${CMAKE_CURRENT_BINARY_DIR}/models/sample_${dof}_dof/robot.hh
-        PARENT_SCOPE)
+FUNCTION(GET_SAMPLE_SOURCE_FILES output dof include_config_hh)
+    SET(_libname "sample_${dof}_dof")
+    SET(_output
+        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.hh
+        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.cc
+        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/body.hh
+        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/joint.hh
+        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/robot.hh)
+    IF (include_config_hh)
+        SET(_config_hh_path
+            ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/config.hh)
+        GENERATE_CONFIG_HEADER(${_config_hh_path} ${_libname})
+        LIST(APPEND _output ${_config_hh_path})
+    ENDIF()
+    SET("${output}" ${_output} PARENT_SCOPE)
 ENDFUNCTION()
 
 # list of the sample models
@@ -35,7 +42,7 @@ SET(dof_list 3 7 15 31 63)
 
 # put together a list of all the generated files
 FOREACH(dof IN LISTS dof_list)
-    GET_SAMPLE_SOURCE_FILES(_sources ${dof})
+    GET_SAMPLE_SOURCE_FILES(_sources ${dof} False)
     LIST(APPEND _generated_files "${_sources}")
 ENDFOREACH()
 
@@ -44,21 +51,30 @@ ADD_EXECUTABLE(make_model make_model.cc) #TODO: add missing sources
 TARGET_LINK_LIBRARIES(make_model ${Boost_LIBRARIES})
 
 # declare the generated files
-ADD_CUSTOM_COMMAND(
-  OUTPUT ${_generated_files}
-  COMMAND make_model
-  DEPENDS make_model
-)
+IF(dof_list)
+    ADD_CUSTOM_COMMAND(
+      OUTPUT ${_generated_files}
+      COMMAND make_model
+    )
+ENDIF()
 
 # build the sample models libraries
 FOREACH(dof IN LISTS dof_list)
-    GET_SAMPLE_SOURCE_FILES(_sources ${dof})
+    GET_SAMPLE_SOURCE_FILES(_sources ${dof} True)
     SET(_target sample_${dof}_dof)
     ADD_LIBRARY(sample_${dof}_dof SHARED ${_sources})
-    LIST(APPEND _generated_libs "${_target}")
+    LIST(APPEND _model_libs "${_target}")
 ENDFOREACH()
 
+# add simple humanoid model
+IF(WITH_SIMPLE_HUMANOID)
+    SET_SOURCE_FILES_PROPERTIES("benchmark.cc" PROPERTIES
+        COMPILE_FLAGS " -DWITH_SIMPLE_HUMANOID")
+    LIST(APPEND _model_libs "metapod_simple_humanoid")
+    INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/simple_humanoid/include)
+    INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/simple_humanoid)
+ENDIF()
 # and finally, the benchmark
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 ADD_EXECUTABLE(benchmark benchmark.cc)
-TARGET_LINK_LIBRARIES(benchmark ${_generated_libs} simple_humanoid)
+TARGET_LINK_LIBRARIES(benchmark ${_model_libs})

@@ -31,7 +31,7 @@
  *
  */
 
-# include "simple_arm.hh"
+#include <metapod/models/simple_arm/simple_arm.hh>
 
 namespace metapod
 {

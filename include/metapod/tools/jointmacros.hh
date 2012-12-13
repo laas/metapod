@@ -31,8 +31,8 @@ namespace metapod
 {
 
   // Create a REVOLUTE_AXIS_ANY joint class
-  # define JOINT_REVOLUTE_AXIS_ANY(classname, axisx, axisy, axisz)  \
-    class classname                                                 \
+  # define JOINT_REVOLUTE_AXIS_ANY(libname, classname, axisx, axisy, axisz)  \
+    class libname ## _DLLAPI classname                               \
     {                                                               \
       public:                                                       \
       enum { NBDOF = 1 };                                           \
@@ -85,8 +85,8 @@ namespace metapod
     Vector6d classname::F                                           \
 
   // Create a REVOLUTE_AXIS_X joint class
-  # define JOINT_REVOLUTE_AXIS_X(classname)                         \
-    class classname                                                 \
+  # define JOINT_REVOLUTE_AXIS_X(libname, classname)                \
+    class libname ## _DLLAPI classname                              \
     {                                                               \
       public:                                                       \
       enum { NBDOF = 1 };                                           \
@@ -139,9 +139,10 @@ namespace metapod
     const Spatial::ConstraintMotionOneAxis<Spatial::AxisX> classname::S;				    \
     const Vector6d classname::dotS = Vector6d::Zero();              \
     Vector6d classname::F                                           \
+
   // Create a free flyer class
-  # define JOINT_FREE_FLYER(classname)                              \
-    class classname                                                 \
+  # define JOINT_FREE_FLYER(libname, classname)                     \
+   class libname ## _DLLAPI classname                               \
     {                                                               \
       public:                                                       \
       enum { NBDOF = 6 };                                           \

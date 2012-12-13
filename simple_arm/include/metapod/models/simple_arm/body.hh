@@ -25,15 +25,15 @@
 #ifndef METAPOD_SIMPLE_ARM_BODY_HH
 # define METAPOD_SIMPLE_ARM_BODY_HH
 
-# include "metapod/tools/bodymacros.hh"
+# include <metapod/tools/bodymacros.hh>
 
 namespace metapod
 {
   namespace simple_arm
   {
-    CREATE_BODY(ARM, NP, SHOULDER);
-    CREATE_BODY(FOREARM, ARM, ELBOW);
-    CREATE_BODY(HAND, FOREARM, WRIST);
+    CREATE_BODY(METAPOD_SIMPLE_ARM, ARM, NP, SHOULDER);
+    CREATE_BODY(METAPOD_SIMPLE_ARM, FOREARM, ARM, ELBOW);
+    CREATE_BODY(METAPOD_SIMPLE_ARM, HAND, FOREARM, WRIST);
   } // end of namespace simple_arm
 } // end of namespace metapod
 

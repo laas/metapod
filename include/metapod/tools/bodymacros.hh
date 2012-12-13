@@ -28,10 +28,11 @@ namespace metapod
 {
 
   // Create a body
-  #define CREATE_BODY(classname,                           \
+  #define CREATE_BODY(libname,                             \
+                      classname,                           \
                       parentname,                          \
                       jointname)                           \
-    class classname                                        \
+    class libname ## _DLLAPI classname                     \
     {                                                      \
       public:                                              \
         static const std::string name;                     \
