@@ -46,7 +46,7 @@ namespace metapod
       {
         static void discover()
         {
-          NI::Joint::F = PrevNJ::Joint::sXp.toMatrixTranspose() * NI::Joint::F;
+          NI::Joint::F = PrevNJ::Joint::sXp.mulMatrixTransposeBy(NI::Joint::F);
           Robot::H.template
             block< NI::Joint::NBDOF, NJ::Joint::NBDOF >
                  ( NI::Joint::positionInConf, NJ::Joint::positionInConf )
