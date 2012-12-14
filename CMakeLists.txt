@@ -32,6 +32,10 @@ SET(PROJECT_URL "https://github.com/laas/metapod")
 
 SET(CXX_DISABLE_WERROR True)
 
+IF(UNIX OR MINGW)
+  ADD_DEFINITIONS("-fvisibility=hidden")
+ENDIF()
+
 # Options
 CMAKE_POLICY(SET CMP0012 NEW)
 OPTION(BENCHMARK "Build the benchmarking tool" OFF)
