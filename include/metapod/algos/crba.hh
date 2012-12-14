@@ -25,12 +25,27 @@
 # define METAPOD_CRBA_HH
 
 # include "metapod/tools/common.hh"
-# include "metapod/tools/has_parent.hh"
 # include "metapod/tools/depth_first_traversal.hh"
 # include "metapod/tools/backward_traversal_prev.hh"
 
 namespace metapod
 {
+  // helper function: update Parent inertia with the contribution of child Node
+  template < typename Parent, typename Node >
+  struct update_parent_inertia
+  {
+    static void run()
+    {
+      Parent::Iic = Parent::Iic + Node::Joint::sXp.applyInv(Node::Body::Iic);
+    }
+  };
+  // Do nothin if parent is NP
+  template < typename Node >
+  struct update_parent_inertia<NP, Node>
+  {
+    static void run() {};
+  };
+
   // frontend
   template< typename Robot, bool jcalc = true > struct crba {};
   template< typename Robot > struct crba<Robot, false>
@@ -71,10 +86,7 @@ namespace metapod
 
       static void finish()
       {
-        if(has_parent<Node>::value)
-          Node::Body::Parent::Iic = Node::Body::Parent::Iic
-                                  + Node::Joint::sXp.applyInv(Node::Body::Iic);
-
+        update_parent_inertia<typename Node::Body::Parent, Node>::run();
         Node::Body::Joint::F = Node::Body::Iic * Node::Joint::S;
 
         Robot::H.template block<Node::Joint::NBDOF, Node::Joint::NBDOF>(
