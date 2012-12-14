@@ -128,7 +128,7 @@ namespace metapod
       {
         // backward computations follow
         // τi = SiT * fi
-        Node::Joint::torque = Node::Joint::S.transpose()
+        Node::Joint::torque = Node::Joint::S.S().transpose()
                               * Node::Joint::f.toVector();
         update_force<Node, typename Node::Body::Parent>::run();
       }
