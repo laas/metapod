@@ -30,7 +30,7 @@ int main()
   const int MAX_DEPTH = 5; // NBDOF = (depth+1)² - 1;
   for(int i=1; i<=MAX_DEPTH; i++)
   {
-    int NBDOF = static_cast<int>(pow(2,i+1)) - 1;
+    int NBDOF = static_cast<int>(pow(2.0,i+1)) - 1;
     std::stringstream ss_name;
     ss_name << "sample_" << NBDOF << "_dof";
     metapod::benchmark::generate_model(ss_name.str(), i);
@@ -39,7 +39,7 @@ int main()
 
 void metapod::benchmark::generate_model(const std::string & name, int depth)
 {
-  int NBDOF = static_cast<int>(pow(2,depth+1)) - 1;
+  int NBDOF = static_cast<int>(pow(2.0,depth+1)) - 1;
 
   std::stringstream ss_body, ss_joint, ss_robot, ss_lib_cc, ss_lib_hh;
   std::stringstream ss_path;
