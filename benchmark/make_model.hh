@@ -25,8 +25,6 @@
 # define METAPOD_MAKE_MODEL_HH
 
 # include <iostream>
-# include "metapod/tools/buildrobot.hh"
-# include <boost/filesystem/operations.hpp>
 # include <fstream>
 
 namespace metapod

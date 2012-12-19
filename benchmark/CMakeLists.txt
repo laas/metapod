@@ -1,4 +1,4 @@
-# Copyright 2011, 2012,
+# Copyright 2011, 2012, 2013
 #
 # Maxime Reis (JRL/LAAS, CNRS/AIST)
 # Antonio El Khoury (JRL/LAAS, CNRS/AIST)
@@ -17,7 +17,11 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/benchmark)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer)
 
 # Returns the list of source files for sample_${dof}_dof model
 FUNCTION(GET_SAMPLE_SOURCE_FILES output dof include_config_hh)
@@ -47,7 +51,7 @@ FOREACH(dof IN LISTS dof_list)
 ENDFOREACH()
 
 # build the generator
-ADD_EXECUTABLE(make_model make_model.cc) #TODO: add missing sources
+ADD_EXECUTABLE(make_model make_model.cc make_model.hh) #TODO: add missing sources
 TARGET_LINK_LIBRARIES(make_model ${Boost_LIBRARIES})
 
 # declare the generated files
@@ -76,5 +80,5 @@ IF(WITH_SIMPLE_HUMANOID)
 ENDIF()
 # and finally, the benchmark
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-ADD_EXECUTABLE(benchmark benchmark.cc)
-TARGET_LINK_LIBRARIES(benchmark ${_model_libs})
+ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
+TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})

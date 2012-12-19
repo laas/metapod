@@ -1,8 +1,7 @@
 // Copyright 2012,
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -42,156 +41,159 @@
 
 #ifndef METAPOD_BENCHMARK_HH
 # define METAPOD_BENCHMARK_HH
-
+# include <vector>
 # include <iostream>
-# include <sys/time.h>
+# include <boost/bind.hpp>
+# include <boost/function.hpp>
 
-# include <metapod/tools/jac_point_robot.hh>
-# include <metapod/algos/rnea.hh>
-# include <metapod/algos/crba.hh>
+# include <metapod/timer/timer.hh>
+
 # include <metapod/tools/jcalc.hh>
 # include <metapod/tools/bcalc.hh>
+# include <metapod/algos/rnea.hh>
+# include <metapod/algos/crba.hh>
+# include <metapod/tools/jac_point_robot.hh>
 
 namespace metapod
 {
   namespace benchmark
   {
-    const int N1 = 100;
-    const int N2 = 1000;
-    enum{ JCALC, RNEA, RNEA_WITHOUT_JCALC, CRBA, CRBA_WITHOUT_JCALC,
-          JAC_POINT_ROBOT };
-    const int TICKS_PER_SECOND = 1e6;
-    
-    class Timer
+    template < typename Robot >
+    class Runner
     {
-      public:
-        Timer() : m_start(), m_stop(), t(0) {};
-    
-        void start() { ::gettimeofday(&m_start, NULL); }
-    
-        void stop()
-        {
-          ::gettimeofday(&m_stop, NULL);
-          t += ( m_stop.tv_sec - m_start.tv_sec ) * TICKS_PER_SECOND
-               + ( m_stop.tv_usec - m_start.tv_usec );
-        }
-    
-        void reinit() { t = 0; }
-    
-        double get() { return (double)t; }
-    
-      private:
-        struct timeval m_start;
-        struct timeval m_stop;
-        long t;
+    public:
+      typedef typename Robot::confVector confVector;
+      typedef boost::function<void(const confVector & q,
+                                   const confVector & dq,
+                                   const confVector & ddq)> functor_t;
+
+      Runner(functor_t f, const::std::string & msg):
+        timer_(make_timer()),
+        func_(f),
+        msg_(msg),
+        inner_loop_max_(1000),
+        outer_loop_count_(0)
+      {}
+
+      Runner(const Runner& other):
+        timer_(make_timer()),
+        func_(other.func_),
+        msg_(other.msg_),
+        inner_loop_max_(other.inner_loop_max_),
+        outer_loop_count_(0)
+      {}
+
+      Runner& operator=(const Runner& other)
+      {
+        func_ = other.func_;
+        msg_ = other.msg_;
+        inner_loop_max_ = other.inner_loop_max_;
+        outer_loop_count_ = 0;
+        return *this;
+      }
+
+      void run(const confVector & q,
+               const confVector & dq,
+               const confVector & ddq)
+      {
+        if (!outer_loop_count_)
+          timer_->start();
+        else
+          timer_->resume();
+        for(int j=0; j<inner_loop_max_; ++j)
+          func_(q, dq, ddq);
+        timer_->stop();
+        ++outer_loop_count_;
+      }
+
+      void print()
+      {
+        double total_time_us = timer_->elapsed_wall_clock_time_in_us();
+        std::cout << msg_ << ": "
+                  << total_time_us/double(inner_loop_max_ * outer_loop_count_)
+                  << "µs\n";
+      }
+
+    private:
+      std::auto_ptr<Timer> const timer_;
+      functor_t func_;
+      std::string msg_;
+      int inner_loop_max_;
+      int outer_loop_count_;
     };
 
-    static Timer timer;
+    // wrapping jac_point_robot directly with boost::bind
+    // does not work because the J argument (an Eigen matrix) has
+    // alignement constraints.
+    template < typename Robot, bool call_bcalc >
+    class jac_point_robot_wrapper
+    {
+    public:
+      static void run(typename Robot::confVector q)
+      {
+        typename jac_point_robot<Robot, call_bcalc>::jacobian_t J;
+        jac_point_robot<Robot, call_bcalc>::run(q, J);
+      }
+    };
 
-    #define BENCHMARK(robot)                                          \
-    {                                                                 \
-      std::cout << "*************\n"                                  \
-                << "Model NBDOF : " << robot::Robot::NBDOF << "\n  "  \
-                << "  average execution time :\n";                    \
-      typedef robot::Robot::confVector confVector;                    \
-      confVector q, dq, ddq;                                          \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          dq = confVector::Random();                                  \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::jcalc< robot::Robot >::run(q, dq);               \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "jcalc: " << timer.get()/double(N1*N2) << "µs\n"; \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::bcalc< robot::Robot >::run(q);                   \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "bcalc: "                                        \
-                  << timer.get()/double(N1*N2) << "µs\n";             \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          dq = confVector::Random();                                  \
-          ddq = confVector::Random();                                 \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::rnea< robot::Robot, true >::run(q, dq, ddq);     \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "rnea: " << timer.get()/double(N1*N2) << "µs\n"; \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          dq = confVector::Random();                                  \
-          ddq = confVector::Random();                                 \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::rnea< robot::Robot, false >::run(q, dq, ddq);    \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "rnea (without jcalc): "                         \
-                  << timer.get()/double(N1*N2) << "µs\n";             \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::crba< robot::Robot, true >::run(q);              \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "crba: " << timer.get()/double(N1*N2) << "µs\n"; \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::crba< robot::Robot, false >::run(q);             \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "crba (without jcalc): "                         \
-                  << timer.get()/double(N1*N2) << "µs\n";             \
-        timer.reinit();                                               \
-        for(int i=0; i<N1; i++)                                       \
-        {                                                             \
-          q = confVector::Random();                                   \
-          metapod::jac_point_robot< robot::Robot >::jacobian_t J;     \
-          timer.start();                                              \
-          for(int j=0; j<N2; j++)                                     \
-          {                                                           \
-            metapod::jac_point_robot< robot::Robot, false >::run(q, J); \
-          }                                                           \
-          timer.stop();                                               \
-        }                                                             \
-        std::cout << "jac_point_robot (without bcalc): "              \
-                  << timer.get()/double(N1*N2) << "µs\n";             \
-        std::cout << std::endl;                                       \
-    }                                                                       
+    template < typename Robot >
+    struct benchmark
+    {
+      typedef typename Robot::confVector confVector;
 
+      static void run()
+      {
+        confVector q, dq, ddq;
+        // vector of the algorithms we want to benchmark
+        std::vector< Runner<Robot> > runners;
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(&jcalc<Robot>::run, _1, _2),
+            std::string("jcalc")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(bcalc<Robot>::run, _1),
+            std::string("bcalc")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(rnea<Robot, true>::run, _1, _2, _3),
+                  std::string("rnea")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(rnea<Robot, false>::run, _1, _2, _3),
+            std::string("rnea (without jcalc)")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(crba<Robot, true>::run, _1),
+            std::string("crba")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(crba<Robot, false>::run, _1),
+            std::string("crba (without jcalc)")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(jac_point_robot_wrapper<Robot, false>::run, _1),
+            std::string("jac_point_robot (without bcalc)")));
+
+        // tell which model we are running benchmarks on
+        std::cout << "*************\n"
+                  << "Model NBDOF : " << Robot::NBDOF << std::endl;
+        for(int i=0; i<100; ++i)
+        {
+          q = confVector::Random();
+          dq = confVector::Random();
+          ddq = confVector::Random();
+          for(typename std::vector< Runner<Robot> >::iterator runner=runners.begin();
+              runner != runners.end();
+              ++runner)
+          {
+            runner->run(q, dq, ddq);
+          }
+        }
+        // print result
+        std::cout << "  average execution time :\n";
+        for(typename std::vector< Runner<Robot> >::iterator runner=runners.begin();
+            runner != runners.end();
+            ++runner)
+         {
+           runner->print();
+         }
+      }
+    };
+    #define BENCHMARK(robot) benchmark<robot::Robot>::run()
   } // end of namespace benchmark
 } // end of namespace metapod
 

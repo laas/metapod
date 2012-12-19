@@ -1,4 +1,4 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
 // Maxime Reis
 //
@@ -24,6 +24,8 @@
 #include "make_model.hh"
 # include <algorithm>
 # include <string>
+# include <metapod/tools/buildrobot.hh>
+# include <boost/filesystem/operations.hpp>
 
 int main()
 {

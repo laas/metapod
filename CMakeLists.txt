@@ -45,8 +45,19 @@ OPTION(WITH_SIMPLE_ARM "Build the simple arm example model" ON)
 SETUP_PROJECT()
 
 # Search for Boost.
+# Boost filesystem is used by the benchmark. Boost filesystem depends on
+# Boost system.
 # Boost.Test is used by the test suite.
+SET(BOOST_COMPONENTS
+   filesystem system unit_test_framework)
 SEARCH_FOR_BOOST()
+# If Boost is recent enough, we look for Boost timer which can be used by
+# by metapod_timer, which is in turn used by the benchmark.
+# Boost timer depends on Boost chrono and system.
+IF(BENCHMARK AND NOT Boost_VERSION LESS 104800)
+  SET(BOOST_COMPONENTS ${BOOST_COMPONENTS} timer chrono system)
+  SEARCH_FOR_BOOST()
+ENDIF()
 
 # Search for Eigen.
 ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.0")
@@ -97,6 +108,7 @@ ENDIF()
 ADD_SUBDIRECTORY(tests)
 
 IF(${BENCHMARK})
+  ADD_SUBDIRECTORY(timer)
   ADD_SUBDIRECTORY(benchmark)
 ENDIF(${BENCHMARK})
 
