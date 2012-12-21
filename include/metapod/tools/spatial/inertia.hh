@@ -23,6 +23,7 @@
 # define METAPOD_SPATIAL_ALGEBRA_INERTIA_HH
 
 # include "metapod/tools/fwd.hh"
+# include "metapod/tools/spatial/lti.hh"
 
 namespace metapod
 {
@@ -37,16 +38,18 @@ namespace metapod
         Inertia() : m_m(), m_h(), m_I() {}
         Inertia(FloatType m, const Vector3d & h, const Matrix3d & I)
           : m_m(m), m_h(h), m_I(I) {}
+        Inertia(FloatType m, const Vector3d & h, const lowerTriangularMatrix & I)
+          : m_m(m), m_h(h), m_I(I) {}
 
         // Getters
         FloatType m() const { return m_m; }
         const Vector3d & h() const { return m_h; }
-        const Matrix3d & I() const { return m_I; }
+        const lowerTriangularMatrix & I() const { return m_I; }
 
         Matrix6d toMatrix() const
         {
           Matrix6d M;
-          M.block<3,3>(0,0) = m_I;
+          M.block<3,3>(0,0) = m_I.toMatrix();
           M.block<3,3>(0,3) = skew(m_h);
           M.block<3,3>(3,0) = -skew(m_h);
           M.block<3,3>(3,3) = m_m*Matrix3d::Identity();
@@ -90,7 +93,7 @@ namespace metapod
         // Private members
         FloatType m_m;
         Vector3d m_h;
-        Matrix3d m_I;
+        lowerTriangularMatrix m_I;
     };
 
     template<>
