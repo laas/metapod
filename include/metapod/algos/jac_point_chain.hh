@@ -126,7 +126,7 @@ namespace metapod
       J.template block<3,3>(0,3+offset) = Matrix3d::Identity ();
       J.template block<3,3>(3,offset) = Matrix3d::Identity ();
       Spatial::Transform pXs = StartBody::iX0.inverse ().toPointFrame (p);
-      J.template block<3,3>(3,3+offset) = Spatial::skew (- pXs.E() * pXs.r());
+      J.template block<3,3>(3,3+offset) = Spatial::skew (- (pXs.E() * pXs.r()));
     }
   };
 
