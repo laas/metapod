@@ -26,6 +26,8 @@
 # include <metapod/tools/spatial/cm-oneaxis.hh>
 # include <metapod/tools/spatial/cm-freeflyer.hh>
 
+# include <iostream>
+# include <metapod/tools/spatial/rotationMatrix.hh>
 namespace metapod
 {
 
@@ -40,21 +42,22 @@ namespace metapod
     ///
     ///   vb = bXa.E * va
     ///   pb = bXa.E * (pa - bXa.r)
-    class Transform
+    template <class RotationClass> 
+    class TransformT
     {
       public:
         // Constructors
-        Transform() : m_E(), m_r() {}
-        Transform(const Matrix3d & E, const Vector3d & r) : m_E(E), m_r(r) {}
-
-        static const Transform Identity()
+        TransformT() : m_E(), m_r() {}
+        TransformT(const Matrix3d & E, const Vector3d & r) : m_E(E), m_r(r) {}
+        TransformT(const RotationClass & E, const Vector3d & r) : m_E(E), m_r(r) {}
+        static const TransformT Identity()
         {
-	  return Transform (Matrix3d::Identity(), Vector3d::Zero());
+	  return TransformT (Matrix3d::Identity(), Vector3d::Zero());
         }
 
         // Getters
         const Vector3d & r() const { return m_r; }
-        const Matrix3d & E() const { return m_E; }
+        const RotationClass & E() const { return m_E; }
 
         // Transformations
 
@@ -75,6 +78,7 @@ namespace metapod
         Inertia apply(const Inertia & I) const
         {
           Vector3d tmp = I.h() - I.m()*m_r;
+
           return Inertia(I.m(),
                          m_E*tmp,
                          m_E*(I.I()
@@ -94,8 +98,8 @@ namespace metapod
         Vector6d apply(const ConstraintMotionAnyAxis& S) const
         {
 	  Vector6d tmp = Vector6d::Zero();
-	  tmp.head<3>() = m_E*S.S().head<3>();
-	  tmp.tail<3>() = -m_E*m_r.cross(S.S().head<3>());
+	  tmp.head<3>() = m_E*static_cast<Vector3d>(S.S().head<3>());
+	  tmp.tail<3>() = -(m_E*m_r.cross(S.S().head<3>()));
 	  return tmp;
         }
 
@@ -116,10 +120,11 @@ namespace metapod
         Matrix6d apply(const ConstraintMotionFreeFlyer& S) const
         {
 	  Matrix6d tmp = Matrix6d::Zero();
-	  tmp.topRightCorner<3,3>() = m_E * S.S().topRightCorner<3,3>();
-	  tmp.bottomLeftCorner<3,3>() = m_E * S.S().bottomLeftCorner<3,3>();
+
+	  tmp.topRightCorner<3,3>() = m_E * static_cast<Matrix3d>(S.S().topRightCorner<3,3>());
+	  tmp.bottomLeftCorner<3,3>() = m_E * static_cast<Matrix3d>(S.S().bottomLeftCorner<3,3>());
 	  tmp.bottomRightCorner<3,3>()
-	    = -m_E * Spatial::skew(m_r) * S.S().topRightCorner<3,3>();
+	    = -(m_E * Spatial::skew(m_r) * S.S().topRightCorner<3,3>());
 	  return tmp;
         }
 
@@ -200,9 +205,11 @@ namespace metapod
         {
           Vector3d tmp1 = static_cast<Vector3d>(m_E.transpose()*I.h());
           Vector3d tmp2 = static_cast<Vector3d>(tmp1 + I.m()*m_r);
+	  lowerTriangularMatrix aEIEt = m_E.rotTSymmetricMatrix(I.I());
+
           return Inertia(I.m(),
                          tmp2,
-                         m_E.transpose()*I.I()*m_E
+                         aEIEt
                          - skew(m_r)*skew(tmp1)
                          - skew(tmp2)*skew(m_r));
         }
@@ -215,21 +222,22 @@ namespace metapod
         }
 
         /// aXb = bXa.inverse()
-        Transform inverse() const
+        TransformT inverse() const
         {
-          return Transform(m_E.transpose(), -m_E*m_r);
+          return TransformT(m_E.transpose(), -(m_E*m_r));
         }
 
         // Arithmetic operators
-        Transform operator*(FloatType a) const
+        TransformT operator*(FloatType a) const
         {
-          return Transform(a*m_E, a*m_r);
+          return TransformT(a*m_E, a*m_r);
         }
 
         // bXz = bXa * aXz
-        Transform operator*(const Transform & X) const
+        TransformT operator*(const TransformT & X) const
         {
-          return Transform(m_E*X.E(), X.r() + X.E().transpose()*m_r);
+          return TransformT(m_E*X.E(), 
+			    (Vector3d)(X.r() + X.E().transpose()*m_r));
         }
 
         /// Specialization of transform multiplication.
@@ -238,24 +246,24 @@ namespace metapod
         ///
         /// In a nutshell:
         ///
-        /// cXb == Transform(Eye, Pb)
+        /// cXb == TransformT(Eye, Pb)
         /// cXa == cXb * bXa == bXa.toPointFrame(Pb)
-        Transform toPointFrame(const Vector3d& p) const
+        TransformT toPointFrame(const Vector3d& p) const
         {
-          return Transform (m_E, m_r + m_E.transpose()*p);
+          return TransformT (m_E, m_r + m_E.transpose()*p);
         }
 
         /// Vb = bXa * Va
         Motion operator*(const Motion & mv) const
         {
-          return Motion(m_E * mv.w(), m_E * (mv.v() - m_r.cross(mv.w())));
+          return Motion(m_E * mv.w(), m_E * static_cast<Vector3d>(mv.v() - m_r.cross(mv.w())));
         }
 
         /// Fb = bXa * Fa
         Force operator*(const Force & fv) const
         {
           Vector3d lf = fv.f();
-          return Force(m_E*(fv.n() - m_r.cross(lf)), m_E*lf);
+          return Force(m_E*static_cast<Vector3d>(fv.n() - m_r.cross(lf)), m_E*lf);
         }
 
         /// Ib = bXa * Ia
@@ -271,7 +279,7 @@ namespace metapod
 
         // Print operator
         friend std::ostream & operator << (std::ostream & os,
-                                           const Transform & X)
+                                           const TransformT & X)
         {
           os
             << "  E =\n" << X.E() << std::endl
@@ -281,9 +289,15 @@ namespace metapod
 
       private:
         // Private members
-        Matrix3d m_E;
-        Vector3d m_r;
+      // Matrix3d m_E;
+      RotationClass m_E;
+      Vector3d m_r;
     };
+
+    typedef TransformT<rotationMatrix> Transform;
+    typedef TransformT<rotationMatrixAboutXAxis> TransformX;
+    typedef TransformT<rotationMatrixAboutYAxis> TransformY;
+    typedef TransformT<rotationMatrixAboutZAxis> TransformZ;
   } // end of namespace Spatial
 
 } // end of namespace metapod
