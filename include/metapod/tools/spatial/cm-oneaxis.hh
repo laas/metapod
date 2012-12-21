@@ -42,16 +42,31 @@ namespace metapod
     {
       public:
         // Constructors
-        ConstraintMotionOneAxis(){ 
-	  m_S(axis) = 1.0;
-	}
+      ConstraintMotionOneAxis(){ }
 
       private:
-        Vector6d m_S;
+        static const Vector6d m_S;
       public:
         const Vector6d & S() const {return m_S;}
         Vector6dt transpose() const {return m_S.transpose();}
     };
+
+    // Constant size 6 vector initialization method.
+    inline const Vector6d lvector6dMaker(FloatType v0,
+					FloatType v1,
+					FloatType v2,
+					FloatType v3,
+					FloatType v4,
+					FloatType v5)
+    {
+      Vector6d v;
+      v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
+      return v;
+    }
+    
+    template <> const Vector6d ConstraintMotionOneAxis<AxisX>::m_S =lvector6dMaker( 1.0, 0.0, 0.0, 0.0 , 0.0, 0.0);
+    template <> const Vector6d ConstraintMotionOneAxis<AxisY>::m_S =lvector6dMaker( 0.0, 1.0, 0.0, 0.0 , 0.0, 0.0);
+    template <> const Vector6d ConstraintMotionOneAxis<AxisZ>::m_S =lvector6dMaker( 0.0, 0.0, 1.0, 0.0 , 0.0, 0.0);
 
     typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
     typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
@@ -62,8 +77,8 @@ namespace metapod
     Vector6d operator*(const Inertia & m,
 		       const ConstraintMotionAxisX &) 
     {
-     Vector6d r;
-      r[0] = m.I()(0,0); r[1] = m.I()(1,0);r[2] = m.I()(2,0);      
+     Vector6d r; 
+     r[0] = m.I()(0); r[1] = m.I()(1);r[2] = m.I()(3);      
       r[3] = 0.0; r[4] = -m.h()(2); r[5] = m.h()(1);
       return r;
     }
@@ -72,7 +87,7 @@ namespace metapod
 		       const ConstraintMotionAxisY &) 
     {
      Vector6d r;
-      r[0] = m.I()(0,1); r[1] = m.I()(1,1);r[2] = m.I()(2,1);      
+      r[0] = m.I()(1); r[1] = m.I()(2);r[2] = m.I()(4);      
       r[3] = m.h()(2); r[4] = 0.0; r[5] = -m.h()(0);
       return r;
     }
@@ -80,8 +95,8 @@ namespace metapod
     Vector6d operator*(const Inertia & m,
 		       const ConstraintMotionAxisZ &) 
     {
-     Vector6d r;
-      r[0] = m.I()(0,2); r[1] = m.I()(1,2);r[2] = m.I()(2,2);      
+      Vector6d r; 
+      r[0] = m.I()(3); r[1] = m.I()(4);r[2] = m.I()(5);      
       r[3] = -m.h()(1); r[4] = m.h()(0); r[5] = 0.0;
       return r;
     }
