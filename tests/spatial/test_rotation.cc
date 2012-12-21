@@ -62,7 +62,54 @@ void test_general_matrix(Matrix3d & aI)
   d = aRMA.rotGeneralMatrix(aI);
 
   check(aI,R,d);
+
 }
+
+template<class T>
+void test_transpose()
+{
+  T aRMA;
+  cout << "Test transpose" << endl;
+
+  aRMA.randomInit();
+  cout << "aRMA:" << endl;
+  cout << aRMA.toMatrix() << endl << endl;
+
+  Matrix3d R = aRMA.toMatrix().transpose();
+  cout << R << endl << endl;
+  
+  T d;
+  d = aRMA.transpose();
+  cout << d << endl << endl;
+  
+  Matrix3d diff_check = R - d.toMatrix();
+  double norm_diff_checkd = diff_check.squaredNorm();
+  
+  BOOST_CHECK(norm_diff_checkd < 1e-10);
+}
+
+template< class T>
+void test_multiplication(Matrix3d & aI)
+{
+  T aRMA;
+
+  aRMA.randomInit();
+    
+  Matrix3d R = aRMA.toMatrix() * aI;
+  cout << "R:" << endl;
+  cout << R << endl;
+
+  Matrix3d d;
+  d = aRMA * aI;
+  cout << "d: " << endl;
+  cout << d;
+  Matrix3d diff_check = R - d;
+  double norm_diff_checkd = diff_check.squaredNorm();
+  
+  cout << "Test for multiplication" << endl;
+  BOOST_CHECK(norm_diff_checkd < 1e-10);
+}
+
 
 BOOST_AUTO_TEST_CASE(test_rotation)
 {
@@ -98,6 +145,21 @@ BOOST_AUTO_TEST_CASE(test_rotation)
 
   cout << "NotSymmetrical: Test General Rotation Matrix" << endl;
   test_general_matrix<rotationMatrix>(NotSymmetrical);
+
+  //test_transpose<rotationMatrixAboutXAxis>();
+  //test_transpose<rotationMatrixAboutYAxis>();
+  //test_transpose<rotationMatrixAboutZAxis>();
+  test_transpose<rotationMatrix>();
+
+  // Test the rotation with a rotation matrix
+  rotationMatrix aRM;
+  aRM.randomInit();
+  Matrix3d randomRM = aRM.toMatrix();
+
+  //test_multiplication<rotationMatrixAboutXAxis>(NotSymmetrical);
+  //test_multiplication<rotationMatrixAboutYAxis>(NotSymmetrical);
+  //test_multiplication<rotationMatrixAboutZAxis>(NotSymmetrical);
+  test_multiplication<rotationMatrix>(randomRM);
 
   
 }
