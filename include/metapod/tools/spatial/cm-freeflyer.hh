@@ -70,7 +70,7 @@ namespace metapod
       Matrix6d r;
       r=Matrix6d::Zero();
       r.block<3,3>(0,0)=skew(m.h())*a.S().block<3,3>(3,0);
-      r.block<3,3>(0,3)=m.I()*a.S().block<3,3>(0,3);
+      r.block<3,3>(0,3)=m.I()*static_cast<Matrix3d>(a.S().block<3,3>(0,3));
       r.block<3,3>(3,0)=m.m()*a.S().block<3,3>(3,0);
       r.block<3,3>(3,3)=-skew(m.h())*a.S().block<3,3>(0,3);
       return r;
