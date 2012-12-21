@@ -118,11 +118,14 @@ namespace metapod
 	return rotationMatrix(m_rm.transpose());
       }
 
+      
       Matrix3d operator*(const Matrix3d &A) const
       {
 	return static_cast<Matrix3d>(m_rm*A);
       }
 
+      /** \brief Computes the multiplication between rotation matrix. 
+       */
       rotationMatrix operator* (const rotationMatrix &arm) const
       {
 	Matrix3d r;
@@ -133,7 +136,7 @@ namespace metapod
 	return r;
       }
 
-      /** \brief Comptues \$f v = RM u \$f with $\f v,u \in \mathbb{R}^3 $\f 
+      /** \brief Computes \$f v = RM u \$f with $\f v,u \in \mathbb{R}^3 $\f 
        */
       Vector3d operator*(const Vector3d &A) const
       {
