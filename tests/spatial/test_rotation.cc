@@ -100,7 +100,4 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   test_general_matrix<rotationMatrix>(NotSymmetrical);
 
   
-
-  
-  
 }
