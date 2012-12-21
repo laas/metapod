@@ -118,14 +118,20 @@ namespace metapod
 	return rotationMatrix(m_rm.transpose());
       }
 
-      rotationMatrix operator* (const rotationMatrix &arm) const
+      Matrix3d operator*(const Matrix3d &A) const
       {
 	Matrix3d r;
-	r.block<3,2>(0,0) = m_rm * arm.m_rm.block<3,2>(0,0);
+	r.block<3,2>(0,0) = m_rm * A.block<3,2>(0,0);
 	r(0,2) = -r(2,0)*r(1,1) + r(1,0)*r(2,1);
 	r(1,2) =  r(2,0)*r(0,1) - r(0,0)*r(2,1);
 	r(2,2) = -r(1,0)*r(0,1) + r(0,0)*r(1,1);
-	return rotationMatrix(r);
+	return r;
+      }
+
+      rotationMatrix operator* (const rotationMatrix &arm) const
+      {
+	const Matrix3d & r = arm.m_rm;
+	return rotationMatrix((*this)*r);
       }
       /** \brief Comptues \$f v = RM u \$f with $\f v,u \in \mathbb{R}^3 $\f 
        */
@@ -134,10 +140,6 @@ namespace metapod
 	return static_cast<Vector3d>(m_rm * A);
       }
 
-      Matrix3d operator*(const Matrix3d &A) const
-      {
-	return rotGeneralMatrix(A);
-      }
 
       rotationMatrix operator*(FloatType a) const
       {
