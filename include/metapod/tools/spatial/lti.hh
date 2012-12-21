@@ -41,8 +41,12 @@ namespace metapod
 	m_ltI(1) = I(1,0); m_ltI(2) = I(1,1);
 	m_ltI(3) = I(2,0); m_ltI(4) = I(2,1); m_ltI(5) = I(2,2);
       }
+      ltI(const Vector6d &I)
+      {
+	m_ltI = I;
+      }
 
-      Matrix3d toMatrix()
+      Matrix3d toMatrix() const
       {
 	Matrix3d tmp;
 	tmp(0,0) = m_ltI(0); tmp(0,1) = m_ltI(1); tmp(0,2) = m_ltI(3);
@@ -51,6 +55,75 @@ namespace metapod
 	return tmp;
       }
       
+      struct ltI operator+(const struct ltI & altI) const
+      {
+	struct ltI a;
+	for(unsigned int i=0;i<6;i++)
+	  a.m_ltI(i) = m_ltI(i) + altI.m_ltI(i);
+	return a;
+      }
+
+      friend struct ltI operator*(FloatType a, const struct ltI& altI)
+      {
+	struct ltI r(Vector6d(altI.m_ltI * a));
+	return r;
+      }
+
+      struct ltI operator*(FloatType a) const
+      {
+	struct ltI r(Vector6d(m_ltI * a));
+	return r;
+      }
+
+      Vector3d operator*(const Vector3d &a) const
+      {
+	Vector3d r;
+	r(0) = m_ltI(0) *a(0) + m_ltI(1) *a(1) + m_ltI(3)*a(2);
+	r(1) = m_ltI(1) *a(0) + m_ltI(2) *a(1) + m_ltI(4)*a(2);
+	r(2) = m_ltI(3) *a(0) + m_ltI(4) *a(1) + m_ltI(5)*a(2);
+	return r;
+      }
+
+      Matrix3d operator*(const Matrix3d &a) const
+      {
+	Matrix3d r;
+	for(unsigned int i=0;i<3;i++)
+	  r(0,i) = m_ltI(0) *a(0,i) + m_ltI(1) *a(1,i) + m_ltI(3)*a(2,i);
+
+	for(unsigned int i=0;i<3;i++)
+	  r(1,i) = m_ltI(1) *a(0,i) + m_ltI(2) *a(1,i) + m_ltI(4)*a(2,i);
+
+	for(unsigned int i=0;i<3;i++)
+	  r(2,i) = m_ltI(3) *a(0,i) + m_ltI(4) *a(1,i) + m_ltI(5)*a(2,i);
+
+	return r;
+      }
+
+      FloatType operator()(int x) const
+      {
+	return m_ltI(x);
+      }
+
+      Matrix3d operator+(const Matrix3d &a) const
+      {
+	Matrix3d r;
+	r=a;
+	r(0,0) += m_ltI(0); r(0,1) += m_ltI(1); r(0,2) += m_ltI(3);
+	r(1,0) += m_ltI(1); r(1,1) += m_ltI(2); r(1,2) += m_ltI(4);
+	r(2,0) += m_ltI(3); r(2,1) += m_ltI(4); r(2,2) += m_ltI(5);
+	return r;
+      }
+
+      Matrix3d operator-(const Matrix3d &a) const
+      {
+	Matrix3d r;
+	r=-a;
+	r(0,0) += m_ltI(0); r(0,1) += m_ltI(1); r(0,2) += m_ltI(3);
+	r(1,0) += m_ltI(1); r(1,1) += m_ltI(2); r(1,2) += m_ltI(4);
+	r(2,0) += m_ltI(3); r(2,1) += m_ltI(4); r(2,2) += m_ltI(5);
+	return r;
+      }
+
       friend std::ostream &operator<<(std::ostream &os, 
 				      const struct ltI &altI)
       {
@@ -60,8 +133,10 @@ namespace metapod
 	return os;
       }
       
-
+      
     };
+
+    typedef struct ltI lowerTriangularMatrix;
 
     
   }
