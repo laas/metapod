@@ -60,10 +60,11 @@ namespace metapod
 	  const ConstraintMotionAnyAxis &a) const
     {
       Vector6d r;
-      for(unsigned int i=0;i<3;i++)
-	r[i] = m.m_I(i,0)*a.S()[0]+ 
-	  m.m_I(i,1)*a.S()[1]+
-	  m.m_I(i,2)*a.S()[2];
+      const Vector6d & altI = m.m_I.m_ltI;
+      r[0] = altI(0)*a.S()[0]+ altI(1)*a.S()[1]+ altI(3)*a.S()[2];
+      r[1] = altI(1)*a.S()[0]+ altI(2)*a.S()[1]+ altI(4)*a.S()[2];
+      r[1] = altI(3)*a.S()[0]+ altI(4)*a.S()[1]+ altI(5)*a.S()[2];
+
       Matrix3d msh = -skew(m.m_h);
       for(unsigned int i=0;i<3;i++)
 	r[i+3] = msh(i,0)*a.S()[0]+ 
