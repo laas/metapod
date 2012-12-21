@@ -120,19 +120,19 @@ namespace metapod
 
       Matrix3d operator*(const Matrix3d &A) const
       {
+	return static_cast<Matrix3d>(m_rm*A);
+      }
+
+      rotationMatrix operator* (const rotationMatrix &arm) const
+      {
 	Matrix3d r;
-	r.block<3,2>(0,0) = m_rm * A.block<3,2>(0,0);
+	r.block<3,2>(0,0) = m_rm * arm.m_rm.block<3,2>(0,0);
 	r(0,2) = -r(2,0)*r(1,1) + r(1,0)*r(2,1);
 	r(1,2) =  r(2,0)*r(0,1) - r(0,0)*r(2,1);
 	r(2,2) = -r(1,0)*r(0,1) + r(0,0)*r(1,1);
 	return r;
       }
 
-      rotationMatrix operator* (const rotationMatrix &arm) const
-      {
-	const Matrix3d & r = arm.m_rm;
-	return rotationMatrix((*this)*r);
-      }
       /** \brief Comptues \$f v = RM u \$f with $\f v,u \in \mathbb{R}^3 $\f 
        */
       Vector3d operator*(const Vector3d &A) const
