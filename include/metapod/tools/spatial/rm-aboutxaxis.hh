@@ -97,7 +97,7 @@ namespace metapod
 	return r;
       }
 
-      rotationMatrix operator*(const rotationMatrix &aRM) const
+      RotationMatrix operator*(const RotationMatrix &aRM) const
       {
 	Matrix3d r;
 	r = Matrix3d::Zero();
@@ -109,7 +109,7 @@ namespace metapod
 	for(unsigned int i=1;i<3;i++)
 	  r(2,i) = -lrm(1,i) * m_s + lrm(2,i) * m_c;
 
-	return rotationMatrix(r);
+	return RotationMatrix(r);
       }
 
       RotationMatrixAboutX operator*(const RotationMatrixAboutX &aRM) const

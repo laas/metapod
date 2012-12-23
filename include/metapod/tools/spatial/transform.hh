@@ -28,7 +28,7 @@
 
 # include <iostream>
 # include "metapod/tools/fwd.hh"
-# include <metapod/tools/spatial/rotationMatrix.hh>
+# include <metapod/tools/spatial/rotation-matrix.hh>
 
 namespace metapod
 {
@@ -299,10 +299,10 @@ namespace metapod
       Vector3d m_r;
     };
 
-    typedef TransformT<rotationMatrix> Transform;
+    typedef TransformT<RotationMatrix> Transform;
     typedef TransformT<RotationMatrixAboutX> TransformX;
-    typedef TransformT<rotationMatrixAboutYAxis> TransformY;
-    typedef TransformT<rotationMatrixAboutZAxis> TransformZ;
+    typedef TransformT<RotationMatrixAboutY> TransformY;
+    typedef TransformT<RotationMatrixAboutZ> TransformZ;
 
     template<>
     Transform OperatorMul<Transform, 

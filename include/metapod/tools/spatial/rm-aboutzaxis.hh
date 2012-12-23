@@ -28,33 +28,33 @@ namespace metapod
   {
 
 
-    struct rotationMatrixAboutZAxis
+    struct RotationMatrixAboutZ
     {
       double m_c,m_s;
 
-      rotationMatrixAboutZAxis(): 
+      RotationMatrixAboutZ(): 
 	m_c(0.0),m_s(0.0) 
       {}
 
-      rotationMatrixAboutZAxis(const Matrix3d &aR)
+      RotationMatrixAboutZ(const Matrix3d &aR)
       {
 	m_c=aR(1,1);m_s=aR(1,2);
       }
 
-      rotationMatrixAboutZAxis(double c, double s)
+      RotationMatrixAboutZ(double c, double s)
       {
 	m_c=c;m_s=s;
       }
 
 
-      rotationMatrixAboutZAxis operator*(FloatType a) const
+      RotationMatrixAboutZ operator*(FloatType a) const
       {
-	return rotationMatrixAboutZAxis(a*m_c,a*m_s);
+	return RotationMatrixAboutZ(a*m_c,a*m_s);
       }
 
-      rotationMatrixAboutZAxis operator-() const
+      RotationMatrixAboutZ operator-() const
       {
-	return rotationMatrixAboutZAxis(-m_c,m_s);
+	return RotationMatrixAboutZ(-m_c,m_s);
       }
 
       void set(FloatType theta)
@@ -136,7 +136,7 @@ namespace metapod
 	return r;
       }
 
-      rotationMatrix operator*(const rotationMatrix &aRM) const
+      RotationMatrix operator*(const RotationMatrix &aRM) const
       {
 	Matrix3d r;
 	r = Matrix3d::Zero();
@@ -148,11 +148,11 @@ namespace metapod
 	for(unsigned int i=1;i<3;i++)
 	  r(i,2) = lrm(2,1) * m_s + lrm(2,2) * m_c;
 
-	return rotationMatrix(r);
+	return RotationMatrix(r);
       }
 
       friend std::ostream & operator<<(std::ostream &os,
-				       const struct rotationMatrixAboutZAxis & aRMAX)
+				       const struct RotationMatrixAboutZ & aRMAX)
       {
 	os << "1.0 0.0 0.0" <<  endl;
 	os << "0.0 " <<  aRMAX.m_c << " " << aRMAX.m_s << endl;

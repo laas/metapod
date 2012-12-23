@@ -27,16 +27,16 @@ namespace metapod
   namespace Spatial
   {
 
-    struct rotationMatrix
+    struct RotationMatrix
     {
       Matrix3d m_rm;
       
-      rotationMatrix() 
+      RotationMatrix() 
       { 
 	m_rm = Matrix3d::Zero();
       }
       
-      rotationMatrix(const Matrix3d &aR)
+      RotationMatrix(const Matrix3d &aR)
       {
 	m_rm = aR;
       }
@@ -101,9 +101,9 @@ namespace metapod
 	L(2,1) = A.m_ltI(4) + A.m_ltI(4);
       }
       
-      rotationMatrix transpose() const
+      RotationMatrix transpose() const
       {
-	return rotationMatrix(m_rm.transpose());
+	return RotationMatrix(m_rm.transpose());
       }
 
       
@@ -114,7 +114,7 @@ namespace metapod
 
       /** \brief Computes the multiplication between rotation matrix. 
        */
-      rotationMatrix operator* (const rotationMatrix &arm) const
+      RotationMatrix operator* (const RotationMatrix &arm) const
       {
 	Matrix3d r;
 	r.block<3,2>(0,0) = m_rm * arm.m_rm.block<3,2>(0,0);
@@ -132,14 +132,14 @@ namespace metapod
       }
 
 
-      rotationMatrix operator*(FloatType a) const
+      RotationMatrix operator*(FloatType a) const
       {
-	return rotationMatrix(m_rm *a);
+	return RotationMatrix(m_rm *a);
       }
 
-      rotationMatrix operator-() const
+      RotationMatrix operator-() const
       {
-	return rotationMatrix(-m_rm);
+	return RotationMatrix(-m_rm);
       }
 
       FloatType operator()(int x, int y) const
@@ -147,9 +147,9 @@ namespace metapod
 	return m_rm(x,y);
       }
 
-      friend rotationMatrix operator*(FloatType a, rotationMatrix alti)
+      friend RotationMatrix operator*(FloatType a, RotationMatrix alti)
       {
-	return rotationMatrix(alti.m_rm *a);
+	return RotationMatrix(alti.m_rm *a);
 
       }
       
@@ -279,7 +279,7 @@ namespace metapod
       }
 
       friend std::ostream & operator<<(std::ostream &os,
-				       const struct rotationMatrix & aRMAX)
+				       const struct RotationMatrix & aRMAX)
       {
 	os << aRMAX.m_rm << std::endl;
 	return os;

@@ -3,7 +3,7 @@
 #include "../common.hh"
 
 #include <include/metapod/tools/fwd.hh>
-#include <include/metapod/tools/spatial/rotationMatrix.hh>
+#include <include/metapod/tools/spatial/rotation-matrix.hh>
 
 using namespace metapod;
 using namespace metapod::Spatial;
@@ -129,12 +129,12 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << "ltI: Test X Rotation" << endl;
   test_symmetric_matrix<RotationMatrixAboutX>(altI);
   cout << "ltI: Test Y Rotation" << endl;
-  test_symmetric_matrix<rotationMatrixAboutYAxis>(altI);
+  test_symmetric_matrix<RotationMatrixAboutY>(altI);
   cout << "ltI: Test Z Rotation" << endl;
-  test_symmetric_matrix<rotationMatrixAboutZAxis>(altI);
+  test_symmetric_matrix<RotationMatrixAboutZ>(altI);
 
   cout << "ltI: Test General Rotation Matrix" << endl;
-  test_symmetric_matrix<rotationMatrix>(altI);
+  test_symmetric_matrix<RotationMatrix>(altI);
 
   cout << " ************** TEST R^T*A*R ************** " << endl;
   Matrix3d NotSymmetrical;
@@ -146,29 +146,29 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << "NotSymmetrical: Test X Rotation" << endl;
   test_general_matrix<RotationMatrixAboutX>(NotSymmetrical);
   cout << "NotSymmetrical: Test Y Rotation" << endl;
-  test_general_matrix<rotationMatrixAboutYAxis>(NotSymmetrical);
+  test_general_matrix<RotationMatrixAboutY>(NotSymmetrical);
   cout << "NotSymmetrical: Test Z Rotation" << endl;
-  test_general_matrix<rotationMatrixAboutZAxis>(NotSymmetrical);
+  test_general_matrix<RotationMatrixAboutZ>(NotSymmetrical);
 
   cout << "NotSymmetrical: Test General Rotation Matrix" << endl;
-  test_general_matrix<rotationMatrix>(NotSymmetrical);
+  test_general_matrix<RotationMatrix>(NotSymmetrical);
 
   cout << " ************** TEST TRANSPOSE ************** " << endl;
   test_transpose<RotationMatrixAboutX>();
-  //test_transpose<rotationMatrixAboutYAxis>();
-  //test_transpose<rotationMatrixAboutZAxis>();
-  test_transpose<rotationMatrix>();
+  //test_transpose<RotationMatrixAboutY>();
+  //test_transpose<RotationMatrixAboutZ>();
+  test_transpose<RotationMatrix>();
 
   cout << " ************** TEST MULTIPLICATION ************** " << endl;
   // Test the rotation with a rotation matrix
-  rotationMatrix aRM;
+  RotationMatrix aRM;
   aRM.randomInit();
   Matrix3d randomRM = aRM.toMatrix();
   
   test_multiplication<RotationMatrixAboutX>(NotSymmetrical);
-  //test_multiplication<rotationMatrixAboutYAxis>(NotSymmetrical);
-  //test_multiplication<rotationMatrixAboutZAxis>(NotSymmetrical);
-  test_multiplication<rotationMatrix>(randomRM);
+  //test_multiplication<RotationMatrixAboutY>(NotSymmetrical);
+  //test_multiplication<RotationMatrixAboutZ>(NotSymmetrical);
+  test_multiplication<RotationMatrix>(randomRM);
 
   
 }
