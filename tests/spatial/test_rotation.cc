@@ -95,6 +95,11 @@ void test_multiplication(Matrix3d & aI)
 
   aRMA.randomInit();
     
+  cout << "Operands: " <<endl;
+  cout << aRMA << endl;
+  cout << "*" << endl;
+  cout << aI << endl;
+
   Matrix3d R = aRMA.toMatrix() * aI;
   cout << "R:" << endl;
   cout << R << endl;
@@ -120,8 +125,9 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << I << endl;
   struct ltI altI(I);
 
+  cout << " ************** TEST R^T*L*R ************** " << endl;
   cout << "ltI: Test X Rotation" << endl;
-  test_symmetric_matrix<rotationMatrixAboutXAxis>(altI);
+  test_symmetric_matrix<RotationMatrixAboutX>(altI);
   cout << "ltI: Test Y Rotation" << endl;
   test_symmetric_matrix<rotationMatrixAboutYAxis>(altI);
   cout << "ltI: Test Z Rotation" << endl;
@@ -130,6 +136,7 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << "ltI: Test General Rotation Matrix" << endl;
   test_symmetric_matrix<rotationMatrix>(altI);
 
+  cout << " ************** TEST R^T*A*R ************** " << endl;
   Matrix3d NotSymmetrical;
   NotSymmetrical << 0.1, 0.5, 0.4,
     0.1, 0.2, 0.3,
@@ -137,7 +144,7 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << NotSymmetrical << endl;
 
   cout << "NotSymmetrical: Test X Rotation" << endl;
-  test_general_matrix<rotationMatrixAboutXAxis>(NotSymmetrical);
+  test_general_matrix<RotationMatrixAboutX>(NotSymmetrical);
   cout << "NotSymmetrical: Test Y Rotation" << endl;
   test_general_matrix<rotationMatrixAboutYAxis>(NotSymmetrical);
   cout << "NotSymmetrical: Test Z Rotation" << endl;
@@ -146,17 +153,19 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << "NotSymmetrical: Test General Rotation Matrix" << endl;
   test_general_matrix<rotationMatrix>(NotSymmetrical);
 
-  //test_transpose<rotationMatrixAboutXAxis>();
+  cout << " ************** TEST TRANSPOSE ************** " << endl;
+  test_transpose<RotationMatrixAboutX>();
   //test_transpose<rotationMatrixAboutYAxis>();
   //test_transpose<rotationMatrixAboutZAxis>();
   test_transpose<rotationMatrix>();
 
+  cout << " ************** TEST MULTIPLICATION ************** " << endl;
   // Test the rotation with a rotation matrix
   rotationMatrix aRM;
   aRM.randomInit();
   Matrix3d randomRM = aRM.toMatrix();
-
-  //test_multiplication<rotationMatrixAboutXAxis>(NotSymmetrical);
+  
+  test_multiplication<RotationMatrixAboutX>(NotSymmetrical);
   //test_multiplication<rotationMatrixAboutYAxis>(NotSymmetrical);
   //test_multiplication<rotationMatrixAboutZAxis>(NotSymmetrical);
   test_multiplication<rotationMatrix>(randomRM);
