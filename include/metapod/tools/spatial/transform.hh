@@ -27,7 +27,9 @@
 # include <metapod/tools/spatial/cm-freeflyer.hh>
 
 # include <iostream>
+# include "metapod/tools/fwd.hh"
 # include <metapod/tools/spatial/rotationMatrix.hh>
+
 namespace metapod
 {
 
@@ -286,7 +288,10 @@ namespace metapod
             << "  r =\n" << X.r().transpose() << std::endl;
           return os;
         }
-
+      
+      template<class T, class U, class S>
+      friend class OperatorMul;
+      
       private:
         // Private members
       // Matrix3d m_E;
@@ -295,9 +300,28 @@ namespace metapod
     };
 
     typedef TransformT<rotationMatrix> Transform;
-    typedef TransformT<rotationMatrixAboutXAxis> TransformX;
+    typedef TransformT<RotationMatrixAboutX> TransformX;
     typedef TransformT<rotationMatrixAboutYAxis> TransformY;
     typedef TransformT<rotationMatrixAboutZAxis> TransformZ;
+
+    template<>
+    Transform OperatorMul<Transform, 
+			  TransformX, 
+			  Transform>::
+    mul( const TransformX &aTX,
+	 const Transform &aT) const
+    {
+      return Transform(aTX.E()*aT.E(),
+		       (Vector3d)(aT.r() + 
+				  aT.E().transpose()*aTX.r()));
+    }
+    
+    Transform operator*(const TransformX &aTX,
+			const Transform &aT)
+    {
+      OperatorMul<Transform,TransformX, Transform> om;
+      return om.mul(aTX,aT);
+    }
   } // end of namespace Spatial
 
 } // end of namespace metapod
