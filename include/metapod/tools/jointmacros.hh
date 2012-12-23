@@ -95,7 +95,7 @@ namespace metapod
       static const int positionInConf;                              \
       static const Spatial::Transform Xt;                           \
       static Spatial::Transform sXp;                                \
-      static Spatial::Transform Xj;                                 \
+      static Spatial::TransformX Xj;                                \
       static Spatial::Motion cj;                                    \
       static Spatial::Motion vj;                                    \
       static const Spatial::ConstraintMotionOneAxis<Spatial::AxisX> S;	\
@@ -116,7 +116,7 @@ namespace metapod
       localR(0,0) =  1; localR(0,1) =  0; localR(0,2) =  0;         \
       localR(1,0) =  0; localR(1,1) =  c; localR(1,2) =  s;         \
       localR(2,0) =  0; localR(2,1) = -s; localR(2,2) =  c;         \
-      Xj = Spatial::Transform(localR, Vector3d::Zero());            \
+      Xj = Spatial::TransformX(Spatial::RotationMatrixAboutX(c,s),Vector3d::Zero());	    \
       sXp = Xj*Xt;                                                  \
     }                                                               \
                                                                     \
@@ -131,7 +131,7 @@ namespace metapod
 
   # define INITIALIZE_JOINT_REVOLUTE_AXIS_X(classname)              \
     Spatial::Transform classname::sXp;                              \
-    Spatial::Transform classname::Xj;                               \
+    Spatial::TransformX classname::Xj;                               \
     Spatial::Motion classname::cj;                                  \
     Spatial::Motion classname::vj;                                  \
     Spatial::Force classname::f;                                    \
