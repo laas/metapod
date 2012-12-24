@@ -100,13 +100,14 @@ namespace metapod
       RotationMatrix operator*(const RotationMatrix &aRM) const
       {
 	Matrix3d r;
-	r = Matrix3d::Zero();
-	const Matrix3d & lrm = aRM.m_rm;
+	const Matrix3d &lrm = aRM.m_rm;
+
+	r.block<1,3>(0,0) = lrm.block<1,3>(0,0);
 
 	for(unsigned int i=0;i<3;i++)
 	  r(1,i) = lrm(1,i) * m_c + lrm(2,i) * m_s;
 	
-	for(unsigned int i=1;i<3;i++)
+	for(unsigned int i=0;i<3;i++)
 	  r(2,i) = -lrm(1,i) * m_s + lrm(2,i) * m_c;
 
 	return RotationMatrix(r);
