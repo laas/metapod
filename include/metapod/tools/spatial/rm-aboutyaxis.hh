@@ -38,35 +38,12 @@ namespace metapod
 
       RotationMatrixAboutY(const Matrix3d &aR)
       {
-	m_c=aR(1,1);m_s=aR(1,2);
+	m_c=aR(0,0);m_s=aR(2,0);
       }
 
       RotationMatrixAboutY(double c, double s)
       {
 	m_c=c;m_s=s;
-      }
-
-
-      RotationMatrixAboutY operator*(FloatType a) const
-      {
-	return RotationMatrixAboutY(a*m_c,a*m_s);
-      }
-
-      RotationMatrixAboutY operator-() const
-      {
-	return RotationMatrixAboutY(-m_c,m_s);
-      }
-
-      void set(FloatType theta)
-      { m_c = cos(theta); m_s=sin(theta);}
-
-      Matrix3d toMatrix()
-      {
-	Matrix3d r;
-	r(0,0) = 1.0; r(0,1) = 0.0; r(0,2) = 0.0;
-	r(1,0) = 0.0; r(1,1) = m_c;   r(1,2) = m_s;
-	r(2,0) = 0.0; r(2,1) = -m_s;  r(2,2) = m_c;
-	return r;
       }
 
       /** \brief Random initialization */
@@ -79,59 +56,43 @@ namespace metapod
 	set(theta_x);
       }
 
-      Matrix3d  rotGeneralMatrix(const Matrix3d &A) const
+      RotationMatrixAboutY transpose() const
       {
-	Matrix3d r;
-
-	FloatType alpha_x = m_c*m_s*(A(1,2)+A(2,1)) +
-	  m_s*m_s*(A(2,2) - A(1,1));
-
-	FloatType beta_x = m_c*m_s*(A(2,2)- A(1,1)) -
-	  m_s*m_s*(A(1,2) + A(2,1));
-
-	r(0,0) = A(0,0); 
-	r(0,1) = m_c*A(0,1) + m_s*A(0,2);
-	r(0,2) = m_c*A(0,2) - m_s*A(0,1);
-
-	r(1,0) = m_c*A(1,0) + m_s*A(2,0);
-	r(1,1) = A(1,1) + alpha_x;
-	r(1,2) = A(1,2) + beta_x;
-
-	r(2,0) = m_c*A(2,0) - m_s*A(1,0);
-	r(2,1) = A(2,1) + beta_x;
-	r(2,2) = A(2,2) - alpha_x;
-	return r;
+	return RotationMatrixAboutY(m_c,-m_s);
       }
 
-      /** \brief Compute the rotation for a symmetric matrix.
-       */
-      struct ltI rotSymmetricMatrix(const struct ltI &A)
+      RotationMatrixAboutY operator*(FloatType a) const
       {
-	struct ltI r;
-	FloatType alpha_x = 2*m_c*m_s*A.m_ltI(4) +
-	  m_s*m_s*(A.m_ltI(5) - A.m_ltI(2));
-	FloatType beta_x  = m_c*m_s*(A.m_ltI(5) - A.m_ltI(2))+
-	  (1-2*m_s*m_s)*A.m_ltI(4);
+	return RotationMatrixAboutY(a*m_c,a*m_s);
+      }
 
-	r.m_ltI(0) = A.m_ltI(0);
-	r.m_ltI(1) = m_c*A.m_ltI(1) + m_s*A.m_ltI(3); 
-	r.m_ltI(2) = A.m_ltI(2) + alpha_x;
-	r.m_ltI(3) = m_c*A.m_ltI(3) - m_s*A.m_ltI(1);
-	r.m_ltI(4) = beta_x;
-	r.m_ltI(5) = A.m_ltI(5) - alpha_x;
+      RotationMatrixAboutY operator-() const
+      {
+	return RotationMatrixAboutY(-m_c,-m_s);
+      }
+
+      void set(FloatType theta)
+      { m_c = cos(theta); m_s=sin(theta);}
+
+      Matrix3d toMatrix()
+      {
+	Matrix3d r;
+	r(0,0) = m_c; r(0,1) = 0.0;  r(0,2) =-m_s;
+	r(1,0) = 0.0; r(1,1) = 1.0;  r(1,2) = 0.0;
+	r(2,0) = m_s; r(2,1) = 0.0;  r(2,2) = m_c;
 	return r;
-
-      }      
+      }
 
       Matrix3d operator*(const Matrix3d &A) const
       {
 	Matrix3d r = A;
+	r.block<1,3>(1,0) = A.block<1,3>(1,0);
 
-	for(unsigned int i=1;i<3;i++)
-	  r(i,1) = A(1,1) * m_c - A(1,2) * m_s;
+	for(unsigned int i=0;i<3;i++)
+	  r(0,i) = A(0,i) * m_c - A(2,i) * m_s;
 	
-	for(unsigned int i=1;i<3;i++)
-	  r(i,2) = A(2,1) * m_s + A(2,2) * m_c;
+	for(unsigned int i=0;i<3;i++)
+	  r(2,i) = A(0,i) * m_s + A(2,i) * m_c;
 	
 	return r;
       }
@@ -142,21 +103,81 @@ namespace metapod
 	r = Matrix3d::Zero();
 	const Matrix3d & lrm = aRM.m_rm;
 
-	for(unsigned int i=1;i<3;i++)
-	  r(i,1) = lrm(1,1) * m_c - lrm(1,2) * m_s;
+	r.block<1,3>(1,0) = lrm.block<1,3>(1,0);
+
+	for(unsigned int i=0;i<3;i++)
+	  r(0,i) = lrm(0,i) * m_c - lrm(2,i) * m_s;
 	
-	for(unsigned int i=1;i<3;i++)
-	  r(i,2) = lrm(2,1) * m_s + lrm(2,2) * m_c;
+	for(unsigned int i=0;i<3;i++)
+	  r(2,i) = lrm(0,i) * m_s + lrm(2,i) * m_c;
 
 	return RotationMatrix(r);
       }
 
+      RotationMatrixAboutY operator*(const RotationMatrixAboutY &aRM) const
+      {
+	double lc,ls;
+	lc = m_c * aRM.m_c - m_s * aRM.m_s;
+	ls = m_c * aRM.m_s + m_s * aRM.m_c;
+	return RotationMatrixAboutY(lc,ls);
+      }
+
+      Matrix3d  rotGeneralMatrix(const Matrix3d &A) const
+      {
+	Matrix3d r;
+
+	FloatType alpha_y = m_c*m_s*(A(2,0)+A(0,2)) +
+	  m_s*m_s*(A(0,0) - A(2,2));
+
+	FloatType beta_y = m_c*m_s*(A(0,0)- A(2,2)) -
+	  m_s*m_s*(A(2,0) + A(0,2));
+
+	r(0,0) = A(0,0)-alpha_y; 
+	r(0,1) = m_c*A(0,1) - m_s*A(2,1);
+	r(0,2) = A(0,2) + beta_y;
+
+	r(1,0) = m_c*A(1,0) - m_s*A(1,2);
+	r(1,1) = A(1,1) ;
+	r(1,2) = m_c*A(1,2) + m_s*A(1,0);
+
+	r(2,0) = A(2,0) + beta_y ;
+	r(2,1) = m_c*A(2,1) + m_s*A(0,1);
+	r(2,2) = A(2,2) + alpha_y;
+	return r;
+      }
+
+      /** \brief Compute the rotation for a symmetric matrix.
+       */
+      struct ltI rotSymmetricMatrix(const struct ltI &A)
+      {
+	struct ltI r;
+	cout << A << endl;
+	cout << "m_c:" << m_c << " m_s:" << m_s <<endl;
+
+	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
+	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(5));
+
+	FloatType beta_y = m_c*m_s*(A.m_ltI(0)- A.m_ltI(5)) +
+	  (1-2*m_s*m_s)*A.m_ltI(3);
+	
+	r.m_ltI(0) = A.m_ltI(0)-alpha_y;
+	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4); 
+	r.m_ltI(2) = A.m_ltI(2);
+	r.m_ltI(3) = beta_y;
+	r.m_ltI(4) = m_c*A.m_ltI(4) + m_s * A.m_ltI(1);
+	r.m_ltI(5) = A.m_ltI(5) + alpha_y;
+	return r;
+
+      }      
+
+
+
       friend std::ostream & operator<<(std::ostream &os,
 				       const struct RotationMatrixAboutY & aRMAX)
       {
-	os << "1.0 0.0 0.0" <<  endl;
-	os << "0.0 " <<  aRMAX.m_c << " " << aRMAX.m_s << endl;
-	os << "0.0 " << -aRMAX.m_s << " " << aRMAX.m_c << endl;
+	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << endl;
+	os << "0.0 1.0 0.0 " << endl;
+	os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << endl;
 	return os;
       }
       
