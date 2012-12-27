@@ -108,7 +108,7 @@ void test_multiplication(Matrix3d & aI)
 
   aRMA.randomInit();
 
-  Matrix3d R = aRMA.toMatrix() * aI;
+  Matrix3d R = static_cast<Matrix3d>(aRMA.toMatrix() * aI);
 
   Matrix3d d;
   d = aRMA * aI;
