@@ -17,7 +17,7 @@
 #
 # Creation: 17/12/2012
 
-ADD_EXECUTABLE(test_rotation test_rotation.cc)
+ADD_TESTCASE(test_rotation test_rotation.cc)
 
 # Add Boost path to include directories.
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
