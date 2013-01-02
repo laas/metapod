@@ -27,9 +27,14 @@ namespace metapod
   namespace Spatial
   {
 
-
+    /// \object RotationMatrixAboutX
+    /// This object implements specific operations related to the rotation matrix
+    /// about the X-axis:
+    /// \f[ rx(\theta) = \left[ \begin{matrix} 1 & 0 & 0 \\ 0 & c & s \\ 0 & -s & c \end{matrix} \right] \f]
+    /// 
     struct RotationMatrixAboutX
     {
+      /// Store directly \f$ cos(\theta) \f$ and \f$ sin(\theta) \f$
       double m_c,m_s;
 
       RotationMatrixAboutX(): 
@@ -82,7 +87,25 @@ namespace metapod
 	r(2,0) = 0.0; r(2,1) = -m_s;  r(2,2) = m_c;
 	return r;
       }
-
+      
+      /** \brief Optimized multiplication of the rotation matrix with a general 3x3 matrix.
+       The total number of operations is 12m + 6a. <br>
+       Matrix3d = RotationMatrixAboutX * Matrix3d <br>
+       \f$ {\bf B} = rx(\theta) {\bf A} \f$
+       \f[ {\bf B} = 
+         \left[ 
+            \begin{matrix} 
+               A(0,0)            &  A(0,1)            &  A(0,2) \\
+               A(1,0)c_{\theta} + A(2,0)s_{\theta} &  
+	       A(1,1)c_{\theta} + A(2,1)s_{\theta} &  
+	       A(1,2)c_{\theta} + A(2,2)s_{\theta} \\
+              -A(1,0)s_{\theta} + A(2,0)c_{\theta} & 
+	      -A(1,1)s_{\theta} + A(2,1)c_{\theta} & 
+	      -A(1,2)s_{\theta} + A(2,2)c_{\theta} \\
+            \end{matrix}
+         \right] 
+       \f]
+      */
       Matrix3d operator*(const Matrix3d &A) const
       {
 	Matrix3d r;
@@ -97,6 +120,22 @@ namespace metapod
 	return r;
       }
 
+      /** \brief Optimized multiplication of the rotation matrix with a general 3x3 rotation matrix.
+	  The total number of operations is 12m + 6a. <br>
+	  RotationMatrix = RotationMatrixAboutX * RotationMatrix <br>
+	  \f$ {\bf B} = rx(\theta) {\bf A} \f$
+	  
+	  \f[ {\bf B} = 
+	    \left[ 
+	      \begin{matrix} 
+	         A(0,0)            &  A(0,1)            &  A(0,2) \\
+                 A(1,0)c + A(2,0)s &  A(1,1)c + A(2,1)s &  A(1,2)c + A(2,2)s \\
+                -A(1,0)s + A(2,0)c & -A(1,1)s + A(2,1)c & -A(1,2)s + A(2,2)c \\
+              \end{matrix}
+            \right] 
+         \f]
+
+      */
       RotationMatrix operator*(const RotationMatrix &aRM) const
       {
 	Matrix3d r;
@@ -113,16 +152,47 @@ namespace metapod
 	return RotationMatrix(r);
       }
 
+      /** \brief Optimized multiplication of the rotation matrix with a rotation matrix about the X axis.
+       The total number of operations is 4m + 2a. <br>
+       RotationMatrixAboutX = RotationMatrixAboutX * RotationMatrixAboutX <br>
+       \f$ rx(\theta_C) = rx(\theta_A)rx(\theta_B)\f$
+       \f[
+         rx(\theta_C) = 
+	    \left[ 
+	      \begin{matrix} 
+	         1.0 &  0.0                                     &  0.0 \\
+                 0.0 &  c_{\theta_A}c_{\theta_B} - s_{\theta_A}s_{\theta_B} & c_{\theta_A}s_{\theta_B} + s_{\theta_A}c_{\theta_B} \\
+                 0.0 & -c_{\theta_A}s_{\theta_B} - s_{\theta_A}c_{\theta_B} & c_{\theta_A}c_{\theta_B} - s_{\theta_A}s_{\theta_B} \\
+              \end{matrix}
+            \right] 
+       \f]
+      */
       RotationMatrixAboutX operator*(const RotationMatrixAboutX &aRM) const
       {
 	double lc,ls;
 	lc = m_c * aRM.m_c - m_s * aRM.m_s;
 	ls = m_c * aRM.m_s + m_s * aRM.m_c;
-	// ls2 = -m_s * aRM.m_c - m_c * aRM.m_s;
-	// lc2 = -m_s * aRM.m_s +  m_c *aRM.m_c;
 	return RotationMatrixAboutX(lc,ls);
       }
 
+      /** \brief Optimized computation of 
+	  \f$ rx(\theta) {\bf A} rx(\theta)^{\top} \f$ 
+	  where \f$ {\bf A} \f$ is a generalized 3x3 matrix.
+       The total number of operations is 12m + 12a.
+
+       \f$ \alpha_x = cs (A_{12} + A_{21}) + s^2(A_{22} - A_{11}) \f$
+       \f$ \beta_x = cs (A_{22} - A_{11}) - s^2(A_{12} + A_{21}) \f$ 
+       \f[ 
+          rx(\theta) {\bf A} rx(\theta)^{\top} = 
+            \left[ 
+               \begin{matrix}
+                  A_{00}             &  cA_{01} + sA_{02} & cA_{02} - sA_{01}  \\
+                  cA_{10} + sA_{20}  &  A_{11} + \alpha_x & A_{12} + \beta_x \\
+                  cA_{20} - sA_{10}  &  A_{21} + \beta_x  & A_{22} - \alpha_x
+               \end{matrix}
+            \right]
+        \f]
+      */
       Matrix3d  rotGeneralMatrix(const Matrix3d &A) const
       {
 	Matrix3d r;
@@ -147,7 +217,21 @@ namespace metapod
 	return r;
       }
 
-      /** \brief Compute the rotation for a symmetric matrix.
+      /** \brief Optimized computation of 
+	  \f$ rx(\theta) {\bf A} rx(\theta)^{\top} \f$ 
+	  where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
+	  \f$ \alpha_x = 2csA_{21} + s^2 (A_{22} - A_{11})\f$
+	  \f$ \beta_x = cs(A_{22} - A_{11}) + (1-2s^2)A_{21} \f$
+	  \f[
+	    lt(rx(\theta){\bf A}rx(\theta)^{\top}) =
+	       \left[
+	         \begin{matrix}
+		    A_{00} & \cdotp & \cdotp \\
+		    cA_{10} + sA_{20} & A_{11} + \alpha_x & \cdotp \\
+		    cA_{20} - sA_{10} & \beta_x & A_{22} - \alpha_x 
+		 \end{matrix}
+	       \right]
+	  \f]
        */
       struct ltI rotSymmetricMatrix(const struct ltI &A)
       {
@@ -175,9 +259,7 @@ namespace metapod
 	os << "0.0 " << -aRMAX.m_s << " " << aRMAX.m_c << endl;
 	return os;
       }
-      
-      
-      
+
     };
   
   } // end Spatial namespace
