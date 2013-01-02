@@ -45,11 +45,13 @@ OPTION(WITH_SIMPLE_ARM "Build the simple arm example model" ON)
 SETUP_PROJECT()
 
 # Search for Boost.
-# Boost filesystem is used by the benchmark. Boost filesystem depends on
-# Boost system.
 # Boost.Test is used by the test suite.
+# Boost program_options is used by the embedfile utility, which is used
+# by metapod_robotbuilder
+# Boost filesystem and regex are used by metapod_robotbuilder.
+# Boost filesystem depends on Boost system.
 SET(BOOST_COMPONENTS
-   filesystem system unit_test_framework)
+  filesystem system unit_test_framework program_options regex)
 SEARCH_FOR_BOOST()
 # If Boost is recent enough, we look for Boost timer which can be used by
 # by metapod_timer, which is in turn used by the benchmark.
@@ -80,7 +82,6 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/backward_traversal_prev.hh
   include/${PROJECT_NAME}/tools/bcalc.hh
   include/${PROJECT_NAME}/tools/bodymacros.hh
-  include/${PROJECT_NAME}/tools/buildrobot.hh
   include/${PROJECT_NAME}/tools/common.hh
   include/${PROJECT_NAME}/tools/deepest_common_ancestor.hh
   include/${PROJECT_NAME}/tools/depth_first_traversal.hh
@@ -136,6 +137,8 @@ IF(${WITH_SIMPLE_ARM})
 ENDIF()
 ADD_SUBDIRECTORY(tests)
 
+ADD_SUBDIRECTORY(embedfile)
+ADD_SUBDIRECTORY(robotbuilder)
 IF(${BENCHMARK})
   ADD_SUBDIRECTORY(timer)
   ADD_SUBDIRECTORY(benchmark)
