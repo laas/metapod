@@ -175,6 +175,15 @@ namespace metapod
 	return RotationMatrixAboutX(lc,ls);
       }
 
+      Vector3d operator*(const Vector3d &aRM) const
+      {
+	Vector3d r;
+	r(0) = aRM(0);
+	r(1) =  m_c * aRM(1) + m_s * aRM(2);
+	r(2) = -m_s * aRM(1) + m_c * aRM(2);
+	return r;
+      }
+
       /** \brief Optimized computation of 
 	  \f$ rx(\theta) {\bf A} rx(\theta)^{\top} \f$ 
 	  where \f$ {\bf A} \f$ is a generalized 3x3 matrix.
