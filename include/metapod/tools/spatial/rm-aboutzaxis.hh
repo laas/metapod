@@ -44,7 +44,7 @@ namespace metapod
     struct RotationMatrixAboutZ
     {
       /// Store directly \f$ cos(\theta) \f$ and \f$ sin(\theta) \f$
-      double m_c,m_s;
+      FloatType m_c,m_s;
 
       RotationMatrixAboutZ(): 
 	m_c(0.0),m_s(0.0) 
@@ -55,7 +55,7 @@ namespace metapod
 	m_c=aR(0,0);m_s=aR(0,1);
       }
 
-      RotationMatrixAboutZ(double c, double s)
+      RotationMatrixAboutZ(FloatType c, FloatType s)
       {
 	m_c=c;m_s=s;
       }
@@ -161,7 +161,7 @@ namespace metapod
       
       RotationMatrixAboutZ operator*(const RotationMatrixAboutZ &aRM) const
       {
-	double lc,ls;
+	FloatType lc,ls;
 	lc = m_c * aRM.m_c - m_s * aRM.m_s;
 	ls = m_c * aRM.m_s + m_s * aRM.m_c;
 	return RotationMatrixAboutZ(lc,ls);
