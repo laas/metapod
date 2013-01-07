@@ -28,30 +28,31 @@ namespace metapod
 
   /// \brief  value member variable is true if NodeA is an ancestor of NodeB,
   /// false otherwise. A node is its own ancestor (NP also is its own ancestor).
-  template < typename NodeA, typename NodeB>
+  template < typename Robot, int node_a_id, int node_b_id >
   struct is_ancestor
   {
+    typedef typename Nodes<Robot, node_b_id>::type NodeB;
     static const bool value =
-        is_ancestor< NodeA, typename NodeB::Parent>::value;
+        is_ancestor< Robot, node_a_id, NodeB::parent_id >::value;
   };
 
   // end of recursion: a node is its own ancestor
-  template < typename NodeA>
-  struct is_ancestor< NodeA, NodeA>
+  template < typename Robot, int node_a_id >
+  struct is_ancestor< Robot, node_a_id, node_a_id >
   {
     static const bool value = true;
   };
 
-  // end of recursion: NP has no ancestor (except itself)
-  template < typename NodeA>
-  struct is_ancestor< NodeA, NP>
+  // end of recursion: NO_PARENT has no ancestor (except itself)
+  template < typename Robot, int node_a_id >
+  struct is_ancestor< Robot, node_a_id, NO_PARENT >
   {
     static const bool value = false;
   };
 
-  // end of recursion: NP is its own ancestor
-  template <>
-  struct is_ancestor< NP, NP>
+  // end of recursion: NO_PARENT is its own ancestor
+  template < typename Robot >
+  struct is_ancestor< Robot, NO_PARENT, NO_PARENT >
   {
     static const bool value = true;
   };

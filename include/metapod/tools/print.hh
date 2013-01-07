@@ -1,4 +1,4 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
@@ -23,128 +23,107 @@
 #ifndef METAPOD_PRINT_HH
 # define METAPOD_PRINT_HH
 
-#include "metapod/tools/common.hh"
-#include "metapod/tools/depth_first_traversal.hh"
+#include <metapod/tools/depth_first_traversal.hh>
 
-namespace metapod
-{
+namespace metapod {
 
 // Print state of the robot in a stream.
-template < typename Node > struct PrintStateVisitor
+namespace internal {
+template < typename Robot, int node_id > struct PrintStateVisitor
 {
-  static void discover(std::ostream & os)
+  typedef typename Nodes<Robot, node_id>::type Node;
+  static void discover(const Robot & robot, std::ostream & os)
   {
-    os << Node::Body::name << " :\n"
-       << "sXp :\n" << Node::Joint::sXp << "\n"
-       << "Xt :\n" << Node::Joint::Xt << "\n"
-       << "Xj :\n" << Node::Joint::Xj << "\n"
-       << "S :\n" << Node::Joint::S.S() << "\n"
-       << "dotS :\n" << Node::Joint::dotS << "\n"
-       << "iX0 :\n" << Node::Body::iX0 << "\n"
-       << "vi :\n" << Node::Body::vi << "\n"
-       << "ai :\n" << Node::Body::ai << "\n"
-       << "I :\n" << Node::Body::I << "\n"
-       << "f :\n" << Node::Joint::f << "\n"
-       << "τ :\n" << Node::Joint::torque << "\n"
+    const Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    os << Node::body_name << " :\n"
+       << "sXp :\n" << node.sXp << "\n"
+       << "Xt :\n" << Node::Xt << "\n"
+       << "Xj :\n" << node.joint.Xj << "\n"
+       << "S :\n" << node.joint.S.S() << "\n"
+       << "iX0 :\n" << node.body.iX0 << "\n"
+       << "vi :\n" << node.body.vi << "\n"
+       << "ai :\n" << node.body.ai << "\n"
+       << "I :\n" << Node::I << "\n"
+       << "f :\n" << node.joint.f << "\n"
+       << "τ :\n" << node.joint.torque << "\n"
        << std::endl;
   }
-  static void finish(std::ostream & ) {}
+  static void finish(const Robot &, std::ostream & ) {}
 };
+} // end of namespace metapod::internal.
 
 template< typename Robot >
-void printState(std::ostream & os)
+void printState(const Robot & robot, std::ostream & os)
 {
-  depth_first_traversal<PrintStateVisitor, Robot>::run(os);
+  depth_first_traversal<internal::PrintStateVisitor, Robot>::run(robot, os);
 }
 
-/*
- * Print a conf vector in a stream.
- * Can be used to log a configuration that can later be loaded through the
- * initConf method.
- */
-template< typename Tree > void printConf(const VectorN & q,
-                                         std::ostream & qlog)
+// Print conf vector of the robot in a stream.
+namespace internal {
+template < typename Robot, int node_id > struct PrintConfVisitor
 {
-  typedef Tree Node;
+  typedef typename Nodes<Robot, node_id>::type Node;
+  static void discover(const VectorN& q, std::ostream& os)
+  {
+    VectorN qi = q.segment<Node::Joint::NBDOF>(Node::q_idx);
+    os << Node::joint_name << "\n" << qi << "\n";
+  }
+  static void finish(const VectorN &, std::ostream & ) {}
+};
+} // end of namespace internal.
 
-  VectorN qi = q.segment<Node::Joint::NBDOF>(Node::Joint::positionInConf);
-
-  qlog << Node::Joint::name << "\n" << qi << std::endl;
-
-  printConf<typename Node::Child0>(q, qlog);
-  printConf<typename Node::Child1>(q, qlog);
-  printConf<typename Node::Child2>(q, qlog);
-  printConf<typename Node::Child3>(q, qlog);
-  printConf<typename Node::Child4>(q, qlog);
+template< typename Robot >
+void printConf(const VectorN & q, std::ostream & os)
+{
+  depth_first_traversal<internal::PrintConfVisitor, Robot>::run(q, os);
 }
-
-template<>
-inline void printConf<NC>(const VectorN &, std::ostream &){}
 
 // Print Transforms of the robot bodies in a stream.
-template < typename Node > struct PrintTransformsVisitor
+namespace internal {
+template < typename Robot, int node_id> struct PrintTransformsVisitor
 {
-  static void discover(std::ostream & os)
+  typedef typename Nodes<Robot, node_id>::type Node;
+  static void discover(const Robot& robot, std::ostream & os)
   {
-    os << Node::Body::name << "\n"
-       << Node::Body::iX0.E() << "\n"
-       << Node::Body::iX0.r().transpose() << "\n"
+    const Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    os << Node::body_name << "\n"
+       << node.body.iX0.E() << "\n"
+       << node.body.iX0.r().transpose() << "\n"
        << std::endl;
   }
-
-  static void finish(std::ostream & ) {}
+  static void finish(const Robot&, std::ostream & ) {}
 };
+} // end of namespace metapod::internal.
 
 template< typename Robot >
-void printTransforms(std::ostream & os)
+void printTransforms(const Robot& robot, std::ostream & os)
 {
-  depth_first_traversal<PrintTransformsVisitor, Robot>::run(os);
+  depth_first_traversal<internal::PrintTransformsVisitor, Robot>::run(robot, os);
 }
 
 // Print Torques of the robot in a stream.
-template< typename Tree >
-void printTorques(std::ostream & os)
+namespace internal {
+template < typename Robot, int node_id> struct PrintTorquesVisitor
 {
-  typedef Tree Node;
+  typedef typename Nodes<Robot, node_id>::type Node;
 
-  os << Node::Joint::name << "\n"
-     << Node::Joint::torque << "\n"
-     << std::endl;
-
-  printTorques<typename Node::Child0>(os);
-  printTorques<typename Node::Child1>(os);
-  printTorques<typename Node::Child2>(os);
-  printTorques<typename Node::Child3>(os);
-  printTorques<typename Node::Child4>(os);
-}
-
-template<>
-inline void printTorques<NC>(std::ostream &){}
-
-// Get Torques of the robot.
-template< typename Tree >
-void getTorques(VectorN& torques, unsigned& i)
-{
-  typedef Tree Node;
-
-  unsigned j = 0;
-  while (j < Node::Joint::NBDOF)
+  static void discover(const Robot& robot, std::ostream & os)
   {
-    torques[i] = Node::Joint::torque[j];
-    ++i;
-    ++j;
+    const Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    os << Node::joint_name << "\n"
+       << node.joint.torque << "\n"
+       << std::endl;
   }
+  static void finish(const Robot&, std::ostream & ) {}
+};
+} // end of namespace metapod::internal.
 
-  getTorques<typename Node::Child0>(torques, i);
-  getTorques<typename Node::Child1>(torques, i);
-  getTorques<typename Node::Child2>(torques, i);
-  getTorques<typename Node::Child3>(torques, i);
-  getTorques<typename Node::Child4>(torques, i);
+template< typename Robot >
+void printTorques(Robot & robot, std::ostream & os)
+{
+  depth_first_traversal<internal::PrintTorquesVisitor, Robot>::run(robot, os);
 }
 
-template<>
-inline void getTorques<NC>(VectorN&, unsigned&){}
-
-} // end of namespace metapod.
+} // end of namespace metapod
 
 #endif

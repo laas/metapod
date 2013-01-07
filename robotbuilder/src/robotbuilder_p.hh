@@ -28,45 +28,9 @@
 # include <sstream>
 # include <vector>
 # include <map>
+# include "robotmodel.hh"
 
 namespace metapod {
-
-class Link
-{
-public:
-  std::string parent_body_name;
-  std::string joint_name;
-  unsigned int joint_type;
-  Eigen::Matrix3d R_joint_parent;
-  Eigen::Vector3d r_parent_joint;
-  std::string body_name;
-  double body_mass;
-  Eigen::Vector3d body_center_of_mass;
-  Eigen::Matrix3d body_rotational_inertia;
-  Eigen::Vector3d joint_axis;
-  int dof_index;
-
-  Link(
-      const std::string& parent_body_name_,
-      const std::string& joint_name_,
-      unsigned int joint_type_,
-      const Eigen::Matrix3d & R_joint_parent_,
-      const Eigen::Vector3d & r_parent_joint_,
-      const std::string& body_name_,
-      double body_mass_,
-      const Eigen::Vector3d & body_center_of_mass_,
-      const Eigen::Matrix3d & body_rotational_inertia_,
-      const Eigen::Vector3d & joint_axis_,
-      int dof_index);
-};
-
-class LinkData
-{
-public:
-  LinkData(int id_, int nb_children_);
-  int id;
-  int nb_children;
-};
 
 class RobotBuilderP
 {
@@ -107,34 +71,28 @@ public:
       int dof_index=-1);
   RobotBuilder::Status write();
 private:
-  void reset_bodies_stack();
-  RobotBuilder::Status writeLink(const Link&);
+  void writeLink(int link_id);
   void writeTemplate(
       const std::string& output_filename,
       const std::string &input_template);
-  void closeNode();
   RobotBuilderP(const RobotBuilderP&); // forbid copy-constuction
-  unsigned int nb_dof_;
-  unsigned int nb_bodies_;
-  unsigned int node_depth_;
+  int nb_dof_;
+  int node_depth_;
   bool is_initialized_;
   bool use_dof_index_;
-  const size_t tab_size_;
-  const size_t node_tab_size_;
-  const std::string tab_;
-  const std::string warning_;
+  RobotModel model_;
   std::map<std::string, std::string> replacements_;
-  std::vector<Link> links_;
-  std::map<std::string, LinkData> links_data_; // body_name -> LinkData
-  std::vector<std::string> bodies_stack_;
   std::string name_;
   std::string libname_;
   std::string directory_;
   std::string license_;
-  std::ostringstream init_ss_;
-  std::ostringstream body_ss_;
-  std::ostringstream joint_ss_;
-  std::ostringstream tree_;
+  // in robot.hh
+  std::ostringstream node_type_definitions_ss_;
+  std::ostringstream nodeid_enum_definition_ss_;
+  std::ostringstream nodes_type_list_ss_;
+  std::ostringstream map_node_id_to_type_ss_;
+  // init init.cc
+  std::ostringstream init_nodes_ss_;
 };
 }
 #endif

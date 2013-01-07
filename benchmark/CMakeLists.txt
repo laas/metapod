@@ -38,9 +38,6 @@ FOREACH(depth IN LISTS depth_list)
     SET(_sources
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.cc
-        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/body.hh
-        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/joint.hh
-        ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/robot.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/config.hh)
     ADD_CUSTOM_COMMAND(
       OUTPUT ${_sources}

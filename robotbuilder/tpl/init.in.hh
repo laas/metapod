@@ -11,7 +11,63 @@
 #  pragma warning( disable: 4251 4099 )
 # endif
 
-# include "robot.hh"
+# include "config.hh"
+# include <Eigen/Eigen>
+
+# include <metapod/tools/common.hh>
+# include <metapod/tools/joint.hh>
+
+// by default, boost fusion vector only provides constructor for vectors with
+// up to 10 elements.
+# if !defined(FUSION_MAX_VECTOR_SIZE) && (@ROBOT_NB_BODIES@ > 10)
+#  define FUSION_MAX_VECTOR_SIZE @ROBOT_NB_BODIES@
+# endif
+# if defined(FUSION_MAX_VECTOR_SIZE) && (@ROBOT_NB_BODIES@ > FUSION_MAX_VECTOR_SIZE)
+// todo: warn or stop
+#endif
+# include <boost/fusion/sequence.hpp>
+# include <boost/fusion/include/sequence.hpp>
+# include <boost/fusion/include/vector.hpp>
+
+namespace metapod {
+
+class @LIBRARY_NAME@_DLLAPI @ROBOT_CLASS_NAME@ {
+public:
+  // Global constants or variable of the robot
+  enum { NBDOF = @ROBOT_NB_DOF@ };
+  enum { NBBODIES = @ROBOT_NB_BODIES@ };
+
+  typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;
+
+  enum NodeId
+  {
+@nodeid_enum_definition@
+  };
+
+  // children of the root/NP node
+  static const int child0_id = @root_child0_id@;
+  static const int child1_id = @root_child1_id@;
+  static const int child2_id = @root_child2_id@;
+  static const int child3_id = @root_child3_id@;
+  static const int child4_id = @root_child4_id@;
+
+  // definition of the node classes (except the root/NP node)
+@node_type_definitions@
+
+  // vector of the robot nodes
+  typedef boost::fusion::vector@ROBOT_NB_BODIES@<
+@nodes_type_list@>
+  NodeVector;
+
+  // member variables
+ NodeVector nodes;
+ Eigen::Matrix< FloatType, NBDOF, NBDOF > H; // used by crba
+};
+
+// map node id to node type
+@map_node_id_to_type@
+
+} // closing namespace metapod
 
 # ifdef _MSC_VER
 #  pragma warning( pop )

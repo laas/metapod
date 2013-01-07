@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
@@ -23,19 +23,18 @@
 #include <metapod/tools/initconf.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_initconf)
 {
   // Set configuration vector to reference values.
-  Robot::confVector q;
+  CURRENT_MODEL_ROBOT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf< Robot >::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
   qconf.close();
 
   // Write it back to a file
   std::ofstream q_log("q.log", std::ofstream::out);
-  printConf<Robot::Tree>(q, q_log);
+  printConf<CURRENT_MODEL_ROBOT>(q, q_log);
   q_log.close();
 
   // Compare resulting file with reference file

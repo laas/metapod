@@ -1,8 +1,7 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -17,20 +16,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
- * This test applies the rnea on a test model with a reference configuration,
- * then compares the computed torques with the reference torques
- */
+// This test applies the rnea on a test model with a reference configuration,
+// then compares the computed torques with the reference torques
 
 // Common test tools
 #include "common.hh"
 #include <metapod/algos/rnea.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
+  typedef CURRENT_MODEL_ROBOT Robot;
   // Set configuration vectors (q, dq, ddq) to reference values.
   Robot::confVector q, dq, ddq;
 
@@ -46,11 +43,12 @@ BOOST_AUTO_TEST_CASE (test_rnea)
   dqconf.close();
   ddqconf.close();
 
+  Robot robot;
   // Apply the RNEA to the metapod multibody and print the result in a log file.
-  rnea< Robot, true >::run(q, dq, ddq);
+  rnea< Robot, true >::run(robot, q, dq, ddq);
   const char result_file[] = "rnea.log";
   std::ofstream log(result_file, std::ofstream::out);
-  printTorques<Robot::Tree>(log);
+  printTorques<Robot>(robot, log);
   log.close();
 
   // Compare results with reference file

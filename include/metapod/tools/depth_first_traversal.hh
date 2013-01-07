@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
@@ -20,7 +20,7 @@
 //
 // To use it, create a visitor
 //
-//     template<Node> class MyVisitor
+//     template<typename Robot, int node_id> class MyVisitor
 //     {
 //       static void discover(MyArg & arg)
 //       {
@@ -35,13 +35,12 @@
 // Then visit each node with it:
 //
 //     MyArg myarg;
-//     depth_first_traversal<MyVisitor, simple_humanoid::Robot>::run(myarg);
+//     depth_first_traversal<MyVisitor, simple_arm>::run(myarg);
 //
-// This will walk down the tree, and call MyVisitor<Node>::discover(myarg)
-// and MyVisitor<Node>::finish(myarg) at each node.
+// This will walk down the tree, and call its discover(myarg) and
+// finish(myarg) methods at each node.
 //
-// There are also variants with no argument (for both run() and visit()) and
-// two and three arguments.
+// There are variants with 0, 1, 2, 3 and 4 arguments for both run() and visit()
 //
 // Note: we might add a third visitor hook called "examine" which would be
 //       called on each child node before recursing deeper in the tree.
@@ -51,101 +50,148 @@
 
 # include "metapod/tools/common.hh"
 
-namespace metapod
+namespace metapod {
+namespace internal {
+
+template< template <typename AnyRobot, int any_node_id> class Visitor,
+          typename Robot,
+          int node_id >
+struct depth_first_traversal_internal
 {
-  template< template <typename AnyNode> class Visitor,
-            typename Node >
-  struct depth_first_traversal_internal
+  typedef typename Nodes<Robot, node_id>::type Node;
+
+  static void run()
   {
-    static void run()
-    {
-      Visitor<Node>::discover();
-      depth_first_traversal_internal<Visitor, typename Node::Child0>::run();
-      depth_first_traversal_internal<Visitor, typename Node::Child1>::run();
-      depth_first_traversal_internal<Visitor, typename Node::Child2>::run();
-      depth_first_traversal_internal<Visitor, typename Node::Child3>::run();
-      depth_first_traversal_internal<Visitor, typename Node::Child4>::run();
-      Visitor<Node>::finish();
-    }
+    Visitor<Robot, node_id>::discover();
+    depth_first_traversal_internal<Visitor, Robot, Node::child0_id>::run();
+    depth_first_traversal_internal<Visitor, Robot, Node::child1_id>::run();
+    depth_first_traversal_internal<Visitor, Robot, Node::child2_id>::run();
+    depth_first_traversal_internal<Visitor, Robot, Node::child3_id>::run();
+    depth_first_traversal_internal<Visitor, Robot, Node::child4_id>::run();
+    Visitor<Robot, node_id>::finish();
+  }
 
-    template<typename Arg>
-    static void run(Arg & arg)
-    {
-      Visitor<Node>::discover(arg);
-      depth_first_traversal_internal<Visitor, typename Node::Child0>::run(arg);
-      depth_first_traversal_internal<Visitor, typename Node::Child1>::run(arg);
-      depth_first_traversal_internal<Visitor, typename Node::Child2>::run(arg);
-      depth_first_traversal_internal<Visitor, typename Node::Child3>::run(arg);
-      depth_first_traversal_internal<Visitor, typename Node::Child4>::run(arg);
-      Visitor<Node>::finish(arg);
-    }
-
-    template<typename Arg0, typename Arg1>
-    static void run(Arg0 & arg0, Arg1 & arg1)
-    {
-      Visitor<Node>::discover(arg0, arg1);
-      depth_first_traversal_internal<Visitor, typename Node::Child0>::run(arg0, arg1);
-      depth_first_traversal_internal<Visitor, typename Node::Child1>::run(arg0, arg1);
-      depth_first_traversal_internal<Visitor, typename Node::Child2>::run(arg0, arg1);
-      depth_first_traversal_internal<Visitor, typename Node::Child3>::run(arg0, arg1);
-      depth_first_traversal_internal<Visitor, typename Node::Child4>::run(arg0, arg1);
-      Visitor<Node>::finish(arg0, arg1);
-    }
-
-    template<typename Arg0, typename Arg1, typename Arg2>
-    static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2)
-    {
-      Visitor<Node>::discover(arg0, arg1, arg2);
-      depth_first_traversal_internal<Visitor, typename Node::Child0>::run(arg0, arg1, arg2);
-      depth_first_traversal_internal<Visitor, typename Node::Child1>::run(arg0, arg1, arg2);
-      depth_first_traversal_internal<Visitor, typename Node::Child2>::run(arg0, arg1, arg2);
-      depth_first_traversal_internal<Visitor, typename Node::Child3>::run(arg0, arg1, arg2);
-      depth_first_traversal_internal<Visitor, typename Node::Child4>::run(arg0, arg1, arg2);
-      Visitor<Node>::finish(arg0, arg1, arg1);
-    }
-  };
-
-  template< template <typename AnyNode> class Visitor>
-  struct depth_first_traversal_internal<Visitor, NC >
+  template<typename Arg>
+  static void run(Arg & arg)
   {
-    static void run() {}
+    Visitor<Robot, node_id>::discover(arg);
+    depth_first_traversal_internal<Visitor, Robot, Node::child0_id>::run(arg);
+    depth_first_traversal_internal<Visitor, Robot, Node::child1_id>::run(arg);
+    depth_first_traversal_internal<Visitor, Robot, Node::child2_id>::run(arg);
+    depth_first_traversal_internal<Visitor, Robot, Node::child3_id>::run(arg);
+    depth_first_traversal_internal<Visitor, Robot, Node::child4_id>::run(arg);
+    Visitor<Robot, node_id>::finish(arg);
+  }
 
-    template<typename Arg>
-    static void run(Arg & ) {}
-
-    template<typename Arg0, typename Arg1>
-    static void run(Arg0 & , Arg1 & ) {}
-
-    template<typename Arg0, typename Arg1, typename Arg2>
-    static void run(Arg0 & , Arg1 & , Arg2 & ) {}
-  };
-
-  template< template <typename Node> class Visitor,
-            typename Robot >
-  struct depth_first_traversal
+  template<typename Arg0, typename Arg1>
+  static void run(Arg0 & arg0, Arg1 & arg1)
   {
-    static void run()
-    {
-      depth_first_traversal_internal<Visitor, typename Robot::Tree>::run();
-    }
+    Visitor<Robot, node_id>::discover(arg0, arg1);
+    depth_first_traversal_internal<Visitor, Robot, Node::child0_id>::run(arg0, arg1);
+    depth_first_traversal_internal<Visitor, Robot, Node::child1_id>::run(arg0, arg1);
+    depth_first_traversal_internal<Visitor, Robot, Node::child2_id>::run(arg0, arg1);
+    depth_first_traversal_internal<Visitor, Robot, Node::child3_id>::run(arg0, arg1);
+    depth_first_traversal_internal<Visitor, Robot, Node::child4_id>::run(arg0, arg1);
+    Visitor<Robot, node_id>::finish(arg0, arg1);
+  }
 
-    template<typename Arg>
-    static void run(Arg & arg)
-    {
-      depth_first_traversal_internal<Visitor, typename Robot::Tree>::run(arg);
-    }
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2)
+  {
+    Visitor<Robot, node_id>::discover(arg0, arg1, arg2);
+    depth_first_traversal_internal<Visitor, Robot, Node::child0_id>::run(arg0, arg1, arg2);
+    depth_first_traversal_internal<Visitor, Robot, Node::child1_id>::run(arg0, arg1, arg2);
+    depth_first_traversal_internal<Visitor, Robot, Node::child2_id>::run(arg0, arg1, arg2);
+    depth_first_traversal_internal<Visitor, Robot, Node::child3_id>::run(arg0, arg1, arg2);
+    depth_first_traversal_internal<Visitor, Robot, Node::child4_id>::run(arg0, arg1, arg2);
+    Visitor<Robot, node_id>::finish(arg0, arg1, arg2);
+  }
 
-    template<typename Arg0, typename Arg1>
-    static void run(Arg0 & arg0, Arg1 & arg1)
-    {
-      depth_first_traversal_internal<Visitor, typename Robot::Tree>::run(arg0, arg1);
-    }
+  template<typename Arg0, typename Arg1, typename Arg2, typename Arg3>
+  static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2, Arg3 & arg3)
+  {
+    Visitor<Robot, node_id>::discover(arg0, arg1, arg2, arg3);
+    depth_first_traversal_internal<Visitor, Robot, Node::child0_id>::run(arg0, arg1, arg2, arg3);
+    depth_first_traversal_internal<Visitor, Robot, Node::child1_id>::run(arg0, arg1, arg2, arg3);
+    depth_first_traversal_internal<Visitor, Robot, Node::child2_id>::run(arg0, arg1, arg2, arg3);
+    depth_first_traversal_internal<Visitor, Robot, Node::child3_id>::run(arg0, arg1, arg2, arg3);
+    depth_first_traversal_internal<Visitor, Robot, Node::child4_id>::run(arg0, arg1, arg2, arg3);
+    Visitor<Robot, node_id>::finish(arg0, arg1, arg2, arg3);
+  }
+};
 
-    template<typename Arg0, typename Arg1, typename Arg2>
-    static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2)
-    {
-      depth_first_traversal_internal<Visitor, typename Robot::Tree>::run(arg0, arg1, arg2);
-    }
-  };
-}
+template< template <typename AnyRobot, int any_node_id> class Visitor, typename Robot>
+struct depth_first_traversal_internal<Visitor, Robot, NO_CHILD>
+{
+  static void run() {}
+
+  template<typename Arg>
+  static void run(Arg & ) {}
+
+  template<typename Arg0, typename Arg1>
+  static void run(Arg0 & , Arg1 & ) {}
+
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0 & , Arg1 & , Arg2 & ) {}
+
+  template<typename Arg0, typename Arg1, typename Arg2, typename Arg3>
+  static void run(Arg0 & , Arg1 & , Arg2 &, Arg3 &) {}
+};
+
+} // end of namespace metapod::internal
+
+template< template <typename AnyRobot, int any_node_ide> class Visitor,
+          typename Robot >
+struct depth_first_traversal
+{
+  static void run()
+  {
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child0_id>::run();
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child1_id>::run();
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child2_id>::run();
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child3_id>::run();
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child4_id>::run();
+  }
+
+  template<typename Arg>
+  static void run(Arg & arg)
+  {
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child0_id>::run(arg);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child1_id>::run(arg);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child2_id>::run(arg);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child3_id>::run(arg);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child4_id>::run(arg);
+  }
+
+  template<typename Arg0, typename Arg1>
+  static void run(Arg0 & arg0, Arg1 & arg1)
+  {
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child0_id>::run(arg0, arg1);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child1_id>::run(arg0, arg1);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child2_id>::run(arg0, arg1);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child3_id>::run(arg0, arg1);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child4_id>::run(arg0, arg1);
+  }
+
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2)
+  {
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child0_id>::run(arg0, arg1, arg2);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child1_id>::run(arg0, arg1, arg2);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child2_id>::run(arg0, arg1, arg2);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child3_id>::run(arg0, arg1, arg2);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child4_id>::run(arg0, arg1, arg2);
+  }
+
+  template<typename Arg0, typename Arg1, typename Arg2, typename Arg3>
+  static void run(Arg0 & arg0, Arg1 & arg1, Arg2 & arg2, Arg3 & arg3)
+  {
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child0_id>::run(arg0, arg1, arg2, arg3);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child1_id>::run(arg0, arg1, arg2, arg3);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child2_id>::run(arg0, arg1, arg2, arg3);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child3_id>::run(arg0, arg1, arg2, arg3);
+    internal::depth_first_traversal_internal<Visitor, Robot, Robot::child4_id>::run(arg0, arg1, arg2, arg3);
+  }
+};
+} // end of namespace metapod
 #endif

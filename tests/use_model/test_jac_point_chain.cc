@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Antonio El Khoury (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)

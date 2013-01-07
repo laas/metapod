@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
@@ -28,24 +28,25 @@ namespace metapod
 
   /// \brief  value member variable is true if Node is NP (no parent), and
   /// false otherwise.
-  template < typename Node >
-  struct is_NP
+  template < typename Robot, int node_id >
+  struct is_NO_PARENT
   {
     static const bool value = false;
   };
 
-  template <>
-  struct is_NP<NP>
+  template <typename Robot>
+  struct is_NO_PARENT<Robot, NO_PARENT>
   {
     static const bool value = true;
   };
 
   /// \brief value member variable is false if Node has no parent. That is, if
   /// it's parent is NP (no parent) and true otherwise.
-  template < typename Node>
+  template < typename Robot, int node_id >
   struct has_parent
   {
-    static const bool value = !is_NP<typename Node::Body::Parent>::value;
+    typedef typename Nodes<Robot, node_id>::type Node;
+    static const bool value = !is_NO_PARENT<Robot, Node::parent_id>::value;
   };
 } // end of namespace metapod.
 

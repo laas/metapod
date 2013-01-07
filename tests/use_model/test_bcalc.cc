@@ -1,4 +1,4 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
@@ -27,22 +27,22 @@
 #include <metapod/tools/bcalc.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_bcalc)
 {
   // Set configuration vectors (q) to reference values.
-  Robot::confVector q;
+  CURRENT_MODEL_ROBOT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<Robot>::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
   qconf.close();
 
   // Apply the body calculations to the metapod multibody and print
   // the result in a log file.
-  bcalc< Robot >::run(q);
+  CURRENT_MODEL_ROBOT robot;
+  bcalc<CURRENT_MODEL_ROBOT>::run(robot, q);
   const char result_file[] = "bcalc.log";
   std::ofstream log(result_file, std::ofstream::out);
-  printTransforms<Robot>(log);
+  printTransforms<CURRENT_MODEL_ROBOT>(robot, log);
   log.close();
 
   // Compare results with reference file

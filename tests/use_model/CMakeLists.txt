@@ -1,4 +1,4 @@
-# Copyright 2012,
+# Copyright 2012, 2013
 #
 # Sébastien Barthélémy (Aldebaran Robotics)
 #
@@ -17,9 +17,8 @@
 
 # let tests find the model model headers
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/${CURRENT_MODEL}/include)
-INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/${CURRENT_MODEL}/include)
 
-ADD_DEFINITIONS(" -DCURRENT_MODEL_NAMESPACE=metapod::${CURRENT_MODEL}")
+ADD_DEFINITIONS(" -DCURRENT_MODEL_ROBOT=${CURRENT_MODEL}")
 ADD_DEFINITIONS(
    -DTEST_DIRECTORY="${CMAKE_SOURCE_DIR}/tests/data/${CURRENT_MODEL}")
 STRING(TOUPPER "${CURRENT_MODEL}" CURRENT_MODEL_UPPER)
@@ -46,9 +45,9 @@ ENDMACRO(ADD_MODEL_TESTCASE)
 ADD_MODEL_TESTCASE(test_rnea)
 ADD_MODEL_TESTCASE(test_crba)
 ADD_MODEL_TESTCASE(test_bcalc)
-ADD_MODEL_TESTCASE(test_jac_point)
+#ADD_MODEL_TESTCASE(test_jac_point)
 IF(${CURRENT_MODEL} STREQUAL "simple_humanoid")
-  ADD_MODEL_TESTCASE(test_jac_point_chain)
+  #ADD_MODEL_TESTCASE(test_jac_point_chain)
 ENDIF()
 ADD_MODEL_TESTCASE(test_printstate)
 ADD_MODEL_TESTCASE(test_initconf)

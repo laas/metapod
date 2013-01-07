@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
@@ -22,25 +22,26 @@
 #include <metapod/tools/depth_first_traversal.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 // Print events while traversing the tree with indentation showing the level
 // of recursion
-template < typename Node > struct PrintDFTraversalVisitor
+template < typename Robot, int node_id > struct PrintDFTraversalVisitor
 {
   static void discover(std::ostream & os, int & depth)
   {
     const std::string prefix(depth, '\t');
+    typedef typename Nodes<Robot, node_id>::type Node;
     os << prefix << "discover: "
-        << Node::Joint::name << " -- " << Node::Body::name << "\n";
+        << Node::joint_name << " -- " << Node::body_name << "\n";
     ++depth;
   }
   static void finish(std::ostream & os, int & depth)
   {
     --depth;
     const std::string prefix(depth, '\t');
+    typedef typename Nodes<Robot, node_id>::type Node;
     os << prefix << "finish: "
-        << Node::Joint::name << " -- " << Node::Body::name << "\n";
+        << Node::joint_name << " -- " << Node::body_name << "\n";
   }
 };
 
@@ -49,7 +50,7 @@ BOOST_AUTO_TEST_CASE (test_depth_first_traversal)
   const char result_file[] = "depth_first_traversal.log";
   std::ofstream log(result_file, std::ofstream::out);
   int depth = 0;
-  depth_first_traversal<PrintDFTraversalVisitor, Robot>::run(log, depth);
+  depth_first_traversal<PrintDFTraversalVisitor, CURRENT_MODEL_ROBOT>::run(log, depth);
   log.close();
   // Compare results with reference file
   compareTexts(result_file, TEST_DIRECTORY "/depth_first_traversal.ref");

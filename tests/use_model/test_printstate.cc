@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
@@ -24,11 +24,11 @@
 #include <metapod/tools/print.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_printstate)
 {
+  CURRENT_MODEL_ROBOT robot;
   std::ofstream state_log("state.log", std::ofstream::out);
-  printState<Robot>(state_log);
+  printState<CURRENT_MODEL_ROBOT>(robot, state_log);
   state_log.close();
 }

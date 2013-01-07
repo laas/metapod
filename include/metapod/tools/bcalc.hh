@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Antonio El Khoury (JRL/LAAS, CNRS/AIST)
@@ -26,68 +26,60 @@
 #ifndef METAPOD_BCALC_HH
 # define METAPOD_BCALC_HH
 
-# include "metapod/tools/common.hh"
+#include <metapod/tools/depth_first_traversal.hh>
+#include <metapod/tools/has_parent.hh>
 
-namespace metapod
+namespace metapod {
+namespace internal {
+
+template< typename Robot, int node_id, bool has_parent=true >
+struct UpdateBodyAbsolutePose
 {
-  template< typename Tree, typename confVector, bool hasParent = false >
-  struct bcalc_internal;
-
-  template< typename Robot > struct bcalc
+  typedef typename Nodes<Robot, node_id>::type Node;
+  typedef typename Nodes<Robot, Node::parent_id>::type Parent;
+  static void run(Robot& robot)
   {
-    static void run(const typename Robot::confVector & q)
-    {
-      bcalc_internal< typename Robot::Tree, typename Robot::confVector >::run(q);
-    }
-  };
+    Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    Parent& parent = boost::fusion::at_c<Node::parent_id>(robot.nodes);
+    node.body.iX0 = node.sXp * parent.body.iX0;
+  }
+};
 
-  template< typename Tree, typename confVector >
-  struct bcalc_internal< Tree, confVector, false >
+// specialization for root nodes
+template< typename Robot, int node_id>
+struct UpdateBodyAbsolutePose<Robot, node_id, false>
+{
+  typedef typename Nodes<Robot, node_id>::type Node;
+  static void run(Robot& robot)
   {
-    typedef Tree Node;
+    Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    node.body.iX0 = node.sXp;
+  }
+};
 
-    static void run(const confVector & q)
-    {
-      Node::Joint::bcalc
-        (q.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf));
-      Node::Body::iX0 = Node::Joint::sXp;
-
-      bcalc_internal< typename Node::Child0, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child1, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child2, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child3, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child4, confVector, true >::run(q);
-    }
-  };
-
-  template< typename Tree, typename confVector >
-  struct bcalc_internal< Tree, confVector, true >
+template< typename Robot, int node_id >
+struct BcalcVisitor
+{
+  typedef typename Nodes<Robot, node_id>::type Node;
+  static void discover(Robot& robot, const typename Robot::confVector& q)
   {
-    typedef Tree Node;
+    Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    node.joint.bcalc(q.template segment< Node::Joint::NBDOF >(Node::q_idx));
+    node.sXp = node.joint.Xj * node.Xt;
+    UpdateBodyAbsolutePose<Robot, node_id, has_parent<Robot, node_id>::value>::run(robot);
+  }
+  static void finish(Robot&, const typename Robot::confVector&)
+  {}
+};
+} // end of namespace metapod::internal
 
-    static void run(const confVector & q)
-    {
-      Node::Joint::bcalc
-        (q.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf));
-      Node::Body::iX0 = Node::Joint::sXp * Node::Body::Parent::iX0;
-
-      bcalc_internal< typename Node::Child0, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child1, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child2, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child3, confVector, true >::run(q);
-      bcalc_internal< typename Node::Child4, confVector, true >::run(q);
-    }
-  };
-
-  template< typename confVector > struct bcalc_internal< NC, confVector, false >
+template< typename Robot > struct bcalc
+{
+  static void run(Robot& robot, const typename Robot::confVector& q)
   {
-    static void run(const confVector &) {}
-  };
-
-  template< typename confVector > struct bcalc_internal< NC, confVector, true >
-  {
-    static void run(const confVector &) {}
-  };
+    depth_first_traversal<internal::BcalcVisitor, Robot>::run(robot, q);
+  }
+};
 } // end of namespace metapod
 
 # endif

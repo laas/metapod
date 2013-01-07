@@ -1,8 +1,7 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -45,8 +44,6 @@ namespace metapod
   typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > MatrixN;
   typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > VectorN;
   typedef Eigen::AngleAxis< FloatType > AngleAxisd;
-
-  class NC;
 
   namespace Spatial
   {

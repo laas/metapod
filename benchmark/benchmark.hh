@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
@@ -47,13 +47,13 @@
 # include <boost/function.hpp>
 
 # include <metapod/timer/timer.hh>
-
 # include <metapod/tools/jcalc.hh>
 # include <metapod/tools/bcalc.hh>
 # include <metapod/algos/rnea.hh>
 # include <metapod/algos/crba.hh>
+/*
 # include <metapod/tools/jac_point_robot.hh>
-
+*/
 namespace metapod
 {
   namespace benchmark
@@ -63,9 +63,10 @@ namespace metapod
     {
     public:
       typedef typename Robot::confVector confVector;
-      typedef boost::function<void(const confVector & q,
-                                   const confVector & dq,
-                                   const confVector & ddq)> functor_t;
+      typedef boost::function<void(Robot& robot,
+                                   const confVector& q,
+                                   const confVector& dq,
+                                   const confVector& ddq)> functor_t;
 
       Runner(functor_t f, const::std::string & msg):
         timer_(make_timer()),
@@ -92,16 +93,17 @@ namespace metapod
         return *this;
       }
 
-      void run(const confVector & q,
-               const confVector & dq,
-               const confVector & ddq)
+      void run(Robot& robot,
+               const confVector& q,
+               const confVector& dq,
+               const confVector& ddq)
       {
         if (!outer_loop_count_)
           timer_->start();
         else
           timer_->resume();
         for(int j=0; j<inner_loop_max_; ++j)
-          func_(q, dq, ddq);
+          func_(robot, q, dq, ddq);
         timer_->stop();
         ++outer_loop_count_;
       }
@@ -125,6 +127,7 @@ namespace metapod
     // wrapping jac_point_robot directly with boost::bind
     // does not work because the J argument (an Eigen matrix) has
     // alignement constraints.
+    /*
     template < typename Robot, bool call_bcalc >
     class jac_point_robot_wrapper
     {
@@ -135,7 +138,7 @@ namespace metapod
         jac_point_robot<Robot, call_bcalc>::run(q, J);
       }
     };
-
+    */
     template < typename Robot >
     struct benchmark
     {
@@ -143,31 +146,33 @@ namespace metapod
 
       static void run()
       {
+        Robot robot;
         confVector q, dq, ddq;
         // vector of the algorithms we want to benchmark
         std::vector< Runner<Robot> > runners;
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(&jcalc<Robot>::run, _1, _2),
+            boost::bind<void>(&jcalc<Robot>::run, _1, _2, _3),
             std::string("jcalc")));
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(bcalc<Robot>::run, _1),
+            boost::bind<void>(bcalc<Robot>::run, _1, _2),
             std::string("bcalc")));
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(rnea<Robot, true>::run, _1, _2, _3),
+            boost::bind<void>(rnea<Robot, true>::run, _1, _2, _3, _4),
                   std::string("rnea")));
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(rnea<Robot, false>::run, _1, _2, _3),
+            boost::bind<void>(rnea<Robot, false>::run, _1, _2, _3, _4),
             std::string("rnea (without jcalc)")));
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(crba<Robot, true>::run, _1),
+            boost::bind<void>(crba<Robot, true>::run, _1, _2),
             std::string("crba")));
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(crba<Robot, false>::run, _1),
+            boost::bind<void>(crba<Robot, false>::run, _1, _2),
             std::string("crba (without jcalc)")));
+        /*
         runners.push_back(Runner<Robot>(
             boost::bind<void>(jac_point_robot_wrapper<Robot, false>::run, _1),
             std::string("jac_point_robot (without bcalc)")));
-
+        */
         // tell which model we are running benchmarks on
         std::cout << "*************\n"
                   << "Model NBDOF : " << Robot::NBDOF << std::endl;
@@ -180,7 +185,7 @@ namespace metapod
               runner != runners.end();
               ++runner)
           {
-            runner->run(q, dq, ddq);
+            runner->run(robot, q, dq, ddq);
           }
         }
         // print result
@@ -193,7 +198,7 @@ namespace metapod
          }
       }
     };
-    #define BENCHMARK(robot) benchmark<robot::Robot>::run()
+    #define BENCHMARK(robot) benchmark<robot>::run()
   } // end of namespace benchmark
 } // end of namespace metapod
 

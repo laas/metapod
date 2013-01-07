@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
@@ -24,43 +24,41 @@
 #ifndef METAPOD_JCALC_HH
 # define METAPOD_JCALC_HH
 
-# include "metapod/tools/common.hh"
+# include <metapod/tools/depth_first_traversal.hh>
 
-namespace metapod
+namespace metapod {
+namespace internal {
+
+template< typename Robot, int node_id > struct JcalcVisitor
 {
-  template< typename Tree, typename confVector > struct jcalc_internal;
-
-  template< typename Robot > struct jcalc
+  typedef typename Nodes<Robot, node_id>::type Node;
+  static void discover(Robot& robot,
+                       const typename Robot::confVector& q,
+                       const typename Robot::confVector& dq)
   {
-    static void run(const typename Robot::confVector & q, const typename Robot::confVector & dq)
-    {
-      jcalc_internal< typename Robot::Tree, typename Robot::confVector >::run(q, dq);
-    }
-  };
+    Node& node = boost::fusion::at_c<node_id>(robot.nodes);
+    node.joint.jcalc(
+      q.template segment< Node::Joint::NBDOF >(Node::q_idx),
+      dq.template segment< Node::Joint::NBDOF >(Node::q_idx));
+    node.sXp = node.joint.Xj * node.Xt;
+  }
+  static void finish(Robot&,
+                     const typename Robot::confVector&,
+                     const typename Robot::confVector&)
+  {}
+};
 
-  template< typename Tree, typename confVector > struct jcalc_internal
+} // end of namespace metapod::internal
+
+template< typename Robot > struct jcalc
+{
+  static void run(Robot& robot,
+                  const typename Robot::confVector& q,
+                  const typename Robot::confVector& dq)
   {
-    typedef Tree Node;
-
-    static void run(const confVector & q, const confVector & dq)
-    {
-      Node::Joint::jcalc(
-        q.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf),
-        dq.template segment< Node::Joint::NBDOF >(Node::Joint::positionInConf)
-      );
-
-      jcalc_internal< typename Node::Child0, confVector >::run(q, dq);
-      jcalc_internal< typename Node::Child1, confVector >::run(q, dq);
-      jcalc_internal< typename Node::Child2, confVector >::run(q, dq);
-      jcalc_internal< typename Node::Child3, confVector >::run(q, dq);
-      jcalc_internal< typename Node::Child4, confVector >::run(q, dq);
-    }
-  };
-
-  template< typename confVector > struct jcalc_internal< NC, confVector >
-  {
-    static void run(const confVector &, const confVector &) {}
-  };
+    depth_first_traversal<internal::JcalcVisitor, Robot>::run(robot, q, dq);
+  }
+};
 
 } // end of namespace metapod
 

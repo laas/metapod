@@ -1,4 +1,4 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
@@ -16,63 +16,53 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
- * This file contains a method setting a configuration vector from a file.
- */
 
 #ifndef METAPOD_INITCONF_HH
 # define METAPOD_INITCONF_HH
 
-# include "common.hh"
+# include <metapod/tools/depth_first_traversal.hh>
 
-namespace metapod
+namespace metapod {
+namespace internal {
+
+// Look for a string in a std::ofstream
+void findString(std::string s_, std::ifstream & is)
 {
-
-  // Look for a string in a std::ofstream
-  void findString(std::string s_, std::ifstream & is)
+  is.clear(); is.seekg(0);
+  std::string s;
+  while(is >> s)
   {
-    is.clear(); is.seekg(0);
-    std::string s;
-    while(is >> s)
-    {
-      if(!s.compare(s_))
-        break;
-    }
+    if(!s.compare(s_))
+      break;
   }
+}
 
-  // Return vector constructed from log file,
-  // as printed by the printConf method.
-  template< typename Tree, typename confVector > struct initConf_internal;
-
-  template< typename Robot > struct initConf
+template <typename Robot, int node_id>
+struct InitConfVisitor
+{
+  static void discover(std::ifstream & log, typename Robot::confVector &v)
   {
-    static void run(std::ifstream & log, typename Robot::confVector & v)
-    {
-      initConf_internal< typename Robot::Tree, typename Robot::confVector >::run(log, v);
-    }
-  };
+    typedef typename Nodes<Robot, node_id>::type Node;
+    findString(Node::joint_name, log);
+    const int NB_DOF = boost::fusion::result_of::value_at_c<typename Robot::NodeVector, node_id>::type::Joint::NBDOF;
+    for(int i=0; i<NB_DOF; ++i)
+      log >> v[Node::q_idx+i];
+  }
+  static void finish(std::ifstream &, typename Robot::confVector &) {}
+};
 
-  template< typename Tree, typename confVector > struct initConf_internal
+} // end of namespace metapod::internal
+
+/// init a configuration vector with values from text file, formatted
+/// as printed by the printConf routine.
+template< typename Robot > struct initConf
+{
+  static void run(std::ifstream & log, typename Robot::confVector & v)
   {
-    static void run(std::ifstream & log, confVector & v)
-    {
-      typedef Tree Node;
-      findString(Node::Joint::name, log);
-      for(int i=0; i<Node::Joint::NBDOF; i++)
-        log >> v[Node::Joint::positionInConf+i];
-      initConf_internal<typename Node::Child0, confVector >::run(log,v);
-      initConf_internal<typename Node::Child1, confVector >::run(log,v);
-      initConf_internal<typename Node::Child2, confVector >::run(log,v);
-      initConf_internal<typename Node::Child3, confVector >::run(log,v);
-      initConf_internal<typename Node::Child4, confVector >::run(log,v);
-    }
-  };
+    depth_first_traversal< internal::InitConfVisitor, Robot >::run(log, v);
+  }
+};
 
-  template< typename confVector > struct initConf_internal< NC, confVector >
-  {
-    static void run(std::ifstream &, confVector &){}
-  };
-
-} // end of namespace metapod.
+} // end of namespace metapod
 
 #endif

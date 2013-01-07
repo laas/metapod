@@ -45,9 +45,6 @@ SET(METAPOD_ROBOTBUILDER_HEADERS
   include/metapod/robotbuilder/robotbuilder.hh
   )
 EMBED_TEMPLATE(EMBEDDED_FILES "config.in.hh" "config_hh")
-EMBED_TEMPLATE(EMBEDDED_FILES "body.in.hh" "body_hh")
-EMBED_TEMPLATE(EMBEDDED_FILES "joint.in.hh" "joint_hh")
-EMBED_TEMPLATE(EMBEDDED_FILES "robot.in.hh" "robot_hh")
 EMBED_TEMPLATE(EMBEDDED_FILES "init.in.hh" "init_hh")
 EMBED_TEMPLATE(EMBEDDED_FILES "init.in.cc" "init_cc")
 
@@ -58,6 +55,10 @@ ADD_LIBRARY(metapod_robotbuilder SHARED
   src/robotbuilder.cc
   src/robotbuilder_p.hh
   src/robotbuilder_p.cc
+  src/robotmodel.hh
+  src/robotmodel.cc
+  src/txttemplate.hh
+  src/txttemplate.cc
   ${EMBEDDED_FILES}
   ${METAPOD_ROBOTBUILDER_HEADERS}
   )

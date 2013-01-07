@@ -1,4 +1,4 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
@@ -22,28 +22,30 @@
 #include <metapod/tools/backward_traversal_prev.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 // start at the hand and finish with the arm
 #ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
-# define START_NODE LARM_LINK7
-# define END_NODE LARM_LINK3
+const int start_node = CURRENT_MODEL_ROBOT::LARM_LINK7;
+const int end_node = CURRENT_MODEL_ROBOT::LARM_LINK3;
 #else
-# define START_NODE HAND
-# define END_NODE ARM
+const int start_node = CURRENT_MODEL_ROBOT::HAND;
+const int end_node = CURRENT_MODEL_ROBOT::ARM;
 #endif
 
 // Print events while traversing the tree with indentation showing the level
 // of recursion
-template < typename Node, typename PrevNode > struct PrintBwdTraversalVisitor
+// Generic implementation: assumes prev_node_id != NO_NODE
+template < typename Robot, int node_id, int prev_node_id > struct PrintBwdTraversalVisitor
 {
+  typedef typename Nodes<Robot, node_id>::type Node;
+  typedef typename Nodes<Robot, prev_node_id>::type PrevNode;
   static void discover(std::ostream & os, int & depth)
   {
     const std::string prefix(depth, '\t');
     os << prefix << "discover: curr:"
-        << Node::Joint::name << " -- " << Node::name << "\n";
+        << Node::joint_name << " -- " << Node::body_name << "\n";
     os << prefix << "          prev: "
-        << PrevNode::Joint::name << " -- " << PrevNode::name << "\n";
+        << PrevNode::joint_name << " -- " << PrevNode::body_name << "\n";
     ++depth;
   }
   static void finish(std::ostream & os, int & depth)
@@ -51,9 +53,9 @@ template < typename Node, typename PrevNode > struct PrintBwdTraversalVisitor
     --depth;
     const std::string prefix(depth, '\t');
     os << prefix << "finish: curr:"
-        << Node::Joint::name << " -- " << Node::name << "\n";
+        << Node::joint_name << " -- " << Node::body_name << "\n";
     os << prefix << "        prev: "
-        << PrevNode::Joint::name << " -- " << PrevNode::name << "\n";
+        << PrevNode::joint_name << " -- " << PrevNode::body_name << "\n";
   }
 };
 
@@ -62,8 +64,8 @@ BOOST_AUTO_TEST_CASE (test_backward_traversal)
   const char result_file[] = "backward_traversal_prev.log";
   std::ofstream log(result_file, std::ofstream::out);
   int depth = 0;
-  backward_traversal_prev<PrintBwdTraversalVisitor, Robot,
-      CURRENT_MODEL_NAMESPACE::START_NODE>::run(log, depth);
+  backward_traversal_prev<PrintBwdTraversalVisitor, CURRENT_MODEL_ROBOT,
+      start_node>::run(log, depth);
   log.close();
   // Compare results with reference file
   compareTexts(result_file, TEST_DIRECTORY "/backward_traversal_prev.ref");
@@ -74,10 +76,8 @@ BOOST_AUTO_TEST_CASE (test_backward_traversal_end)
   const char result_file[] = "backward_traversal_prev_end.log";
   std::ofstream log(result_file, std::ofstream::out);
   int depth = 0;
-  backward_traversal_prev<PrintBwdTraversalVisitor, Robot,
-      CURRENT_MODEL_NAMESPACE::START_NODE,
-      CURRENT_MODEL_NAMESPACE::END_NODE
-      >::run(log, depth);
+  backward_traversal_prev<PrintBwdTraversalVisitor, CURRENT_MODEL_ROBOT,
+      start_node, end_node>::run(log, depth);
   log.close();
   // Compare results with reference file
   compareTexts(result_file, TEST_DIRECTORY "/backward_traversal_prev_end.ref");

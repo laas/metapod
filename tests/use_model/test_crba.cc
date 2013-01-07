@@ -1,8 +1,7 @@
-// Copyright 2011, 2012,
+// Copyright 2011, 2012, 2013
 //
-// Maxime Reis
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -17,35 +16,33 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
- * This test applies the crba on a test model with a reference configuration,
- * then compares the computed inertia matrix with the reference inertia matrix.
- */
+// This test applies the crba on a test model with a reference configuration,
+// then compares the computed inertia matrix with the reference inertia matrix.
 
 // Common test tools
 #include "common.hh"
 #include <metapod/algos/crba.hh>
 
 using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
 
 BOOST_AUTO_TEST_CASE (test_crba)
 {
   // set configuration vector q to reference value.
-  Robot::confVector q;
+  CURRENT_MODEL_ROBOT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q_init.conf");
-  initConf< Robot >::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
   qconf.close();
 
   // Initialize the Joint-Space Inertia Matrix to Zero.
-  Robot::H = MatrixN::Zero(Robot::NBDOF, Robot::NBDOF);
+  CURRENT_MODEL_ROBOT robot;
+  robot.H = MatrixN::Zero(CURRENT_MODEL_ROBOT::NBDOF, CURRENT_MODEL_ROBOT::NBDOF);
 
   // Apply the CRBA to the metapod multibody and print the result in a log file
-  crba< Robot, true >::run(q); // Update geometry and run the CRBA
+  crba< CURRENT_MODEL_ROBOT, true >::run(robot, q); // Update geometry and run the CRBA
   const char result_file[] = "crba.log";
   std::ofstream log(result_file, std::ofstream::out);
 
-  log << "generalized_mass_matrix\n" << Robot::H << std::endl;
+  log << "generalized_mass_matrix\n" << robot.H << std::endl;
   log.close();
 
   // Compare results with reference file
