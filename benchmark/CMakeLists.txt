@@ -24,46 +24,29 @@ INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/robotbuilder)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
 INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer)
 
-# Returns the list of source files for sample_${dof}_dof model
-FUNCTION(GET_SAMPLE_SOURCE_FILES output dof)
-    SET(_libname "sample_${dof}_dof")
-    SET(_output
+# list of the sample models
+SET(depth_list 1 2 3 4 5)
+
+# build the generator
+ADD_EXECUTABLE(make_model make_model.cc)
+TARGET_LINK_LIBRARIES(make_model metapod_robotbuilder)
+
+# build the sample models libraries
+FOREACH(depth IN LISTS depth_list)
+    SET(_libname "sample_${depth}")
+    SET(_sources
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.cc
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/body.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/joint.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/robot.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/config.hh)
-    SET("${output}" ${_output} PARENT_SCOPE)
-ENDFUNCTION()
-
-# list of the sample models
-SET(dof_list 3 7 15 31 63)
-
-# put together a list of all the generated files
-FOREACH(dof IN LISTS dof_list)
-    GET_SAMPLE_SOURCE_FILES(_sources ${dof})
-    LIST(APPEND _generated_files "${_sources}")
-ENDFOREACH()
-
-# build the generator
-ADD_EXECUTABLE(make_model make_model.cc)
-TARGET_LINK_LIBRARIES(make_model metapod_robotbuilder)
-
-# declare the generated files
-IF(dof_list)
     ADD_CUSTOM_COMMAND(
-      OUTPUT ${_generated_files}
-      COMMAND make_model
+      OUTPUT ${_sources}
+      COMMAND make_model ${depth}
     )
-ENDIF()
-
-# build the sample models libraries
-FOREACH(dof IN LISTS dof_list)
-    GET_SAMPLE_SOURCE_FILES(_sources ${dof})
-    SET(_target sample_${dof}_dof)
-    ADD_LIBRARY(sample_${dof}_dof SHARED ${_sources})
-    LIST(APPEND _model_libs "${_target}")
+    ADD_LIBRARY(${_libname} SHARED ${_sources})
+    LIST(APPEND _model_libs "${_libname}")
 ENDFOREACH()
 
 # add simple humanoid model
@@ -74,6 +57,7 @@ IF(WITH_SIMPLE_HUMANOID)
     INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/simple_humanoid/include)
     INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/simple_humanoid)
 ENDIF()
+
 # and finally, the benchmark
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
