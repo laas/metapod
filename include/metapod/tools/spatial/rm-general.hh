@@ -68,7 +68,7 @@ namespace metapod
       }
 
       /** \brief Returns a 3x3 eigen matrix */
-      const Matrix3d & toMatrix()
+      const Matrix3d & toMatrix() const 
       {
 	return m_rm;
       }
@@ -150,7 +150,6 @@ namespace metapod
       friend RotationMatrix operator*(FloatType a, RotationMatrix alti)
       {
 	return RotationMatrix(alti.m_rm *a);
-
       }
       
       Vector3d col(int x) const
