@@ -118,10 +118,12 @@ void test_multiplication(Matrix3d & aI)
   displayAndCheck(ld,aI,R,d,opName);
 }
 
-template <class T>
+template <class T,
+	  class TZ=T>
 void test_mul_matrix_about()
 {
-  T X,Y,Z;
+  T X,Y;
+  TZ Z;
   RotationMatrix rmX,rmY,rmZ;
   Matrix3d mX, mY,mZ, R;
 
@@ -163,6 +165,8 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << I << endl;
   struct ltI altI(I);
 
+  typedef rmca_traits<1,0,2,1,1,-1> PermuYXmZ;
+
   cout << " ************** TEST R^T*L*R ************** " << endl;
   cout << "ltI: Test X Rotation" << endl;
   test_symmetric_matrix<RotationMatrixAboutX>(altI);
@@ -173,6 +177,9 @@ BOOST_AUTO_TEST_CASE(test_rotation)
 
   cout << "ltI: Test General Rotation Matrix" << endl;
   test_symmetric_matrix<RotationMatrix>(altI);
+
+  cout << "ltI: Test Rotation Matrix Change Axis" << endl;
+  test_symmetric_matrix<RotationMatrixChangeAxis<PermuYXmZ> >(altI);
 
   cout << " ************** TEST R^T*A*R ************** " << endl;
   Matrix3d NotSymmetrical;
@@ -191,25 +198,34 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << "NotSymmetrical: Test General Rotation Matrix" << endl;
   test_general_matrix<RotationMatrix>(NotSymmetrical);
 
+  cout << "NotSymmetrical: Test Rotation Matrix Change Axis" << endl;
+  test_symmetric_matrix<RotationMatrixChangeAxis<PermuYXmZ> >(altI);
+
   cout << " ************** TEST TRANSPOSE ************** " << endl;
   test_transpose<RotationMatrixAboutX>();
   test_transpose<RotationMatrixAboutY>();
   test_transpose<RotationMatrixAboutZ>();
   test_transpose<RotationMatrix>();
+  test_transpose<RotationMatrixChangeAxis<PermuYXmZ> >();
 
   cout << " ************** TEST MULTIPLICATION ************** " << endl;
   // Test the rotation with a rotation matrix
   RotationMatrix aRM;
   aRM.randomInit();
   Matrix3d randomRM = aRM.toMatrix();
+
+  typedef rmca_traits_mul<PermuYXmZ,PermuYXmZ> GbToId;
   
   test_multiplication<RotationMatrixAboutX>(randomRM);
   test_multiplication<RotationMatrixAboutY>(randomRM);
   test_multiplication<RotationMatrixAboutZ>(randomRM);
-
   test_multiplication<RotationMatrix>(randomRM);
+  test_multiplication<RotationMatrixChangeAxis<PermuYXmZ> >(randomRM);
+
   test_mul_matrix_about<RotationMatrixAboutX>();
   test_mul_matrix_about<RotationMatrixAboutY>();
   test_mul_matrix_about<RotationMatrixAboutZ>();
+  test_mul_matrix_about<RotationMatrixChangeAxis<PermuYXmZ>,
+    RotationMatrixChangeAxis<GbToId>>();
   
 }
