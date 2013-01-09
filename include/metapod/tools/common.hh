@@ -38,6 +38,12 @@ namespace metapod
 {
   #define GRAVITY_CST 9.81
 
+  #ifdef USE_C11_STATIC_ASSERT 
+    #define METAPOD_STATIC_ASSERT(x,msg) static_assert(x,msg)
+  #else
+    #define METAPOD_STATIC_ASSERT(x,msg) BOOST_STATIC_ASSERT_MSG(x,msg)
+  #endif
+
   inline Spatial::Motion set_gravity()
   {
     Vector6d g_tmp;
