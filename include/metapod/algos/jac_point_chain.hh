@@ -22,7 +22,6 @@
 #ifndef METAPOD_JAC_POINT_CHAIN_HH
 # define METAPOD_JAC_POINT_CHAIN_HH
 
-# include <boost/static_assert.hpp>
 # include <metapod/tools/common.hh>
 # include <metapod/algos/jac_point_relative.hh>
 
@@ -71,7 +70,7 @@ namespace metapod
             int offset = 0, bool includeFreeFlyer = true,
             bool call_bcalc = true >
   struct jac_point_chain {
-    BOOST_STATIC_ASSERT_MSG(Robot::NBDOF >= 6,
+    static_assert(Robot::NBDOF >= 6,
         "jac_point_chain does not support robots with less than 6 DoFs");
     typedef jac_point_relative<Robot, StartBody, EndBody,
           offset - 6*(1-includeFreeFlyer), call_bcalc > solver;
