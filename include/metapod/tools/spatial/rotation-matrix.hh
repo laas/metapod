@@ -36,5 +36,8 @@
 # include "metapod/tools/spatial/rm-aboutxaxis.hh"
 # include "metapod/tools/spatial/rm-aboutyaxis.hh"
 # include "metapod/tools/spatial/rm-aboutzaxis.hh"
+# include "metapod/tools/spatial/rm-identity.hh"
+# include "metapod/tools/spatial/rm-chgaxis.hh"
+
 
 #endif 

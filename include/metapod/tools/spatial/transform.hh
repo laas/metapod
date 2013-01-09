@@ -281,7 +281,7 @@ namespace metapod
     typedef TransformT<RotationMatrixAboutX> TransformX;
     typedef TransformT<RotationMatrixAboutY> TransformY;
     typedef TransformT<RotationMatrixAboutZ> TransformZ;
-
+    typedef TransformT<RotationMatrixIdentity> TransformId;
     template<>
     Transform OperatorMul<Transform, 
 			  TransformX, 
