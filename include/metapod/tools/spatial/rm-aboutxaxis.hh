@@ -66,9 +66,18 @@ namespace metapod
 	return RotationMatrixAboutX(m_c,-m_s);
       }
 
-      RotationMatrixAboutX operator*(FloatType a) const
+      Matrix3d toMatrix() const
       {
-	return RotationMatrixAboutX(a*m_c,a*m_s);
+	Matrix3d r;
+	r(0,0) = 1.0; r(0,1) = 0.0; r(0,2) = 0.0;
+	r(1,0) = 0.0; r(1,1) = m_c;   r(1,2) = m_s;
+	r(2,0) = 0.0; r(2,1) = -m_s;  r(2,2) = m_c;
+	return r;
+      }
+
+      Matrix3d operator*(FloatType a) const
+      {
+	return Matrix3d (a*toMatrix());
       }
 
       RotationMatrixAboutX operator-() const
@@ -79,14 +88,6 @@ namespace metapod
       void set(FloatType theta)
       { m_c = cos(theta); m_s=sin(theta);}
 
-      Matrix3d toMatrix()
-      {
-	Matrix3d r;
-	r(0,0) = 1.0; r(0,1) = 0.0; r(0,2) = 0.0;
-	r(1,0) = 0.0; r(1,1) = m_c;   r(1,2) = m_s;
-	r(2,0) = 0.0; r(2,1) = -m_s;  r(2,2) = m_c;
-	return r;
-      }
       
       /** \brief Optimized multiplication of the rotation matrix with a general 3x3 matrix.
        The total number of operations is 12m + 6a. <br>
