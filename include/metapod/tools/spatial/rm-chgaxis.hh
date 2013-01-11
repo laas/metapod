@@ -185,14 +185,12 @@ namespace metapod
 	return r;
       }
 
-      template< typename traits_rhs,
-		typename traits_lhs= rmca_traits_mul<traits,traits_rhs> >
-
-      RotationMatrixChangeAxis<traits_lhs>
-	operator*(const RotationMatrixChangeAxis<traits_rhs> &) 
+      template< typename traits_rhs>
+      RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> >
+      operator*(const RotationMatrixChangeAxis<traits_rhs> &)
       {
-	RotationMatrixChangeAxis<traits_lhs> r;
-	return r;
+        RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> > r;
+        return r;
       }
       
       friend Matrix3d operator*(const Matrix3d &A, 

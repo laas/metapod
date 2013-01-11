@@ -119,43 +119,44 @@ void test_multiplication(Matrix3d & aI)
 }
 
 template <class T,
-	  class TZ=T>
-void test_mul_matrix_about()
+          class TZ=T>
+struct test_mul_matrix_about
 {
-  T X,Y;
-  TZ Z;
-  RotationMatrix rmX,rmY,rmZ;
-  Matrix3d mX, mY,mZ, R;
+  static void run()
+  {
+    T X,Y;
+    TZ Z;
+    RotationMatrix rmX,rmY,rmZ;
+    Matrix3d mX, mY,mZ, R;
 
-  X.randomInit();
-  Y.randomInit();
-  
-  // Test RotationMatrixAboutX * RotationMatrixAboutX
-  Z = X*Y;
-  
-  mX = X.toMatrix();
-  mY = Y.toMatrix();
-  mZ = Z.toMatrix();
-  R = mX * mY;
+    X.randomInit();
+    Y.randomInit();
 
-  std::string opName;
-  opName = typeid(T).name();
+    // Test RotationMatrixAboutX * RotationMatrixAboutX
+    Z = X*Y;
 
-  displayAndCheck(mX,mY,mZ,R,opName);
+    mX = X.toMatrix();
+    mY = Y.toMatrix();
+    mZ = Z.toMatrix();
+    R = mX * mY;
 
-  // Test RotationMatrixAboutX * RotationMatrix
-  rmY.randomInit();
-  mY = rmY.toMatrix();
-  rmZ = X*rmY;
-  
-  mZ = rmZ.toMatrix();
-  R = mX * mY;
-  opName = "RotationMatrix";
-  displayAndCheck(mX,mY,mZ,R,opName);
-  
-}
+    std::string opName;
+    opName = typeid(T).name();
 
-							
+    displayAndCheck(mX,mY,mZ,R,opName);
+
+    // Test RotationMatrixAboutX * RotationMatrix
+    rmY.randomInit();
+    mY = rmY.toMatrix();
+    rmZ = X*rmY;
+
+    mZ = rmZ.toMatrix();
+    R = mX * mY;
+    opName = "RotationMatrix";
+    displayAndCheck(mX,mY,mZ,R,opName);
+  }
+};
+
 BOOST_AUTO_TEST_CASE(test_rotation)
 {
   Matrix3d I;
@@ -222,10 +223,10 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   test_multiplication<RotationMatrix>(randomRM);
   test_multiplication<RotationMatrixChangeAxis<PermuYXmZ> >(randomRM);
 
-  test_mul_matrix_about<RotationMatrixAboutX>();
-  test_mul_matrix_about<RotationMatrixAboutY>();
-  test_mul_matrix_about<RotationMatrixAboutZ>();
+  test_mul_matrix_about<RotationMatrixAboutX>::run();
+  test_mul_matrix_about<RotationMatrixAboutY>::run();
+  test_mul_matrix_about<RotationMatrixAboutZ>::run();
   test_mul_matrix_about<RotationMatrixChangeAxis<PermuYXmZ>,
-    RotationMatrixChangeAxis<GbToId>>();
+    RotationMatrixChangeAxis<GbToId> >::run();
   
 }
