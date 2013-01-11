@@ -12,10 +12,10 @@ using namespace metapod::Spatial;
 using namespace std;
 
 void display(Matrix3d &A,
-	     Matrix3d &B,
-	     Matrix3d &C,
-	     Matrix3d &D,
-	     std::string &operation)
+             Matrix3d &B,
+             Matrix3d &C,
+             Matrix3d &D,
+             std::string &operation)
 {
   cout << "Operands:" << endl;
   cout << A << endl;
@@ -28,7 +28,7 @@ void display(Matrix3d &A,
 }
 
 void check(Matrix3d &C,
-	   Matrix3d &D)
+           Matrix3d &D)
 {
   Matrix3d diff_checkd_d3d = C - D;
   // Compute the norm of the difference.
@@ -38,10 +38,10 @@ void check(Matrix3d &C,
 }
 
 void displayAndCheck(Matrix3d &A,
-		     Matrix3d &B,
-		     Matrix3d &C,
-		     Matrix3d &D,
-		     std::string &operation)
+                     Matrix3d &B,
+                     Matrix3d &C,
+                     Matrix3d &D,
+                     std::string &operation)
 {
   display(A,B,C,D,operation);
   check(C,D);
@@ -73,7 +73,7 @@ void test_general_matrix(Matrix3d & aI)
   T aRMA;
 
   aRMA.randomInit();
-    
+
   Matrix3d R = aRMA.toMatrix();
 
   Matrix3d d;
@@ -161,8 +161,8 @@ BOOST_AUTO_TEST_CASE(test_rotation)
 {
   Matrix3d I;
   I << 0.00285998, -0.00001434,-0.00055582,
-    -0.00001434, 0.00352974, 0.00000884,
-    -0.00055582, 0.00000885, 0.00145427;
+      -0.00001434, 0.00352974, 0.00000884,
+      -0.00055582, 0.00000885, 0.00145427;
   cout << I << endl;
   struct ltI altI(I);
 
@@ -185,8 +185,8 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   cout << " ************** TEST R^T*A*R ************** " << endl;
   Matrix3d NotSymmetrical;
   NotSymmetrical << 0.1, 0.5, 0.4,
-    0.1, 0.2, 0.3,
-    0.5, 0.4, 0.1 ;
+      0.1, 0.2, 0.3,
+      0.5, 0.4, 0.1 ;
   cout << NotSymmetrical << endl;
 
   cout << "NotSymmetrical: Test X Rotation" << endl;
@@ -227,6 +227,6 @@ BOOST_AUTO_TEST_CASE(test_rotation)
   test_mul_matrix_about<RotationMatrixAboutY>::run();
   test_mul_matrix_about<RotationMatrixAboutZ>::run();
   test_mul_matrix_about<RotationMatrixChangeAxis<PermuYXmZ>,
-    RotationMatrixChangeAxis<GbToId> >::run();
+      RotationMatrixChangeAxis<GbToId> >::run();
   
 }
