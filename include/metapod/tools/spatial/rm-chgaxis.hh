@@ -185,11 +185,12 @@ namespace metapod
         return r;
       }
 
-      template< typename traits_rhs>
-      RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> >
+      template< typename traits_rhs,
+                typename traits_result=rmca_traits_mul<traits,traits_rhs> >
+      RotationMatrixChangeAxis< traits_result>
       operator*(const RotationMatrixChangeAxis<traits_rhs> &)
       {
-        RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> > r;
+        RotationMatrixChangeAxis< traits_result > r;
         return r;
       }
       
