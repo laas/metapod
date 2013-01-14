@@ -29,7 +29,7 @@
 #include "models/sample_2/sample_2.hh"
 #include "models/sample_3/sample_3.hh"
 #include "models/sample_4/sample_4.hh"
-#include "models/sample_5/sample_5.hh"
+//#include "models/sample_5/sample_5.hh"
 
 #include "benchmark.hh"
 using namespace metapod::benchmark;
@@ -43,5 +43,5 @@ int main()
   BENCHMARK(metapod::sample_2);
   BENCHMARK(metapod::sample_3);
   BENCHMARK(metapod::sample_4);
-  BENCHMARK(metapod::sample_5);
+  //BENCHMARK(metapod::sample_5);
 }

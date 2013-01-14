@@ -25,7 +25,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
 INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
 # list of the sample models
-SET(depth_list 1 2 3 4 5)
+#SET(depth_list 1 2 3 4 5)
+SET(depth_list 1 2 3 4)
 
 # build the generator
 ADD_EXECUTABLE(make_model make_model.cc)
