@@ -132,7 +132,6 @@ namespace metapod
     struct RotationMatrixChangeAxis
     {
       typedef traits Traits;
-      /// 
       RotationMatrixChangeAxis()
       {
       }
@@ -175,7 +174,7 @@ namespace metapod
       {
         return RotationMatrixChangeAxis<rmca_traits_minus<traits> > ();
       }
-      
+
       Matrix3d operator*(const Matrix3d &A) const
       {
         Matrix3d r;
@@ -192,7 +191,7 @@ namespace metapod
         RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> > r;
         return r;
       }
-      
+
       friend Matrix3d operator*(const Matrix3d &A,
                                 const RotationMatrixChangeAxis &aRMCA)
       {
@@ -210,7 +209,7 @@ namespace metapod
         Matrix3d r = (*this) * lrm;
         return RotationMatrix(r);
       }
-      
+
       RotationMatrix operator*(const RotationMatrixAboutX &aRM) const
       {
         Matrix3d r=Matrix3d::Zero();
@@ -264,9 +263,9 @@ namespace metapod
         return r;
       }
 
-      struct ltI rotSymmetricMatrix(const struct ltI &A)
+      ltI rotSymmetricMatrix(const ltI &A)
       {
-        struct ltI r;
+        ltI r;
         static const int lv[3] = { traits::value_X, traits::value_Y, traits::value_Z };
         static const int lind[9] = { 0, 1, 3,
                                      1, 2, 4,
@@ -281,8 +280,8 @@ namespace metapod
         r.m_ltI(4) = lv[traits::ind_Z]*lv[traits::ind_Y] * A.m_ltI(lind[traits::ind_Z*3+traits::ind_Y]);
         r.m_ltI(5) = lv[traits::ind_Z]*lv[traits::ind_Z] * A.m_ltI(lind[traits::ind_Z*3+traits::ind_Z]);
         return r;
-      }      
-      
+      }
+
       Vector3d operator*(const Vector3d &ar) const
       {
         return Vector3d(traits::value_X*ar[traits::ind_X],
@@ -290,15 +289,15 @@ namespace metapod
                         traits::value_Z*ar[traits::ind_Z]);
       }
 
-      friend std::ostream * operator<<(std::ostream &os,
-                                       const struct RotationMatrixChangeAxis & aRMCA)
+      friend std::ostream & operator<<(std::ostream &os,
+                                       const RotationMatrixChangeAxis<traits> & aRMCA)
       {
         static const int lind[3] = { traits::ind_X, traits::ind_Y, traits::ind_Z };
         static const int lvalue[3] = { traits::value_X, traits::ind_Y, traits::ind_Z };
 
-        for(unsigned int li=0;li<3;li++)
+        for(unsigned int li=0;li<3;++li)
         {
-          for(unsigned int lj=0;lj<3;lj++)
+          for(unsigned int lj=0;lj<3;++lj)
             if (lj==lind[li])
               cout << " " << lvalue[li] ;
             else
@@ -308,7 +307,7 @@ namespace metapod
         return os;
       }
     };
-    
+
     template < typename RotationMatrixT,
                typename RotMatChgAxis>
     struct RotationBinaryOp
@@ -318,7 +317,7 @@ namespace metapod
       RotationMatrixT m_RM;
       Matrix3d m_r;
     public:
-      
+
       RotationBinaryOp(RotationMatrix &lrm, RotMatChgAxis &lrmca):
         m_RM(lrm)
       {
@@ -332,7 +331,7 @@ namespace metapod
             RotationMatrixT> r(lrmca,m_RM.toMatrix().transpose());
         return r;
       }
-      
+
       Matrix3d toMatrix() const
       {
         return m_r;
@@ -366,14 +365,14 @@ namespace metapod
       {
         return RotationMatrix(m_r *aRM.toMatrix());
       }
-      
+
       Vector3d operator*(const Vector3d &av) const
       {
         return Vector3d (m_RM * ( m_rmca * av));
       }
 
     };
-    
+
   } // end Spatial namespace
 } // end metapod namespace
 
