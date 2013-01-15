@@ -1,6 +1,7 @@
-# Copyright 2012,
+# Copyright 2012, 2013
 #
-# Olivier STASSE, LAAS/CNRS
+# Olivier STASSE (LAAS/CNRS)
+# Sébastien Barthélémy (Aldebaran Robotics)
 #
 # This file is part of metapod.
 # metapod is free software: you can redistribute it and/or modify
@@ -16,17 +17,4 @@
 # along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Creation: 17/12/2012
-
 ADD_TESTCASE(test_rotation test_rotation.cc)
-
-# Add Boost path to include directories.
-INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
-
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/)
-
-# Make Boost.Test generates the main function in test cases.
-ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
-
-# Link against Boost.
-TARGET_LINK_LIBRARIES(test_rotation ${Boost_LIBRARIES})
-

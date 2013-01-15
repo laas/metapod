@@ -1,7 +1,8 @@
-# Copyright 2011, 2012,
+# Copyright 2011, 2012, 2013
 #
 # Maxime Reis (JRL/LAAS, CNRS/AIST)
 # Sébastien Barthélémy (Aldebaran Robotics)
+# Olivier Stasse (JRL/LAAS, CNRS/AIST)
 #
 # This file is part of metapod.
 # metapod is free software: you can redistribute it and/or modify
@@ -20,10 +21,9 @@
 
 # Add Boost path to include directories.
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
-
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
 
-# Make Boost.Test generates the main function in test cases.
+# Make Boost.Test generate the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 
 ADD_LIBRARY(simple_humanoid SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simple-humanoid/simple_humanoid.cc)
@@ -38,14 +38,11 @@ ADD_LIBRARY(simple_arm SHARED ${PROJECT_SOURCE_DIR}/include/metapod/models/simpl
 # Boost and add it to the test suite.
 #
 MACRO(ADD_TESTCASE NAME SOURCE_FILE)
-    ADD_EXECUTABLE(${NAME} ${SOURCE_FILE})
+  ADD_EXECUTABLE(${NAME} ${SOURCE_FILE})
   ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
 
   # Link against Boost.
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
-
-  # Link against the test models.
-  TARGET_LINK_LIBRARIES(${NAME} simple_humanoid simple_arm)
 ENDMACRO(ADD_TESTCASE)
 
 # the "use_model" subfolder is included once per tested model. The tests
@@ -54,8 +51,8 @@ ENDMACRO(ADD_TESTCASE)
 # For each inclusion of the folder, a different binary folder is used. It acts
 # as a namespace for CMake. This makes it possible to use different values
 # for "CURRENT_MODEL" when calling add_definitions(), without conflicts.
-set(CURRENT_MODEL "simple_humanoid")
-add_subdirectory(use_model use_simple_humanoid)
-set(CURRENT_MODEL "simple_arm")
-add_subdirectory(use_model use_simple_arm)
-add_subdirectory(spatial)
+SET(CURRENT_MODEL "simple_humanoid")
+ADD_SUBDIRECTORY(use_model use_simple_humanoid)
+SET(CURRENT_MODEL "simple_arm")
+ADD_SUBDIRECTORY(use_model use_simple_arm)
+ADD_SUBDIRECTORY(spatial)
