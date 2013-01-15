@@ -27,7 +27,8 @@
 # ifdef _MSC_VER
 #  pragma warning( push )
 // disable warning C4251: need to have DLL interface
-#  pragma warning( disable: 4251 )
+// disable warning C4503: decorated name length exceeded
+#  pragma warning( disable: 4251 4503 )
 # endif
 
 # include "robot.hh"
