@@ -70,21 +70,11 @@ namespace metapod
     // Template for operator * with inertia Matrix I
     // T = I * S
     template <class T, class U, class S>
-    struct OperatorMul
+    class OperatorMul
     {
+    public:
       T mul(const U &u, const S &s) const;
     };
-
-    template <class V, 
-	      class U, 
-	      template <class > class W,
-	      class S>
-    struct OperatorMult
-    {
-      V mul(const U &u, const W<S> &s) const;
-    };
-
-
   } // end of namespace Spatial
 
 }
