@@ -34,14 +34,14 @@ FUNCTION(EMBED_TEMPLATE OUTPUT TEMPLATE NAME)
 ENDFUNCTION()
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}/include)
 
 GENERATE_CONFIG_HEADER(
-  ${CMAKE_CURRENT_BINARY_DIR}/metapod/robotbuilder/config.hh
+  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/robotbuilder/config.hh
   metapod_robotbuilder
   )
 SET(METAPOD_ROBOTBUILDER_HEADERS
-  ${CMAKE_CURRENT_BINARY_DIR}/metapod/robotbuilder/config.hh
+  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/robotbuilder/config.hh
   include/metapod/robotbuilder/robotbuilder.hh
   )
 EMBED_TEMPLATE(EMBEDDED_FILES "config.in.hh" "config_hh")

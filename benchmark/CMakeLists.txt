@@ -20,9 +20,9 @@
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/robotbuilder/include)
-INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/robotbuilder)
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/robotbuilder/include)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
-INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer)
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
 # list of the sample models
 SET(depth_list 1 2 3 4 5)
@@ -55,10 +55,9 @@ IF(WITH_SIMPLE_HUMANOID)
         COMPILE_FLAGS " -DWITH_SIMPLE_HUMANOID")
     LIST(APPEND _model_libs "metapod_simple_humanoid")
     INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/simple_humanoid/include)
-    INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/simple_humanoid)
+    INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/simple_humanoid/include)
 ENDIF()
 
 # and finally, the benchmark
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
 TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
