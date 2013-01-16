@@ -8,6 +8,11 @@
 #include <boost/algorithm/string/regex_find_format.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/filesystem/operations.hpp>
+
+#if BOOST_VERSION <=104000
+#include <boost/filesystem/convenience.hpp>
+#endif 
+
 #include <metapod/tools/spatial.hh>
 
 using namespace std;
