@@ -63,7 +63,7 @@ namespace metapod
       const Vector6d & altI = m.m_I.m_ltI;
       r[0] = altI(0)*a.S()[0]+ altI(1)*a.S()[1]+ altI(3)*a.S()[2];
       r[1] = altI(1)*a.S()[0]+ altI(2)*a.S()[1]+ altI(4)*a.S()[2];
-      r[1] = altI(3)*a.S()[0]+ altI(4)*a.S()[1]+ altI(5)*a.S()[2];
+      r[2] = altI(3)*a.S()[0]+ altI(4)*a.S()[1]+ altI(5)*a.S()[2];
 
       Matrix3d msh = -skew(m.m_h);
       for(unsigned int i=0;i<3;i++)
