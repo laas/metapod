@@ -79,13 +79,18 @@ int main(int argc, char** argv)
   // Declare a group of options that will be
   // allowed only on command line
   po::options_description generic("");
+  // declare the options.
+  // output-file, input-file and name are mandatory.
+  // Once we can assume boost >= 1.42, we should declare them with
+  // po::value<std::string>()->required() instead of just
+  // po::value<std::string>()
   generic.add_options()
     ("help", "produce help message")
-    ("output-file", po::value<std::string>()->required(),
+    ("output-file", po::value<std::string>(),
      "output file, to be added as a C source file")
-    ("input-file", po::value<std::string>()->required(),
+    ("input-file", po::value<std::string>(),
      "input file")
-    ("name", po::value<std::string>()->required(),
+    ("name", po::value<std::string>(),
      "variable that will hold the data");
 
   po::options_description cmdline_options;
@@ -119,6 +124,16 @@ int main(int argc, char** argv)
     {
       std::cout << visible << "\n";
       return STATUS_SUCCESS;
+    }
+    // deal with mandatory options
+    // with boost >= 1.42, we'll declare these options ase required and
+    // this check won't be necessary anymore.
+    if (vm.count("output-file") == 0 ||
+        vm.count("input-file") == 0 ||
+        vm.count("name") == 0)
+    {
+      std::cout << visible << "\n";
+      return STATUS_FAILURE;
     }
     po::notify(vm);
   }
