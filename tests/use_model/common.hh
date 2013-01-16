@@ -1,5 +1,6 @@
-// Copyright 2012,
+// Copyright 2011, 2012,
 //
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
@@ -15,20 +16,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
-// This (smoke) test runs printStat on the model. Since the model is not
-// initialized, the output is discarded. So we only check that printState
-// builds and runs smoothly.
+/*
+ * This file contains common tools and includes shared by the test suite
+ */
 
-// Common test tools
-#include "common.hh"
-#include <metapod/tools/print.hh>
+#ifndef METAPOD_TESTS_USE_MODEL_COMMON_HH
+# define  METAPOD_TESTS_USE_MODEL_COMMON_HH
 
-using namespace metapod;
-using namespace CURRENT_MODEL_NAMESPACE;
+# include "../common.hh"
 
-BOOST_AUTO_TEST_CASE (test_printstate)
-{
-  std::ofstream state_log("state.log", std::ofstream::out);
-  printState<Robot>(state_log);
-  state_log.close();
-}
+// metapod includes
+# ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
+#  include <metapod/models/simple_humanoid/simple_humanoid.hh>
+# endif
+# ifdef CURRENT_MODEL_IS_SIMPLE_ARM
+#  include <metapod/models/simple_arm/simple_arm.hh>
+# endif
+# include <metapod/tools/print.hh>
+# include <metapod/tools/initconf.hh>
+
+#endif

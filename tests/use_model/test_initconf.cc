@@ -19,7 +19,7 @@
 // check their content is identical. It tests both initConf and printConf.
 
 // Common test tools
-#include "../common.hh"
+#include "common.hh"
 #include <metapod/tools/initconf.hh>
 
 using namespace metapod;

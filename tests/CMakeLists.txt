@@ -26,19 +26,24 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/)
 # Make Boost.Test generate the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 
-# ADD_TESTCASE(NAME)
+# ADD_TESTCASE(NAME SOURCE_FILE1 [SOURCE_FILE2])
 # ------------------------
 #
 # Define a test named `NAME'.
 #
-# This macro will create a binary from `NAME.cc', link it against
-# Boost and add it to the test suite.
+# This macro will
 #
-MACRO(ADD_TESTCASE NAME SOURCE_FILE)
-  ADD_EXECUTABLE(${NAME} ${SOURCE_FILE})
+# * create a binary from user-provided source files and common.hh
+# * link it against Boost
+# * add it to the test suite.
+#
+# The test should #include the common.hh header
+#
+MACRO(ADD_TESTCASE NAME)
+  ADD_EXECUTABLE(${NAME}
+    ${ARGN}
+    ${PROJECT_SOURCE_DIR}/tests/common.hh)
   ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
-
-  # Link against Boost.
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
 ENDMACRO(ADD_TESTCASE)
 

@@ -20,33 +20,18 @@
  * This file contains common tools and includes shared by the test suite
  */
 
-#ifndef METAPOD_TEST_COMMON_TOOLS
-# define METAPOD_TEST_COMMON_TOOLS
+#ifndef METAPOD_TESTS_COMMON_HH
+# define METAPOD_TESTS_COMMON_HH
 
 // Common includes
 # include <string>
 # include <iostream>
 # include <fstream>
-
-// metapod includes
-# ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
-#  include <metapod/models/simple_humanoid/simple_humanoid.hh>
-# endif
-# ifdef CURRENT_MODEL_IS_SIMPLE_ARM
-#  include <metapod/models/simple_arm/simple_arm.hh>
-# endif
-# include <metapod/tools/print.hh>
-# include <metapod/tools/initconf.hh>
+# include <cmath>
 
 // Boost test suite includes
 # define BOOST_TEST_MODULE METAPOD
 # include <boost/test/unit_test.hpp>
-
-// Performance test : some tests also output an average execution time of the
-// tested component if METAPOD_PERF_TEST is defined
-# ifdef METAPOD_PERF_TEST
-#  include <sys/time.h>
-# endif
 
 // Converts a string to a double if possible, returns 0 otherwise
 bool stringToDouble( const std::string& s, double& x )
@@ -60,12 +45,12 @@ bool stringToDouble( const std::string& s, double& x )
 // inferior to the threshold parameter, false otherwise
 bool compareDouble(double x, double y, double epsilon)
 {
-  if(fabs(y) > epsilon)
+  if(std::abs(y) > epsilon)
   {
-    double normalized_diff = fabs((x-y)/y);
+    double normalized_diff = std::abs((x-y)/y);
     return normalized_diff<epsilon?1:0;
   }
-  else return fabs(x)>epsilon?0:1;
+  else return std::abs(x)>epsilon?0:1;
 }
 
 // Extracts the next double encountered in a stream file and returns it.

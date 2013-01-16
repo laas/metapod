@@ -18,7 +18,7 @@
 // This test traverses the tree backward and prints events
 
 //Common test tools
-# include "../common.hh"
+#include "common.hh"
 #include <metapod/tools/backward_traversal_prev.hh>
 
 using namespace metapod;

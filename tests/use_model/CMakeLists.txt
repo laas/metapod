@@ -25,9 +25,21 @@ ADD_DEFINITIONS(
 STRING(TOUPPER "${CURRENT_MODEL}" CURRENT_MODEL_UPPER)
 ADD_DEFINITIONS(" -DCURRENT_MODEL_IS_${CURRENT_MODEL_UPPER}=1")
 
+# ADD_MODEL_TESTCASE(NAME)
+# ------------------------
+#
+# Define a test named `NAME'_`CURRENT_MODEL'.
+#
+# This macro will
+#
+# * create a test from `NAME'.cc and `common.hh'
+# * link it against th model lib
+#
+# The test should #include common.hh
+#
 MACRO(ADD_MODEL_TESTCASE NAME)
   SET(NEW_NAME ${NAME}_${CURRENT_MODEL})
-  ADD_TESTCASE(${NEW_NAME} ${NAME}.cc)
+  ADD_TESTCASE(${NEW_NAME} ${NAME}.cc common.hh)
   TARGET_LINK_LIBRARIES(${NEW_NAME} metapod_${CURRENT_MODEL})
 ENDMACRO(ADD_MODEL_TESTCASE)
 

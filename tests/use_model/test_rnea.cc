@@ -23,7 +23,7 @@
  */
 
 // Common test tools
-#include "../common.hh"
+#include "common.hh"
 #include <metapod/algos/rnea.hh>
 
 using namespace metapod;

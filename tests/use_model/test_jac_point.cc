@@ -24,7 +24,7 @@
  */
 
 // Common test tools
-#include "../common.hh"
+#include "common.hh"
 #include <metapod/tools/jac_point_robot.hh>
 
 using namespace metapod;

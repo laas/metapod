@@ -18,7 +18,7 @@
 // This test traverses the tree depth-first and prints events
 
 // Common test tools
-#include "../common.hh"
+#include "common.hh"
 #include <metapod/tools/depth_first_traversal.hh>
 
 using namespace metapod;
