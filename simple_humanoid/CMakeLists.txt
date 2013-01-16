@@ -1,9 +1,9 @@
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}/include)
 
 # Generate config.hh header.
 GENERATE_CONFIG_HEADER(
-  ${CMAKE_CURRENT_BINARY_DIR}/metapod/models/simple_humanoid/config.hh
+  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/simple_humanoid/config.hh
   metapod_simple_humanoid
   )
 
@@ -12,7 +12,7 @@ SET(METAPOD_SIMPLE_HUMANOID_MODEL_HEADERS
   include/metapod/models/simple_humanoid/body.hh
   include/metapod/models/simple_humanoid/joint.hh
   include/metapod/models/simple_humanoid/robot.hh
-  ${CMAKE_CURRENT_BINARY_DIR}/metapod/models/simple_humanoid/config.hh
+  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/simple_humanoid/config.hh
   )
 
 # Set header files installation prefix.

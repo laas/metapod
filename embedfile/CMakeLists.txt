@@ -1,4 +1,4 @@
-# Copyright 2012, 2013,
+# Copyright 2013
 #
 # Sébastien Barthélémy (Aldebaran Robotics)
 #
@@ -16,28 +16,6 @@
 # along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}/include)
 
-GENERATE_CONFIG_HEADER(
-  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/timer/config.hh
-  metapod_timer
-  )
-SET(METAPOD_TIMER_HEADERS
-  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/timer/config.hh
-  include/metapod/timer/timer.hh
-  )
-INSTALL(FILES ${METAPOD_TIMER_HEADERS}
-  DESTINATION include/metapod/timer
-  )
-ADD_LIBRARY(metapod_timer SHARED
-  src/timer.cc
-  ${METAPOD_TIMER_HEADERS}
-  )
-
-# BOOST_TIMER was introduced in boost 1.48
-IF(Boost_TIMER_FOUND)
-  SET_SOURCE_FILES_PROPERTIES("src/timer.cc" PROPERTIES
-        COMPILE_FLAGS " -DWITH_BOOST_TIMER")
-  TARGET_LINK_LIBRARIES(metapod_timer ${Boost_LIBRARIES})
-ENDIF()
+ADD_EXECUTABLE(embedfile src/embedfile.cc)
+TARGET_LINK_LIBRARIES(embedfile ${Boost_LIBRARIES})
