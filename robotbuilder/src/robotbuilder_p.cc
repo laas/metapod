@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <cctype>
 #include <boost/regex.hpp>
+#include <boost/algorithm/string/find_format.hpp>
+#include <boost/algorithm/string/regex_find_format.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <metapod/tools/spatial.hh>
@@ -127,8 +129,10 @@ public:
   ReplFunctor(std::map<std::string, std::string> & map):
       map_(map)
   {}
-  std::string operator()(boost::smatch m)
+  template <typename IteratorT>
+  std::string operator()(boost::algorithm::detail::regex_search_result<IteratorT> mm) const
   {
+    boost::match_results<IteratorT> m = mm.match_results();
     std::string key = m[1].str();
     return map_[key];
   }
@@ -156,16 +160,13 @@ void write_template(std::ostream& output,
     }
     expr << it->first << "))@";
     */
-  const char expr[] = "@(([a-zA-Z_][a-zA-Z0-9_]+))@";
-  ReplFunctor repl_functor(replacements);
-  boost::regex e;
-  e.assign(expr);
-  std::string out = boost::regex_replace(
+  boost::regex e("@(([a-zA-Z_][a-zA-Z0-9_]+))@");
+  ReplFunctor formatter(replacements);
+  std::string output_string = boost::algorithm::find_format_all_copy(
         input,
-        e,
-        repl_functor,
-        boost::regex_constants::format_literal);
-  output << out;
+        boost::algorithm::regex_finder(e, boost::regex_constants::format_literal),
+        formatter);
+  output << output_string;
 }
 
 }
