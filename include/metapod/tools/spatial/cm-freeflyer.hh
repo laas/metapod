@@ -36,12 +36,18 @@ namespace metapod
       ConstraintMotionFreeFlyer()
       { m_S = Matrix6d::Zero(); };
 
-      Matrix6d operator*(double d) const;
 
       Vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
       {
 	Vector6d r = static_cast<Vector6d>(m_S *ddqi);
 	return r;
+      }
+
+      Matrix6d operator* (FloatType x) const
+      {
+        Matrix6d tmp = Matrix6d::Zero();
+        tmp = x*m_S;                    
+        return tmp;                                                   
       }
 
       private:
@@ -54,34 +60,15 @@ namespace metapod
       Matrix6d transpose() const {return m_S.transpose();}
     };
 
-    Matrix6d ConstraintMotionFreeFlyer::operator*
-    (double x) const
-    {
-      Matrix6d tmp = Matrix6d::Zero();
-      tmp = x*m_S;                    
-      return tmp;                                                   
-    }
 
     template<>
     Matrix6d OperatorMul< Matrix6d, Inertia, ConstraintMotionFreeFlyer>::
       mul(const Inertia & m,
-	  const ConstraintMotionFreeFlyer &a) const
-    {
-      Matrix6d r;
-      r=Matrix6d::Zero();
-      r.block<3,3>(0,0)=skew(m.h())*a.S().block<3,3>(3,0);
-      r.block<3,3>(0,3)=m.I()*static_cast<Matrix3d>(a.S().block<3,3>(0,3));
-      r.block<3,3>(3,0)=m.m()*a.S().block<3,3>(3,0);
-      r.block<3,3>(3,3)=-skew(m.h())*a.S().block<3,3>(0,3);
-      return r;
-    }
+	  const ConstraintMotionFreeFlyer &a) const;
     
     Matrix6d operator*(const Inertia & m,
-		       const ConstraintMotionFreeFlyer &a) 
-    {
-      OperatorMul<Matrix6d,Inertia, ConstraintMotionFreeFlyer > om;
-      return om.mul(m,a);
-    }
+		       const ConstraintMotionFreeFlyer &a);
+
   } // End of spatial namespace
 } // End of metapod namespace
 #endif /* METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_FREE_FLYER_HH */
