@@ -46,39 +46,15 @@ namespace metapod
       Vector6dt transpose() const {return m_S.transpose();}
     };
 
-    Vector6d ConstraintMotionAnyAxis::operator*
-    (double x) const
-    {
-      Vector6d tmp = Vector6d::Zero();
-      tmp.segment<3>(0) = x*m_S.segment<3>(0);                    
-      return tmp;                                                   
-    }
+    
 
     template<>
     Vector6d OperatorMul< Vector6d, Inertia, ConstraintMotionAnyAxis>::
       mul(const Inertia & m,
-	  const ConstraintMotionAnyAxis &a) const
-    {
-      Vector6d r;
-      const Vector6d & altI = m.m_I.m_ltI;
-      r[0] = altI(0)*a.S()[0]+ altI(1)*a.S()[1]+ altI(3)*a.S()[2];
-      r[1] = altI(1)*a.S()[0]+ altI(2)*a.S()[1]+ altI(4)*a.S()[2];
-      r[2] = altI(3)*a.S()[0]+ altI(4)*a.S()[1]+ altI(5)*a.S()[2];
-
-      Matrix3d msh = -skew(m.m_h);
-      for(unsigned int i=0;i<3;i++)
-	r[i+3] = msh(i,0)*a.S()[0]+ 
-	  msh(i,1)*a.S()[1]+
-	  msh(i,2)*a.S()[2];
-      return r;
-    }
+	  const ConstraintMotionAnyAxis &a) const;
     
     Vector6d operator*(const Inertia & m,
-		       const ConstraintMotionAnyAxis &a) 
-    {
-      OperatorMul<Vector6d,Inertia, ConstraintMotionAnyAxis > om;
-      return om.mul(m,a);
-    }
+		       const ConstraintMotionAnyAxis &a);
   }
 }
 
