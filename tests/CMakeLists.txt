@@ -45,6 +45,7 @@ MACRO(ADD_TESTCASE NAME)
     ${PROJECT_SOURCE_DIR}/tests/common.hh)
   ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
+  TARGET_LINK_LIBRARIES(${NAME} metapod_core)
 ENDMACRO(ADD_TESTCASE)
 
 # the "use_model" subfolder is included once per tested model. The tests

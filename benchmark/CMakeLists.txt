@@ -29,7 +29,7 @@ SET(depth_list 1 2 3 4 5)
 
 # build the generator
 ADD_EXECUTABLE(make_model make_model.cc)
-TARGET_LINK_LIBRARIES(make_model metapod_robotbuilder)
+TARGET_LINK_LIBRARIES(make_model metapod_robotbuilder metapod_core)
 
 # build the sample models libraries
 FOREACH(depth IN LISTS depth_list)
@@ -60,4 +60,4 @@ ENDIF()
 
 # and finally, the benchmark
 ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
-TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
+TARGET_LINK_LIBRARIES(benchmark metapod_timer metapod_core ${_model_libs})
