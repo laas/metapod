@@ -64,9 +64,6 @@ namespace metapod
       return v;
     }
     
-    template <> const Vector6d ConstraintMotionOneAxis<AxisX>::m_S =lvector6dMaker( 1.0, 0.0, 0.0, 0.0 , 0.0, 0.0);
-    template <> const Vector6d ConstraintMotionOneAxis<AxisY>::m_S =lvector6dMaker( 0.0, 1.0, 0.0, 0.0 , 0.0, 0.0);
-    template <> const Vector6d ConstraintMotionOneAxis<AxisZ>::m_S =lvector6dMaker( 0.0, 0.0, 1.0, 0.0 , 0.0, 0.0);
 
     typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
     typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
@@ -74,32 +71,11 @@ namespace metapod
     
     // Operator Inertia = Inertia * float
     Vector6d operator*(const Inertia & m,
-                       const ConstraintMotionAxisX &)
-    {
-      Vector6d r;
-      r[0] = m.I()(0); r[1] = m.I()(1);r[2] = m.I()(3);
-      r[3] = 0.0; r[4] = -m.h()(2); r[5] = m.h()(1);
-      return r;
-    }
-
+                       const ConstraintMotionAxisX &);
     Vector6d operator*(const Inertia & m,
-                       const ConstraintMotionAxisY &)
-    {
-      Vector6d r;
-      r[0] = m.I()(1); r[1] = m.I()(2);r[2] = m.I()(4);
-      r[3] = m.h()(2); r[4] = 0.0; r[5] = -m.h()(0);
-      return r;
-    }
-
+                       const ConstraintMotionAxisY &);
     Vector6d operator*(const Inertia & m,
-                       const ConstraintMotionAxisZ &)
-    {
-      Vector6d r;
-      r[0] = m.I()(3); r[1] = m.I()(4);r[2] = m.I()(5);
-      r[3] = -m.h()(1); r[4] = m.h()(0); r[5] = 0.0;
-      return r;
-    }
-    
+                       const ConstraintMotionAxisZ &);
 
   }
 }
