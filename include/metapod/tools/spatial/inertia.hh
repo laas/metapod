@@ -78,18 +78,7 @@ namespace metapod
             << "I =\n" << I.I() << std::endl;
           return os;
         }
-
-      Inertia operator*(const FloatType &a) const
-      {
-        return Inertia(m_m*a, m_h*a, m_I*a);
-      }
-
-      Force operator*(const Motion & mv) const
-      {
-        return  Force(m_I*mv.w() + m_h.cross(mv.v()),
-                      m_m*mv.v() - m_h.cross(mv.w()));
-      }
-
+      
       template<class T, class U, class S>
       friend class OperatorMul;
 
@@ -107,11 +96,35 @@ namespace metapod
         lowerTriangularMatrix m_I;
     };
 
+    template<>
+    Inertia OperatorMul<Inertia,Inertia,FloatType>::mul(const Inertia & m,
+							const FloatType &a) const
+    {
+      return Inertia(m.m_m*a, m.m_h*a, m.m_I*a);
+    }
+	
+    Inertia operator*(const Inertia & m,
+		      const FloatType &a) 
+    {
+      OperatorMul<Inertia,Inertia,FloatType> om;
+      return om.mul(m,a);
+    }
+	
     /* Operator Force = Inertia * Motion */
     template<>
     Force OperatorMul<Force,Inertia,Motion>::mul(const Inertia & m,
-						 const Motion &mv) const;
+						 const Motion &mv) const
+    {
+	  return Force(m.m_I*mv.w() + m.m_h.cross(mv.v()),
+		       m.m_m*mv.v() - m.m_h.cross(mv.w()));
+    }
     
+    Force operator*(const Inertia &m,
+		    const Motion & mv) 
+    {
+      OperatorMul<Force,Inertia,Motion> om;
+      return om.mul(m,mv);
+    }
     
   } // end of namespace Spatial
 
