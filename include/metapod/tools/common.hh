@@ -30,6 +30,36 @@
 # include "metapod/tools/static_assert.hh"
 # include "metapod/macro.hh"
 # include "metapod/tools/jointmacros.hh"
+
+namespace metapod
+{
+  // Constant 3x3 Matrix initialization method.
+  inline const Matrix3d matrix3dMaker(
+    FloatType m00, FloatType m01, FloatType m02,
+    FloatType m10, FloatType m11, FloatType m12,
+    FloatType m20, FloatType m21, FloatType m22)
+  {
+    Matrix3d m;
+    m(0,0) = m00; m(0,1) = m01; m(0,2) = m02;
+    m(1,0) = m10; m(1,1) = m11; m(1,2) = m12;
+    m(2,0) = m20; m(2,1) = m21; m(2,2) = m22;
+    return m;
+  }
+
+  // Constant size 6 Vector initialization method.
+  inline const Vector6d vector6dMaker(FloatType v0,
+                                      FloatType v1,
+                                      FloatType v2,
+                                      FloatType v3,
+                                      FloatType v4,
+                                      FloatType v5)
+  {
+    Vector6d v;
+    v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
+    return v;
+  }
+
+}
 # include "metapod/tools/spatial.hh"
 # include "metapod/tools/bcalc.hh"
 # include "metapod/tools/jcalc.hh"
@@ -87,31 +117,6 @@ namespace metapod
       typedef C4 Child4;
   };
 
-  // Constant 3x3 Matrix initialization method.
-  inline const Matrix3d matrix3dMaker(
-    FloatType m00, FloatType m01, FloatType m02,
-    FloatType m10, FloatType m11, FloatType m12,
-    FloatType m20, FloatType m21, FloatType m22)
-  {
-    Matrix3d m;
-    m(0,0) = m00; m(0,1) = m01; m(0,2) = m02;
-    m(1,0) = m10; m(1,1) = m11; m(1,2) = m12;
-    m(2,0) = m20; m(2,1) = m21; m(2,2) = m22;
-    return m;
-  }
-
-  // Constant size 6 Vector initialization method.
-  inline const Vector6d vector6dMaker(FloatType v0,
-                                      FloatType v1,
-                                      FloatType v2,
-                                      FloatType v3,
-                                      FloatType v4,
-                                      FloatType v5)
-  {
-    Vector6d v;
-    v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
-    return v;
-  }
 
   // Constant Spatial::Inertia initialization method.
   inline Spatial::Inertia spatialInertiaMaker(const FloatType m,

@@ -36,7 +36,12 @@ namespace metapod
       ConstraintMotionFreeFlyer()
       { m_S = Matrix6d::Zero(); };
 
-      Matrix6d operator*(double d) const;
+      Matrix6d operator*(FloatType x) const
+      {
+        Matrix6d tmp = Matrix6d::Zero();
+        tmp = x*m_S;                    
+        return tmp;                                                   
+      }
 
       Vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
       {
@@ -53,16 +58,8 @@ namespace metapod
       const Matrix6d & S() const {return m_S;}
       Matrix6d transpose() const {return m_S.transpose();}
     };
-
-    Matrix6d ConstraintMotionFreeFlyer::operator*
-    (double x) const
-    {
-      Matrix6d tmp = Matrix6d::Zero();
-      tmp = x*m_S;                    
-      return tmp;                                                   
-    }
-
-    template<>
+    
+    template<> inline
     Matrix6d OperatorMul< Matrix6d, Inertia, ConstraintMotionFreeFlyer>::
       mul(const Inertia & m,
 	  const ConstraintMotionFreeFlyer &a) const
@@ -76,7 +73,7 @@ namespace metapod
       return r;
     }
     
-    Matrix6d operator*(const Inertia & m,
+    inline Matrix6d operator*(const Inertia & m,
 		       const ConstraintMotionFreeFlyer &a) 
     {
       OperatorMul<Matrix6d,Inertia, ConstraintMotionFreeFlyer > om;

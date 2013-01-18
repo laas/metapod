@@ -42,10 +42,13 @@ namespace metapod
     {
       public:
         // Constructors
-      ConstraintMotionOneAxis(){ }
+      ConstraintMotionOneAxis()
+      { m_S=Vector6d::Zero();
+        m_S[axis] = 1.0;
+      }
 
       private:
-        static const Vector6d m_S;
+        Vector6d m_S;
       public:
         const Vector6d & S() const {return m_S;}
         Vector6dt transpose() const {return m_S.transpose();}
@@ -64,17 +67,14 @@ namespace metapod
       return v;
     }
     
-    template <> const Vector6d ConstraintMotionOneAxis<AxisX>::m_S =lvector6dMaker( 1.0, 0.0, 0.0, 0.0 , 0.0, 0.0);
-    template <> const Vector6d ConstraintMotionOneAxis<AxisY>::m_S =lvector6dMaker( 0.0, 1.0, 0.0, 0.0 , 0.0, 0.0);
-    template <> const Vector6d ConstraintMotionOneAxis<AxisZ>::m_S =lvector6dMaker( 0.0, 0.0, 1.0, 0.0 , 0.0, 0.0);
-
+    
     typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
     typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
     typedef ConstraintMotionOneAxis<AxisZ> ConstraintMotionAxisZ;
     
     // Operator Inertia = Inertia * float
-    Vector6d operator*(const Inertia & m,
-                       const ConstraintMotionAxisX &)
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAxisX &)
     {
       Vector6d r;
       r[0] = m.I()(0); r[1] = m.I()(1);r[2] = m.I()(3);
@@ -82,8 +82,8 @@ namespace metapod
       return r;
     }
 
-    Vector6d operator*(const Inertia & m,
-                       const ConstraintMotionAxisY &)
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAxisY &)
     {
       Vector6d r;
       r[0] = m.I()(1); r[1] = m.I()(2);r[2] = m.I()(4);
@@ -91,8 +91,8 @@ namespace metapod
       return r;
     }
 
-    Vector6d operator*(const Inertia & m,
-                       const ConstraintMotionAxisZ &)
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAxisZ &)
     {
       Vector6d r;
       r[0] = m.I()(3); r[1] = m.I()(4);r[2] = m.I()(5);

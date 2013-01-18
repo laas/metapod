@@ -96,14 +96,14 @@ namespace metapod
         lowerTriangularMatrix m_I;
     };
 
-    template<>
+    template<> inline
     Inertia OperatorMul<Inertia,Inertia,FloatType>::mul(const Inertia & m,
 							const FloatType &a) const
     {
       return Inertia(m.m_m*a, m.m_h*a, m.m_I*a);
     }
 	
-    Inertia operator*(const Inertia & m,
+    inline Inertia operator*(const Inertia & m,
 		      const FloatType &a) 
     {
       OperatorMul<Inertia,Inertia,FloatType> om;
@@ -111,7 +111,7 @@ namespace metapod
     }
 	
     /* Operator Force = Inertia * Motion */
-    template<>
+    template<> inline
     Force OperatorMul<Force,Inertia,Motion>::mul(const Inertia & m,
 						 const Motion &mv) const
     {
@@ -119,8 +119,8 @@ namespace metapod
 		       m.m_m*mv.v() - m.m_h.cross(mv.w()));
     }
     
-    Force operator*(const Inertia &m,
-		    const Motion & mv) 
+    inline Force operator*(const Inertia &m,
+                           const Motion & mv) 
     {
       OperatorMul<Force,Inertia,Motion> om;
       return om.mul(m,mv);

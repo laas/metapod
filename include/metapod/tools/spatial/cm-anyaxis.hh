@@ -46,7 +46,7 @@ namespace metapod
       Vector6dt transpose() const {return m_S.transpose();}
     };
 
-    Vector6d ConstraintMotionAnyAxis::operator*
+    inline Vector6d ConstraintMotionAnyAxis::operator*
     (double x) const
     {
       Vector6d tmp = Vector6d::Zero();
@@ -54,7 +54,7 @@ namespace metapod
       return tmp;                                                   
     }
 
-    template<>
+    template<> inline
     Vector6d OperatorMul< Vector6d, Inertia, ConstraintMotionAnyAxis>::
       mul(const Inertia & m,
 	  const ConstraintMotionAnyAxis &a) const
@@ -73,8 +73,8 @@ namespace metapod
       return r;
     }
     
-    Vector6d operator*(const Inertia & m,
-		       const ConstraintMotionAnyAxis &a) 
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAnyAxis &a) 
     {
       OperatorMul<Vector6d,Inertia, ConstraintMotionAnyAxis > om;
       return om.mul(m,a);

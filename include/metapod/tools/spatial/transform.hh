@@ -282,7 +282,8 @@ namespace metapod
     typedef TransformT<RotationMatrixAboutY> TransformY;
     typedef TransformT<RotationMatrixAboutZ> TransformZ;
     typedef TransformT<RotationMatrixIdentity> TransformId;
-    template<>
+
+    template<> inline
     Transform OperatorMul<Transform, 
 			  TransformX, 
 			  Transform>::
@@ -294,14 +295,14 @@ namespace metapod
 				  aT.E().transpose()*aTX.r()));
     }
     
-    Transform operator*(const TransformX &aTX,
-			const Transform &aT)
+    inline Transform operator*(const TransformX &aTX,
+                               const Transform &aT)
     {
       OperatorMul<Transform,TransformX, Transform> om;
       return om.mul(aTX,aT);
     }
-
-    template <>
+    
+    template <> inline
     Vector6d TransformT<RotationMatrixAboutX>::mulMatrixTransposeBy(Vector6d &aF) const
         {
 	  Vector6d M;
@@ -327,7 +328,7 @@ namespace metapod
           return M;
         }
 
-    template <>
+    template <> inline
     Vector6d TransformT<RotationMatrix>::mulMatrixTransposeBy(Vector6d &aF) const 
         {
 	  Vector6d M;
