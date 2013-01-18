@@ -168,8 +168,6 @@ namespace metapod
     {                                                               \
       /* maj sXp */                                                 \
       Matrix3d localR;						    \
-      Matrix6d lS;                                                  \
-      lS = Matrix6d::Zero();                                        \
       FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
                 cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
                 cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
@@ -183,7 +181,7 @@ namespace metapod
       localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;             \
       localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
       localR(2,2) = cPsi * cTheta;                                  \
-      S.setlocalR(localR); \
+      S.setlocalR(localR);                                          \
       Xj = Spatial::Transform(localR, qi.segment<3>(0));            \
       sXp = Xj*Xt;                                                  \
     }                                                               \
@@ -191,26 +189,7 @@ namespace metapod
     inline void classname::jcalc(const Vector6d & qi,               \
                                  const Vector6d & dqi)              \
     {                                                               \
-      /* maj sXp */                                                 \
-      Matrix3d localR;                                              \
-      Matrix6d lS;                                                  \
-      lS = Matrix6d::Zero();                                        \
-      FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),           \
-                cTheta = cos(qi(4)), sTheta = sin(qi(4)),           \
-                cPhi   = cos(qi(5)), sPhi   = sin(qi(5));           \
-      /* localR = rx(Psi) * ry(Theta) * rz(Phi) */                  \
-      localR(0,0) = cTheta * cPhi;                                  \
-      localR(0,1) = cTheta * sPhi;                                  \
-      localR(0,2) = -sTheta;                                        \
-      localR(1,0) = -cPsi * sPhi + cPhi * sPsi * sTheta;            \
-      localR(1,1) = cPsi * cPhi + sPsi * sTheta * sPhi;             \
-      localR(1,2) = cTheta * sPsi;                                  \
-      localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;             \
-      localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
-      localR(2,2) = cPsi * cTheta;                                  \
-      S.setlocalR(localR); \
-      Xj = Spatial::Transform(localR, qi.segment<3>(0));            \
-      sXp = Xj*Xt;                                                  \
+      bcalc(qi);                                                    \
       /* maj vj */                                                  \
       vj = Spatial::Motion(S.S()*dqi);				    \
     }                                                               \
