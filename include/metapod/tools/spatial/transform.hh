@@ -287,14 +287,73 @@ namespace metapod
 			  TransformX, 
 			  Transform>::
     mul( const TransformX &aTX,
-	 const Transform &aT) const;
+	 const Transform &aT) const
+    {
+      return Transform(aTX.E()*aT.E(),
+		       (Vector3d)(aT.r() + 
+				  aT.E().transpose()*aTX.r()));
+    }
     
     Transform operator*(const TransformX &aTX,
-			const Transform &aT);
+			const Transform &aT)
+    {
+      OperatorMul<Transform,TransformX, Transform> om;
+      return om.mul(aTX,aT);
+    }
+
     template <>
-    Vector6d TransformT<RotationMatrixAboutX>::mulMatrixTransposeBy(Vector6d &aF) const;
+    Vector6d TransformT<RotationMatrixAboutX>::mulMatrixTransposeBy(Vector6d &aF) const
+        {
+	  Vector6d M;
+	  M[0] = aF(0);
+	  M[1] = m_E.m_c*aF(1) - m_E.m_s*aF(2);
+	  M[2] = m_E.m_s*aF(1) + m_E.m_c*aF(2);
+	  
+	  M[0] += (-m_E.m_c*m_r(2) + m_E.m_s*m_r(1)) * aF(4) + 
+	    (m_E.m_s*m_r(2) + m_E.m_c*m_r(1)) * aF(5) ;
+
+	  M[1] += m_r(2) * aF(3) 
+	    - m_E.m_s*m_r(0) * aF(4) 
+	    - m_E.m_c*m_r(0) * aF(5) ;
+
+	  M[2] += -m_r(1)* aF(3) + 
+	    m_E.m_c*m_r(0) * aF(4) 
+           -m_E.m_s*m_r(0) * aF(5);
+	  
+	  M[3] = aF(3) ;
+	  M[4] = m_E.m_c*aF(4) - m_E.m_s*aF(5);
+	  M[5] = m_E.m_s*aF(4) + m_E.m_c*aF(5);
+	  
+          return M;
+        }
+
     template <>
-    Vector6d TransformT<RotationMatrix>::mulMatrixTransposeBy(Vector6d &aF) const ;
+    Vector6d TransformT<RotationMatrix>::mulMatrixTransposeBy(Vector6d &aF) const 
+        {
+	  Vector6d M;
+          
+	  M[0] = m_E(0,0)*aF(0) + m_E(1,0)*aF(1) + m_E(2,0)*aF(2);
+	  M[1] = m_E(0,1)*aF(0) + m_E(1,1)*aF(1) + m_E(2,1)*aF(2);
+	  M[2] = m_E(0,2)*aF(0) + m_E(1,2)*aF(1) + m_E(2,2)*aF(2);
+	  
+	  M[0] += (-m_E(0,1)*m_r(2) + m_E(0,2)*m_r(1))* aF(3) + 
+	    (-m_E(1,1)*m_r(2) + m_E(1,2)*m_r(1)) * aF(4) + 
+	    (-m_E(2,1)*m_r(2) + m_E(2,2)*m_r(1)) * aF(5) ;
+
+	  M[1] += ( m_E(0,0)*m_r(2) - m_E(0,2)*m_r(0))* aF(3) + 
+	    ( m_E(1,0)*m_r(2) - m_E(1,2)*m_r(0)) * aF(4) + 
+	    ( m_E(2,0)*m_r(2) - m_E(2,2)*m_r(0)) * aF(5) ;
+
+	  M[2] += (-m_E(0,0)*m_r(1) + m_E(0,1)*m_r(0))* aF(3) + 
+	    (-m_E(1,0)*m_r(1) + m_E(1,1)*m_r(0)) * aF(4) + 
+	    (-m_E(2,0)*m_r(1) + m_E(2,1)*m_r(0)) * aF(5);
+	  
+	  M[3] = m_E(0,0)*aF(3) + m_E(1,0)*aF(4) + m_E(2,0)*aF(5);
+	  M[4] = m_E(0,1)*aF(3) + m_E(1,1)*aF(4) + m_E(2,1)*aF(5);
+	  M[5] = m_E(0,2)*aF(3) + m_E(1,2)*aF(4) + m_E(2,2)*aF(5);
+	  
+          return M;
+        }
   
   } // end of namespace Spatial
 
