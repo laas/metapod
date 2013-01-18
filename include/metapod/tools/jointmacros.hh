@@ -209,8 +209,8 @@ namespace metapod
       localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;            \
       localR(2,2) = cPsi * cTheta;                                  \
       S.setlocalR(localR); \
-      Xj = Spatial::Transform(localR, Vector3d::Zero());            \
-      sXp = Xj*Spatial::Transform(Matrix3d::Identity(), qi.segment<3>(0)); \
+      Xj = Spatial::Transform(localR, qi.segment<3>(0));            \
+      sXp = Xj*Xt;                                                  \
       /* maj vj */                                                  \
       vj = Spatial::Motion(S.S()*dqi);				    \
     }                                                               \
