@@ -19,6 +19,4 @@
 # Creation: 17/12/2012
 
 ADD_TESTCASE(test_rotation test_rotation.cc)
-TARGET_LINK_LIBRARIES(test_rotation metapod_core)
-ADD_TESTCASE(test_doubledef test_doubledef.cc doubledef.cc doubledef.hh)
-TARGET_LINK_LIBRARIES(test_doubledef metapod_core)
+#ADD_TESTCASE(test_doubledef test_doubledef.cc doubledef.cc doubledef.hh)
