@@ -228,40 +228,36 @@ namespace metapod
       struct ltI rotSymmetricMatrix(const struct ltI &A)
       {
 	struct ltI r;
-	cout << A << endl;
-	cout << "m_c:" << m_c << " m_s:" << m_s <<endl;
+        std::cout << A << std::endl;
+        std::cout << "m_c:" << m_c << " m_s:" << m_s << std::endl;
 
 	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
 	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(5));
 
 	FloatType beta_y = m_c*m_s*(A.m_ltI(0)- A.m_ltI(5)) +
 	  (1-2*m_s*m_s)*A.m_ltI(3);
-	
+
 	r.m_ltI(0) = A.m_ltI(0)-alpha_y;
-	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4); 
+	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4);
 	r.m_ltI(2) = A.m_ltI(2);
 	r.m_ltI(3) = beta_y;
 	r.m_ltI(4) = m_c*A.m_ltI(4) + m_s * A.m_ltI(1);
 	r.m_ltI(5) = A.m_ltI(5) + alpha_y;
 	return r;
 
-      }      
+      }
 
 
 
       friend std::ostream & operator<<(std::ostream &os,
 				       const struct RotationMatrixAboutY & aRMAX)
       {
-	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << endl;
-	os << "0.0 1.0 0.0 " << endl;
-	os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << endl;
+	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << std::endl;
+	os << "0.0 1.0 0.0 " << std::endl;
+	os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << std::endl;
 	return os;
       }
-      
-      
-      
     };
-  
   } // end Spatial namespace
 } // end metapod namespace
 

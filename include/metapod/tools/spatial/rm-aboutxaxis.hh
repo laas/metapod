@@ -264,9 +264,9 @@ namespace metapod
       friend std::ostream & operator<<(std::ostream &os,
 				       const struct RotationMatrixAboutX & aRMAX)
       {
-	os << "1.0 0.0 0.0" <<  endl;
-	os << "0.0 " <<  aRMAX.m_c << " " << aRMAX.m_s << endl;
-	os << "0.0 " << -aRMAX.m_s << " " << aRMAX.m_c << endl;
+	os << "1.0 0.0 0.0" << std::endl;
+	os << "0.0 " <<  aRMAX.m_c << " " << aRMAX.m_s << std::endl;
+	os << "0.0 " << -aRMAX.m_s << " " << aRMAX.m_c << std::endl;
 	return os;
       }
 

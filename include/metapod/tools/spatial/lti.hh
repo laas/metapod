@@ -25,7 +25,6 @@
 #include<fstream>
 #include<ostream>
 
-using namespace std;
 namespace metapod
 {
 
@@ -35,8 +34,8 @@ namespace metapod
     {
       Vector6d m_ltI;
       ltI() { m_ltI = Vector6d::Zero(); }
-      ltI(const Matrix3d &I) 
-      { 
+      ltI(const Matrix3d &I)
+      {
 	m_ltI(0) = I(0,0);
 	m_ltI(1) = I(1,0); m_ltI(2) = I(1,1);
 	m_ltI(3) = I(2,0); m_ltI(4) = I(2,1); m_ltI(5) = I(2,2);
@@ -54,7 +53,7 @@ namespace metapod
 	tmp(2,0) = m_ltI(3); tmp(2,1) = m_ltI(4); tmp(2,2) = m_ltI(5);
 	return tmp;
       }
-      
+
       struct ltI operator+(const struct ltI & altI) const
       {
 	struct ltI a;
@@ -124,22 +123,20 @@ namespace metapod
 	return r;
       }
 
-      friend std::ostream &operator<<(std::ostream &os, 
+      friend std::ostream &operator<<(std::ostream &os,
 				      const struct ltI &altI)
       {
-	os << altI.m_ltI(0) << " " << altI.m_ltI(1) << " " << altI.m_ltI(3) << endl;
-	os << altI.m_ltI(1) << " " << altI.m_ltI(2) << " " << altI.m_ltI(4) << endl;
-	os << altI.m_ltI(3) << " " << altI.m_ltI(4) << " " << altI.m_ltI(5) << endl;
+	os << altI.m_ltI(0) << " " << altI.m_ltI(1) << " " << altI.m_ltI(3) << std::endl;
+	os << altI.m_ltI(1) << " " << altI.m_ltI(2) << " " << altI.m_ltI(4) << std::endl;
+	os << altI.m_ltI(3) << " " << altI.m_ltI(4) << " " << altI.m_ltI(5) << std::endl;
 	return os;
       }
-      
-      
+
     };
 
     typedef struct ltI lowerTriangularMatrix;
 
-    
   }
 }
 
-#endif 
+#endif
