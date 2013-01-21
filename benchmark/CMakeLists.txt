@@ -44,6 +44,7 @@ FOREACH(depth IN LISTS depth_list)
     ADD_CUSTOM_COMMAND(
       OUTPUT ${_sources}
       COMMAND make_model ${depth}
+      DEPENDS make_model
     )
     ADD_LIBRARY(${_libname} SHARED ${_sources})
     LIST(APPEND _model_libs "${_libname}")
