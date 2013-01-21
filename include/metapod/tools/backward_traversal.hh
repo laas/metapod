@@ -57,7 +57,6 @@
 
 # include "metapod/tools/common.hh"
 # include "metapod/tools/is_ancestor.hh"
-# include <boost/static_assert.hpp>
 
 namespace metapod
 {
@@ -112,7 +111,8 @@ namespace metapod
             typename EndNode=NP >
   struct backward_traversal
   {
-    BOOST_STATIC_ASSERT(( is_ancestor<EndNode, StartNode>::value ));
+    METAPOD_STATIC_ASSERT(( is_ancestor<EndNode, StartNode>::value ),
+        "EndNode must be an ancestor of StartNode");
     static void run()
     {
       backward_traversal_internal<Visitor, StartNode, EndNode>::run();

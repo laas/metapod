@@ -1,7 +1,7 @@
 // Copyright 2013,
 //
 // Olivier Stasse (JRL/LAAS, CNRS/AIST)
-// Sébastien Barthélémy (Aldébaran Robotics)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -36,8 +36,8 @@
 // which was used in ubuntu 10.04, we thus avoid it.
 #  define METAPOD_STATIC_ASSERT(x, msg) BOOST_STATIC_ASSERT_MSG(x, msg)
 # else
-// no-op implementation
-#  define METAPOD_STATIC_ASSERT(x, msg)
+// no-op implementation, which can be used at class scope
+#  define METAPOD_STATIC_ASSERT(x, msg) typedef int metapod_static_assert_no_op_
 # endif
 
 #endif

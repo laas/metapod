@@ -70,8 +70,8 @@ namespace metapod
             int offset = 0, bool includeFreeFlyer = true,
             bool call_bcalc = true >
   struct jac_point_chain {
-    METAPOD_STATIC_ASSERT(Robot::NBDOF >= 6,
-        "jac_point_chain does not support robots with less than 6 DoFs")
+    METAPOD_STATIC_ASSERT((Robot::NBDOF >= 6),
+        "jac_point_chain does not support robots with less than 6 DoFs");
     typedef jac_point_relative<Robot, StartBody, EndBody,
           offset - 6*(1-includeFreeFlyer), call_bcalc > solver;
     typedef typename solver::jacobian_t jacobian_t;
