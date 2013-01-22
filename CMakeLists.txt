@@ -63,7 +63,11 @@ ENDIF()
 
 # Search for Eigen.
 ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.0")
-INCLUDE_DIRECTORIES(${EIGEN3_INCLUDE_DIRS})
+# Eigen (at least version 3.0.5) makes gcc report conversion warnings
+# when one assigns to a block. This floods the compilation results.
+# So we include Eigen headers as if they were system headers: the compiler
+# won't report warning coming from them.
+INCLUDE_DIRECTORIES(SYSTEM ${EIGEN3_INCLUDE_DIRS})
 
 # Set header files.
 SET(${PROJECT_NAME}_ROOT_HEADERS
