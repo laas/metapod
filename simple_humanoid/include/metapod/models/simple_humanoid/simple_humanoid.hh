@@ -30,7 +30,6 @@
 # endif
 
 # include "config.hh"
-# include <Eigen/Eigen>
 
 # include <metapod/tools/common.hh>
 # include <metapod/tools/joint.hh>

@@ -24,7 +24,7 @@
 
 # include <metapod/robotbuilder/config.hh>
 # include <string>
-# include <Eigen/Eigen>
+# include <Eigen/Dense>
 
 namespace metapod {
 

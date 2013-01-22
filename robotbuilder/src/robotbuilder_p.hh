@@ -22,7 +22,6 @@
 # include <metapod/robotbuilder/robotbuilder.hh>
 
 # include <string>
-# include <Eigen/Eigen>
 # include <utility>
 # include <fstream>
 # include <sstream>

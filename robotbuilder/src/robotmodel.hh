@@ -19,7 +19,7 @@
 # define METAPOD_ROBOTMODEL_HH
 
 # include <string>
-# include <Eigen/Eigen>
+# include <Eigen/Dense>
 # include <vector>
 
 namespace metapod {

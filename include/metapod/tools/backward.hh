@@ -25,8 +25,6 @@
 #ifndef METAPOD_BACKWARD_HH
 # define METAPOD_BACKWARD_HH
 
-# include "Eigen/Dense"
-
 namespace metapod
 {
   namespace Spatial
@@ -40,7 +38,7 @@ namespace metapod
       return Motion(mv1.w() + mv2.w() + mv3.w() + mv4.w(),
                     mv1.v() + mv2.v() + mv3.v() + mv4.v());
     }
-    
+
     inline Motion sum(const Motion & mv1,
 		      const Motion & mv2,
 		      const Motion & mv3)
@@ -59,7 +57,5 @@ namespace metapod
   } // end of namespace Spatial
 
 }
-
-
 
 #endif
