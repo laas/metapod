@@ -1,6 +1,7 @@
 #include "robotmodel.hh"
 #include <cassert>
 #include <metapod/tools/constants.hh>
+#include <limits>
 
 namespace {
 
@@ -130,9 +131,9 @@ int RobotModel::dof_index(int link_id) const
 int RobotModel::nb_children(int link_id) const
 {
   if (link_id == NO_PARENT)
-    return roots_id_.size();
+    return static_cast<int>(roots_id_.size());
   assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
-  return links_[link_id].child_id_.size();
+  return static_cast<int>(links_[link_id].child_id_.size());
 }
 
 int RobotModel::child_id(int link_id, unsigned int rank) const
@@ -151,13 +152,30 @@ int RobotModel::child_id(int link_id, unsigned int rank) const
 
 void RobotModel::add_link(const Link& link)
 {
+  // we assume the caller as filled the link with the proper id.
+  // We might want to change this policy in the following way: set the id
+  // ourselves and return it to the caller.
   assert(link.id_ == static_cast<int>(links_.size()));
+  // we use int as index type but store links in a std::vector which uses
+  // size_t as index type. Check we won't overflow.
+  assert(links_.size() < static_cast<size_t>(std::numeric_limits<int>::max()));
+
   const int parent_id = link.parent_id_;
   if (parent_id == NO_PARENT)
+  {
+    // we use int as index type but store links in a std::vector which uses
+    // size_t as index type. Check we won't overflow.
+    assert(roots_id_.size() <
+        static_cast<size_t>(std::numeric_limits<int>::max()));
     roots_id_.push_back(link.id_);
+  }
   else
   {
     assert(parent_id >= 0 && static_cast<size_t>(parent_id) < links_.size());
+    // we use int as index type but store links in a std::vector which uses
+    // size_t as index type. Check we won't overflow.
+    assert(links_[parent_id].child_id_.size() <
+        static_cast<size_t>(std::numeric_limits<int>::max()));
     links_[parent_id].child_id_.push_back(link.id_);
   }
   links_.push_back(link);
