@@ -33,13 +33,12 @@
 # define BOOST_TEST_MODULE METAPOD
 # include <boost/test/unit_test.hpp>
 
-// Converts a string to a double if possible, returns 0 otherwise
+// Converts a string to a double if possible, returns false otherwise
 bool stringToDouble( const std::string& s, double& x )
- {
-   std::istringstream i(s);
-   i >> x;
-   return !(i.fail() || i.bad());
- }
+{
+  std::istringstream i(s);
+  return (i >> x);
+}
 
 // Returns true if the normalized difference between two doubles is strictly
 // inferior to the threshold parameter, false otherwise
@@ -61,8 +60,7 @@ bool getNextDouble( std::ifstream & is, double& x)
   while(!is.eof())
   {
     is >> s;
-    if(stringToDouble(s, x))
-      return true;
+    return stringToDouble(s, x);
   }
   return false;
 }
@@ -93,9 +91,9 @@ void compareLogs(
   std::ifstream reference_stream(reference_file.c_str());
   // ensure the reference file is really there
   BOOST_CHECK(reference_stream);
+  unsigned int i = 0;
   while(reference_stream >> reference_string)
   {
-    unsigned int i = 0;
     if(stringToDouble(reference_string, reference_value))
     {
       bool get_y_ok = getNextDouble(result_stream, result_value);
@@ -122,7 +120,8 @@ void compareLogs(
     else
     {
       i = 0;
-      result_stream.clear(); result_stream.seekg(0);
+      result_stream.clear();
+      result_stream.seekg(0);
       name = reference_string;
       do
       {
@@ -130,7 +129,6 @@ void compareLogs(
       } while(result_string.compare(name) && !result_stream.eof());
     }
   }
-
 }
 
 // Compare two text files
