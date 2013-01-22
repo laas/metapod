@@ -192,6 +192,10 @@ namespace metapod
       bcalc(qi);                                                    \
       /* maj vj */                                                  \
       vj = Spatial::Motion(S.S()*dqi);				    \
+      Matrix3d localDotR = Spatial::skew (dqi.segment<3>(3))	    \
+	* S.S().block<3,3>(0,3);				    \
+      dotS.block<3,3>(0,3) = dotS.block<3,3>(3,0) = localDotR;      \
+      cj = Spatial::Motion(dotS*dqi);                               \
     }                                                               \
     struct e_n_d__w_i_t_h__s_e_m_i_c_o_l_o_n
 
