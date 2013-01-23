@@ -1,8 +1,7 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
-// Olivier Stasse
-//
-// LAAS, CNRS
+// Olivier Stasse (LAAS, CNRS)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -30,111 +29,112 @@ namespace metapod
 
   namespace Spatial
   {
-    struct ltI
+    class ltI
     {
-      Vector6d m_ltI;
-      ltI() { m_ltI = Vector6d::Zero(); }
+    public:
+      ltI(): m_ltI() { }
       ltI(const Matrix3d &I)
       {
-	m_ltI(0) = I(0,0);
-	m_ltI(1) = I(1,0); m_ltI(2) = I(1,1);
-	m_ltI(3) = I(2,0); m_ltI(4) = I(2,1); m_ltI(5) = I(2,2);
+        m_ltI(0) = I(0,0);
+        m_ltI(1) = I(1,0); m_ltI(2) = I(1,1);
+        m_ltI(3) = I(2,0); m_ltI(4) = I(2,1); m_ltI(5) = I(2,2);
       }
-      ltI(const Vector6d &I)
+      ltI(const Vector6d &I):
+        m_ltI(I)
       {
-	m_ltI = I;
+      }
+
+      static ltI Zero()
+      {
+        // without the static_cast we get the following error:
+        //
+        //     error: call of overloaded ‘ltI(const ConstantReturnType)’
+        //     is ambiguous
+        return ltI(static_cast<Vector6d>(Vector6d::Zero()));
       }
 
       Matrix3d toMatrix() const
       {
-	Matrix3d tmp;
-	tmp(0,0) = m_ltI(0); tmp(0,1) = m_ltI(1); tmp(0,2) = m_ltI(3);
-	tmp(1,0) = m_ltI(1); tmp(1,1) = m_ltI(2); tmp(1,2) = m_ltI(4);
-	tmp(2,0) = m_ltI(3); tmp(2,1) = m_ltI(4); tmp(2,2) = m_ltI(5);
-	return tmp;
+        Matrix3d tmp;
+        tmp(0,0) = m_ltI(0); tmp(0,1) = m_ltI(1); tmp(0,2) = m_ltI(3);
+        tmp(1,0) = m_ltI(1); tmp(1,1) = m_ltI(2); tmp(1,2) = m_ltI(4);
+        tmp(2,0) = m_ltI(3); tmp(2,1) = m_ltI(4); tmp(2,2) = m_ltI(5);
+        return tmp;
       }
 
-      struct ltI operator+(const struct ltI & altI) const
+      ltI operator+(const ltI & altI) const
       {
-	struct ltI a;
-	for(unsigned int i=0;i<6;i++)
-	  a.m_ltI(i) = m_ltI(i) + altI.m_ltI(i);
-	return a;
+        ltI a;
+        a.m_ltI = m_ltI + altI.m_ltI;
+        return a;
       }
 
-      friend struct ltI operator*(FloatType a, const struct ltI& altI)
+      friend ltI operator*(FloatType a, const ltI& altI)
       {
-	struct ltI r(Vector6d(altI.m_ltI * a));
-	return r;
+        return ltI(static_cast<Vector6d>(a * altI.m_ltI));
       }
 
-      struct ltI operator*(FloatType a) const
+      ltI operator*(FloatType a) const
       {
-	struct ltI r(Vector6d(m_ltI * a));
-	return r;
+        return ltI(static_cast<Vector6d>(a * m_ltI));
       }
 
       Vector3d operator*(const Vector3d &a) const
       {
-	Vector3d r;
-	r(0) = m_ltI(0) *a(0) + m_ltI(1) *a(1) + m_ltI(3)*a(2);
-	r(1) = m_ltI(1) *a(0) + m_ltI(2) *a(1) + m_ltI(4)*a(2);
-	r(2) = m_ltI(3) *a(0) + m_ltI(4) *a(1) + m_ltI(5)*a(2);
-	return r;
+        Vector3d r;
+        r(0) = m_ltI(0) * a(0) + m_ltI(1) * a(1) + m_ltI(3) * a(2);
+        r(1) = m_ltI(1) * a(0) + m_ltI(2) * a(1) + m_ltI(4) * a(2);
+        r(2) = m_ltI(3) * a(0) + m_ltI(4) * a(1) + m_ltI(5) * a(2);
+        return r;
       }
 
       Matrix3d operator*(const Matrix3d &a) const
       {
-	Matrix3d r;
-	for(unsigned int i=0;i<3;i++)
-	  r(0,i) = m_ltI(0) *a(0,i) + m_ltI(1) *a(1,i) + m_ltI(3)*a(2,i);
-
-	for(unsigned int i=0;i<3;i++)
-	  r(1,i) = m_ltI(1) *a(0,i) + m_ltI(2) *a(1,i) + m_ltI(4)*a(2,i);
-
-	for(unsigned int i=0;i<3;i++)
-	  r(2,i) = m_ltI(3) *a(0,i) + m_ltI(4) *a(1,i) + m_ltI(5)*a(2,i);
-
-	return r;
+        Matrix3d r;
+        for(unsigned int i=0; i<3; ++i)
+        {
+          r(0,i) = m_ltI(0) * a(0,i) + m_ltI(1) * a(1,i) + m_ltI(3) * a(2,i);
+          r(1,i) = m_ltI(1) * a(0,i) + m_ltI(2) * a(1,i) + m_ltI(4) * a(2,i);
+          r(2,i) = m_ltI(3) * a(0,i) + m_ltI(4) * a(1,i) + m_ltI(5) * a(2,i);
+        }
+        return r;
       }
 
       FloatType operator()(int x) const
       {
-	return m_ltI(x);
+        return m_ltI(x);
       }
 
       Matrix3d operator+(const Matrix3d &a) const
       {
-	Matrix3d r;
-	r=a;
-	r(0,0) += m_ltI(0); r(0,1) += m_ltI(1); r(0,2) += m_ltI(3);
-	r(1,0) += m_ltI(1); r(1,1) += m_ltI(2); r(1,2) += m_ltI(4);
-	r(2,0) += m_ltI(3); r(2,1) += m_ltI(4); r(2,2) += m_ltI(5);
-	return r;
+        Matrix3d r(a);
+        r(0,0) += m_ltI(0); r(0,1) += m_ltI(1); r(0,2) += m_ltI(3);
+        r(1,0) += m_ltI(1); r(1,1) += m_ltI(2); r(1,2) += m_ltI(4);
+        r(2,0) += m_ltI(3); r(2,1) += m_ltI(4); r(2,2) += m_ltI(5);
+        return r;
       }
 
       Matrix3d operator-(const Matrix3d &a) const
       {
-	Matrix3d r;
-	r=-a;
-	r(0,0) += m_ltI(0); r(0,1) += m_ltI(1); r(0,2) += m_ltI(3);
-	r(1,0) += m_ltI(1); r(1,1) += m_ltI(2); r(1,2) += m_ltI(4);
-	r(2,0) += m_ltI(3); r(2,1) += m_ltI(4); r(2,2) += m_ltI(5);
-	return r;
+        Matrix3d r(-a);
+        r(0,0) += m_ltI(0); r(0,1) += m_ltI(1); r(0,2) += m_ltI(3);
+        r(1,0) += m_ltI(1); r(1,1) += m_ltI(2); r(1,2) += m_ltI(4);
+        r(2,0) += m_ltI(3); r(2,1) += m_ltI(4); r(2,2) += m_ltI(5);
+        return r;
       }
 
       friend std::ostream &operator<<(std::ostream &os,
-				      const struct ltI &altI)
+                                      const ltI &altI)
       {
-	os << altI.m_ltI(0) << " " << altI.m_ltI(1) << " " << altI.m_ltI(3) << std::endl;
-	os << altI.m_ltI(1) << " " << altI.m_ltI(2) << " " << altI.m_ltI(4) << std::endl;
-	os << altI.m_ltI(3) << " " << altI.m_ltI(4) << " " << altI.m_ltI(5) << std::endl;
-	return os;
+        os << altI.m_ltI(0) << " " << altI.m_ltI(1) << " " << altI.m_ltI(3) << std::endl;
+        os << altI.m_ltI(1) << " " << altI.m_ltI(2) << " " << altI.m_ltI(4) << std::endl;
+        os << altI.m_ltI(3) << " " << altI.m_ltI(4) << " " << altI.m_ltI(5) << std::endl;
+        return os;
       }
-
+      Vector6d m_ltI; //todo: make private
     };
 
-    typedef struct ltI lowerTriangularMatrix;
+    typedef ltI lowerTriangularMatrix;
 
   }
 }

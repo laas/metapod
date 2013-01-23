@@ -1,9 +1,8 @@
-// Copyright 2012,
+// Copyright 2012, 2013
 //
-// Maxime Reis
-// Antonio El Khoury
-//
-// JRL/LAAS, CNRS/AIST
+// Maxime Reis (JRL/LAAS, CNRS/AIST)
+// Antonio El Khoury (JRL/LAAS, CNRS/AIST)
+// Sébastien Barthélémy (Aldebaran Robotics)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -18,16 +17,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.(2);
 
-
 #ifndef METAPOD_SPATIAL_ALGEBRA_FORCE_HH
 # define METAPOD_SPATIAL_ALGEBRA_FORCE_HH
 
 namespace metapod
 {
-
   namespace Spatial
   {
-
     class Force
     {
       public:
@@ -36,6 +32,9 @@ namespace metapod
         Force(const Vector3d & n, const Vector3d & f) : m_n(n), m_f(f) {}
         Force(const Vector6d & v) : m_n(v.segment<3>(0)),
                                     m_f(v.segment<3>(3)) {}
+
+        // initializers
+        static const Force Zero() { return Force(Vector3d::Zero(), Vector3d::Zero()); }
 
         // Getters
         const Vector3d & n() const { return m_n; }

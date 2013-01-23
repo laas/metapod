@@ -41,7 +41,7 @@ namespace metapod
 
         static const Motion Zero()
         {
-	  return Motion (Vector3d::Zero(), Vector3d::Zero());
+          return Motion (Vector3d::Zero(), Vector3d::Zero());
         }
 
         // Getters
