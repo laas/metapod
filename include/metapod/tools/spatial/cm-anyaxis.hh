@@ -31,10 +31,10 @@ namespace metapod
     {
       public:
         // Constructors
-      ConstraintMotionAnyAxis(double axisx, 
-			      double axisy,
-			      double axisz)
-      { m_S(0) = axisx; m_S(1) = axisy; m_S(2) = axisz;};
+      ConstraintMotionAnyAxis(double axisx,
+                              double axisy,
+                              double axisz)
+      { m_S(0) = axisx; m_S(1) = axisy; m_S(2) = axisz;}
 
       Vector6d operator*(double d) const;
 
@@ -50,14 +50,14 @@ namespace metapod
     (double x) const
     {
       Vector6d tmp = Vector6d::Zero();
-      tmp.segment<3>(0) = x*m_S.segment<3>(0);                    
-      return tmp;                                                   
+      tmp.segment<3>(0) = x*m_S.segment<3>(0);
+      return tmp;
     }
 
     template<> inline
     Vector6d OperatorMul< Vector6d, Inertia, ConstraintMotionAnyAxis>::
       mul(const Inertia & m,
-	  const ConstraintMotionAnyAxis &a) const
+          const ConstraintMotionAnyAxis &a) const
     {
       Vector6d r;
       const Vector6d & altI = m.m_I.m_ltI;
@@ -67,14 +67,14 @@ namespace metapod
 
       Matrix3d msh = -skew(m.m_h);
       for(unsigned int i=0;i<3;i++)
-	r[i+3] = msh(i,0)*a.S()[0]+ 
-	  msh(i,1)*a.S()[1]+
-	  msh(i,2)*a.S()[2];
+        r[i+3] = msh(i,0)*a.S()[0]+
+          msh(i,1)*a.S()[1]+
+          msh(i,2)*a.S()[2];
       return r;
     }
-    
+
     inline Vector6d operator*(const Inertia & m,
-                              const ConstraintMotionAnyAxis &a) 
+                              const ConstraintMotionAnyAxis &a)
     {
       OperatorMul<Vector6d,Inertia, ConstraintMotionAnyAxis > om;
       return om.mul(m,a);

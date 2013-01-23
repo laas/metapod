@@ -27,8 +27,8 @@ namespace metapod
     // Constraint motion for one specific axis.
     enum AxisType { AxisX=0, AxisY, AxisZ };
 
-    template <int axis> 
-    struct Vector6dMakerOneAxis 
+    template <int axis>
+    struct Vector6dMakerOneAxis
     {
       Vector6d v;
       Vector6dMakerOneAxis()
@@ -50,8 +50,8 @@ namespace metapod
       private:
         Vector6d m_S;
       public:
-        const Vector6d & S() const {return m_S;}
-        Vector6dt transpose() const {return m_S.transpose();}
+        const Vector6d & S() const { return m_S; }
+        Vector6dt transpose() const { return m_S.transpose(); }
     };
 
     // Constant size 6 vector initialization method.
@@ -66,12 +66,11 @@ namespace metapod
       v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
       return v;
     }
-    
-    
+
     typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
     typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
     typedef ConstraintMotionOneAxis<AxisZ> ConstraintMotionAxisZ;
-    
+
     // Operator Inertia = Inertia * float
     inline Vector6d operator*(const Inertia & m,
                               const ConstraintMotionAxisX &)
@@ -99,8 +98,6 @@ namespace metapod
       r[3] = -m.h()(1); r[4] = m.h()(0); r[5] = 0.0;
       return r;
     }
-    
-
   }
 }
-#endif 
+#endif
