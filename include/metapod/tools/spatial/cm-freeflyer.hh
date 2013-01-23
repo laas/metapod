@@ -74,7 +74,7 @@ namespace metapod
     }
 
     inline Matrix6d operator*(const Inertia & m,
-		       const ConstraintMotionFreeFlyer &a)
+                              const ConstraintMotionFreeFlyer &a)
     {
       OperatorMul<Matrix6d,Inertia, ConstraintMotionFreeFlyer > om;
       return om.mul(m,a);
