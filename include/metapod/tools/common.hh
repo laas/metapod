@@ -66,13 +66,21 @@ namespace metapod
 
 namespace metapod
 {
-  struct Body
+  class Body
   {
-    Spatial::Transform iX0;
-    Spatial::Motion vi;
-    Spatial::Motion ai;
-    Spatial::Force Fext;
-    Spatial::Inertia Iic;
+  public:
+    Spatial::Force Fext; // input for rnea
+    Spatial::Transform iX0; // temporary/result used in rnea and bcalc
+    Spatial::Motion vi;// temporary used in rnea
+    Spatial::Motion ai; // temporary used in rnea
+    Spatial::Inertia Iic; // temporary used in crba
+    Body():
+      Fext(Spatial::Force::Zero()),
+      iX0(),
+      vi(),
+      ai(),
+      Iic()
+    {}
   };
 
   // specializations should map robot node_ids to node classes.
