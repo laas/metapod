@@ -28,7 +28,9 @@ RobotBuilder::RobotBuilder()
 // the declaration of the private implementation).
 // Note that a compiler-generated destructor would not be.
 RobotBuilder::~RobotBuilder()
-{}
+{
+  delete pimpl_;
+}
 
 RobotBuilder::Status RobotBuilder::set_directory(const std::string & directory)
 {
