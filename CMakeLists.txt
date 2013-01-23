@@ -95,6 +95,7 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/is_ancestor.hh
   include/${PROJECT_NAME}/tools/jac_point_robot.hh
   include/${PROJECT_NAME}/tools/jcalc.hh
+  include/${PROJECT_NAME}/tools/joint.hh
   include/${PROJECT_NAME}/tools/print.hh
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/static_assert.hh
