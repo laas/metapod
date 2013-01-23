@@ -74,7 +74,7 @@ SET(${PROJECT_NAME}_ROOT_HEADERS
   ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/config.hh
   include/${PROJECT_NAME}/macro.hh
   )
-SET(${PROJECT_NAME}_ALGO_HEADERS
+SET(${PROJECT_NAME}_ALGOS_HEADERS
   include/${PROJECT_NAME}/algos/rnea.hh
   include/${PROJECT_NAME}/algos/crba.hh
   include/${PROJECT_NAME}/algos/jac_point_relative.hh
