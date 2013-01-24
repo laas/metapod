@@ -12,6 +12,7 @@ SET(METAPOD_SIMPLE_ARM_MODEL_HEADERS
   include/metapod/models/simple_arm/body.hh
   include/metapod/models/simple_arm/joint.hh
   include/metapod/models/simple_arm/robot.hh
+  include/metapod/models/simple_arm/simple_arm.hh
   ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/simple_arm/config.hh
   )
 

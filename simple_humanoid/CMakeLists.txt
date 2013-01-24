@@ -12,6 +12,7 @@ SET(METAPOD_SIMPLE_HUMANOID_MODEL_HEADERS
   include/metapod/models/simple_humanoid/body.hh
   include/metapod/models/simple_humanoid/joint.hh
   include/metapod/models/simple_humanoid/robot.hh
+  include/metapod/models/simple_humanoid/simple_humanoid.hh
   ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/simple_humanoid/config.hh
   )
 
