@@ -167,6 +167,16 @@ namespace metapod
 	ls = m_c * aRM.m_s + m_s * aRM.m_c;
 	return RotationMatrixAboutY(lc,ls);
       }
+
+      Vector3d operator*(const Vector3d &aRM) const
+      {
+	Vector3d r;
+	r(0) = m_c*aRM(0) -m_s*aRM(2);
+	r(1) =  aRM(1);
+	r(2) = m_s * aRM(0) + m_c * aRM(2);
+	return r;
+      }
+
       /** \brief Optimized computation of 
 	  \f$ ry(\theta) {\bf A} ry(\theta)^{\top} \f$ 
 	  where \f$ {\bf A} \f$ is a generalized 3x3 matrix.
@@ -228,36 +238,40 @@ namespace metapod
       struct ltI rotSymmetricMatrix(const struct ltI &A)
       {
 	struct ltI r;
-        std::cout << A << std::endl;
-        std::cout << "m_c:" << m_c << " m_s:" << m_s << std::endl;
+	cout << A << endl;
+	cout << "m_c:" << m_c << " m_s:" << m_s <<endl;
 
 	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
 	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(5));
 
 	FloatType beta_y = m_c*m_s*(A.m_ltI(0)- A.m_ltI(5)) +
 	  (1-2*m_s*m_s)*A.m_ltI(3);
-
+	
 	r.m_ltI(0) = A.m_ltI(0)-alpha_y;
-	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4);
+	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4); 
 	r.m_ltI(2) = A.m_ltI(2);
 	r.m_ltI(3) = beta_y;
 	r.m_ltI(4) = m_c*A.m_ltI(4) + m_s * A.m_ltI(1);
 	r.m_ltI(5) = A.m_ltI(5) + alpha_y;
 	return r;
 
-      }
+      }      
 
 
 
       friend std::ostream & operator<<(std::ostream &os,
 				       const struct RotationMatrixAboutY & aRMAX)
       {
-	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << std::endl;
-	os << "0.0 1.0 0.0 " << std::endl;
-	os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << std::endl;
+	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << endl;
+	os << "0.0 1.0 0.0 " << endl;
+	os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << endl;
 	return os;
       }
+      
+      
+      
     };
+  
   } // end Spatial namespace
 } // end metapod namespace
 

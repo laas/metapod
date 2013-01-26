@@ -168,6 +168,15 @@ namespace metapod
 
       }
 
+      Vector3d operator*(const Vector3d &aRM) const
+      {
+	Vector3d r;
+	r(0) = m_c*aRM(0) + m_s*aRM(1);
+	r(1) =-m_s*aRM(0) + m_c*aRM(1);
+	r(2) = aRM(2);
+	return r;
+      }
+
       /** \brief Optimized computation of \f$ R {\bf A} R^{\top} \f$ where \f$ {\bf A} \f$ is a generalized 3x3 matrix.
        The total number of operations is 12m + 12a.
 
@@ -245,9 +254,9 @@ namespace metapod
       friend std::ostream & operator<<(std::ostream &os,
 				       const struct RotationMatrixAboutZ & aRMAX)
       {
-	os << aRMAX.m_c << " " << aRMAX.m_s << " 0.0" << std::endl;
-	os <<-aRMAX.m_s << " " << aRMAX.m_c << " 0.0" << std::endl;
-	os << " 0.0 0.0 1.0 "<< std::endl;
+	os << aRMAX.m_c << " " << aRMAX.m_s << " 0.0" << endl;
+	os <<-aRMAX.m_s << " " << aRMAX.m_c << " 0.0" << endl;
+	os << " 0.0 0.0 1.0 "<< endl;
 	return os;
       }
       

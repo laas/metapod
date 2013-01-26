@@ -300,79 +300,15 @@ namespace metapod
         {
           for(unsigned int lj=0;lj<3;++lj)
             if (lj==lind[li])
-              std::cout << " " << lvalue[li] ;
+              cout << " " << lvalue[li] ;
             else
-              std::cout << " 0.0";
-          std::cout << std::endl;
+              cout << " 0.0";
+          cout << endl;
         }
         return os;
       }
     };
 
-    template < typename RotationMatrixT,
-               typename RotMatChgAxis>
-    struct RotationBinaryOp
-    {
-    private:
-      RotMatChgAxis m_rmca;
-      RotationMatrixT m_RM;
-      Matrix3d m_r;
-    public:
-
-      RotationBinaryOp(RotationMatrix &lrm, RotMatChgAxis &lrmca):
-        m_RM(lrm)
-      {
-        m_r = lrm.toMatrix() * lrmca.toMatrix();
-      }
-
-      RotationBinaryOp transpose() const
-      {
-        RotationMatrixChangeAxis< rmca_traits_transpose<typename RotMatChgAxis::Traits> > lrmca;
-        RotationBinaryOp< rmca_traits_transpose<typename RotMatChgAxis::Traits>,
-            RotationMatrixT> r(lrmca,m_RM.toMatrix().transpose());
-        return r;
-      }
-
-      Matrix3d toMatrix() const
-      {
-        return m_r;
-      }
-
-      Matrix3d operator*(FloatType a) const
-      {
-        return Matrix3d(a*toMatrix());
-      }
-
-      RotationBinaryOp operator-() const
-      {
-        RotationMatrixChangeAxis< rmca_traits_minus<typename RotMatChgAxis::Traits> > lrmca;
-        RotationBinaryOp< RotationMatrixT,
-            rmca_traits_minus<typename RotMatChgAxis::Traits> >
-            r(lrmca,-m_RM.toMatrix());
-        return r;
-      }
-
-      Matrix3d operator*(const Matrix3d &A) const
-      {
-        return Matrix3d(m_r * A);
-      }
-
-      RotationMatrix operator*(const RotationMatrix &aRM) const
-      {
-        return RotationMatrix(m_r *aRM.toMatrix());
-      }
-
-      RotationMatrix operator*(const RotationMatrixAboutX &aRM) const
-      {
-        return RotationMatrix(m_r *aRM.toMatrix());
-      }
-
-      Vector3d operator*(const Vector3d &av) const
-      {
-        return Vector3d (m_RM * ( m_rmca * av));
-      }
-
-    };
 
   } // end Spatial namespace
 } // end metapod namespace
