@@ -300,10 +300,10 @@ namespace metapod
         {
           for(unsigned int lj=0;lj<3;++lj)
             if (lj==lind[li])
-              cout << " " << lvalue[li] ;
+              os << " " << lvalue[li] ;
             else
-              cout << " 0.0";
-          cout << endl;
+              os << " 0.0";
+          os << std::endl;
         }
         return os;
       }

@@ -146,7 +146,7 @@ namespace metapod
 		else
 		  os << " " << aRMAX.m_scalar ;
 	      }
-	    os << endl;
+	    os << std::endl;
 	  }
 	return os;
       }
