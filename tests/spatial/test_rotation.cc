@@ -50,7 +50,8 @@ void check(Matrix3d &C,
   Matrix3d diff_checkd_d3d = C - D;
   // Compute the norm of the difference.
   double norm_diff_checkd_d3d = diff_checkd_d3d.squaredNorm();
-
+  if (norm_diff_checkd_d3d > 1e-10)
+    { std::cout << "****************** ERROR ***************" << std::endl; }
   BOOST_CHECK(norm_diff_checkd_d3d < 1e-10);
 }
 
