@@ -38,6 +38,8 @@
 # include "metapod/tools/spatial/rm-aboutzaxis.hh"
 # include "metapod/tools/spatial/rm-identity.hh"
 # include "metapod/tools/spatial/rm-chgaxis.hh"
+# include "metapod/tools/spatial/rm-binaryop.hh"
+# include "metapod/tools/spatial/rm-mulop.hh"
 
 
 #endif 
