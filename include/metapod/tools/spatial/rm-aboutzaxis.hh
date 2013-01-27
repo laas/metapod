@@ -233,7 +233,7 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      struct ltI rotSymmetricMatrix(const struct ltI &A)
+      struct ltI rotSymmetricMatrix(const struct ltI &A) const
       {
 	struct ltI r;
 	FloatType alpha_z = 2*m_c*m_s*A.m_ltI(1) +
@@ -246,6 +246,39 @@ namespace metapod
 	r.m_ltI(2) = A.m_ltI(2) - alpha_z;
 	r.m_ltI(3) = m_c*A.m_ltI(3) + m_s*A.m_ltI(4);
 	r.m_ltI(4) = m_c*A.m_ltI(4) - m_s*A.m_ltI(3);
+	r.m_ltI(5) = A.m_ltI(5);
+	return r;
+      }      
+
+      /** \brief Optimized computation of 
+	  \f$ rz(\theta)^{\top} {\bf A} rz(\theta) \f$ 
+	  where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
+	  \f$ \alpha_z = 2csA_{10} + s^2 (A_{11} - A_{00})\f$
+	  \f$ \beta_z = cs(A_{11} - A_{00}) + (1-2s^2)A_{10} \f$
+	  \f[
+	    lt(rz(\theta){\bf A}rz(\theta)^{\top}) =
+	       \left[
+	         \begin{matrix}
+		    A_{00} + \alpha_z & \cdotp & \cdotp \\
+		    \beta_z & A_{11} - \alpha_z & \cdotp \\
+		    cA_{20} + sA_{21} & cA_{21} -sA_{20} & A_{22} \\
+		 \end{matrix}
+	       \right]
+	  \f]
+       */
+      struct ltI rotTSymmetricMatrix(const struct ltI &A) const
+      {
+	struct ltI r;
+	FloatType alpha_z = 2*m_c*m_s*A.m_ltI(1) +
+	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(2));
+	FloatType beta_z  = m_c*m_s*(A.m_ltI(0) - A.m_ltI(2))+
+	  (1-2*m_s*m_s)*A.m_ltI(1);
+
+	r.m_ltI(0) = A.m_ltI(0) - alpha_z;
+	r.m_ltI(1) = beta_z; 
+	r.m_ltI(2) = A.m_ltI(2) + alpha_z;
+	r.m_ltI(3) = m_c*A.m_ltI(3) - m_s*A.m_ltI(4);
+	r.m_ltI(4) = m_c*A.m_ltI(4) + m_s*A.m_ltI(3);
 	r.m_ltI(5) = A.m_ltI(5);
 	return r;
       }      

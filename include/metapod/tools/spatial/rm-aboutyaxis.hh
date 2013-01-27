@@ -235,7 +235,7 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      struct ltI rotSymmetricMatrix(const struct ltI &A)
+      struct ltI rotSymmetricMatrix(const struct ltI &A) const
       {
 	struct ltI r;
 
@@ -255,6 +255,41 @@ namespace metapod
 
       }      
 
+      /** \brief Optimized computation of 
+	  \f$ ry(\theta)^{\top} {\bf A} ry(\theta) \f$ 
+	  where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
+	  \f$ \alpha_y = 2csA_{20} + s^2 (A_{22} - A_{00})\f$
+	  \f$ \beta_y = cs(A_{22} - A_{00}) + (1-2s^2)A_{20} \f$
+	  \f[
+	    lt(ry(\theta){\bf A}ry(\theta)^{\top}) =
+	       \left[
+	         \begin{matrix}
+		    A_{00} - \alpha_y & \cdotp & \cdotp \\
+		    cA_{10} - sA_{12} & A_{11}  & \cdotp \\
+		    \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y
+		 \end{matrix}
+	       \right]
+	  \f]
+       */
+      struct ltI rotTSymmetricMatrix(const struct ltI &A) const
+      {
+	struct ltI r;
+
+	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
+	  m_s*m_s*(A.m_ltI(5) - A.m_ltI(1));
+
+	FloatType beta_y = m_c*m_s*(A.m_ltI(5)- A.m_ltI(0)) +
+	  (1-2*m_s*m_s)*A.m_ltI(3);
+	
+	r.m_ltI(0) = A.m_ltI(0)+alpha_y;
+	r.m_ltI(1) = m_c*A.m_ltI(1) + m_s*A.m_ltI(4); 
+	r.m_ltI(2) = A.m_ltI(2);
+	r.m_ltI(3) = beta_y;
+	r.m_ltI(4) = m_c*A.m_ltI(4) - m_s * A.m_ltI(1);
+	r.m_ltI(5) = A.m_ltI(5) - alpha_y;
+	return r;
+
+      }      
 
 
       friend std::ostream & operator<<(std::ostream &os,

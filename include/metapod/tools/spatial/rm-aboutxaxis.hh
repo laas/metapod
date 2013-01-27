@@ -27,11 +27,18 @@ namespace metapod
   namespace Spatial
   {
 
-    /// \object RotationMatrixAboutX
-    /// This object implements specific operations related to the rotation matrix
-    /// about the X-axis:
-    /// \f[ rx(\theta) = \left[ \begin{matrix} 1 & 0 & 0 \\ 0 & c & s \\ 0 & -s & c \end{matrix} \right] \f]
-    /// 
+    /** \object RotationMatrixAboutX
+        This object implements specific operations related to the rotation matrix
+     about the X-axis:
+     \f[ 
+     rx(\theta) = 
+     \left[ \begin{matrix} 
+     1 & 0 & 0 \\ 
+     0 & c & s \\ 
+     0 & -s & c 
+     \end{matrix} \right] 
+     \f]
+    */ 
     struct RotationMatrixAboutX
     {
       /// Store directly \f$ cos(\theta) \f$ and \f$ sin(\theta) \f$
@@ -243,7 +250,7 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      struct ltI rotSymmetricMatrix(const struct ltI &A)
+      struct ltI rotSymmetricMatrix(const struct ltI &A) const
       {
 	struct ltI r;
 	FloatType alpha_x = 2*m_c*m_s*A.m_ltI(4) +
@@ -257,6 +264,40 @@ namespace metapod
 	r.m_ltI(3) = m_c*A.m_ltI(3) - m_s*A.m_ltI(1);
 	r.m_ltI(4) = beta_x;
 	r.m_ltI(5) = A.m_ltI(5) - alpha_x;
+	return r;
+
+      }      
+
+      /** \brief Optimized computation of 
+	  \f$ rx(\theta)^{\top} {\bf A} rx(\theta) \f$ 
+	  where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
+	  \f$ \alpha_x = 2csA_{21} + s^2 (A_{11} - A_{22})\f$
+	  \f$ \beta_x = cs(A_{11} - A_{22}) + (1-2s^2)A_{21} \f$
+	  \f[
+	    lt(rx(\theta){\bf A}rx(\theta)^{\top}) =
+	       \left[
+	         \begin{matrix}
+		    A_{00} & \cdotp & \cdotp \\
+		    cA_{10} + sA_{20} & A_{11} + \alpha_x & \cdotp \\
+		    cA_{20} - sA_{10} & \beta_x & A_{22} - \alpha_x 
+		 \end{matrix}
+	       \right]
+	  \f]
+       */
+      struct ltI rotTSymmetricMatrix(const struct ltI &A) const
+      {
+	struct ltI r;
+	FloatType alpha_x = 2*m_c*m_s*A.m_ltI(4) +
+	  m_s*m_s*(A.m_ltI(2) - A.m_ltI(5));
+	FloatType beta_x  = m_c*m_s*(A.m_ltI(2) - A.m_ltI(5))+
+	  (1-2*m_s*m_s)*A.m_ltI(4);
+
+	r.m_ltI(0) = A.m_ltI(0);
+	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(3); 
+	r.m_ltI(2) = A.m_ltI(2) - alpha_x;
+	r.m_ltI(3) = m_c*A.m_ltI(3) + m_s*A.m_ltI(1);
+	r.m_ltI(4) = beta_x;
+	r.m_ltI(5) = A.m_ltI(5) + alpha_x;
 	return r;
 
       }      

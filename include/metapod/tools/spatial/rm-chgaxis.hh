@@ -283,6 +283,11 @@ namespace metapod
         return r;
       }
 
+      ltI rotTSymmetricMatrix(const ltI &A)
+      {
+        return rotSymmetricMatrix(A);
+      }
+
       Vector3d operator*(const Vector3d &ar) const
       {
         return Vector3d(traits::value_X*ar[traits::ind_X],
