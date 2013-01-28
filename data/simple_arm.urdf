@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf8"?>
+<!-- this file describes the simple_arm example model from metapod. One can
+     generate the metapod model and check the metapod tests pass. -->
+<robot name="simple_arm">
+  <link name="NP">
+  </link>
+  <link name="ARM">
+    <inertial>
+      <origin xyz="0 0 -0.225" rpy="0 0 0"/>
+      <mass value="2.75"/>
+      <inertia ixx="4.68703125e-02" ixy="0" ixz="0" iyy="4.68703125e-02" iyz="0" izz="9.28125000e-04" />
+    </inertial>
+  </link>
+  <link name="FOREARM">
+    <inertial>
+      <origin xyz="0 0 -0.2" rpy="0 0 0"/>
+      <mass value="1.75"/>
+      <inertia ixx="2.35666667e-02"  ixy="0"  ixz="0" iyy="2.35666667e-02" iyz="0" izz="4.66666667e-04" />
+    </inertial>
+  </link>
+  <link name="HAND">
+    <inertial>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="9.46875000e-04"  ixy="0"  ixz="0" iyy="9.46875000e-04" iyz="0" izz="1.87500000e-05" />
+    </inertial>
+  </link>
+
+  <joint type="continuous" name="SHOULDER">
+    <parent link="NP"></parent>
+    <child link="ARM"></child>
+    <origin rpy="0 -1.5707963267948966 0" xyz="0 0 1"></origin>
+    <axis xyz="1 0 0"></axis>
+  </joint>
+  <joint type="continuous" name="ELBOW">
+    <parent link="ARM"></parent>
+    <child link="FOREARM"></child>
+    <origin rpy="0 0 0" xyz="0 0 -0.45"></origin>
+    <axis xyz="1 0 0"></axis>
+  </joint>
+  <joint type="continuous" name="WRIST">
+    <parent link="FOREARM"></parent>
+    <child link="HAND"></child>
+    <origin rpy="0 0 0" xyz="0 0 -0.4"></origin>
+    <axis xyz="1 0 0"></axis>
+  </joint>
+</robot>

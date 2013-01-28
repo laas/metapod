@@ -44,3 +44,37 @@ FUNCTION(GENERATE_CONFIG_HEADER OUTPUT LIBRARY_NAME)
     ${OUTPUT}
     @ONLY)
 ENDFUNCTION(GENERATE_CONFIG_HEADER)
+
+# ADD_SAMPLEMODEL
+#
+# Call metapodfromurdf to create one of the sample models
+#
+# NAME: the name of the model. Either simple_arm or simple_humanoid.
+FUNCTION(ADD_SAMPLEMODEL name)
+  IF(NOT WITH_METAPODFROMURDF)
+    ERROR("Could not find metapodfromurdf")
+  ENDIF()
+  SET(_libname "metapod_${name}")
+  SET(_urdf_file "${PROJECT_SOURCE_DIR}/data/${name}.urdf")
+  SET(_config_file "${PROJECT_SOURCE_DIR}/data/${name}.config")
+  SET(_license_file "${PROJECT_SOURCE_DIR}/data/metapod_license_file.txt")
+  SET(_model_dir "${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/${name}")
+  INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
+  SET(_sources
+    ${_model_dir}/config.hh
+    ${_model_dir}/${name}.hh
+    ${_model_dir}/${name}.cc)
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${_sources}
+    COMMAND ${METAPODFROMURDF_EXECUTABLE}
+    --name ${name}
+    --libname ${_libname}
+    --directory ${_model_dir}
+    --config-file ${_config_file}
+    --license-file ${_license_file}
+    ${_urdf_file}
+    DEPENDS ${METAPODFROMURDF_EXECUTABLE} ${_urdf_file}
+    MAIN_DEPENDENCY ${_urdf_file}
+    )
+  ADD_LIBRARY(${_libname} ${_sources})
+ENDFUNCTION()

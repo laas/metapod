@@ -1,4 +1,4 @@
-# Copyright 2011, 2012,
+# Copyright 2011, 2012, 2013
 #
 # Maxime Reis (JRL/LAAS, CNRS/AIST)
 # Antonio El Khoury (JRL/LAAS, CNRS/AIST)
@@ -24,6 +24,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 INCLUDE(cmake/base.cmake)
 INCLUDE(cmake/cpack.cmake)
 INCLUDE(cmake/boost.cmake)
+INCLUDE(cmake/ros.cmake)
 INCLUDE(cmakeutils.cmake)
 
 SET(PROJECT_NAME metapod)
@@ -31,16 +32,25 @@ SET(PROJECT_DESCRIPTION "Implementation of a robot dynamics library")
 SET(PROJECT_URL "https://github.com/laas/metapod")
 
 SET(CXX_DISABLE_WERROR True)
+CMAKE_POLICY(SET CMP0012 NEW)
 
 IF(UNIX OR MINGW)
   ADD_DEFINITIONS("-fvisibility=hidden")
 ENDIF()
 
 # Options
-CMAKE_POLICY(SET CMP0012 NEW)
-OPTION(BENCHMARK "Build the benchmarking tool" OFF)
-OPTION(WITH_SIMPLE_HUMANOID "Build the simple humanoid example model" ON)
-OPTION(WITH_SIMPLE_ARM "Build the simple arm example model" ON)
+IF(NOT CMAKE_CROSSCOMPILING)
+  SET(NOT_CROSSCOMPILING TRUE)
+ELSE()
+  SET(NOT_CROSSCOMPILING FALSE)
+ENDIF()
+
+OPTION(BENCHMARK "Generate and build the benchmarks" ${NOT_CROSSCOMPILING})
+OPTION(BUILD_METAPODFROMURDF "Build the urdf parser" ${NOT_CROSSCOMPILING})
+OPTION(WITH_SIMPLE_HUMANOID "Generate and build the simple humanoid example
+ model and the related tests" ${BUILD_METAPODFROMURDF})
+OPTION(WITH_SIMPLE_ARM "Generate and build the simple arm example model and
+ the related tests" ${BUILD_METAPODFROMURDF})
 
 SETUP_PROJECT()
 
@@ -133,20 +143,38 @@ INSTALL(FILES ${${PROJECT_NAME}_SPATIAL_HEADERS}
 
 INCLUDE_DIRECTORIES("include" "${CMAKE_CURRENT_BINARY_DIR}/include")
 
-IF(${WITH_SIMPLE_HUMANOID})
-  ADD_SUBDIRECTORY(simple_humanoid)
-ENDIF()
-IF(${WITH_SIMPLE_ARM})
-  ADD_SUBDIRECTORY(simple_arm)
-ENDIF()
-ADD_SUBDIRECTORY(tests)
-
 ADD_SUBDIRECTORY(embedfile)
 ADD_SUBDIRECTORY(robotbuilder)
-IF(${BENCHMARK})
+
+# we cannot always build metapodfromurdf, because it depends on ROS bits, which
+# we do not control very well. Moreover, when cross-compiling, we typically do
+# not want to run it on the target, but on the build host. Hence we provide
+# support for finding binary version.
+IF(BUILD_METAPODFROMURDF)
+  ADD_SUBDIRECTORY(metapodfromurdf)
+  SET(WITH_METAPODFROMURDF TRUE)
+ELSE()
+  IF(METAPODFROMURDF_EXECUTABLE)
+    SET(WITH_METAPODFROMURDF TRUE)
+  ELSE()
+    FIND_PACKAGE(metapodfromurdf)
+    SET(WITH_METAPODFROMURDF ${METAPODFROMURDF_FOUND})
+  ENDIF()
+ENDIF()
+
+IF(WITH_SIMPLE_ARM)
+  ADD_SAMPLEMODEL("simple_arm")
+ENDIF()
+IF(WITH_SIMPLE_HUMANOID)
+  ADD_SAMPLEMODEL("simple_humanoid")
+ENDIF()
+
+IF(BENCHMARK)
   ADD_SUBDIRECTORY(timer)
   ADD_SUBDIRECTORY(benchmark)
-ENDIF(${BENCHMARK})
+ENDIF()
+
+ADD_SUBDIRECTORY(tests)
 
 SETUP_PROJECT_FINALIZE()
 SETUP_PROJECT_CPACK()
