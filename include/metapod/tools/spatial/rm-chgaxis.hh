@@ -126,6 +126,7 @@ namespace metapod
           A(0,iX) = lX & A(0,j) = 0 \text{ if } j \neq iX \\
           A(1,iY) = lY & A(1,j) = 0 \text{ if } j \neq iY \\
           A(2,iZ) = lZ & A(2,j) = 0 \text{ if } j \neq iZ \\
+          \end{matrix}
         \f]
      */
     template < typename traits >
