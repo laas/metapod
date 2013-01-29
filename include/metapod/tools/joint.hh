@@ -38,7 +38,8 @@ namespace metapod
     void jcalc(const Vector1d& qi, const Vector1d& dqi);
   };
 
-  inline RevoluteAxisXJoint::RevoluteAxisXJoint()
+  inline RevoluteAxisXJoint::RevoluteAxisXJoint():
+    cj(Spatial::Motion::Zero())
   {
   }
 
@@ -79,6 +80,7 @@ namespace metapod
 
   inline RevoluteAxisAnyJoint::RevoluteAxisAnyJoint(
       double axis_x, double axis_y, double axis_z):
+    cj(Spatial::Motion::Zero()),
     S(axis_x, axis_y, axis_z),
     axis_(axis_x, axis_y, axis_z)
   {
