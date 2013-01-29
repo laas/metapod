@@ -8,10 +8,21 @@ for a particular robot at compile-time.
 It makes use of R. Featherstone's Spatial Algebra to describe forces, motions
 and inertias (cf. Rigid Body Dynamics Algorithms, Roy Featherstone).
 
-As of today, the following algorithms have been implemented:
- - RNEA (Recursive Newton Euler Algorithm) for inverse dynamics
- - CRBA (Composite Rigid Body Algorithm) to compute the Joint-Space Inertia
-    Matrix.
+Dependencies
+------------
+
+The package depends on several packages which have to be available on
+your machine.
+
+ - System tools:
+   - CMake (>=2.6)
+   - pkg-config
+   - usual compilation tools (GCC/G++, make, etc.)
+ - Libraries:
+   - Eigen (>=3.0.0)
+   - Boost (>=1.40.0)
+     Boost Test is used in the test suite
+   - optionally, liburdf, as provided by ROS
 
 Setup
 -----
@@ -21,23 +32,15 @@ directory:
 
     mkdir _build
     cd _build
-    cmake [OPTIONS] ..
+    cmake -DBUILD_METAPODFROMURDF=OFF
     make install
 
 Please note that CMake produces a `CMakeCache.txt` file which should
 be deleted to reconfigure a package from scratch.
 
+If you want to build the urdf converter, you'll need to install ROS too, and
+to run
 
-### Dependencies
+    source /opt/ros/fuerte/setup.bash
 
-The package depends on several packages which have to be available on
-your machine.
-
- - Libraries:
-   - Eigen (>=3.0.0)
-   - Boost (>=1.48.0)
-     Boost Test is used in the test suite
- - System tools:
-   - CMake (>=2.6)
-   - pkg-config
-   - usual compilation tools (GCC/G++, make, etc.)
+before running cmake.
