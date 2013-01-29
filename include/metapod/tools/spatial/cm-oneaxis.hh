@@ -54,18 +54,6 @@ namespace metapod
         Vector6dt transpose() const { return m_S.transpose(); }
     };
 
-    // Constant size 6 vector initialization method.
-    inline const Vector6d lvector6dMaker(FloatType v0,
-                                         FloatType v1,
-                                         FloatType v2,
-                                         FloatType v3,
-                                         FloatType v4,
-                                         FloatType v5)
-    {
-      Vector6d v;
-      v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3;  v[4] = v4; v[5] = v5;
-      return v;
-    }
 
     typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
     typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
