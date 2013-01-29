@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <boost/version.hpp>
 #include <boost/program_options.hpp>
 #include <vector>
 #include <algorithm>
@@ -269,7 +270,7 @@ int main(int argc, char** argv)
   // in config file, but will not be shown to the user.
   po::options_description hidden("Hidden options");
   hidden.add_options()
-      ("input-file", po::value<std::string>()->required(),
+      ("input-file", po::value<std::string>(),
        "input file in urdf format");
 
   po::options_description cmdline_options, config_file_options;
@@ -296,6 +297,14 @@ int main(int argc, char** argv)
       std::cout << visible << "\n";
       return 0;
     }
+    // deal with mandatory options
+    // with boost >= 1.42, we'll declare these options as required and
+    // this check won't be necessary anymore.
+    if (vm.count("input-file") == 0)
+    {
+      std::cout << visible << "\n";
+      return 1;
+    }
     if (vm.count("config-file"))
     {
       std::ifstream stream(vm["config-file"].as<std::string>().c_str());
@@ -319,16 +328,17 @@ int main(int argc, char** argv)
         boost::split(tokens, *it, boost::is_any_of( ":" ));
 
         using boost::program_options::validation_error;
-        if (tokens.size() != 2)
-        {
-           throw validation_error(validation_error::invalid_option_value,
-                                  "joint-dof-index", *it);
-        }
         int value = -1;
-        if (!(std::stringstream(tokens[1]) >> value))
+        if ((tokens.size() != 2) || !(std::stringstream(tokens[1]) >> value))
         {
-           throw validation_error(validation_error::invalid_option_value,
-                                  "joint-dof-index", *it);
+#if BOOST_VERSION >= 104200
+          throw validation_error(validation_error::invalid_option_value,
+                                  *it, "joint-dof-index");
+#else
+          std::stringstream msg("invalid joint-dof-index option value:");
+          msg << *it;
+          throw validation_error(msg.str());
+#endif
         }
         joint_dof_index[tokens[0]] = value;
       }

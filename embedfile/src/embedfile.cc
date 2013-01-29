@@ -126,7 +126,7 @@ int main(int argc, char** argv)
       return STATUS_SUCCESS;
     }
     // deal with mandatory options
-    // with boost >= 1.42, we'll declare these options ase required and
+    // with boost >= 1.42, we'll declare these options as required and
     // this check won't be necessary anymore.
     if (vm.count("output-file") == 0 ||
         vm.count("input-file") == 0 ||
