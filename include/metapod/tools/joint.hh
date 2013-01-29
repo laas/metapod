@@ -147,8 +147,8 @@ namespace metapod
     bcalc(qi);
     vj = Spatial::Motion(S.S()*dqi);
     Matrix6d dotS = Matrix6d::Zero();
-    Matrix3d localDotR = Spatial::skew (dqi.segment<3>(3))
-      * S.S().block<3,3>(0,3);
+    Matrix3d localDotR = static_cast<Matrix3d>(Spatial::skew (dqi.segment<3>(3))
+                                               * S.S().block<3,3>(0,3));
     dotS.block<3,3>(0,3) = dotS.block<3,3>(3,0) = localDotR;
     cj = Spatial::Motion(dotS*dqi);
   }
