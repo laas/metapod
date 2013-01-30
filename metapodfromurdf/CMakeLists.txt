@@ -14,9 +14,6 @@ TARGET_LINK_LIBRARIES(metapodfromurdf
 FOREACH(dep rosconsole urdf)
   ADD_ROSPACK_DEPENDENCY(${dep})
   ROSPACK_USE_DEPENDENCY(metapodfromurdf ${dep})
-  # the following command is a workaround
-  # see https://github.com/jrl-umi3218/jrl-cmakemodules/issues/20
-  TARGET_LINK_LIBRARIES(metapodfromurdf ${dep})
 ENDFOREACH()
 
 GET_PROPERTY(METAPODFROMURDF_EXECUTABLE
