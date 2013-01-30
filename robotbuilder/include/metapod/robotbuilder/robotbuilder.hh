@@ -33,7 +33,11 @@ class RobotBuilderP; // private implementation
 class  METAPOD_ROBOTBUILDER_DLLAPI RobotBuilder
 {
 public:
-  enum JointType { FREE_FLYER, REVOLUTE_AXIS_X, REVOLUTE_AXIS_ANY };
+  enum JointType { FREE_FLYER, 
+                   REVOLUTE_AXIS_X, 
+                   REVOLUTE_AXIS_Y, 
+                   REVOLUTE_AXIS_Z,
+                   REVOLUTE_AXIS_ANY };
   enum Status
   {
     STATUS_SUCCESS = 0,

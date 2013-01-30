@@ -127,106 +127,127 @@ Status addSubTree(
   // convert the joint
   boost::shared_ptr<urdf::Joint> jnt = root->parent_joint;
   unsigned int metapod_joint_type;
-  switch (jnt->type) {
-  case urdf::Joint::REVOLUTE:
-  case urdf::Joint::CONTINUOUS:
-  {
-    ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_ANY joint", jnt->name.c_str());
-    if (prefer_fixed_axis &&
-        jnt->axis.x == 1. && jnt->axis.y == 0. && jnt->axis.z == 0.)
+  switch (jnt->type) 
     {
-        metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_X;
+    case urdf::Joint::REVOLUTE:
+    case urdf::Joint::CONTINUOUS:
+      {
+        if (prefer_fixed_axis &&
+            jnt->axis.x == 1. && jnt->axis.y == 0. && jnt->axis.z == 0.)
+          {
+            ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_X joint", jnt->name.c_str());
+            metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_X;
+          }
+        else
+          { 
+            ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Y joint", jnt->name.c_str());
+            if (prefer_fixed_axis &&
+                jnt->axis.x == 0. && jnt->axis.y == 1. && jnt->axis.z == 0.)
+              {
+                metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Y;
+              }
+            else 
+              {
+                ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Z joint", jnt->name.c_str());
+                if (prefer_fixed_axis &&
+                    jnt->axis.x == 0. && jnt->axis.y == 0. && jnt->axis.z == 1.)
+                  {
+                    metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Z;
+                  }
+                else
+                  {
+                    ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_ANY joint", jnt->name.c_str());
+                    metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_ANY;
+                  }
+              }
+          }
+      }
+      break;
+    case urdf::Joint::FLOATING:
+      {
+        metapod_joint_type = metapod::RobotBuilder::FREE_FLYER;
+        ROS_INFO("Adding joint '%s' as a FREE_FLYER joint", jnt->name.c_str());
+        break;
+      }
+    default:
+      {
+        ROS_INFO("2 - metapod::RobotBuilder::REVOLUTE_AXIS_ANY \n" );
+        ROS_ERROR("Joint '%s' is of unknown type", jnt->name.c_str());
+        return STATUS_FAILURE;
+        break;
+      }
     }
-    else
-    {
-      metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_ANY;
-    }
-    break;
-  }
-  case urdf::Joint::FLOATING:
-  {
-    metapod_joint_type = metapod::RobotBuilder::FREE_FLYER;
-    ROS_INFO("Adding joint '%s' as a FREE_FLYER joint", jnt->name.c_str());
-    break;
-  }
-  default:
-  {
-    ROS_ERROR("Joint '%s' is of unknown type", jnt->name.c_str());
-    return STATUS_FAILURE;
-    break;
-  }
-  }
   // constructs the optional inertia
   double mass = 1.;
   Eigen::Vector3d center_of_mass = Eigen::Vector3d::Zero();
   Eigen::Matrix3d rotational_inertia = Eigen::Matrix3d::Identity();
   if (root->inertial)
-  {
-    mass = root->inertial->mass; // TODO: check mass >0
-    urdf::Pose& p = root->inertial->origin;
-    center_of_mass = toEigen(p.position);
-    // metapod expects the rotational inertia in a frame aligned with the frame
-    // of the link, but with origin at center of mass
-    // urdf specifies it in a frame whose origin is the link center of mass,
-    // and whose basis is arbitrary
-    // So, let's rotate it! (Yeah!)
-    Eigen::Matrix3d R = toEigen(p.rotation);
-    Eigen::Matrix3d tmp;
-    tmp << root->inertial->ixx, root->inertial->ixy, root->inertial->ixz,
-           root->inertial->ixy, root->inertial->iyy, root->inertial->iyz,
-           root->inertial->ixz, root->inertial->iyz, root->inertial->izz;
-    rotational_inertia = R * tmp;
-  }
+    {
+      mass = root->inertial->mass; // TODO: check mass >0
+      urdf::Pose& p = root->inertial->origin;
+      center_of_mass = toEigen(p.position);
+      // metapod expects the rotational inertia in a frame aligned with the frame
+      // of the link, but with origin at center of mass
+      // urdf specifies it in a frame whose origin is the link center of mass,
+      // and whose basis is arbitrary
+      // So, let's rotate it! (Yeah!)
+      Eigen::Matrix3d R = toEigen(p.rotation);
+      Eigen::Matrix3d tmp;
+      tmp << root->inertial->ixx, root->inertial->ixy, root->inertial->ixz,
+        root->inertial->ixy, root->inertial->iyy, root->inertial->iyz,
+        root->inertial->ixz, root->inertial->iyz, root->inertial->izz;
+      rotational_inertia = R * tmp;
+    }
   int dof_index = -1;
   std::map<std::string, int>::const_iterator it =
-      joint_dof_index.find(jnt->name);
+    joint_dof_index.find(jnt->name);
   if (it != joint_dof_index.end())
-      dof_index = it->second;
-  Status status = builder.addLink(
-      has_parent ? parent_body_name : std::string("NP"),
-      jnt->name,
-      metapod_joint_type,
-      toEigen(jnt->parent_to_joint_origin_transform.rotation).transpose(), // R_joint_parent
-      toEigen(jnt->parent_to_joint_origin_transform.position), // r_parent_joint
-      root->name,
-      mass,
-      center_of_mass,
-      rotational_inertia,
-      toEigen(jnt->axis),
-      dof_index);
+    dof_index = it->second;
+  Status status = builder.addLink(has_parent ? parent_body_name : std::string("NP"),
+                                  jnt->name,
+                                  metapod_joint_type,
+                                  toEigen(jnt->parent_to_joint_origin_transform.rotation).transpose(), // R_joint_parent
+                                  toEigen(jnt->parent_to_joint_origin_transform.position), // r_parent_joint
+                                  root->name,
+                                  mass,
+                                  center_of_mass,
+                                  rotational_inertia,
+                                  toEigen(jnt->axis),
+                                  dof_index);
   if (status == STATUS_FAILURE)
     return STATUS_FAILURE;
 
   std::sort(children.begin(), children.end(), link_comparer);
   for (size_t i=0; i<children.size(); ++i)
-  {
-    const bool has_parent = true;
-    status = addSubTree(builder, link_comparer,children[i], root->name,
-                        prefer_fixed_axis, joint_dof_index, has_parent);
-    if (status == STATUS_FAILURE)
-      return STATUS_FAILURE;
-  }
+    {
+      const bool has_parent = true;
+      status = addSubTree(builder, link_comparer,children[i], root->name,
+                          prefer_fixed_axis, joint_dof_index, has_parent);
+      if (status == STATUS_FAILURE)
+        return STATUS_FAILURE;
+    }
   return STATUS_SUCCESS;
 }
 
 Status treeFromUrdfModel(const urdf::ModelInterface& robot_model,
-    metapod::RobotBuilder& builder, const LinkComparer& link_comparer,
-    bool prefer_fixed_axis, const std::map<std::string, int>& joint_dof_index)
+                         metapod::RobotBuilder& builder, const LinkComparer& link_comparer,
+                         bool prefer_fixed_axis, const std::map<std::string, int>& joint_dof_index)
 {
   //  add all children
   const bool has_parent = false;
   for (size_t i=0; i<robot_model.getRoot()->child_links.size(); ++i)
-  {
-    Status status = addSubTree(
-        builder, link_comparer,
-        robot_model.getRoot()->child_links[i],
-        std::string("GROUND"),
-        prefer_fixed_axis,
-        joint_dof_index,
-        has_parent);
-    if (status == STATUS_FAILURE)
-      return STATUS_FAILURE;
-  }
+    {
+      // TODO: what happens when there are two robots?
+      return addSubTree(
+                        builder, link_comparer,
+                        robot_model.getRoot()->child_links[i],
+                        std::string("GROUND"),
+                        prefer_fixed_axis,
+                        joint_dof_index,
+                        has_parent);
+       if (status == STATUS_FAILURE)
+         return STATUS_FAILURE;
+    }
   return STATUS_SUCCESS;
 }
 
@@ -248,31 +269,31 @@ int main(int argc, char** argv)
   // config file
   po::options_description config("");
   config.add_options()
-      ("name", po::value<std::string>(),
-       "the robot name")
-      ("libname", po::value<std::string>(),
-       "the library name, used for DLL symbol import/export. If omitted, the "
-       "value of the name option will be used")
-      ("directory", po::value<std::string>(),
-       "directory where the files will be generated")
-      ("license-file", po::value<std::string>(),
-        "license text, will be copied on top of every generated file")
-      ("joint-dof-index", po::value<std::vector<std::string> >(),
-        "joint name to dof index mapping, in the form "
-        "joint_name:dof_index, this option should be passed either for "
-        "every joint of for none at all")
-      ("joint", po::value<std::vector<std::string> >(),
-        "joint name, pass several of them to specify joints ordering")
-      ("prefer-fixed-axis",
-        "use REVOLUTE_AXIS_X instead of REVOLUTE_AXIS_ANY when possible.");
+    ("name", po::value<std::string>(),
+     "the robot name")
+    ("libname", po::value<std::string>(),
+     "the library name, used for DLL symbol import/export. If omitted, the "
+     "value of the name option will be used")
+    ("directory", po::value<std::string>(),
+     "directory where the files will be generated")
+    ("license-file", po::value<std::string>(),
+     "license text, will be copied on top of every generated file")
+    ("joint-dof-index", po::value<std::vector<std::string> >(),
+     "joint name to dof index mapping, in the form "
+     "joint_name:dof_index, this option should be passed either for "
+     "every joint of for none at all")
+    ("joint", po::value<std::vector<std::string> >(),
+     "joint name, pass several of them to specify joints ordering")
+    ("prefer-fixed-axis",
+     "use REVOLUTE_AXIS_X instead of REVOLUTE_AXIS_ANY when possible.");
 
 
   // Hidden options, will be allowed both on command line and
   // in config file, but will not be shown to the user.
   po::options_description hidden("Hidden options");
   hidden.add_options()
-      ("input-file", po::value<std::string>(),
-       "input file in urdf format");
+    ("input-file", po::value<std::string>(),
+     "input file in urdf format");
 
   po::options_description cmdline_options, config_file_options;
   cmdline_options.add(generic).add(config).add(hidden);
@@ -291,112 +312,112 @@ int main(int argc, char** argv)
   LinkComparer link_comparer;
   try {
     po::store(po::command_line_parser(argc, argv).
-                  options(cmdline_options).positional(pos).run(),
+              options(cmdline_options).positional(pos).run(),
               vm);
     if (vm.count("help"))
-    {
-      std::cout << visible << "\n";
-      return 0;
-    }
+      {
+        std::cout << visible << "\n";
+        return 0;
+      }
     // deal with mandatory options
     // with boost >= 1.42, we'll declare these options as required and
     // this check won't be necessary anymore.
     if (vm.count("input-file") == 0)
-    {
-      std::cout << visible << "\n";
-      return 1;
-    }
-    if (vm.count("config-file"))
-    {
-      std::ifstream stream(vm["config-file"].as<std::string>().c_str());
-      if (stream.is_open())
       {
-        po::store(po::parse_config_file(stream, config_file_options, true),
-                  vm);
+        std::cout << visible << "\n";
+        return 1;
       }
-    }
+    if (vm.count("config-file"))
+      {
+        std::ifstream stream(vm["config-file"].as<std::string>().c_str());
+        if (stream.is_open())
+          {
+            po::store(po::parse_config_file(stream, config_file_options, true),
+                      vm);
+          }
+      }
     po::notify(vm);
     if (vm.count("joint-dof-index"))
-    {
-      std::vector<std::string> pairs =
-          vm["joint-dof-index"].as<std::vector<std::string> >();
-      for (std::vector<std::string>::const_iterator it = pairs.begin();
-           it != pairs.end();
-           ++it)
       {
-        // Tokenize the string on the ":" delimiter.
-        std::vector< std::string > tokens;
-        boost::split(tokens, *it, boost::is_any_of( ":" ));
+        std::vector<std::string> pairs =
+          vm["joint-dof-index"].as<std::vector<std::string> >();
+        for (std::vector<std::string>::const_iterator it = pairs.begin();
+             it != pairs.end();
+             ++it)
+          {
+            // Tokenize the string on the ":" delimiter.
+            std::vector< std::string > tokens;
+            boost::split(tokens, *it, boost::is_any_of( ":" ));
 
-        using boost::program_options::validation_error;
-        int value = -1;
-        if ((tokens.size() != 2) || !(std::stringstream(tokens[1]) >> value))
-        {
+            using boost::program_options::validation_error;
+            int value = -1;
+            if ((tokens.size() != 2) || !(std::stringstream(tokens[1]) >> value))
+              {
 #if BOOST_VERSION >= 104200
-          throw validation_error(validation_error::invalid_option_value,
-                                  *it, "joint-dof-index");
+                throw validation_error(validation_error::invalid_option_value,
+                                       *it, "joint-dof-index");
 #else
-          std::stringstream msg("invalid joint-dof-index option value:");
-          msg << *it;
-          throw validation_error(msg.str());
+                std::stringstream msg("invalid joint-dof-index option value:");
+                msg << *it;
+                throw validation_error(msg.str());
 #endif
-        }
-        joint_dof_index[tokens[0]] = value;
+              }
+            joint_dof_index[tokens[0]] = value;
+          }
+        builder.set_use_dof_index(true);
       }
-      builder.set_use_dof_index(true);
-    }
   }
   catch(boost::program_options::error)
-  {
-    std::cout << visible << "\n";
-    return 0;
-  }
+    {
+      std::cout << visible << "\n";
+      return 0;
+    }
   urdf::Model robot_model;
   if (!robot_model.initFile(vm["input-file"].as<std::string>()))
-  {
-    std::cerr << "Could not generate robot model" << std::endl;
-    return 1;
-  }
+    {
+      std::cerr << "Could not generate robot model" << std::endl;
+      return 1;
+    }
 
   if (vm.count("name"))
-  {
-    builder.set_name(vm["name"].as<std::string>());
-  }
-  if (vm.count("libname"))
-  {
-    builder.set_libname(vm["libname"].as<std::string>());
-  }
-  else if (vm.count("name"))
-  {
-    builder.set_libname(vm["name"].as<std::string>());
-  }
-  if (vm.count("directory"))
-  {
-    builder.set_directory(vm["directory"].as<std::string>());
-  }
-  if (vm.count("license-file"))
-  {
-    std::ifstream stream(vm["license-file"].as<std::string>().c_str());
-    if (stream.is_open())
     {
-      builder.set_license(std::string(std::istreambuf_iterator<char>(stream),
-                                     std::istreambuf_iterator<char>()));
+      builder.set_name(vm["name"].as<std::string>());
     }
-  }
+  if (vm.count("libname"))
+    {
+      builder.set_libname(vm["libname"].as<std::string>());
+    }
+  else if (vm.count("name"))
+    {
+      builder.set_libname(vm["name"].as<std::string>());
+    }
+  if (vm.count("directory"))
+    {
+      builder.set_directory(vm["directory"].as<std::string>());
+    }
+  if (vm.count("license-file"))
+    {
+      std::ifstream stream(vm["license-file"].as<std::string>().c_str());
+      if (stream.is_open())
+        {
+          builder.set_license(std::string(std::istreambuf_iterator<char>(stream),
+                                          std::istreambuf_iterator<char>()));
+        }
+    }
   if (vm.count("joint"))
-  {
-    link_comparer.init(vm["joint"].as<std::vector<std::string> >());
-  }
+    {
+      link_comparer.init(vm["joint"].as<std::vector<std::string> >());
+    }
   bool prefer_fixed_axis = false;
   if (vm.count("prefer-fixed-axis"))
-  {
-    prefer_fixed_axis = true;
-  }
+    {
+      prefer_fixed_axis = true;
+    }
   Status status = treeFromUrdfModel(robot_model, builder, link_comparer,
-      prefer_fixed_axis, joint_dof_index);
+                                    prefer_fixed_axis, joint_dof_index);
   if (status == STATUS_FAILURE)
-  {
-    return STATUS_FAILURE;
-  }
+    {
+      return STATUS_FAILURE;
+    }
   return builder.write();
 }
