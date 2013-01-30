@@ -214,19 +214,20 @@ Status treeFromUrdfModel(const urdf::ModelInterface& robot_model,
     bool prefer_fixed_axis, const std::map<std::string, int>& joint_dof_index)
 {
   //  add all children
-  bool is_success = false;
   const bool has_parent = false;
   for (size_t i=0; i<robot_model.getRoot()->child_links.size(); ++i)
   {
-    // TODO: what happens when there are two robots?
-    return addSubTree(
+    Status status = addSubTree(
         builder, link_comparer,
         robot_model.getRoot()->child_links[i],
         std::string("GROUND"),
         prefer_fixed_axis,
         joint_dof_index,
         has_parent);
+    if (status == STATUS_FAILURE)
+      return STATUS_FAILURE;
   }
+  return STATUS_SUCCESS;
 }
 
 namespace po = boost::program_options;
