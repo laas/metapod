@@ -40,6 +40,9 @@ public:
   Eigen::Vector3d joint_axis_;
   int dof_index_;
   std::vector<int> child_id_; // children
+  std::string xt_type_;
+  std::string sxp_type_;
+
   Link(
     int id,
     int parent_id,
@@ -74,6 +77,20 @@ public:
   int child_id(int link_id, unsigned int rank) const;
   void add_link(const Link& link);
   int find_link_by_body_name(const std::string& body_name) const;
+    /** \brief Specify Xt type. */
+  void set_link_xt_type(int link_id,
+                        const std::string &xt_type);
+
+  const std::string &xt_type(int link_id) const;
+
+  /** \brief Specify sXp type.*/
+  void set_link_sxp_type(int link_id,
+                         const std::string &sxp_type);
+  const std::string &sxp_type(int link_id) const;
+
+  /** @} */
+
+  
 private:
   static const std::string NP_;
   std::vector<int> roots_id_;

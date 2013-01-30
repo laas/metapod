@@ -192,4 +192,34 @@ int RobotModel::find_link_by_body_name(const std::string& body_name) const
   return it->id_;
 }
 
+  void RobotModel::set_link_xt_type(int link_id,
+                                   const std::string &xt_type) 
+  {
+    assert(links_[link_id].child_id_.size() <
+           static_cast<size_t>(std::numeric_limits<int>::max()));
+    links_[link_id].xt_type_ = xt_type;
+  }
+
+  const std::string & RobotModel::xt_type(int link_id) const
+  {
+    assert(links_[link_id].child_id_.size() <
+           static_cast<size_t>(std::numeric_limits<int>::max()));
+    return links_[link_id].xt_type_;
+  }
+
+  void RobotModel::set_link_sxp_type(int link_id,
+                                   const std::string &sxp_type) 
+  {
+    assert(links_[link_id].child_id_.size() <
+           static_cast<size_t>(std::numeric_limits<int>::max()));
+    links_[link_id].sxp_type_ = sxp_type;
+  }
+
+  const std::string & RobotModel::sxp_type(int link_id) const
+  {
+    assert(links_[link_id].child_id_.size() <
+           static_cast<size_t>(std::numeric_limits<int>::max()));
+    return links_[link_id].sxp_type_;
+  }
+
 }
