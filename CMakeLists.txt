@@ -39,18 +39,41 @@ IF(UNIX OR MINGW)
 ENDIF()
 
 # Options
-IF(NOT CMAKE_CROSSCOMPILING)
-  SET(NOT_CROSSCOMPILING TRUE)
-ELSE()
-  SET(NOT_CROSSCOMPILING FALSE)
-ENDIF()
+# we cannot always build metapodfromurdf, because it depends on ROS bits, which
+# we do not control very well. Moreover, when cross-compiling, we typically do
+# not want to run it on the target, but on the build host. Hence we provide
+# support for finding binary version.
 
-OPTION(BENCHMARK "Generate and build the benchmarks" ${NOT_CROSSCOMPILING})
-OPTION(BUILD_METAPODFROMURDF "Build the urdf parser" ${NOT_CROSSCOMPILING})
+# by default, we build metapodfromurdf if we detect ros
+FIND_PROGRAM(ROSPACK_EXECUTABLE rospack)
+IF(ROSPACK_EXECUTABLE)
+    SET(BUILD_METAPODFROMURDF_DEFAULT TRUE)
+ELSE()
+    SET(BUILD_METAPODFROMURDF_DEFAULT FALSE)
+ENDIF()
+OPTION(BUILD_METAPODFROMURDF
+  "Build the urdf parser"
+  ${BUILD_METAPODFROMURDF_DEFAULT})
+
+# check if metapodfromurdf is available
+IF(BUILD_METAPODFROMURDF)
+  # if we build it, it is available
+  SET(WITH_METAPODFROMURDF TRUE)
+ELSE()
+  # maybe the user passed the location
+  IF(METAPODFROMURDF_EXECUTABLE)
+    SET(WITH_METAPODFROMURDF TRUE)
+  ELSE()
+    # last resort: search for it
+    FIND_PACKAGE(metapodfromurdf)
+    SET(WITH_METAPODFROMURDF ${METAPODFROMURDF_FOUND})
+  ENDIF()
+ENDIF()
 OPTION(WITH_SIMPLE_HUMANOID "Generate and build the simple humanoid example
- model and the related tests" ${BUILD_METAPODFROMURDF})
+model and the related tests" ${WITH_METAPODFROMURDF})
 OPTION(WITH_SIMPLE_ARM "Generate and build the simple arm example model and
- the related tests" ${BUILD_METAPODFROMURDF})
+the related tests" ${WITH_METAPODFROMURDF})
+OPTION(BENCHMARK "Generate and build the benchmarks" TRUE)
 
 SETUP_PROJECT()
 
@@ -146,20 +169,8 @@ INCLUDE_DIRECTORIES("include" "${CMAKE_CURRENT_BINARY_DIR}/include")
 ADD_SUBDIRECTORY(embedfile)
 ADD_SUBDIRECTORY(robotbuilder)
 
-# we cannot always build metapodfromurdf, because it depends on ROS bits, which
-# we do not control very well. Moreover, when cross-compiling, we typically do
-# not want to run it on the target, but on the build host. Hence we provide
-# support for finding binary version.
 IF(BUILD_METAPODFROMURDF)
   ADD_SUBDIRECTORY(metapodfromurdf)
-  SET(WITH_METAPODFROMURDF TRUE)
-ELSE()
-  IF(METAPODFROMURDF_EXECUTABLE)
-    SET(WITH_METAPODFROMURDF TRUE)
-  ELSE()
-    FIND_PACKAGE(metapodfromurdf)
-    SET(WITH_METAPODFROMURDF ${METAPODFROMURDF_FOUND})
-  ENDIF()
 ENDIF()
 
 IF(WITH_SIMPLE_ARM)
