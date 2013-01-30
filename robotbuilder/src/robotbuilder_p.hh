@@ -92,6 +92,18 @@ private:
   std::ostringstream map_node_id_to_type_ss_;
   // init init.cc
   std::ostringstream init_nodes_ss_;
+  /** \name Methods to generate transform using optimized rotation matrices.
+      @{
+   */
+  /** \brief Xt declaration. */
+  void inittpl1(std::string &s_tpl1, int link_id);
+  /** \brief Xt instanciation */
+  void inittpl4(std::string &s_tpl4, int link_id);
+  void instanciateXt(std::stringstream &ss0, int link_id);
+  /** \brief Deduce the type of sXp. */
+  void build_sxp_type(int link_id);
+
+  
 };
 }
 #endif
