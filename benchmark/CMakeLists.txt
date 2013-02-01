@@ -25,8 +25,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
 INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
 # list of the sample models
-#SET(depth_list 1 2 3 4 5)
-SET(depth_list 1 )
+SET(depth_list 1 2 3 4 )
+#SET(depth_list 1 )
 
 # build the generator
 ADD_EXECUTABLE(make_model make_model.cc)
@@ -60,3 +60,15 @@ ENDIF()
 # and finally, the benchmark
 ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
 TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
+
+ADD_EXECUTABLE(benchmark_1 benchmark_1.cc benchmark.hh)
+TARGET_LINK_LIBRARIES(benchmark_1 metapod_timer ${_model_libs})
+
+ADD_EXECUTABLE(benchmark_2 benchmark_2.cc benchmark.hh)
+TARGET_LINK_LIBRARIES(benchmark_2 metapod_timer ${_model_libs})
+
+ADD_EXECUTABLE(benchmark_3 benchmark_3.cc benchmark.hh)
+TARGET_LINK_LIBRARIES(benchmark_3 metapod_timer ${_model_libs})
+
+ADD_EXECUTABLE(benchmark_4 benchmark_4.cc benchmark.hh)
+TARGET_LINK_LIBRARIES(benchmark_4 metapod_timer ${_model_libs})

@@ -23,18 +23,12 @@
  */
 
 #define FUSION_MAX_VECTOR_SIZE 50
-#ifdef WITH_SIMPLE_HUMANOID
-# include "metapod/models/simple_humanoid/simple_humanoid.hh"
-#endif
-
+#include "models/sample_2/sample_2.hh"
 
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
 int main()
 {
-#ifdef WITH_SIMPLE_HUMANOID
-  BENCHMARK(metapod::simple_humanoid);
-#endif
-  //BENCHMARK(metapod::sample_5);
+  BENCHMARK(metapod::sample_2);
 }
