@@ -36,6 +36,7 @@ CMAKE_POLICY(SET CMP0012 NEW)
 
 IF(UNIX OR MINGW)
   ADD_DEFINITIONS("-fvisibility=hidden")
+  ADD_DEFINITIONS("-Wno-variadic-macros")
 ENDIF()
 
 # Options
