@@ -238,15 +238,14 @@ Status treeFromUrdfModel(const urdf::ModelInterface& robot_model,
   for (size_t i=0; i<robot_model.getRoot()->child_links.size(); ++i)
     {
       // TODO: what happens when there are two robots?
-      return addSubTree(
-                        builder, link_comparer,
-                        robot_model.getRoot()->child_links[i],
-                        std::string("GROUND"),
-                        prefer_fixed_axis,
-                        joint_dof_index,
-                        has_parent);
-       if (status == STATUS_FAILURE)
-         return STATUS_FAILURE;
+      Status status = addSubTree(builder, link_comparer,
+                                 robot_model.getRoot()->child_links[i],
+                                 std::string("GROUND"),
+                                 prefer_fixed_axis,
+                                 joint_dof_index,
+                                 has_parent);
+      if (status == STATUS_FAILURE)
+        return STATUS_FAILURE;
     }
   return STATUS_SUCCESS;
 }
