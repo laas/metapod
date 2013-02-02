@@ -27,6 +27,22 @@
 #include <cstdlib>
 #include <metapod/robotbuilder/robotbuilder.hh>
 
+Eigen::Matrix3d randomRotation3d()
+{
+  Eigen::Vector3d v=Eigen::Vector3d::Random();
+  double ct,st,cphi,sphi,cpsi,spsi;
+
+  ct = cos(v[0]); st = sin(v[0]);
+  cphi = cos(v[1]); sphi = sin(v[1]);
+  cpsi = cos(v[2]); spsi = sin(v[2]);
+
+  Eigen::Matrix3d r;
+  r(0,0)=ct*cpsi; r(0,1) = -cphi*spsi+sphi*st*cpsi; r(0,2) = sphi*spsi+cphi*st*cpsi;
+  r(1,0)=ct*spsi; r(1,1) = cphi*cpsi+sphi*st*spsi;  r(1,2) = -sphi*cpsi+cphi*st*spsi;
+  r(2,0)=-st;     r(2,1) = sphi*ct;                 r(2,2) = cphi*ct;
+  return r;
+}
+
 void addNode(metapod::RobotBuilder & builder, int label, int parent_label)
 {
   std::stringstream body_name, joint_name, parent_body_name;
@@ -38,10 +54,10 @@ void addNode(metapod::RobotBuilder & builder, int label, int parent_label)
   body_name << "B" << label;
   joint_name << "J" << label;
   builder.addLink(parent_body_name.str(),
-      joint_name.str(), metapod::RobotBuilder::REVOLUTE_AXIS_X,
-      Eigen::Matrix3d::Random(), Eigen::Vector3d::Random(),
-      body_name.str(), 1.,
-      Eigen::Vector3d::Random(), Eigen::Matrix3d::Random());
+                  joint_name.str(), metapod::RobotBuilder::REVOLUTE_AXIS_X,
+                  randomRotation3d(), Eigen::Vector3d::Random(),
+                  body_name.str(), 1.,
+                  Eigen::Vector3d::Random(), Eigen::Matrix3d::Random());
 }
 
 void buildTree(metapod::RobotBuilder & builder, int* label, int max_depth,
