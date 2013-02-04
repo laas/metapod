@@ -401,7 +401,7 @@ namespace metapod {
     os << "    @body_center_of_mass@,\n";
     os << "    @body_rotational_inertia@);\n\n";
     os << "@ROBOT_CLASS_NAME@::Node@node_id@::Node@node_id@():\n";
-    os << "  joint(@joint_args@) {}\n\n";
+    os << "  joint(@joint_args@) { joint_F = Eigen::Matrix<FloatType, 6, Joint::NBDOF>::Zero();}\n\n";
     s_tpl4 = os.str();
   }
 
