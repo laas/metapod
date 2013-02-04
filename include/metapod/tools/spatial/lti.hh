@@ -32,7 +32,7 @@ namespace metapod
     class ltI
     {
     public:
-      ltI(): m_ltI(Vector6d::Zero()) { }
+      ltI(): m_ltI() { }
       ltI(const Matrix3d &I)
       {
         m_ltI(0) = I(0,0);

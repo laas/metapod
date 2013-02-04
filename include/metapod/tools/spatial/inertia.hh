@@ -31,7 +31,7 @@ namespace metapod
     {
       public:
         // Constructors
-      Inertia() : m_m(0.0), m_h(0.0,0.0,0.0), m_I() {}
+        Inertia() : m_m(), m_h(), m_I() {}
         Inertia(FloatType m, const Vector3d & h, const Matrix3d & I)
           : m_m(m), m_h(h), m_I(I) {}
         Inertia(FloatType m, const Vector3d & h, const lowerTriangularMatrix & I)

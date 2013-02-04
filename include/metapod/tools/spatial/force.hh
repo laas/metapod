@@ -28,7 +28,7 @@ namespace metapod
     {
       public:
         // Constructors
-      Force() : m_n(0.0,0.0,0.0), m_f(0.0,0.0,0.0) {}
+        Force() : m_n(), m_f() {}
         Force(const Vector3d & n, const Vector3d & f) : m_n(n), m_f(f) {}
         Force(const Vector6d & v) : m_n(v.segment<3>(0)),
                                     m_f(v.segment<3>(3)) {}
