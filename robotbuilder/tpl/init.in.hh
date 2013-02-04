@@ -30,7 +30,7 @@
 
 namespace metapod {
 
-class @LIBRARY_NAME@_DLLAPI @ROBOT_CLASS_NAME@ {
+  class @LIBRARY_NAME@_DLLAPI @ROBOT_CLASS_NAME@: public RobotBase<@ROBOT_CLASS_NAME@> {
 public:
   // Global constants or variable of the robot
   enum { NBDOF = @ROBOT_NB_DOF@ };

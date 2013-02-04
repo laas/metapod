@@ -344,7 +344,7 @@ namespace metapod {
     // Build the template for the link.
     std::ostringstream os;
     os << "\n";
-    os << "  class Node@node_id@ {\n";
+    os << "  class Node@node_id@ : public NodeBase<Node@node_id@> {\n";
     os << "  public:\n";
     os << "    Node@node_id@();\n";
     os << "    static const int id = @node_id@;\n";
@@ -497,7 +497,6 @@ namespace metapod {
     inittpl1(s_tpl1,link_id);
     const TxtTemplate tpl1(s_tpl1);
     node_type_definitions_ss_ << tpl1.format(repl);
-
     const TxtTemplate tpl2(
                            "      Node@node_id@");
     nodes_type_list_ss_ << tpl2.format(repl);

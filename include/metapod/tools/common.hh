@@ -116,4 +116,5 @@ namespace metapod
 
 } // end of namespace metapod.
 
+# include "metapod/tools/robot-base.hh"
 #endif
