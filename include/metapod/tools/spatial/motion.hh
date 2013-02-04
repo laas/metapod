@@ -34,7 +34,7 @@ namespace metapod
     {
       public:
         // Constructors
-        Motion() : m_w(), m_v() {}
+      Motion() : m_w(0.0,0.0,0.0), m_v(0.0,0.0,0.0) {}
         Motion(const Vector3d & w, const Vector3d & v) : m_w(w), m_v(v) {}
         Motion(const Vector6d & v) : m_w(v.segment<3>(0)),
                                      m_v(v.segment<3>(3)) {}

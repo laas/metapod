@@ -33,7 +33,7 @@ namespace metapod
       
       RotationMatrix() 
       { 
-	m_rm = Matrix3d::Zero();
+	m_rm = Matrix3d::Identity();
       }
       
       RotationMatrix(const Matrix3d &aR)

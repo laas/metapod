@@ -33,6 +33,7 @@ namespace metapod
       Vector6d v;
       Vector6dMakerOneAxis()
       {
+        v = Vector6d::Zero();
         v[axis]=1;
       }
     };
