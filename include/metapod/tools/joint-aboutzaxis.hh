@@ -41,6 +41,9 @@ namespace metapod
 
   inline RevoluteAxisZJoint::RevoluteAxisZJoint()
   {
+    cj.w(Vector3d(0.0,0.0,0.0));
+    cj.v(Vector3d(0.0,0.0,0.0));
+    vj.v(Vector3d(0.0,0.0,0.0));
   }
 
   inline void RevoluteAxisZJoint::bcalc(const Vector1d & qi)
