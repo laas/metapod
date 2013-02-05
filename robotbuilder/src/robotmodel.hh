@@ -74,7 +74,8 @@ public:
   int nb_children(int link_id) const;
   int child_id(int link_id, unsigned int rank) const;
   void add_link(const Link& link);
-  int find_link_by_body_name(const std::string& body_name) const;
+  int find_link_by_body_name(const std::string& name) const;
+  int find_link_by_joint_name(const std::string& name) const;
   /** @} */
 
 private:

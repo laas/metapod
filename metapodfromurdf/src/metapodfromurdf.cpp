@@ -272,7 +272,10 @@ int main(int argc, char** argv) {
   po::positional_options_description pos;
   pos.add("input-file", -1);
 
-  po::options_description visible("Usage:\n metapodfromurdf-bin [options] input-file\n\nOptions");
+  po::options_description visible(
+      "Usage:\n "
+      "metapodfromurdf [options] input-file\n\n"
+      "Options");
   visible.add(generic).add(config);
   po::variables_map vm;
   std::map<std::string, int> joint_dof_index;
