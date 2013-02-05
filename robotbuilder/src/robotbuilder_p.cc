@@ -400,7 +400,7 @@ void RobotBuilderP::writeLink(int link_id)
       "    @body_center_of_mass@,\n"
       "    @body_rotational_inertia@);\n\n"
       "@ROBOT_CLASS_NAME@::Node@node_id@::Node@node_id@():\n"
-      "  joint(@joint_args@) {joint_F = Eigen::Matrix<FloatType, 6, Joint::NBDOF>::Zero();}\n\n");
+      "  joint(@joint_args@) {}\n\n");
   if (model_.joint_type(link_id) == RobotBuilder::REVOLUTE_AXIS_ANY)
   {
      std::stringstream ss;
