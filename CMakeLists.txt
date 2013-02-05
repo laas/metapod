@@ -97,6 +97,19 @@ ENDIF()
 
 # Search for Eigen.
 ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.0")
+
+# Search optionally for abstract robot dynamics.
+ADD_OPTIONAL_DEPENDENCY("abstract-robot-dynamics >= 1.15")
+
+MESSAGE(STATUS "ABSTRACT_ROBOT_DYNAMICS_FOUND ${ABSTRACT_ROBOT_DYNAMICS_FOUND}")
+# Configure extension of robot base.
+CONFIGURE_FILE(
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/metapod/tools/robot-base-ext.hh.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/include/metapod/tools/robot-base-ext.hh
+  @ONLY
+  )
+
+
 # Eigen (at least version 3.0.5) makes gcc report conversion warnings
 # when one assigns to a block. This floods the compilation results.
 # So we include Eigen headers as if they were system headers: the compiler
