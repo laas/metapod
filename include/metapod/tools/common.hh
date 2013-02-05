@@ -77,8 +77,8 @@ namespace metapod
     Body():
       Fext(Spatial::Force::Zero()),
       iX0(),
-      vi(),
-      ai(),
+      vi(Vector3d::Zero(),Vector3d::Zero()),
+      ai(Vector3d::Zero(),Vector3d::Zero()),
       Iic()
     {}
   };
