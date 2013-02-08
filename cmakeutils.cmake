@@ -77,4 +77,7 @@ FUNCTION(ADD_SAMPLEMODEL name)
     MAIN_DEPENDENCY ${_urdf_file}
     )
   ADD_LIBRARY(${_libname} ${_sources})
+  INSTALL ( FILES ${_urdf_file} ${_config_file} ${_license_file}
+    DESTINATION share/metapod/data/${name} )
+
 ENDFUNCTION()

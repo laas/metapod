@@ -20,3 +20,7 @@ GET_PROPERTY(METAPODFROMURDF_EXECUTABLE
   TARGET metapodfromurdf PROPERTY LOCATION)
 SET(METAPODFROMURDF_EXECUTABLE ${METAPODFROMURDF_EXECUTABLE} CACHE
   STRING "Set by cmake if metapodfromurdf is built, by the user otherwise")
+
+INSTALL(PROGRAMS ${PROJECT_BINARY_DIR}/metapodfromurdf/metapodfromurdf
+  DESTINATION bin
+)
