@@ -121,11 +121,11 @@ namespace metapod
   template <typename DerivedClass>
   class METAPOD_DLLAPI RobotBase
   {
-  private:
+
+  public:
     /** ! \brief Mass of the robot. */
     FloatType mass_;
 
-  public:
     friend struct print_robot_base<DerivedClass>;
     
     /** \brief Default constructor of RobotBase. */
