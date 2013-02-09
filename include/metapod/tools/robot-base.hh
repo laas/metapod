@@ -67,6 +67,8 @@ namespace metapod
   };
   
   namespace internal {
+    /**! \addtogroup RobotBase 
+       \brief Template to display recursively information on the robot. */
     template < typename Robot, int node_id> struct print_nodes
     {
       typedef typename Nodes<Robot, node_id>::type Node;
@@ -78,6 +80,20 @@ namespace metapod
       }
       static void finish(const Robot&, std::ostream & ) {}
     };
+
+    /** \addtogroup RobotBase 
+       ! \brief Template to compute the mass from the description. */
+    template < typename Robot, int node_id> struct compute_mass
+    {
+      typedef typename Nodes<Robot, node_id>::type Node;
+      
+      static void discover(FloatType & lmass)
+      {
+        lmass += Node::mass ;
+      }
+      static void finish(FloatType & ) {}
+    };
+
   } // end of namespace metapod::internal.
   
   
@@ -98,17 +114,34 @@ namespace metapod
     }
   };
 
+  /** \addtogroup RobotBase RobotClass template is providing common helper methods
+      to robots in general. Based upon the information specific to the robot it
+      computes various classical information such as mass, center of mass vectors.
+   */
   template <typename DerivedClass>
   class METAPOD_DLLAPI RobotBase
   {
-    friend struct print_robot_base<DerivedClass>;
+  private:
+    /** ! \brief Mass of the robot. */
+    FloatType mass_;
 
+  public:
+    friend struct print_robot_base<DerivedClass>;
+    
+    /** \brief Default constructor of RobotBase. */
+    RobotBase(): 
+      mass_(0)
+      {
+        depth_first_traversal<internal::compute_mass,DerivedClass>::run(mass_);
+      }
+    
     friend std::ostream &operator<<(std::ostream &os, 
-                                    const DerivedClass &aRobotBase)
+                                    const DerivedClass &arobot)
     {
       print_robot_base<DerivedClass> aprinter;
-      return aprinter.print(os,aRobotBase);
+      return aprinter.print(os,arobot);
     }
+
   };
 
 }
