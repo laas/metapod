@@ -148,7 +148,8 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/joint-aboutyaxis.hh
   include/${PROJECT_NAME}/tools/joint-aboutzaxis.hh
   include/${PROJECT_NAME}/tools/joint-anyaxis.hh     
-  include/${PROJECT_NAME}/tools/print.hh
+  include/${PROJECT_NAME}/tools/print.hh        
+  include/${PROJECT_NAME}/tools/robot-base.hh
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/static_assert.hh
   )
