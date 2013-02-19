@@ -90,7 +90,6 @@ public:
 
   /** @} */
 
-  
 private:
   static const std::string NP_;
   std::vector<int> roots_id_;

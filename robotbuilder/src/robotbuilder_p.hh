@@ -103,7 +103,6 @@ private:
   /** \brief Deduce the type of sXp. */
   void build_sxp_type(int link_id);
 
-  
 };
 }
 #endif

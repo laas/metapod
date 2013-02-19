@@ -315,7 +315,7 @@ namespace metapod {
 
     model_.set_link_sxp_type(link_id,os.str());
   }
-  
+
   void RobotBuilderP::inittpl1(std::string &s_tpl1,
                                int link_id)
   {
@@ -337,7 +337,7 @@ namespace metapod {
         model_.set_link_xt_type(link_id,xt_type);
         Xttp1 = "";
       }
-    
+
     // Deduces the relevant type for sXp.
     build_sxp_type(link_id);
 
@@ -349,7 +349,7 @@ namespace metapod {
     os << "    Node@node_id@();\n";
     os << "    static const int id = @node_id@;\n";
     os << "    static const std::string joint_name;\n";
-    os << "    static const std::string body_name;\n" ; 
+    os << "    static const std::string body_name;\n" ;
     os << "    static const Spatial::Transform";
     os << Xttp1.c_str();
     os << " Xt;\n";
@@ -363,11 +363,11 @@ namespace metapod {
     os << "    static const int child4_id = @child4_id@;\n";
     os << "    static const FloatType mass;\n";
     os << "    static const Spatial::Inertia I; // in body frame\n";
-    
+
     os << "    Spatial::TransformT<";
     os << model_.sxp_type(link_id);
     os << ">sXp;\n";
-    
+
     os << "    Eigen::Matrix<FloatType, 6, Joint::NBDOF> joint_F; // used by crba\n";
     os << "    Joint joint;\n";
     os << "    Body body;\n";
@@ -417,7 +417,7 @@ namespace metapod {
       {
         Eigen::IOFormat comma_fmt(Eigen::StreamPrecision, Eigen::DontAlignCols,
                                   ", ", ", ");
-        
+
         ss0 << "matrix3dMaker("
             << model_.R_joint_parent(link_id).format(comma_fmt)
             << ")";
