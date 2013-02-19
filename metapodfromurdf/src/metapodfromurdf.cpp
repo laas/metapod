@@ -127,7 +127,7 @@ Status addSubTree(
   // convert the joint
   boost::shared_ptr<urdf::Joint> jnt = root->parent_joint;
   unsigned int metapod_joint_type;
-  switch (jnt->type) 
+  switch (jnt->type)
     {
     case urdf::Joint::REVOLUTE:
     case urdf::Joint::CONTINUOUS:
@@ -139,14 +139,14 @@ Status addSubTree(
             metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_X;
           }
         else
-          { 
+          {
             ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Y joint", jnt->name.c_str());
             if (prefer_fixed_axis &&
                 jnt->axis.x == 0. && jnt->axis.y == 1. && jnt->axis.z == 0.)
               {
                 metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Y;
               }
-            else 
+            else
               {
                 ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Z joint", jnt->name.c_str());
                 if (prefer_fixed_axis &&
