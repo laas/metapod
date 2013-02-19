@@ -59,8 +59,12 @@ public:
   NodeVector;
 
   // member variables
- NodeVector nodes;
- Eigen::Matrix< FloatType, NBDOF, NBDOF > H; // used by crba
+  NodeVector nodes;
+  Eigen::Matrix< FloatType, NBDOF, NBDOF > H; // used by crba
+
+  @ROBOT_CLASS_NAME@():
+    H(Eigen::Matrix< FloatType, NBDOF, NBDOF >::Zero())
+  {}
 };
 
 // map node id to node type
