@@ -74,7 +74,10 @@ OPTION(WITH_SIMPLE_HUMANOID "Generate and build the simple humanoid example
 model and the related tests" ${WITH_METAPODFROMURDF})
 OPTION(WITH_SIMPLE_ARM "Generate and build the simple arm example model and
 the related tests" ${WITH_METAPODFROMURDF})
-OPTION(BENCHMARK "Generate and build the benchmarks" TRUE)
+OPTION(BUILD_MULTI_MODEL_BENCHMARK
+    "Generate and build the multi-model benchmark" TRUE)
+OPTION(BUILD_SINGLE_MODEL_BENCHMARKS
+    "Generate and build the single-model benchmarks" TRUE)
 
 SETUP_PROJECT()
 
@@ -90,7 +93,8 @@ SEARCH_FOR_BOOST()
 # If Boost is recent enough, we look for Boost timer which can be used by
 # by metapod_timer, which is in turn used by the benchmark.
 # Boost timer depends on Boost chrono and system.
-IF(BENCHMARK AND NOT Boost_VERSION LESS 104800)
+IF((BUILD_MULTI_MODEL_BENCHMARK OR BUILD_SINGLE_MODEL_BENCHMARKS)
+   AND NOT Boost_VERSION LESS 104800)
   SET(BOOST_COMPONENTS ${BOOST_COMPONENTS} timer chrono system)
   SEARCH_FOR_BOOST()
 ENDIF()
@@ -130,11 +134,11 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/jac_point_robot.hh
   include/${PROJECT_NAME}/tools/jcalc.hh
   include/${PROJECT_NAME}/tools/joint.hh
-  include/${PROJECT_NAME}/tools/joint-freeflyer.hh  
+  include/${PROJECT_NAME}/tools/joint-freeflyer.hh
   include/${PROJECT_NAME}/tools/joint-aboutxaxis.hh
   include/${PROJECT_NAME}/tools/joint-aboutyaxis.hh
   include/${PROJECT_NAME}/tools/joint-aboutzaxis.hh
-  include/${PROJECT_NAME}/tools/joint-anyaxis.hh     
+  include/${PROJECT_NAME}/tools/joint-anyaxis.hh
   include/${PROJECT_NAME}/tools/print.hh
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/static_assert.hh
@@ -188,7 +192,7 @@ IF(WITH_SIMPLE_HUMANOID)
   ADD_SAMPLEMODEL("simple_humanoid")
 ENDIF()
 
-IF(BENCHMARK)
+IF(BUILD_MULTI_MODEL_BENCHMARK OR BUILD_SINGLE_MODEL_BENCHMARKS)
   ADD_SUBDIRECTORY(timer)
   ADD_SUBDIRECTORY(benchmark)
 ENDIF()

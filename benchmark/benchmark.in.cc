@@ -18,31 +18,15 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * This file run performance tests on metapods algorithms, on several sample
- * models.
+ * This file run performance tests on metapods algorithms, on a sample model
  */
 
-#define FUSION_MAX_VECTOR_SIZE 50
-#ifdef WITH_SIMPLE_HUMANOID
-# include "metapod/models/simple_humanoid/simple_humanoid.hh"
-#endif
-#include "models/sample_1/sample_1.hh"
-#include "models/sample_2/sample_2.hh"
-#include "models/sample_3/sample_3.hh"
-#include "models/sample_4/sample_4.hh"
-//#include "models/sample_5/sample_5.hh"
+#include "models/@_libname@/@_libname@.hh"
 
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
 int main()
 {
-#ifdef WITH_SIMPLE_HUMANOID
-  benchmark<metapod::simple_humanoid>::run();
-#endif
-  benchmark<metapod::sample_1>::run();
-  benchmark<metapod::sample_2>::run();
-  benchmark<metapod::sample_3>::run();
-  benchmark<metapod::sample_4>::run();
-  //benchmark<metapod::sample_5>::run();
+  benchmark<metapod::@_libname@>::run();
 }

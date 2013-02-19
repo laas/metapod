@@ -198,7 +198,6 @@ namespace metapod
          }
       }
     };
-    #define BENCHMARK(robot) benchmark<robot>::run()
   } // end of namespace benchmark
 } // end of namespace metapod
 

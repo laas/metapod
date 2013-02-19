@@ -32,31 +32,58 @@ SET(depth_list 1 2 3 4)
 ADD_EXECUTABLE(make_model make_model.cc)
 TARGET_LINK_LIBRARIES(make_model metapod_robotbuilder)
 
-# build the sample models libraries
 FOREACH(depth IN LISTS depth_list)
     SET(_libname "sample_${depth}")
+    # build the sample models libraries
     SET(_sources
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.hh
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/${_libname}.cc
         ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/config.hh)
     ADD_CUSTOM_COMMAND(
-      OUTPUT ${_sources}
-      COMMAND make_model ${depth}
-      DEPENDS make_model
+        OUTPUT ${_sources}
+        COMMAND make_model ${depth}
+        DEPENDS make_model
     )
     ADD_LIBRARY(${_libname} SHARED ${_sources})
+
+    # add the library to a list in order to bench it together wit the other
     LIST(APPEND _model_libs "${_libname}")
+
+    # build a benchmark which tests only this model
+    IF(BUILD_SINGLE_MODEL_BENCHMARKS)
+        SET(_benchname "benchmark_${_libname}")
+        CONFIGURE_FILE(
+            ${CMAKE_CURRENT_SOURCE_DIR}/benchmark.in.cc
+            ${CMAKE_CURRENT_BINARY_DIR}/${_benchname}.cc
+            @ONLY)
+        ADD_EXECUTABLE(benchmark_${_libname}
+            ${CMAKE_CURRENT_BINARY_DIR}/${_benchname}.cc
+            benchmark.hh)
+        TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
+    ENDIF()
 ENDFOREACH()
 
 # add simple humanoid model
 IF(WITH_SIMPLE_HUMANOID)
-    SET_SOURCE_FILES_PROPERTIES("benchmark.cc" PROPERTIES
-        COMPILE_FLAGS " -DWITH_SIMPLE_HUMANOID")
-    LIST(APPEND _model_libs "metapod_simple_humanoid")
     INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/simple_humanoid/include)
     INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/simple_humanoid/include)
+    SET(_libname "metapod_simple_humanoid")
+    # add the library to a list in order to bench it together wit the other
+    SET_SOURCE_FILES_PROPERTIES("benchmark.cc" PROPERTIES
+        COMPILE_FLAGS " -DWITH_SIMPLE_HUMANOID")
+    LIST(APPEND _model_libs "${_libname}")
+    # benchmark it alone
+    IF(BUILD_SINGLE_MODEL_BENCHMARKS)
+        SET(_benchname "benchmark_${_libname}")
+        ADD_EXECUTABLE(benchmark_${_libname}
+            ${_benchname}.cc
+            benchmark.hh)
+        TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
+    ENDIF()
 ENDIF()
 
-# and finally, the benchmark
-ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
-TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
+# and finally, a benchmark which runs all models at once
+IF(BUILD_MULTI_MODEL_BENCHMARK)
+    ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
+    TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
+ENDIF()
