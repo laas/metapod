@@ -140,18 +140,18 @@ Status addSubTree(
           }
         else
           {
-            ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Y joint", jnt->name.c_str());
             if (prefer_fixed_axis &&
                 jnt->axis.x == 0. && jnt->axis.y == 1. && jnt->axis.z == 0.)
               {
+                ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Y joint", jnt->name.c_str());
                 metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Y;
               }
             else
               {
-                ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Z joint", jnt->name.c_str());
                 if (prefer_fixed_axis &&
                     jnt->axis.x == 0. && jnt->axis.y == 0. && jnt->axis.z == 1.)
                   {
+                    ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Z joint", jnt->name.c_str());
                     metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Z;
                   }
                 else
