@@ -117,16 +117,16 @@ RobotBuilder::Status RobotBuilderP::set_license(const std::string& text)
   return RobotBuilder::STATUS_SUCCESS;
 }
 
-void RobotBuilderP::writeTemplate(
-                                  const std::string& output_filename,
-                                  const std::string& input_template)
+void RobotBuilderP::writeTemplate(const std::string& output_filename,
+                                  const std::string& input_template,
+                                  const ReplMap &repl) const
 {
   assert(is_initialized_);
   std::stringstream output_path;
   output_path << directory_ << "/" << output_filename;
   std::ofstream output_stream;
   output_stream.open(output_path.str().c_str());
-  output_stream << metapod::TxtTemplate(input_template).format(replacements_);
+  output_stream << metapod::TxtTemplate(input_template).format(repl);
   output_stream.close();
 }
 
@@ -287,177 +287,58 @@ RobotBuilder::Status RobotBuilderP::addLink(const std::string& parent_body_name,
   return RobotBuilder::STATUS_SUCCESS;
 }
 
-void RobotBuilderP::build_sxp_type(int link_id)
+void RobotBuilderP::writeLink(int link_id, TmpStreams &out) const
 {
-  std::ostringstream os;
-  std::string xt_type = model_.xt_type(link_id);
-  os << "Spatial::rm_mul_op<";
-  switch (model_.joint_type(link_id))
-    {
-    case(metapod::RobotBuilder::REVOLUTE_AXIS_X):
-      os <<"Spatial::RotationMatrixAboutX";
-      break;
-    case(metapod::RobotBuilder::REVOLUTE_AXIS_Y):
-      os <<"Spatial::RotationMatrixAboutY";
-      break;
-    case(metapod::RobotBuilder::REVOLUTE_AXIS_Z):
-      os <<"Spatial::RotationMatrixAboutZ";
-      break;
-    case(metapod::RobotBuilder::FREE_FLYER):
-    default:
-      os <<"Spatial::RotationMatrix";
-      break;
-
-    }
-  os << ",";
-  os << xt_type;
-  os << ">::rm";
-
-  model_.set_link_sxp_type(link_id,os.str());
-}
-
-void RobotBuilderP::inittpl1(std::string &s_tpl1,
-                             int link_id)
-{
-  const Eigen::Matrix3d &R_joint_parent = model_.R_joint_parent(link_id);
-  std::string Xttp1;
-
-  // Identify the relevant type for Xt.
-  if (R_joint_parent==Eigen::Matrix3d::Identity())
-    {
-      std::string xt_type("Spatial::RotationMatrixIdentity");
-      model_.set_link_xt_type(link_id,xt_type);
-      std::ostringstream os;
-      os << "T<" << xt_type << ">";
-      Xttp1 = os.str();
-    }
-  else
-    {
-      std::string xt_type("Spatial::RotationMatrix");
-      model_.set_link_xt_type(link_id,xt_type);
-      Xttp1 = "";
-    }
-
-  // Deduces the relevant type for sXp.
-  build_sxp_type(link_id);
-
-  // Build the template for the link.
-  std::ostringstream os;
-  os << "\n";
-  os << "  class Node@node_id@ {\n";
-  os << "  public:\n";
-  os << "    Node@node_id@();\n";
-  os << "    static const int id = @node_id@;\n";
-  os << "    static const std::string joint_name;\n";
-  os << "    static const std::string body_name;\n" ;
-  os << "    static const Spatial::Transform";
-  os << Xttp1.c_str();
-  os << " Xt;\n";
-  os << "    static const int q_idx = @dof_index@;\n";
-  os << "    typedef @joint_type@ Joint;\n";
-  os << "    static const int parent_id = @parent_id@;\n";
-  os << "    static const int child0_id = @child0_id@;\n";
-  os << "    static const int child1_id = @child1_id@;\n";
-  os << "    static const int child2_id = @child2_id@;\n";
-  os << "    static const int child3_id = @child3_id@;\n";
-  os << "    static const int child4_id = @child4_id@;\n";
-  os << "    static const FloatType mass;\n";
-  os << "    static const Spatial::Inertia I; // in body frame\n";
-
-  os << "    Spatial::TransformT<";
-  os << model_.sxp_type(link_id);
-  os << ">sXp;\n";
-
-  os << "    Eigen::Matrix<FloatType, 6, Joint::NBDOF> joint_F; // used by crba\n";
-  os << "    Joint joint;\n";
-  os << "    Body body;\n";
-  os << "  };\n";
-  s_tpl1 = os.str();
-}
-
-void RobotBuilderP::inittpl4(std::string &s_tpl4,
-                             int link_id)
-{
-  const Eigen::Matrix3d &R_joint_parent = model_.R_joint_parent(link_id);
-  std::string Xttp4;
-  if (R_joint_parent==Eigen::Matrix3d::Identity())
-    Xttp4 = "Spatial::TransformT<Spatial::RotationMatrixIdentity>";
-  else
-    Xttp4 = "Spatial::Transform";
-
-  std::ostringstream os;
-  os << "const std::string @ROBOT_CLASS_NAME@::Node@node_id@::joint_name = std::string(\"@joint_name@\");\n";
-  os << "const std::string @ROBOT_CLASS_NAME@::Node@node_id@::body_name = std::string(\"@body_name@\");\n";
-  os << "const " ;
-  os << Xttp4;
-  os << " @ROBOT_CLASS_NAME@::Node@node_id@::Xt = ";
-  os << Xttp4;
-  os << "(\n";
-  os << "    @R_joint_parent@,\n";
-  os << "    @r_parent_joint@);\n";
-  os << "const FloatType @ROBOT_CLASS_NAME@::Node@node_id@::mass = @body_mass@;\n";
-  os << "const Spatial::Inertia @ROBOT_CLASS_NAME@::Node@node_id@::I = spatialInertiaMaker(\n";
-  os << "    @body_mass@,\n";
-  os << "    @body_center_of_mass@,\n";
-  os << "    @body_rotational_inertia@);\n\n";
-  os << "@ROBOT_CLASS_NAME@::Node@node_id@::Node@node_id@():\n";
-  os << "  joint(@joint_args@) {}\n\n";
-  s_tpl4 = os.str();
-}
-
-void RobotBuilderP::instanciateXt(std::stringstream &ss0,
-                                  int link_id)
-{
-  const Eigen::Matrix3d &R_joint_parent = model_.R_joint_parent(link_id);
-  if (R_joint_parent==Eigen::Matrix3d::Identity())
-    {
-      ss0 << "Spatial::RotationMatrixIdentity()";
-    }
-  else
-    {
-      Eigen::IOFormat comma_fmt(Eigen::StreamPrecision, Eigen::DontAlignCols,
-                                ", ", ", ");
-
-      ss0 << "matrix3dMaker("
-          << model_.R_joint_parent(link_id).format(comma_fmt)
-          << ")";
-    }
-}
-
-void RobotBuilderP::writeLink(int link_id)
-{
-  std::string joint_type;
+  std::string joint_type, joint_rotation_type;
   switch(model_.joint_type(link_id))
     {
     case metapod::RobotBuilder::FREE_FLYER:
-      joint_type = std::string("FreeFlyerJoint");
+      joint_type = "FreeFlyerJoint";
+      joint_rotation_type = "Spatial::RotationMatrix";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_X:
-      joint_type = std::string("RevoluteAxisXJoint");
+      joint_type = "RevoluteAxisXJoint";
+      joint_rotation_type = "Spatial::RotationMatrixAboutX";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_Y:
-      joint_type = std::string("RevoluteAxisYJoint");
+      joint_type = "RevoluteAxisYJoint";
+      joint_rotation_type = "Spatial::RotationMatrixAboutY";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_Z:
-      joint_type = std::string("RevoluteAxisZJoint");
+      joint_type = "RevoluteAxisZJoint";
+      joint_rotation_type = "Spatial::RotationMatrixAboutZ";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_ANY:
-      joint_type = std::string("RevoluteAxisAnyJoint");
+      joint_type = "RevoluteAxisAnyJoint";
+      joint_rotation_type = "Spatial::RotationMatrix";
       break;
     }
 
   Eigen::IOFormat comma_fmt(Eigen::StreamPrecision, Eigen::DontAlignCols,
                             ", ", ", ");
   const int parent_id = model_.parent_id(link_id);
-  std::map<std::string, std::string> repl(replacements_);
+  ReplMap repl(replacements_);
   repl["node_id"] = ::to_string(link_id);
   repl["node_name"] = ::node_name(model_, link_id);
   repl["dof_index"] = ::to_string(model_.dof_index(link_id));
-  repl["joint_type"] = ::to_string(joint_type);
+  repl["joint_type"] = joint_type;
+  repl["joint_rotation_type"] = joint_rotation_type;
   repl["joint_name"] = model_.joint_name(link_id);
-  std::stringstream ss0;
-  instanciateXt(ss0,link_id);
-  repl["R_joint_parent"] = ss0.str();
+
+  const Eigen::Matrix3d &R_joint_parent = model_.R_joint_parent(link_id);
+  if (R_joint_parent.isApprox(Eigen::Matrix3d::Identity())) {
+    repl["R_joint_parent_type"] = "Spatial::RotationMatrixIdentity";
+    repl["X_joint_parent_type"] = "Spatial::TransformT<Spatial::RotationMatrixIdentity>";
+    repl["R_joint_parent"] = "Spatial::RotationMatrixIdentity()";
+  } else {
+    repl["R_joint_parent_type"] = "Spatial::RotationMatrix";
+    repl["X_joint_parent_type"] = "Spatial::Transform";
+    std::stringstream ss0;
+    ss0 << "matrix3dMaker("
+        << model_.R_joint_parent(link_id).format(comma_fmt)
+        << ")";
+    repl["R_joint_parent"] = ss0.str();
+  }
   std::stringstream ss1;
   ss1 << "Vector3d("
       << model_.r_parent_joint(link_id).format(comma_fmt)
@@ -489,41 +370,72 @@ void RobotBuilderP::writeLink(int link_id)
 
   const TxtTemplate tpl0(
                          "    @node_name@ = @node_id@");
-  nodeid_enum_definition_ss_ << tpl0.format(repl);
+  out.nodeid_enum_definition << tpl0.format(repl);
   if (!is_last_link)
-    nodeid_enum_definition_ss_ << ",\n";
+    out.nodeid_enum_definition << ",\n";
 
-  std::string s_tpl1;
-  inittpl1(s_tpl1,link_id);
-  const TxtTemplate tpl1(s_tpl1);
-  node_type_definitions_ss_ << tpl1.format(repl);
+  const TxtTemplate tpl1(
+      "\n"
+      "  class Node@node_id@ {\n"
+      "  public:\n"
+      "    Node@node_id@();\n"
+      "    static const int id = @node_id@;\n"
+      "    static const std::string joint_name;\n"
+      "    static const std::string body_name;\n"
+      "    static const @X_joint_parent_type@ Xt;\n"
+      "    static const int q_idx = @dof_index@;\n"
+      "    typedef @joint_type@ Joint;\n"
+      "    static const int parent_id = @parent_id@;\n"
+      "    static const int child0_id = @child0_id@;\n"
+      "    static const int child1_id = @child1_id@;\n"
+      "    static const int child2_id = @child2_id@;\n"
+      "    static const int child3_id = @child3_id@;\n"
+      "    static const int child4_id = @child4_id@;\n"
+      "    static const FloatType mass;\n"
+      "    static const Spatial::Inertia I; // in body frame\n"
+      "    Spatial::TransformT<Spatial::rm_mul_op<@joint_rotation_type@, @R_joint_parent_type@>::rm> sXp;\n"
+      "    Eigen::Matrix<FloatType, 6, Joint::NBDOF> joint_F; // used by crba\n"
+      "    Joint joint;\n"
+      "    Body body;\n"
+      "  };\n");
+  out.node_type_definitions << tpl1.format(repl);
 
   const TxtTemplate tpl2(
                          "      Node@node_id@");
-  nodes_type_list_ss_ << tpl2.format(repl);
+  out.nodes_type_list << tpl2.format(repl);
   if (!is_last_link)
-    nodes_type_list_ss_ << ",\n";
+    out.nodes_type_list << ",\n";
 
   const TxtTemplate tpl3(
                          "template <> struct Nodes <@ROBOT_CLASS_NAME@, @node_id@> "
                          "{typedef @ROBOT_CLASS_NAME@::Node@node_id@ type;};\n");
-  map_node_id_to_type_ss_ << tpl3.format(repl);
+  out.map_node_id_to_type << tpl3.format(repl);
 
   // fill bits for init.cc
-  std::string s_tpl4;
-  inittpl4(s_tpl4,link_id);
-  const TxtTemplate tpl4(s_tpl4);
+  const TxtTemplate tpl4(
+      "const std::string @ROBOT_CLASS_NAME@::Node@node_id@::joint_name = std::string(\"@joint_name@\");\n"
+      "const std::string @ROBOT_CLASS_NAME@::Node@node_id@::body_name = std::string(\"@body_name@\");\n"
+      "const @X_joint_parent_type@ @ROBOT_CLASS_NAME@::Node@node_id@::Xt = @X_joint_parent_type@(\n"
+      "    @R_joint_parent@,\n"
+      "    @r_parent_joint@);\n"
+      "const FloatType @ROBOT_CLASS_NAME@::Node@node_id@::mass = @body_mass@;\n"
+      "const Spatial::Inertia @ROBOT_CLASS_NAME@::Node@node_id@::I = spatialInertiaMaker(\n"
+      "    @body_mass@,\n"
+      "    @body_center_of_mass@,\n"
+      "    @body_rotational_inertia@);\n\n"
+      "@ROBOT_CLASS_NAME@::Node@node_id@::Node@node_id@():\n"
+      "  joint(@joint_args@) {}\n\n");
   if (model_.joint_type(link_id) == RobotBuilder::REVOLUTE_AXIS_ANY)
     {
       std::stringstream ss;
       ss << model_.joint_axis(link_id).format(comma_fmt);
       repl["joint_args"] = ss.str();
     }
-  init_nodes_ss_ << tpl4.format(repl);
+  out.init_nodes << tpl4.format(repl);
 
 }
 
-RobotBuilder::Status RobotBuilderP::write()
+RobotBuilder::Status RobotBuilderP::write() const
 {
   if (!is_initialized_)
     {
@@ -534,41 +446,42 @@ RobotBuilder::Status RobotBuilderP::write()
   boost::filesystem::create_directories(directory_);
 
   // fill the replacements we already know
-  replacements_[std::string("ROBOT_NB_DOF")] = ::to_string(nb_dof_);
-  replacements_[std::string("ROBOT_NB_BODIES")] = ::to_string(model_.nb_links());
-
+  ReplMap repl(replacements_);
+  repl[std::string("ROBOT_NB_DOF")] = ::to_string(nb_dof_);
+  repl[std::string("ROBOT_NB_BODIES")] = ::to_string(model_.nb_links());
+  TmpStreams streams;
   // add the links
   for (int i = 0; i != model_.nb_links(); ++i)
     {
-      writeLink(i);
+      writeLink(i, streams);
     }
 
   // complete the replacements map
 
-  replacements_["nodeid_enum_definition"] = nodeid_enum_definition_ss_.str();
-  replacements_["node_type_definitions"] = node_type_definitions_ss_.str();
-  replacements_["nodes_type_list"] = nodes_type_list_ss_.str();
-  replacements_["map_node_id_to_type"] = map_node_id_to_type_ss_.str();
+  repl["nodeid_enum_definition"] = streams.nodeid_enum_definition.str();
+  repl["node_type_definitions"] = streams.node_type_definitions.str();
+  repl["nodes_type_list"] = streams.nodes_type_list.str();
+  repl["map_node_id_to_type"] = streams.map_node_id_to_type.str();
 
   for (int i = 0; i<MAX_NB_CHILDREN_PER_NODE; ++i)
     {
       std::stringstream key;
       key << "root_child" << i << "_id";
-      replacements_[key.str()] = ::to_string(model_.child_id(NO_PARENT, i));
+      repl[key.str()] = ::to_string(model_.child_id(NO_PARENT, i));
     }
 
   // init.cc
-  replacements_["init_nodes"] = init_nodes_ss_.str();
+  repl["init_nodes"] = streams.init_nodes.str();
 
   // generate files from template and replacements
   const std::string config_hh_templ(::config_hh, ::config_hh_len);
-  writeTemplate("config.hh", config_hh_templ);
+  writeTemplate("config.hh", config_hh_templ, repl);
 
   const std::string init_hh_templ(::init_hh, ::init_hh_len);
-  writeTemplate(name_ + ".hh", init_hh_templ);
+  writeTemplate(name_ + ".hh", init_hh_templ, repl);
 
   const std::string init_cc_templ(::init_cc, ::init_cc_len);
-  writeTemplate(name_ + ".cc", init_cc_templ);
+  writeTemplate(name_ + ".cc", init_cc_templ, repl);
   return RobotBuilder::STATUS_SUCCESS;
 }
 

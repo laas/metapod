@@ -68,41 +68,34 @@ public:
       const Eigen::Matrix3d & body_rotational_inertia,
       const Eigen::Vector3d & joint_axis,
       int dof_index=-1);
-  RobotBuilder::Status write();
+  RobotBuilder::Status write() const;
 private:
-  void writeLink(int link_id);
-  void writeTemplate(
-      const std::string& output_filename,
-      const std::string &input_template);
+  typedef std::map<std::string, std::string> ReplMap;
+  // Tuple-like to hold the stream in which the link are written
+  struct TmpStreams {
+    // for content in robot.hh
+    std::ostringstream node_type_definitions;
+    std::ostringstream nodeid_enum_definition;
+    std::ostringstream nodes_type_list;
+    std::ostringstream map_node_id_to_type;
+    // for content in init.cc
+    std::ostringstream init_nodes;
+  };
+  void writeLink(int link_id, TmpStreams& out)const ;
+  void writeTemplate(const std::string& output_filename,
+                     const std::string &input_template,
+                     const ReplMap& repl) const;
   RobotBuilderP(const RobotBuilderP&); // forbid copy-constuction
   int nb_dof_;
   int node_depth_;
   bool is_initialized_;
   bool use_dof_index_;
   RobotModel model_;
-  std::map<std::string, std::string> replacements_;
+  ReplMap replacements_;
   std::string name_;
   std::string libname_;
   std::string directory_;
   std::string license_;
-  // in robot.hh
-  std::ostringstream node_type_definitions_ss_;
-  std::ostringstream nodeid_enum_definition_ss_;
-  std::ostringstream nodes_type_list_ss_;
-  std::ostringstream map_node_id_to_type_ss_;
-  // init init.cc
-  std::ostringstream init_nodes_ss_;
-  /** \name Methods to generate transform using optimized rotation matrices.
-      @{
-   */
-  /** \brief Xt declaration. */
-  void inittpl1(std::string &s_tpl1, int link_id);
-  /** \brief Xt instanciation */
-  void inittpl4(std::string &s_tpl4, int link_id);
-  void instanciateXt(std::stringstream &ss0, int link_id);
-  /** \brief Deduce the type of sXp. */
-  void build_sxp_type(int link_id);
-
 };
 }
 #endif
