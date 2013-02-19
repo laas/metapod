@@ -27,6 +27,7 @@
 # include "metapod/models/simple_humanoid/simple_humanoid.hh"
 #endif
 
+
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
@@ -35,4 +36,5 @@ int main()
 #ifdef WITH_SIMPLE_HUMANOID
   BENCHMARK(metapod::simple_humanoid);
 #endif
+  //BENCHMARK(metapod::sample_5);
 }
