@@ -39,10 +39,9 @@ namespace metapod
     void jcalc(const Vector1d& qi, const Vector1d& dqi);
   };
 
-  inline RevoluteAxisZJoint::RevoluteAxisZJoint()
+  inline RevoluteAxisZJoint::RevoluteAxisZJoint():
+      cj(Spatial::Motion::Zero())
   {
-    cj.w(Vector3d(0.0,0.0,0.0));
-    cj.v(Vector3d(0.0,0.0,0.0));
     vj.v(Vector3d(0.0,0.0,0.0));
   }
 
@@ -52,7 +51,7 @@ namespace metapod
     FloatType c = cos(angle), s = sin(angle);
     Xj = Spatial::TransformZ
       (Spatial::RotationMatrixAboutZ(c,s),
-       Vector3d::Zero());	    
+       Vector3d::Zero());
   }
 
   inline void RevoluteAxisZJoint::jcalc(const Vector1d & qi,

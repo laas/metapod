@@ -38,8 +38,6 @@ namespace metapod
   };
 
   inline FreeFlyerJoint::FreeFlyerJoint()
-      : cj(Vector3d::Zero(),Vector3d::Zero()),
-        vj(Vector3d::Zero(),Vector3d::Zero())
   {
   }
 
