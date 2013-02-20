@@ -40,9 +40,11 @@ namespace metapod
 
   inline RevoluteAxisAnyJoint::RevoluteAxisAnyJoint(
       double axis_x, double axis_y, double axis_z):
+    cj(Spatial::Motion::Zero()),
     S(axis_x, axis_y, axis_z),
     axis_(axis_x, axis_y, axis_z)
   {
+    vj.v(Vector3d::Zero());
   }
 
   inline void RevoluteAxisAnyJoint::bcalc(const Vector1d& qi)
