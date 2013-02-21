@@ -171,7 +171,6 @@ namespace metapod {
 
 RobotBuilderP::RobotBuilderP()
   : nb_dof_(0),
-    node_depth_(0),
     is_initialized_(false),
     use_dof_index_(false)
 {}

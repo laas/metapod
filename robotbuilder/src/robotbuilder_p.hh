@@ -88,7 +88,6 @@ private:
                      const ReplMap& replacements) const;
   RobotBuilderP(const RobotBuilderP&); // forbid copy-constuction
   int nb_dof_;
-  int node_depth_;
   bool is_initialized_;
   bool use_dof_index_;
   RobotModel model_;
