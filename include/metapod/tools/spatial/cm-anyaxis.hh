@@ -33,7 +33,7 @@ namespace metapod
         // Constructors
       ConstraintMotionAnyAxis(double axisx,
                               double axisy,
-                              double axisz)
+                              double axisz): m_S(Vector6d::Zero())
       { m_S(0) = axisx; m_S(1) = axisy; m_S(2) = axisz;}
 
       Vector6d operator*(double d) const;
