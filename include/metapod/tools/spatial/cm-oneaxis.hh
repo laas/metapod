@@ -42,8 +42,8 @@ namespace metapod
     {
       public:
         // Constructors
-      ConstraintMotionOneAxis()
-      { m_S=Vector6d::Zero();
+      ConstraintMotionOneAxis(): m_S(Vector6d::Zero())
+      {
         m_S[axis] = 1.0;
       }
 

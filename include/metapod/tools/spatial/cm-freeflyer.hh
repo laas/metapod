@@ -33,14 +33,12 @@ namespace metapod
     {
     public:
         // Constructors
-      ConstraintMotionFreeFlyer()
-      { m_S = Matrix6d::Zero(); }
+      ConstraintMotionFreeFlyer(): m_S(Matrix6d::Zero())
+      {}
 
       Matrix6d operator*(FloatType x) const
       {
-        Matrix6d tmp = Matrix6d::Zero();
-        tmp = x*m_S;
-        return tmp;
+        return x*m_S;
       }
 
       Vector6d operator*(const Eigen::Matrix< FloatType, 6, 1 > &ddqi) const
