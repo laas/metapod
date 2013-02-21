@@ -255,14 +255,14 @@ RobotBuilder::Status RobotBuilderP::set_license(const std::string& text)
 
 void RobotBuilderP::writeTemplate(const std::string& output_filename,
                                   const std::string& input_template,
-                                  const ReplMap &repl) const
+                                  const ReplMap &replacements) const
 {
   assert(is_initialized_);
   std::stringstream output_path;
   output_path << directory_ << "/" << output_filename;
   std::ofstream output_stream;
   output_stream.open(output_path.str().c_str());
-  output_stream << metapod::TxtTemplate(input_template).format(repl);
+  output_stream << metapod::TxtTemplate(input_template).format(replacements);
   output_stream.close();
 }
 
@@ -270,20 +270,6 @@ void RobotBuilderP::writeTemplate(const std::string& output_filename,
 RobotBuilder::Status RobotBuilderP::init()
 {
   assert(!is_initialized_);
-
-  // set up the map of replacements (for the ones that are known
-  // already).
-  std::string libname_uc(libname_);
-  std::transform(libname_.begin(), libname_.end(), libname_uc.begin(),
-                 ::toupper);
-  replacements_[std::string("LIBRARY_NAME")] = libname_uc;
-  std::stringstream export_symbol;
-  export_symbol << libname_ << "_EXPORTS";
-  replacements_["EXPORT_SYMBOL"] = export_symbol.str();
-  replacements_["ROBOT_CLASS_NAME"] = name_;
-  replacements_["ROBOT_NAME"] = name_;
-  replacements_["LICENSE"] = license_;
-
   is_initialized_ = true;
   return RobotBuilder::STATUS_SUCCESS;
 }
@@ -431,7 +417,8 @@ RobotBuilder::Status RobotBuilderP::addLink(const std::string& parent_body_name,
   return RobotBuilder::STATUS_SUCCESS;
 }
 
-void RobotBuilderP::writeLink(int link_id, TmpStreams &out) const
+void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
+                              TmpStreams &out) const
 {
   std::string joint_type, joint_rotation_type;
   switch(model_.joint_type(link_id))
@@ -461,7 +448,7 @@ void RobotBuilderP::writeLink(int link_id, TmpStreams &out) const
   Eigen::IOFormat comma_fmt(Eigen::StreamPrecision, Eigen::DontAlignCols,
                             ", ", ", ");
   const int parent_id = model_.parent_id(link_id);
-  ReplMap repl(replacements_);
+  ReplMap repl(replacements);
   repl["node_id"] = ::to_string(link_id);
   repl["node_name"] = ::node_name(model_, link_id);
   repl["dof_index"] = ::to_string(model_.dof_index(link_id));
@@ -580,37 +567,42 @@ void RobotBuilderP::writeLink(int link_id, TmpStreams &out) const
 RobotBuilder::Status RobotBuilderP::write() const
 {
   if (!is_initialized_)
-    {
-      return RobotBuilder::STATUS_FAILURE;
-    }
+    return RobotBuilder::STATUS_FAILURE;
 
   // create the directory (and its parents if necessary)
   boost::filesystem::create_directories(directory_);
 
   // fill the replacements we already know
-  ReplMap repl(replacements_);
-  repl[std::string("ROBOT_NB_DOF")] = ::to_string(nb_dof_);
-  repl[std::string("ROBOT_NB_BODIES")] = ::to_string(model_.nb_links());
+  ReplMap repl;
+  std::string libname_uc(libname_);
+  std::transform(libname_.begin(), libname_.end(), libname_uc.begin(),
+                 ::toupper);
+  repl["LIBRARY_NAME"] = libname_uc;
+  std::stringstream export_symbol;
+  export_symbol << libname_ << "_EXPORTS";
+  repl["EXPORT_SYMBOL"] = export_symbol.str();
+  repl["ROBOT_CLASS_NAME"] = name_;
+  repl["ROBOT_NAME"] = name_;
+  repl["LICENSE"] = license_;
+  repl["ROBOT_NB_DOF"] = ::to_string(nb_dof_);
+  repl["ROBOT_NB_BODIES"] = ::to_string(model_.nb_links());
+
+  // add the links to the temporary streams
   TmpStreams streams;
-  // add the links
   for (int i = 0; i != model_.nb_links(); ++i)
-    {
-      writeLink(i, streams);
-    }
+    writeLink(i, repl, streams);
 
   // complete the replacements map
-
   repl["nodeid_enum_definition"] = streams.nodeid_enum_definition.str();
   repl["node_type_definitions"] = streams.node_type_definitions.str();
   repl["nodes_type_list"] = streams.nodes_type_list.str();
   repl["map_node_id_to_type"] = streams.map_node_id_to_type.str();
 
-  for (int i = 0; i<MAX_NB_CHILDREN_PER_NODE; ++i)
-    {
-      std::stringstream key;
-      key << "root_child" << i << "_id";
-      repl[key.str()] = ::to_string(model_.child_id(NO_PARENT, i));
-    }
+  for (int i = 0; i<MAX_NB_CHILDREN_PER_NODE; ++i) {
+    std::stringstream key;
+    key << "root_child" << i << "_id";
+    repl[key.str()] = ::to_string(model_.child_id(NO_PARENT, i));
+  }
 
   // init.cc
   repl["init_nodes"] = streams.init_nodes.str();

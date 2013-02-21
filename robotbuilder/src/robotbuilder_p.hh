@@ -81,17 +81,17 @@ private:
     // for content in init.cc
     std::ostringstream init_nodes;
   };
-  void writeLink(int link_id, TmpStreams& out)const ;
+  void writeLink(int link_id, const ReplMap& replacements,
+                 TmpStreams& out) const;
   void writeTemplate(const std::string& output_filename,
                      const std::string &input_template,
-                     const ReplMap& repl) const;
+                     const ReplMap& replacements) const;
   RobotBuilderP(const RobotBuilderP&); // forbid copy-constuction
   int nb_dof_;
   int node_depth_;
   bool is_initialized_;
   bool use_dof_index_;
   RobotModel model_;
-  ReplMap replacements_;
   std::string name_;
   std::string libname_;
   std::string directory_;
