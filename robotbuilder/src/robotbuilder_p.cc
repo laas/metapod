@@ -541,8 +541,26 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
 
 RobotBuilder::Status RobotBuilderP::write() const
 {
-  if (!is_initialized_)
+  if (!is_initialized_) {
+    std::cerr
+        << "ERROR: the robot has no link."
+        << std::endl;
     return RobotBuilder::STATUS_FAILURE;
+  }
+
+  // check name and libname
+  if (name_.empty()) {
+    std::cerr
+        << "ERROR: the robot name has not been provided."
+        << std::endl;
+    return RobotBuilder::STATUS_FAILURE;
+  }
+  if (libname_.empty()) {
+    std::cerr
+        << "ERROR: the robot library name has not been provided."
+        << std::endl;
+    return RobotBuilder::STATUS_FAILURE;
+  }
 
   // create the directory (and its parents if necessary)
   boost::filesystem::create_directories(directory_);
