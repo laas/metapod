@@ -51,6 +51,7 @@
 # include <metapod/tools/bcalc.hh>
 # include <metapod/algos/rnea.hh>
 # include <metapod/algos/crba.hh>
+# include <metapod/algos/jac.hh>
 /*
 # include <metapod/tools/jac_point_robot.hh>
 */
@@ -124,6 +125,17 @@ namespace metapod
       int outer_loop_count_;
     };
 
+    // wrapping jac directly with boost::bind
+    // does not work because the J argument (an Eigen matrix) has
+    // alignement constraints.
+    template <typename Robot>
+    class jac_wrapper {
+    public:
+      static void run(Robot& robot) {
+        typename jac<Robot>::Jacobian J;
+        jac<Robot>::run(robot, J);
+      }
+    };
     // wrapping jac_point_robot directly with boost::bind
     // does not work because the J argument (an Eigen matrix) has
     // alignement constraints.
@@ -168,6 +180,9 @@ namespace metapod
         runners.push_back(Runner<Robot>(
             boost::bind<void>(crba<Robot, false>::run, _1, _2),
             std::string("crba (without jcalc)")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(jac_wrapper<Robot>::run, _1),
+            std::string("jac (without jcalc)")));
         /*
         runners.push_back(Runner<Robot>(
             boost::bind<void>(jac_point_robot_wrapper<Robot, false>::run, _1),

@@ -115,6 +115,7 @@ SET(${PROJECT_NAME}_ROOT_HEADERS
 SET(${PROJECT_NAME}_ALGOS_HEADERS
   include/${PROJECT_NAME}/algos/rnea.hh
   include/${PROJECT_NAME}/algos/crba.hh
+  include/${PROJECT_NAME}/algos/jac.hh
   include/${PROJECT_NAME}/algos/jac_point_relative.hh
   include/${PROJECT_NAME}/algos/jac_point_chain.hh
   )
