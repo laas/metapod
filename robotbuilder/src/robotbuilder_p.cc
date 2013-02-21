@@ -181,25 +181,12 @@ RobotBuilderP::~RobotBuilderP()
 
 RobotBuilder::Status RobotBuilderP::set_directory(const std::string & directory)
 {
-  if (is_initialized_)
-    {
-      std::cerr
-        << "ERROR: one cannot call set_directory() after having called addLink()"
-        << std::endl;
-      return RobotBuilder::STATUS_FAILURE;
-    }
   directory_ = directory;
   return RobotBuilder::STATUS_SUCCESS;
 }
 
 RobotBuilder::Status RobotBuilderP::set_name(const std::string & name)
 {
-  if (is_initialized_) {
-    std::cerr
-        << "ERROR: one cannot call set_name() after having called addLink()"
-        << std::endl;
-    return RobotBuilder::STATUS_FAILURE;
-  }
   if (!::isValidIdentifier(name)) {
     std::cerr
         << "ERROR: name \"" << name << "\" is invalid."
@@ -212,11 +199,6 @@ RobotBuilder::Status RobotBuilderP::set_name(const std::string & name)
 
 RobotBuilder::Status RobotBuilderP::set_libname(const std::string& name)
 {
-  if (is_initialized_) {
-    std::cerr
-        << "ERROR: one cannot call set_libname() after having called addLink()"
-        << std::endl;
-  }
   if (!::isValidIdentifier(name)) {
     std::cerr
         << "ERROR: libname \"" << name << "\" is invalid."
@@ -242,13 +224,6 @@ RobotBuilder::Status RobotBuilderP::set_use_dof_index(bool flag)
 
 RobotBuilder::Status RobotBuilderP::set_license(const std::string& text)
 {
-  if (is_initialized_)
-    {
-      std::cerr
-        << "ERROR: one cannot call set_license() after having called addLink()"
-        << std::endl;
-      return RobotBuilder::STATUS_FAILURE;
-    }
   license_ = text;
   return RobotBuilder::STATUS_SUCCESS;
 }
