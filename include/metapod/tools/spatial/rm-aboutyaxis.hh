@@ -91,7 +91,7 @@ namespace metapod
       void set(FloatType theta)
       { m_c = cos(theta); m_s=sin(theta);}
 
-      Matrix3d toMatrix()
+      Matrix3d toMatrix() const
       {
 	Matrix3d r;
 	r(0,0) = m_c; r(0,1) = 0.0;  r(0,2) =-m_s;

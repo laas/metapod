@@ -136,10 +136,10 @@ namespace metapod
         Matrix6d toMatrix() const
         {
           Matrix6d M;
-          M.block<3,3>(0,0) = m_E;
+          M.block<3,3>(0,0) = M.block<3,3>(3,3) = m_E.toMatrix();
           M.block<3,3>(0,3) = Matrix3d::Zero();
-          M.block<3,3>(3,0) = -m_E * skew(m_r);
-          M.block<3,3>(3,3) = m_E;
+          M.block<3,3>(3,0) = -M.block<3,3>(0,0) * skew(m_r);
+
           return M;
         }
 
