@@ -54,7 +54,7 @@
 // There are variants with 0, 1 and 2 arguments for both run() and visit()
 //
 // There is also a variant algorithm, backward_traversal_previous, which
-// does not skip the start node, but visit it usion NO_NODE as previous node
+// does not skip the start node, but visit it using NO_NODE as previous node
 // instead.
 //
 //     A--B--G   H
