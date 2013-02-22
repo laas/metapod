@@ -16,8 +16,8 @@
 // along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 
 //
-// Implementation of the "backward" traversal algorithm: from a node,
-// traverse the tree until reaching the root.
+// Implementation of the "backward" traversal algorithm: from a start node,
+// traverse the tree toward the root until reaching the end node.
 //
 // To use it, create a visitor
 //
@@ -48,7 +48,8 @@
 // reaches the end node. If you do not provide the end_note_id argument, it
 // defaults to NO_PARENT (no parent), the root of the kinematic tree.
 //
-// There are variants with 0, 1 and 2 arguments for both run() and visit()
+// There are variants with 0, 1, 2 and 3 arguments (for run(), discover() and
+// finish())
 
 #ifndef METAPOD_BACKWARD_TRAVERSAL_HH
 # define METAPOD_BACKWARD_TRAVERSAL_HH
@@ -87,6 +88,14 @@ struct backward_traversal_internal
     backward_traversal_internal<Visitor, Robot, Node::parent_id, end_node_id>::run(arg0, arg1);
     Visitor<Robot, node_id>::finish(arg0, arg1);
   }
+
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0& arg0, Arg1& arg1, Arg2& arg2)
+  {
+    Visitor<Robot, node_id>::discover(arg0, arg1, arg2);
+    backward_traversal_internal<Visitor, Robot, Node::parent_id, end_node_id>::run(arg0, arg1, arg2);
+    Visitor<Robot, node_id>::finish(arg0, arg1, arg2);
+  }
 };
 
 // end recursion when we reach end node
@@ -101,6 +110,9 @@ struct backward_traversal_internal<Visitor, Robot, end_node_id, end_node_id>
 
   template<typename Arg0, typename Arg1>
   static void run(Arg0&, Arg1&) {}
+
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0&, Arg1&, Arg2&) {}
 };
 
 } // end of namespace metapod::internal
@@ -130,6 +142,12 @@ struct backward_traversal
   {
     internal::backward_traversal_internal<Visitor, Robot, start_node_id, end_node_id>::run(arg0, arg1);
   }
+
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0& arg0, Arg1& arg1, Arg2& arg2)
+  {
+    internal::backward_traversal_internal<Visitor, Robot, start_node_id, end_node_id>::run(arg0, arg1, arg2);
+  }
 };
 
 // Specialization: deal with the case where the user called the algorithm
@@ -146,6 +164,10 @@ struct backward_traversal<Visitor, Robot, end_node_id, end_node_id>
 
   template<typename Arg0, typename Arg1>
   static void run(Arg0& , Arg1&) {}
+
+  template<typename Arg0, typename Arg1, typename Arg2>
+  static void run(Arg0& , Arg1&, Arg2&) {}
+
 };
 } // end of namespace metapod
 #endif
