@@ -51,7 +51,8 @@
 // reaches the end node. If you do not provide the end_note_id argument, it
 // defaults to NO_PARENT (no parent), the root of the kinematic tree.
 //
-// There are variants with 0, 1 and 2 arguments for both run() and visit()
+// There are variants with 0, 1 and 2 arguments (for run(), discover() and
+// finish())
 //
 // There is also a variant algorithm, backward_traversal_previous, which
 // does not skip the start node, but visit it using NO_NODE as previous node
