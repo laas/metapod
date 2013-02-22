@@ -24,39 +24,44 @@
 # include <metapod/tools/common.hh>
 # include <metapod/tools/is_ancestor.hh>
 
-namespace metapod
-{
-  /// \brief Deepest common ancestor node of two nodes A and B. The member
-  //  typedef "type" is the Body type of the deepest common ancestor.
-  ///
-  /// \tparam NodeA Body type
-  /// \tparam NodeB Body type
-  template < typename NodeA, typename NodeB>
-  struct deepest_common_ancestor;
+namespace metapod {
 
-  // implementation used when A_is_ancestor_of_B == false
-  template < typename NodeA, typename NodeB, bool A_is_ancestor_of_B >
-  struct deepest_common_ancestor_internal
-  {
-    // if NodeA is not the deepest_common_ancestor
-    // deepest_common_ancestor<NodeA, NodeB>
-    // == deepest_common_ancestor<NodeA::Parent, NodeB>
-    typedef typename
-        deepest_common_ancestor<typename NodeA::Parent, NodeB>::type type;
-  };
+template <typename Robot, int node_a_id, int node_b_id>
+struct deepest_common_ancestor;
 
-  template < typename NodeA, typename NodeB>
-  struct deepest_common_ancestor_internal<NodeA, NodeB, true>
-  {
-    typedef NodeA type;
-  };
+namespace internal {
 
-  template < typename NodeA, typename NodeB>
-  struct deepest_common_ancestor
-  {
-    typedef typename deepest_common_ancestor_internal<NodeA, NodeB,
-        is_ancestor<NodeA, NodeB>::value >::type type;
-  };
-} // end of namespace metapod.
+// implementation used when a_is_ancestor_of_b == false
+template <typename Robot, int node_a_id, int node_b_id,
+          bool a_is_ancestor_of_b>
+struct deepest_common_ancestor_internal {
+  // if node A is not an ancestor of b, then
+  // deepest_common_ancestor<NodeA, NodeB>
+  // == deepest_common_ancestor<NodeA::Parent, NodeB>
+  typedef typename Nodes<Robot, node_a_id>::type NodeA;
+  static const int value =
+      deepest_common_ancestor<Robot, NodeA::parent_id, node_b_id>::value;
+};
+
+template <typename Robot, int node_a_id, int node_b_id>
+struct deepest_common_ancestor_internal<Robot, node_a_id, node_b_id, true> {
+  static const int value = node_a_id;
+};
+} // end of namespace metapod::internal
+
+/// \brief Deepest common ancestor node of two nodes A and B. The member
+//  typedef "type" is the Body type of the deepest common ancestor.
+///
+/// \tparam Robot
+/// \tparam node A id
+/// \tparam node B id
+template <typename Robot, int node_a_id, int node_b_id>
+struct deepest_common_ancestor {
+  static const int value = internal::deepest_common_ancestor_internal<
+      Robot, node_a_id, node_b_id,
+      is_ancestor<Robot, node_a_id, node_b_id>::value
+      >::value;
+};
+} // end of namespace metapod
 
 #endif
