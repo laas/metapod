@@ -25,128 +25,125 @@
 # include <metapod/tools/common.hh>
 # include <metapod/algos/jac_point_relative.hh>
 
-namespace metapod
-{
+namespace metapod {
+/// \addtogroup jac_point_chain Point in Chain Articular Jacobian Algorithm
+///
+/// Compute articular jacobian J of a point (in body coordinates)
+/// attached to a body in a specific sub-chain of the robot
+/// kinematic tree. This jacobian is such that v = J*dq is the point
+/// frame spatial motion vector in world coordinates, under the sole
+/// influence of joints in the sub-chain and (optionally) a fictive
+/// free-flyer joint at the base of the sub-chain.
+///
+/// Such a jacobian can be used to control the relative pose of a body
+/// with respect to another body.
+///
+/// Note that the 6 first degrees of freedom of the jacobian are always wiped
+/// out: they are either excluded from the jacobian or overwritten by the
+/// fictive free-flyer contribution. As a consequence, this function is
+/// probably only useful for systems with a root free flyer joint.
+/// It will not compile if the robot has less than 6 degrees of freedom.
+/// It is included for compatibility with the jrl-dynamics library.
+/// \{
 
-  /// \addtogroup jac_point_chain Point in Chain Articular Jacobian Algorithm
-  ///
-  /// Compute articular jacobian J of a point (in body coordinates)
-  /// attached to a body in a specific sub-chain of the robot
-  /// kinematic tree. This jacobian is such that v = J*dq is the point
-  /// frame spatial motion vector in world coordinates, under the sole
-  /// influence of joints in the sub-chain and (optionally) a fictive
-  /// free-flyer joint at the base of the sub-chain.
-  ///
-  /// Such a jacobian can be used to control the relative pose of a body
-  /// with respect to another body.
-  ///
-  /// Note that the 6 first degrees of freedom of the jacobian are always wiped
-  /// out: they are either excluded from the jacobian or overwritten by the
-  /// fictive free-flyer contribution. As a consequence, this function is
-  /// probably only useful for systems with a root free flyer joint.
-  /// It will not compile if the robot has less than 6 degrees of freedom.
-  /// It is included for compatibility with the jrl-dynamics library.
-  /// \{
-
-  template< typename Robot, typename StartBody, typename EndBody,
-            int offset = 0, bool includeFreeFlyer = true >
+namespace internal {
+template <typename Robot, int start_node_id, int end_node_id,
+          int offset = 0, bool includeFreeFlyer = true>
   struct jac_point_chain_internal_freeflyer;
+}
 
-  /// \brief Point in Chain Articular Jacobian Algorithm.
+/// \brief Point in Chain Articular Jacobian Algorithm.
+///
+/// \tparam Robot Robot type for which jacobian is computed.
+/// \tparam StartBody Start body type in sub-chain for which
+/// jacobian is computed.
+/// \tparam EndBody End body type in sub-chain for which
+/// jacobian is computed.
+/// \tparam offset Rank of first non zero jacobian column.
+/// \tparam includeFreeFlyer Boolean type to specify the
+/// contribution of a fictive free-flyer joint superposed with the
+/// joint of StartBody.
+/// \tparam call_bcalc Boolean type to specify whether all body
+/// transforms need to be updated with respect to the robot
+/// configuration.
+template <typename Robot, int start_node_id, int end_node_id,
+          int offset = 0, bool includeFreeFlyer = true,
+          bool call_bcalc = true>
+struct jac_point_chain {
+  METAPOD_STATIC_ASSERT((Robot::NBDOF >= 6),
+      "jac_point_chain does not support robots with less than 6 DoFs");
+  typedef jac_point_relative<Robot, start_node_id, end_node_id,
+      offset - 6*(1-includeFreeFlyer), call_bcalc> solver;
+  typedef typename solver::Jacobian Jacobian;
+
+  /// \brief Compute the articular jacobian J.
   ///
-  /// \tparam Robot Robot type for which jacobian is computed.
-  /// \tparam StartBody Start body type in sub-chain for which
-  /// jacobian is computed.
-  /// \tparam EndBody End body type in sub-chain for which
-  /// jacobian is computed.
-  /// \tparam offset Rank of first non zero jacobian column.
-  /// \tparam includeFreeFlyer Boolean type to specify the
-  /// contribution of a fictive free-flyer joint superposed with the
-  /// joint of StartBody.
-  /// \tparam call_bcalc Boolean type to specify whether all body
-  /// transforms need to be updated with respect to the robot
-  /// configuration.
-  template< typename Robot, typename StartBody, typename EndBody,
-            int offset = 0, bool includeFreeFlyer = true,
-            bool call_bcalc = true >
-  struct jac_point_chain {
-    METAPOD_STATIC_ASSERT((Robot::NBDOF >= 6),
-        "jac_point_chain does not support robots with less than 6 DoFs");
-    typedef jac_point_relative<Robot, StartBody, EndBody,
-          offset - 6*(1-includeFreeFlyer), call_bcalc > solver;
-    typedef typename solver::jacobian_t jacobian_t;
-
-    /// \brief Compute the articular jacobian J.
-    ///
-    /// \param q Configuration vector: it is used to update all body
-    /// spatial transforms if bcalc is equal to true.
-    ///
-    /// \param e_p Coordinates of point in EndBody coordinates.
-    /// \retval J Computed jacobian of size 6x(NBDOF+offset) if
-    /// free-flyer is included, 6x(NBDOF-6+offset) otherwise.
-    static void run(const typename Robot::confVector & q,
-                    const Vector3d & e_p,
-                    jacobian_t & J)
-    {
-      typedef typename deepest_common_ancestor<StartBody, EndBody>::type
-          AncestorNode;
-
-      // compute the jacobian
-      solver::run(q, e_p, J);
-      // handle the fictive free flyer
-      jac_point_chain_internal_freeflyer< Robot, StartBody, EndBody,
-        offset, includeFreeFlyer >::run(e_p, J);
-    }
-  };
-  /// \}
-
-  /// \brief Internal point in chain articular jacobian algorithm
-  /// routine.
-  /// If includeFreeFlyer is true, compute the contribution of a fictive
-  /// free-flyer joint, and overwrite the jacobian columns corresponding to
-  /// the 6 first dofs with it (that is: J.block<6, 6>(0, offset))
+  /// \param q Configuration vector: it is used to update all body
+  /// spatial transforms if bcalc is equal to true.
   ///
-  /// \sa jac_point_chain
-  template< typename Robot, typename StartBody, typename EndBody, int offset >
-  struct jac_point_chain_internal_freeflyer< Robot, StartBody, EndBody, offset,
-      true>
-  {
-    typedef typename jac_point_chain<Robot, StartBody, EndBody,
-                                     offset, true >::jacobian_t
-        jacobian_t;
+  /// \param e_p Coordinates of point in EndBody coordinates.
+  /// \retval J Computed jacobian of size 6x(NBDOF+offset) if
+  /// free-flyer is included, 6x(NBDOF-6+offset) otherwise.
+  static void run(Robot& robot,
+                  const typename Robot::confVector& q,
+                  const Vector3d& e_p,
+                  Jacobian& J) {
+    // compute the jacobian
+    solver::run(robot, q, e_p, J);
+    // handle the fictive free flyer
+    internal::jac_point_chain_internal_freeflyer<Robot,
+        start_node_id, end_node_id, offset, includeFreeFlyer>::run(robot, e_p, J);
+  }
+};
+/// \}
 
-    static void run(const Vector3d & e_p,
-                    jacobian_t & J)
-    {
-      // Compute point coordinates in world frame.
-      Vector3d p = EndBody::iX0.applyInv(e_p);
-      // Compute jacobian block for freeflyer. Formula is given by:
-      // Ji = pX0 * (sX0)^(-1) * Sff,
-      // where pX0 is the word transform in the point frame,
-      // sX0 is the world transform in the start body frame,
-      // Sff is the motion subspace Matrix of a fictive free-flyer
-      // located at the start body joint.
-      J.template block<3,3>(0,3+offset) = Matrix3d::Identity ();
-      J.template block<3,3>(3,offset) = Matrix3d::Identity ();
-      Spatial::Transform pXs = StartBody::iX0.inverse ().toPointFrame (p);
-      J.template block<3,3>(3,3+offset) = Spatial::skew (- (pXs.E() * pXs.r()));
-    }
-  };
+namespace internal {
+/// \brief Internal point in chain articular jacobian algorithm
+/// routine.
+/// If includeFreeFlyer is true, compute the contribution of a fictive
+/// free-flyer joint, and overwrite the jacobian columns corresponding to
+/// the 6 first dofs with it (that is: J.block<6, 6>(0, offset))
+///
+/// \sa jac_point_chain
+template <typename Robot, int start_node_id, int end_node_id, int offset>
+struct jac_point_chain_internal_freeflyer<Robot, start_node_id, end_node_id,
+    offset, true> {
 
-  /// \brief Specialization of jac_point_chain_internal_free-flyer: do
-  /// nothing if freeflyer joint is not included in jacobian.
-  template< typename Robot, typename StartBody, typename EndBody, int offset >
-  struct jac_point_chain_internal_freeflyer< Robot, StartBody, EndBody, offset,
-      false>
-  {
-    typedef typename jac_point_chain<Robot, StartBody, EndBody,
-                                     offset, false >::jacobian_t
-        jacobian_t;
+  typedef typename jac_point_chain<Robot, start_node_id, end_node_id,
+                                   offset, true >::Jacobian Jacobian;
+  typedef typename Nodes<Robot, start_node_id>::type StartNode;
+  typedef typename Nodes<Robot, end_node_id>::type EndNode;
 
-    static void run(const Vector3d &,
-                    jacobian_t &) {}
-  };
+  static void run(Robot& robot, const Vector3d& e_p, Jacobian& J) {
+    StartNode& start_node = boost::fusion::at_c<start_node_id>(robot.nodes);
+    EndNode& end_node = boost::fusion::at_c<end_node_id>(robot.nodes);
+    // Compute point coordinates in world frame.
+    Vector3d p =  end_node.body.iX0.applyInv(e_p);
+    // Compute jacobian block for freeflyer. Formula is given by:
+    // Ji = pX0 * (sX0)^(-1) * Sff,
+    // where pX0 is the word transform in the point frame,
+    // sX0 is the world transform in the start body frame,
+    // Sff is the motion subspace Matrix of a fictive free-flyer
+    // located at the start body joint.
+    J.template block<3,3>(0,3+offset) = Matrix3d::Identity ();
+    J.template block<3,3>(3,offset) = Matrix3d::Identity ();
+    Spatial::Transform pXs = start_node.body.iX0.inverse ().toPointFrame (p);
+    J.template block<3,3>(3,3+offset) = Spatial::skew (- (pXs.E() * pXs.r()));
+  }
+};
 
-} // end of namespace metapod.
+/// \brief Specialization of jac_point_chain_internal_free-flyer: do
+/// nothing if freeflyer joint is not included in jacobian.
+template <typename Robot, int start_node_id, int end_node_id, int offset>
+struct jac_point_chain_internal_freeflyer< Robot, start_node_id, end_node_id,
+    offset, false> {
+
+  typedef typename jac_point_chain<Robot, start_node_id, end_node_id,
+                                   offset, false >::Jacobian Jacobian;
+
+  static void run(Robot&, const Vector3d&, Jacobian&) {}
+};
+} // end of namespace metapod::internal
+} // end of namespace metapod
 
 #endif
