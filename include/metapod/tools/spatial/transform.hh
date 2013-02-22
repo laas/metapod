@@ -93,7 +93,7 @@ namespace metapod
         /// Pb = bXa.apply(Pa)
         Vector3d apply(const Vector3d& p) const
         {
-          return static_cast<Vector3d>(m_E*(p - m_r));
+          return m_E*static_cast<Vector3d>((p - m_r));
         }
 
         /// Sb = bXa.apply(Sa)
