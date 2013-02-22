@@ -140,7 +140,7 @@ struct depth_first_traversal_internal<Visitor, Robot, NO_CHILD>
 
 } // end of namespace metapod::internal
 
-template< template <typename AnyRobot, int any_node_ide> class Visitor,
+template< template <typename AnyRobot, int any_node_id> class Visitor,
           typename Robot >
 struct depth_first_traversal
 {

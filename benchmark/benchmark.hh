@@ -52,9 +52,8 @@
 # include <metapod/algos/rnea.hh>
 # include <metapod/algos/crba.hh>
 # include <metapod/algos/jac.hh>
-/*
 # include <metapod/tools/jac_point_robot.hh>
-*/
+
 namespace metapod
 {
   namespace benchmark
@@ -136,21 +135,19 @@ namespace metapod
         jac<Robot>::run(robot, J);
       }
     };
+
     // wrapping jac_point_robot directly with boost::bind
     // does not work because the J argument (an Eigen matrix) has
     // alignement constraints.
-    /*
     template < typename Robot, bool call_bcalc >
-    class jac_point_robot_wrapper
-    {
+    class jac_point_robot_wrapper {
     public:
-      static void run(typename Robot::confVector q)
-      {
-        typename jac_point_robot<Robot, call_bcalc>::jacobian_t J;
-        jac_point_robot<Robot, call_bcalc>::run(q, J);
+      static void run(Robot& robot, typename Robot::confVector q) {
+        typename jac_point_robot<Robot, call_bcalc>::RobotJacobian J;
+        jac_point_robot<Robot, call_bcalc>::run(robot, q, J);
       }
     };
-    */
+
     template < typename Robot >
     struct benchmark
     {
@@ -183,11 +180,9 @@ namespace metapod
         runners.push_back(Runner<Robot>(
             boost::bind<void>(jac_wrapper<Robot>::run, _1),
             std::string("jac (without jcalc)")));
-        /*
         runners.push_back(Runner<Robot>(
-            boost::bind<void>(jac_point_robot_wrapper<Robot, false>::run, _1),
+            boost::bind<void>(jac_point_robot_wrapper<Robot, false>::run, _1, _2),
             std::string("jac_point_robot (without bcalc)")));
-        */
         // tell which model we are running benchmarks on
         std::cout << "*************\n"
                   << "Model NBDOF : " << Robot::NBDOF << std::endl;
