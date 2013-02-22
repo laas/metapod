@@ -101,7 +101,7 @@ namespace metapod
         /// Specialization for JOINT_REVOLUTE_AXIS_ANY
         Vector6d apply(const ConstraintMotionAnyAxis& S) const
         {
-          Vector6d tmp = Vector6d::Zero();
+          Vector6d tmp;
           tmp.head<3>() = m_E*static_cast<Vector3d>(S.S().head<3>());
           tmp.tail<3>() = -(m_E*m_r.cross(S.S().head<3>()));
           return tmp;
@@ -112,9 +112,31 @@ namespace metapod
         /// Specialization for JOINT_REVOLUTE_AXIS_X
         Vector6d apply(const ConstraintMotionAxisX& ) const
         {
-          Vector6d tmp = Vector6d::Zero();
+          Vector6d tmp;
           tmp.head<3>() = m_E.col(0);
           tmp.tail<3>() = m_E*Vector3d(0,-m_r[2],m_r[1]);
+          return tmp;
+        }
+
+        /// Sb = bXa.apply(Sa)
+        ///
+        /// Specialization for JOINT_REVOLUTE_AXIS_Y
+        Vector6d apply(const ConstraintMotionAxisY& ) const
+        {
+          Vector6d tmp;
+          tmp.head<3>() = m_E.col(1);
+          tmp.tail<3>() = m_E*Vector3d(m_r[2], 0, -m_r[0]);
+          return tmp;
+        }
+
+        /// Sb = bXa.apply(Sa)
+        ///
+        /// Specialization for JOINT_REVOLUTE_AXIS_Z
+        Vector6d apply(const ConstraintMotionAxisZ& ) const
+        {
+          Vector6d tmp;
+          tmp.head<3>() = m_E.col(2);
+          tmp.tail<3>() = m_E*Vector3d(-m_r[1], m_r[0], 0);
           return tmp;
         }
 
