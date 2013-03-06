@@ -1,0 +1,15 @@
+language: cpp
+compiler:
+  - clang
+  - gcc
+script: "mkdir build && cd build && cmake -DBUILD_METAPODFROMURDF=OFF .. && make && make test"
+before_install:
+  - git submodule update --init --recursive
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq doxygen doxygen-latex libboost-all-dev libeigen3-dev
+notifications:
+  email:
+    - hpp-source@laas.fr
+branches:
+  only:
+    - master

@@ -1,6 +1,8 @@
 metapod
 ========
 
+[![Build Status](https://travis-ci.org/laas/metapod.png?branch=master)](https://travis-ci.org/laas/metapod)
+
 This software provides robot dynamics algorithms.
 It uses a combination of a specific representation of robot models and C++
 templates, such that each algorithm remains model-independant, yet is optimized
