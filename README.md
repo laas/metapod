@@ -46,3 +46,9 @@ to run
     source /opt/ros/fuerte/setup.bash
 
 before running cmake.
+
+Documentation
+-------------
+
+Development branch documentation is [available
+online](http://laas.github.com/metapod/doxygen/HEAD/).
