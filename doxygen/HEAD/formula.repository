@@ -1,0 +1,52 @@
+\form#0:\[ rx(\theta) = \left[ \begin{matrix} 1 & 0 & 0 \\ 0 & c & s \\ 0 & -s & c \end{matrix} \right] \]
+\form#1:$ cos(\theta) $
+\form#2:$ sin(\theta) $
+\form#3:$ {\bf B} = rx(\theta) {\bf A} $
+\form#4:\[ {\bf B} = \left[ \begin{matrix} A(0,0) & A(0,1) & A(0,2) \\ A(1,0)c_{\theta} + A(2,0)s_{\theta} & A(1,1)c_{\theta} + A(2,1)s_{\theta} & A(1,2)c_{\theta} + A(2,2)s_{\theta} \\ -A(1,0)s_{\theta} + A(2,0)c_{\theta} & -A(1,1)s_{\theta} + A(2,1)c_{\theta} & -A(1,2)s_{\theta} + A(2,2)c_{\theta} \\ \end{matrix} \right] \]
+\form#5:\[ {\bf B} = \left[ \begin{matrix} A(0,0) & A(0,1) & A(0,2) \\ A(1,0)c + A(2,0)s & A(1,1)c + A(2,1)s & A(1,2)c + A(2,2)s \\ -A(1,0)s + A(2,0)c & -A(1,1)s + A(2,1)c & -A(1,2)s + A(2,2)c \\ \end{matrix} \right] \]
+\form#6:$ rx(\theta_C) = rx(\theta_A)rx(\theta_B)$
+\form#7:\[ rx(\theta_C) = \left[ \begin{matrix} 1.0 & 0.0 & 0.0 \\ 0.0 & c_{\theta_A}c_{\theta_B} - s_{\theta_A}s_{\theta_B} & c_{\theta_A}s_{\theta_B} + s_{\theta_A}c_{\theta_B} \\ 0.0 & -c_{\theta_A}s_{\theta_B} - s_{\theta_A}c_{\theta_B} & c_{\theta_A}c_{\theta_B} - s_{\theta_A}s_{\theta_B} \\ \end{matrix} \right] \]
+\form#8:$ rx(\theta) {\bf A} rx(\theta)^{\top} $
+\form#9:$ {\bf A} $
+\form#10:$ \alpha_x = cs (A_{12} + A_{21}) + s^2(A_{22} - A_{11}) $
+\form#11:$ \beta_x = cs (A_{22} - A_{11}) - s^2(A_{12} + A_{21}) $
+\form#12:\[ rx(\theta) {\bf A} rx(\theta)^{\top} = \left[ \begin{matrix} A_{00} & cA_{01} + sA_{02} & cA_{02} - sA_{01} \\ cA_{10} + sA_{20} & A_{11} + \alpha_x & A_{12} + \beta_x \\ cA_{20} - sA_{10} & A_{21} + \beta_x & A_{22} - \alpha_x \end{matrix} \right] \]
+\form#13:$ \alpha_x = 2csA_{21} + s^2 (A_{22} - A_{11})$
+\form#14:$ \beta_x = cs(A_{22} - A_{11}) + (1-2s^2)A_{21} $
+\form#15:\[ lt(rx(\theta){\bf A}rx(\theta)^{\top}) = \left[ \begin{matrix} A_{00} & \cdotp & \cdotp \\ cA_{10} + sA_{20} & A_{11} + \alpha_x & \cdotp \\ cA_{20} - sA_{10} & \beta_x & A_{22} - \alpha_x \end{matrix} \right] \]
+\form#16:$ rx(\theta)^{\top} {\bf A} rx(\theta) $
+\form#17:$ \alpha_x = 2csA_{21} + s^2 (A_{11} - A_{22})$
+\form#18:$ \beta_x = cs(A_{11} - A_{22}) + (1-2s^2)A_{21} $
+\form#19:\[ ry(\theta) = \left[ \begin{matrix} c & 0 & -s \\ 0 & 1 & 0 \\ s & 0 & c \end{matrix} \right] \]
+\form#20:$ m_c = cos(\theta) $
+\form#21:$m_s = sin(\theta) $
+\form#22:$ {\bf B} = ry(\theta) {\bf A} $
+\form#23:\[ {\bf B} = \left[ \begin{matrix} A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\ A(1,0) & A(2,0) & A(3,0) \\ A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\ \end{matrix} \right] \]
+\form#24:$ ry(\theta) {\bf A} ry(\theta)^{\top} $
+\form#25:$ \alpha_y = cs (A_{20} + A_{02}) + s^2(A_{00} - A_{22}) $
+\form#26:$ \beta_y = cs (A_{00} - A_{22}) - s^2(A_{20} + A_{02}) $
+\form#27:\[ ry(\theta) {\bf A} ry(\theta)^{\top} = \left[ \begin{matrix} A_{00} - \alpha_y & cA_{01} - sA_{21} & A_{02} + \beta_y \\ cA_{10} - sA_{12} & A_{11} & cA_{12} + sA_{10} \\ cA_{20} + \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y \end{matrix} \right] \]
+\form#28:$ \alpha_y = 2csA_{20} + s^2 (A_{00} - A_{22})$
+\form#29:$ \beta_y = cs(A_{00} - A_{22}) + (1-2s^2)A_{20} $
+\form#30:\[ lt(ry(\theta){\bf A}ry(\theta)^{\top}) = \left[ \begin{matrix} A_{00} - \alpha_y & \cdotp & \cdotp \\ cA_{10} - sA_{12} & A_{11} & \cdotp \\ \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y \end{matrix} \right] \]
+\form#31:$ ry(\theta)^{\top} {\bf A} ry(\theta) $
+\form#32:$ \alpha_y = 2csA_{20} + s^2 (A_{22} - A_{00})$
+\form#33:$ \beta_y = cs(A_{22} - A_{00}) + (1-2s^2)A_{20} $
+\form#34:\[ rz(\theta) = \left[ \begin{matrix} c & s & 0 \\ -s & c & 0 \\ 0 & 0 & 1 \end{matrix} \right] \]
+\form#35:$ {\bf B} = rz(\theta) {\bf A} $
+\form#36:\[ {\bf B} = \left[ \begin{matrix} A(0,0)c + A(1,0)s & A(0,1)c + A(1,1)s & A(1,2)c + A(1,2)s \\ -A(0,0)s + A(1,0)c & -A(0,1)s + A(1,1)c & -A(0,2)s + A(1,2)c \ \ A(2,0) & A(2,1) & A(2,2) \\ \end{matrix} \right] \]
+\form#37:\[ {\bf B} = \left[ \begin{matrix} A(0,0)c + A(1,0)s & A(0,1)c + A(1,1)s & A(1,2)c + A(1,2)s \\ -A(0,0)s + A(1,0)c &-A(0,1)s + A(1,1)c &-A(0,2)s + A(1,2)c \\ A(2,0) & A(2,1) & A(2,2) \\ \end{matrix} \right] \]
+\form#38:$ R {\bf A} R^{\top} $
+\form#39:$ \alpha_z = cs (A_{01} + A_{10}) + s^2(A_{11} - A_{00}) $
+\form#40:$ \beta_z = cs (A_{11} - A_{00}) - s^2(A_{01} + A_{10}) $
+\form#41:\[ rz(\theta) {\bf A} rz(\theta)^{\top} = \left[ \begin{matrix} A_{00} + \beta_z & A_{01} + \beta_z & cA_{02} + sA_{12} \\ A_{10} + \beta_z & A_{11} - \alpha_z & A_{12} - sA_{02} \\ cA_{20} + sA_{21} & cA_{21} -sA_{20} & A_{22}\\ \end{matrix} \right] \]
+\form#42:$ rz(\theta) {\bf A} rz(\theta)^{\top} $
+\form#43:$ \alpha_z = 2csA_{10} + s^2 (A_{11} - A_{00})$
+\form#44:$ \beta_z = cs(A_{11} - A_{00}) + (1-2s^2)A_{10} $
+\form#45:\[ lt(rz(\theta){\bf A}rz(\theta)^{\top}) = \left[ \begin{matrix} A_{00} + \alpha_z & \cdotp & \cdotp \\ \beta_z & A_{11} - \alpha_z & \cdotp \\ cA_{20} + sA_{21} & cA_{21} -sA_{20} & A_{22} \\ \end{matrix} \right] \]
+\form#46:$ rz(\theta)^{\top} {\bf A} rz(\theta) $
+\form#47:$ 3 \times 3 $
+\form#48:$ A$
+\form#49:$ iX, iY, iZ, lX, lY, lZ, rc$
+\form#50:$ lX, lY, lZ \in \{ -1,1 \}, rc \in \{0,1\} $
+\form#51:\[ \begin{matrix} A(0,iX) = lX & A(0,j) = 0 \text{ if } j \neq iX \\ A(1,iY) = lY & A(1,j) = 0 \text{ if } j \neq iY \\ A(2,iZ) = lZ & A(2,j) = 0 \text{ if } j \neq iZ \\ \end{matrix} \]
