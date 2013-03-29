@@ -54,30 +54,21 @@ namespace metapod
       return tmp;
     }
 
-    template<> inline
-    Vector6d OperatorMul< Vector6d, Inertia, ConstraintMotionAnyAxis>::
-      mul(const Inertia & m,
-          const ConstraintMotionAnyAxis &a) const
+    inline Vector6d operator*(const Inertia& m,
+                              const ConstraintMotionAnyAxis& a)
     {
       Vector6d r;
-      const Vector6d & altI = m.m_I.m_ltI;
-      r[0] = altI(0)*a.S()[0]+ altI(1)*a.S()[1]+ altI(3)*a.S()[2];
-      r[1] = altI(1)*a.S()[0]+ altI(2)*a.S()[1]+ altI(4)*a.S()[2];
-      r[2] = altI(3)*a.S()[0]+ altI(4)*a.S()[1]+ altI(5)*a.S()[2];
+      const Vector6d &altI = m.I().m_ltI;
+      r[0] = altI(0)*a.S()[0] + altI(1)*a.S()[1] + altI(3)*a.S()[2];
+      r[1] = altI(1)*a.S()[0] + altI(2)*a.S()[1] + altI(4)*a.S()[2];
+      r[2] = altI(3)*a.S()[0] + altI(4)*a.S()[1] + altI(5)*a.S()[2];
 
-      Matrix3d msh = -skew(m.m_h);
-      for(unsigned int i=0;i<3;i++)
+      Matrix3d msh = -skew(m.h());
+      for(unsigned int i=0; i<3; ++i)
         r[i+3] = msh(i,0)*a.S()[0]+
-          msh(i,1)*a.S()[1]+
-          msh(i,2)*a.S()[2];
+                 msh(i,1)*a.S()[1]+
+                 msh(i,2)*a.S()[2];
       return r;
-    }
-
-    inline Vector6d operator*(const Inertia & m,
-                              const ConstraintMotionAnyAxis &a)
-    {
-      OperatorMul<Vector6d,Inertia, ConstraintMotionAnyAxis > om;
-      return om.mul(m,a);
     }
   }
 }

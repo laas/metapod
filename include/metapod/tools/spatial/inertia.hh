@@ -32,13 +32,19 @@ namespace metapod
       public:
         // Constructors
         Inertia() : m_m(), m_h(), m_I() {}
-        Inertia(FloatType m, const Vector3d & h, const Matrix3d & I)
-          : m_m(m), m_h(h), m_I(I) {}
-        Inertia(FloatType m, const Vector3d & h, const lowerTriangularMatrix & I)
-          : m_m(m), m_h(h), m_I(I) {}
+        Inertia(FloatType m, const Vector3d &h, const Matrix3d &I)
+            : m_m(m),
+              m_h(h),
+              m_I(I) {}
+        Inertia(FloatType m, const Vector3d &h, const lowerTriangularMatrix &I)
+            : m_m(m),
+              m_h(h),
+              m_I(I) {}
 
         // Initializers
-        static const Inertia Zero() { return Inertia(0., Vector3d::Zero(), lowerTriangularMatrix::Zero()); }
+        static const Inertia Zero() {
+          return Inertia(0., Vector3d::Zero(), lowerTriangularMatrix::Zero());
+        }
 
         // Getters
         FloatType m() const { return m_m; }
@@ -56,38 +62,19 @@ namespace metapod
         }
 
         // Arithmetic operators
-
-        Inertia operator+(const Inertia & other) const
-        {
-          return Inertia(m_m+other.m(), m_h+other.h(), m_I+other.I());
+        Inertia operator+(const Inertia &other) const {
+          return Inertia(m_m+other.m_m, m_h+other.m_h, m_I+other.m_I);
         }
 
-
-        friend Inertia operator*(FloatType a, const Inertia & I)
-        {
-          return Inertia(I.m()*a, I.h()*a, I.I()*a);
+        Inertia operator*(const FloatType &a) const {
+          return Inertia(m_m*a, m_h*a, m_I*a);
         }
 
-        // Print operator
-        friend std::ostream & operator << (std::ostream & os, const Inertia & I)
-        {
-          os
-            << "m =\n" << I.m() << std::endl
-            << "h =\n" << I.h() << std::endl
-            << "I =\n" << I.I() << std::endl;
-          return os;
+        Force operator*(const Motion &mv) const {
+          return Force(m_I*mv.w() + m_h.cross(mv.v()),
+                       m_m*mv.v() - m_h.cross(mv.w()));
         }
-      
-      template<class T, class U, class S>
-      friend class OperatorMul;
 
-
-      template<class T, class U, class S>
-      friend T operator*(const U &u,const S & s) 
-      { return OperatorMul<T,U,S>::mul(u,s); }
-
-      
-     
       private:
         // Private members
         FloatType m_m;
@@ -95,35 +82,18 @@ namespace metapod
         lowerTriangularMatrix m_I;
     };
 
-    template<> inline
-    Inertia OperatorMul<Inertia,Inertia,FloatType>::mul(const Inertia & m,
-							const FloatType &a) const
-    {
-      return Inertia(m.m_m*a, m.m_h*a, m.m_I*a);
+    inline std::ostream & operator<< (std::ostream &os, const Inertia &I) {
+      os << "m =\n" << I.m() << "\n"
+         << "h =\n" << I.h() << "\n"
+         << "I =\n" << I.I();
+      return os;
     }
-	
-    inline Inertia operator*(const Inertia & m,
-		      const FloatType &a) 
+
+    inline Inertia operator*(FloatType a, const Inertia &I)
     {
-      OperatorMul<Inertia,Inertia,FloatType> om;
-      return om.mul(m,a);
+      return I * a;
     }
-	
-    /* Operator Force = Inertia * Motion */
-    template<> inline
-    Force OperatorMul<Force,Inertia,Motion>::mul(const Inertia & m,
-						 const Motion &mv) const
-    {
-	  return Force(m.m_I*mv.w() + m.m_h.cross(mv.v()),
-		       m.m_m*mv.v() - m.m_h.cross(mv.w()));
-    }
-    
-    inline Force operator*(const Inertia &m,
-                           const Motion & mv) 
-    {
-      OperatorMul<Force,Inertia,Motion> om;
-      return om.mul(m,mv);
-    }
+
     
   } // end of namespace Spatial
 

@@ -33,19 +33,15 @@ namespace metapod
     {
     public:
       ltI(): m_ltI() { }
-      ltI(const Matrix3d &I)
-      {
+      ltI(const Matrix3d &I) {
         m_ltI(0) = I(0,0);
         m_ltI(1) = I(1,0); m_ltI(2) = I(1,1);
         m_ltI(3) = I(2,0); m_ltI(4) = I(2,1); m_ltI(5) = I(2,2);
       }
       ltI(const Vector6d &I):
-        m_ltI(I)
-      {
-      }
+        m_ltI(I) {}
 
-      static ltI Zero()
-      {
+      static ltI Zero() {
         // without the static_cast we get the following error:
         //
         //     error: call of overloaded ‘ltI(const ConstantReturnType)’
@@ -67,11 +63,6 @@ namespace metapod
         ltI a;
         a.m_ltI = m_ltI + altI.m_ltI;
         return a;
-      }
-
-      friend ltI operator*(FloatType a, const ltI& altI)
-      {
-        return ltI(static_cast<Vector6d>(a * altI.m_ltI));
       }
 
       ltI operator*(FloatType a) const
@@ -135,6 +126,12 @@ namespace metapod
     };
 
     typedef ltI lowerTriangularMatrix;
+
+    inline ltI operator*(FloatType a, const ltI& altI)
+    {
+      return altI * a;
+    }
+
 
   }
 }

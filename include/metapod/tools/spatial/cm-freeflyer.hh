@@ -58,24 +58,14 @@ namespace metapod
       Matrix6d m_S;
     };
 
-    template<> inline
-    Matrix6d OperatorMul< Matrix6d, Inertia, ConstraintMotionFreeFlyer>::
-      mul(const Inertia & m,
-          const ConstraintMotionFreeFlyer &a) const
-    {
-      Matrix6d r(Matrix6d::Zero());
+    inline Matrix6d operator*(const Inertia &m,
+                              const ConstraintMotionFreeFlyer &a) {
+      Matrix6d r;
       r.block<3,3>(0,0) = skew(m.h())*a.S().block<3,3>(3,0);
       r.block<3,3>(0,3) = m.I()*static_cast<Matrix3d>(a.S().block<3,3>(0,3));
       r.block<3,3>(3,0) = m.m()*a.S().block<3,3>(3,0);
       r.block<3,3>(3,3) = -skew(m.h())*a.S().block<3,3>(0,3);
       return r;
-    }
-
-    inline Matrix6d operator*(const Inertia & m,
-                              const ConstraintMotionFreeFlyer &a)
-    {
-      OperatorMul<Matrix6d,Inertia, ConstraintMotionFreeFlyer > om;
-      return om.mul(m,a);
     }
   } // End of spatial namespace
 } // End of metapod namespace

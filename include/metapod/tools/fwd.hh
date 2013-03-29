@@ -63,15 +63,6 @@ namespace metapod
       m(2,0) = -v(1);m(2,1)=  v(0) ; m(2,2) =  0 ;
       return m;
     }
-
-    // Template for operator * with inertia Matrix I
-    // T = I * S
-    template <class T, class U, class S>
-    class OperatorMul
-    {
-    public:
-      T mul(const U &u, const S &s) const;
-    };
   } // end of namespace Spatial
 
 }
