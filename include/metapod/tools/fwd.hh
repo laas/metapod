@@ -28,8 +28,11 @@
 
 namespace metapod
 {
+# ifndef METAPOD_USE_SINGLE_PRECISION
   typedef double FloatType;
-
+# else
+  typedef float FloatType;
+# endif
   typedef Eigen::Matrix< FloatType, 1, 1 > Vector1d;
   typedef Eigen::Matrix< FloatType, 3, 1 > Vector3d;
   typedef Eigen::Matrix< FloatType, 6, 1 > Vector6d;
