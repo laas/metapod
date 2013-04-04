@@ -7,4 +7,6 @@ namespace metapod {
 
 @init_nodes@
 
+Spatial::Inertia @ROBOT_CLASS_NAME@::inertias[@node_id@] = {
+@init_inertias@};
 }

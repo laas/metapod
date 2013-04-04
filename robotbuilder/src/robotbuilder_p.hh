@@ -80,6 +80,7 @@ private:
     std::ostringstream map_node_id_to_type;
     // for content in init.cc
     std::ostringstream init_nodes;
+    std::ostringstream init_inertias;
   };
   void writeLink(int link_id, const ReplMap& replacements,
                  TmpStreams& out) const;

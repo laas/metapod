@@ -59,6 +59,9 @@ public:
   NodeVector;
 
   // member variables
+
+  // inertias expressed in body frames
+  static Spatial::Inertia inertias[@ROBOT_NB_BODIES@];
   NodeVector nodes;
   Eigen::Matrix< FloatType, NBDOF, NBDOF > H; // used by crba
 

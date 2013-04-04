@@ -130,8 +130,9 @@ template< typename Robot > struct rnea< Robot, false >
       update_kinematics<node_id, Node::parent_id>::run(robot, ddqi);
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      node.joint.f = sum((node.I * node.body.ai),
-                         (node.body.vi^( node.I * node.body.vi )),
+      Spatial::Inertia &I = robot.inertias[node_id];
+      node.joint.f = sum((I * node.body.ai),
+                         (node.body.vi^( I * node.body.vi )),
                          (node.body.iX0 * -node.body.Fext ));
     }
 

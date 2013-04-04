@@ -496,7 +496,6 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
       "    static const int child2_id = @child2_id@;\n"
       "    static const int child3_id = @child3_id@;\n"
       "    static const int child4_id = @child4_id@;\n"
-      "    static const Spatial::Inertia I; // in body frame\n"
       "    Spatial::TransformT<Spatial::rm_mul_op<@joint_rotation_type@, @R_joint_parent_type@>::rm> sXp;\n"
       "    Eigen::Matrix<FloatType, 6, Joint::NBDOF> joint_F; // used by crba\n"
       "    Joint joint;\n"
@@ -522,10 +521,6 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
       "const @X_joint_parent_type@ @ROBOT_CLASS_NAME@::Node@node_id@::Xt = @X_joint_parent_type@(\n"
       "    @R_joint_parent@,\n"
       "    @r_parent_joint@);\n"
-      "const Spatial::Inertia @ROBOT_CLASS_NAME@::Node@node_id@::I = spatialInertiaMaker(\n"
-      "    @body_mass@,\n"
-      "    @body_center_of_mass@,\n"
-      "    @body_rotational_inertia@);\n\n"
       "@ROBOT_CLASS_NAME@::Node@node_id@::Node@node_id@():\n"
       "  joint(@joint_args@) {}\n\n");
   if (model_.joint_type(link_id) == RobotBuilder::REVOLUTE_AXIS_ANY)
@@ -535,7 +530,12 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
       repl["joint_args"] = ss.str();
     }
   out.init_nodes << tpl4.format(repl);
-
+  const TxtTemplate tpl5(
+      "    spatialInertiaMaker(\n"
+      "        @body_mass@,\n"
+      "        @body_center_of_mass@,\n"
+      "        @body_rotational_inertia@),\n");
+  out.init_inertias << tpl5.format(repl);
 }
 
 RobotBuilder::Status RobotBuilderP::write() const
@@ -598,6 +598,7 @@ RobotBuilder::Status RobotBuilderP::write() const
 
   // init.cc
   repl["init_nodes"] = streams.init_nodes.str();
+  repl["init_inertias"] = streams.init_inertias.str();
 
   // generate files from template and replacements
   const std::string config_hh_templ(::config_hh, ::config_hh_len);
