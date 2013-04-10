@@ -153,7 +153,7 @@ std::string node_name(const std::string& /*joint_name*/,
 static
 std::string node_name(const metapod::RobotModel& model, int link_id)
 {
-  return ::node_name(model.joint_name(link_id),
+  return node_name(model.joint_name(link_id),
                      model.body_name(link_id));
 }
 
