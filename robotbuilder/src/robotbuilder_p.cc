@@ -481,7 +481,7 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
 
   const TxtTemplate tpl1(
       "\n"
-      "  class Node@node_id@ {\n"
+      "  class @LIBRARY_NAME@_DLLAPI Node@node_id@ {\n"
       "  public:\n"
       "    Node@node_id@();\n"
       "    static const int id = @node_id@;\n"
