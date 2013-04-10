@@ -23,7 +23,11 @@
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
 # Make Boost.Test generate the main function in test cases.
-ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
+ADD_DEFINITIONS(-DBOOST_TEST_MAIN)
+IF(NOT WIN32)
+  # we use dynamic libraries for boost, except on Windows
+  ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK)
+ENDIF()
 
 # ADD_TESTCASE(NAME SOURCE_FILE1 [SOURCE_FILE2])
 # ------------------------
