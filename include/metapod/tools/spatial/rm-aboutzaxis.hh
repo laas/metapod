@@ -233,9 +233,9 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      struct ltI rotSymmetricMatrix(const struct ltI &A) const
+      class ltI rotSymmetricMatrix(const class ltI &A) const
       {
-	struct ltI r;
+	class ltI r;
 	FloatType alpha_z = 2*m_c*m_s*A.m_ltI(1) +
 	  m_s*m_s*(A.m_ltI(2) - A.m_ltI(0));
 	FloatType beta_z  = m_c*m_s*(A.m_ltI(2) - A.m_ltI(0))+
@@ -266,9 +266,9 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      struct ltI rotTSymmetricMatrix(const struct ltI &A) const
+      class ltI rotTSymmetricMatrix(const class ltI &A) const
       {
-	struct ltI r;
+	class ltI r;
 	FloatType alpha_z = 2*m_c*m_s*A.m_ltI(1) +
 	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(2));
 	FloatType beta_z  = m_c*m_s*(A.m_ltI(0) - A.m_ltI(2))+

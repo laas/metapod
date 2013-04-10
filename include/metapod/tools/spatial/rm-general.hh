@@ -90,7 +90,7 @@ namespace metapod
 
       /** \brief Computes L for a symmetric matrix A.
        */
-      void decomposeltI(const struct ltI &A,
+      void decomposeltI(const class ltI &A,
 			Matrix3_2d &L) const
       {
 	L(0,0) = A.m_ltI(0) - A.m_ltI(5); 

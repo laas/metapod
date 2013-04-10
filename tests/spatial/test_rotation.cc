@@ -66,14 +66,14 @@ void displayAndCheck(Matrix3d &A,
 }
 
 template< class T>
-void test_symmetric_matrix(struct ltI &altI)
+void test_symmetric_matrix(class ltI &altI)
 {
   T aRMA;
 
   aRMA.randomInit();
   Matrix3d R = aRMA.toMatrix();
 
-  struct ltI d;
+  class ltI d;
   d = aRMA.rotSymmetricMatrix(altI);
 
   Matrix3d I = altI.toMatrix();
@@ -182,7 +182,7 @@ BOOST_AUTO_TEST_CASE(test_rotation)
       -0.00001434, 0.00352974, 0.00000884,
       -0.00055582, 0.00000885, 0.00145427;
   cout << I << endl;
-  struct ltI altI(I);
+  class ltI altI(I);
 
   typedef rmca_traits<1,0,2,1,1,-1> PermuYXmZ;
 
