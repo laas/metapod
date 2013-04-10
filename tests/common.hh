@@ -37,7 +37,7 @@
 bool stringToDouble( const std::string& s, double& x )
 {
   std::istringstream i(s);
-  return (i >> x);
+  return (i >> x) != 0;
 }
 
 // Returns true if the normalized difference between two doubles is strictly
