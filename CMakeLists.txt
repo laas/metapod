@@ -26,6 +26,7 @@ INCLUDE(cmake/cpack.cmake)
 INCLUDE(cmake/boost.cmake)
 INCLUDE(cmake/ros.cmake)
 INCLUDE(cmakeutils.cmake)
+INCLUDE(CMakeDependentOption)
 
 SET(PROJECT_NAME metapod)
 SET(PROJECT_DESCRIPTION "Implementation of a robot dynamics library")
@@ -38,46 +39,6 @@ IF(UNIX OR MINGW)
   ADD_DEFINITIONS("-fvisibility=hidden")
   ADD_DEFINITIONS("-Wno-variadic-macros")
 ENDIF()
-
-# Options
-# we cannot always build metapodfromurdf, because it depends on ROS bits, which
-# we do not control very well. Moreover, when cross-compiling, we typically do
-# not want to run it on the target, but on the build host. Hence we provide
-# support for finding binary version.
-
-# by default, we build metapodfromurdf if we detect ros
-FIND_PROGRAM(ROSPACK_EXECUTABLE rospack)
-IF(ROSPACK_EXECUTABLE)
-    SET(BUILD_METAPODFROMURDF_DEFAULT TRUE)
-ELSE()
-    SET(BUILD_METAPODFROMURDF_DEFAULT FALSE)
-ENDIF()
-OPTION(BUILD_METAPODFROMURDF
-  "Build the urdf parser"
-  ${BUILD_METAPODFROMURDF_DEFAULT})
-
-# check if metapodfromurdf is available
-IF(BUILD_METAPODFROMURDF)
-  # if we build it, it is available
-  SET(WITH_METAPODFROMURDF TRUE)
-ELSE()
-  # maybe the user passed the location
-  IF(METAPODFROMURDF_EXECUTABLE)
-    SET(WITH_METAPODFROMURDF TRUE)
-  ELSE()
-    # last resort: search for it
-    FIND_PACKAGE(metapodfromurdf)
-    SET(WITH_METAPODFROMURDF ${METAPODFROMURDF_FOUND})
-  ENDIF()
-ENDIF()
-OPTION(WITH_SIMPLE_HUMANOID "Generate and build the simple humanoid example
-model and the related tests" ${WITH_METAPODFROMURDF})
-OPTION(WITH_SIMPLE_ARM "Generate and build the simple arm example model and
-the related tests" ${WITH_METAPODFROMURDF})
-OPTION(BUILD_MULTI_MODEL_BENCHMARK
-    "Generate and build the multi-model benchmark" TRUE)
-OPTION(BUILD_SINGLE_MODEL_BENCHMARKS
-    "Generate and build the single-model benchmarks" TRUE)
 
 SETUP_PROJECT()
 
@@ -179,18 +140,65 @@ INSTALL(FILES ${${PROJECT_NAME}_SPATIAL_HEADERS}
 
 INCLUDE_DIRECTORIES("include" "${CMAKE_CURRENT_BINARY_DIR}/include")
 
-ADD_SUBDIRECTORY(embedfile)
-ADD_SUBDIRECTORY(robotbuilder)
+# We build the generator tools only if we are not cross compiling.
+# When cross compiling, the generators are searched for on the building host.
+IF(NOT CMAKE_CROSSCOMPILING)
+  ADD_SUBDIRECTORY(embedfile)
+  ADD_SUBDIRECTORY(robotbuilder)
+  ADD_SUBDIRECTORY(binarytreemodel)
+  SET(WITH_METAPOD_BINARYTREEMODEL TRUE)
+ELSE()
+  FIND_GENERATOR(METAPOD_BINARYTREEMODEL)
+ENDIF()
 
+# Even when not cross compiling, we cannot always build metapodfromurdf,
+# because it depends on ROS bits, which we do not control very well.
+SET(BUILD_METAPODFROMURDF_DEFAULT FALSE)
+IF(NOT CMAKE_CROSSCOMPILING)
+  # by default, we build metapodfromurdf if we are not cros compiling and
+  # we detect ros. Since the ros detection part is not fool proof.
+  # we let the user override it.
+  FIND_PROGRAM(ROSPACK_EXECUTABLE rospack)
+  IF(ROSPACK_EXECUTABLE)
+    SET(BUILD_METAPODFROMURDF_DEFAULT TRUE)
+  ENDIF()
+ENDIF()
+CMAKE_DEPENDENT_OPTION(BUILD_METAPODFROMURDF
+  "Build the urdf parser"
+  ${BUILD_METAPODFROMURDF_DEFAULT}
+  "NOT CMAKE_CROSSCOMPILING"
+  OFF)
 IF(BUILD_METAPODFROMURDF)
   ADD_SUBDIRECTORY(metapodfromurdf)
+  SET(WITH_METAPODFROMURDF TRUE)
+ELSE()
+  FIND_GENERATOR(METAPODFROMURDF)
 ENDIF()
 
+CMAKE_DEPENDENT_OPTION(WITH_SIMPLE_HUMANOID
+  "Generate and build the simple humanoid example model and the related tests.
+  (Only possible if metapodfromurdf is available.)"
+  ON
+  WITH_METAPODFROMURDF
+  OFF)
+CMAKE_DEPENDENT_OPTION(WITH_SIMPLE_ARM
+  "Generate and build the simple arm example model and the related tests.
+  (Only possible if metapodfromurdf is available.)"
+  ON
+  WITH_METAPODFROMURDF
+  OFF)
+
+OPTION(BUILD_MULTI_MODEL_BENCHMARK
+    "Generate and build the multi-model benchmark" TRUE)
+OPTION(BUILD_SINGLE_MODEL_BENCHMARKS
+    "Generate and build the single-model benchmarks" TRUE)
+
+
 IF(WITH_SIMPLE_ARM)
-  ADD_SAMPLEMODEL("simple_arm")
+  ADD_SAMPLEURDFMODEL("simple_arm")
 ENDIF()
 IF(WITH_SIMPLE_HUMANOID)
-  ADD_SAMPLEMODEL("simple_humanoid")
+  ADD_SAMPLEURDFMODEL("simple_humanoid")
 ENDIF()
 
 IF(BUILD_MULTI_MODEL_BENCHMARK OR BUILD_SINGLE_MODEL_BENCHMARKS)

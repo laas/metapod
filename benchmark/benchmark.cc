@@ -26,11 +26,13 @@
 #ifdef WITH_SIMPLE_HUMANOID
 # include "metapod/models/simple_humanoid/simple_humanoid.hh"
 #endif
-#include "models/sample_1/sample_1.hh"
-#include "models/sample_2/sample_2.hh"
-#include "models/sample_3/sample_3.hh"
-#include "models/sample_4/sample_4.hh"
-//#include "models/sample_5/sample_5.hh"
+#ifdef WITH_METAPOD_BINARYTREEMODEL
+# include "models/sample_1/sample_1.hh"
+# include "models/sample_2/sample_2.hh"
+# include "models/sample_3/sample_3.hh"
+# include "models/sample_4/sample_4.hh"
+//# include "models/sample_5/sample_5.hh"
+#endif
 
 #include "benchmark.hh"
 using namespace metapod::benchmark;
@@ -40,9 +42,11 @@ int main()
 #ifdef WITH_SIMPLE_HUMANOID
   benchmark<metapod::simple_humanoid>::run();
 #endif
+#ifdef WITH_METAPOD_BINARYTREEMODEL
   benchmark<metapod::sample_1>::run();
   benchmark<metapod::sample_2>::run();
   benchmark<metapod::sample_3>::run();
   benchmark<metapod::sample_4>::run();
   //benchmark<metapod::sample_5>::run();
+#endif
 }
