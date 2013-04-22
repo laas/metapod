@@ -18,9 +18,6 @@ INCLUDE_DIRECTORIES(
     ${PROJECT_SOURCE_DIR}/robotbuilder/include
     ${PROJECT_BINARY_DIR}/robotbuilder/include)
 
-SET(METAPODFROMURDF_EXECUTABLE ${METAPODFROMURDF_EXECUTABLE} CACHE
-  STRING "Set by cmake if metapodfromurdf is built, by the user otherwise")
-
 # build the generator
 ADD_EXECUTABLE(metapod_binarytreemodel src/binarytreemodel.cc)
 TARGET_LINK_LIBRARIES(metapod_binarytreemodel metapod_robotbuilder)
