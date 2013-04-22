@@ -18,7 +18,7 @@
 /**
  * Compute the kinematic jacobian. i.e. the matrix J such that
  * J*dq is the vertical concatenation of each body spatial motion vector
- *(in the moving body frame)
+ * (in the moving body frame)
  */
 
 #ifndef METAPOD_JAC_HH
@@ -43,7 +43,7 @@ struct jac {
       typedef typename Nodes<Robot, Node::parent_id>::type Parent;
       typedef typename Nodes<AnyAnyRobot, ancestor_id>::type Ancestor;
 
-      static void discover(Jacobian& J,Matrix6d& sXp_matrix) {
+      static void discover(Jacobian& J, Matrix6d& sXp_matrix) {
         // contribution of the ancestor joint to the current body velocity,
         // copied from the parent body jacobian (which we just computed)
         J.template
