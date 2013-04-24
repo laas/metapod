@@ -23,15 +23,13 @@
 using namespace metapod;
 using namespace metapod::Spatial;
 
-
-using namespace std;
 template< typename RotationClass>
 struct TestTransform
 {
   void run() const
   {
     FloatType angle = 0.5;
-    FloatType c = cos(angle), s = sin(angle);                     
+    FloatType c = std::cos(angle), s = std::sin(angle);                     
 
 
     TransformT<RotationClass> Xj;  
@@ -46,7 +44,7 @@ struct TestTransform
     
     TransformT<typename rm_mul_op<RotationClass,RotationMatrixIdentity>::rm > sXp;
     sXp = Xj *Xt;
-    std::cout  << sXp << endl;
+    std::cout  << sXp << std::endl;
   }
 };
 

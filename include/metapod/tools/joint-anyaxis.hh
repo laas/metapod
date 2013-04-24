@@ -32,7 +32,7 @@ namespace metapod
     Spatial::ConstraintMotionAnyAxis S;
     Spatial::Force f; // used by rnea
     Vector1d torque; // used by rnea
-    const Vector3d axis_;
+    Vector3d axis_;
 
     void bcalc(const Vector1d& qi);
     void jcalc(const Vector1d& qi, const Vector1d& dqi);

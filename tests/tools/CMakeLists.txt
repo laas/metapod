@@ -1,4 +1,6 @@
+# Copyright 2012, 2013
 #
+# Olivier STASSE (LAAS/CNRS)
 # Sébastien Barthélémy (Aldebaran Robotics)
 #
 # This file is part of metapod.
@@ -13,19 +15,8 @@
 # GNU General Lesser Public License for more details.
 # You should have received a copy of the GNU Lesser General Public License
 # along with metapod.  If not, see <http://www.gnu.org/licenses/>.
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
-INCLUDE_DIRECTORIES(
-    ${PROJECT_SOURCE_DIR}/robotbuilder/include
-    ${PROJECT_BINARY_DIR}/robotbuilder/include)
-
-# build the generator
-ADD_EXECUTABLE(metapod_binarytreemodel src/binarytreemodel.cc)
-TARGET_LINK_LIBRARIES(metapod_binarytreemodel metapod_robotbuilder)
-
-SET(METAPOD_BINARYTREEMODEL_EXECUTABLE metapod_binarytreemodel
-  CACHE STRING
-  "Set by cmake if metapod_binarytreemodel is built, by the user otherwise")
-
-INSTALL(PROGRAMS
-  ${PROJECT_BINARY_DIR}/metapod_binarytreemodel/metapod_binarytreemodel
-  DESTINATION bin)
+ADD_TESTCASE(test_timer test_timer.cc)
+TARGET_LINK_LIBRARIES(test_timer metapod_timer)

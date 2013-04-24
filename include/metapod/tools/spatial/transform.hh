@@ -159,7 +159,7 @@ namespace metapod
         {
           Matrix6d M;
           M.block<3,3>(0,0) = M.block<3,3>(3,3) = m_E.toMatrix();
-          M.block<3,3>(0,3) = Matrix3d::Zero();
+          M.block<3,3>(0,3).setZero();
           M.block<3,3>(3,0) = -M.block<3,3>(0,0) * skew(m_r);
 
           return M;
@@ -170,7 +170,7 @@ namespace metapod
         {
           Matrix6d M;
           M.block<3,3>(0,0) = m_E.transpose();
-          M.block<3,3>(3,0) = Matrix3d::Zero();
+          M.block<3,3>(3,0).setZero();
           M.block<3,3>(0,3) = (-m_E * skew(m_r)).transpose();
           M.block<3,3>(3,3) = m_E.transpose();
           return M;

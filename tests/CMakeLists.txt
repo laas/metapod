@@ -24,8 +24,8 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
 # Make Boost.Test generate the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_MAIN)
-IF(NOT WIN32)
-  # we use dynamic libraries for boost, except on Windows
+IF(NOT WIN32 AND NOT APPLE)
+  # we use dynamic libraries for boost, except on Windows and Mac OS X
   ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK)
 ENDIF()
 
@@ -65,3 +65,4 @@ IF(${WITH_SIMPLE_ARM})
   ADD_SUBDIRECTORY(use_model use_simple_arm)
 ENDIF()
 ADD_SUBDIRECTORY(spatial)
+ADD_SUBDIRECTORY(tools)
