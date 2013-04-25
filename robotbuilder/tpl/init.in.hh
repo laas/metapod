@@ -8,7 +8,11 @@
 #  pragma warning( push )
 // disable warning C4251: need to have DLL interface
 // disable warning C4099: struct/class discrepancies
-#  pragma warning( disable: 4251 4099 )
+// The following warnings are only needed if the FloatType is float, because
+// the code generator uses double anyway.
+// disable warning C4305 truncation from 'double' to 'float'
+// disable warning C4244 conversion from 'double' to 'float', possible loss of data
+#  pragma warning( disable: 4251 4099 4305 4244 )
 # endif
 
 # include "config.hh"
