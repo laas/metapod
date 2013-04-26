@@ -20,3 +20,5 @@ INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
 ADD_TESTCASE(test_timer test_timer.cc)
 TARGET_LINK_LIBRARIES(test_timer metapod_timer)
+
+ADD_TESTCASE(test_eigenalign test_eigenalign.cc)
