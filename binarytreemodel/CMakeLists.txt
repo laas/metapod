@@ -27,5 +27,5 @@ SET(METAPOD_BINARYTREEMODEL_EXECUTABLE metapod_binarytreemodel
   "Set by cmake if metapod_binarytreemodel is built, by the user otherwise")
 
 INSTALL(PROGRAMS
-  ${PROJECT_BINARY_DIR}/metapod_binarytreemodel/metapod_binarytreemodel
+  ${PROJECT_BINARY_DIR}/binarytreemodel/metapod_binarytreemodel
   DESTINATION bin)
