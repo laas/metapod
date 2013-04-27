@@ -33,7 +33,7 @@ namespace metapod {
 namespace internal {
 
 // helper function: update Parent inertia with the contribution of child Node
-template < typename Robot, int parent_id, int node_id >
+  template < typename Robot,  int parent_id, int node_id >
 struct crba_update_parent_inertia
 {
   typedef typename Nodes<Robot, parent_id>::type Parent;

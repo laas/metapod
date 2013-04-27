@@ -45,12 +45,14 @@ template < typename Robot, int node_id > struct PrintDFTraversalVisitor
   }
 };
 
+typedef double LocalFloatType;
 BOOST_AUTO_TEST_CASE (test_depth_first_traversal)
 {
+  typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
   const char result_file[] = "depth_first_traversal.log";
   std::ofstream log(result_file, std::ofstream::out);
   int depth = 0;
-  depth_first_traversal<PrintDFTraversalVisitor, CURRENT_MODEL_ROBOT>::run(log, depth);
+  depth_first_traversal<PrintDFTraversalVisitor, CURRENT_MODEL_ROBOT_LFT>::run(log, depth);
   log.close();
   // Compare results with reference file
   compareTexts(result_file, TEST_DIRECTORY "/depth_first_traversal.ref");

@@ -60,12 +60,14 @@ void printState(const Robot & robot, std::ostream & os)
 
 // Print conf vector of the robot in a stream.
 namespace internal {
-template < typename Robot, int node_id > struct PrintConfVisitor
+  template < typename Robot, int node_id > struct PrintConfVisitor
 {
+  typedef typename Robot::RobotFloatType FloatType;
+  METAPOD_TYPEDEFS;
   typedef typename Nodes<Robot, node_id>::type Node;
-  static void discover(const VectorN& q, std::ostream& os)
+  static void discover(const VectorN & q, std::ostream& os)
   {
-    VectorN qi = q.segment<Node::Joint::NBDOF>(Node::q_idx);
+    VectorN qi = q.template segment<Node::Joint::NBDOF>(Node::q_idx);
     os << Node::joint_name << "\n" << qi << "\n";
   }
   static void finish(const VectorN &, std::ostream & ) {}
@@ -73,7 +75,8 @@ template < typename Robot, int node_id > struct PrintConfVisitor
 } // end of namespace internal.
 
 template< typename Robot >
-void printConf(const VectorN & q, std::ostream & os)
+void printConf(const struct VectorNTpl<typename Robot::RobotFloatType>::Type & q, 
+               std::ostream & os)
 {
   depth_first_traversal<internal::PrintConfVisitor, Robot>::run(q, os);
 }

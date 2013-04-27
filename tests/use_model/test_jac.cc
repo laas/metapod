@@ -28,22 +28,25 @@
 
 using namespace metapod;
 
+typedef double LocalFloatType;
+typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
+
 BOOST_AUTO_TEST_CASE (test_jac)
 {
   // Set configuration vector to reference values.
-  CURRENT_MODEL_ROBOT::confVector q;
+  CURRENT_MODEL_ROBOT_LFT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT_LFT>::run(qconf, q);
   qconf.close();
 
-  CURRENT_MODEL_ROBOT robot;
-  jcalc< CURRENT_MODEL_ROBOT>::run(
-      robot, q, CURRENT_MODEL_ROBOT::confVector::Zero());
-  typedef Eigen::Matrix<FloatType,
-                        6 * CURRENT_MODEL_ROBOT::NBBODIES,
-                        CURRENT_MODEL_ROBOT::NBDOF> Jacobian;
+  CURRENT_MODEL_ROBOT_LFT robot;
+  jcalc< CURRENT_MODEL_ROBOT_LFT>::run(
+      robot, q, CURRENT_MODEL_ROBOT_LFT::confVector::Zero());
+  typedef Eigen::Matrix<LocalFloatType,
+                        6 * CURRENT_MODEL_ROBOT_LFT::NBBODIES,
+                        CURRENT_MODEL_ROBOT_LFT::NBDOF> Jacobian;
   Jacobian J = Jacobian::Zero();
-  jac< CURRENT_MODEL_ROBOT>::run(robot, J);
+  jac< CURRENT_MODEL_ROBOT_LFT>::run(robot, J);
 
   const char result_file[] = "jac.log";
   std::ofstream log(result_file, std::ofstream::out);

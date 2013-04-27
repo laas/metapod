@@ -35,6 +35,8 @@ namespace internal {
 // kinematics model.
 template< typename Robot, int node_id >
 struct convert_to_world {
+  typedef typename Robot::RobotFloatType FloatType;
+  METAPOD_TYPEDEFS;
   typedef typename Nodes<Robot, node_id>::type Node;
 
   static Vector3d run(const Robot& robot, const Vector3d & b_p) {
@@ -48,6 +50,8 @@ struct convert_to_world {
 template< typename Robot>
 struct convert_to_world<Robot, NO_PARENT>
 {
+  typedef typename Robot::RobotFloatType FloatType;
+  METAPOD_TYPEDEFS;
   static Vector3d run(const Robot&, const Vector3d & b_p) {
     return b_p;
   }
@@ -80,10 +84,12 @@ struct convert_to_world<Robot, NO_PARENT>
 // Note: we might want to drop the support of the offset parameter and let
 // the user pass a sub-block as the jacobian argument. Alas that would
 // support negative offsets.
-template <typename Robot, int start_node_id, int end_node_id,
+template <typename Robot,
+          int start_node_id, int end_node_id,
           int offset = 0, bool call_bcalc = true>
 struct jac_point_relative {
-
+  typedef typename Robot::RobotFloatType FloatType;
+  METAPOD_TYPEDEFS;
   typedef Eigen::Matrix< FloatType, 6, Robot::NBDOF + offset> Jacobian;
   static const int ancestor_node_id =
       deepest_common_ancestor<Robot, start_node_id, end_node_id>::value;
@@ -109,6 +115,8 @@ struct jac_point_relative {
 
   template <typename AnyRobot, int node_id>
   struct EndToAncestorVisitor {
+    typedef typename AnyRobot::RobotFloatType FloatType;
+    METAPOD_TYPEDEFS;
 
     typedef typename Nodes<Robot, node_id>::type Node;
 
@@ -150,7 +158,7 @@ struct jac_point_relative {
     // We need to delegate this computation to account for the cases
     // where EndNode == NP.
     Vector3d p =
-        internal::convert_to_world<Robot, end_node_id>::run(robot,e_p);
+      internal::convert_to_world<Robot,  end_node_id>::run(robot,e_p);
 
     backward_traversal<StartToAncestorVisitor, Robot,
                        start_node_id, ancestor_node_id>::run(robot, p, J);

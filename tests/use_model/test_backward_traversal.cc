@@ -23,13 +23,15 @@
 
 using namespace metapod;
 
+typedef double LocalFloatType;
+
 // start at the hand and finish with the arm
 #ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
-const int start_node = CURRENT_MODEL_ROBOT::LARM_LINK7;
-const int end_node = CURRENT_MODEL_ROBOT::LARM_LINK3;
+const int start_node = CURRENT_MODEL_ROBOT<LocalFloatType>::LARM_LINK7;
+const int end_node = CURRENT_MODEL_ROBOT<LocalFloatType>::LARM_LINK3;
 #else
-const int start_node = CURRENT_MODEL_ROBOT::HAND;
-const int end_node = CURRENT_MODEL_ROBOT::ARM;
+const int start_node = CURRENT_MODEL_ROBOT<LocalFloatType>::HAND;
+const int end_node = CURRENT_MODEL_ROBOT<LocalFloatType>::ARM;
 #endif
 
 // Print events while traversing the tree with indentation showing the level
@@ -58,7 +60,7 @@ BOOST_AUTO_TEST_CASE (test_backward_traversal)
   const char result_file[] = "backward_traversal.log";
   std::ofstream log(result_file, std::ofstream::out);
   int depth = 0;
-  backward_traversal<PrintBwdTraversalVisitor, CURRENT_MODEL_ROBOT,
+  backward_traversal<PrintBwdTraversalVisitor, CURRENT_MODEL_ROBOT<LocalFloatType>,
       start_node>::run(log, depth);
   log.close();
   // Compare results with reference file
@@ -70,7 +72,7 @@ BOOST_AUTO_TEST_CASE (test_backward_traversal_end)
   const char result_file[] = "backward_traversal_end.log";
   std::ofstream log(result_file, std::ofstream::out);
   int depth = 0;
-  backward_traversal<PrintBwdTraversalVisitor, CURRENT_MODEL_ROBOT,
+  backward_traversal<PrintBwdTraversalVisitor, CURRENT_MODEL_ROBOT<LocalFloatType>,
       start_node, end_node>::run(log, depth);
   log.close();
   // Compare results with reference file

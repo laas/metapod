@@ -26,4 +26,10 @@
 #include "metapod/tools/spatial/cm-oneaxis.hh"
 #include "metapod/tools/spatial/cm-freeflyer.hh"
 #include "metapod/tools/spatial/cm-anyaxis.hh"
+#define EIGEN_METAPOD_CM_TYPEDEFS  \
+  typedef class Spatial::ConstraintMotionAxisXTpl<FloatType>::Type ConstraintMotionAxisX; \
+  typedef class Spatial::ConstraintMotionAxisYTpl<FloatType>::Type ConstraintMotionAxisY; \
+  typedef class Spatial::ConstraintMotionAxisZTpl<FloatType>::Type ConstraintMotionAxisZ; \
+  typedef class Spatial::ConstraintMotionFreeFlyerTpl<FloatType> ConstraintMotionFreeFlyer
+
 #endif /* METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_HH */

@@ -25,9 +25,10 @@
 
 using namespace metapod;
 
+typedef double LocalFloatType;
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
-  typedef CURRENT_MODEL_ROBOT Robot;
+  typedef CURRENT_MODEL_ROBOT<LocalFloatType> Robot;
   // Set configuration vectors (q, dq, ddq) to reference values.
   Robot::confVector q, dq, ddq, torques, ref_torques;
 

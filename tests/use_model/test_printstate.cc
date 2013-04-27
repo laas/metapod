@@ -24,11 +24,13 @@
 #include <metapod/tools/print.hh>
 
 using namespace metapod;
+typedef double LocalFloatType;
+typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
 
 BOOST_AUTO_TEST_CASE (test_printstate)
 {
-  CURRENT_MODEL_ROBOT robot;
+  CURRENT_MODEL_ROBOT_LFT robot;
   std::ofstream state_log("state.log", std::ofstream::out);
-  printState<CURRENT_MODEL_ROBOT>(robot, state_log);
+  printState<CURRENT_MODEL_ROBOT_LFT>(robot, state_log);
   state_log.close();
 }
