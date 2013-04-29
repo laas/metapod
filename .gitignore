@@ -1,4 +1,2 @@
-_build
-build
-build2
-build_dbg
+/build*
+/CMakeLists.txt.user
