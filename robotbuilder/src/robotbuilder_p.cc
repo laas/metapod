@@ -14,7 +14,10 @@
 #endif
 
 #include <boost/algorithm/string/join.hpp>
-# include <metapod/tools/constants.hh>
+#include <metapod/tools/constants.hh>
+#ifdef _MSC_VER
+# include <stdio.h> // for _set_output_format
+#endif
 
 namespace {
 
@@ -563,6 +566,12 @@ RobotBuilder::Status RobotBuilderP::write() const
 
   // create the directory (and its parents if necessary)
   boost::filesystem::create_directories(directory_);
+#ifdef _MSC_VER
+  // by default, MC VS prints numbers in scentific format with 3 digits for
+  // the exponent. Eg: 3.2110E-005. We only want two digits like other
+  // platforms do. Eg: 3.2110E-05.
+  unsigned int old_exponent_format = _set_output_format(_TWO_DIGIT_EXPONENT);
+#endif
 
   // fill the replacements we already know
   ReplMap repl;
@@ -609,6 +618,11 @@ RobotBuilder::Status RobotBuilderP::write() const
 
   const std::string init_cc_templ(::init_cc, ::init_cc_len);
   writeTemplate(name_ + ".cc", init_cc_templ, repl);
+#ifdef _MSC_VER
+  // restore orginal exponent formatting (warning: this may never be reached
+  // if an exception is thrown in between).
+  _set_output_format(old_exponent_format);
+#endif
   return RobotBuilder::STATUS_SUCCESS;
 }
 
