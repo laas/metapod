@@ -349,17 +349,17 @@ namespace metapod
       M[1] = aF(1);
       M[2] = -m_E.m_s*aF(0) + m_E.m_c*aF(2);
           
-      M[0] += -m_r(2) * aF(4) 
-        - m_E.m_s*m_r(1) * aF(3) 
-        + m_E.m_c*m_r(1) * aF(5) ;
+      M[0] += -m_E.m_s*m_r(1) * aF(3)
+              - m_r(2) * aF(4)
+              + m_E.m_c*m_r(1) * aF(5);
 
       M[1] += (m_E.m_c*m_r(2) + m_E.m_s*m_r(0)) * aF(3) + 
-        (m_E.m_s*m_r(2) + m_E.m_c*m_r(0)) * aF(5) ;
+              (m_E.m_s*m_r(2) - m_E.m_c*m_r(0)) * aF(5);
 
-      M[2] += m_r(0)* aF(4) + 
-        -m_E.m_c*m_r(1) * aF(3) 
-        -m_E.m_s*m_r(1) * aF(5);
-          
+      M[2] += -m_E.m_c*m_r(1) * aF(3) +
+              m_r(0)* aF(4) +
+              -m_E.m_s*m_r(1) * aF(5);
+
       M[3] = m_E.m_c*aF(3) + m_E.m_s*aF(5) ;
       M[4] = aF(4);
       M[5] =-m_E.m_s*aF(3) + m_E.m_c*aF(5);
@@ -372,19 +372,19 @@ namespace metapod
     {
       Vector6d M;
       M[0] = m_E.m_c*aF(0) - m_E.m_s*aF(1);
-      M[1] =-m_E.m_s*aF(0) + m_E.m_c*aF(1);
+      M[1] = m_E.m_s*aF(0) + m_E.m_c*aF(1);
       M[2] = aF(2);
           
-      M[0] += m_r(2) * m_E.m_s * aF(3) 
-        - m_r(2) * m_E.m_c*aF(4) 
-        + m_r(1) * aF(5) ;
+      M[0] += -m_E.m_s * m_r(2) * aF(3)
+              - m_E.m_c * m_r(2) * aF(4)
+              + m_r(1) * aF(5);
 
-      M[1] += m_E.m_c*m_r(2) * aF(3) 
-        - m_E.m_s*m_r(2) * aF(4)
-        - m_r(0)* aF(5) ;
+      M[1] += m_E.m_c * m_r(2) * aF(3)
+              - m_E.m_s * m_r(2) * aF(4)
+              - m_r(0) * aF(5);
 
-      M[2] += (-m_E.m_c*m_r(1) - m_E.m_s*m_r(0)) * aF(3) + 
-        (m_E.m_s*m_r(1) + m_E.m_c*m_r(0)) * aF(4) ;
+      M[2] += (-m_E.m_c*m_r(1) + m_E.m_s*m_r(0)) * aF(3) +
+        (m_E.m_s*m_r(1) + m_E.m_c*m_r(0)) * aF(4);
           
       M[3] = m_E.m_c*aF(3) - m_E.m_s*aF(4);
       M[4] = m_E.m_s*aF(3) + m_E.m_c*aF(4);
