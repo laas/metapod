@@ -8,15 +8,28 @@
 #include <sstream>
 #include <boost/version.hpp>
 #include <boost/program_options.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include <vector>
 #include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <Eigen/Dense>
 #include <boost/tokenizer.hpp>
-#include <ros/console.h>
-#include <urdf_interface/model.h>
-#include <urdf/model.h>
+#ifdef USE_URDF_FROM_ROS_FUERTE
+# include <ros/console.h>
+# include <urdf_interface/model.h>
+# include <urdf/model.h>
+# define logInform(...) ROS_INFO(__VA_ARGS__)
+# define logError(...) ROS_ERROR(__VA_ARGS__)
+#else
+# include <console_bridge/console.h>
+# include <boost/filesystem.hpp>
+# include <sstream>
+# include <fstream>
+# include <urdf_model/model.h>
+# include <urdf_parser/urdf_parser.h>
+#endif
 #include <metapod/robotbuilder/robotbuilder.hh>
 
 
@@ -118,33 +131,33 @@ Status addSubTree(
     case urdf::Joint::CONTINUOUS: {
       if (prefer_fixed_axis &&
           jnt->axis.x == 1. && jnt->axis.y == 0. && jnt->axis.z == 0.) {
-        ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_X joint",
-                 jnt->name.c_str());
+        logInform("Adding joint '%s' as a REVOLUTE_AXIS_X joint",
+                  jnt->name.c_str());
         metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_X;
       } else if (prefer_fixed_axis &&
                  jnt->axis.x == 0. && jnt->axis.y == 1. && jnt->axis.z == 0.) {
-        ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Y joint",
-                jnt->name.c_str());
+        logInform("Adding joint '%s' as a REVOLUTE_AXIS_Y joint",
+                  jnt->name.c_str());
         metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Y;
       } else if (prefer_fixed_axis &&
                  jnt->axis.x == 0. && jnt->axis.y == 0. && jnt->axis.z == 1.) {
-        ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_Z joint",
-                 jnt->name.c_str());
+        logInform("Adding joint '%s' as a REVOLUTE_AXIS_Z joint",
+                  jnt->name.c_str());
         metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_Z;
       } else {
-        ROS_INFO("Adding joint '%s' as a REVOLUTE_AXIS_ANY joint",
-                 jnt->name.c_str());
+        logInform("Adding joint '%s' as a REVOLUTE_AXIS_ANY joint",
+                  jnt->name.c_str());
         metapod_joint_type = metapod::RobotBuilder::REVOLUTE_AXIS_ANY;
       }
       break;
     }
     case urdf::Joint::FLOATING: {
       metapod_joint_type = metapod::RobotBuilder::FREE_FLYER;
-      ROS_INFO("Adding joint '%s' as a FREE_FLYER joint", jnt->name.c_str());
+      logInform("Adding joint '%s' as a FREE_FLYER joint", jnt->name.c_str());
       break;
     }
     default: {
-      ROS_ERROR("Joint '%s' is of unknown type", jnt->name.c_str());
+      logError("Joint '%s' is of unknown type", jnt->name.c_str());
       return STATUS_FAILURE;
       break;
     }
@@ -336,12 +349,43 @@ int main(int argc, char** argv) {
     std::cout << visible << "\n";
     return 0;
   }
-  urdf::Model robot_model;
-  if (!robot_model.initFile(vm["input-file"].as<std::string>())) {
-    std::cerr << "Could not generate robot model" << std::endl;
-    return 1;
+  const std::string input_file = vm["input-file"].as<std::string>();
+#ifdef USE_URDF_FROM_ROS_FUERTE
+  boost::shared_ptr<urdf::Model> robot_model = boost::make_shared<urdf::Model>();
+  if (!robot_model->initFile(input_file)) {
+    logError("Could not generate robot model from file '%s'", input_file.c_str());
+    return STATUS_FAILURE;
   }
-
+#else
+  std::stringstream buffer;
+  try
+  {
+    std::fstream file(input_file.c_str(),
+                      std::ios::in);
+    if(!file)
+    {
+      //TODO
+      std::stringstream errorMessage;
+      errorMessage << "'" << input_file << "' could not be opened.";
+      throw std::invalid_argument(errorMessage.str());
+    }
+    buffer << file.rdbuf();
+  }
+  catch(const boost::filesystem::filesystem_error&)
+  {
+    //TODO
+    std::stringstream errorMessage;
+    errorMessage << "'" << input_file << "' could not be opened.";
+    throw std::invalid_argument(errorMessage.str());
+  }
+  boost::shared_ptr<urdf::ModelInterface> robot_model =
+      urdf::parseURDF(buffer.str());
+  if (!robot_model)
+  {
+    logError("Could not generate robot model from file '%s'", input_file.c_str());
+    return STATUS_FAILURE;
+  }
+#endif
   if (vm.count("name")) {
     builder.set_name(vm["name"].as<std::string>());
   }
@@ -368,7 +412,7 @@ int main(int argc, char** argv) {
   if (vm.count("prefer-fixed-axis")) {
     prefer_fixed_axis = true;
   }
-  Status status = treeFromUrdfModel(robot_model, builder, link_comparer,
+  Status status = treeFromUrdfModel(*robot_model, builder, link_comparer,
                                     prefer_fixed_axis, joint_dof_index);
   if (status == STATUS_FAILURE) {
     return STATUS_FAILURE;

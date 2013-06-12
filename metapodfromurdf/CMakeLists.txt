@@ -11,11 +11,16 @@ ADD_EXECUTABLE(metapodfromurdf
 TARGET_LINK_LIBRARIES(metapodfromurdf
   ${Boost_LIBRARIES}
   metapod_robotbuilder)
-FOREACH(dep rosconsole urdf)
-  ADD_ROSPACK_DEPENDENCY(${dep})
-  ROSPACK_USE_DEPENDENCY(metapodfromurdf ${dep})
-ENDFOREACH()
-
+IF(USE_URDF_FROM_ROS_FUERTE)
+  SET_SOURCE_FILES_PROPERTIES("src/metapodfromurdf.cpp" PROPERTIES
+      COMPILE_FLAGS "-DUSE_URDF_FROM_ROS_FUERTE")
+  FOREACH(dep rosconsole urdf)
+    ADD_ROSPACK_DEPENDENCY(${dep})
+    ROSPACK_USE_DEPENDENCY(metapodfromurdf ${dep})
+  ENDFOREACH()
+ELSE()
+  TARGET_LINK_LIBRARIES(metapodfromurdf ${urdfdom_LIBRARIES})
+ENDIF()
 SET(METAPODFROMURDF_EXECUTABLE metapodfromurdf CACHE
   STRING "Set by cmake if metapodfromurdf is built, by the user otherwise")
 

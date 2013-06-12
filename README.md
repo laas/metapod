@@ -24,7 +24,7 @@ your machine.
    - Eigen (>=3.0.0)
    - Boost (>=1.40.0)
      Boost Test is used in the test suite
-   - optionally, liburdf, as provided by ROS
+   - optionally, liburdfdom or liburdf (as provided by ROS)
 
 Setup
 -----
@@ -40,12 +40,44 @@ directory:
 Please note that CMake produces a `CMakeCache.txt` file which should
 be deleted to reconfigure a package from scratch.
 
-If you want to build the urdf converter, you'll need to install ROS too, and
-to run
 
-    source /opt/ros/fuerte/setup.bash
+In order to build the urdf converter, you'll need to install liburdfdom or
+liburdf. There are several options:
 
-before running cmake.
+ - Install urdfdom alone
+
+       git clone git://github.com/ros/console_bridge.git && cd console_bridge
+       git checkout 0.1.5
+       mkdir build && cd build
+       cmake ..
+       make
+       sudo make install
+
+       hg clone https://bitbucket.org/osrf/urdfdom_headers && cd urdfdom_headers
+       hg checkout 0.2.2
+       mkdir build && cd build
+       cmake ..
+       make
+       sudo make install
+
+       hg clone https://bitbucket.org/osrf/urdfdom && cd urdfdom
+       hg checkout 0.2.7
+       mkdir build && cd build
+       cmake ..
+       make
+       sudo make install
+
+ - Or install ROS groovy using the ubuntu packages and just do
+
+       source /opt/ros/groovy/setup.bash
+
+   before running cmake.
+
+ - Or install ROS fuerte using the ubuntu packages and just do
+
+       source /opt/ros/fuerte/setup.bash
+
+   before running cmake.
 
 Documentation
 -------------
