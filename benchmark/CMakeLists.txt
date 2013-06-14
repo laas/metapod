@@ -67,7 +67,7 @@ IF(WITH_SIMPLE_HUMANOID)
     INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/simple_humanoid/include)
     INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/simple_humanoid/include)
     SET(_libname "metapod_simple_humanoid")
-    # add the library to a list in order to bench it together wit the other
+    # add the library to a list in order to bench it together with the other
     SET(benchmark_cc_definitions
         "${benchmark_cc_definitions} -DWITH_SIMPLE_HUMANOID")
     LIST(APPEND _model_libs "${_libname}")
