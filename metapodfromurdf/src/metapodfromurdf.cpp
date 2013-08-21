@@ -180,7 +180,7 @@ Status addSubTree(
     tmp << root->inertial->ixx, root->inertial->ixy, root->inertial->ixz,
       root->inertial->ixy, root->inertial->iyy, root->inertial->iyz,
       root->inertial->ixz, root->inertial->iyz, root->inertial->izz;
-    rotational_inertia = R * tmp;
+    rotational_inertia.noalias() = R * tmp * R.transpose();
   }
   int dof_index = -1;
   std::map<std::string, int>::const_iterator it =

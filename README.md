@@ -69,7 +69,7 @@ directory:
 
     mkdir _build
     cd _build
-    cmake -DBUILD_METAPODFROMURDF=OFF
+    cmake -DBUILD_METAPODFROMURDF=OFF ..
     make install
 
 Please note that CMake produces a `CMakeCache.txt` file which should
