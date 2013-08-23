@@ -29,23 +29,19 @@ namespace metapod
 
   namespace Spatial
   {
-    template <class FloatType>
-    class MotionTpl
+
+    class Motion
     {
-      EIGEN_METAPOD_TYPEDEFS;
-      EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF;
       public:
         // Constructors
-        MotionTpl() : m_w(), m_v() {}
-        MotionTpl(const Vector3d & w, const Vector3d & v) : m_w(w), m_v(v) {}
-        MotionTpl(const Vector6d & v) : 
-          m_w(v.template segment<3>(0)),
-          m_v(v.template segment<3>(3)) {}
+        Motion() : m_w(), m_v() {}
+        Motion(const Vector3d & w, const Vector3d & v) : m_w(w), m_v(v) {}
+        Motion(const Vector6d & v) : m_w(v.segment<3>(0)),
+                                     m_v(v.segment<3>(3)) {}
 
-        static const MotionTpl Zero()
+        static const Motion Zero()
         {
-          return MotionTpl(Vector3d::Zero(), 
-                        Vector3d::Zero());
+          return Motion (Vector3d::Zero(), Vector3d::Zero());
         }
 
         // Getters
@@ -57,63 +53,61 @@ namespace metapod
         void v(const Vector3d & v) { m_v = v; }
 
         // Arithmetic operators
-        MotionTpl & operator=(const Vector6d & v)
+        Motion & operator=(const Vector6d & v)
         {
           m_w = v.segment<3>(0);
           m_v = v.segment<3>(3);
           return *this;
         }
 
-        MotionTpl operator-() const
+        Motion operator-() const
         {
-          return MotionTpl(-m_w, -m_v);
+          return Motion(-m_w, -m_v);
         }
 
-        MotionTpl operator+(const MotionTpl & mv) const
+        Motion operator+(const Motion & mv) const
         {
-          return MotionTpl(m_w+mv.w(), m_v+mv.v());
+          return Motion(m_w+mv.w(), m_v+mv.v());
         }
 
-        MotionTpl operator*(FloatType a) const
+        Motion operator*(FloatType a) const
         {
-          return MotionTpl(m_w*a, m_v*a);
+          return Motion(m_w*a, m_v*a);
         }
 
-        MotionTpl operator^(const MotionTpl & mv) const
+        Motion operator^(const Motion & mv) const
         {
-          return MotionTpl(m_w.cross(mv.w()),
+          return Motion(m_w.cross(mv.w()),
                         m_w.cross(mv.v()) + m_v.cross(mv.w()));
         }
 
-      Force operator^(const Force & fv) const
-         {
-           return Force(m_w.cross(fv.n()) + m_v.cross(fv.f()),
-                                   m_w.cross(fv.f()));
-         }
+        Force operator^(const Force & fv) const
+        {
+          return Force(m_w.cross(fv.n()) + m_v.cross(fv.f()),
+                       m_w.cross(fv.f()));
+        }
 
-         friend MotionTpl operator*(FloatType a, const MotionTpl & mv)
-         {
-           return MotionTpl(mv.w()*a, mv.v()*a);
-         }
+        friend Motion operator*(FloatType a, const Motion & mv)
+        {
+          return Motion(mv.w()*a, mv.v()*a);
+        }
 
-         // Print operator
-         friend std::ostream & operator << (std::ostream & os, const MotionTpl & mv)
-         {
-           os
-             << "w =\n" << mv.w() << std::endl
-             << "v =\n" << mv.v() << std::endl;
-           return os;
-         }
+        // Print operator
+        friend std::ostream & operator << (std::ostream & os, const Motion & mv)
+        {
+          os
+            << "w =\n" << mv.w() << std::endl
+            << "v =\n" << mv.v() << std::endl;
+          return os;
+        }
 
-       private:
-         // Private members
-         Vector3d m_w;
-         Vector3d m_v;
-     };
+      private:
+        // Private members
+        Vector3d m_w;
+        Vector3d m_v;
+    };
 
-   } // end of namespace Spatial
- #define EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF \
-  typedef Spatial::MotionTpl<FloatType> Motion
+  } // end of namespace Spatial
 
 } // end of namespace metapod
 

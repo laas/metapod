@@ -28,6 +28,5 @@ using namespace metapod::benchmark;
 
 int main()
 {
-  typedef double FloatType;
-  benchmark<metapod::@_libname@<FloatType> >::run();
+  benchmark<metapod::@_libname@>::run();
 }

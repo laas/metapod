@@ -44,24 +44,21 @@ namespace metapod
 	following matrix types:
 	Matrix3d, RotationMatrix, RotationMatrixAboutX
      */
-    template <class FloatType>
-    struct RotationMatrixAboutYTpl 
+    struct RotationMatrixAboutY
     {
-      EIGEN_METAPOD_TYPEDEFS;
-      METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF;
       /// Store directly \f$ m_c = cos(\theta) \f$ and \f$m_s = sin(\theta) \f$
       FloatType m_c,m_s;
 
-      RotationMatrixAboutYTpl(): 
+      RotationMatrixAboutY(): 
 	m_c(0.0),m_s(0.0) 
       {}
 
-      RotationMatrixAboutYTpl(const Matrix3d &aR)
+      RotationMatrixAboutY(const Matrix3d &aR)
       {
 	m_c=aR(0,0);m_s=aR(2,0);
       }
 
-      RotationMatrixAboutYTpl(FloatType c, FloatType s)
+      RotationMatrixAboutY(FloatType c, FloatType s)
       {
 	m_c=c;m_s=s;
       }
@@ -76,19 +73,19 @@ namespace metapod
 	set(theta_x);
       }
 
-      RotationMatrixAboutYTpl transpose() const
+      RotationMatrixAboutY transpose() const
       {
-	return RotationMatrixAboutYTpl(m_c,-m_s);
+	return RotationMatrixAboutY(m_c,-m_s);
       }
 
-      RotationMatrixAboutYTpl operator*(FloatType a) const
+      RotationMatrixAboutY operator*(FloatType a) const
       {
-	return RotationMatrixAboutYTpl(a*m_c,a*m_s);
+	return RotationMatrixAboutY(a*m_c,a*m_s);
       }
 
-      RotationMatrixAboutYTpl operator-() const
+      RotationMatrixAboutY operator-() const
       {
-	return RotationMatrixAboutYTpl(-m_c,-m_s);
+	return RotationMatrixAboutY(-m_c,-m_s);
       }
 
       void set(FloatType theta)
@@ -105,7 +102,7 @@ namespace metapod
 
       /** \brief Optimized multiplication of the rotation matrix with a general 3x3 matrix.
 	  The total number of operations is 12m + 6a. <br>
-	  Matrix3d = RotationMatrixAboutYTpl * Matrix3d <br>
+	  Matrix3d = RotationMatrixAboutY * Matrix3d <br>
 	  \f$ {\bf B} = ry(\theta) {\bf A} \f$
 	  \f[ {\bf B} =
 	    \left[
@@ -120,7 +117,7 @@ namespace metapod
       Matrix3d operator*(const Matrix3d &A) const
       {
 	Matrix3d r = A;
-	r.template block<1,3>(1,0) = A.template block<1,3>(1,0);
+	r.block<1,3>(1,0) = A.block<1,3>(1,0);
 
 	for(unsigned int i=0;i<3;i++)
 	  r(0,i) = A(0,i) * m_c - A(2,i) * m_s;
@@ -146,14 +143,13 @@ namespace metapod
 	    \right]
 	  \f]
        */      
-      RotationMatrix 
-      operator*(const RotationMatrix &aRM) const
+      RotationMatrix operator*(const RotationMatrix &aRM) const
       {
 	Matrix3d r;
 	r = Matrix3d::Zero();
 	const Matrix3d & lrm = aRM.m_rm;
 
-	r.template block<1,3>(1,0) = lrm.template block<1,3>(1,0);
+	r.block<1,3>(1,0) = lrm.block<1,3>(1,0);
 
 	for(unsigned int i=0;i<3;i++)
 	  r(0,i) = lrm(0,i) * m_c - lrm(2,i) * m_s;
@@ -164,12 +160,12 @@ namespace metapod
 	return RotationMatrix(r);
       }
 
-      RotationMatrixAboutYTpl operator*(const RotationMatrixAboutYTpl &aRM) const
+      RotationMatrixAboutY operator*(const RotationMatrixAboutY &aRM) const
       {
 	FloatType lc,ls;
 	lc = m_c * aRM.m_c - m_s * aRM.m_s;
 	ls = m_c * aRM.m_s + m_s * aRM.m_c;
-	return RotationMatrixAboutYTpl(lc,ls);
+	return RotationMatrixAboutY(lc,ls);
       }
 
       Vector3d operator*(const Vector3d &aRM) const
@@ -199,7 +195,7 @@ namespace metapod
             \right]
         \f]
       */
-      Matrix3d rotGeneralMatrix(const Matrix3d &A) const
+      Matrix3d  rotGeneralMatrix(const Matrix3d &A) const
       {
 	Matrix3d r;
 
@@ -239,9 +235,9 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      class ltI<FloatType> rotSymmetricMatrix(const class ltI<FloatType> &A) const
+      class ltI rotSymmetricMatrix(const class ltI &A) const
       {
-	class ltI<FloatType> r;
+	class ltI r;
 
 	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
 	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(5));
@@ -275,10 +271,9 @@ namespace metapod
 	       \right]
 	  \f]
        */
-      class ltI<FloatType> 
-      rotTSymmetricMatrix(const class ltI<FloatType> &A) const
+      class ltI rotTSymmetricMatrix(const class ltI &A) const
       {
-	class ltI<FloatType> r;
+	class ltI r;
 
 	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
 	  m_s*m_s*(A.m_ltI(5) - A.m_ltI(1));
@@ -298,7 +293,7 @@ namespace metapod
 
 
       friend std::ostream & operator<<(std::ostream &os,
-				       const struct RotationMatrixAboutYTpl & aRMAX)
+				       const struct RotationMatrixAboutY & aRMAX)
       {
 	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << std::endl;
 	os << "0.0 1.0 0.0 " << std::endl;
@@ -311,9 +306,6 @@ namespace metapod
     };
   
   } // end Spatial namespace
-#define METAPOD_SPATIAL_ROTATION_MATRIX_Y_TYPEDEF \
-  typedef Spatial::RotationMatrixAboutYTpl<FloatType> RotationMatrixAboutY
-
 } // end metapod namespace
 
 #endif // METAPOD_SPATIAL_ALGEBRA_ROTATION_MATRIX_ABOUTY_HH

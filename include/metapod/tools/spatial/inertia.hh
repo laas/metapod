@@ -27,39 +27,29 @@ namespace metapod
 {
   namespace Spatial
   {
-    template <class FloatType>
-    class InertiaTpl
+    class Inertia
     {
-      EIGEN_METAPOD_TYPEDEFS;
-      EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF;
-      EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF;
       public:
         // Constructors
-        InertiaTpl() : m_m(), m_h(), m_I() {}
-        InertiaTpl(FloatType m, 
-                   const Vector3d &h, 
-                   const Matrix3d &I)
+        Inertia() : m_m(), m_h(), m_I() {}
+        Inertia(FloatType m, const Vector3d &h, const Matrix3d &I)
             : m_m(m),
               m_h(h),
               m_I(I) {}
-        InertiaTpl(FloatType m, 
-                   const Vector3d &h, 
-                   const class ltI<FloatType> &I)
+        Inertia(FloatType m, const Vector3d &h, const lowerTriangularMatrix &I)
             : m_m(m),
               m_h(h),
               m_I(I) {}
 
         // Initializers
-        static const InertiaTpl Zero() {
-          return InertiaTpl(0., 
-                         Vector3d::Zero(), 
-                         ltI<FloatType>::Zero());
+        static const Inertia Zero() {
+          return Inertia(0., Vector3d::Zero(), lowerTriangularMatrix::Zero());
         }
 
         // Getters
         FloatType m() const { return m_m; }
         const Vector3d & h() const { return m_h; }
-        const ltI<FloatType> & I() const { return m_I; }
+        const lowerTriangularMatrix & I() const { return m_I; }
 
         Matrix6d toMatrix() const
         {
@@ -72,16 +62,15 @@ namespace metapod
         }
 
         // Arithmetic operators
-        InertiaTpl operator+(const InertiaTpl &other) const {
-          return InertiaTpl(m_m+other.m_m, m_h+other.m_h, m_I+other.m_I);
+        Inertia operator+(const Inertia &other) const {
+          return Inertia(m_m+other.m_m, m_h+other.m_h, m_I+other.m_I);
         }
 
-        InertiaTpl operator*(const FloatType &a) const {
-          return InertiaTpl(m_m*a, m_h*a, m_I*a);
+        Inertia operator*(const FloatType &a) const {
+          return Inertia(m_m*a, m_h*a, m_I*a);
         }
 
-        Force operator*(const Motion &mv) const 
-        {
+        Force operator*(const Motion &mv) const {
           return Force(m_I*mv.w() + m_h.cross(mv.v()),
                        m_m*mv.v() - m_h.cross(mv.w()));
         }
@@ -90,27 +79,23 @@ namespace metapod
         // Private members
         FloatType m_m;
         Vector3d m_h;
-        class ltI<FloatType> m_I;
+        lowerTriangularMatrix m_I;
     };
 
-    template <class FloatType>
-    inline std::ostream & operator<< (std::ostream &os, const InertiaTpl<FloatType> &I) {
+    inline std::ostream & operator<< (std::ostream &os, const Inertia &I) {
       os << "m =\n" << I.m() << "\n"
          << "h =\n" << I.h() << "\n"
          << "I =\n" << I.I();
       return os;
     }
 
-    template <class FloatType>
-    inline InertiaTpl<FloatType> operator*(FloatType a, const InertiaTpl<FloatType> &I)
+    inline Inertia operator*(FloatType a, const Inertia &I)
     {
       return I * a;
     }
 
     
   } // end of namespace Spatial
-#define EIGEN_METAPOD_SPATIAL_INERTIA_TYPEDEF \
-  typedef Spatial::InertiaTpl<FloatType> Inertia
 
 } // end of namespace metapod
 

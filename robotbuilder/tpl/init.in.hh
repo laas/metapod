@@ -34,9 +34,7 @@
 
 namespace metapod {
 
-template <typename FloatType>
 class @LIBRARY_NAME@_DLLAPI @ROBOT_CLASS_NAME@ {
-  METAPOD_TYPEDEFS;
 public:
   // the following new/delete operators are only needed if there is a
   // member variable of fixed-size vectorizable Eigen type (or a member
@@ -47,7 +45,6 @@ public:
   enum { NBDOF = @ROBOT_NB_DOF@ };
   enum { NBBODIES = @ROBOT_NB_BODIES@ };
 
-  typedef FloatType RobotFloatType;
   typedef Eigen::Matrix< FloatType, NBDOF, 1 > confVector;
 
   enum NodeId
@@ -73,7 +70,7 @@ public:
   // member variables
 
   // inertias expressed in body frames
-  static Inertia inertias[@ROBOT_NB_BODIES@];
+  static Spatial::Inertia inertias[@ROBOT_NB_BODIES@];
   NodeVector nodes;
   Eigen::Matrix< FloatType, NBDOF, NBDOF > H; // used by crba
 

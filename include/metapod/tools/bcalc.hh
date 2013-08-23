@@ -60,15 +60,13 @@ struct UpdateBodyAbsolutePose<Robot, node_id, false>
 template< typename Robot, int node_id >
 struct BcalcVisitor
 {
-  typedef typename Robot::RobotFloatType FloatType;
-  typedef typename Nodes< Robot , node_id>::type Node;
+  typedef typename Nodes<Robot, node_id>::type Node;
   static void discover(Robot& robot, const typename Robot::confVector& q)
   {
     Node& node = boost::fusion::at_c<node_id>(robot.nodes);
-    node.joint.template bcalc(q.template segment< Node::Joint::NBDOF >(Node::q_idx));
+    node.joint.bcalc(q.template segment< Node::Joint::NBDOF >(Node::q_idx));
     node.sXp = node.joint.Xj * node.Xt;
-    UpdateBodyAbsolutePose< Robot, node_id, 
-      has_parent<Robot , node_id>::value>::run(robot);
+    UpdateBodyAbsolutePose<Robot, node_id, has_parent<Robot, node_id>::value>::run(robot);
   }
   static void finish(Robot&, const typename Robot::confVector&)
   {}

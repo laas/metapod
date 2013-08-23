@@ -27,25 +27,17 @@ namespace metapod
   
   namespace Spatial
   {
-
-    
-
-    template < class FloatType,
-               typename RotationMatrixT,
+    template < typename RotationMatrixT,
                typename RotMatChgAxis>
     struct RotationBinaryOp
     {
-      EIGEN_METAPOD_TYPEDEFS;
-      METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF;
-      METAPOD_SPATIAL_ROTATION_MATRIX_X_TYPEDEF;
     private:
-      RotationMatrixT m_RM;
       RotMatChgAxis m_rmca;
+      RotationMatrixT m_RM;
       Matrix3d m_r;
     public:
 
-      RotationBinaryOp(RotationMatrixT &lrm, 
-                       RotMatChgAxis &lrmca):
+      RotationBinaryOp(RotationMatrix &lrm, RotMatChgAxis &lrmca):
         m_RM(lrm)
       {
         m_r = lrm.toMatrix() * lrmca.toMatrix();
@@ -53,16 +45,9 @@ namespace metapod
 
       RotationBinaryOp transpose() const
       {
-        typedef RotationMatrixChangeAxisTpl< FloatType, 
-          rmca_traits_transpose<typename RotMatChgAxis::Traits> > lRMCA;
-
-        lRMCA lrmca;
-
-        RotationBinaryOp< FloatType, 
-          RotationMatrixChangeAxisTpl< FloatType, 
-          rmca_traits_transpose<typename RotMatChgAxis::Traits> >, 
-          RotationMatrixT > 
-          r(lrmca,m_RM.toMatrix().transpose());
+        RotationMatrixChangeAxis< rmca_traits_transpose<typename RotMatChgAxis::Traits> > lrmca;
+        RotationBinaryOp< rmca_traits_transpose<typename RotMatChgAxis::Traits>,
+            RotationMatrixT> r(lrmca,m_RM.toMatrix().transpose());
         return r;
       }
 
@@ -78,11 +63,9 @@ namespace metapod
 
       RotationBinaryOp operator-() const
       {
-        RotationMatrixChangeAxisTpl< FloatType, 
-          rmca_traits_minus<typename RotMatChgAxis::Traits> > lrmca;
-        RotationBinaryOp< FloatType,
-          RotationMatrixT,
-          rmca_traits_minus<typename RotMatChgAxis::Traits> >
+        RotationMatrixChangeAxis< rmca_traits_minus<typename RotMatChgAxis::Traits> > lrmca;
+        RotationBinaryOp< RotationMatrixT,
+            rmca_traits_minus<typename RotMatChgAxis::Traits> >
             r(lrmca,-m_RM.toMatrix());
         return r;
       }

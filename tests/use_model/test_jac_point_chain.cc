@@ -41,28 +41,24 @@ using namespace metapod;
   static const int offset = 6; // offset >3 is needed to ensure J.cols() >0
 #endif
 
-typedef double LocalFloatType;
-typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
-
 BOOST_AUTO_TEST_CASE (test_jac_point_chain)
 {
-
   // Set configuration vectors (q) to reference values.
-  CURRENT_MODEL_ROBOT_LFT::confVector q;
+  CURRENT_MODEL_ROBOT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<CURRENT_MODEL_ROBOT_LFT>::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
   qconf.close();
 
-  CURRENT_MODEL_ROBOT_LFT robot;
+  CURRENT_MODEL_ROBOT robot;
 
   static const bool includeFreeFlyer = true;
-  typedef jac_point_chain<CURRENT_MODEL_ROBOT_LFT,
-                          CURRENT_MODEL_ROBOT_LFT::START_NODE,
-                          CURRENT_MODEL_ROBOT_LFT::END_NODE,
+  typedef jac_point_chain<CURRENT_MODEL_ROBOT,
+                          CURRENT_MODEL_ROBOT::START_NODE,
+                          CURRENT_MODEL_ROBOT::END_NODE,
                           offset, includeFreeFlyer> jac;
   // Compute the jacobian and print the result in a log file.
   jac::Jacobian J = jac::Jacobian::Zero();
-  jac::run(robot, q, Vector3dTpl<LocalFloatType>::Type(0,0,0), J);
+  jac::run(robot, q, Vector3d(0,0,0), J);
   const char result_file[] = "jac_point_chain.log";
   std::ofstream log(result_file, std::ofstream::out);
   log << J << std::endl;;
@@ -75,21 +71,21 @@ BOOST_AUTO_TEST_CASE (test_jac_point_chain)
 BOOST_AUTO_TEST_CASE (test_jac_point_chain_no_free_flyer)
 {
   // Set configuration vectors (q) to reference values.
-  CURRENT_MODEL_ROBOT_LFT::confVector q;
+  CURRENT_MODEL_ROBOT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<CURRENT_MODEL_ROBOT_LFT>::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
   qconf.close();
 
-  CURRENT_MODEL_ROBOT_LFT robot;
+  CURRENT_MODEL_ROBOT robot;
 
   static const bool includeFreeFlyer = false;
-  typedef jac_point_chain<CURRENT_MODEL_ROBOT_LFT,
-                          CURRENT_MODEL_ROBOT_LFT::START_NODE,
-                          CURRENT_MODEL_ROBOT_LFT::END_NODE,
+  typedef jac_point_chain<CURRENT_MODEL_ROBOT,
+                          CURRENT_MODEL_ROBOT::START_NODE,
+                          CURRENT_MODEL_ROBOT::END_NODE,
                           offset, includeFreeFlyer> jac;
   // Compute the jacobian and print the result in a log file.
   jac::Jacobian J = jac::Jacobian::Zero();
-  jac::run(robot, q, Vector3dTpl<LocalFloatType>::Type(0,0,0), J);
+  jac::run(robot, q, Vector3d(0,0,0), J);
   const char result_file[] = "jac_point_chain_no_free_flyer.log";
   std::ofstream log(result_file, std::ofstream::out);
   log << J << std::endl;;
@@ -212,7 +208,7 @@ namespace metapod
       // Compute jacobian sub-block.
       bodyJacobian_t subJ = bodyJacobian_t::Zero();
       jac_point_chain< Robot, Body1, Body2, 6, false, bcalc >
-        ::run(q, Vector3d<FloatType>::Type(0,0,0), subJ);
+        ::run(q, Vector3d(0,0,0), subJ);
       J.template block<6,Robot::NBDOF>
         (6*Robot::NBBODIES*Body1::label + 6*Body2::label, 0) = subJ;
 
@@ -256,7 +252,7 @@ namespace metapod
       // Compute jacobian sub-block.
       bodyJacobian_t subJ = bodyJacobian_t::Zero();
       jac_point_chain< Robot, Body1, Body2, 0, true, bcalc >
-        ::run(q, Vector3d<FloatType>::Type(0,0,0), subJ);
+        ::run(q, Vector3d(0,0,0), subJ);
       J.template block<6,Robot::NBDOF>
         (6*Robot::NBBODIES*Body1::label + 6*Body2::label, 0) = subJ;
 

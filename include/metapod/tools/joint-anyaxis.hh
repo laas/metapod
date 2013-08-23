@@ -1,7 +1,6 @@
 // Copyright 2013
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
-// Olivier Stasse (CNRS/LAAS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -22,47 +21,45 @@
 
 namespace metapod
 {
-  template <typename FloatType>
   class RevoluteAxisAnyJoint
   {
-    EIGEN_METAPOD_TYPEDEFS;
-    EIGEN_METAPOD_TRANSFORM_TYPEDEFS;
-    EIGEN_METAPOD_CM_TYPEDEFS;
-    EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF;
-    EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF;
-
   public:
+    RevoluteAxisAnyJoint(double axis_x, double axis_y, double axis_z);
     static const int NBDOF = 1;
-    Transform Xj;
-    Motion cj; // used in rnea
-    Motion vj; // used in rnea
-    Spatial::ConstraintMotionAnyAxis<FloatType> S;
-    Force f; // used by rnea
+    Spatial::Transform Xj;
+    Spatial::Motion cj; // used in rnea
+    Spatial::Motion vj; // used in rnea
+    Spatial::ConstraintMotionAnyAxis S;
+    Spatial::Force f; // used by rnea
     Vector1d torque; // used by rnea
     Vector3d axis_;
 
-    RevoluteAxisAnyJoint(double axis_x, double axis_y, double axis_z):
-      cj(Motion::Zero()),
-      S(axis_x, axis_y, axis_z),
-      axis_(axis_x, axis_y, axis_z)
-    {
-      vj.v(Vector3d::Zero());
-    }
-
-    inline void bcalc(const Vector1d& qi)
-    {
-      const FloatType angle = qi[0];
-      Matrix3d localR;
-      localR = Eigen::AngleAxis<FloatType>(-angle, axis_);
-      Xj = Transform(localR, Vector3d::Zero());
-    }
-
-    inline void jcalc(const Vector1d& qi,
-                      const Vector1d& dqi)
-    {
-      bcalc(qi);
-      vj.w(dqi[0] * axis_);
-    }
+    void bcalc(const Vector1d& qi);
+    void jcalc(const Vector1d& qi, const Vector1d& dqi);
   };
+
+  inline RevoluteAxisAnyJoint::RevoluteAxisAnyJoint(
+      double axis_x, double axis_y, double axis_z):
+    cj(Spatial::Motion::Zero()),
+    S(axis_x, axis_y, axis_z),
+    axis_(axis_x, axis_y, axis_z)
+  {
+    vj.v(Vector3d::Zero());
+  }
+
+  inline void RevoluteAxisAnyJoint::bcalc(const Vector1d& qi)
+  {
+    const FloatType angle = qi[0];
+    Matrix3d localR;
+    localR = AngleAxisd(-angle, axis_);
+    Xj = Spatial::Transform(localR, Vector3d::Zero());
+  }
+
+  inline void RevoluteAxisAnyJoint::jcalc(const Vector1d& qi,
+                                          const Vector1d& dqi)
+  {
+    bcalc(qi);
+    vj.w(dqi[0] * axis_);
+  }
 }
 #endif /* METAPOD_JOINT_ANY_AXIS_HH */

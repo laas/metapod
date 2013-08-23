@@ -27,21 +27,19 @@ namespace metapod
     // Constraint motion for one specific axis.
     enum AxisType { AxisX=0, AxisY, AxisZ };
 
-    template <int axis,class FloatType>
+    template <int axis>
     struct Vector6dMakerOneAxis
     {
-      class Vector6dTpl<FloatType>::Type v;
+      Vector6d v;
       Vector6dMakerOneAxis()
       {
         v[axis]=1;
       }
     };
 
-    template <int axis, class FloatType>
+    template <int axis>
     class ConstraintMotionOneAxis
     {
-      EIGEN_METAPOD_TYPEDEFS;
-      EIGEN_METAPOD_SPATIAL_INERTIA_TYPEDEF;
       public:
         // Constructors
       ConstraintMotionOneAxis(): m_S(Vector6d::Zero())
@@ -50,52 +48,39 @@ namespace metapod
       }
 
       private:
-      Vector6d m_S;
+        Vector6d m_S;
       public:
-      const Vector6d & S() const { return m_S; }
-      Vector6dt transpose() const { return m_S.transpose(); }
+        const Vector6d & S() const { return m_S; }
+        Vector6dt transpose() const { return m_S.transpose(); }
     };
 
-    template<class FloatType> 
-    struct ConstraintMotionAxisXTpl
-    { typedef ConstraintMotionOneAxis< AxisX, FloatType> Type; };
-    
-    template <class FloatType> 
-    struct ConstraintMotionAxisYTpl
-    { typedef ConstraintMotionOneAxis< AxisY, FloatType> Type; };
-    
-    template <class FloatType> 
-    struct ConstraintMotionAxisZTpl
-    { typedef ConstraintMotionOneAxis< AxisZ, FloatType> Type; };
+
+    typedef ConstraintMotionOneAxis<AxisX> ConstraintMotionAxisX;
+    typedef ConstraintMotionOneAxis<AxisY> ConstraintMotionAxisY;
+    typedef ConstraintMotionOneAxis<AxisZ> ConstraintMotionAxisZ;
 
     // Operator Inertia = Inertia * float
-    template <class FloatType>
-    inline class Vector6dTpl<FloatType>::Type operator*(const InertiaTpl<FloatType> & m,
-                                                        const struct ConstraintMotionAxisXTpl<FloatType>::Type &)
-    { 
-      EIGEN_METAPOD_TYPEDEFS;
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAxisX &)
+    {
       Vector6d r;
       r[0] = m.I()(0); r[1] = m.I()(1);r[2] = m.I()(3);
       r[3] = 0.0; r[4] = -m.h()(2); r[5] = m.h()(1);
       return r;
     }
 
-    template <class FloatType>
-    inline class Vector6dTpl<FloatType>::Type operator*(const InertiaTpl<FloatType> & m,
-                                                     const struct ConstraintMotionAxisYTpl<FloatType>::Type &)
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAxisY &)
     {
-      EIGEN_METAPOD_TYPEDEFS;
       Vector6d r;
       r[0] = m.I()(1); r[1] = m.I()(2);r[2] = m.I()(4);
       r[3] = m.h()(2); r[4] = 0.0; r[5] = -m.h()(0);
       return r;
     }
-    
-    template <class FloatType>
-    inline class Vector6dTpl<FloatType>::Type operator*(const InertiaTpl<FloatType> & m,
-                                                        const struct ConstraintMotionAxisZTpl<FloatType>::Type &)
+
+    inline Vector6d operator*(const Inertia & m,
+                              const ConstraintMotionAxisZ &)
     {
-      EIGEN_METAPOD_TYPEDEFS;
       Vector6d r;
       r[0] = m.I()(3); r[1] = m.I()(4);r[2] = m.I()(5);
       r[3] = -m.h()(1); r[4] = m.h()(0); r[5] = 0.0;

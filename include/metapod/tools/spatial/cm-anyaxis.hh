@@ -27,15 +27,13 @@ namespace metapod
   namespace Spatial
   {
     // Class of motion constraint with a rotation around a general axis.
-    template<class FloatType>
     class ConstraintMotionAnyAxis
     {
-      EIGEN_METAPOD_TYPEDEFS;
       public:
         // Constructors
-      ConstraintMotionAnyAxis(FloatType axisx,
-                              FloatType axisy,
-                              FloatType axisz): m_S(Vector6d::Zero())
+      ConstraintMotionAnyAxis(double axisx,
+                              double axisy,
+                              double axisz): m_S(Vector6d::Zero())
       { m_S(0) = axisx; m_S(1) = axisy; m_S(2) = axisz;}
 
       Vector6d operator*(double d) const;
@@ -48,9 +46,7 @@ namespace metapod
       Vector6dt transpose() const {return m_S.transpose();}
     };
 
-    template <class FloatType>
-    inline class Vector6dTpl<FloatType>::Type 
-    ConstraintMotionAnyAxis<FloatType>::operator*
+    inline Vector6d ConstraintMotionAnyAxis::operator*
     (double x) const
     {
       Vector6d tmp = Vector6d::Zero();
@@ -58,18 +54,16 @@ namespace metapod
       return tmp;
     }
 
-    template <class FloatType>
-    inline class Vector6dTpl<FloatType>::Type operator*(const InertiaTpl<FloatType> & m,
-                                                        const ConstraintMotionAnyAxis<FloatType> & a)
+    inline Vector6d operator*(const Inertia& m,
+                              const ConstraintMotionAnyAxis& a)
     {
-      EIGEN_METAPOD_TYPEDEFS;
       Vector6d r;
       const Vector6d &altI = m.I().m_ltI;
       r[0] = altI(0)*a.S()[0] + altI(1)*a.S()[1] + altI(3)*a.S()[2];
       r[1] = altI(1)*a.S()[0] + altI(2)*a.S()[1] + altI(4)*a.S()[2];
       r[2] = altI(3)*a.S()[0] + altI(4)*a.S()[1] + altI(5)*a.S()[2];
 
-      Matrix3d msh = -skew<FloatType>(m.h());
+      Matrix3d msh = -skew(m.h());
       for(unsigned int i=0; i<3; ++i)
         r[i+3] = msh(i,0)*a.S()[0]+
                  msh(i,1)*a.S()[1]+

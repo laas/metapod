@@ -2,7 +2,6 @@
 //
 // Antonio El Khoury (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
-// Olivier Stasse (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -71,8 +70,6 @@ template <typename Robot, int start_node_id, int end_node_id,
           int offset = 0, bool includeFreeFlyer = true,
           bool call_bcalc = true>
 struct jac_point_chain {
-  typedef typename Robot::RobotFloatType FloatType;
-  METAPOD_TYPEDEFS;
   METAPOD_STATIC_ASSERT((Robot::NBDOF >= 6),
       "jac_point_chain does not support robots with less than 6 DoFs");
   typedef jac_point_relative<Robot, start_node_id, end_node_id,
@@ -111,8 +108,6 @@ namespace internal {
 template <typename Robot, int start_node_id, int end_node_id, int offset>
 struct jac_point_chain_internal_freeflyer<Robot, start_node_id, end_node_id,
     offset, true> {
-  typedef typename Robot::RobotFloatType FloatType;
-  METAPOD_TYPEDEFS;
 
   typedef typename jac_point_chain<Robot, start_node_id, end_node_id,
                                    offset, true >::Jacobian Jacobian;
@@ -132,9 +127,8 @@ struct jac_point_chain_internal_freeflyer<Robot, start_node_id, end_node_id,
     // located at the start body joint.
     J.template block<3,3>(0,3+offset) = Matrix3d::Identity ();
     J.template block<3,3>(3,offset) = Matrix3d::Identity ();
-    Transform tmp = start_node.body.iX0.inverse();
-    Transform pXs = tmp.toPointFrame (p);
-    J.template block<3,3>(3,3+offset) = Spatial::skew<FloatType>(- (pXs.E() * pXs.r()));
+    Spatial::Transform pXs = start_node.body.iX0.inverse ().toPointFrame (p);
+    J.template block<3,3>(3,3+offset) = Spatial::skew (- (pXs.E() * pXs.r()));
   }
 };
 
@@ -143,8 +137,6 @@ struct jac_point_chain_internal_freeflyer<Robot, start_node_id, end_node_id,
 template <typename Robot, int start_node_id, int end_node_id, int offset>
 struct jac_point_chain_internal_freeflyer< Robot, start_node_id, end_node_id,
     offset, false> {
-  typedef typename Robot::RobotFloatType FloatType;
-  METAPOD_TYPEDEFS;
 
   typedef typename jac_point_chain<Robot, start_node_id, end_node_id,
                                    offset, false >::Jacobian Jacobian;

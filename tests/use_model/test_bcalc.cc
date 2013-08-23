@@ -28,25 +28,21 @@
 
 using namespace metapod;
 
-typedef double LocalFloatType;
-
 BOOST_AUTO_TEST_CASE (test_bcalc)
 {
-  typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
-
   // Set configuration vectors (q) to reference values.
-  CURRENT_MODEL_ROBOT_LFT::confVector q;
+  CURRENT_MODEL_ROBOT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<CURRENT_MODEL_ROBOT_LFT >::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
   qconf.close();
 
   // Apply the body calculations to the metapod multibody and print
   // the result in a log file.
-  CURRENT_MODEL_ROBOT_LFT robot;
-  bcalc<CURRENT_MODEL_ROBOT_LFT >::run(robot, q);
+  CURRENT_MODEL_ROBOT robot;
+  bcalc<CURRENT_MODEL_ROBOT>::run(robot, q);
   const char result_file[] = "bcalc.log";
   std::ofstream log(result_file, std::ofstream::out);
-  printTransforms<CURRENT_MODEL_ROBOT_LFT >(robot, log);
+  printTransforms<CURRENT_MODEL_ROBOT>(robot, log);
   log.close();
 
   // Compare results with reference file

@@ -23,45 +23,43 @@
 
 namespace metapod
 {
-  template <typename FloatType>
   class RevoluteAxisZJoint
   {
-    EIGEN_METAPOD_TYPEDEFS;
-    EIGEN_METAPOD_TRANSFORM_TYPEDEFS;
-    EIGEN_METAPOD_CM_TYPEDEFS;
-    EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF;
-    EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF;
-    METAPOD_SPATIAL_ROTATION_TYPEDEFS;
   public:
+    RevoluteAxisZJoint();
     static const int NBDOF = 1;
-    TransformZ Xj;
-    Motion cj; // used in rnea
-    Motion vj; // used in rnea
-    Spatial::ConstraintMotionOneAxis<Spatial::AxisZ, FloatType> S;
-    Force f; // used by rnea
+    Spatial::TransformZ Xj;
+    Spatial::Motion cj; // used in rnea
+    Spatial::Motion vj; // used in rnea
+    Spatial::ConstraintMotionOneAxis<Spatial::AxisZ> S;
+    Spatial::Force f; // used by rnea
     Vector1d torque; // used by rnea
 
-    inline RevoluteAxisZJoint(): cj(Motion::Zero())
-    {
-      vj.v(Vector3d(0.0,0.0,0.0));
-    }
-    
-    void bcalc(const Vector1d & qi)
-    {
-      const FloatType angle = qi[0];
-      FloatType c = cos(angle), s = sin(angle);
-      Xj = TransformZ
-        (RotationMatrixAboutZ(c,s),
-         Vector3d::Zero());
-    }
-
-    void jcalc(const Vector1d & qi,
-               const Vector1d & dqi)
-    {
-      bcalc(qi);
-      vj.w(Vector3d(0, 0, dqi[0]));
-    }
+    void bcalc(const Vector1d& qi);
+    void jcalc(const Vector1d& qi, const Vector1d& dqi);
   };
+
+  inline RevoluteAxisZJoint::RevoluteAxisZJoint():
+      cj(Spatial::Motion::Zero())
+  {
+    vj.v(Vector3d(0.0,0.0,0.0));
+  }
+
+  inline void RevoluteAxisZJoint::bcalc(const Vector1d & qi)
+  {
+    const FloatType angle = qi[0];
+    FloatType c = cos(angle), s = sin(angle);
+    Xj = Spatial::TransformZ
+      (Spatial::RotationMatrixAboutZ(c,s),
+       Vector3d::Zero());
+  }
+
+  inline void RevoluteAxisZJoint::jcalc(const Vector1d & qi,
+                                   const Vector1d & dqi)
+  {
+    bcalc(qi);
+    vj.w(Vector3d(0, 0, dqi[0]));
+  }
 }
 #endif
 

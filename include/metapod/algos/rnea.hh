@@ -36,8 +36,6 @@ template< typename Robot, bool jcalc = true > struct rnea{};
 
 template< typename Robot > struct rnea< Robot, false >
 {
-  typedef typename Robot::RobotFloatType FloatType;
-  METAPOD_TYPEDEFS;
   typedef typename Robot::confVector confVector;
 
   // update body kinematics using data from parent body and joint
@@ -49,7 +47,7 @@ template< typename Robot > struct rnea< Robot, false >
 
     static void run(
         Robot & robot,
-        const Eigen::Matrix< typename Robot::RobotFloatType, Node::Joint::NBDOF, 1 > & ddqi)
+        const Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > & ddqi)
     {
       Node& node = boost::fusion::at_c<node_id>(robot.nodes);
       Parent& parent = boost::fusion::at_c<parent_id>(robot.nodes);
@@ -59,7 +57,7 @@ template< typename Robot > struct rnea< Robot, false >
       node.body.iX0 = node.sXp * parent.body.iX0;
       node.body.vi = node.sXp * parent.body.vi + node.joint.vj;
       node.body.ai = sum(node.sXp * parent.body.ai,
-                         Motion(node.joint.S.S() * ddqi),
+                         Spatial::Motion(node.joint.S.S() * ddqi),
                          node.joint.cj,
                          (node.body.vi^node.joint.vj));
     }
@@ -69,13 +67,11 @@ template< typename Robot > struct rnea< Robot, false >
   template< int node_id >
   struct update_kinematics<node_id, NO_PARENT>
   {
-    METAPOD_TYPEDEFS;
     typedef typename Nodes<Robot, node_id>::type Node;
     static void run(
         Robot & robot,
-        const Eigen::Matrix< typename Robot::RobotFloatType, Node::Joint::NBDOF, 1 > & ddqi)
+        const Eigen::Matrix< FloatType, Node::Joint::NBDOF, 1 > & ddqi)
     {
-
       Node& node = boost::fusion::at_c<node_id>(robot.nodes);
       // iX0 = iXλ(i)
       // vi = vj
@@ -84,8 +80,8 @@ template< typename Robot > struct rnea< Robot, false >
       // detailed explanation of how the gravity force is applied)
       node.body.iX0 = node.sXp;
       node.body.vi = node.joint.vj;
-      node.body.ai = sum((node.body.iX0 * GravityConstant<typename Robot::RobotFloatType>::minus_g),
-                          Motion(node.joint.S.S() * ddqi),
+      node.body.ai = sum((node.body.iX0 * minus_g),
+                          Spatial::Motion(node.joint.S.S() * ddqi),
                           node.joint.cj,
                           (node.body.vi^node.joint.vj));
     }
@@ -118,6 +114,7 @@ template< typename Robot > struct rnea< Robot, false >
   {
     typedef typename Nodes<AnyRobot, node_id>::type Node;
 
+    METAPOD_HOT
     static void discover(AnyRobot & robot,
                          const confVector & ,
                          const confVector & ,
@@ -133,7 +130,7 @@ template< typename Robot > struct rnea< Robot, false >
       update_kinematics<node_id, Node::parent_id>::run(robot, ddqi);
 
       // fi = Ii * ai + vi x* (Ii * vi) - iX0* * fix
-      Inertia &I = robot.inertias[node_id];
+      Spatial::Inertia &I = robot.inertias[node_id];
       node.joint.f = sum((I * node.body.ai),
                          (node.body.vi^( I * node.body.vi )),
                          (node.body.iX0 * -node.body.Fext ));

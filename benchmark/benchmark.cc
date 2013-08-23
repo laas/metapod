@@ -39,16 +39,14 @@ using namespace metapod::benchmark;
 
 int main()
 {
-  typedef double FloatType;
-
 #ifdef WITH_SIMPLE_HUMANOID
-  benchmark<metapod::simple_humanoid<FloatType> >::run();
+  benchmark<metapod::simple_humanoid>::run();
 #endif
 #ifdef WITH_METAPOD_BINARYTREEMODEL
-  benchmark<metapod::sample_1<FloatType> >::run();
-  benchmark<metapod::sample_2<FloatType> >::run();
-  benchmark<metapod::sample_3<FloatType> >::run();
-  benchmark<metapod::sample_4<FloatType> >::run();
+  benchmark<metapod::sample_1>::run();
+  benchmark<metapod::sample_2>::run();
+  benchmark<metapod::sample_3>::run();
+  benchmark<metapod::sample_4>::run();
   //benchmark<metapod::sample_5>::run();
 #endif
 }

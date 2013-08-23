@@ -16,7 +16,7 @@ namespace metapod {
 
 @init_nodes@
 
-template <> Spatial::InertiaTpl<FloatType> @ROBOT_CLASS_NAME@<FloatType>::inertias[@node_id@] = {
+Spatial::Inertia @ROBOT_CLASS_NAME@::inertias[@node_id@] = {
 @init_inertias@};
 }
 

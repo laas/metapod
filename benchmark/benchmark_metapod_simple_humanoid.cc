@@ -26,8 +26,7 @@
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
-typedef double LocalFloatType;
 int main()
 {
-  benchmark<metapod::simple_humanoid<LocalFloatType> >::run();
+  benchmark<metapod::simple_humanoid>::run();
 }

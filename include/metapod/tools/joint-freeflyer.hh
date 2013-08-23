@@ -21,55 +21,56 @@
 
 namespace metapod
 {
-  template<typename FloatType>
   class FreeFlyerJoint
   {
-    EIGEN_METAPOD_TYPEDEFS;
-    EIGEN_METAPOD_TRANSFORM_TYPEDEFS;
-    EIGEN_METAPOD_CM_TYPEDEFS;
-    EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF;
-    EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF;
   public:
-    FreeFlyerJoint() {} ;
+    FreeFlyerJoint();
     static const int NBDOF = 6;
-    Transform Xj;
-    Motion cj; // used in rnea
-    Motion vj; // used in rnea
-    ConstraintMotionFreeFlyer S;
-    Force f; // used by rnea
+    Spatial::Transform Xj;
+    Spatial::Motion cj; // used in rnea
+    Spatial::Motion vj; // used in rnea
+    Spatial::ConstraintMotionFreeFlyer S;
+    Spatial::Force f; // used by rnea
     Vector6d torque; // used by rnea
 
-    inline void bcalc(const Vector6d& qi)
-    {
-      FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),
-        cTheta = cos(qi(4)), sTheta = sin(qi(4)),
-        cPhi   = cos(qi(5)), sPhi   = sin(qi(5));
-      // localR = rx(Psi) * ry(Theta) * rz(Phi)
-      Matrix3d localR;
-      localR(0,0) = cTheta * cPhi;
-      localR(0,1) = cTheta * sPhi;
-      localR(0,2) = -sTheta;
-      localR(1,0) = -cPsi * sPhi + cPhi * sPsi * sTheta;
-      localR(1,1) = cPsi * cPhi + sPsi * sTheta * sPhi;
-      localR(1,2) = cTheta * sPsi;
-      localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;
-      localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;
-      localR(2,2) = cPsi * cTheta;
-      S.setlocalR(localR);
-      Xj = Transform(localR, qi.template segment<3>(0));
-    }
-
-    inline void jcalc(const Vector6d& qi,
-                      const Vector6d& dqi)
-    {
-      bcalc(qi);
-      vj = Motion(S.S()*dqi);
-      Matrix6d dotS = Matrix6d::Zero();
-      Matrix3d localDotR = static_cast<Matrix3d>(Spatial::skew<FloatType>(dqi.template segment<3>(3))
-                                                 * S.S().template block<3,3>(0,3));
-      dotS.template block<3,3>(0,3) = dotS.template block<3,3>(3,0) = localDotR;
-      cj = Motion(dotS*dqi);
-    }
+    void bcalc(const Vector6d& qi);
+    void jcalc(const Vector6d& qi, const Vector6d& dqi);
   };
+
+  inline FreeFlyerJoint::FreeFlyerJoint()
+  {
+  }
+
+  inline void FreeFlyerJoint::bcalc(const Vector6d& qi)
+  {
+    FloatType cPsi   = cos(qi(3)), sPsi   = sin(qi(3)),
+              cTheta = cos(qi(4)), sTheta = sin(qi(4)),
+              cPhi   = cos(qi(5)), sPhi   = sin(qi(5));
+    // localR = rx(Psi) * ry(Theta) * rz(Phi)
+    Matrix3d localR;
+    localR(0,0) = cTheta * cPhi;
+    localR(0,1) = cTheta * sPhi;
+    localR(0,2) = -sTheta;
+    localR(1,0) = -cPsi * sPhi + cPhi * sPsi * sTheta;
+    localR(1,1) = cPsi * cPhi + sPsi * sTheta * sPhi;
+    localR(1,2) = cTheta * sPsi;
+    localR(2,0) = cPsi * cPhi * sTheta + sPhi * sPsi;
+    localR(2,1) = -cPhi * sPsi + cPsi * sTheta * sPhi;
+    localR(2,2) = cPsi * cTheta;
+    S.setlocalR(localR);
+    Xj = Spatial::Transform(localR, qi.segment<3>(0));
+  }
+
+  inline void FreeFlyerJoint::jcalc(const Vector6d& qi,
+                                    const Vector6d& dqi)
+  {
+    bcalc(qi);
+    vj = Spatial::Motion(S.S()*dqi);
+    Matrix6d dotS = Matrix6d::Zero();
+    Matrix3d localDotR = static_cast<Matrix3d>(Spatial::skew (dqi.segment<3>(3))
+                                               * S.S().block<3,3>(0,3));
+    dotS.block<3,3>(0,3) = dotS.block<3,3>(3,0) = localDotR;
+    cj = Spatial::Motion(dotS*dqi);
+  }
 }
 #endif /* METAPOD_JOINT_FREE_FLYER_HH */

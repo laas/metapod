@@ -30,32 +30,29 @@ namespace metapod
   namespace Spatial
   {
 
-    template<typename FloatType>
-    inline MotionTpl<FloatType> sum(const MotionTpl<FloatType> & mv1,
-                                    const MotionTpl<FloatType> & mv2,
-                                    const MotionTpl<FloatType> & mv3,
-                                    const MotionTpl<FloatType> & mv4)
+    inline Motion sum(const Motion & mv1,
+		      const Motion & mv2,
+		      const Motion & mv3,
+		      const Motion & mv4)
     {
-      return MotionTpl<FloatType>(mv1.w() + mv2.w() + mv3.w() + mv4.w(),
+      return Motion(mv1.w() + mv2.w() + mv3.w() + mv4.w(),
                     mv1.v() + mv2.v() + mv3.v() + mv4.v());
     }
 
-    template <typename FloatType>
-    inline MotionTpl<FloatType> sum(const MotionTpl<FloatType> & mv1,
-                                    const MotionTpl<FloatType> & mv2,
-                                    const MotionTpl<FloatType> & mv3)
+    inline Motion sum(const Motion & mv1,
+		      const Motion & mv2,
+		      const Motion & mv3)
     {
-      return MotionTpl<FloatType>(mv1.w() + mv2.w() + mv3.w(),
-                                  mv1.v() + mv2.v() + mv3.v());
+      return Motion(mv1.w() + mv2.w() + mv3.w(),
+                    mv1.v() + mv2.v() + mv3.v());
     }
 
-    template <typename FloatType>
-    inline ForceTpl<FloatType> sum(const ForceTpl<FloatType> & fv1,
-                                   const ForceTpl<FloatType> & fv2,
-                                   const ForceTpl<FloatType> & fv3)
+    inline Force sum(const Force & fv1,
+		     const Force & fv2,
+		     const Force & fv3)
     {
-      return ForceTpl<FloatType>(fv1.n() + fv2.n() + fv3.n(),
-                              fv1.f() + fv2.f() + fv3.f());
+      return Force(fv1.n() + fv2.n() + fv3.n(),
+                   fv1.f() + fv2.f() + fv3.f());
     }
   } // end of namespace Spatial
 

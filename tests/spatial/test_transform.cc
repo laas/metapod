@@ -18,32 +18,31 @@
 
 #include "../common.hh"
 
-#include <metapod/tools/joint.hh>
+#include <metapod/tools/common.hh>
 
 using namespace metapod;
 using namespace metapod::Spatial;
 
-template< typename FloatType, typename RotationClass>
+template< typename RotationClass>
 struct TestTransform
 {
-  METAPOD_TYPEDEFS;
   void run() const
   {
     FloatType angle = 0.5;
     FloatType c = std::cos(angle), s = std::sin(angle);                     
 
 
-    TransformT<FloatType,RotationClass> Xj;  
-    Xj = Spatial::TransformT<FloatType,RotationClass>
+    TransformT<RotationClass> Xj;  
+    Xj = Spatial::TransformT<RotationClass>
       (RotationClass(c,s),
        Vector3d::Zero());	    
-    std::cout  << "Xj: " << std::endl << Xj << std::endl;
+    std::cout << "Xj: " << std::endl << Xj << std::endl;
     
-    TransformT<FloatType,RotationMatrixIdentity > Xt;
-    Xt = Spatial::TransformT<FloatType,RotationMatrixIdentity >
-      (RotationMatrixIdentity(),Vector3d(0.0,0.0,0.0));
+    TransformT<RotationMatrixIdentity> Xt;
+    Xt = Spatial::TransformT<Spatial::RotationMatrixIdentity>
+      (Spatial::RotationMatrixIdentity(),Vector3d(0.0,0.0,0.0));
     
-    TransformT<FloatType, typename rm_mul_op<FloatType, RotationClass, RotationMatrixIdentity >::rm > sXp;
+    TransformT<typename rm_mul_op<RotationClass,RotationMatrixIdentity>::rm > sXp;
     sXp = Xj *Xt;
     std::cout  << sXp << std::endl;
   }
@@ -51,11 +50,11 @@ struct TestTransform
 
 BOOST_AUTO_TEST_CASE(test_transform)
 {
-  typedef double FloatType;
-  TestTransform<FloatType, Spatial::RotationMatrixAboutXTpl<FloatType> > testx;
+
+  TestTransform<Spatial::RotationMatrixAboutX> testx;
   testx.run();
-  TestTransform<FloatType, Spatial::RotationMatrixAboutYTpl<FloatType> > testy;
+  TestTransform<Spatial::RotationMatrixAboutY> testy;
   testy.run();
-  TestTransform<FloatType, Spatial::RotationMatrixAboutZTpl<FloatType> > testz;
+  TestTransform<Spatial::RotationMatrixAboutZ> testz;
   testz.run();
 }
