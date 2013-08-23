@@ -29,20 +29,22 @@
 
 using namespace metapod;
 
+typedef double FloatType;
+typedef CURRENT_MODEL_ROBOT<FloatType> CURRENT_MODEL_ROBOT_LFT;
 BOOST_AUTO_TEST_CASE (test_jac_point)
 {
   // Set configuration vectors (q) to reference values.
-  CURRENT_MODEL_ROBOT::confVector q;
+  CURRENT_MODEL_ROBOT_LFT::confVector q;
   std::ifstream qconf(TEST_DIRECTORY "/q.conf");
-  initConf<CURRENT_MODEL_ROBOT>::run(qconf, q);
+  initConf<CURRENT_MODEL_ROBOT_LFT>::run(qconf, q);
   qconf.close();
 
-  CURRENT_MODEL_ROBOT robot;
+  CURRENT_MODEL_ROBOT_LFT robot;
 
   // Compute the jacobian and print the result in a log file.
-  jac_point_robot<CURRENT_MODEL_ROBOT>::RobotJacobian J =
-      jac_point_robot<CURRENT_MODEL_ROBOT>::RobotJacobian::Zero();
-  jac_point_robot<CURRENT_MODEL_ROBOT>::run(robot, q, J);
+  jac_point_robot<CURRENT_MODEL_ROBOT_LFT>::RobotJacobian J =
+      jac_point_robot<CURRENT_MODEL_ROBOT_LFT>::RobotJacobian::Zero();
+  jac_point_robot<CURRENT_MODEL_ROBOT_LFT>::run(robot, q, J);
 
   const char result_file[] = "jac_point.log";
   std::ofstream log(result_file, std::ofstream::out);

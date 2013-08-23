@@ -46,7 +46,8 @@ struct jac_point_robot;
 /// \{
 template <typename Robot, bool call_bcalc>
 struct jac_point_robot {
-
+  typedef typename Robot::RobotFloatType FloatType;
+  METAPOD_TYPEDEFS;
   typedef Eigen::Matrix<FloatType, 6*Robot::NBBODIES, Robot::NBDOF,
                         Eigen::RowMajor> RobotJacobian;
 

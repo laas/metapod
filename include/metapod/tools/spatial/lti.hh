@@ -26,11 +26,12 @@
 
 namespace metapod
 {
-
   namespace Spatial
   {
+    template <class FloatType>
     class ltI
     {
+      EIGEN_METAPOD_TYPEDEFS;
     public:
       ltI(): m_ltI() { }
       ltI(const Matrix3d &I) {
@@ -67,7 +68,7 @@ namespace metapod
 
       ltI operator*(FloatType a) const
       {
-        return ltI(static_cast<Vector6d>(a * m_ltI));
+        return ltI(static_cast<Vector6d >(a * m_ltI));
       }
 
       Vector3d operator*(const Vector3d &a) const
@@ -125,9 +126,9 @@ namespace metapod
       Vector6d m_ltI; //todo: make private
     };
 
-    typedef ltI lowerTriangularMatrix;
 
-    inline ltI operator*(FloatType a, const ltI& altI)
+    template <class FloatType>
+    inline ltI<FloatType> operator*(FloatType a, const ltI<FloatType> & altI)
     {
       return altI * a;
     }

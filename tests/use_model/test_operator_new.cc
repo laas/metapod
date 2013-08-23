@@ -29,8 +29,10 @@
 
 using namespace metapod;
 
+typedef double LocalFloatType;
 BOOST_AUTO_TEST_CASE (test_operator_new)
 {
-  boost::scoped_ptr<CURRENT_MODEL_ROBOT> robot(new CURRENT_MODEL_ROBOT);
+  typedef CURRENT_MODEL_ROBOT<LocalFloatType> Robot;
+  boost::scoped_ptr<Robot> robot(new Robot);
   BOOST_CHECK(robot);
 }

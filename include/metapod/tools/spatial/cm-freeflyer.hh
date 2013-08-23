@@ -29,11 +29,13 @@ namespace metapod
   namespace Spatial
   {
     // Class of motion constraint with a free flyer.
-    class ConstraintMotionFreeFlyer
+    template <class FloatType>
+    class ConstraintMotionFreeFlyerTpl
     {
+      EIGEN_METAPOD_TYPEDEFS;
     public:
         // Constructors
-      ConstraintMotionFreeFlyer(): m_S(Matrix6d::Zero())
+      ConstraintMotionFreeFlyerTpl(): m_S(Matrix6d::Zero())
       {}
 
       Matrix6d operator*(FloatType x) const
@@ -49,7 +51,7 @@ namespace metapod
 
       void setlocalR(const Matrix3d &localR)
       {
-        m_S.block<3,3>(0,3) = m_S.block<3,3>(3,0) = localR;
+        m_S.template block<3,3>(0,3) = m_S.template block<3,3>(3,0) = localR;
       }
       const Matrix6d & S() const { return m_S; }
       Matrix6d transpose() const { return m_S.transpose(); }
@@ -58,13 +60,16 @@ namespace metapod
       Matrix6d m_S;
     };
 
-    inline Matrix6d operator*(const Inertia &m,
-                              const ConstraintMotionFreeFlyer &a) {
+    template <class FloatType>
+    inline class Matrix6dTpl<FloatType>::Type operator*(const InertiaTpl<FloatType> &m,
+                                                        const ConstraintMotionFreeFlyerTpl<FloatType> &a) 
+    {
+      EIGEN_METAPOD_TYPEDEFS;
       Matrix6d r;
-      r.block<3,3>(0,0) = skew(m.h())*a.S().block<3,3>(3,0);
-      r.block<3,3>(0,3) = m.I()*static_cast<Matrix3d>(a.S().block<3,3>(0,3));
-      r.block<3,3>(3,0) = m.m()*a.S().block<3,3>(3,0);
-      r.block<3,3>(3,3) = -skew(m.h())*a.S().block<3,3>(0,3);
+      r.template block<3,3>(0,0) = skew<FloatType>(m.h())*a.S().template block<3,3>(3,0);
+      r.template block<3,3>(0,3) = m.I()*static_cast<Matrix3d>(a.S().template block<3,3>(0,3));
+      r.template block<3,3>(3,0) = m.m()*a.S().template block<3,3>(3,0);
+      r.template block<3,3>(3,3) = -skew<FloatType>(m.h())*a.S().template block<3,3>(0,3);
       return r;
     }
   } // End of spatial namespace

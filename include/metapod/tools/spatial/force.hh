@@ -20,21 +20,26 @@
 #ifndef METAPOD_SPATIAL_ALGEBRA_FORCE_HH
 # define METAPOD_SPATIAL_ALGEBRA_FORCE_HH
 
+#include <metapod/tools/fwd.hh>
+
 namespace metapod
 {
   namespace Spatial
   {
-    class Force
+    template <class FloatType>
+    class ForceTpl
     {
+      EIGEN_METAPOD_TYPEDEFS;
       public:
         // Constructors
-        Force() : m_n(), m_f() {}
-        Force(const Vector3d & n, const Vector3d & f) : m_n(n), m_f(f) {}
-        Force(const Vector6d & v) : m_n(v.segment<3>(0)),
+        ForceTpl() : m_n(), m_f() {}
+        ForceTpl(const Vector3d & n, 
+              const Vector3d & f) : m_n(n), m_f(f) {}
+        ForceTpl(const Vector6d & v) : m_n(v.segment<3>(0)),
                                     m_f(v.segment<3>(3)) {}
 
         // initializers
-        static const Force Zero() { return Force(Vector3d::Zero(), Vector3d::Zero()); }
+        static const ForceTpl Zero() { return ForceTpl(Vector3d::Zero(), Vector3d::Zero()); }
 
         // Getters
         const Vector3d & n() const { return m_n; }
@@ -51,40 +56,40 @@ namespace metapod
         }
 
         // Arithmetic operators
-        Force & operator=(const Vector6d & v)
+        ForceTpl & operator=(const Vector6d & v)
         {
           m_n = v.segment<3>(0);
           m_f = v.segment<3>(3);
           return *this;
         }
 
-        Force operator+(const Force & fv) const
+        ForceTpl operator+(const ForceTpl & fv) const
         {
-          return Force(m_n+fv.n(), m_f+fv.f());
+          return ForceTpl(m_n+fv.n(), m_f+fv.f());
         }
 
-        Force operator-() const
+        ForceTpl operator-() const
         {
-          return Force(-m_n, -m_f);
+          return ForceTpl(-m_n, -m_f);
         }
 
-        Force operator-(const Force & fv) const
+        ForceTpl operator-(const ForceTpl & fv) const
         {
-          return Force(m_n-fv.n(), m_f-fv.f());
+          return ForceTpl(m_n-fv.n(), m_f-fv.f());
         }
 
-        Force operator*(FloatType a) const
+        ForceTpl operator*(FloatType a) const
         {
-          return Force(m_n*a, m_f*a);
+          return ForceTpl(m_n*a, m_f*a);
         }
 
-        friend Force operator*(FloatType a, const Force & fv)
+        friend ForceTpl operator*(FloatType a, const ForceTpl & fv)
         {
-          return Force(fv.n()*a, fv.f()*a);
+          return ForceTpl(fv.n()*a, fv.f()*a);
         }
 
         // Print operator
-        friend std::ostream & operator << (std::ostream & os, const Force & fv)
+        friend std::ostream & operator << (std::ostream & os, const ForceTpl & fv)
         {
           os
             << "n =\n" << fv.n() << std::endl
@@ -98,6 +103,8 @@ namespace metapod
         Vector3d m_f;
     };
   } // end of namespace Spatial
+#define EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF \
+  typedef Spatial::ForceTpl<FloatType> Force
 
 } // end of namespace metapod
 

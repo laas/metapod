@@ -26,17 +26,19 @@ namespace metapod
 
   namespace Spatial
   {
-
-    struct RotationMatrix
+    
+    template <class FloatType>
+    struct RotationMatrixTpl
     {
+      EIGEN_METAPOD_TYPEDEFS;
       Matrix3d m_rm;
       
-      RotationMatrix() 
+      RotationMatrixTpl() 
       { 
 	m_rm = Matrix3d::Zero();
       }
       
-      RotationMatrix(const Matrix3d &aR)
+      RotationMatrixTpl(const Matrix3d &aR)
       {
 	m_rm = aR;
       }
@@ -81,7 +83,8 @@ namespace metapod
 
       /** \brief Computes L for a general matrix A. 
        */
-      void decompose(const Matrix3d &A, Matrix3_2d &L) const
+      void decompose(const Matrix3d &A, 
+                     Matrix3_2d &L) const
       {
 	L(0,0) = A(0,0) - A(2,2); L(0,1) = A(0,1);
 	L(1,0) = A(1,0) ;         L(1,1) = A(1,1)-A(2,2);
@@ -90,7 +93,7 @@ namespace metapod
 
       /** \brief Computes L for a symmetric matrix A.
        */
-      void decomposeltI(const class ltI &A,
+      void decomposeltI(const class ltI<FloatType> &A,
 			Matrix3_2d &L) const
       {
 	L(0,0) = A.m_ltI(0) - A.m_ltI(5); 
@@ -101,9 +104,9 @@ namespace metapod
 	L(2,1) = A.m_ltI(4) + A.m_ltI(4);
       }
       
-      RotationMatrix transpose() const
+      RotationMatrixTpl transpose() const
       {
-	return RotationMatrix(m_rm.transpose());
+	return RotationMatrixTpl(m_rm.transpose());
       }
 
       
@@ -114,10 +117,10 @@ namespace metapod
 
       /** \brief Computes the multiplication between rotation matrix. 
        */
-      RotationMatrix operator* (const RotationMatrix &arm) const
+      RotationMatrixTpl operator* (const RotationMatrixTpl &arm) const
       {
 	Matrix3d r;
-	r.block<3,2>(0,0) = m_rm * arm.m_rm.block<3,2>(0,0);
+	r.template block<3,2>(0,0) = m_rm * arm.m_rm.template block<3,2>(0,0);
 	r(0,2) = -r(2,0)*r(1,1) + r(1,0)*r(2,1);
 	r(1,2) =  r(2,0)*r(0,1) - r(0,0)*r(2,1);
 	r(2,2) = -r(1,0)*r(0,1) + r(0,0)*r(1,1);
@@ -132,14 +135,14 @@ namespace metapod
       }
 
 
-      RotationMatrix operator*(FloatType a) const
+      RotationMatrixTpl operator*(FloatType a) const
       {
-	return RotationMatrix(m_rm *a);
+	return RotationMatrixTpl(a*m_rm);
       }
 
-      RotationMatrix operator-() const
+      RotationMatrixTpl operator-() const
       {
-	return RotationMatrix(-m_rm);
+	return RotationMatrixTpl(-m_rm);
       }
 
       FloatType operator()(int x, int y) const
@@ -147,9 +150,9 @@ namespace metapod
 	return m_rm(x,y);
       }
 
-      friend RotationMatrix operator*(FloatType a, RotationMatrix alti)
+      friend RotationMatrixTpl operator*(FloatType a, RotationMatrixTpl alti)
       {
-	return RotationMatrix(alti.m_rm *a);
+	return RotationMatrixTpl(alti.m_rm *a);
       }
       
       Vector3d col(int x) const
@@ -201,11 +204,12 @@ namespace metapod
 
       /** \brief Compute the rotation for a symmetric matrix.
        */
-      lowerTriangularMatrix rotTSymmetricMatrix(const lowerTriangularMatrix &A) const
+      ltI<FloatType> 
+      rotTSymmetricMatrix(const ltI<FloatType> &A) const
       {
 
 	Vector3d r;
-	lowerTriangularMatrix Z;
+	ltI<FloatType> Z;
 	Matrix2d Y;
 	Matrix3_2d L;
 
@@ -213,7 +217,7 @@ namespace metapod
 	decomposeltI(A,L);
 	
 	// Y = EL (12 m + 8 a)
-	Y = m_rm.transpose().block<2,3>(1,0) * L;
+	Y = m_rm.transpose().template block<2,3>(1,0) * L;
 
 	// Z= YEt; (16 m + 8a)
 	Z.m_ltI(1) = Y(0,0)*m_rm(0,0) + Y(0,1)*m_rm(1,0);
@@ -236,14 +240,14 @@ namespace metapod
 	Z.m_ltI(1) += r(2); Z.m_ltI(2)+= A.m_ltI(5); 
 	Z.m_ltI(3) +=-r(1); Z.m_ltI(4)+=       r(0); Z.m_ltI(5) += A.m_ltI(5);
 
-	return lowerTriangularMatrix(Z);
+	return ltI<FloatType>(Z);
       }
 
-      lowerTriangularMatrix rotSymmetricMatrix(const lowerTriangularMatrix &A) const
+      ltI<FloatType> rotSymmetricMatrix(const ltI<FloatType> &A) const
       {
 
 	Vector3d r;
-	lowerTriangularMatrix Z;
+	ltI<FloatType> Z;
 	Matrix2d Y;
 	Matrix3_2d L;
 
@@ -251,7 +255,7 @@ namespace metapod
 	decomposeltI(A,L);
 	
 	// Y = EL (12 m + 8 a)
-	Y = m_rm.block<2,3>(1,0) * L;
+	Y = m_rm.template block<2,3>(1,0) * L;
 
 	// Z= YEt; (16 m + 8a)
 	Z.m_ltI(1) = Y(0,0)*m_rm(0,0) + Y(0,1)*m_rm(0,1);
@@ -274,11 +278,11 @@ namespace metapod
 	Z.m_ltI(1) += r(2); Z.m_ltI(2)+= A.m_ltI(5); 
 	Z.m_ltI(3) +=-r(1); Z.m_ltI(4)+=       r(0); Z.m_ltI(5) += A.m_ltI(5);
 
-	return lowerTriangularMatrix(Z);
+	return ltI<FloatType>(Z);
       }
 
       friend std::ostream & operator<<(std::ostream &os,
-				       const struct RotationMatrix & aRMAX)
+				       const struct RotationMatrixTpl & aRMAX)
       {
 	os << aRMAX.m_rm << std::endl;
 	return os;
@@ -286,6 +290,9 @@ namespace metapod
 
     };
   } // end Spatial namespace
+#define METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF \
+  typedef Spatial::RotationMatrixTpl<FloatType> RotationMatrix
+
 } // end metapod namespace
 
 #endif // METAPOD_SPATIAL_ALGEBRA_ROTATION_MATRIX_GENERAL_HH

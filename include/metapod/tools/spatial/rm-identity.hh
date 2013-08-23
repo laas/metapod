@@ -26,19 +26,19 @@ namespace metapod
 
   namespace Spatial
   {
-
-    struct RotationMatrixIdentity
+    template<class FloatType>
+    struct RotationMatrixIdentityTpl
     {
-      
+      EIGEN_METAPOD_TYPEDEFS;
       FloatType m_scalar;
 
-      RotationMatrixIdentity() 
+      RotationMatrixIdentityTpl() 
       { m_scalar = 1.0;}
       
-      RotationMatrixIdentity(const RotationMatrixIdentity &aR)
+      RotationMatrixIdentityTpl(const RotationMatrixIdentityTpl<FloatType> &aR)
       { m_scalar = aR.m_scalar; }
 
-      RotationMatrixIdentity(const FloatType &aR)
+      RotationMatrixIdentityTpl(const FloatType &aR)
       { m_scalar = aR; }
 
 
@@ -53,9 +53,9 @@ namespace metapod
 	return r;
       }
       
-      RotationMatrixIdentity transpose() const
+      RotationMatrixIdentityTpl transpose() const
       {
-	return RotationMatrixIdentity(m_scalar);
+	return RotationMatrixIdentityTpl(m_scalar);
       }
       
       Matrix3d operator*(const Matrix3d &A) const
@@ -65,7 +65,7 @@ namespace metapod
 
       /** \brief Computes the multiplication between rotation matrix. 
        */
-      RotationMatrixIdentity operator* (const RotationMatrixIdentity &arm) const
+      RotationMatrixIdentityTpl operator* (const RotationMatrixIdentityTpl &arm) const
       {
 	return arm;
       }
@@ -78,14 +78,14 @@ namespace metapod
       }
 
 
-      RotationMatrixIdentity operator*(FloatType a) const
+      RotationMatrixIdentityTpl operator*(FloatType a) const
       {
-	return RotationMatrixIdentity(a);
+	return RotationMatrixIdentityTpl(a);
       }
 
-      RotationMatrixIdentity operator-() const
+      RotationMatrixIdentityTpl operator-() const
       {
-	return RotationMatrixIdentity(-m_scalar);
+	return RotationMatrixIdentityTpl(-m_scalar);
       }
 
       FloatType operator()(int x, int y) const
@@ -95,14 +95,14 @@ namespace metapod
 	return 0.0;
       }
 
-      friend RotationMatrixIdentity operator*(FloatType a, RotationMatrixIdentity alti)
+      friend RotationMatrixIdentityTpl operator*(FloatType a, RotationMatrixIdentityTpl alti)
       {
-	return RotationMatrixIdentity(alti.m_scalar *a);
+	return RotationMatrixIdentityTpl(alti.m_scalar *a);
 
       }
       
-      template <class T> friend
-      T operator*(const T &aT, RotationMatrixIdentity alti)
+      template <typename T> friend
+      T operator*(const T &aT, RotationMatrixIdentityTpl alti)
       {
 	return aT * alti.m_scalar  ;
       }
@@ -124,18 +124,18 @@ namespace metapod
 
       /** \brief Compute the rotation for a symmetric matrix.
        */
-      lowerTriangularMatrix rotTSymmetricMatrix(const lowerTriangularMatrix &A) const
+      ltI<FloatType> rotTSymmetricMatrix(const ltI<FloatType> &A) const
       {
 	return A;
       }
 
-      lowerTriangularMatrix rotSymmetricMatrix(const lowerTriangularMatrix &A) const
+      ltI<FloatType> rotSymmetricMatrix(const ltI<FloatType> &A) const
       {
 	return A;
       }
 
       friend std::ostream & operator<<(std::ostream &os,
-				       const struct RotationMatrixIdentity & aRMAX)
+				       const struct RotationMatrixIdentityTpl & aRMAX)
       {
 	for(unsigned int li=0;li<3;li++)
 	  {
@@ -153,6 +153,9 @@ namespace metapod
 
     };
   } // end Spatial namespace
+#define METAPOD_SPATIAL_ROTATION_MATRIX_I_TYPEDEF \
+  typedef Spatial::RotationMatrixIdentityTpl<FloatType> RotationMatrixIdentity
+
 } // end metapod namespace
 
 #endif // METAPOD_SPATIAL_ALGEBRA_ROTATION_MATRIX_IDENTITY_HH

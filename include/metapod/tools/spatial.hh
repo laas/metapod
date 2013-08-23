@@ -30,6 +30,8 @@
 # include "metapod/tools/spatial/transform.hh"
 # include "metapod/tools/spatial/constraintmotion.hh"
 
+#define EIGEN_METAPO_SPATIAL_TYPEDEFS \
+
 # include "metapod/tools/backward.hh"
 
 # endif

@@ -28,25 +28,47 @@
 
 namespace metapod
 {
-# ifndef METAPOD_USE_SINGLE_PRECISION
-  typedef double FloatType;
-# else
-  typedef float FloatType;
-# endif
-  typedef Eigen::Matrix< FloatType, 1, 1 > Vector1d;
-  typedef Eigen::Matrix< FloatType, 3, 1 > Vector3d;
-  typedef Eigen::Matrix< FloatType, 6, 1 > Vector6d;
+  template <typename FloatType> struct Vector1dTpl
+  { typedef Eigen::Matrix<FloatType, 1, 1> Type; };
 
-  typedef Eigen::Matrix< FloatType, 1, 6 > Vector6dt;
+  template <typename FloatType> struct Vector3dTpl
+  { typedef Eigen::Matrix<FloatType, 3, 1> Type; };
 
-  typedef Eigen::Matrix< FloatType, 2, 2 > Matrix2d;
-  typedef Eigen::Matrix< FloatType, 3, 2 > Matrix3_2d;
-  typedef Eigen::Matrix< FloatType, 3, 3 > Matrix3d;
-  typedef Eigen::Matrix< FloatType, 6, 6 > Matrix6d;
+  template <typename FloatType> struct Vector6dTpl
+  { typedef Eigen::Matrix<FloatType, 6, 1> Type; };
 
-  typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > MatrixN;
-  typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > VectorN;
-  typedef Eigen::AngleAxis< FloatType > AngleAxisd;
+  template <typename FloatType> struct Vector6dtTpl
+  { typedef Eigen::Matrix< FloatType, 1, 6 > Type; };
+
+  template <typename FloatType> struct Matrix2dTpl
+  {  typedef Eigen::Matrix< FloatType, 2, 2 > Type;  };
+
+  template <typename FloatType> struct Matrix3_2dTpl
+  { typedef Eigen::Matrix< FloatType, 3, 2 > Type; };
+
+  template <typename FloatType> struct Matrix3dTpl
+  { typedef Eigen::Matrix< FloatType, 3, 3 > Type; };
+
+  template <typename FloatType> struct Matrix6dTpl
+  { typedef Eigen::Matrix< FloatType, 6, 6 > Type; };
+
+  template <typename FloatType> struct MatrixNTpl
+  { typedef Eigen::Matrix< FloatType, Eigen::Dynamic, Eigen::Dynamic > Type; };
+
+  template <typename FloatType> struct VectorNTpl
+  { typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > Type; };
+
+#define EIGEN_METAPOD_TYPEDEFS \
+  typedef struct Vector1dTpl<FloatType>::Type Vector1d;      \
+  typedef struct Vector3dTpl<FloatType>::Type Vector3d;      \
+  typedef struct Vector6dTpl<FloatType>::Type Vector6d;      \
+  typedef struct Vector6dtTpl<FloatType>::Type Vector6dt;    \
+  typedef struct Matrix2dTpl<FloatType>::Type Matrix2d;      \
+  typedef struct Matrix3_2dTpl<FloatType>::Type Matrix3_2d;  \
+  typedef struct Matrix3dTpl<FloatType>::Type Matrix3d;      \
+  typedef struct Matrix6dTpl<FloatType>::Type Matrix6d;      \
+  typedef struct MatrixNTpl<FloatType>::Type MatrixN;        \
+  typedef struct VectorNTpl<FloatType>::Type VectorN          
 
   namespace Spatial
   {
@@ -58,8 +80,11 @@ namespace metapod
     /// - Spatial Transforms (a.k.a. homogeneous matrices, elements of SE(3))
 
     // Tool methods
-    inline Matrix3d skew(const Vector3d & v)
+    template <typename FloatType>
+    inline class Matrix3dTpl<FloatType>::Type 
+    skew(const class Vector3dTpl<FloatType>::Type & v)
     {
+      EIGEN_METAPOD_TYPEDEFS;
       Matrix3d m;
       m(0,0) = 0;    m(0,1) = -v(2); m(0,2) = v(1);
       m(1,0) = v(2); m(1,1) = 0    ; m(1,2) = -v(0);

@@ -36,34 +36,35 @@ namespace metapod
         between rotation matrix. This ensure to have the more compact
         representation for a rotation matrix.
     */
-    template<class op1, class op2>
+    template<typename FloatType, class op1, class op2>
     struct rm_mul_op
-    { typedef RotationMatrix rm; };
+    { METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF;
+      typedef RotationMatrix rm; };
 
     /** Specializations */
 
     /** All multiplication with the identity gives back
         the same identity.
      */
-    template <class op1>
-    struct rm_mul_op<op1,RotationMatrixIdentity>
+    template <typename FloatType, class op1>
+    struct rm_mul_op<FloatType, op1,RotationMatrixIdentityTpl<FloatType > >
     { typedef op1 rm; };
 
-    template <class op2>
-    struct rm_mul_op<RotationMatrixIdentity,op2>
+    template <typename FloatType,class op2>
+    struct rm_mul_op<FloatType,RotationMatrixIdentityTpl<FloatType>,op2>
     { typedef op2 rm; };
 
-    template <>
-    struct rm_mul_op<RotationMatrixAboutX,RotationMatrixAboutX>
-    { typedef RotationMatrixAboutX rm;};
+    template <typename FloatType>
+    struct rm_mul_op<FloatType,RotationMatrixAboutXTpl<FloatType>,RotationMatrixAboutXTpl<FloatType> >
+    { typedef RotationMatrixAboutXTpl<FloatType>  rm;};
 
-    template <>
-    struct rm_mul_op<RotationMatrixAboutY,RotationMatrixAboutY>
-    { typedef RotationMatrixAboutY rm;};
+    template <typename FloatType>
+    struct rm_mul_op<FloatType,RotationMatrixAboutYTpl<FloatType> ,RotationMatrixAboutYTpl<FloatType> >
+    { typedef RotationMatrixAboutYTpl<FloatType>  rm;};
 
-    template <>
-    struct rm_mul_op<RotationMatrixAboutZ,RotationMatrixAboutZ>
-    { typedef RotationMatrixAboutZ rm;};
+    template <typename FloatType>
+    struct rm_mul_op<FloatType, RotationMatrixAboutZTpl<FloatType> ,RotationMatrixAboutZTpl<FloatType> >
+    { typedef RotationMatrixAboutZTpl<FloatType>  rm;};
       
   }
 }

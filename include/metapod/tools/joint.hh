@@ -27,4 +27,14 @@
 #include <metapod/tools/joint-aboutzaxis.hh>
 #include <metapod/tools/joint-anyaxis.hh>
 
+#include <metapod/tools/spatial/rotation-matrix.hh>
+#define METAPOD_TYPEDEFS \
+  EIGEN_METAPOD_TYPEDEFS; \
+  EIGEN_METAPOD_TRANSFORM_TYPEDEFS; \
+  EIGEN_METAPOD_CM_TYPEDEFS; \
+  EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF; \
+  EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF; \
+  EIGEN_METAPOD_SPATIAL_INERTIA_TYPEDEF; \
+  METAPOD_SPATIAL_ROTATION_TYPEDEFS
+  
 #endif

@@ -31,6 +31,8 @@ namespace metapod {
 
 template< typename Robot >
 struct jac {
+  typedef typename Robot::RobotFloatType FloatType;
+  METAPOD_TYPEDEFS;
   typedef Eigen::Matrix<FloatType,
                         6 * Robot::NBBODIES,
                         Robot::NBDOF> Jacobian;

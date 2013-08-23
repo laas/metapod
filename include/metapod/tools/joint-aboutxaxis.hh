@@ -19,46 +19,50 @@
 
 #ifndef METAPOD_JOINT_ABOUT_X_AXIS_HH
 # define METAPOD_JOINT_ABOUT_X_AXIS_HH
+
 #include <metapod/tools/common.hh>
 
 namespace metapod
 {
+  template <typename FloatType>
   class RevoluteAxisXJoint
   {
+    EIGEN_METAPOD_TYPEDEFS;
+    EIGEN_METAPOD_TRANSFORM_TYPEDEFS;
+    EIGEN_METAPOD_CM_TYPEDEFS;
+    EIGEN_METAPOD_SPATIAL_MOTION_TYPEDEF;
+    EIGEN_METAPOD_SPATIAL_FORCE_TYPEDEF;
+    METAPOD_SPATIAL_ROTATION_TYPEDEFS;
   public:
-    RevoluteAxisXJoint();
     static const int NBDOF = 1;
-    Spatial::TransformX Xj;
-    Spatial::Motion cj; // used in rnea
-    Spatial::Motion vj; // used in rnea
-    Spatial::ConstraintMotionOneAxis<Spatial::AxisX> S;
-    Spatial::Force f; // used by rnea
+    TransformX Xj;
+    Motion cj; // used in rnea
+    Motion vj; // used in rnea
+    Spatial::ConstraintMotionOneAxis<Spatial::AxisX, FloatType> S;
+    Force f; // used by rnea
     Vector1d torque; // used by rnea
 
-    void bcalc(const Vector1d& qi);
-    void jcalc(const Vector1d& qi, const Vector1d& dqi);
+    inline RevoluteAxisXJoint():
+      cj(Motion::Zero())
+    {
+      vj.v(Vector3d(0.0,0.0,0.0));
+    }
+    
+    inline void bcalc(const Vector1d & qi)
+    {
+      const FloatType angle = qi[0];
+      FloatType c = cos(angle), s = sin(angle);
+      Xj = TransformX(RotationMatrixAboutX(c,s),
+                      Vector3d::Zero());
+    }
+    
+    inline void jcalc(const Vector1d & qi,
+                      const Vector1d & dqi)
+    {
+      bcalc(qi);
+      vj.w(Vector3d(dqi[0], 0, 0));
+    }
   };
-
-  inline RevoluteAxisXJoint::RevoluteAxisXJoint():
-    cj(Spatial::Motion::Zero())
-  {
-    vj.v(Vector3d(0.0,0.0,0.0));
-  }
-
-  inline void RevoluteAxisXJoint::bcalc(const Vector1d & qi)
-  {
-    const FloatType angle = qi[0];
-    FloatType c = cos(angle), s = sin(angle);
-    Xj = Spatial::TransformX(Spatial::RotationMatrixAboutX(c,s),
-				 Vector3d::Zero());
-  }
-
-  inline void RevoluteAxisXJoint::jcalc(const Vector1d & qi,
-                                   const Vector1d & dqi)
-  {
-    bcalc(qi);
-    vj.w(Vector3d(dqi[0], 0, 0));
-  }
 }
 #endif
 

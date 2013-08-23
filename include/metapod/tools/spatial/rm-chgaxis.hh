@@ -129,19 +129,25 @@ namespace metapod
           \end{matrix}
         \f]
      */
-    template < typename traits >
-    struct RotationMatrixChangeAxis
+    template < typename FloatType, typename traits >
+    class RotationMatrixChangeAxisTpl
     {
+      EIGEN_METAPOD_TYPEDEFS;
+      METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF;
+      METAPOD_SPATIAL_ROTATION_MATRIX_X_TYPEDEF;
+      METAPOD_SPATIAL_ROTATION_MATRIX_Y_TYPEDEF;
+      METAPOD_SPATIAL_ROTATION_MATRIX_Z_TYPEDEF;
+    public:
       typedef traits Traits;
-      RotationMatrixChangeAxis()
+      RotationMatrixChangeAxisTpl()
       {
       }
 
-      RotationMatrixChangeAxis(const RotationMatrixChangeAxis &)
+      RotationMatrixChangeAxisTpl(const RotationMatrixChangeAxisTpl &)
       {
       }
 
-      RotationMatrixChangeAxis transpose() const
+      RotationMatrixChangeAxisTpl transpose() const
       {
         typedef rmca_traits<
             traits::ind_Y ==0 ? 1 : (traits::ind_Z == 0 ? 2 : 0) ,
@@ -150,7 +156,7 @@ namespace metapod
             traits::value_X,
             traits::value_Y,
             traits::value_Z> traits_transpose;
-        return RotationMatrixChangeAxis<traits_transpose>();
+        return RotationMatrixChangeAxisTpl<FloatType, traits_transpose>();
       }
 
       Matrix3d toMatrix()
@@ -171,30 +177,30 @@ namespace metapod
 
       void randomInit() { }
 
-      RotationMatrixChangeAxis operator-() const
+      RotationMatrixChangeAxisTpl operator-() const
       {
-        return RotationMatrixChangeAxis<rmca_traits_minus<traits> > ();
+        return RotationMatrixChangeAxisTpl<FloatType, rmca_traits_minus<traits> > ();
       }
 
       Matrix3d operator*(const Matrix3d &A) const
       {
         Matrix3d r;
-        r.block<1,3>(0,0) = traits::value_X*A.block<1,3>(traits::ind_X,0);
-        r.block<1,3>(1,0) = traits::value_Y*A.block<1,3>(traits::ind_Y,0);
-        r.block<1,3>(2,0) = traits::value_Z*A.block<1,3>(traits::ind_Z,0);
+        r.template block<1,3>(0,0) = traits::value_X*A.template block<1,3>(traits::ind_X,0);
+        r.template block<1,3>(1,0) = traits::value_Y*A.template block<1,3>(traits::ind_Y,0);
+        r.template block<1,3>(2,0) = traits::value_Z*A.template block<1,3>(traits::ind_Z,0);
         return r;
       }
 
       template< typename traits_rhs>
-      RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> >
-      operator*(const RotationMatrixChangeAxis<traits_rhs> &)
+      RotationMatrixChangeAxisTpl< FloatType, rmca_traits_mul<traits,traits_rhs> >
+      operator*(const RotationMatrixChangeAxisTpl< FloatType, traits_rhs> &)
       {
-        RotationMatrixChangeAxis< rmca_traits_mul<traits,traits_rhs> > r;
+        RotationMatrixChangeAxisTpl< FloatType, rmca_traits_mul<traits,traits_rhs> > r;
         return r;
       }
 
       friend Matrix3d operator*(const Matrix3d &A,
-                                const RotationMatrixChangeAxis &aRMCA)
+                                const RotationMatrixChangeAxisTpl<FloatType, traits> &aRMCA)
       {
         Matrix3d r;
         r.block<3,1>(0,0) = traits::value_X*A.block<3,1>(0,traits::ind_X);
@@ -264,9 +270,9 @@ namespace metapod
         return r;
       }
 
-      ltI rotSymmetricMatrix(const ltI &A)
+      ltI<FloatType> rotSymmetricMatrix(const ltI<FloatType> &A)
       {
-        ltI r;
+        ltI<FloatType> r;
         static const int lv[3] = { traits::value_X, traits::value_Y, traits::value_Z };
         static const int lind[9] = { 0, 1, 3,
                                      1, 2, 4,
@@ -283,7 +289,7 @@ namespace metapod
         return r;
       }
 
-      ltI rotTSymmetricMatrix(const ltI &A)
+      ltI<FloatType> rotTSymmetricMatrix(const ltI<FloatType> &A)
       {
         return rotSymmetricMatrix(A);
       }
@@ -296,7 +302,7 @@ namespace metapod
       }
 
       friend std::ostream & operator<<(std::ostream &os,
-                                       const RotationMatrixChangeAxis<traits> & aRMCA)
+                                       const RotationMatrixChangeAxisTpl<FloatType, traits> & aRMCA)
       {
         static const int lind[3] = { traits::ind_X, traits::ind_Y, traits::ind_Z };
         static const int lvalue[3] = { traits::value_X, traits::ind_Y, traits::ind_Z };

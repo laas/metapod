@@ -19,19 +19,22 @@
 
 #include "../common.hh"
 
-#include <metapod/tools/fwd.hh>
-#include <metapod/tools/spatial/rotation-matrix.hh>
+#include <metapod/tools/joint.hh>
 
 using namespace metapod;
 using namespace metapod::Spatial;
 
+template <typename useless>
+class A
+{ useless tmp_; };
 
 using namespace std;
 
-void display(Matrix3d &A,
-             Matrix3d &B,
-             Matrix3d &C,
-             Matrix3d &D,
+template <typename FloatType>
+void display(struct Matrix3dTpl<FloatType>::Type &A,
+             struct Matrix3dTpl<FloatType>::Type &B,
+             struct Matrix3dTpl<FloatType>::Type &C,
+             struct Matrix3dTpl<FloatType>::Type &D,
              std::string &operation)
 {
   cout << "Operands:" << endl;
@@ -44,9 +47,11 @@ void display(Matrix3d &A,
   cout << D << endl;
 }
 
-void check(Matrix3d &C,
-           Matrix3d &D)
+template <typename FloatType>
+void check(struct Matrix3dTpl<FloatType>::Type &C,
+           struct Matrix3dTpl<FloatType>::Type &D)
 {
+  EIGEN_METAPOD_TYPEDEFS;
   Matrix3d diff_checkd_d3d = C - D;
   // Compute the norm of the difference.
   double norm_diff_checkd_d3d = diff_checkd_d3d.squaredNorm();
@@ -55,39 +60,44 @@ void check(Matrix3d &C,
   BOOST_CHECK(norm_diff_checkd_d3d < 1e-10);
 }
 
-void displayAndCheck(Matrix3d &A,
-                     Matrix3d &B,
-                     Matrix3d &C,
-                     Matrix3d &D,
+template <typename FloatType>
+void displayAndCheck(struct Matrix3dTpl<FloatType>::Type &A,
+                     struct Matrix3dTpl<FloatType>::Type &B,
+                     struct Matrix3dTpl<FloatType>::Type &C,
+                     struct Matrix3dTpl<FloatType>::Type &D,
                      std::string &operation)
 {
-  display(A,B,C,D,operation);
-  check(C,D);
+  display<FloatType>(A,B,C,D,operation);
+  check<FloatType>(C,D);
 }
 
-template< class T>
-void test_symmetric_matrix(class ltI &altI)
+template< typename FloatType,
+          typename T >
+void test_symmetric_matrix(class ltI<FloatType> &altI)
 {
+  EIGEN_METAPOD_TYPEDEFS;
   T aRMA;
 
   aRMA.randomInit();
   Matrix3d R = aRMA.toMatrix();
 
-  class ltI d;
+  class ltI<FloatType> d;
   d = aRMA.rotSymmetricMatrix(altI);
 
   Matrix3d I = altI.toMatrix();
   Matrix3d d3d = d.toMatrix();
-  Matrix3d cD = static_cast<Matrix3d>(R * altI.toMatrix() * R.transpose());
+  Matrix3d cD = static_cast<Matrix3d >(R * altI.toMatrix() * R.transpose());
   
   std::string opName("R I R^T");
-  displayAndCheck(I,R,d3d,cD,opName);
+  displayAndCheck<FloatType>(I,R,d3d,cD,opName);
 
 }
 
-template< class T>
-void test_general_matrix(Matrix3d & aI)
+template< typename FloatType,
+          typename T >
+void test_general_matrix(struct Matrix3dTpl<FloatType>::Type & aI)
 {
+  EIGEN_METAPOD_TYPEDEFS;
   T aRMA;
 
   aRMA.randomInit();
@@ -100,13 +110,15 @@ void test_general_matrix(Matrix3d & aI)
   Matrix3d cD = static_cast<Matrix3d>(R * aI * R.transpose());
   
   std::string opName("R^T I R");
-  displayAndCheck(aI,R,d,cD,opName);
+  displayAndCheck<FloatType>(aI,R,d,cD,opName);
 
 }
 
-template<class T>
+template< typename FloatType,
+          typename T>
 void test_transpose()
 {
+  EIGEN_METAPOD_TYPEDEFS;
   T aRMA;
 
   aRMA.randomInit();
@@ -116,12 +128,14 @@ void test_transpose()
   d = aRMA.transpose();
   std::string opName("Transpose");
   Matrix3d ld=d.toMatrix();
-  displayAndCheck(aR,Rt,Rt,ld,opName);
+  displayAndCheck<FloatType>(aR,Rt,Rt,ld,opName);
 }
 
-template< class T>
-void test_multiplication(Matrix3d & aI)
+template< typename FloatType,
+          typename T >
+void test_multiplication(struct Matrix3dTpl<FloatType>::Type & aI)
 {
+  EIGEN_METAPOD_TYPEDEFS;
   T aRMA;
 
   aRMA.randomInit();
@@ -133,13 +147,15 @@ void test_multiplication(Matrix3d & aI)
   std::string opName("multiplication ");
   opName += typeid(T).name();
   Matrix3d ld = aRMA.toMatrix();
-  displayAndCheck(ld,aI,R,d,opName);
+  displayAndCheck<FloatType>(ld,aI,R,d,opName);
 }
 
-template <class T,
-          class TZ=T>
+template <typename FloatType,
+          typename T,
+          typename TZ=T >
 struct test_mul_matrix_about
 {
+  METAPOD_TYPEDEFS;
   static void run()
   {
     T X,Y;
@@ -161,7 +177,7 @@ struct test_mul_matrix_about
     std::string opName;
     opName = typeid(T).name();
 
-    displayAndCheck(mX,mY,mZ,R,opName);
+    displayAndCheck<FloatType>(mX,mY,mZ,R,opName);
 
     // Test RotationMatrixAboutX * RotationMatrix
     rmY.randomInit();
@@ -171,80 +187,82 @@ struct test_mul_matrix_about
     mZ = rmZ.toMatrix();
     R = mX * mY;
     opName = "RotationMatrix";
-    displayAndCheck(mX,mY,mZ,R,opName);
+    displayAndCheck<FloatType>(mX,mY,mZ,R,opName);
   }
 };
 
 BOOST_AUTO_TEST_CASE(test_rotation)
 {
-  Matrix3d I;
+  typedef double FloatType;
+  
+  Matrix3dTpl<FloatType>::Type I;
   I << 0.00285998, -0.00001434,-0.00055582,
       -0.00001434, 0.00352974, 0.00000884,
       -0.00055582, 0.00000885, 0.00145427;
   cout << I << endl;
-  class ltI altI(I);
+  ltI<FloatType> altI(I);
 
   typedef rmca_traits<1,0,2,1,1,-1> PermuYXmZ;
 
   cout << " ************** TEST R^T*L*R ************** " << endl;
   cout << "ltI: Test X Rotation" << endl;
-  test_symmetric_matrix<RotationMatrixAboutX>(altI);
+  test_symmetric_matrix<FloatType, RotationMatrixAboutXTpl<FloatType> >(altI);
   cout << "ltI: Test Y Rotation" << endl;
-  test_symmetric_matrix<RotationMatrixAboutY>(altI);
+  test_symmetric_matrix<FloatType, RotationMatrixAboutYTpl<FloatType> >(altI);
   cout << "ltI: Test Z Rotation" << endl;
-  test_symmetric_matrix<RotationMatrixAboutZ>(altI);
+  test_symmetric_matrix<FloatType, RotationMatrixAboutZTpl<FloatType> >(altI);
 
   cout << "ltI: Test General Rotation Matrix" << endl;
-  test_symmetric_matrix<RotationMatrix>(altI);
+  test_symmetric_matrix<FloatType, RotationMatrixTpl<FloatType> >(altI);
 
   cout << "ltI: Test Rotation Matrix Change Axis" << endl;
-  test_symmetric_matrix<RotationMatrixChangeAxis<PermuYXmZ> >(altI);
+  test_symmetric_matrix<FloatType, RotationMatrixChangeAxisTpl<FloatType,PermuYXmZ> >(altI);
 
   cout << " ************** TEST R^T*A*R ************** " << endl;
-  Matrix3d NotSymmetrical;
+  Matrix3dTpl<FloatType>::Type NotSymmetrical;
   NotSymmetrical << 0.1, 0.5, 0.4,
       0.1, 0.2, 0.3,
       0.5, 0.4, 0.1 ;
   cout << NotSymmetrical << endl;
 
   cout << "NotSymmetrical: Test X Rotation" << endl;
-  test_general_matrix<RotationMatrixAboutX>(NotSymmetrical);
+  test_general_matrix<FloatType, RotationMatrixAboutXTpl<FloatType> >(NotSymmetrical);
   cout << "NotSymmetrical: Test Y Rotation" << endl;
-  test_general_matrix<RotationMatrixAboutY>(NotSymmetrical);
+  test_general_matrix<FloatType, RotationMatrixAboutYTpl<FloatType> >(NotSymmetrical);
   cout << "NotSymmetrical: Test Z Rotation" << endl;
-  test_general_matrix<RotationMatrixAboutZ>(NotSymmetrical);
+  test_general_matrix<FloatType, RotationMatrixAboutZTpl<FloatType> >(NotSymmetrical);
 
   cout << "NotSymmetrical: Test General Rotation Matrix" << endl;
-  test_general_matrix<RotationMatrix>(NotSymmetrical);
+  test_general_matrix<FloatType, RotationMatrixTpl<FloatType> >(NotSymmetrical);
 
   cout << "NotSymmetrical: Test Rotation Matrix Change Axis" << endl;
-  test_symmetric_matrix<RotationMatrixChangeAxis<PermuYXmZ> >(altI);
+  test_symmetric_matrix<FloatType, RotationMatrixChangeAxisTpl<FloatType,PermuYXmZ> >(altI);
 
   cout << " ************** TEST TRANSPOSE ************** " << endl;
-  test_transpose<RotationMatrixAboutX>();
-  test_transpose<RotationMatrixAboutY>();
-  test_transpose<RotationMatrixAboutZ>();
-  test_transpose<RotationMatrix>();
-  test_transpose<RotationMatrixChangeAxis<PermuYXmZ> >();
+  test_transpose<FloatType, RotationMatrixAboutXTpl<FloatType> >();
+  test_transpose<FloatType, RotationMatrixAboutYTpl<FloatType> >();
+  test_transpose<FloatType, RotationMatrixAboutZTpl<FloatType> >();
+  test_transpose<FloatType, RotationMatrixTpl<FloatType> >();
+  test_transpose<FloatType, RotationMatrixChangeAxisTpl<FloatType, PermuYXmZ> >();
 
   cout << " ************** TEST MULTIPLICATION ************** " << endl;
   // Test the rotation with a rotation matrix
-  RotationMatrix aRM;
+  RotationMatrixTpl<FloatType> aRM;
   aRM.randomInit();
-  Matrix3d randomRM = aRM.toMatrix();
+  Matrix3dTpl<FloatType>::Type randomRM = aRM.toMatrix();
 
   typedef rmca_traits_mul<PermuYXmZ,PermuYXmZ> GbToId;
   
-  test_multiplication<RotationMatrixAboutX>(randomRM);
-  test_multiplication<RotationMatrixAboutY>(randomRM);
-  test_multiplication<RotationMatrixAboutZ>(randomRM);
-  test_multiplication<RotationMatrix>(randomRM);
-  test_multiplication<RotationMatrixChangeAxis<PermuYXmZ> >(randomRM);
+  test_multiplication<FloatType, RotationMatrixAboutXTpl<FloatType> >(randomRM);
+  test_multiplication<FloatType, RotationMatrixAboutYTpl<FloatType> >(randomRM);
+  test_multiplication<FloatType, RotationMatrixAboutZTpl<FloatType> >(randomRM);
+  test_multiplication<FloatType, RotationMatrixTpl<FloatType> >(randomRM);
+  test_multiplication<FloatType, RotationMatrixChangeAxisTpl<FloatType,PermuYXmZ> >(randomRM);
 
-  test_mul_matrix_about<RotationMatrixAboutX>::run();
-  test_mul_matrix_about<RotationMatrixAboutY>::run();
-  test_mul_matrix_about<RotationMatrixAboutZ>::run();
-  test_mul_matrix_about<RotationMatrixChangeAxis<PermuYXmZ>,
-      RotationMatrixChangeAxis<GbToId> >::run();
+  test_mul_matrix_about<FloatType, RotationMatrixAboutXTpl<FloatType> >::run();
+  test_mul_matrix_about<FloatType, RotationMatrixAboutYTpl<FloatType> >::run();
+  test_mul_matrix_about<FloatType, RotationMatrixAboutZTpl<FloatType> >::run();
+  test_mul_matrix_about<FloatType, RotationMatrixChangeAxisTpl<FloatType, PermuYXmZ>,
+    RotationMatrixChangeAxisTpl<FloatType, GbToId> >::run();
   
 }

@@ -401,24 +401,24 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
   switch(model_.joint_type(link_id))
     {
     case metapod::RobotBuilder::FREE_FLYER:
-      joint_type = "FreeFlyerJoint";
-      joint_rotation_type = "Spatial::RotationMatrix";
+      joint_type = "FreeFlyerJoint<FloatType>";
+      joint_rotation_type = "Spatial::RotationMatrixTpl<FloatType>";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_X:
-      joint_type = "RevoluteAxisXJoint";
-      joint_rotation_type = "Spatial::RotationMatrixAboutX";
+      joint_type = "RevoluteAxisXJoint<FloatType>";
+      joint_rotation_type = "Spatial::RotationMatrixAboutXTpl<FloatType>";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_Y:
-      joint_type = "RevoluteAxisYJoint";
-      joint_rotation_type = "Spatial::RotationMatrixAboutY";
+      joint_type = "RevoluteAxisYJoint<FloatType>";
+      joint_rotation_type = "Spatial::RotationMatrixAboutYTpl<FloatType>";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_Z:
-      joint_type = "RevoluteAxisZJoint";
-      joint_rotation_type = "Spatial::RotationMatrixAboutZ";
+      joint_type = "RevoluteAxisZJoint<FloatType>";
+      joint_rotation_type = "Spatial::RotationMatrixAboutZTpl<FloatType>";
       break;
     case metapod::RobotBuilder::REVOLUTE_AXIS_ANY:
-      joint_type = "RevoluteAxisAnyJoint";
-      joint_rotation_type = "Spatial::RotationMatrix";
+      joint_type = "RevoluteAxisAnyJoint<FloatType>";
+      joint_rotation_type = "Spatial::RotationMatrixTpl<FloatType>";
       break;
     }
 
@@ -435,32 +435,32 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
 
   const Eigen::Matrix3d &R_joint_parent = model_.R_joint_parent(link_id);
   if (R_joint_parent.isApprox(Eigen::Matrix3d::Identity())) {
-    repl["R_joint_parent_type"] = "Spatial::RotationMatrixIdentity";
-    repl["X_joint_parent_type"] = "Spatial::TransformT<Spatial::RotationMatrixIdentity>";
-    repl["R_joint_parent"] = "Spatial::RotationMatrixIdentity()";
+    repl["R_joint_parent_type"] = "Spatial::RotationMatrixIdentityTpl<FloatType>";
+    repl["X_joint_parent_type"] = "Spatial::TransformT<FloatType, Spatial::RotationMatrixIdentityTpl<FloatType> >";
+    repl["R_joint_parent"] = "Spatial::RotationMatrixIdentityTpl<FloatType>()";
   } else {
-    repl["R_joint_parent_type"] = "Spatial::RotationMatrix";
-    repl["X_joint_parent_type"] = "Spatial::Transform";
+    repl["R_joint_parent_type"] = "Spatial::RotationMatrixTpl<FloatType>";
+    repl["X_joint_parent_type"] = "Spatial::TransformT<FloatType, Spatial::RotationMatrixTpl<FloatType> >";
     std::stringstream ss0;
-    ss0 << "matrix3dMaker("
+    ss0 << "matrix3dMaker<FloatType>("
         << model_.R_joint_parent(link_id).format(comma_fmt)
         << ")";
     repl["R_joint_parent"] = ss0.str();
   }
   std::stringstream ss1;
-  ss1 << "Vector3d("
+  ss1 << "Vector3dTpl<FloatType>::Type("
       << model_.r_parent_joint(link_id).format(comma_fmt)
       << ")";
   repl["r_parent_joint"] = ss1.str();
   repl["body_name"] = model_.body_name(link_id);
   repl["body_mass"] = ::to_string(model_.body_mass(link_id));
   std::stringstream ss2;
-  ss2 << "Vector3d("
+  ss2 << "Vector3dTpl<FloatType>::Type("
       << model_.body_center_of_mass(link_id).format(comma_fmt)
       << ")";
   repl["body_center_of_mass"] = ss2.str();
   std::stringstream ss3;
-  ss3 << "matrix3dMaker("
+  ss3 << "matrix3dMaker<FloatType>("
       << model_.body_rotational_inertia(link_id).format(comma_fmt)
       << ")";
   repl["body_rotational_inertia"] = ss3.str();
@@ -499,10 +499,10 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
       "    static const int child2_id = @child2_id@;\n"
       "    static const int child3_id = @child3_id@;\n"
       "    static const int child4_id = @child4_id@;\n"
-      "    Spatial::TransformT<Spatial::rm_mul_op<@joint_rotation_type@, @R_joint_parent_type@>::rm> sXp;\n"
+      "    Spatial::TransformT<FloatType, typename Spatial::rm_mul_op<FloatType,@joint_rotation_type@, @R_joint_parent_type@ >::rm> sXp;\n"
       "    Eigen::Matrix<FloatType, 6, Joint::NBDOF> joint_F; // used by crba\n"
       "    Joint joint;\n"
-      "    Body body;\n"
+      "    Body<FloatType> body;\n"
       "  };\n");
   out.node_type_definitions << tpl1.format(repl);
 
@@ -513,18 +513,19 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
     out.nodes_type_list << ",\n";
 
   const TxtTemplate tpl3(
-                         "template <> struct Nodes <@ROBOT_CLASS_NAME@, @node_id@> "
-                         "{typedef @ROBOT_CLASS_NAME@::Node@node_id@ type;};\n");
+                         "template <typename FloatType> struct Nodes < @ROBOT_CLASS_NAME@<FloatType>, @node_id@> "
+                         "{typedef typename @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@ type;};\n");
   out.map_node_id_to_type << tpl3.format(repl);
 
   // fill bits for init.cc
   const TxtTemplate tpl4(
-      "const std::string @ROBOT_CLASS_NAME@::Node@node_id@::joint_name = std::string(\"@joint_name@\");\n"
-      "const std::string @ROBOT_CLASS_NAME@::Node@node_id@::body_name = std::string(\"@body_name@\");\n"
-      "const @X_joint_parent_type@ @ROBOT_CLASS_NAME@::Node@node_id@::Xt = @X_joint_parent_type@(\n"
+      "typedef double FloatType;\n"
+      "template <> const std::string @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::joint_name = std::string(\"@joint_name@\");\n"
+      "template <> const std::string @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::body_name = std::string(\"@body_name@\");\n"
+      "template <> const @X_joint_parent_type@ @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::Xt = @X_joint_parent_type@(\n"
       "    @R_joint_parent@,\n"
       "    @r_parent_joint@);\n"
-      "@ROBOT_CLASS_NAME@::Node@node_id@::Node@node_id@():\n"
+      "template <> @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::Node@node_id@():\n"
       "  joint(@joint_args@) {}\n\n");
   if (model_.joint_type(link_id) == RobotBuilder::REVOLUTE_AXIS_ANY)
     {
@@ -534,7 +535,7 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
     }
   out.init_nodes << tpl4.format(repl);
   const TxtTemplate tpl5(
-      "    spatialInertiaMaker(\n"
+      "    spatialInertiaMaker<FloatType>(\n"
       "        @body_mass@,\n"
       "        @body_center_of_mass@,\n"
       "        @body_rotational_inertia@),\n");
