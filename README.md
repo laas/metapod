@@ -88,15 +88,15 @@ liburdf. There are several options:
        make
        sudo make install
 
-       hg clone https://bitbucket.org/osrf/urdfdom_headers && cd urdfdom_headers
-       hg checkout 0.2.2
+       git clone git://github.com/ros/urdfdom_headers && cd urdfdom_headers
+       git checkout 0.2.2
        mkdir build && cd build
        cmake ..
        make
        sudo make install
 
-       hg clone https://bitbucket.org/osrf/urdfdom && cd urdfdom
-       hg checkout 0.2.7
+       git clone git://github.com/ros/urdfdom && cd urdfdom
+       git checkout 0.2.7
        mkdir build && cd build
        cmake ..
        make
