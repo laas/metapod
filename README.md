@@ -2,6 +2,7 @@ metapod
 ========
 
 [![Build Status](https://travis-ci.org/laas/metapod.png?branch=master)](https://travis-ci.org/laas/metapod)
+[![Coverage Status](https://coveralls.io/repos/laas/metapod/badge.png)](https://coveralls.io/l/laas/metapod)
 
 This software provides robot dynamics algorithms.
 It uses a combination of a specific representation of robot models and C++
