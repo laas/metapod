@@ -1,8 +1,6 @@
 var a00137 =
 [
-    [ "getTorques", "a00151.html#a534602abbab503ad8c015cb1c0a2fae4", null ],
-    [ "printConf", "a00151.html#aa736755b80372ef210d5740cbbcfd2cb", null ],
-    [ "printState", "a00151.html#a173fbd19b87fc0af2b2742d27c4d7577", null ],
-    [ "printTorques", "a00151.html#a2db27288e18d8bb16d6214f3b0035f79", null ],
-    [ "printTransforms", "a00151.html#a63bdb69d5d0e2e721d9004d18d223d2b", null ]
+    [ "EIGEN_METAPOD_SPATIAL_INERTIA_TYPEDEF", "a00137.html#ab7007f1b9de4964e33ada60bc906d9f5", null ],
+    [ "operator*", "a00172.html#ae0b736b35fc5c349febc8a0e1740a879", null ],
+    [ "operator<<", "a00172.html#aa8e69abb2d2278342cd8edfb6ab4e8fc", null ]
 ];

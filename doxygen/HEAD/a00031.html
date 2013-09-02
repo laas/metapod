@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt; Struct Template Reference</title>
+<title>metapod::internal::deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, a_is_ancestor_of_b &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,43 +58,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, a_is_ancestor_of_b &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;" -->
-<p><code>#include &lt;metapod/tools/depth_first_traversal.hh&gt;</code></p>
+<!-- doxytag: class="metapod::internal::deepest_common_ancestor_internal" -->
+<p><code>#include &lt;metapod/tools/deepest_common_ancestor.hh&gt;</code></p>
 
-<p><a href="a00298.html">List of all members.</a></p>
+<p><a href="a00325.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#a7d5897f5ef410418b752648f526f56b2">run</a> ()</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename Arg &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00031.html#ab5fce85e1bb7681cee6b47fd30586fd1">run</a> (Arg &amp;)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename Arg0 , typename Arg1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00031.html#a08ea38304e849654e9e04a55e5c93787">run</a> (Arg0 &amp;, Arg1 &amp;)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename Arg0 , typename Arg1 , typename Arg2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00031.html#a1f688e738f5e719b0d7dcb4c75a71cbb">run</a> (Arg0 &amp;, Arg1 &amp;, Arg2 &amp;)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename Arg0 , typename Arg1 , typename Arg2 , typename Arg3 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00031.html#adaeb71d07b3aa5b11cfb43c8daf75d26">run</a> (Arg0 &amp;, Arg1 &amp;, Arg2 &amp;, Arg3 &amp;)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00070.html">Nodes</a>&lt; Robot, <br class="typebreak"/>
+node_a_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#ab252e644bbc16b9e4f68c7193b4203e3">NodeA</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html#ae20a10091b6988033b2f1b2edc4d7bf3">value</a></td></tr>
 </table>
-<h3>template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, typename Robot&gt;<br/>
- struct metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;</h3>
+<h3>template&lt;typename Robot, int node_a_id, int node_b_id, bool a_is_ancestor_of_b&gt;<br/>
+ struct metapod::internal::deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, a_is_ancestor_of_b &gt;</h3>
 
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a7d5897f5ef410418b752648f526f56b2"></a><!-- doxytag: member="metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;::run" ref="a7d5897f5ef410418b752648f526f56b2" args="()" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="ab252e644bbc16b9e4f68c7193b4203e3"></a><!-- doxytag: member="metapod::internal::deepest_common_ancestor_internal::NodeA" ref="ab252e644bbc16b9e4f68c7193b4203e3" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, typename Robot &gt; </div>
+template&lt;typename Robot , int node_a_id, int node_b_id, bool a_is_ancestor_of_b&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00030.html">metapod::internal::depth_first_traversal_internal</a>&lt; Visitor, Robot, <a class="el" href="a00151.html#a11199dba58de0c1247a884d042690a4c">NO_CHILD</a> &gt;::<a class="el" href="a00031.html#a7d5897f5ef410418b752648f526f56b2">run</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline, static]</code></td>
+          <td class="memname">typedef <a class="el" href="a00070.html">Nodes</a>&lt;Robot, node_a_id&gt;::type <a class="el" href="a00031.html">metapod::internal::deepest_common_ancestor_internal</a>&lt; Robot, node_a_id, node_b_id, a_is_ancestor_of_b &gt;::<a class="el" href="a00031.html#ab252e644bbc16b9e4f68c7193b4203e3">NodeA</a></td>
         </tr>
       </table>
 </div>
@@ -101,136 +96,22 @@ template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, 
 
 </div>
 </div>
-<a class="anchor" id="ab5fce85e1bb7681cee6b47fd30586fd1"></a><!-- doxytag: member="metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;::run" ref="ab5fce85e1bb7681cee6b47fd30586fd1" args="(Arg &amp;)" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ae20a10091b6988033b2f1b2edc4d7bf3"></a><!-- doxytag: member="metapod::internal::deepest_common_ancestor_internal::value" ref="ae20a10091b6988033b2f1b2edc4d7bf3" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, typename Robot &gt; </div>
-<div class="memtemplate">
-template&lt;typename Arg &gt; </div>
+template&lt;typename Robot , int node_a_id, int node_b_id, bool a_is_ancestor_of_b&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00030.html">metapod::internal::depth_first_traversal_internal</a>&lt; Visitor, Robot, <a class="el" href="a00151.html#a11199dba58de0c1247a884d042690a4c">NO_CHILD</a> &gt;::<a class="el" href="a00031.html#a7d5897f5ef410418b752648f526f56b2">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Arg &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline, static]</code></td>
+          <td class="memname">const int <a class="el" href="a00031.html">metapod::internal::deepest_common_ancestor_internal</a>&lt; Robot, node_a_id, node_b_id, a_is_ancestor_of_b &gt;::<a class="el" href="a00031.html#ae20a10091b6988033b2f1b2edc4d7bf3">value</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a08ea38304e849654e9e04a55e5c93787"></a><!-- doxytag: member="metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;::run" ref="a08ea38304e849654e9e04a55e5c93787" args="(Arg0 &amp;, Arg1 &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, typename Robot &gt; </div>
-<div class="memtemplate">
-template&lt;typename Arg0 , typename Arg1 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00030.html">metapod::internal::depth_first_traversal_internal</a>&lt; Visitor, Robot, <a class="el" href="a00151.html#a11199dba58de0c1247a884d042690a4c">NO_CHILD</a> &gt;::<a class="el" href="a00031.html#a7d5897f5ef410418b752648f526f56b2">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Arg0 &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Arg1 &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1f688e738f5e719b0d7dcb4c75a71cbb"></a><!-- doxytag: member="metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;::run" ref="a1f688e738f5e719b0d7dcb4c75a71cbb" args="(Arg0 &amp;, Arg1 &amp;, Arg2 &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, typename Robot &gt; </div>
-<div class="memtemplate">
-template&lt;typename Arg0 , typename Arg1 , typename Arg2 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00030.html">metapod::internal::depth_first_traversal_internal</a>&lt; Visitor, Robot, <a class="el" href="a00151.html#a11199dba58de0c1247a884d042690a4c">NO_CHILD</a> &gt;::<a class="el" href="a00031.html#a7d5897f5ef410418b752648f526f56b2">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Arg0 &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Arg1 &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Arg2 &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="adaeb71d07b3aa5b11cfb43c8daf75d26"></a><!-- doxytag: member="metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;::run" ref="adaeb71d07b3aa5b11cfb43c8daf75d26" args="(Arg0 &amp;, Arg1 &amp;, Arg2 &amp;, Arg3 &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id &gt; class Visitor, typename Robot &gt; </div>
-<div class="memtemplate">
-template&lt;typename Arg0 , typename Arg1 , typename Arg2 , typename Arg3 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00030.html">metapod::internal::depth_first_traversal_internal</a>&lt; Visitor, Robot, <a class="el" href="a00151.html#a11199dba58de0c1247a884d042690a4c">NO_CHILD</a> &gt;::<a class="el" href="a00031.html#a7d5897f5ef410418b752648f526f56b2">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Arg0 &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Arg1 &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Arg2 &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Arg3 &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><pre class="fragment">
+      deepest_common_ancestor&lt;Robot, NodeA::parent_id, node_b_id&gt;::value
+</pre></div>
 </div>
 </div>
 </div><!-- contents -->
@@ -251,9 +132,9 @@ template&lt;typename Arg0 , typename Arg1 , typename Arg2 , typename Arg3 &gt; <
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00152.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00031.html">depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00171.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00031.html">deepest_common_ancestor_internal</a>      </li>
 <br><br>
 <hr>
 <center>

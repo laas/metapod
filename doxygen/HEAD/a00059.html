@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::Motion Class Reference</title>
+<title>metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,365 +58,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#friends">Friends</a>  </div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::Motion Class Reference</div>  </div>
+<div class="title">metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt; Struct Template Reference<div class="ingroups"><a class="el" href="a00177.html">Point in Chain Articular Jacobian Algorithm</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::Motion" -->
-<p><code>#include &lt;metapod/tools/spatial/motion.hh&gt;</code></p>
+<!-- doxytag: class="metapod::jac_point_relative" -->
+<p><code>#include &lt;metapod/algos/jac_point_relative.hh&gt;</code></p>
 
-<p><a href="a00314.html">List of all members.</a></p>
+<p><a href="a00262.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">Motion</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a51381ec1008c261d0ba196ade4802f5f">Motion</a> (const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;<a class="el" href="a00059.html#a31a07911c0b18990a4921d20cf9cedfc">w</a>, const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;<a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#aae165d4d999aed401e152f3bbc941d86">Motion</a> (const <a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> &amp;<a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a31a07911c0b18990a4921d20cf9cedfc">w</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#abee1892f89dde87f66e49d81b8db6ed6">w</a> (const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;<a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#aa97313fd4f271bdcf282bca2bcdec781">v</a> (const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;<a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00059.html">Motion</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a7d8c5534a9ab6a357e7d5d08e884c0c1">operator=</a> (const <a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> &amp;<a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00059.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a92d17d71cf7efe08cba3e40757426d44">operator-</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00059.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#ab710a23905ab06ef59a02828fcf51c6b">operator+</a> (const <a class="el" href="a00059.html">Motion</a> &amp;mv) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00059.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a4dcce2abd664a4a32af1c1ecb0669b4a">operator*</a> (<a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a> a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00059.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#abf7ad5186ff07c28188eb2f2ea0010f0">operator^</a> (const <a class="el" href="a00059.html">Motion</a> &amp;mv) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00037.html">Force</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a706658c573508c3612338404d3b32500">operator^</a> (const <a class="el" href="a00037.html">Force</a> &amp;fv) const </td></tr>
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html">EndToAncestorVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html">StartToAncestorVisitor</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00177.html#ga326d80b4dd645f816d4da4002c55c66b">FloatType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix<br class="typebreak"/>
+&lt; <a class="el" href="a00177.html#ga326d80b4dd645f816d4da4002c55c66b">FloatType</a>, 6, Robot::NBDOF+offset &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00177.html#ga5c46e11ad8bade8327553863d835bcf1">Jacobian</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="a00059.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a34e3dac26f516080b6aa1d840182af6d">Zero</a> ()</td></tr>
-<tr><td colspan="2"><h2><a name="friends"></a>
-Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00059.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a28df4fa9a546057c8b021f95412536b4">operator*</a> (<a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a> a, const <a class="el" href="a00059.html">Motion</a> &amp;mv)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html#a0228713a4348ec18c87f2d598daeaffe">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="a00059.html">Motion</a> &amp;mv)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00177.html#ga60ec95236a2d334131ced7cc78694346">run</a> (Robot &amp;robot, const typename Robot::confVector &amp;q, const Vector3d &amp;e_p, <a class="el" href="a00177.html#ga5c46e11ad8bade8327553863d835bcf1">Jacobian</a> &amp;J)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the articular jacobian J.  <a href="a00177.html#ga60ec95236a2d334131ced7cc78694346"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00177.html#gab57310686de7317ac1a374a62abce908">METAPOD_TYPEDEFS</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00177.html#gabad06dd4018b3021197d43d0a7bb3b1b">ancestor_node_id</a></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a777e609b8a45c70c7beb5b5c3ae25dd1"></a><!-- doxytag: member="metapod::Spatial::Motion::Motion" ref="a777e609b8a45c70c7beb5b5c3ae25dd1" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">metapod::Spatial::Motion::Motion</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<h3>template&lt;typename Robot, int start_node_id, int end_node_id, int offset = 0, bool call_bcalc = true&gt;<br/>
+ struct metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt;</h3>
 
-<p>Referenced by <a class="el" href="a00059.html#a4dcce2abd664a4a32af1c1ecb0669b4a">operator*()</a>, <a class="el" href="a00059.html#ab710a23905ab06ef59a02828fcf51c6b">operator+()</a>, <a class="el" href="a00059.html#a92d17d71cf7efe08cba3e40757426d44">operator-()</a>, <a class="el" href="a00059.html#abf7ad5186ff07c28188eb2f2ea0010f0">operator^()</a>, and <a class="el" href="a00059.html#a34e3dac26f516080b6aa1d840182af6d">Zero()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a51381ec1008c261d0ba196ade4802f5f"></a><!-- doxytag: member="metapod::Spatial::Motion::Motion" ref="a51381ec1008c261d0ba196ade4802f5f" args="(const Vector3d &amp;w, const Vector3d &amp;v)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">metapod::Spatial::Motion::Motion</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aae165d4d999aed401e152f3bbc941d86"></a><!-- doxytag: member="metapod::Spatial::Motion::Motion" ref="aae165d4d999aed401e152f3bbc941d86" args="(const Vector6d &amp;v)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">metapod::Spatial::Motion::Motion</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a4dcce2abd664a4a32af1c1ecb0669b4a"></a><!-- doxytag: member="metapod::Spatial::Motion::operator*" ref="a4dcce2abd664a4a32af1c1ecb0669b4a" args="(FloatType a) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html">Motion</a> metapod::Spatial::Motion::operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">Motion()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab710a23905ab06ef59a02828fcf51c6b"></a><!-- doxytag: member="metapod::Spatial::Motion::operator+" ref="ab710a23905ab06ef59a02828fcf51c6b" args="(const Motion &amp;mv) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html">Motion</a> metapod::Spatial::Motion::operator+ </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00059.html">Motion</a> &amp;&#160;</td>
-          <td class="paramname"><em>mv</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">Motion()</a>, <a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v()</a>, and <a class="el" href="a00059.html#a31a07911c0b18990a4921d20cf9cedfc">w()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a92d17d71cf7efe08cba3e40757426d44"></a><!-- doxytag: member="metapod::Spatial::Motion::operator&#45;" ref="a92d17d71cf7efe08cba3e40757426d44" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html">Motion</a> metapod::Spatial::Motion::operator- </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">Motion()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7d8c5534a9ab6a357e7d5d08e884c0c1"></a><!-- doxytag: member="metapod::Spatial::Motion::operator=" ref="a7d8c5534a9ab6a357e7d5d08e884c0c1" args="(const Vector6d &amp;v)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html">Motion</a>&amp; metapod::Spatial::Motion::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abf7ad5186ff07c28188eb2f2ea0010f0"></a><!-- doxytag: member="metapod::Spatial::Motion::operator^" ref="abf7ad5186ff07c28188eb2f2ea0010f0" args="(const Motion &amp;mv) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html">Motion</a> metapod::Spatial::Motion::operator^ </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00059.html">Motion</a> &amp;&#160;</td>
-          <td class="paramname"><em>mv</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">Motion()</a>, <a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v()</a>, and <a class="el" href="a00059.html#a31a07911c0b18990a4921d20cf9cedfc">w()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a706658c573508c3612338404d3b32500"></a><!-- doxytag: member="metapod::Spatial::Motion::operator^" ref="a706658c573508c3612338404d3b32500" args="(const Force &amp;fv) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00037.html">Force</a> metapod::Spatial::Motion::operator^ </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00037.html">Force</a> &amp;&#160;</td>
-          <td class="paramname"><em>fv</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00037.html#a5264df5f832a96ccce908198560d041e">metapod::Spatial::Force::f()</a>, and <a class="el" href="a00037.html#ab87a930cec4e4aba7f087a9d790cc77d">metapod::Spatial::Force::n()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a01bc6f764812a290dbc31d87e1f3a704"></a><!-- doxytag: member="metapod::Spatial::Motion::v" ref="a01bc6f764812a290dbc31d87e1f3a704" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a>&amp; <a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">metapod::Spatial::Motion::v</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00094.html#a78b8385642e433f11acde73d0ad8f002">metapod::Spatial::TransformT&lt; RotationClass &gt;::apply()</a>, <a class="el" href="a00094.html#a2b0cfd3a978b9c6c33e3b4569c6ce193">metapod::Spatial::TransformT&lt; RotationClass &gt;::applyInv()</a>, <a class="el" href="a00061.html#aefd58eafc599fc0d84ece26eba9319e6">metapod::Spatial::OperatorMul&lt; T, U, S &gt;::mul()</a>, <a class="el" href="a00094.html#a08d6ed315d7e558bfe70cfe14ef44380">metapod::Spatial::TransformT&lt; RotationClass &gt;::operator*()</a>, <a class="el" href="a00059.html#ab710a23905ab06ef59a02828fcf51c6b">operator+()</a>, <a class="el" href="a00059.html#abf7ad5186ff07c28188eb2f2ea0010f0">operator^()</a>, <a class="el" href="a00066.html#a2837952d6629e3582635c29731bbeb81">metapod::RevoluteAxisAnyJoint::RevoluteAxisAnyJoint()</a>, <a class="el" href="a00067.html#aeff86e1feab4885fa56af866a13d0e30">metapod::RevoluteAxisXJoint::RevoluteAxisXJoint()</a>, <a class="el" href="a00068.html#a8b5bf3a4e60254f5718875a8ea778c94">metapod::RevoluteAxisYJoint::RevoluteAxisYJoint()</a>, <a class="el" href="a00069.html#a4f08e05c8721a2d6a75f585234a24d19">metapod::RevoluteAxisZJoint::RevoluteAxisZJoint()</a>, <a class="el" href="a00153.html#a53748ced0f4e1ec0d5943ea7b6e65726">metapod::Spatial::sum()</a>, and <a class="el" href="a00059.html#abee1892f89dde87f66e49d81b8db6ed6">w()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa97313fd4f271bdcf282bca2bcdec781"></a><!-- doxytag: member="metapod::Spatial::Motion::v" ref="aa97313fd4f271bdcf282bca2bcdec781" args="(const Vector3d &amp;v)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">metapod::Spatial::Motion::v</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#aa97313fd4f271bdcf282bca2bcdec781">v()</a>.</p>
-
-<p>Referenced by <a class="el" href="a00059.html#aa97313fd4f271bdcf282bca2bcdec781">v()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a31a07911c0b18990a4921d20cf9cedfc"></a><!-- doxytag: member="metapod::Spatial::Motion::w" ref="a31a07911c0b18990a4921d20cf9cedfc" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a>&amp; <a class="el" href="a00059.html#a31a07911c0b18990a4921d20cf9cedfc">metapod::Spatial::Motion::w</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00094.html#a78b8385642e433f11acde73d0ad8f002">metapod::Spatial::TransformT&lt; RotationClass &gt;::apply()</a>, <a class="el" href="a00094.html#a2b0cfd3a978b9c6c33e3b4569c6ce193">metapod::Spatial::TransformT&lt; RotationClass &gt;::applyInv()</a>, <a class="el" href="a00066.html#a86ecd20aec40526a502e01dfe7534ad7">metapod::RevoluteAxisAnyJoint::jcalc()</a>, <a class="el" href="a00068.html#ab13ca0e955c6a5e7b97dc6ee997439a2">metapod::RevoluteAxisYJoint::jcalc()</a>, <a class="el" href="a00069.html#a3eb95acbc50c53570d9e0826a908c374">metapod::RevoluteAxisZJoint::jcalc()</a>, <a class="el" href="a00067.html#aadeb29b8f90dad6b4362fd5a6c859d77">metapod::RevoluteAxisXJoint::jcalc()</a>, <a class="el" href="a00061.html#aefd58eafc599fc0d84ece26eba9319e6">metapod::Spatial::OperatorMul&lt; T, U, S &gt;::mul()</a>, <a class="el" href="a00094.html#a08d6ed315d7e558bfe70cfe14ef44380">metapod::Spatial::TransformT&lt; RotationClass &gt;::operator*()</a>, <a class="el" href="a00059.html#ab710a23905ab06ef59a02828fcf51c6b">operator+()</a>, <a class="el" href="a00059.html#abf7ad5186ff07c28188eb2f2ea0010f0">operator^()</a>, and <a class="el" href="a00153.html#a53748ced0f4e1ec0d5943ea7b6e65726">metapod::Spatial::sum()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abee1892f89dde87f66e49d81b8db6ed6"></a><!-- doxytag: member="metapod::Spatial::Motion::w" ref="abee1892f89dde87f66e49d81b8db6ed6" args="(const Vector3d &amp;v)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="a00059.html#a31a07911c0b18990a4921d20cf9cedfc">metapod::Spatial::Motion::w</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#a01bc6f764812a290dbc31d87e1f3a704">v()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a34e3dac26f516080b6aa1d840182af6d"></a><!-- doxytag: member="metapod::Spatial::Motion::Zero" ref="a34e3dac26f516080b6aa1d840182af6d" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static const <a class="el" href="a00059.html">Motion</a> <a class="el" href="a00059.html#a34e3dac26f516080b6aa1d840182af6d">metapod::Spatial::Motion::Zero</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00059.html#a777e609b8a45c70c7beb5b5c3ae25dd1">Motion()</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a28df4fa9a546057c8b021f95412536b4"></a><!-- doxytag: member="metapod::Spatial::Motion::operator*" ref="a28df4fa9a546057c8b021f95412536b4" args="(FloatType a, const Motion &amp;mv)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00059.html">Motion</a> operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00059.html">Motion</a> &amp;&#160;</td>
-          <td class="paramname"><em>mv</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0228713a4348ec18c87f2d598daeaffe"></a><!-- doxytag: member="metapod::Spatial::Motion::operator&lt;&lt;" ref="a0228713a4348ec18c87f2d598daeaffe" args="(std::ostream &amp;os, const Motion &amp;mv)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00059.html">Motion</a> &amp;&#160;</td>
-          <td class="paramname"><em>mv</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -434,9 +113,8 @@ Friends</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00153.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00059.html">Motion</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00059.html">jac_point_relative</a>      </li>
 <br><br>
 <hr>
 <center>

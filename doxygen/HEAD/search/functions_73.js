@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['s',['S',['../a00016.html#abe6997101900f599e74f65eb8418b625',1,'metapod::Spatial::ConstraintMotionAnyAxis::S()'],['../a00017.html#a1d8db9beb76a62d655c7761ae9ea2451',1,'metapod::Spatial::ConstraintMotionFreeFlyer::S()'],['../a00018.html#ac86242e63e8a10e726a1d0e89ab45b12',1,'metapod::Spatial::ConstraintMotionOneAxis::S()']]],
-  ['set',['set',['../a00088.html#a567a5ec856406873dbb12fc9ae47d404',1,'metapod::Spatial::RotationMatrixAboutX::set()'],['../a00089.html#a3dd8f15b0e84878dab7ee768c9dfdeee',1,'metapod::Spatial::RotationMatrixAboutY::set()'],['../a00090.html#a5cd845d60651055b89a2fabcc408918f',1,'metapod::Spatial::RotationMatrixAboutZ::set()']]],
-  ['set_5fgravity',['set_gravity',['../a00151.html#a68a620c79897a4bf75261f7f5d105f47',1,'metapod']]],
-  ['setlocalr',['setlocalR',['../a00017.html#a1acb0e117b69daa6776fe028f384d281',1,'metapod::Spatial::ConstraintMotionFreeFlyer']]],
-  ['setrotationmatrix',['setRotationMatrix',['../a00087.html#a38e8f5dd931c22ea2f15516d80610f72',1,'metapod::Spatial::RotationMatrix']]],
-  ['skew',['Skew',['../a00151.html#aa058bae43ace6e93ab34abf73737299b',1,'metapod::Skew()'],['../a00153.html#a986c970088f887d97cc1c54916e03ae8',1,'metapod::Spatial::skew()']]],
-  ['spatialinertiamaker',['spatialInertiaMaker',['../a00151.html#a643e679ef625a3dd50372c3bad0df99e',1,'metapod']]],
-  ['sum',['sum',['../a00153.html#a53748ced0f4e1ec0d5943ea7b6e65726',1,'metapod::Spatial::sum(const Motion &amp;mv1, const Motion &amp;mv2, const Motion &amp;mv3, const Motion &amp;mv4)'],['../a00153.html#aa18f0ed2d77e66e2757bd5d1b21e5f59',1,'metapod::Spatial::sum(const Motion &amp;mv1, const Motion &amp;mv2, const Motion &amp;mv3)'],['../a00153.html#ae2d06f704c8d2cb3455742c0c1b88be9',1,'metapod::Spatial::sum(const Force &amp;fv1, const Force &amp;fv2, const Force &amp;fv3)']]]
+  ['s',['S',['../a00016.html#aa700d1f2e9ed62ab9968f37c2c575dd7',1,'metapod::Spatial::ConstraintMotionAnyAxis::S()'],['../a00021.html#a614788b7178e5e76aca927fb0197e91d',1,'metapod::Spatial::ConstraintMotionFreeFlyerTpl::S()'],['../a00022.html#a19d04fa151fd85b5623a88a31356aeeb',1,'metapod::Spatial::ConstraintMotionOneAxis::S()']]],
+  ['segment_3c_203_20_3e',['segment< 3 >',['../a00125.html#ac75351c435291bd72d40db423d081567',1,'cm-anyaxis.hh']]],
+  ['set',['set',['../a00096.html#a68ce969735bbda5d3d2f236250273cee',1,'metapod::Spatial::RotationMatrixAboutXTpl::set()'],['../a00097.html#afa78522f10397099bbe1cd52524329d8',1,'metapod::Spatial::RotationMatrixAboutYTpl::set()'],['../a00098.html#a8b57e370486d714571cedd5f55ec235b',1,'metapod::Spatial::RotationMatrixAboutZTpl::set()']]],
+  ['set_5fgravity',['set_gravity',['../a00170.html#afdb45f13ee2e077ce1f4542be2375ac3',1,'metapod']]],
+  ['setlocalr',['setlocalR',['../a00021.html#a004dcd353fe435e6c9f1a66e3db1f2f9',1,'metapod::Spatial::ConstraintMotionFreeFlyerTpl']]],
+  ['setrotationmatrix',['setRotationMatrix',['../a00101.html#af7898be2a67f7b554bbc7c0222bd3879',1,'metapod::Spatial::RotationMatrixTpl']]],
+  ['skew',['skew',['../a00172.html#a7f17cc95e796acbeeea4f06a145d18c4',1,'metapod::Spatial::skew()'],['../a00170.html#a316f26eec405faa57151f64b8404ba6e',1,'metapod::Skew()']]],
+  ['spatialinertiamaker',['spatialInertiaMaker',['../a00170.html#a3f3bcbb6b45160c88c95e39c71020e93',1,'metapod']]],
+  ['sum',['sum',['../a00172.html#aba8b1ed29a252023f06fe769121cb9ff',1,'metapod::Spatial::sum(const MotionTpl&lt; FloatType &gt; &amp;mv1, const MotionTpl&lt; FloatType &gt; &amp;mv2, const MotionTpl&lt; FloatType &gt; &amp;mv3, const MotionTpl&lt; FloatType &gt; &amp;mv4)'],['../a00172.html#a59644328eed6e3c40c351a1b49f1e1ba',1,'metapod::Spatial::sum(const MotionTpl&lt; FloatType &gt; &amp;mv1, const MotionTpl&lt; FloatType &gt; &amp;mv2, const MotionTpl&lt; FloatType &gt; &amp;mv3)'],['../a00172.html#aab1a8ff80ed5bea4cc3e5144a3de3cce',1,'metapod::Spatial::sum(const ForceTpl&lt; FloatType &gt; &amp;fv1, const ForceTpl&lt; FloatType &gt; &amp;fv2, const ForceTpl&lt; FloatType &gt; &amp;fv3)']]]
 ];

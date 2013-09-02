@@ -1,4 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$a00116.html" title="metapod/tools/fwd.hh" alt="" coords="5,166,155,197"/>
-<area shape="rect" id="node7" href="$a00133.html" title="metapod/tools/spatial/lti.hh" alt="" coords="120,86,301,117"/>
+<area shape="rect" id="node3" href="$a00143.html" title="jac_point_relative.hh" alt="" coords="76,86,217,117"/>
+<area shape="rect" id="node5" href="$a00142.html" title="jac_point_chain.hh" alt="" coords="5,166,136,197"/>
+<area shape="rect" id="node7" href="$a00144.html" title="jac_point_robot.hh" alt="" coords="160,166,288,197"/>
 </map>

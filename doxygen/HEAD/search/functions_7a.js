@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zero',['Zero',['../a00037.html#a013c5894eb05f2a448a688673bcc86e8',1,'metapod::Spatial::Force::Zero()'],['../a00041.html#a40e2a996400466fba6e0ec50cd141e36',1,'metapod::Spatial::Inertia::Zero()'],['../a00058.html#acc7097a459eac669757433562e2477d9',1,'metapod::Spatial::ltI::Zero()'],['../a00059.html#a34e3dac26f516080b6aa1d840182af6d',1,'metapod::Spatial::Motion::Zero()']]]
+  ['zero',['Zero',['../a00041.html#a35e313ca8e355429adb2abeabd0ccd78',1,'metapod::Spatial::ForceTpl::Zero()'],['../a00046.html#a854bef4ad86704199f2c122689c3fc59',1,'metapod::Spatial::InertiaTpl::Zero()'],['../a00063.html#a40867f7808781aec4fe0c638615aaeeb',1,'metapod::Spatial::ltI::Zero()'],['../a00069.html#a644e95df3d2d4b5bf568df3c38fd3ad2',1,'metapod::Spatial::MotionTpl::Zero()']]]
 ];

@@ -1,2 +1,32 @@
 <map id="G" name="G">
+<area shape="rect" id="node3" href="$a00128.html" title="metapod/tools/common.hh" alt="" coords="1219,166,1400,197"/>
+<area shape="rect" id="node54" href="$a00166.html" title="metapod/tools/spatial/rotation&#45;matrix.hh" alt="" coords="1969,406,2223,437"/>
+<area shape="rect" id="node97" href="$a00150.html" title="metapod/tools/joint&#45;freeflyer.hh" alt="" coords="727,86,929,117"/>
+<area shape="rect" id="node100" href="$a00146.html" title="metapod/tools/joint&#45;aboutxaxis.hh" alt="" coords="953,86,1175,117"/>
+<area shape="rect" id="node103" href="$a00147.html" title="metapod/tools/joint&#45;aboutyaxis.hh" alt="" coords="1199,86,1420,117"/>
+<area shape="rect" id="node106" href="$a00148.html" title="metapod/tools/joint&#45;aboutzaxis.hh" alt="" coords="1444,86,1665,117"/>
+<area shape="rect" id="node109" href="$a00149.html" title="metapod/tools/joint&#45;anyaxis.hh" alt="" coords="1689,86,1892,117"/>
+<area shape="rect" id="node7" href="$a00135.html" title="metapod/tools/fwd.hh" alt="" coords="799,566,948,597"/>
+<area shape="rect" id="node11" href="$a00129.html" title="metapod/tools/constants.hh" alt="" coords="1347,246,1533,277"/>
+<area shape="rect" id="node13" href="$a00153.html" title="metapod/macro.hh" alt="" coords="1557,246,1691,277"/>
+<area shape="rect" id="node15" href="$a00168.html" title="metapod/tools/static_assert.hh" alt="" coords="1715,246,1917,277"/>
+<area shape="rect" id="node21" href="$a00167.html" title="metapod/tools/spatial.hh" alt="" coords="685,246,853,277"/>
+<area shape="rect" id="node24" href="$a00154.html" title="metapod/tools/spatial/motion.hh" alt="" coords="496,326,707,357"/>
+<area shape="rect" id="node26" href="$a00134.html" title="metapod/tools/spatial/force.hh" alt="" coords="433,406,636,437"/>
+<area shape="rect" id="node30" href="$a00137.html" title="metapod/tools/spatial/inertia.hh" alt="" coords="953,406,1161,437"/>
+<area shape="rect" id="node40" href="$a00169.html" title="metapod/tools/spatial/transform.hh" alt="" coords="967,326,1193,357"/>
+<area shape="rect" id="node44" href="$a00130.html" title="metapod/tools/spatial/constraintmotion.hh" alt="" coords="660,406,929,437"/>
+<area shape="rect" id="node93" href="$a00121.html" title="metapod/tools/backward.hh" alt="" coords="285,326,472,357"/>
+<area shape="rect" id="node33" href="$a00152.html" title="metapod/tools/spatial/lti.hh" alt="" coords="1091,486,1272,517"/>
+<area shape="rect" id="node47" href="$a00127.html" title="metapod/tools/spatial/cm&#45;oneaxis.hh" alt="" coords="144,486,387,517"/>
+<area shape="rect" id="node49" href="$a00126.html" title="metapod/tools/spatial/cm&#45;freeflyer.hh" alt="" coords="675,486,915,517"/>
+<area shape="rect" id="node52" href="$a00125.html" title="metapod/tools/spatial/cm&#45;anyaxis.hh" alt="" coords="411,486,651,517"/>
+<area shape="rect" id="node70" href="$a00162.html" title="metapod/tools/spatial/rm&#45;general.hh" alt="" coords="2477,566,2712,597"/>
+<area shape="rect" id="node72" href="$a00157.html" title="metapod/tools/spatial/rm&#45;aboutxaxis.hh" alt="" coords="2957,566,3211,597"/>
+<area shape="rect" id="node74" href="$a00158.html" title="metapod/tools/spatial/rm&#45;aboutyaxis.hh" alt="" coords="3345,566,3599,597"/>
+<area shape="rect" id="node76" href="$a00159.html" title="metapod/tools/spatial/rm&#45;aboutzaxis.hh" alt="" coords="1239,566,1492,597"/>
+<area shape="rect" id="node78" href="$a00163.html" title="metapod/tools/spatial/rm&#45;identity.hh" alt="" coords="1516,566,1748,597"/>
+<area shape="rect" id="node80" href="$a00161.html" title="metapod/tools/spatial/rm&#45;chgaxis.hh" alt="" coords="1772,566,2009,597"/>
+<area shape="rect" id="node82" href="$a00160.html" title="metapod/tools/spatial/rm&#45;binaryop.hh" alt="" coords="1499,486,1741,517"/>
+<area shape="rect" id="node84" href="$a00164.html" title="metapod/tools/spatial/rm&#45;mulop.hh" alt="" coords="1765,486,1992,517"/>
 </map>

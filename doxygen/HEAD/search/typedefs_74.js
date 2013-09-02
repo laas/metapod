@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['traits',['Traits',['../a00091.html#aa83a31115a8ea1d008165c0caf8921c5',1,'metapod::Spatial::RotationMatrixChangeAxis']]],
-  ['traits_5fopp',['traits_opp',['../a00077.html#aa5b4b86f0f8412ad164bb25fd7ad7d4b',1,'metapod::Spatial::rmca_traits_minus']]],
-  ['traits_5ftranspose',['traits_transpose',['../a00082.html#a0b410e47dce181d70fdf05748552cd4e',1,'metapod::Spatial::rmca_traits_transpose']]],
-  ['transform',['Transform',['../a00153.html#a3f57ed3c5a8f75f5c5609ad5c4501e2b',1,'metapod::Spatial']]],
-  ['transformid',['TransformId',['../a00153.html#af2c55d12694bb90d62b1273fb575302e',1,'metapod::Spatial']]],
-  ['transformx',['TransformX',['../a00153.html#adef8e55407ca12db0fb157d7b3acf4e9',1,'metapod::Spatial']]],
-  ['transformy',['TransformY',['../a00153.html#a9111c8b59601c055d33ed9f14c423d0b',1,'metapod::Spatial']]],
-  ['transformz',['TransformZ',['../a00153.html#a38cde4ee07d24bad1c9e19b14d5a56c1',1,'metapod::Spatial']]]
+  ['traits',['Traits',['../a00099.html#acbb9945161b1a07181e61c8a74543742',1,'metapod::Spatial::RotationMatrixChangeAxisTpl']]],
+  ['traits_5fopp',['traits_opp',['../a00086.html#aa5b4b86f0f8412ad164bb25fd7ad7d4b',1,'metapod::Spatial::rmca_traits_minus']]],
+  ['traits_5ftranspose',['traits_transpose',['../a00091.html#a0b410e47dce181d70fdf05748552cd4e',1,'metapod::Spatial::rmca_traits_transpose']]],
+  ['type',['Type',['../a00115.html#ab0d3d21e3dccdc593bb29a451a98ebbb',1,'metapod::Vector1dTpl::Type()'],['../a00116.html#a36b7f5097ddbe5bd07ea08a32e732536',1,'metapod::Vector3dTpl::Type()'],['../a00118.html#a1f3124da99a720fda6165b8de3c85305',1,'metapod::Vector6dTpl::Type()'],['../a00119.html#a03da37ea9767d70b078dc59897acdf48',1,'metapod::Vector6dtTpl::Type()'],['../a00064.html#aa47337c444c645d59f43d371c9d1ea85',1,'metapod::Matrix2dTpl::Type()'],['../a00065.html#ae493b48ea1b5c72687b66c196d747101',1,'metapod::Matrix3_2dTpl::Type()'],['../a00066.html#a1f9de6819357d69361f766a86ba6a9dc',1,'metapod::Matrix3dTpl::Type()'],['../a00067.html#aea9649f6936708c45805cce1ba2e8103',1,'metapod::Matrix6dTpl::Type()'],['../a00068.html#a4466a9eb77c9cb534da0052a5dc9fce6',1,'metapod::MatrixNTpl::Type()'],['../a00120.html#aff41ae0f711a38e25c870c8138e75b40',1,'metapod::VectorNTpl::Type()'],['../a00018.html#acdaec401c50425c80948893aa8e74b5d',1,'metapod::Spatial::ConstraintMotionAxisXTpl::Type()'],['../a00019.html#a0392c57695447b2ca93390938d058bc8',1,'metapod::Spatial::ConstraintMotionAxisYTpl::Type()'],['../a00020.html#a1cf898170548fd13d76408eb036820fe',1,'metapod::Spatial::ConstraintMotionAxisZTpl::Type()']]]
 ];

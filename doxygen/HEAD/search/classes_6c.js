@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lti',['ltI',['../a00058.html',1,'metapod::Spatial']]]
+  ['lti',['ltI',['../a00063.html',1,'metapod::Spatial']]]
 ];

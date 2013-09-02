@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::ltI Class Reference</title>
+<title>metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,91 +58,99 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#friends">Friends</a>  </div>
+<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::ltI Class Reference</div>  </div>
+<div class="title">metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::ltI" -->
-<p><code>#include &lt;metapod/tools/spatial/lti.hh&gt;</code></p>
+<!-- doxytag: class="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;" -->
+<p>Internal point in chain articular jacobian algorithm routine.  
+ <a href="a00058.html#details">More...</a></p>
 
-<p><a href="a00313.html">List of all members.</a></p>
+<p><code>#include &lt;metapod/algos/jac_point_chain.hh&gt;</code></p>
+
+<p><a href="a00314.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a2ea99f23166da6bb146f8096744eacb0">ltI</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#ad4a2fec626721c553dcb1f1cb7c84f89">ltI</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;I)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a0b24f34a678a97dd84f95cb22a6e83f7">ltI</a> (const <a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> &amp;I)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a79f94401ecf2804ace53e4a0f08eb6ca">toMatrix</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00058.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a0b1fe17c5e5f75db5809e2b977e64704">operator+</a> (const <a class="el" href="a00058.html">ltI</a> &amp;altI) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00058.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a0e2dce3ddb747db5f66c05f3e3a6e1be">operator*</a> (<a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a> a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#adfc1913aaebc75f8ad3b208ebd24ac8f">operator*</a> (const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a3ab4bd9f6e37b03fb1e3a6bbfeacab11">operator*</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a6cb5c37e1e0f46b77c49ce2279f2df4b">operator()</a> (int x) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a772c88eef97276b4a728ff4b6275f9d2">operator+</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a10de4ef834f16260a706a595e71246e4">operator-</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;a) const </td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#ae6827dc76451bebc0f6b689da5854be7">FloatType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00056.html">jac_point_chain</a>&lt; Robot, <br class="typebreak"/>
+start_node_id, end_node_id, <br class="typebreak"/>
+offset, true &gt;::<a class="el" href="a00058.html#ab027caad8c087d52bb18995dadb924dc">Jacobian</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#ab027caad8c087d52bb18995dadb924dc">Jacobian</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00070.html">Nodes</a>&lt; Robot, <br class="typebreak"/>
+start_node_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#afaeaa15396a88d89bad91e5a07fc21e3">StartNode</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00070.html">Nodes</a>&lt; Robot, <br class="typebreak"/>
+end_node_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#aa0e7b0926e6aa43935f3737acfc07e15">EndNode</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00058.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#acc7097a459eac669757433562e2477d9">Zero</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#acf4714240633e2e969aac2b5b71721df">run</a> (Robot &amp;robot, const Vector3d &amp;e_p, <a class="el" href="a00058.html#ab027caad8c087d52bb18995dadb924dc">Jacobian</a> &amp;J)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a></td></tr>
-<tr><td colspan="2"><h2><a name="friends"></a>
-Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00058.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a928b5cc1dd593b1eabdbe7a7d5f807e1">operator*</a> (<a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a> a, const <a class="el" href="a00058.html">ltI</a> &amp;altI)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a6d70fd32c7082b91af6e82217e58cadb">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="a00058.html">ltI</a> &amp;altI)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html#a9c03e0cb7940ce408edb86130150d6fc">METAPOD_TYPEDEFS</a></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a2ea99f23166da6bb146f8096744eacb0"></a><!-- doxytag: member="metapod::Spatial::ltI::ltI" ref="a2ea99f23166da6bb146f8096744eacb0" args="()" -->
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Robot, int start_node_id, int end_node_id, int offset&gt;<br/>
+struct metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;</h3>
+
+<p>Internal point in chain articular jacobian algorithm routine. </p>
+<p>If includeFreeFlyer is true, compute the contribution of a fictive free-flyer joint, and overwrite the jacobian columns corresponding to the 6 first dofs with it (that is: J.block&lt;6, 6&gt;(0, offset))</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="a00056.html" title="Point in Chain Articular Jacobian Algorithm.">jac_point_chain</a> </dd></dl>
+</div><hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="aa0e7b0926e6aa43935f3737acfc07e15"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::EndNode" ref="aa0e7b0926e6aa43935f3737acfc07e15" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00058.html#a2ea99f23166da6bb146f8096744eacb0">metapod::Spatial::ltI::ltI</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">typedef <a class="el" href="a00070.html">Nodes</a>&lt;Robot, end_node_id&gt;::type metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#aa0e7b0926e6aa43935f3737acfc07e15">EndNode</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="a00058.html#a0e2dce3ddb747db5f66c05f3e3a6e1be">operator*()</a>, and <a class="el" href="a00058.html#acc7097a459eac669757433562e2477d9">Zero()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="ad4a2fec626721c553dcb1f1cb7c84f89"></a><!-- doxytag: member="metapod::Spatial::ltI::ltI" ref="ad4a2fec626721c553dcb1f1cb7c84f89" args="(const Matrix3d &amp;I)" -->
+<a class="anchor" id="ae6827dc76451bebc0f6b689da5854be7"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::FloatType" ref="ae6827dc76451bebc0f6b689da5854be7" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00058.html#a2ea99f23166da6bb146f8096744eacb0">metapod::Spatial::ltI::ltI</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>I</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">typedef Robot::RobotFloatType metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#ae6827dc76451bebc0f6b689da5854be7">FloatType</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ab027caad8c087d52bb18995dadb924dc"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::Jacobian" ref="ab027caad8c087d52bb18995dadb924dc" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00056.html">jac_point_chain</a>&lt;Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#ab027caad8c087d52bb18995dadb924dc">Jacobian</a> metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#ab027caad8c087d52bb18995dadb924dc">Jacobian</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a0b24f34a678a97dd84f95cb22a6e83f7"></a><!-- doxytag: member="metapod::Spatial::ltI::ltI" ref="a0b24f34a678a97dd84f95cb22a6e83f7" args="(const Vector6d &amp;I)" -->
+<a class="anchor" id="afaeaa15396a88d89bad91e5a07fc21e3"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::StartNode" ref="afaeaa15396a88d89bad91e5a07fc21e3" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00058.html#a2ea99f23166da6bb146f8096744eacb0">metapod::Spatial::ltI::ltI</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> &amp;&#160;</td>
-          <td class="paramname"><em>I</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">typedef <a class="el" href="a00070.html">Nodes</a>&lt;Robot, start_node_id&gt;::type metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#afaeaa15396a88d89bad91e5a07fc21e3">StartNode</a></td>
         </tr>
       </table>
 </div>
@@ -150,247 +159,56 @@ Friends</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a6cb5c37e1e0f46b77c49ce2279f2df4b"></a><!-- doxytag: member="metapod::Spatial::ltI::operator()" ref="a6cb5c37e1e0f46b77c49ce2279f2df4b" args="(int x) const " -->
+<a class="anchor" id="acf4714240633e2e969aac2b5b71721df"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::run" ref="acf4714240633e2e969aac2b5b71721df" args="(Robot &amp;robot, const Vector3d &amp;e_p, Jacobian &amp;J)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a> metapod::Spatial::ltI::operator() </td>
+          <td class="memname">static void metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#acf4714240633e2e969aac2b5b71721df">run</a> </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0e2dce3ddb747db5f66c05f3e3a6e1be"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="a0e2dce3ddb747db5f66c05f3e3a6e1be" args="(FloatType a) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00058.html">ltI</a> metapod::Spatial::ltI::operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#a2ea99f23166da6bb146f8096744eacb0">ltI()</a>, and <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adfc1913aaebc75f8ad3b208ebd24ac8f"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="adfc1913aaebc75f8ad3b208ebd24ac8f" args="(const Vector3d &amp;a) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> metapod::Spatial::ltI::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3ab4bd9f6e37b03fb1e3a6bbfeacab11"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="a3ab4bd9f6e37b03fb1e3a6bbfeacab11" args="(const Matrix3d &amp;a) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> metapod::Spatial::ltI::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0b1fe17c5e5f75db5809e2b977e64704"></a><!-- doxytag: member="metapod::Spatial::ltI::operator+" ref="a0b1fe17c5e5f75db5809e2b977e64704" args="(const ltI &amp;altI) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00058.html">ltI</a> metapod::Spatial::ltI::operator+ </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00058.html">ltI</a> &amp;&#160;</td>
-          <td class="paramname"><em>altI</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a772c88eef97276b4a728ff4b6275f9d2"></a><!-- doxytag: member="metapod::Spatial::ltI::operator+" ref="a772c88eef97276b4a728ff4b6275f9d2" args="(const Matrix3d &amp;a) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> metapod::Spatial::ltI::operator+ </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a10de4ef834f16260a706a595e71246e4"></a><!-- doxytag: member="metapod::Spatial::ltI::operator&#45;" ref="a10de4ef834f16260a706a595e71246e4" args="(const Matrix3d &amp;a) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> metapod::Spatial::ltI::operator- </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a79f94401ecf2804ace53e4a0f08eb6ca"></a><!-- doxytag: member="metapod::Spatial::ltI::toMatrix" ref="a79f94401ecf2804ace53e4a0f08eb6ca" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> <a class="el" href="a00058.html#a79f94401ecf2804ace53e4a0f08eb6ca">metapod::Spatial::ltI::toMatrix</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">m_ltI</a>.</p>
-
-<p>Referenced by <a class="el" href="a00041.html#ab5c65f4560a3f5e63110a78e4b7e44cb">metapod::Spatial::Inertia::toMatrix()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acc7097a459eac669757433562e2477d9"></a><!-- doxytag: member="metapod::Spatial::ltI::Zero" ref="acc7097a459eac669757433562e2477d9" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="a00058.html">ltI</a> <a class="el" href="a00058.html#acc7097a459eac669757433562e2477d9">metapod::Spatial::ltI::Zero</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#a2ea99f23166da6bb146f8096744eacb0">ltI()</a>.</p>
-
-<p>Referenced by <a class="el" href="a00041.html#a40e2a996400466fba6e0ec50cd141e36">metapod::Spatial::Inertia::Zero()</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a928b5cc1dd593b1eabdbe7a7d5f807e1"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="a928b5cc1dd593b1eabdbe7a7d5f807e1" args="(FloatType a, const ltI &amp;altI)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00058.html">ltI</a> operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
+          <td class="paramtype">Robot &amp;&#160;</td>
+          <td class="paramname"><em>robot</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00058.html">ltI</a> &amp;&#160;</td>
-          <td class="paramname"><em>altI</em>&#160;</td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>e_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00058.html#ab027caad8c087d52bb18995dadb924dc">Jacobian</a> &amp;&#160;</td>
+          <td class="paramname"><em>J</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [friend]</code></td>
+          <td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a6d70fd32c7082b91af6e82217e58cadb"></a><!-- doxytag: member="metapod::Spatial::ltI::operator&lt;&lt;" ref="a6d70fd32c7082b91af6e82217e58cadb" args="(std::ostream &amp;os, const ltI &amp;altI)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00058.html">ltI</a> &amp;&#160;</td>
-          <td class="paramname"><em>altI</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>References <a class="el" href="a00125.html#a4545457c251274b67b7f55adb0e5ea0e">tmp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="ab1781c8d4dbed47c85b6ba96408d52b2"></a><!-- doxytag: member="metapod::Spatial::ltI::m_ltI" ref="ab1781c8d4dbed47c85b6ba96408d52b2" args="" -->
+<a class="anchor" id="a9c03e0cb7940ce408edb86130150d6fc"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::METAPOD_TYPEDEFS" ref="a9c03e0cb7940ce408edb86130150d6fc" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00151.html#aea8eb412ad1df5da3286e0ea3e122d8e">Vector6d</a> <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">metapod::Spatial::ltI::m_ltI</a></td>
+          <td class="memname">metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;::<a class="el" href="a00058.html#a9c03e0cb7940ce408edb86130150d6fc">METAPOD_TYPEDEFS</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00087.html#abc2db22a5725547b108edb765cd221d6">metapod::Spatial::RotationMatrix::decomposeltI()</a>, <a class="el" href="a00058.html#ad4a2fec626721c553dcb1f1cb7c84f89">ltI()</a>, <a class="el" href="a00061.html#a59d0d66fa60182586fbbee18344794b5">metapod::Spatial::OperatorMul&lt; T, U, S &gt;::mul()</a>, <a class="el" href="a00058.html#a6cb5c37e1e0f46b77c49ce2279f2df4b">operator()()</a>, <a class="el" href="a00058.html#a0e2dce3ddb747db5f66c05f3e3a6e1be">operator*()</a>, <a class="el" href="a00058.html#a0b1fe17c5e5f75db5809e2b977e64704">operator+()</a>, <a class="el" href="a00058.html#a10de4ef834f16260a706a595e71246e4">operator-()</a>, <a class="el" href="a00090.html#a12a75128e552ed154cbcccc5600b149a">metapod::Spatial::RotationMatrixAboutZ::rotSymmetricMatrix()</a>, <a class="el" href="a00089.html#a204b93158f0033a493618453f6764e69">metapod::Spatial::RotationMatrixAboutY::rotSymmetricMatrix()</a>, <a class="el" href="a00087.html#ae2bcae2cf7d1a9bec568742507dc485f">metapod::Spatial::RotationMatrix::rotSymmetricMatrix()</a>, <a class="el" href="a00088.html#a57bb4cb9cecac6ef66352b51d20fac2a">metapod::Spatial::RotationMatrixAboutX::rotSymmetricMatrix()</a>, <a class="el" href="a00091.html#a8dbfc966fd0aa11e1fcf2db564bfdb5a">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00087.html#a565406ce5a4e6a285ed9c42b51dc1b5e">metapod::Spatial::RotationMatrix::rotTSymmetricMatrix()</a>, <a class="el" href="a00090.html#a60ac55b9a2afa708023b7713aac8104d">metapod::Spatial::RotationMatrixAboutZ::rotTSymmetricMatrix()</a>, <a class="el" href="a00089.html#ab6e2ee553bc71231eb0a1884c14c3df2">metapod::Spatial::RotationMatrixAboutY::rotTSymmetricMatrix()</a>, <a class="el" href="a00088.html#a1963fa2f7c86e535c12c83fb603b9ad8">metapod::Spatial::RotationMatrixAboutX::rotTSymmetricMatrix()</a>, and <a class="el" href="a00058.html#a79f94401ecf2804ace53e4a0f08eb6ca">toMatrix()</a>.</p>
 
 </div>
 </div>
@@ -412,9 +230,9 @@ Friends</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00153.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00058.html">ltI</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00171.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00058.html">jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

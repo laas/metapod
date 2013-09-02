@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -92,43 +93,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>toMatrix()
-: <a class="el" href="a00041.html#ab5c65f4560a3f5e63110a78e4b7e44cb">metapod::Spatial::Inertia</a>
-, <a class="el" href="a00058.html#a79f94401ecf2804ace53e4a0f08eb6ca">metapod::Spatial::ltI</a>
-, <a class="el" href="a00089.html#a0b81b2a694a5423ec61225f461fa7c4e">metapod::Spatial::RotationMatrixAboutY</a>
-, <a class="el" href="a00087.html#a60fc2dd4aff9cdcd5b9a9d1a4dd919f0">metapod::Spatial::RotationMatrix</a>
-, <a class="el" href="a00092.html#a5e3659ba62d43b30c760a5f97bf8e239">metapod::Spatial::RotationMatrixIdentity</a>
-, <a class="el" href="a00090.html#abe442dd9104c1599999478a74a75fb96">metapod::Spatial::RotationMatrixAboutZ</a>
-, <a class="el" href="a00094.html#ae0944bca6b3d2b098d9c1c495c8a351f">metapod::Spatial::TransformT&lt; RotationClass &gt;</a>
-, <a class="el" href="a00088.html#a7ef0b832354c730468e85634a1c98c23">metapod::Spatial::RotationMatrixAboutX</a>
-, <a class="el" href="a00086.html#acc6483541f06e5c1036424d1d8398fe1">metapod::Spatial::RotationBinaryOp&lt; RotationMatrixT, RotMatChgAxis &gt;</a>
-, <a class="el" href="a00091.html#a1691b907dc939f89b8697c0089445cdb">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;</a>
+: <a class="el" href="a00046.html#aca2b2df0d37e20fbbc3f17ed1aef3ae1">metapod::Spatial::InertiaTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00063.html#ae8235d67c4a932f777012a77cbc27ca6">metapod::Spatial::ltI&lt; FloatType &gt;</a>
+, <a class="el" href="a00097.html#a79b953d6e9aabdbeee24b37ece0d12b9">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00101.html#a44e746c94bb0be2033afb08c010834b8">metapod::Spatial::RotationMatrixTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00100.html#aef5fc0cf5c3226940ba084d45ae3c6c1">metapod::Spatial::RotationMatrixIdentityTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00098.html#a6404594063442aa626fd3dec77c79022">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00108.html#acc1fa7402344054211bc5ab285bb455e">metapod::Spatial::internal::TransformT_helper&lt; FloatType, RotationClass &gt;</a>
+, <a class="el" href="a00096.html#ac760c6c16f3ba7970b8e0890adb1491c">metapod::Spatial::RotationMatrixAboutXTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00095.html#a60018e71cf8fcffde8a688dae40345e9">metapod::Spatial::RotationBinaryOp&lt; FloatType, RotationMatrixT, RotMatChgAxis &gt;</a>
+, <a class="el" href="a00099.html#ac6cc28b0108ef3981b4b7cc50d30c3ec">metapod::Spatial::RotationMatrixChangeAxisTpl&lt; FloatType, traits &gt;</a>
 </li>
 <li>toMatrixTranspose()
-: <a class="el" href="a00094.html#a9041c72feb8257da3cf69533e1f59532">metapod::Spatial::TransformT&lt; RotationClass &gt;</a>
+: <a class="el" href="a00108.html#ae0419658bfe0a27fbbc769bc53359de7">metapod::Spatial::internal::TransformT_helper&lt; FloatType, RotationClass &gt;</a>
 </li>
 <li>toMatrixTransposeInverse()
-: <a class="el" href="a00094.html#a377f7d45ba87414604229a9c5b0d05a7">metapod::Spatial::TransformT&lt; RotationClass &gt;</a>
+: <a class="el" href="a00108.html#abb736be7a92dbf4bed85dc88613bbd5b">metapod::Spatial::internal::TransformT_helper&lt; FloatType, RotationClass &gt;</a>
 </li>
 <li>toPointFrame()
-: <a class="el" href="a00094.html#ac4a44f7670ffa845746cfe2b453f92b2">metapod::Spatial::TransformT&lt; RotationClass &gt;</a>
+: <a class="el" href="a00108.html#ad1537d9c2fda3d1571a8f84321151ccf">metapod::Spatial::internal::TransformT_helper&lt; FloatType, RotationClass &gt;</a>
+, <a class="el" href="a00107.html#a7c65806846770871cb86e07514742685">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixTpl&lt; FloatType &gt; &gt;</a>
 </li>
 <li>toVector()
-: <a class="el" href="a00037.html#add42f3a8df659c7976fca6321eb68684">metapod::Spatial::Force</a>
+: <a class="el" href="a00041.html#a81d5157ef278fc0ecdd8632849939841">metapod::Spatial::ForceTpl&lt; FloatType &gt;</a>
 </li>
 <li>TransformT()
-: <a class="el" href="a00094.html#ae6f149bebdff6a35c8fe0f8ac9c9c335">metapod::Spatial::TransformT&lt; RotationClass &gt;</a>
+: <a class="el" href="a00103.html#abd8c92d4526b222a4a2cd0f4e294b00b">metapod::Spatial::TransformT&lt; FloatType, RotationClass &gt;</a>
+, <a class="el" href="a00106.html#a6f574cc518a50393944760adeba49a4e">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutZTpl&lt; FloatType &gt; &gt;</a>
+, <a class="el" href="a00103.html#aed1294fadbb00ecf222cd13b57a032ce">metapod::Spatial::TransformT&lt; FloatType, RotationClass &gt;</a>
+, <a class="el" href="a00104.html#a426839b1b1c64d6ae80190b82b055758">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutXTpl&lt; FloatType &gt; &gt;</a>
+, <a class="el" href="a00105.html#af2d874c08126de6f12499baf71868deb">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutYTpl&lt; FloatType &gt; &gt;</a>
+, <a class="el" href="a00106.html#a319ee930ca30cc7f1f78402fd0b4a9a9">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutZTpl&lt; FloatType &gt; &gt;</a>
+, <a class="el" href="a00107.html#a8a9341c47a9428eb5bec166bcff6b96d">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixTpl&lt; FloatType &gt; &gt;</a>
+</li>
+<li>TransformT_helper()
+: <a class="el" href="a00108.html#a457bcacb56c887a86a15ea4aa65888a6">metapod::Spatial::internal::TransformT_helper&lt; FloatType, RotationClass &gt;</a>
 </li>
 <li>transpose()
-: <a class="el" href="a00090.html#a5dc0cf48b16ca5d4266556696cf1c79b">metapod::Spatial::RotationMatrixAboutZ</a>
-, <a class="el" href="a00086.html#a2887d5770bc41aa13184cb93527b8cc8">metapod::Spatial::RotationBinaryOp&lt; RotationMatrixT, RotMatChgAxis &gt;</a>
-, <a class="el" href="a00087.html#ad8e16acfef3dba5c8ba177d0ce7158a7">metapod::Spatial::RotationMatrix</a>
-, <a class="el" href="a00016.html#a3f9f8173072950ec146eb917c6119632">metapod::Spatial::ConstraintMotionAnyAxis</a>
-, <a class="el" href="a00092.html#a7a503d63f8aa8ab6133e349e73292479">metapod::Spatial::RotationMatrixIdentity</a>
-, <a class="el" href="a00091.html#a19b4cd8c61c54c4f17235aa1f897ce25">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;</a>
-, <a class="el" href="a00089.html#a306099240d9b2c6f93af00fe7edb6a38">metapod::Spatial::RotationMatrixAboutY</a>
-, <a class="el" href="a00018.html#aab0f280568df63736e636370f0e287a1">metapod::Spatial::ConstraintMotionOneAxis&lt; axis &gt;</a>
-, <a class="el" href="a00088.html#a87bcd4adcee47f0847c4bd76350b5e47">metapod::Spatial::RotationMatrixAboutX</a>
-, <a class="el" href="a00017.html#a2693efb92e43ea5946ce8ef1a6fa277b">metapod::Spatial::ConstraintMotionFreeFlyer</a>
+: <a class="el" href="a00096.html#af2f153d91ad1b3bdc719e3c848757965">metapod::Spatial::RotationMatrixAboutXTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00016.html#a453b0cc7daea4c7b2828e2fc7d2398b0">metapod::Spatial::ConstraintMotionAnyAxis&lt; FloatType &gt;</a>
+, <a class="el" href="a00101.html#abcfdf1c39943bd102957dcbc2795c484">metapod::Spatial::RotationMatrixTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00097.html#aaf13de6130a536cf7294df331efa9f89">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00021.html#a8c394d1789e386b13fc73a66672a98fd">metapod::Spatial::ConstraintMotionFreeFlyerTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00022.html#acf7c7edafacfc7d11e8c45785dfc20e6">metapod::Spatial::ConstraintMotionOneAxis&lt; axis, FloatType &gt;</a>
+, <a class="el" href="a00098.html#a550849b6b46e23f95f6b612f92783063">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;</a>
+, <a class="el" href="a00095.html#ac6f4092787dc1406b0dab5ca6452edc9">metapod::Spatial::RotationBinaryOp&lt; FloatType, RotationMatrixT, RotMatChgAxis &gt;</a>
+, <a class="el" href="a00099.html#a6f992e7feda17764a16d842518dc38f9">metapod::Spatial::RotationMatrixChangeAxisTpl&lt; FloatType, traits &gt;</a>
+, <a class="el" href="a00100.html#a3932b3b198ee44e8b69d1608bf473cc4">metapod::Spatial::RotationMatrixIdentityTpl&lt; FloatType &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->

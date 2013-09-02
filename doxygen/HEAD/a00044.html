@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::is_ancestor&lt; Robot, node_a_id, node_b_id &gt; Struct Template Reference</title>
+<title>metapod::GravityConstant&lt; FloatType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,66 +58,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::is_ancestor&lt; Robot, node_a_id, node_b_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::GravityConstant&lt; FloatType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::is_ancestor" -->
-<p>value member variable is true if NodeA is an ancestor of NodeB, false otherwise.  
- <a href="a00044.html#details">More...</a></p>
+<!-- doxytag: class="metapod::GravityConstant" -->
+<p><code>#include &lt;metapod/tools/common.hh&gt;</code></p>
 
-<p><code>#include &lt;metapod/tools/is_ancestor.hh&gt;</code></p>
-
-<p><a href="a00265.html">List of all members.</a></p>
+<p><a href="a00279.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00060.html">Nodes</a>&lt; Robot, <br class="typebreak"/>
-node_b_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00044.html#a03b629417b889984d032649cf454d528">NodeB</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00044.html#a6fe78f6e020e7cbf4fee4d4aa1c843bb">value</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const <br class="typebreak"/>
+<a class="el" href="a00069.html">Spatial::MotionTpl</a>&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00044.html#a59950bab8cfc12f1c9ea5a3465ca981b">minus_g</a> = <a class="el" href="a00170.html#afdb45f13ee2e077ce1f4542be2375ac3">set_gravity</a>&lt;FloatType&gt;()</td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Robot, int node_a_id, int node_b_id&gt;<br/>
-struct metapod::is_ancestor&lt; Robot, node_a_id, node_b_id &gt;</h3>
+<h3>template&lt;typename FloatType&gt;<br/>
+ class metapod::GravityConstant&lt; FloatType &gt;</h3>
 
-<p>value member variable is true if NodeA is an ancestor of NodeB, false otherwise. </p>
-<p>A node is its own ancestor (NP also is its own ancestor). </p>
-</div><hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a03b629417b889984d032649cf454d528"></a><!-- doxytag: member="metapod::is_ancestor::NodeB" ref="a03b629417b889984d032649cf454d528" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int node_a_id, int node_b_id&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00060.html">Nodes</a>&lt;Robot, node_b_id&gt;::type <a class="el" href="a00044.html">metapod::is_ancestor</a>&lt; Robot, node_a_id, node_b_id &gt;::<a class="el" href="a00044.html#a03b629417b889984d032649cf454d528">NodeB</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a6fe78f6e020e7cbf4fee4d4aa1c843bb"></a><!-- doxytag: member="metapod::is_ancestor::value" ref="a6fe78f6e020e7cbf4fee4d4aa1c843bb" args="" -->
+<a class="anchor" id="a59950bab8cfc12f1c9ea5a3465ca981b"></a><!-- doxytag: member="metapod::GravityConstant::minus_g" ref="a59950bab8cfc12f1c9ea5a3465ca981b" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_a_id, int node_b_id&gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00044.html">metapod::is_ancestor</a>&lt; Robot, node_a_id, node_b_id &gt;::<a class="el" href="a00044.html#a6fe78f6e020e7cbf4fee4d4aa1c843bb">value</a><code> [static]</code></td>
+          <td class="memname">const <a class="el" href="a00069.html">Spatial::MotionTpl</a>&lt; FloatType &gt; <a class="el" href="a00044.html">metapod::GravityConstant</a>&lt; FloatType &gt;::<a class="el" href="a00044.html#a59950bab8cfc12f1c9ea5a3465ca981b">minus_g</a> = <a class="el" href="a00170.html#afdb45f13ee2e077ce1f4542be2375ac3">set_gravity</a>&lt;FloatType&gt;()<code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Initial value:</b><div class="fragment"><pre class="fragment">
-        is_ancestor&lt; Robot, node_a_id, NodeB::parent_id &gt;::value
-</pre></div>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -137,8 +110,8 @@ template&lt;typename Robot , int node_a_id, int node_b_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00044.html">is_ancestor</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00044.html">GravityConstant</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
+<title>metapod::crba&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,38 +58,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::crba&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::GetTorquesVisitor" -->
-<p><code>#include &lt;metapod/tools/print.hh&gt;</code></p>
+<!-- doxytag: class="metapod::crba&lt; Robot, false &gt;::DftVisitor" -->
+<p><code>#include &lt;metapod/algos/crba.hh&gt;</code></p>
 
-<p><a href="a00305.html">List of all members.</a></p>
+<p><a href="a00255.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00014.html">BwdtVisitor</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00060.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
-::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#a3920ce52f2ab969c25f7091af0a5e58c">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00070.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#accbe3f0c618dc730ab2451fd3b6d0e52">NI</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00039.html#accbe3f0c618dc730ab2451fd3b6d0e52">NI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#aae87d143adc16337f58bc932485a0ef4">Node</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#ae5f364b3557597661e37a95480a9201f">discover</a> (const Robot &amp;robot, typename Robot::confVector &amp;v)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#ad634a09f88cb5496e87354174d2254cf">finish</a> (const Robot &amp;, typename Robot::confVector &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#ae09963c53ba51af7c6510aa0d563b272">discover</a> (AnyRobot &amp;robot)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html#a4faa1aeba6ee3cb3b453cce3640cdc29">finish</a> (AnyRobot &amp;robot)</td></tr>
 </table>
-<h3>template&lt;typename Robot, int node_id&gt;<br/>
- struct metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt;</h3>
+<h3>template&lt;typename Robot&gt;<br/>
+template&lt;typename AnyRobot, int node_id&gt;<br/>
+ struct metapod::crba&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt;</h3>
 
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a3920ce52f2ab969c25f7091af0a5e58c"></a><!-- doxytag: member="metapod::internal::GetTorquesVisitor::Node" ref="a3920ce52f2ab969c25f7091af0a5e58c" args="" -->
+<a class="anchor" id="accbe3f0c618dc730ab2451fd3b6d0e52"></a><!-- doxytag: member="metapod::crba&lt; Robot, false &gt;::DftVisitor::NI" ref="accbe3f0c618dc730ab2451fd3b6d0e52" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot &gt; </div>
+<div class="memtemplate">
+template&lt;typename AnyRobot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00060.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00039.html">metapod::internal::GetTorquesVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00039.html#a3920ce52f2ab969c25f7091af0a5e58c">Node</a></td>
+          <td class="memname">typedef <a class="el" href="a00070.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00025.html">metapod::crba</a>&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt;::<a class="el" href="a00039.html#accbe3f0c618dc730ab2451fd3b6d0e52">NI</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aae87d143adc16337f58bc932485a0ef4"></a><!-- doxytag: member="metapod::crba&lt; Robot, false &gt;::DftVisitor::Node" ref="aae87d143adc16337f58bc932485a0ef4" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot &gt; </div>
+<div class="memtemplate">
+template&lt;typename AnyRobot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00039.html#accbe3f0c618dc730ab2451fd3b6d0e52">NI</a> <a class="el" href="a00025.html">metapod::crba</a>&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt;::<a class="el" href="a00039.html#aae87d143adc16337f58bc932485a0ef4">Node</a></td>
         </tr>
       </table>
 </div>
@@ -97,28 +123,20 @@ template&lt;typename Robot , int node_id&gt; </div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ae5f364b3557597661e37a95480a9201f"></a><!-- doxytag: member="metapod::internal::GetTorquesVisitor::discover" ref="ae5f364b3557597661e37a95480a9201f" args="(const Robot &amp;robot, typename Robot::confVector &amp;v)" -->
+<a class="anchor" id="ae09963c53ba51af7c6510aa0d563b272"></a><!-- doxytag: member="metapod::crba&lt; Robot, false &gt;::DftVisitor::discover" ref="ae09963c53ba51af7c6510aa0d563b272" args="(AnyRobot &amp;robot)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot &gt; </div>
+<div class="memtemplate">
+template&lt;typename AnyRobot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00039.html">metapod::internal::GetTorquesVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00039.html#ae5f364b3557597661e37a95480a9201f">discover</a> </td>
+          <td class="memname">static void <a class="el" href="a00025.html">metapod::crba</a>&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt;::discover </td>
           <td>(</td>
-          <td class="paramtype">const Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>v</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
+          <td class="paramtype">AnyRobot &amp;&#160;</td>
+          <td class="paramname"><em>robot</em></td><td>)</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -126,28 +144,20 @@ template&lt;typename Robot , int node_id&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ad634a09f88cb5496e87354174d2254cf"></a><!-- doxytag: member="metapod::internal::GetTorquesVisitor::finish" ref="ad634a09f88cb5496e87354174d2254cf" args="(const Robot &amp;, typename Robot::confVector &amp;)" -->
+<a class="anchor" id="a4faa1aeba6ee3cb3b453cce3640cdc29"></a><!-- doxytag: member="metapod::crba&lt; Robot, false &gt;::DftVisitor::finish" ref="a4faa1aeba6ee3cb3b453cce3640cdc29" args="(AnyRobot &amp;robot)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot &gt; </div>
+<div class="memtemplate">
+template&lt;typename AnyRobot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00039.html">metapod::internal::GetTorquesVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00039.html#ad634a09f88cb5496e87354174d2254cf">finish</a> </td>
+          <td class="memname">static void <a class="el" href="a00025.html">metapod::crba</a>&lt; Robot, false &gt;::DftVisitor&lt; AnyRobot, node_id &gt;::finish </td>
           <td>(</td>
-          <td class="paramtype">const Robot &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
+          <td class="paramtype">AnyRobot &amp;&#160;</td>
+          <td class="paramname"><em>robot</em></td><td>)</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -173,9 +183,9 @@ template&lt;typename Robot , int node_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00152.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00039.html">GetTorquesVisitor</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00026.html">crba&lt; Robot, false &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00039.html">DftVisitor</a>      </li>
 <br><br>
 <hr>
 <center>

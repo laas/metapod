@@ -1,5 +1,5 @@
 var a00079 =
 [
-    [ "ind", "a00079.html#aad5c9b5169edb815208e0602855b8019", null ],
-    [ "value", "a00079.html#a1f75f8fceeb2c36689c9a242e00d14d1", null ]
+    [ "rm", "a00079.html#a1538d047a20834b7c0147d59f741b1e8", null ],
+    [ "METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF", "a00079.html#a698445f4efdf29cb062bbf75ac7cb90a", null ]
 ];

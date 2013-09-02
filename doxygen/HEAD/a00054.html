@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt; Struct Template Reference</title>
+<title>metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,38 +58,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt; Struct Template Reference<div class="ingroups"><a class="el" href="a00157.html">Point in Chain Articular Jacobian Algorithm</a></div></div>  </div>
+<div class="title">metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::jac_point_relative" -->
-<p><code>#include &lt;metapod/algos/jac_point_relative.hh&gt;</code></p>
+<!-- doxytag: class="metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt;" -->
+<p><code>#include &lt;metapod/tools/has_parent.hh&gt;</code></p>
 
-<p><a href="a00241.html">List of all members.</a></p>
+<p><a href="a00293.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00036.html">EndToAncestorVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html">StartToAncestorVisitor</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix<br class="typebreak"/>
-&lt; <a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>, 6, Robot::NBDOF+offset &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00157.html#ga5c46e11ad8bade8327553863d835bcf1">Jacobian</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00157.html#ga60ec95236a2d334131ced7cc78694346">run</a> (Robot &amp;robot, const typename Robot::confVector &amp;q, const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;e_p, <a class="el" href="a00157.html#ga5c46e11ad8bade8327553863d835bcf1">Jacobian</a> &amp;J)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the articular jacobian J.  <a href="a00157.html#ga60ec95236a2d334131ced7cc78694346"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00157.html#gabad06dd4018b3021197d43d0a7bb3b1b">ancestor_node_id</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054.html#a553d7f5d47f37ef9021a4bac92c15afc">value</a> = true</td></tr>
 </table>
-<h3>template&lt;typename Robot, int start_node_id, int end_node_id, int offset = 0, bool call_bcalc = true&gt;<br/>
- struct metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt;</h3>
+<h3>template&lt;typename Robot&gt;<br/>
+ struct metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt;</h3>
 
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a553d7f5d47f37ef9021a4bac92c15afc"></a><!-- doxytag: member="metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt;::value" ref="a553d7f5d47f37ef9021a4bac92c15afc" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00053.html">metapod::is_NO_PARENT</a>&lt; Robot, <a class="el" href="a00170.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00054.html#a553d7f5d47f37ef9021a4bac92c15afc">value</a> = true<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -107,8 +109,8 @@ Static Public Attributes</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00054.html">jac_point_relative</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00054.html">is_NO_PARENT&lt; Robot, NO_PARENT &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

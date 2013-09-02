@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::rmca_traits_minus&lt; traits_op1 &gt; Struct Template Reference</title>
+<title>metapod::RevoluteAxisYJoint&lt; FloatType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,60 +58,131 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::rmca_traits_minus&lt; traits_op1 &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::RevoluteAxisYJoint&lt; FloatType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::rmca_traits_minus" -->
-<p><code>#include &lt;metapod/tools/spatial/rm-chgaxis.hh&gt;</code></p>
+<!-- doxytag: class="metapod::RevoluteAxisYJoint" -->
+<p><code>#include &lt;metapod/tools/joint-aboutyaxis.hh&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for metapod::RevoluteAxisYJoint&lt; FloatType &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="a00305.png" border="0" usemap="#metapod_1_1_revolute_axis_y_joint_3_01_float_type_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="metapod_1_1_revolute_axis_y_joint_3_01_float_type_01_4_coll__map" id="metapod_1_1_revolute_axis_y_joint_3_01_float_type_01_4_coll__map">
+<area shape="rect" id="node2" href="a00022.html" title="metapod::Spatial::ConstraintMotionOneAxis\&lt; Spatial::AxisY, FloatType \&gt;" alt="" coords="5,6,467,37"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
-<p><a href="a00322.html">List of all members.</a></p>
+<p><a href="a00306.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00076.html">rmca_traits</a><br class="typebreak"/>
-&lt; traits_op1::ind_X, <br class="typebreak"/>
-traits_op1::ind_Y, <br class="typebreak"/>
-traits_op1::ind_Z,-traits_op1::value_X,-traits_op1::value_Y,-traits_op1::value_Z &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#aa5b4b86f0f8412ad164bb25fd7ad7d4b">traits_opp</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a6ba5b6a7599608aebc6977bfaa84221f">RevoluteAxisYJoint</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#ac71ff6e0de5e91ca056bd0d36b582d4e">bcalc</a> (const Vector1d &amp;qi)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a6864e6d4fc1de9b0a57317f10cf1343a">jcalc</a> (const Vector1d &amp;qi, const Vector1d &amp;dqi)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">TransformY&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#acf4ba33fb54a8a95afbf4fae2a58bc3a">Xj</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Motion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a1eab344a4d1dcaca5a9009d4c5da49a7">cj</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Motion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#abe985463aa053ae7d74968527a68f27d">vj</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00022.html">Spatial::ConstraintMotionOneAxis</a><br class="typebreak"/>
+&lt; <a class="el" href="a00172.html#af7b10dc8a0150cd8856cc44c515cfb5eaa5a9cb3bc29697c6aadfa357e4c979bb">Spatial::AxisY</a>, FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a7f64fd3760a4944611850b2c6dc4f813">S</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Force&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a22ec10a761d23a62ed47174f7db6b34f">f</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector1d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#ae72f21220de62412ef3df711b4add710">torque</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a593527d254481de60929e5fb4aeefc40">ind_X</a> = <a class="el" href="a00076.html#a193f8ceef09144bc27110e668498d06b">traits_opp::ind_X</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a01d59eca5b23780d182afbc867dfd45d">value_X</a> = <a class="el" href="a00076.html#ad0f0041df73eebc9dbe612c381863309">traits_opp::value_X</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a8f0957777b750381eee6fde0e507445b">ind_Y</a> = <a class="el" href="a00076.html#a7ccf18404b49a37d254638381b6339ae">traits_opp::ind_Y</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a024dc8c989dfffe555aeb13aa3f8af26">value_Y</a> = <a class="el" href="a00076.html#a3781e5090870ca38e83cdbbcfaee2fc1">traits_opp::value_Y</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#ac1fbbf0abf75238f92667956ebb24e15">ind_Z</a> = <a class="el" href="a00076.html#a0246e588828cf79c818a136048c8635b">traits_opp::ind_Z</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a991b66f3b3d56df44e48a9b28b97e412">value_Z</a> = <a class="el" href="a00076.html#a26bb0c1457aff28c3a5a70b91cedf119">traits_opp::value_Z</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html#a699d12b562f4d1d5196720d358d5e8f6">NBDOF</a> = 1</td></tr>
 </table>
-<h3>template&lt;typename traits_op1&gt;<br/>
- struct metapod::Spatial::rmca_traits_minus&lt; traits_op1 &gt;</h3>
+<h3>template&lt;typename FloatType&gt;<br/>
+ class metapod::RevoluteAxisYJoint&lt; FloatType &gt;</h3>
 
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aa5b4b86f0f8412ad164bb25fd7ad7d4b"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::traits_opp" ref="aa5b4b86f0f8412ad164bb25fd7ad7d4b" args="" -->
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6ba5b6a7599608aebc6977bfaa84221f"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::RevoluteAxisYJoint" ref="a6ba5b6a7599608aebc6977bfaa84221f" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00076.html">rmca_traits</a>&lt; traits_op1::ind_X,traits_op1::ind_Y,traits_op1::ind_Z, -traits_op1::value_X,-traits_op1::value_Y,-traits_op1::value_Z&gt; <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#aa5b4b86f0f8412ad164bb25fd7ad7d4b">traits_opp</a></td>
+          <td class="memname"><a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html">RevoluteAxisYJoint</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>References <a class="el" href="a00077.html#abe985463aa053ae7d74968527a68f27d">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::vj</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac71ff6e0de5e91ca056bd0d36b582d4e"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::bcalc" ref="ac71ff6e0de5e91ca056bd0d36b582d4e" args="(const Vector1d &amp;qi)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00011.html">bcalc</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Vector1d &amp;&#160;</td>
+          <td class="paramname"><em>qi</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00077.html#acf4ba33fb54a8a95afbf4fae2a58bc3a">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::Xj</a>.</p>
+
+<p>Referenced by <a class="el" href="a00077.html#a6864e6d4fc1de9b0a57317f10cf1343a">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::jcalc()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6864e6d4fc1de9b0a57317f10cf1343a"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::jcalc" ref="a6864e6d4fc1de9b0a57317f10cf1343a" args="(const Vector1d &amp;qi, const Vector1d &amp;dqi)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00061.html">jcalc</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Vector1d &amp;&#160;</td>
+          <td class="paramname"><em>qi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector1d &amp;&#160;</td>
+          <td class="paramname"><em>dqi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00077.html#ac71ff6e0de5e91ca056bd0d36b582d4e">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::bcalc()</a>, and <a class="el" href="a00077.html#abe985463aa053ae7d74968527a68f27d">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::vj</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a593527d254481de60929e5fb4aeefc40"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::ind_X" ref="a593527d254481de60929e5fb4aeefc40" args="" -->
+<a class="anchor" id="a1eab344a4d1dcaca5a9009d4c5da49a7"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::cj" ref="a1eab344a4d1dcaca5a9009d4c5da49a7" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#a593527d254481de60929e5fb4aeefc40">ind_X</a> = <a class="el" href="a00076.html#a193f8ceef09144bc27110e668498d06b">traits_opp::ind_X</a><code> [static]</code></td>
+          <td class="memname">Motion <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#a1eab344a4d1dcaca5a9009d4c5da49a7">cj</a></td>
         </tr>
       </table>
 </div>
@@ -118,14 +190,14 @@ template&lt;typename traits_op1 &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a8f0957777b750381eee6fde0e507445b"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::ind_Y" ref="a8f0957777b750381eee6fde0e507445b" args="" -->
+<a class="anchor" id="a22ec10a761d23a62ed47174f7db6b34f"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::f" ref="a22ec10a761d23a62ed47174f7db6b34f" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#a8f0957777b750381eee6fde0e507445b">ind_Y</a> = <a class="el" href="a00076.html#a7ccf18404b49a37d254638381b6339ae">traits_opp::ind_Y</a><code> [static]</code></td>
+          <td class="memname">Force <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#a22ec10a761d23a62ed47174f7db6b34f">f</a></td>
         </tr>
       </table>
 </div>
@@ -133,14 +205,14 @@ template&lt;typename traits_op1 &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ac1fbbf0abf75238f92667956ebb24e15"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::ind_Z" ref="ac1fbbf0abf75238f92667956ebb24e15" args="" -->
+<a class="anchor" id="a699d12b562f4d1d5196720d358d5e8f6"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::NBDOF" ref="a699d12b562f4d1d5196720d358d5e8f6" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#ac1fbbf0abf75238f92667956ebb24e15">ind_Z</a> = <a class="el" href="a00076.html#a0246e588828cf79c818a136048c8635b">traits_opp::ind_Z</a><code> [static]</code></td>
+          <td class="memname">const int <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#a699d12b562f4d1d5196720d358d5e8f6">NBDOF</a> = 1<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -148,14 +220,14 @@ template&lt;typename traits_op1 &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a01d59eca5b23780d182afbc867dfd45d"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::value_X" ref="a01d59eca5b23780d182afbc867dfd45d" args="" -->
+<a class="anchor" id="a7f64fd3760a4944611850b2c6dc4f813"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::S" ref="a7f64fd3760a4944611850b2c6dc4f813" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#a01d59eca5b23780d182afbc867dfd45d">value_X</a> = <a class="el" href="a00076.html#ad0f0041df73eebc9dbe612c381863309">traits_opp::value_X</a><code> [static]</code></td>
+          <td class="memname"><a class="el" href="a00022.html">Spatial::ConstraintMotionOneAxis</a>&lt;<a class="el" href="a00172.html#af7b10dc8a0150cd8856cc44c515cfb5eaa5a9cb3bc29697c6aadfa357e4c979bb">Spatial::AxisY</a>,FloatType&gt; <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#a7f64fd3760a4944611850b2c6dc4f813">S</a></td>
         </tr>
       </table>
 </div>
@@ -163,14 +235,14 @@ template&lt;typename traits_op1 &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a024dc8c989dfffe555aeb13aa3f8af26"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::value_Y" ref="a024dc8c989dfffe555aeb13aa3f8af26" args="" -->
+<a class="anchor" id="ae72f21220de62412ef3df711b4add710"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::torque" ref="ae72f21220de62412ef3df711b4add710" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#a024dc8c989dfffe555aeb13aa3f8af26">value_Y</a> = <a class="el" href="a00076.html#a3781e5090870ca38e83cdbbcfaee2fc1">traits_opp::value_Y</a><code> [static]</code></td>
+          <td class="memname">Vector1d <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#ae72f21220de62412ef3df711b4add710">torque</a></td>
         </tr>
       </table>
 </div>
@@ -178,18 +250,37 @@ template&lt;typename traits_op1 &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a991b66f3b3d56df44e48a9b28b97e412"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_minus::value_Z" ref="a991b66f3b3d56df44e48a9b28b97e412" args="" -->
+<a class="anchor" id="abe985463aa053ae7d74968527a68f27d"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::vj" ref="abe985463aa053ae7d74968527a68f27d" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits_op1 &gt; </div>
+template&lt;typename FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00077.html">metapod::Spatial::rmca_traits_minus</a>&lt; traits_op1 &gt;::<a class="el" href="a00077.html#a991b66f3b3d56df44e48a9b28b97e412">value_Z</a> = <a class="el" href="a00076.html#a26bb0c1457aff28c3a5a70b91cedf119">traits_opp::value_Z</a><code> [static]</code></td>
+          <td class="memname">Motion <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#abe985463aa053ae7d74968527a68f27d">vj</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Referenced by <a class="el" href="a00077.html#a6864e6d4fc1de9b0a57317f10cf1343a">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::jcalc()</a>, and <a class="el" href="a00077.html#a6ba5b6a7599608aebc6977bfaa84221f">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::RevoluteAxisYJoint()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf4ba33fb54a8a95afbf4fae2a58bc3a"></a><!-- doxytag: member="metapod::RevoluteAxisYJoint::Xj" ref="acf4ba33fb54a8a95afbf4fae2a58bc3a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">TransformY <a class="el" href="a00077.html">metapod::RevoluteAxisYJoint</a>&lt; FloatType &gt;::<a class="el" href="a00077.html#acf4ba33fb54a8a95afbf4fae2a58bc3a">Xj</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="a00077.html#ac71ff6e0de5e91ca056bd0d36b582d4e">metapod::RevoluteAxisYJoint&lt; FloatType &gt;::bcalc()</a>.</p>
 
 </div>
 </div>
@@ -211,9 +302,8 @@ template&lt;typename traits_op1 &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00153.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00077.html">rmca_traits_minus</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00077.html">RevoluteAxisYJoint</a>      </li>
 <br><br>
 <hr>
 <center>

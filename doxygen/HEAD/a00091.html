@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt; Struct Template Reference</title>
+<title>metapod::Spatial::rmca_traits_transpose&lt; traits_op1 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -58,68 +59,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#friends">Friends</a>  </div>
+<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::rmca_traits_transpose&lt; traits_op1 &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::RotationMatrixChangeAxis" -->
-<p>Rotation matrix as axis permutation matrix.  
- <a href="a00091.html#details">More...</a></p>
-
+<!-- doxytag: class="metapod::Spatial::rmca_traits_transpose" -->
 <p><code>#include &lt;metapod/tools/spatial/rm-chgaxis.hh&gt;</code></p>
 
-<p><a href="a00323.html">List of all members.</a></p>
+<p><a href="a00354.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef traits&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#aa83a31115a8ea1d008165c0caf8921c5">Traits</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#ac7d455daf3066fa053b7e81ccb38a303">RotationMatrixChangeAxis</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#aa0cee03bc3a97c4605d8ab6de7f37e89">RotationMatrixChangeAxis</a> (const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a> &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a19b4cd8c61c54c4f17235aa1f897ce25">transpose</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a1691b907dc939f89b8697c0089445cdb">toMatrix</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a03cda0f33384655b1f897d1a98c2e507">operator*</a> (<a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a> a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a863410e7512ae9450e21d321b517a50f">randomInit</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a254c7c130a4609a152b6bbe333b09294">operator-</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#ac807fcc6815a85d3364f5a188d695d6f">operator*</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;A) const </td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename traits_rhs &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a><br class="typebreak"/>
-&lt; <a class="el" href="a00078.html">rmca_traits_mul</a>&lt; traits, <br class="typebreak"/>
-traits_rhs &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00091.html#add17fcd63b844521dd2d4feedfa54bb1">operator*</a> (const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; traits_rhs &gt; &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00087.html">RotationMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#af360ab0ed32dc89e0dcfa3052f4975b7">operator*</a> (const <a class="el" href="a00087.html">RotationMatrix</a> &amp;aRM) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00087.html">RotationMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a42773c7bb8d8e7f90dbd83e7947f2247">operator*</a> (const <a class="el" href="a00088.html">RotationMatrixAboutX</a> &amp;aRM) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00087.html">RotationMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#ae9c7cce9b525e480d94707ee0ebba4dc">operator*</a> (const <a class="el" href="a00089.html">RotationMatrixAboutY</a> &amp;aRM) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00087.html">RotationMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#acd85bb1f4c18aa0a473ff6586bf353e7">operator*</a> (const <a class="el" href="a00090.html">RotationMatrixAboutZ</a> &amp;aRM) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#aabbfad9a02cccf22c4bdb1e1e971019f">rotGeneralMatrix</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;A) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00058.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a8dbfc966fd0aa11e1fcf2db564bfdb5a">rotSymmetricMatrix</a> (const <a class="el" href="a00058.html">ltI</a> &amp;A)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00058.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a16921060a41207fbc470dfc79178a55f">rotTSymmetricMatrix</a> (const <a class="el" href="a00058.html">ltI</a> &amp;A)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a2fc2167b3bd6dbf26a851850dd6e0182">operator*</a> (const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;ar) const </td></tr>
-<tr><td colspan="2"><h2><a name="friends"></a>
-Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a52801ca7c3214fd350db5d0b5968f312">operator*</a> (const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;A, const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a> &amp;aRMCA)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a17a706884873b3ff96e89f139ade61f5">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; traits &gt; &amp;aRMCA)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00085.html">rmca_traits</a><br class="typebreak"/>
+&lt; traits_op1::ind_Y==0?1:(traits_op1::ind_Z==0?2:0), <br class="typebreak"/>
+traits_op1::ind_X==1?0:(traits_op1::ind_Z==1?2:1), <br class="typebreak"/>
+traits_op1::ind_X==2?0:(traits_op1::ind_Y==2?1:2), <br class="typebreak"/>
+traits_op1::value_X, <br class="typebreak"/>
+traits_op1::value_Y, <br class="typebreak"/>
+traits_op1::value_Z &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a0b410e47dce181d70fdf05748552cd4e">traits_transpose</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a6a214ef229155a63ae5493ca1169a533">ind_X</a> = <a class="el" href="a00085.html#a193f8ceef09144bc27110e668498d06b">traits_transpose::ind_X</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#abadc939deb55a163e27daf6c8e53a53a">value_X</a> = <a class="el" href="a00085.html#ad0f0041df73eebc9dbe612c381863309">traits_transpose::value_X</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a89ae5c1d3f86fd38e208e2896d511cde">ind_Y</a> = <a class="el" href="a00085.html#a7ccf18404b49a37d254638381b6339ae">traits_transpose::ind_Y</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a690ed2799aede9dbbfd5e6d90df7e4fe">value_Y</a> = <a class="el" href="a00085.html#a3781e5090870ca38e83cdbbcfaee2fc1">traits_transpose::value_Y</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a6bbb654a8effab2db89264c9e4e44f12">ind_Z</a> = <a class="el" href="a00085.html#a0246e588828cf79c818a136048c8635b">traits_transpose::ind_Z</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html#a61165d551ca57326b5cada102561e2a6">value_Z</a> = <a class="el" href="a00085.html#a26bb0c1457aff28c3a5a70b91cedf119">traits_transpose::value_Z</a></td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename traits&gt;<br/>
-struct metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;</h3>
+<h3>template&lt;typename traits_op1&gt;<br/>
+ struct metapod::Spatial::rmca_traits_transpose&lt; traits_op1 &gt;</h3>
 
-<p>Rotation matrix as axis permutation matrix. </p>
-<p>This <img class="formulaInl" alt="$ 3 \times 3 $" src="form_47.png"/> matrix <img class="formulaInl" alt="$ A$" src="form_48.png"/> is defined by 7 parameters: <img class="formulaInl" alt="$ iX, iY, iZ, lX, lY, lZ, rc$" src="form_49.png"/>. <img class="formulaInl" alt="$ lX, lY, lZ \in \{ -1,1 \}, rc \in \{0,1\} $" src="form_50.png"/> </p>
-<p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \begin{matrix} A(0,iX) = lX &amp; A(0,j) = 0 \text{ if } j \neq iX \\ A(1,iY) = lY &amp; A(1,j) = 0 \text{ if } j \neq iY \\ A(2,iZ) = lZ &amp; A(2,j) = 0 \text{ if } j \neq iZ \\ \end{matrix} \]" src="form_51.png"/>
-</p>
- </div><hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aa83a31115a8ea1d008165c0caf8921c5"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::Traits" ref="aa83a31115a8ea1d008165c0caf8921c5" args="" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a0b410e47dce181d70fdf05748552cd4e"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::traits_transpose" ref="a0b410e47dce181d70fdf05748552cd4e" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef traits <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#aa83a31115a8ea1d008165c0caf8921c5">Traits</a></td>
+          <td class="memname">typedef <a class="el" href="a00085.html">rmca_traits</a>&lt; traits_op1::ind_Y ==0 ? 1 : (traits_op1::ind_Z == 0 ? 2 : 0) , traits_op1::ind_X == 1 ? 0 : (traits_op1::ind_Z == 1 ? 2 : 1), traits_op1::ind_X == 2 ? 0 : (traits_op1::ind_Y == 2 ? 1 : 2), traits_op1::value_X, traits_op1::value_Y, traits_op1::value_Z&gt; <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#a0b410e47dce181d70fdf05748552cd4e">traits_transpose</a></td>
         </tr>
       </table>
 </div>
@@ -127,18 +106,15 @@ template&lt;typename traits&gt; </div>
 
 </div>
 </div>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac7d455daf3066fa053b7e81ccb38a303"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::RotationMatrixChangeAxis" ref="ac7d455daf3066fa053b7e81ccb38a303" args="()" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a6a214ef229155a63ae5493ca1169a533"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::ind_X" ref="a6a214ef229155a63ae5493ca1169a533" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html">RotationMatrixChangeAxis</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">int const <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#a6a214ef229155a63ae5493ca1169a533">ind_X</a> = <a class="el" href="a00085.html#a193f8ceef09144bc27110e668498d06b">traits_transpose::ind_X</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -146,18 +122,14 @@ template&lt;typename traits&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aa0cee03bc3a97c4605d8ab6de7f37e89"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::RotationMatrixChangeAxis" ref="aa0cee03bc3a97c4605d8ab6de7f37e89" args="(const RotationMatrixChangeAxis &amp;)" -->
+<a class="anchor" id="a89ae5c1d3f86fd38e208e2896d511cde"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::ind_Y" ref="a89ae5c1d3f86fd38e208e2896d511cde" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html">RotationMatrixChangeAxis</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; traits &gt; &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">int const <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#a89ae5c1d3f86fd38e208e2896d511cde">ind_Y</a> = <a class="el" href="a00085.html#a7ccf18404b49a37d254638381b6339ae">traits_transpose::ind_Y</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -165,40 +137,14 @@ template&lt;typename traits&gt; </div>
 
 </div>
 </div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a03cda0f33384655b1f897d1a98c2e507"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="a03cda0f33384655b1f897d1a98c2e507" args="(FloatType a) const " -->
+<a class="anchor" id="a6bbb654a8effab2db89264c9e4e44f12"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::ind_Z" ref="a6bbb654a8effab2db89264c9e4e44f12" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00151.html#a7fe0cdffe3adf7d7702776bb536d4361">FloatType</a>&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00091.html#a1691b907dc939f89b8697c0089445cdb">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;::toMatrix()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac807fcc6815a85d3364f5a188d695d6f"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="ac807fcc6815a85d3364f5a188d695d6f" args="(const Matrix3d &amp;A) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>A</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td class="memname">int const <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#a6bbb654a8effab2db89264c9e4e44f12">ind_Z</a> = <a class="el" href="a00085.html#a0246e588828cf79c818a136048c8635b">traits_transpose::ind_Z</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -206,20 +152,14 @@ template&lt;typename traits&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="add17fcd63b844521dd2d4feedfa54bb1"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="add17fcd63b844521dd2d4feedfa54bb1" args="(const RotationMatrixChangeAxis&lt; traits_rhs &gt; &amp;)" -->
+<a class="anchor" id="abadc939deb55a163e27daf6c8e53a53a"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::value_X" ref="abadc939deb55a163e27daf6c8e53a53a" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
-<div class="memtemplate">
-template&lt;typename traits_rhs &gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; <a class="el" href="a00078.html">rmca_traits_mul</a>&lt;traits,traits_rhs&gt; &gt; <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; traits_rhs &gt; &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">int const <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#abadc939deb55a163e27daf6c8e53a53a">value_X</a> = <a class="el" href="a00085.html#ad0f0041df73eebc9dbe612c381863309">traits_transpose::value_X</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -227,102 +167,14 @@ template&lt;typename traits_rhs &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="af360ab0ed32dc89e0dcfa3052f4975b7"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="af360ab0ed32dc89e0dcfa3052f4975b7" args="(const RotationMatrix &amp;aRM) const " -->
+<a class="anchor" id="a690ed2799aede9dbbfd5e6d90df7e4fe"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::value_Y" ref="a690ed2799aede9dbbfd5e6d90df7e4fe" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00087.html">RotationMatrix</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00087.html">RotationMatrix</a> &amp;&#160;</td>
-          <td class="paramname"><em>aRM</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00087.html#ae6c695af1d5d13af63d698ca836047ba">metapod::Spatial::RotationMatrix::m_rm</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a42773c7bb8d8e7f90dbd83e7947f2247"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="a42773c7bb8d8e7f90dbd83e7947f2247" args="(const RotationMatrixAboutX &amp;aRM) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00087.html">RotationMatrix</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00088.html">RotationMatrixAboutX</a> &amp;&#160;</td>
-          <td class="paramname"><em>aRM</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00088.html#aa987eb5421d1f15b527b9b485b9adca8">metapod::Spatial::RotationMatrixAboutX::m_c</a>, and <a class="el" href="a00088.html#add5864869756c1a555e3f9876cafb3c6">metapod::Spatial::RotationMatrixAboutX::m_s</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae9c7cce9b525e480d94707ee0ebba4dc"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="ae9c7cce9b525e480d94707ee0ebba4dc" args="(const RotationMatrixAboutY &amp;aRM) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00087.html">RotationMatrix</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00089.html">RotationMatrixAboutY</a> &amp;&#160;</td>
-          <td class="paramname"><em>aRM</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00089.html#a8792e13bd8daadff6698a12894c90095">metapod::Spatial::RotationMatrixAboutY::m_c</a>, and <a class="el" href="a00089.html#ae412c05b878bf06b82c244aa8fea5383">metapod::Spatial::RotationMatrixAboutY::m_s</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acd85bb1f4c18aa0a473ff6586bf353e7"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="acd85bb1f4c18aa0a473ff6586bf353e7" args="(const RotationMatrixAboutZ &amp;aRM) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00087.html">RotationMatrix</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00090.html">RotationMatrixAboutZ</a> &amp;&#160;</td>
-          <td class="paramname"><em>aRM</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00090.html#aab5fbfd9f0c7c4e0c34c5b670f4839e7">metapod::Spatial::RotationMatrixAboutZ::m_c</a>, and <a class="el" href="a00090.html#abc38e0d46796474b18763af5653b7375">metapod::Spatial::RotationMatrixAboutZ::m_s</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2fc2167b3bd6dbf26a851850dd6e0182"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="a2fc2167b3bd6dbf26a851850dd6e0182" args="(const Vector3d &amp;ar) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#a92f4e7bd51f856f6898547daa56c980b">Vector3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>ar</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
+          <td class="memname">int const <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#a690ed2799aede9dbbfd5e6d90df7e4fe">value_Y</a> = <a class="el" href="a00085.html#a3781e5090870ca38e83cdbbcfaee2fc1">traits_transpose::value_Y</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -330,195 +182,14 @@ template&lt;typename traits&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a254c7c130a4609a152b6bbe333b09294"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator&#45;" ref="a254c7c130a4609a152b6bbe333b09294" args="() const " -->
+<a class="anchor" id="a61165d551ca57326b5cada102561e2a6"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_transpose::value_Z" ref="a61165d551ca57326b5cada102561e2a6" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits&gt; </div>
+template&lt;typename traits_op1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::operator- </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a863410e7512ae9450e21d321b517a50f"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::randomInit" ref="a863410e7512ae9450e21d321b517a50f" args="()" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#a863410e7512ae9450e21d321b517a50f">randomInit</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aabbfad9a02cccf22c4bdb1e1e971019f"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::rotGeneralMatrix" ref="aabbfad9a02cccf22c4bdb1e1e971019f" args="(const Matrix3d &amp;A) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#aabbfad9a02cccf22c4bdb1e1e971019f">rotGeneralMatrix</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>A</em></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8dbfc966fd0aa11e1fcf2db564bfdb5a"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::rotSymmetricMatrix" ref="a8dbfc966fd0aa11e1fcf2db564bfdb5a" args="(const ltI &amp;A)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00058.html">ltI</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#a8dbfc966fd0aa11e1fcf2db564bfdb5a">rotSymmetricMatrix</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00058.html">ltI</a> &amp;&#160;</td>
-          <td class="paramname"><em>A</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00058.html#ab1781c8d4dbed47c85b6ba96408d52b2">metapod::Spatial::ltI::m_ltI</a>.</p>
-
-<p>Referenced by <a class="el" href="a00091.html#a16921060a41207fbc470dfc79178a55f">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;::rotTSymmetricMatrix()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a16921060a41207fbc470dfc79178a55f"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::rotTSymmetricMatrix" ref="a16921060a41207fbc470dfc79178a55f" args="(const ltI &amp;A)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00058.html">ltI</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#a16921060a41207fbc470dfc79178a55f">rotTSymmetricMatrix</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00058.html">ltI</a> &amp;&#160;</td>
-          <td class="paramname"><em>A</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>References <a class="el" href="a00091.html#a8dbfc966fd0aa11e1fcf2db564bfdb5a">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;::rotSymmetricMatrix()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1691b907dc939f89b8697c0089445cdb"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::toMatrix" ref="a1691b907dc939f89b8697c0089445cdb" args="()" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#a1691b907dc939f89b8697c0089445cdb">toMatrix</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00091.html#a03cda0f33384655b1f897d1a98c2e507">metapod::Spatial::RotationMatrixChangeAxis&lt; traits &gt;::operator*()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a19b4cd8c61c54c4f17235aa1f897ce25"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::transpose" ref="a19b4cd8c61c54c4f17235aa1f897ce25" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a> <a class="el" href="a00091.html">metapod::Spatial::RotationMatrixChangeAxis</a>&lt; traits &gt;::<a class="el" href="a00091.html#a19b4cd8c61c54c4f17235aa1f897ce25">transpose</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a52801ca7c3214fd350db5d0b5968f312"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator*" ref="a52801ca7c3214fd350db5d0b5968f312" args="(const Matrix3d &amp;A, const RotationMatrixChangeAxis &amp;aRMCA)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> operator* </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00151.html#aba13dca2e0a1ed98df0ecd1b2ad4b4df">Matrix3d</a> &amp;&#160;</td>
-          <td class="paramname"><em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; traits &gt; &amp;&#160;</td>
-          <td class="paramname"><em>aRMCA</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a17a706884873b3ff96e89f139ade61f5"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixChangeAxis::operator&lt;&lt;" ref="a17a706884873b3ff96e89f139ade61f5" args="(std::ostream &amp;os, const RotationMatrixChangeAxis&lt; traits &gt; &amp;aRMCA)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename traits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00091.html">RotationMatrixChangeAxis</a>&lt; traits &gt; &amp;&#160;</td>
-          <td class="paramname"><em>aRMCA</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [friend]</code></td>
+          <td class="memname">int const <a class="el" href="a00091.html">metapod::Spatial::rmca_traits_transpose</a>&lt; traits_op1 &gt;::<a class="el" href="a00091.html#a61165d551ca57326b5cada102561e2a6">value_Z</a> = <a class="el" href="a00085.html#a26bb0c1457aff28c3a5a70b91cedf119">traits_transpose::value_Z</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -544,9 +215,9 @@ template&lt;typename traits&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00153.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00091.html">RotationMatrixChangeAxis</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00172.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00091.html">rmca_traits_transpose</a>      </li>
 <br><br>
 <hr>
 <center>

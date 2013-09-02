@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::rnea&lt; Robot, false &gt; Struct Template Reference</title>
+<title>metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,86 +58,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-types">Public Types</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::rnea&lt; Robot, false &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::rnea&lt; Robot, false &gt;" -->
-<p><code>#include &lt;metapod/algos/rnea.hh&gt;</code></p>
+<!-- doxytag: class="metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;" -->
+<p><code>#include &lt;metapod/tools/spatial/rm-mulop.hh&gt;</code></p>
 
-<p><a href="a00244.html">List of all members.</a></p>
+<p><a href="a00361.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032.html">DftVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00095.html">update_force</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00096.html">update_force&lt; node_id, NO_PARENT &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00097.html">update_kinematics</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00098.html">update_kinematics&lt; node_id, NO_PARENT &gt;</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::confVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00084.html#aa3350e08a72c42eb766542fe875a7c9d">confVector</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00084.html#af1b5b26ce9907e073146c9fc6d035c04">run</a> (Robot &amp;robot, const typename Robot::confVector &amp;q, const typename Robot::confVector &amp;dq, const typename Robot::confVector &amp;ddq)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef op2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00084.html#a59bedf281093bfd4cfa78816be425b11">rm</a></td></tr>
 </table>
-<h3>template&lt;typename Robot&gt;<br/>
- struct metapod::rnea&lt; Robot, false &gt;</h3>
+<h3>template&lt;typename FloatType, class op2&gt;<br/>
+ struct metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;</h3>
 
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aa3350e08a72c42eb766542fe875a7c9d"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false &gt;::confVector" ref="aa3350e08a72c42eb766542fe875a7c9d" args="" -->
+<a class="anchor" id="a59bedf281093bfd4cfa78816be425b11"></a><!-- doxytag: member="metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;::rm" ref="a59bedf281093bfd4cfa78816be425b11" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot &gt; </div>
+template&lt;typename FloatType , class op2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Robot::confVector <a class="el" href="a00083.html">metapod::rnea</a>&lt; Robot, false &gt;::<a class="el" href="a00084.html#aa3350e08a72c42eb766542fe875a7c9d">confVector</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af1b5b26ce9907e073146c9fc6d035c04"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false &gt;::run" ref="af1b5b26ce9907e073146c9fc6d035c04" args="(Robot &amp;robot, const typename Robot::confVector &amp;q, const typename Robot::confVector &amp;dq, const typename Robot::confVector &amp;ddq)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00083.html">metapod::rnea</a>&lt; Robot, false &gt;::<a class="el" href="a00084.html#af1b5b26ce9907e073146c9fc6d035c04">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>dq</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>ddq</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
+          <td class="memname">typedef op2 <a class="el" href="a00079.html">metapod::Spatial::rm_mul_op</a>&lt; FloatType, <a class="el" href="a00100.html">RotationMatrixIdentityTpl</a>&lt; FloatType &gt;, op2 &gt;::<a class="el" href="a00084.html#a59bedf281093bfd4cfa78816be425b11">rm</a></td>
         </tr>
       </table>
 </div>
@@ -162,8 +109,9 @@ template&lt;typename Robot &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00084.html">rnea&lt; Robot, false &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00172.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00084.html">rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

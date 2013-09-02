@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Point in Chain Articular Jacobian Algorithm</title>
+<title>print.hh File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -15,7 +15,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -32,6 +32,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           </span>
         </div>
       </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -51,29 +57,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Point in Chain Articular Jacobian Algorithm</div>  </div>
+<div class="title">print.hh File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Compute articular jacobian J of a point (in body coordinates) attached to a body in a specific sub-chain of the robot kinematic tree.  
-<a href="#details">More...</a></p>
-<table class="memberdecls">
+<div class="textblock"><code>#include &lt;<a class="el" href="a00133.html">metapod/tools/depth_first_traversal.hh</a>&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for print.hh:</div>
+<div class="dyncontent">
+<div class="center"><img src="a00234.png" border="0" usemap="#print_8hh" alt=""/></div>
+<map name="print_8hh" id="print_8hh">
+<area shape="rect" id="node3" href="a00133.html" title="metapod/tools/depth_first_traversal.hh" alt="" coords="1391,86,1639,117"/><area shape="rect" id="node5" href="a00128.html" title="metapod/tools/common.hh" alt="" coords="1424,166,1605,197"/><area shape="rect" id="node9" href="a00135.html" title="metapod/tools/fwd.hh" alt="" coords="1020,566,1169,597"/><area shape="rect" id="node13" href="a00129.html" title="metapod/tools/constants.hh" alt="" coords="1577,246,1764,277"/><area shape="rect" id="node15" href="a00153.html" title="metapod/macro.hh" alt="" coords="1788,246,1921,277"/><area shape="rect" id="node17" href="a00168.html" title="metapod/tools/static_assert.hh" alt="" coords="1945,246,2148,277"/><area shape="rect" id="node23" href="a00167.html" title="metapod/tools/spatial.hh" alt="" coords="844,246,1012,277"/><area shape="rect" id="node26" href="a00154.html" title="metapod/tools/spatial/motion.hh" alt="" coords="991,326,1201,357"/><area shape="rect" id="node28" href="a00134.html" title="metapod/tools/spatial/force.hh" alt="" coords="1121,406,1324,437"/><area shape="rect" id="node32" href="a00137.html" title="metapod/tools/spatial/inertia.hh" alt="" coords="889,406,1097,437"/><area shape="rect" id="node42" href="a00169.html" title="metapod/tools/spatial/transform.hh" alt="" coords="1225,326,1452,357"/><area shape="rect" id="node46" href="a00130.html" title="metapod/tools/spatial/constraintmotion.hh" alt="" coords="488,406,757,437"/><area shape="rect" id="node95" href="a00121.html" title="metapod/tools/backward.hh" alt="" coords="628,326,815,357"/><area shape="rect" id="node35" href="a00152.html" title="metapod/tools/spatial/lti.hh" alt="" coords="1309,486,1491,517"/><area shape="rect" id="node56" href="a00166.html" title="metapod/tools/spatial/rotation&#45;matrix.hh" alt="" coords="2244,406,2497,437"/><area shape="rect" id="node49" href="a00127.html" title="metapod/tools/spatial/cm&#45;oneaxis.hh" alt="" coords="211,486,453,517"/><area shape="rect" id="node51" href="a00126.html" title="metapod/tools/spatial/cm&#45;freeflyer.hh" alt="" coords="741,486,981,517"/><area shape="rect" id="node54" href="a00125.html" title="metapod/tools/spatial/cm&#45;anyaxis.hh" alt="" coords="477,486,717,517"/><area shape="rect" id="node72" href="a00162.html" title="metapod/tools/spatial/rm&#45;general.hh" alt="" coords="3536,566,3771,597"/><area shape="rect" id="node74" href="a00157.html" title="metapod/tools/spatial/rm&#45;aboutxaxis.hh" alt="" coords="3795,566,4048,597"/><area shape="rect" id="node76" href="a00158.html" title="metapod/tools/spatial/rm&#45;aboutyaxis.hh" alt="" coords="1769,566,2023,597"/><area shape="rect" id="node78" href="a00159.html" title="metapod/tools/spatial/rm&#45;aboutzaxis.hh" alt="" coords="2444,566,2697,597"/><area shape="rect" id="node80" href="a00163.html" title="metapod/tools/spatial/rm&#45;identity.hh" alt="" coords="2920,566,3152,597"/><area shape="rect" id="node82" href="a00161.html" title="metapod/tools/spatial/rm&#45;chgaxis.hh" alt="" coords="3275,566,3512,597"/><area shape="rect" id="node84" href="a00160.html" title="metapod/tools/spatial/rm&#45;binaryop.hh" alt="" coords="1720,486,1963,517"/><area shape="rect" id="node86" href="a00164.html" title="metapod/tools/spatial/rm&#45;mulop.hh" alt="" coords="3440,486,3667,517"/></map>
+</div>
+</div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html">metapod::jac_point_chain&lt; Robot, start_node_id, end_node_id, offset, includeFreeFlyer, call_bcalc &gt;</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Point in Chain Articular Jacobian Algorithm.  <a href="a00051.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html">metapod::internal::PrintStateVisitor&lt; Robot, node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html">metapod::internal::PrintConfVisitor&lt; Robot, node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html">metapod::internal::PrintTransformsVisitor&lt; Robot, node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html">metapod::internal::PrintTorquesVisitor&lt; Robot, node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html">metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt;</a></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00152.html">metapod::internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00170.html">metapod</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Compute the kinematic jacobian. </p>
+<br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00171.html">metapod::internal</a></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename Robot &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00170.html#a173fbd19b87fc0af2b2742d27c4d7577">metapod::printState</a> (const Robot &amp;robot, std::ostream &amp;os)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename Robot &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00170.html#ae607a5457d5cb683e27949b218aac650">metapod::printConf</a> (const struct VectorNTpl&lt; typename Robot::RobotFloatType &gt;::Type &amp;q, std::ostream &amp;os)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename Robot &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00170.html#a63bdb69d5d0e2e721d9004d18d223d2b">metapod::printTransforms</a> (const Robot &amp;robot, std::ostream &amp;os)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename Robot &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00170.html#a2db27288e18d8bb16d6214f3b0035f79">metapod::printTorques</a> (Robot &amp;robot, std::ostream &amp;os)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename Robot &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00170.html#a534602abbab503ad8c015cb1c0a2fae4">metapod::getTorques</a> (Robot &amp;robot, typename Robot::confVector &amp;v)</td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<p>Compute articular jacobian J of a point (in body coordinates) attached to a body in a specific sub-chain of the robot kinematic tree. </p>
-<p>This jacobian is such that v = J*dq is the point frame spatial motion vector in world coordinates, under the sole influence of joints in the sub-chain and (optionally) a fictive free-flyer joint at the base of the sub-chain.</p>
-<p>Such a jacobian can be used to control the relative pose of a body with respect to another body.</p>
-<p>Note that the 6 first degrees of freedom of the jacobian are always wiped out: they are either excluded from the jacobian or overwritten by the fictive free-flyer contribution. As a consequence, this function is probably only useful for systems with a root free flyer joint. It will not compile if the robot has less than 6 degrees of freedom. It is included for compatibility with the jrl-dynamics library. </p>
 </div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -88,9 +114,9 @@ Namespaces</h2></td></tr>
 </iframe>
 </div>
 
-</div>
   <div id="nav-path" class="navpath">
     <ul>
+      <li class="navelem"><a class="el" href="a00156.html">print.hh</a>      </li>
 <br><br>
 <hr>
 <center>

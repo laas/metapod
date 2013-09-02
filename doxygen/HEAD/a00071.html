@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::rm_mul_op&lt; op1, RotationMatrixIdentity &gt; Struct Template Reference</title>
+<title>metapod::internal::PrintConfVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,38 +58,133 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a>  </div>
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::rm_mul_op&lt; op1, RotationMatrixIdentity &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::PrintConfVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::rm_mul_op&lt; op1, RotationMatrixIdentity &gt;" -->
-<p>Specializations.  
- <a href="a00071.html#details">More...</a></p>
+<!-- doxytag: class="metapod::internal::PrintConfVisitor" -->
+<p><code>#include &lt;metapod/tools/print.hh&gt;</code></p>
 
-<p><code>#include &lt;metapod/tools/spatial/rm-mulop.hh&gt;</code></p>
-
-<p><a href="a00327.html">List of all members.</a></p>
+<p><a href="a00332.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef op1&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html#abb7903905a11b6932ff81481407cb49e">rm</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html#abb686cb19ec5e7f511d0863969772726">FloatType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00070.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html#affacaf66e94762aec601b1339864844a">Node</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html#a20fdb015d4906a778feb6426633b2a96">discover</a> (const VectorN &amp;q, std::ostream &amp;os)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html#aa7bc7efb6f2b9ed30c9db4a85a90e208">finish</a> (const VectorN &amp;, std::ostream &amp;)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html#a45dc13c88816f9bea6a340175a372cda">METAPOD_TYPEDEFS</a></td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><h3>template&lt;class op1&gt;<br/>
-struct metapod::Spatial::rm_mul_op&lt; op1, RotationMatrixIdentity &gt;</h3>
+<h3>template&lt;typename Robot, int node_id&gt;<br/>
+ struct metapod::internal::PrintConfVisitor&lt; Robot, node_id &gt;</h3>
 
-<p>Specializations. </p>
-<p>All multiplication with the identity gives back the same identity. </p>
-</div><hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="abb7903905a11b6932ff81481407cb49e"></a><!-- doxytag: member="metapod::Spatial::rm_mul_op&lt; op1, RotationMatrixIdentity &gt;::rm" ref="abb7903905a11b6932ff81481407cb49e" args="" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="abb686cb19ec5e7f511d0863969772726"></a><!-- doxytag: member="metapod::internal::PrintConfVisitor::FloatType" ref="abb686cb19ec5e7f511d0863969772726" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class op1 &gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef op1 <a class="el" href="a00070.html">metapod::Spatial::rm_mul_op</a>&lt; op1, <a class="el" href="a00092.html">RotationMatrixIdentity</a> &gt;::<a class="el" href="a00071.html#abb7903905a11b6932ff81481407cb49e">rm</a></td>
+          <td class="memname">typedef Robot::RobotFloatType <a class="el" href="a00071.html">metapod::internal::PrintConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00071.html#abb686cb19ec5e7f511d0863969772726">FloatType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="affacaf66e94762aec601b1339864844a"></a><!-- doxytag: member="metapod::internal::PrintConfVisitor::Node" ref="affacaf66e94762aec601b1339864844a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00070.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00071.html">metapod::internal::PrintConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00071.html#affacaf66e94762aec601b1339864844a">Node</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a20fdb015d4906a778feb6426633b2a96"></a><!-- doxytag: member="metapod::internal::PrintConfVisitor::discover" ref="a20fdb015d4906a778feb6426633b2a96" args="(const VectorN &amp;q, std::ostream &amp;os)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00071.html">metapod::internal::PrintConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00071.html#a20fdb015d4906a778feb6426633b2a96">discover</a> </td>
+          <td>(</td>
+          <td class="paramtype">const VectorN &amp;&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa7bc7efb6f2b9ed30c9db4a85a90e208"></a><!-- doxytag: member="metapod::internal::PrintConfVisitor::finish" ref="aa7bc7efb6f2b9ed30c9db4a85a90e208" args="(const VectorN &amp;, std::ostream &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00071.html">metapod::internal::PrintConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00071.html#aa7bc7efb6f2b9ed30c9db4a85a90e208">finish</a> </td>
+          <td>(</td>
+          <td class="paramtype">const VectorN &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a45dc13c88816f9bea6a340175a372cda"></a><!-- doxytag: member="metapod::internal::PrintConfVisitor::METAPOD_TYPEDEFS" ref="a45dc13c88816f9bea6a340175a372cda" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00071.html">metapod::internal::PrintConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00071.html#a45dc13c88816f9bea6a340175a372cda">METAPOD_TYPEDEFS</a></td>
         </tr>
       </table>
 </div>
@@ -114,9 +210,9 @@ template&lt;class op1 &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00153.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00071.html">rm_mul_op&lt; op1, RotationMatrixIdentity &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00171.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00071.html">PrintConfVisitor</a>      </li>
 <br><br>
 <hr>
 <center>

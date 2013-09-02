@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::crba&lt; Robot, jcalc &gt; Struct Template Reference</title>
+<title>metapod::Spatial::ConstraintMotionFreeFlyerTpl&lt; FloatType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -56,15 +57,142 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
 <div id="doc-content">
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::crba&lt; Robot, jcalc &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::ConstraintMotionFreeFlyerTpl&lt; FloatType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::crba" -->
-<p><code>#include &lt;metapod/algos/crba.hh&gt;</code></p>
-<h3>template&lt;typename Robot, bool jcalc = true&gt;<br/>
- struct metapod::crba&lt; Robot, jcalc &gt;</h3>
+<!-- doxytag: class="metapod::Spatial::ConstraintMotionFreeFlyerTpl" -->
+<p><code>#include &lt;metapod/tools/spatial/cm-freeflyer.hh&gt;</code></p>
 
+<p><a href="a00338.html">List of all members.</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a5c4a480263850686e003652d8b43893d">ConstraintMotionFreeFlyerTpl</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix6d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#abb866a06f9e4fa14ae4e6eddbb02d5bc">operator*</a> (FloatType x) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector6d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#ae5b3e7a970748e78f9dcb65124bc8019">operator*</a> (const Eigen::Matrix&lt; FloatType, 6, 1 &gt; &amp;ddqi) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a004dcd353fe435e6c9f1a66e3db1f2f9">setlocalR</a> (const Matrix3d &amp;localR)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const Matrix6d &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a614788b7178e5e76aca927fb0197e91d">S</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix6d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html#a8c394d1789e386b13fc73a66672a98fd">transpose</a> () const </td></tr>
+</table>
+<h3>template&lt;class FloatType&gt;<br/>
+ class metapod::Spatial::ConstraintMotionFreeFlyerTpl&lt; FloatType &gt;</h3>
+
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a5c4a480263850686e003652d8b43893d"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionFreeFlyerTpl::ConstraintMotionFreeFlyerTpl" ref="a5c4a480263850686e003652d8b43893d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00021.html">metapod::Spatial::ConstraintMotionFreeFlyerTpl</a>&lt; FloatType &gt;::<a class="el" href="a00021.html">ConstraintMotionFreeFlyerTpl</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="abb866a06f9e4fa14ae4e6eddbb02d5bc"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionFreeFlyerTpl::operator*" ref="abb866a06f9e4fa14ae4e6eddbb02d5bc" args="(FloatType x) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix6d <a class="el" href="a00021.html">metapod::Spatial::ConstraintMotionFreeFlyerTpl</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype">FloatType&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae5b3e7a970748e78f9dcb65124bc8019"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionFreeFlyerTpl::operator*" ref="ae5b3e7a970748e78f9dcb65124bc8019" args="(const Eigen::Matrix&lt; FloatType, 6, 1 &gt; &amp;ddqi) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector6d <a class="el" href="a00021.html">metapod::Spatial::ConstraintMotionFreeFlyerTpl</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Matrix&lt; FloatType, 6, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ddqi</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a614788b7178e5e76aca927fb0197e91d"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionFreeFlyerTpl::S" ref="a614788b7178e5e76aca927fb0197e91d" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const Matrix6d&amp; <a class="el" href="a00021.html">metapod::Spatial::ConstraintMotionFreeFlyerTpl</a>&lt; FloatType &gt;::<a class="el" href="a00021.html#a614788b7178e5e76aca927fb0197e91d">S</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a004dcd353fe435e6c9f1a66e3db1f2f9"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionFreeFlyerTpl::setlocalR" ref="a004dcd353fe435e6c9f1a66e3db1f2f9" args="(const Matrix3d &amp;localR)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00021.html">metapod::Spatial::ConstraintMotionFreeFlyerTpl</a>&lt; FloatType &gt;::<a class="el" href="a00021.html#a004dcd353fe435e6c9f1a66e3db1f2f9">setlocalR</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix3d &amp;&#160;</td>
+          <td class="paramname"><em>localR</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8c394d1789e386b13fc73a66672a98fd"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionFreeFlyerTpl::transpose" ref="a8c394d1789e386b13fc73a66672a98fd" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix6d <a class="el" href="a00021.html">metapod::Spatial::ConstraintMotionFreeFlyerTpl</a>&lt; FloatType &gt;::<a class="el" href="a00021.html#a8c394d1789e386b13fc73a66672a98fd">transpose</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -83,8 +211,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00021.html">crba</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00172.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00021.html">ConstraintMotionFreeFlyerTpl</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::PrintStateVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
+<title>metapod::Spatial::ltI&lt; FloatType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,38 +58,99 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::PrintStateVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::ltI&lt; FloatType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::PrintStateVisitor" -->
-<p><code>#include &lt;metapod/tools/print.hh&gt;</code></p>
+<!-- doxytag: class="metapod::Spatial::ltI" -->
+<p><code>#include &lt;metapod/tools/spatial/lti.hh&gt;</code></p>
 
-<p><a href="a00301.html">List of all members.</a></p>
+<p><a href="a00346.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00060.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
-::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a1afdcc587ed3a080b1297efc404b3040">Node</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a341a228cf8292f9e489b93c84840d950">ltI</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a08bddaf2e3b352863232883ecea5fb36">ltI</a> (const Matrix3d &amp;I)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#af5ca9daaad3fe2cc6483495636db68e7">ltI</a> (const Vector6d &amp;I)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#ae8235d67c4a932f777012a77cbc27ca6">toMatrix</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00063.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a1dced30b74110f484fc69912c35be763">operator+</a> (const <a class="el" href="a00063.html">ltI</a> &amp;altI) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00063.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a632bc777872b8bcbdd7504aa8fc415b5">operator*</a> (FloatType a) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#af178cb854887edd7a9ad0eda7a0a0d5e">operator*</a> (const Vector3d &amp;a) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a5e4b6e7cd3b4c5468d12939ac532eb36">operator*</a> (const Matrix3d &amp;a) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#af74e1b29489d7b489ce73cbc07c1a44d">operator()</a> (int x) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#abdf6dde300e360cc1a05d4281bf4ebbc">operator+</a> (const Matrix3d &amp;a) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a40105697fd829442ff3b286ece20fe62">operator-</a> (const Matrix3d &amp;a) const </td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a6b8aff8bfd2152b4fe90dbf15e7a9b0a">discover</a> (const Robot &amp;robot, std::ostream &amp;os)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a4776cb6aa792d3fa38ff4073839e58b3">finish</a> (const Robot &amp;, std::ostream &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="a00063.html">ltI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a40867f7808781aec4fe0c638615aaeeb">Zero</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector6d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">m_ltI</a></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html#a6d70fd32c7082b91af6e82217e58cadb">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="a00063.html">ltI</a> &amp;altI)</td></tr>
 </table>
-<h3>template&lt;typename Robot, int node_id&gt;<br/>
- struct metapod::internal::PrintStateVisitor&lt; Robot, node_id &gt;</h3>
+<h3>template&lt;class FloatType&gt;<br/>
+ class metapod::Spatial::ltI&lt; FloatType &gt;</h3>
 
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a1afdcc587ed3a080b1297efc404b3040"></a><!-- doxytag: member="metapod::internal::PrintStateVisitor::Node" ref="a1afdcc587ed3a080b1297efc404b3040" args="" -->
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a341a228cf8292f9e489b93c84840d950"></a><!-- doxytag: member="metapod::Spatial::ltI::ltI" ref="a341a228cf8292f9e489b93c84840d950" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;class FloatType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00060.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00063.html">metapod::internal::PrintStateVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00063.html#a1afdcc587ed3a080b1297efc404b3040">Node</a></td>
+          <td class="memname"><a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00063.html">ltI</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="a00063.html#a632bc777872b8bcbdd7504aa8fc415b5">metapod::Spatial::ltI&lt; FloatType &gt;::operator*()</a>, and <a class="el" href="a00063.html#a40867f7808781aec4fe0c638615aaeeb">metapod::Spatial::ltI&lt; FloatType &gt;::Zero()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08bddaf2e3b352863232883ecea5fb36"></a><!-- doxytag: member="metapod::Spatial::ltI::ltI" ref="a08bddaf2e3b352863232883ecea5fb36" args="(const Matrix3d &amp;I)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00063.html">ltI</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix3d &amp;&#160;</td>
+          <td class="paramname"><em>I</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5ca9daaad3fe2cc6483495636db68e7"></a><!-- doxytag: member="metapod::Spatial::ltI::ltI" ref="af5ca9daaad3fe2cc6483495636db68e7" args="(const Vector6d &amp;I)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00063.html">ltI</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Vector6d &amp;&#160;</td>
+          <td class="paramname"><em>I</em></td><td>)</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -97,28 +159,216 @@ template&lt;typename Robot , int node_id&gt; </div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a6b8aff8bfd2152b4fe90dbf15e7a9b0a"></a><!-- doxytag: member="metapod::internal::PrintStateVisitor::discover" ref="a6b8aff8bfd2152b4fe90dbf15e7a9b0a" args="(const Robot &amp;robot, std::ostream &amp;os)" -->
+<a class="anchor" id="af74e1b29489d7b489ce73cbc07c1a44d"></a><!-- doxytag: member="metapod::Spatial::ltI::operator()" ref="af74e1b29489d7b489ce73cbc07c1a44d" args="(int x) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;class FloatType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00063.html">metapod::internal::PrintStateVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00063.html#a6b8aff8bfd2152b4fe90dbf15e7a9b0a">discover</a> </td>
+          <td class="memname">FloatType <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>() </td>
           <td>(</td>
-          <td class="paramtype">const Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a632bc777872b8bcbdd7504aa8fc415b5"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="a632bc777872b8bcbdd7504aa8fc415b5" args="(FloatType a) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00063.html">ltI</a> <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype">FloatType&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a341a228cf8292f9e489b93c84840d950">metapod::Spatial::ltI&lt; FloatType &gt;::ltI()</a>, and <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af178cb854887edd7a9ad0eda7a0a0d5e"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="af178cb854887edd7a9ad0eda7a0a0d5e" args="(const Vector3d &amp;a) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3d <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5e4b6e7cd3b4c5468d12939ac532eb36"></a><!-- doxytag: member="metapod::Spatial::ltI::operator*" ref="a5e4b6e7cd3b4c5468d12939ac532eb36" args="(const Matrix3d &amp;a) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix3d <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix3d &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1dced30b74110f484fc69912c35be763"></a><!-- doxytag: member="metapod::Spatial::ltI::operator+" ref="a1dced30b74110f484fc69912c35be763" args="(const ltI &amp;altI) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00063.html">ltI</a> <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00063.html">ltI</a>&lt; FloatType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>altI</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abdf6dde300e360cc1a05d4281bf4ebbc"></a><!-- doxytag: member="metapod::Spatial::ltI::operator+" ref="abdf6dde300e360cc1a05d4281bf4ebbc" args="(const Matrix3d &amp;a) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix3d <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>+ </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix3d &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a40105697fd829442ff3b286ece20fe62"></a><!-- doxytag: member="metapod::Spatial::ltI::operator&#45;" ref="a40105697fd829442ff3b286ece20fe62" args="(const Matrix3d &amp;a) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix3d <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>- </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix3d &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae8235d67c4a932f777012a77cbc27ca6"></a><!-- doxytag: member="metapod::Spatial::ltI::toMatrix" ref="ae8235d67c4a932f777012a77cbc27ca6" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix3d <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00063.html#ae8235d67c4a932f777012a77cbc27ca6">toMatrix</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>, and <a class="el" href="a00125.html#a4545457c251274b67b7f55adb0e5ea0e">tmp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a40867f7808781aec4fe0c638615aaeeb"></a><!-- doxytag: member="metapod::Spatial::ltI::Zero" ref="a40867f7808781aec4fe0c638615aaeeb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="a00063.html">ltI</a> <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00063.html#a40867f7808781aec4fe0c638615aaeeb">Zero</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00063.html#a341a228cf8292f9e489b93c84840d950">metapod::Spatial::ltI&lt; FloatType &gt;::ltI()</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Friends And Related Function Documentation</h2>
+<a class="anchor" id="a6d70fd32c7082b91af6e82217e58cadb"></a><!-- doxytag: member="metapod::Spatial::ltI::operator&lt;&lt;" ref="a6d70fd32c7082b91af6e82217e58cadb" args="(std::ostream &amp;os, const ltI &amp;altI)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; <a class="el" href="a00172.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="a00063.html">ltI</a>&lt; FloatType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>altI</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
+          <td></td><td><code> [friend]</code></td>
         </tr>
       </table>
 </div>
@@ -126,32 +376,21 @@ template&lt;typename Robot , int node_id&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a4776cb6aa792d3fa38ff4073839e58b3"></a><!-- doxytag: member="metapod::internal::PrintStateVisitor::finish" ref="a4776cb6aa792d3fa38ff4073839e58b3" args="(const Robot &amp;, std::ostream &amp;)" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a92656a9dab6c96b1a16ce6d0e74edcc9"></a><!-- doxytag: member="metapod::Spatial::ltI::m_ltI" ref="a92656a9dab6c96b1a16ce6d0e74edcc9" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;class FloatType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00063.html">metapod::internal::PrintStateVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00063.html#a4776cb6aa792d3fa38ff4073839e58b3">finish</a> </td>
-          <td>(</td>
-          <td class="paramtype">const Robot &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
+          <td class="memname">Vector6d <a class="el" href="a00063.html">metapod::Spatial::ltI</a>&lt; FloatType &gt;::<a class="el" href="a00063.html#a92656a9dab6c96b1a16ce6d0e74edcc9">m_ltI</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Referenced by <a class="el" href="a00101.html#ac87860e09e321b1eaf5f249b09680830">metapod::Spatial::RotationMatrixTpl&lt; FloatType &gt;::decomposeltI()</a>, <a class="el" href="a00063.html#a08bddaf2e3b352863232883ecea5fb36">metapod::Spatial::ltI&lt; FloatType &gt;::ltI()</a>, <a class="el" href="a00063.html#af74e1b29489d7b489ce73cbc07c1a44d">metapod::Spatial::ltI&lt; FloatType &gt;::operator()()</a>, <a class="el" href="a00063.html#a632bc777872b8bcbdd7504aa8fc415b5">metapod::Spatial::ltI&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00063.html#a1dced30b74110f484fc69912c35be763">metapod::Spatial::ltI&lt; FloatType &gt;::operator+()</a>, <a class="el" href="a00063.html#a40105697fd829442ff3b286ece20fe62">metapod::Spatial::ltI&lt; FloatType &gt;::operator-()</a>, <a class="el" href="a00098.html#ae5b6f9651de9508fb87bc380df1b4182">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00097.html#ac2cdde8b3d74116b05431462ebbc912e">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00101.html#afa44fe332d71f9581f6af185b3fa07cd">metapod::Spatial::RotationMatrixTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00096.html#a5e250307680a2fa2b9cfffd422030cec">metapod::Spatial::RotationMatrixAboutXTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00099.html#a17b79e1adf395b2932b02c5987ef9da9">metapod::Spatial::RotationMatrixChangeAxisTpl&lt; FloatType, traits &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00101.html#a70444cf2da75ab11f8769f3eba0141aa">metapod::Spatial::RotationMatrixTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00098.html#a7b72176224f2ec31bb639eae7fa5c769">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00097.html#aa9d7a34c271d601f2c0664c87945aec5">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00096.html#ac0ffd0a0effff4aafd6032138a40fada">metapod::Spatial::RotationMatrixAboutXTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, and <a class="el" href="a00063.html#ae8235d67c4a932f777012a77cbc27ca6">metapod::Spatial::ltI&lt; FloatType &gt;::toMatrix()</a>.</p>
 
 </div>
 </div>
@@ -173,9 +412,9 @@ template&lt;typename Robot , int node_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00152.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00063.html">PrintStateVisitor</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00172.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00063.html">ltI</a>      </li>
 <br><br>
 <hr>
 <center>

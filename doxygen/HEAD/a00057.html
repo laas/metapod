@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::JcalcVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
+<title>metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -58,37 +59,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::JcalcVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::JcalcVisitor" -->
-<p><code>#include &lt;metapod/tools/jcalc.hh&gt;</code></p>
+<!-- doxytag: class="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;" -->
+<p>Specialization of jac_point_chain_internal_free-flyer: do nothing if freeflyer joint is not included in jacobian.  
+ <a href="a00057.html#details">More...</a></p>
 
-<p><a href="a00300.html">List of all members.</a></p>
+<p><code>#include &lt;metapod/algos/jac_point_chain.hh&gt;</code></p>
+
+<p><a href="a00315.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00060.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
-::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#ad76142fbbbe464121d6c64b31f4958f8">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#adb6291eec076ef93741d0e6b2483e73b">FloatType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00056.html">jac_point_chain</a>&lt; Robot, <br class="typebreak"/>
+start_node_id, end_node_id, <br class="typebreak"/>
+offset, false &gt;::<a class="el" href="a00057.html#a4e4911f8a71e01362e86f4bea13d7c08">Jacobian</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#a4e4911f8a71e01362e86f4bea13d7c08">Jacobian</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#a3bb07ac48a1dcafc5e656c0d83d10be6">discover</a> (Robot &amp;robot, const typename Robot::confVector &amp;q, const typename Robot::confVector &amp;dq)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#aafd7f28e2c0e93eed088234708f1b8f5">finish</a> (Robot &amp;, const typename Robot::confVector &amp;, const typename Robot::confVector &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#a842914aa848df6587d1411491dc912ea">run</a> (Robot &amp;, const Vector3d &amp;, <a class="el" href="a00057.html#a4e4911f8a71e01362e86f4bea13d7c08">Jacobian</a> &amp;)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#a8f729c33c806067e10462c65891e8130">METAPOD_TYPEDEFS</a></td></tr>
 </table>
-<h3>template&lt;typename Robot, int node_id&gt;<br/>
- struct metapod::internal::JcalcVisitor&lt; Robot, node_id &gt;</h3>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Robot, int start_node_id, int end_node_id, int offset&gt;<br/>
+struct metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;</h3>
 
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="ad76142fbbbe464121d6c64b31f4958f8"></a><!-- doxytag: member="metapod::internal::JcalcVisitor::Node" ref="ad76142fbbbe464121d6c64b31f4958f8" args="" -->
+<p>Specialization of jac_point_chain_internal_free-flyer: do nothing if freeflyer joint is not included in jacobian. </p>
+</div><hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="adb6291eec076ef93741d0e6b2483e73b"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::FloatType" ref="adb6291eec076ef93741d0e6b2483e73b" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00060.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00057.html">metapod::internal::JcalcVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00057.html#ad76142fbbbe464121d6c64b31f4958f8">Node</a></td>
+          <td class="memname">typedef Robot::RobotFloatType metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::<a class="el" href="a00057.html#adb6291eec076ef93741d0e6b2483e73b">FloatType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4e4911f8a71e01362e86f4bea13d7c08"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::Jacobian" ref="a4e4911f8a71e01362e86f4bea13d7c08" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00056.html">jac_point_chain</a>&lt;Robot, start_node_id, end_node_id, offset, false &gt;::<a class="el" href="a00057.html#a4e4911f8a71e01362e86f4bea13d7c08">Jacobian</a> metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::<a class="el" href="a00057.html#a4e4911f8a71e01362e86f4bea13d7c08">Jacobian</a></td>
         </tr>
       </table>
 </div>
@@ -97,29 +123,29 @@ template&lt;typename Robot , int node_id&gt; </div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a3bb07ac48a1dcafc5e656c0d83d10be6"></a><!-- doxytag: member="metapod::internal::JcalcVisitor::discover" ref="a3bb07ac48a1dcafc5e656c0d83d10be6" args="(Robot &amp;robot, const typename Robot::confVector &amp;q, const typename Robot::confVector &amp;dq)" -->
+<a class="anchor" id="a842914aa848df6587d1411491dc912ea"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::run" ref="a842914aa848df6587d1411491dc912ea" args="(Robot &amp;, const Vector3d &amp;, Jacobian &amp;)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00057.html">metapod::internal::JcalcVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00057.html#a3bb07ac48a1dcafc5e656c0d83d10be6">discover</a> </td>
+          <td class="memname">static void metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::<a class="el" href="a00057.html#a842914aa848df6587d1411491dc912ea">run</a> </td>
           <td>(</td>
           <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>q</em>, </td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>dq</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00057.html#a4e4911f8a71e01362e86f4bea13d7c08">Jacobian</a> &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -132,34 +158,15 @@ template&lt;typename Robot , int node_id&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aafd7f28e2c0e93eed088234708f1b8f5"></a><!-- doxytag: member="metapod::internal::JcalcVisitor::finish" ref="aafd7f28e2c0e93eed088234708f1b8f5" args="(Robot &amp;, const typename Robot::confVector &amp;, const typename Robot::confVector &amp;)" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a8f729c33c806067e10462c65891e8130"></a><!-- doxytag: member="metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::METAPOD_TYPEDEFS" ref="a8f729c33c806067e10462c65891e8130" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot , int start_node_id, int end_node_id, int offset&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00057.html">metapod::internal::JcalcVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00057.html#aafd7f28e2c0e93eed088234708f1b8f5">finish</a> </td>
-          <td>(</td>
-          <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
+          <td class="memname">metapod::internal::jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;::<a class="el" href="a00057.html#a8f729c33c806067e10462c65891e8130">METAPOD_TYPEDEFS</a></td>
         </tr>
       </table>
 </div>
@@ -185,9 +192,9 @@ template&lt;typename Robot , int node_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00152.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00057.html">JcalcVisitor</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00171.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00057.html">jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

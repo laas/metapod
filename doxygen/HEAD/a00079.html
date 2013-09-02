@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt; Struct Template Reference</title>
+<title>metapod::Spatial::rm_mul_op&lt; FloatType, op1, op2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,33 +58,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::rm_mul_op&lt; FloatType, op1, op2 &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;" -->
-<p><code>#include &lt;metapod/tools/spatial/rm-chgaxis.hh&gt;</code></p>
+<!-- doxytag: class="metapod::Spatial::rm_mul_op" -->
+<p>This template implements the type conversion for the multiplication between rotation matrix.  
+ <a href="a00079.html#details">More...</a></p>
 
-<p><a href="a00333.html">List of all members.</a></p>
+<p><code>#include &lt;metapod/tools/spatial/rm-mulop.hh&gt;</code></p>
+
+<p><a href="a00359.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00079.html#aad5c9b5169edb815208e0602855b8019">ind</a> = traits::ind_X</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00079.html#a1f75f8fceeb2c36689c9a242e00d14d1">value</a> = traits::value_X</td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef RotationMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00079.html#a1538d047a20834b7c0147d59f741b1e8">rm</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00079.html#a698445f4efdf29cb062bbf75ac7cb90a">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a></td></tr>
 </table>
-<h3>template&lt;typename traits&gt;<br/>
- struct metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;</h3>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename FloatType, class op1, class op2&gt;<br/>
+struct metapod::Spatial::rm_mul_op&lt; FloatType, op1, op2 &gt;</h3>
 
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aad5c9b5169edb815208e0602855b8019"></a><!-- doxytag: member="metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::ind" ref="aad5c9b5169edb815208e0602855b8019" args="" -->
+<p>This template implements the type conversion for the multiplication between rotation matrix. </p>
+<p>This ensure to have the more compact representation for a rotation matrix. </p>
+</div><hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a1538d047a20834b7c0147d59f741b1e8"></a><!-- doxytag: member="metapod::Spatial::rm_mul_op::rm" ref="a1538d047a20834b7c0147d59f741b1e8" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits &gt; </div>
+template&lt;typename FloatType, class op1, class op2&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::<a class="el" href="a00079.html#aad5c9b5169edb815208e0602855b8019">ind</a> = traits::ind_X<code> [static]</code></td>
+          <td class="memname">typedef RotationMatrix <a class="el" href="a00079.html">metapod::Spatial::rm_mul_op</a>&lt; FloatType, op1, op2 &gt;::<a class="el" href="a00079.html#a1538d047a20834b7c0147d59f741b1e8">rm</a></td>
         </tr>
       </table>
 </div>
@@ -91,14 +101,15 @@ template&lt;typename traits &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a1f75f8fceeb2c36689c9a242e00d14d1"></a><!-- doxytag: member="metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::value" ref="a1f75f8fceeb2c36689c9a242e00d14d1" args="" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a698445f4efdf29cb062bbf75ac7cb90a"></a><!-- doxytag: member="metapod::Spatial::rm_mul_op::METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF" ref="a698445f4efdf29cb062bbf75ac7cb90a" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits &gt; </div>
+template&lt;typename FloatType, class op1, class op2&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::<a class="el" href="a00079.html#a1f75f8fceeb2c36689c9a242e00d14d1">value</a> = traits::value_X<code> [static]</code></td>
+          <td class="memname"><a class="el" href="a00079.html">metapod::Spatial::rm_mul_op</a>&lt; FloatType, op1, op2 &gt;::<a class="el" href="a00079.html#a698445f4efdf29cb062bbf75ac7cb90a">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a></td>
         </tr>
       </table>
 </div>
@@ -124,10 +135,9 @@ template&lt;typename traits &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00153.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00154.html">Internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00079.html">rmca_traits_ref&lt; traits, 0 &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00172.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00079.html">rm_mul_op</a>      </li>
 <br><br>
 <hr>
 <center>

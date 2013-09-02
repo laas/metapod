@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::is_ancestor&lt; Robot, NO_PARENT, NO_PARENT &gt; Struct Template Reference</title>
+<title>metapod::has_parent&lt; Robot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -57,32 +58,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::is_ancestor&lt; Robot, NO_PARENT, NO_PARENT &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::has_parent&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::is_ancestor&lt; Robot, NO_PARENT, NO_PARENT &gt;" -->
-<p><code>#include &lt;metapod/tools/is_ancestor.hh&gt;</code></p>
+<!-- doxytag: class="metapod::has_parent" -->
+<p>value member variable is false if Node has no parent.  
+ <a href="a00045.html#details">More...</a></p>
 
-<p><a href="a00268.html">List of all members.</a></p>
+<p><code>#include &lt;metapod/tools/has_parent.hh&gt;</code></p>
+
+<p><a href="a00294.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00070.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html#a42ec98e6d9b90496367f849323f1f4bc">Node</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html#a3ea589b440c746eeacf0b75b571c81ca">value</a> = true</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html#ac029db892030b6575b6f1aba50a6df9b">value</a> = !<a class="el" href="a00053.html">is_NO_PARENT</a>&lt;Robot, Node::parent_id&gt;::<a class="el" href="a00045.html#ac029db892030b6575b6f1aba50a6df9b">value</a></td></tr>
 </table>
-<h3>template&lt;typename Robot&gt;<br/>
- struct metapod::is_ancestor&lt; Robot, NO_PARENT, NO_PARENT &gt;</h3>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Robot, int node_id&gt;<br/>
+struct metapod::has_parent&lt; Robot, node_id &gt;</h3>
 
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a3ea589b440c746eeacf0b75b571c81ca"></a><!-- doxytag: member="metapod::is_ancestor&lt; Robot, NO_PARENT, NO_PARENT &gt;::value" ref="a3ea589b440c746eeacf0b75b571c81ca" args="" -->
+<p>value member variable is false if Node has no parent. </p>
+<p>That is, if it's parent is NP (no parent) and true otherwise. </p>
+</div><hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a42ec98e6d9b90496367f849323f1f4bc"></a><!-- doxytag: member="metapod::has_parent::Node" ref="a42ec98e6d9b90496367f849323f1f4bc" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot &gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00044.html">metapod::is_ancestor</a>&lt; Robot, <a class="el" href="a00151.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a>, <a class="el" href="a00151.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00045.html#a3ea589b440c746eeacf0b75b571c81ca">value</a> = true<code> [static]</code></td>
+          <td class="memname">typedef <a class="el" href="a00070.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00045.html">metapod::has_parent</a>&lt; Robot, node_id &gt;::<a class="el" href="a00045.html#a42ec98e6d9b90496367f849323f1f4bc">Node</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ac029db892030b6575b6f1aba50a6df9b"></a><!-- doxytag: member="metapod::has_parent::value" ref="ac029db892030b6575b6f1aba50a6df9b" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00045.html">metapod::has_parent</a>&lt; Robot, node_id &gt;::<a class="el" href="a00045.html#ac029db892030b6575b6f1aba50a6df9b">value</a> = !<a class="el" href="a00053.html">is_NO_PARENT</a>&lt;Robot, Node::parent_id&gt;::<a class="el" href="a00045.html#ac029db892030b6575b6f1aba50a6df9b">value</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -108,8 +136,8 @@ template&lt;typename Robot &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00151.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00045.html">is_ancestor&lt; Robot, NO_PARENT, NO_PARENT &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00045.html">has_parent</a>      </li>
 <br><br>
 <hr>
 <center>
