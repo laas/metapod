@@ -162,6 +162,7 @@ IF(NOT CMAKE_CROSSCOMPILING)
   FIND_PACKAGE(URDFDOM QUIET)
   IF(URDFDOM_FOUND)
     SET(BUILD_METAPODFROMURDF_DEFAULT TRUE)
+    INCLUDE_DIRECTORIES(${urdfdom_INCLUDE_DIRS})
   ELSE()
     # urdfdom is not available alone, but if ros is there, we'll use liburdf
     # instead and assume we are using fuerte.
