@@ -31,7 +31,7 @@
 #include <cassert>
 #include <boost/version.hpp>
 // check the version in case the cmake boost timer detection is flawed
-#if defined(WITH_BOOST_TIMER) && BOOST_VERSION <= 104800
+#if defined(WITH_BOOST_TIMER) && BOOST_VERSION < 104800
 # undef WITH_BOOST_TIMER
 #endif
 #ifdef WITH_BOOST_TIMER
