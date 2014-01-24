@@ -133,3 +133,8 @@ Known Bugs
  He also found out that it is related to a bug with timers in boost 1.40.
  Please use boot 1.48 to fix it.
  
+
+ * NP is mandatory
+ 
+ Benjamin Chretien pointed out that a dummy root link is necessary as
+ a Galilean Frame for the urdf file parser of metapod.
