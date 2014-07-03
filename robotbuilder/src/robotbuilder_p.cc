@@ -457,25 +457,25 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
     std::stringstream ss0;
     ss0 << "matrix3dMaker<FloatType>("
         << model_.R_joint_parent(link_id).format(comma_fmt)
-        << "f )";
+        << " )";
     repl["R_joint_parent"] = ss0.str();
   }
   std::stringstream ss1;
   ss1 << "Vector3dTpl<FloatType>::Type("
       << model_.r_parent_joint(link_id).format(comma_fmt)
-      << "f )";
+      << " )";
   repl["r_parent_joint"] = ss1.str();
   repl["body_name"] = model_.body_name(link_id);
   repl["body_mass"] = ::to_string(model_.body_mass(link_id));
   std::stringstream ss2;
   ss2 << "Vector3dTpl<FloatType>::Type("
       << model_.body_center_of_mass(link_id).format(comma_fmt)
-      << "f )";
+      << " )";
   repl["body_center_of_mass"] = ss2.str();
   std::stringstream ss3;
   ss3 << "matrix3dMaker<FloatType>("
       << model_.body_rotational_inertia(link_id).format(comma_fmt)
-      << "f )";
+      << " )";
   repl["body_rotational_inertia"] = ss3.str();
   repl["parent_id"] = ::to_string(parent_id);
 

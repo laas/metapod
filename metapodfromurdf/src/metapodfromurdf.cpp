@@ -252,6 +252,8 @@ int main(int argc, char** argv) {
   config.add_options()
     ("name", po::value<std::string>(),
      "the robot name")
+    ("metapod-default-float-type", po::value<std::string>(),
+     "default metapod float type")
     ("libname", po::value<std::string>(),
      "the library name, used for DLL symbol import/export. If omitted, the "
      "value of the name option will be used")
@@ -389,12 +391,17 @@ int main(int argc, char** argv) {
   if (vm.count("name")) {
     builder.set_name(vm["name"].as<std::string>());
   }
+  if (vm.count("metapod-default-float-type")) {
+    builder.set_metapod_default_float_type(vm["metapod-default-float-type"].as<std::string>());
+  }
+  
   if (vm.count("libname")) {
     builder.set_libname(vm["libname"].as<std::string>());
   }
   else if (vm.count("name")) {
     builder.set_libname(vm["name"].as<std::string>());
   }
+  
   if (vm.count("directory")) {
     builder.set_directory(vm["directory"].as<std::string>());
   }

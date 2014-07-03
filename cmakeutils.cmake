@@ -81,6 +81,7 @@ FUNCTION(ADD_SAMPLEURDFMODEL name)
     OUTPUT ${_sources}
     COMMAND ${METAPODFROMURDF_EXECUTABLE}
     --name ${name}
+    --metapod-default-float-type ${METAPOD_DEFAULT_FLOAT_TYPE}
     --libname ${_libname}
     --directory ${_model_dir}
     --config-file ${_config_file}

@@ -30,7 +30,7 @@
 using namespace metapod;
 
 DEFAULT_FLOAT_TYPE;
-typedef CURRENT_MODEL_ROBOT<FloatType> CURRENT_MODEL_ROBOT_LFT;
+typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
 BOOST_AUTO_TEST_CASE (test_jac_point)
 {
   // Set configuration vectors (q) to reference values.

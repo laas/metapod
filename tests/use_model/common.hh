@@ -23,7 +23,7 @@
 #ifndef METAPOD_TESTS_USE_MODEL_COMMON_HH
 # define  METAPOD_TESTS_USE_MODEL_COMMON_HH
 
-# include "../common.hh"
+# include <tests/common.hh>
 
 // metapod includes
 # ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID
