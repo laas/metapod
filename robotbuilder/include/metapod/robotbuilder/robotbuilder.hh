@@ -46,6 +46,7 @@ public:
   RobotBuilder();
   ~RobotBuilder();
   Status set_name(const std::string& name);
+  Status set_metapod_default_float_type(const std::string &metapod_default_float_type);
   Status set_libname(const std::string& libname);
   Status set_directory(const std::string& directory);
   Status set_use_dof_index(bool);

@@ -28,7 +28,7 @@
 
 using namespace metapod;
 
-typedef double LocalFloatType;
+DEFAULT_FLOAT_TYPE;
 typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
 
 BOOST_AUTO_TEST_CASE (test_jac)

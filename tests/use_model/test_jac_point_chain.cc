@@ -41,7 +41,7 @@ using namespace metapod;
   static const int offset = 6; // offset >3 is needed to ensure J.cols() >0
 #endif
 
-typedef double LocalFloatType;
+DEFAULT_FLOAT_TYPE;
 typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
 
 BOOST_AUTO_TEST_CASE (test_jac_point_chain)

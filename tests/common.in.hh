@@ -33,6 +33,8 @@
 # define BOOST_TEST_MODULE METAPOD
 # include <boost/test/unit_test.hpp>
 
+#define DEFAULT_FLOAT_TYPE typedef @METAPOD_DEFAULT_FLOAT_TYPE@ LocalFloatType
+
 // Converts a string to a double if possible, returns false otherwise
 bool stringToDouble( const std::string& s, double& x )
 {

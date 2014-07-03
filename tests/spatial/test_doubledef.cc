@@ -20,7 +20,7 @@
 // units without triggering "double definition" errors at link-time.
 // Running the test is not relevant (but compiling it is).
 
-#include "../common.hh"
+#include <tests/common.hh>
 #include <metapod/tools/spatial.hh>
 #include "doubledef.hh"
 

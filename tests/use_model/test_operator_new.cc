@@ -28,8 +28,7 @@
 #include <boost/scoped_ptr.hpp>
 
 using namespace metapod;
-
-typedef double LocalFloatType;
+DEFAULT_FLOAT_TYPE;
 BOOST_AUTO_TEST_CASE (test_operator_new)
 {
   typedef CURRENT_MODEL_ROBOT<LocalFloatType> Robot;

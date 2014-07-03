@@ -39,7 +39,7 @@ using namespace metapod::benchmark;
 
 int main()
 {
-  typedef double FloatType;
+  typedef @METAPOD_DEFAULT_FLOAT_TYPE@ FloatType;
 
 #ifdef WITH_SIMPLE_HUMANOID
   benchmark<metapod::simple_humanoid<FloatType> >::run();

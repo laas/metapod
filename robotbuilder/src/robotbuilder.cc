@@ -42,6 +42,13 @@ RobotBuilder::Status RobotBuilder::set_name(const std::string & name)
   return pimpl_->set_name(name);
 }
 
+RobotBuilder::Status RobotBuilder::set_metapod_default_float_type
+(const std::string & metapod_default_float_type)
+{
+  return pimpl_->set_metapod_default_float_type
+    (metapod_default_float_type);
+}
+
 RobotBuilder::Status RobotBuilder::set_libname(const std::string & libname)
 {
   return pimpl_->set_libname(libname);

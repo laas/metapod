@@ -5,7 +5,7 @@
 #define EIGEN_DONT_VECTORIZE
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
 
-#include "../common.hh"
+#include <tests/common.hh>
 #include <Eigen/Eigen>
 #include <cmath>
 #include <boost/scoped_ptr.hpp>

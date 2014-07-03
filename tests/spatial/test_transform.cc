@@ -16,7 +16,9 @@
 // along with metapod. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
-#include "../common.hh"
+#include <tests/common.hh>
+
+#define FloatType LocalFloatType
 
 #include <metapod/tools/joint.hh>
 
@@ -51,7 +53,7 @@ struct TestTransform
 
 BOOST_AUTO_TEST_CASE(test_transform)
 {
-  typedef double FloatType;
+  DEFAULT_FLOAT_TYPE;
   TestTransform<FloatType, Spatial::RotationMatrixAboutXTpl<FloatType> > testx;
   testx.run();
   TestTransform<FloatType, Spatial::RotationMatrixAboutYTpl<FloatType> > testy;

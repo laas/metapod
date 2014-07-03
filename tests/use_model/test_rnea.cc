@@ -25,7 +25,8 @@
 
 using namespace metapod;
 
-typedef double LocalFloatType;
+DEFAULT_FLOAT_TYPE;
+
 BOOST_AUTO_TEST_CASE (test_rnea)
 {
   typedef CURRENT_MODEL_ROBOT<LocalFloatType> Robot;

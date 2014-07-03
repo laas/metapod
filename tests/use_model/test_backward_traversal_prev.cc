@@ -23,7 +23,7 @@
 
 using namespace metapod;
 
-typedef double LocalFloatType;
+DEFAULT_FLOAT_TYPE;
 
 // start at the hand and finish with the arm
 #ifdef CURRENT_MODEL_IS_SIMPLE_HUMANOID

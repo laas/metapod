@@ -37,7 +37,7 @@ IF(WITH_METAPOD_BINARYTREEMODEL)
             ${CMAKE_CURRENT_BINARY_DIR}/models/${_libname}/config.hh)
         ADD_CUSTOM_COMMAND(
             OUTPUT ${_sources}
-            COMMAND ${METAPOD_BINARYTREEMODEL_EXECUTABLE} ${depth}
+            COMMAND ${METAPOD_BINARYTREEMODEL_EXECUTABLE} ${depth} ${METAPOD_DEFAULT_FLOAT_TYPE}
             DEPENDS ${METAPOD_BINARYTREEMODEL_EXECUTABLE})
         ADD_LIBRARY(${_libname} SHARED ${_sources})
 
@@ -104,8 +104,13 @@ ENDIF()
 
 # and finally, a benchmark which runs all models at once
 IF(BUILD_MULTI_MODEL_BENCHMARK AND _model_libs)
-    SET_SOURCE_FILES_PROPERTIES("benchmark.cc" PROPERTIES
+  CONFIGURE_FILE(
+    ${CMAKE_CURRENT_SOURCE_DIR}/benchmark_all.in.cc
+    ${CMAKE_CURRENT_BINARY_DIR}/benchmark_all.cc
+    @ONLY)
+
+    SET_SOURCE_FILES_PROPERTIES("benchmark_all.cc" PROPERTIES
         COMPILE_FLAGS "${benchmark_cc_definitions}")
-    ADD_EXECUTABLE(benchmark benchmark.cc benchmark.hh)
+    ADD_EXECUTABLE(benchmark ${CMAKE_CURRENT_BINARY_DIR}/benchmark_all.cc benchmark.hh)
     TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
 ENDIF()

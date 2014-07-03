@@ -37,6 +37,8 @@ public:
   RobotBuilderP();
   ~RobotBuilderP();
   RobotBuilder::Status set_name(const std::string& name);
+  RobotBuilder::Status set_metapod_default_float_type
+  (const std::string &metapod_default_float_type);
   RobotBuilder::Status set_libname(const std::string& libname);
   RobotBuilder::Status set_directory(const std::string& directory);
   RobotBuilder::Status set_use_dof_index(bool);
@@ -93,6 +95,7 @@ private:
   bool use_dof_index_;
   RobotModel model_;
   std::string name_;
+  std::string metapod_default_float_type_;
   std::string libname_;
   std::string directory_;
   std::string license_;

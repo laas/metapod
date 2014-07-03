@@ -45,7 +45,8 @@ template < typename Robot, int node_id > struct PrintDFTraversalVisitor
   }
 };
 
-typedef double LocalFloatType;
+DEFAULT_FLOAT_TYPE;
+
 BOOST_AUTO_TEST_CASE (test_depth_first_traversal)
 {
   typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;

@@ -199,6 +199,19 @@ RobotBuilder::Status RobotBuilderP::set_name(const std::string & name)
   return RobotBuilder::STATUS_SUCCESS;
 }
 
+RobotBuilder::Status RobotBuilderP::set_metapod_default_float_type
+(const std::string & metapod_default_float_type)
+{
+  if (!::isReservedKeyword(metapod_default_float_type)) {
+    std::cerr
+        << "ERROR: Default float type \"" << metapod_default_float_type << "\" is invalid."
+        << std::endl;
+    return RobotBuilder::STATUS_FAILURE;
+  }
+  metapod_default_float_type_ = metapod_default_float_type;
+  return RobotBuilder::STATUS_SUCCESS;
+}
+
 RobotBuilder::Status RobotBuilderP::set_libname(const std::string& name)
 {
   if (!::isValidIdentifier(name)) {
@@ -444,25 +457,25 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
     std::stringstream ss0;
     ss0 << "matrix3dMaker<FloatType>("
         << model_.R_joint_parent(link_id).format(comma_fmt)
-        << ")";
+        << "f )";
     repl["R_joint_parent"] = ss0.str();
   }
   std::stringstream ss1;
   ss1 << "Vector3dTpl<FloatType>::Type("
       << model_.r_parent_joint(link_id).format(comma_fmt)
-      << ")";
+      << "f )";
   repl["r_parent_joint"] = ss1.str();
   repl["body_name"] = model_.body_name(link_id);
   repl["body_mass"] = ::to_string(model_.body_mass(link_id));
   std::stringstream ss2;
   ss2 << "Vector3dTpl<FloatType>::Type("
       << model_.body_center_of_mass(link_id).format(comma_fmt)
-      << ")";
+      << "f )";
   repl["body_center_of_mass"] = ss2.str();
   std::stringstream ss3;
   ss3 << "matrix3dMaker<FloatType>("
       << model_.body_rotational_inertia(link_id).format(comma_fmt)
-      << ")";
+      << "f )";
   repl["body_rotational_inertia"] = ss3.str();
   repl["parent_id"] = ::to_string(parent_id);
 
@@ -519,7 +532,7 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
 
   // fill bits for init.cc
   const TxtTemplate tpl4(
-      "typedef double FloatType;\n"
+      "typedef @METAPOD_DEFAULT_FLOAT_TYPE@ FloatType;\n"
       "template <> const std::string @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::joint_name = std::string(\"@joint_name@\");\n"
       "template <> const std::string @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::body_name = std::string(\"@body_name@\");\n"
       "template <> const @X_joint_parent_type@ @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@::Xt = @X_joint_parent_type@(\n"
@@ -585,6 +598,7 @@ RobotBuilder::Status RobotBuilderP::write() const
   repl["EXPORT_SYMBOL"] = export_symbol.str();
   repl["ROBOT_CLASS_NAME"] = name_;
   repl["ROBOT_NAME"] = name_;
+  repl["METAPOD_DEFAULT_FLOAT_TYPE"] = metapod_default_float_type_;
   repl["LICENSE"] = license_;
   repl["ROBOT_NB_DOF"] = ::to_string(nb_dof_);
   repl["ROBOT_NB_BODIES"] = ::to_string(model_.nb_links());

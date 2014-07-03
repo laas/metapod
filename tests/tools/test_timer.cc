@@ -1,10 +1,10 @@
-#include "../common.hh"
+#include <tests/common.hh>
 #include <metapod/timer/timer.hh>
 #include <memory>
 #include <cmath>
 
 void burn_some_time() {
-  volatile float res = 0;
+  volatile double res = 0;
   const int NB_ITERATIONS=10000;
   for(int i=0; i<NB_ITERATIONS; ++i) {
     res += std::pow(-1., 2) * std::sqrt(static_cast<double>(i));

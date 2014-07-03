@@ -75,11 +75,14 @@ void buildTree(metapod::RobotBuilder & builder, int* label, int max_depth,
   }
 }
 
-void generate_model(const std::string & name, int depth)
+void generate_model(const std::string & name, 
+                    int depth,
+                    const std::string & default_float_type)
 {
   metapod::RobotBuilder builder;
   builder.set_name(name);
   builder.set_libname(name);
+  builder.set_metapod_default_float_type(default_float_type);
   std::stringstream ss_path, ss_namespace, ss_guard;
   ss_path << "models/" << name;
   builder.set_directory(ss_path.str());
@@ -94,7 +97,7 @@ void generate_model(const std::string & name, int depth)
 
 int main(int argc, char** argv)
 {
-  const char usage[] = "Usage: make_model depth\n"
+  const char usage[] = "Usage: make_model depth [default_float_type:=double]\n"
       "generate source code for a model with an equilibrated binary "
       "kinematic tree of depth `depth` in subdirectory "
        "models/sample_${depth}\n";
@@ -110,8 +113,13 @@ int main(int argc, char** argv)
     std::cerr << usage;
     return EXIT_FAILURE;
   }
+  std::string metapod_default_float_type("double");
+  if (argc==3)
+    {
+      metapod_default_float_type = argv[2];
+    }
   std::stringstream ss_name;
   ss_name << "sample_" << depth;
-  generate_model(ss_name.str(), depth);
+  generate_model(ss_name.str(), depth,metapod_default_float_type);
   return EXIT_SUCCESS;
 }

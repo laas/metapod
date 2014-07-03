@@ -29,6 +29,12 @@ IF(NOT WIN32 AND NOT APPLE)
   ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK)
 ENDIF()
 
+# Configure common.hh to set the default float type.
+CONFIGURE_FILE(
+  ${CMAKE_CURRENT_SOURCE_DIR}/common.in.hh
+  ${CMAKE_CURRENT_BINARY_DIR}/common.hh
+  @ONLY)
+
 # ADD_TESTCASE(NAME SOURCE_FILE1 [SOURCE_FILE2])
 # ------------------------
 #
@@ -45,10 +51,11 @@ ENDIF()
 MACRO(ADD_TESTCASE NAME)
   ADD_EXECUTABLE(${NAME}
     ${ARGN}
-    ${PROJECT_SOURCE_DIR}/tests/common.hh)
+    ${PROJECT_BINARY_DIR}/tests/common.hh)
   ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
 ENDMACRO(ADD_TESTCASE)
+
 
 # the "use_model" subfolder is included once per tested model. The tests
 # defined within it should use the "CURRENT_MODEL" macro to use the

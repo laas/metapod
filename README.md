@@ -19,7 +19,8 @@ Content
   * include/metapod: header-only library of robot dynamics algorithms.
     Algorithms consist of the combination of *compile-time* traversal
     algorithms and visitors. They can be applied to a robot model which is
-    a class with a specific structure.
+    a class with a specific structure. The number representation
+    (double by default) is also a template parameter.
 
   * robotbuilder: a library to help generating the source code of robot
     model classes.
@@ -70,12 +71,13 @@ directory:
 
     mkdir _build
     cd _build
-    cmake -DBUILD_METAPODFROMURDF=OFF ..
+    cmake -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_METAPODFROMURDF=OFF -DMETAPOD_DEFAULT_FLOAT_TYPE=double ..
     make install
 
 Please note that CMake produces a `CMakeCache.txt` file which should
 be deleted to reconfigure a package from scratch.
 
+Remark: Release build type is necessary to obtain full performances.
 
 In order to build the urdf converter, you'll need to install liburdfdom or
 liburdf. There are several options:
