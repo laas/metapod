@@ -84,14 +84,16 @@ void compareLogs(
     const std::string& reference_file,
     double epsilon)
 {
-  double result_value, reference_value;
+  double result_value, reference_value, result_diff_value;
   std::string name;
+  std::string result_diff_file = result_file+".deltaFromRef";
   std::string result_string, reference_string;
   std::ifstream result_stream(result_file.c_str());
   std::ifstream reference_stream(reference_file.c_str());
+  std::ofstream result_diff_stream(result_diff_file.c_str(), std::ofstream::out);
   // ensure the reference file is really there
   BOOST_CHECK(reference_stream);
-  unsigned int i = 0;
+  unsigned int i = 0;  // index of the joint's DOF
   while(reference_stream >> reference_string)
   {
     if(stringToDouble(reference_string, reference_value))
@@ -106,6 +108,8 @@ void compareLogs(
       }
       else
       {
+        result_diff_value = result_value - reference_value;
+        result_diff_stream << result_diff_value << std::endl;
         bool compare_ok = compareDouble(result_value, reference_value, epsilon);
         BOOST_CHECK(compare_ok);
         if(!compare_ok)
@@ -113,7 +117,8 @@ void compareLogs(
                     << result_file << " " << reference_file << ")\n"
                     << name << "(" << i << ")\n\t"
                     << result_value << "\n\t"
-                    << reference_value << std::endl;
+                    << reference_value << "\n\t"
+                    << "delta: " << result_diff_value << std::endl;
       }
       ++i;
     }
@@ -121,14 +126,19 @@ void compareLogs(
     {
       i = 0;
       result_stream.clear();
-      result_stream.seekg(0);
-      name = reference_string;
+      result_stream.seekg(0);  // back to beginning of result file
+      name = reference_string; // we matched a joint name
+      result_diff_stream << name << std::endl; // write joint name to diff file
       do
       {
         result_stream >> result_string;
       } while(result_string.compare(name) && !result_stream.eof());
     }
   }
+  
+  result_stream.close();
+  reference_stream.close();
+  result_diff_stream.close();
 }
 
 // Compare two text files
@@ -163,5 +173,8 @@ void compareTexts(
     std::cerr << "Result file is longer than reference file:" << result_string << " ("
               << result_file << " " << reference_file << ")" << std::endl;
   }
+  
+  result_stream.close();
+  reference_stream.close();
 }
 #endif
