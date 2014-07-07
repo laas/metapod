@@ -49,7 +49,7 @@ namespace metapod
       /** \brief Returns a 3x3 eigen matrix */
       Matrix3d toMatrix() const
       {
-	Matrix3d r = Matrix3d::Identity();
+        Matrix3d r = m_scalar*Matrix3d::Identity();
 	return r;
       }
       

@@ -214,11 +214,10 @@ class TransformT_helper
   {
     Vector3d tmp1 = static_cast<Vector3d>(m_E.transpose()*I.h());
     Vector3d tmp2 = static_cast<Vector3d>(tmp1 + I.m()*m_r);
-    ltI<FloatType> aEIEt = m_E.rotTSymmetricMatrix(I.I());
-
+    ltI<FloatType> aEtIE = m_E.rotTSymmetricMatrix(I.I());
     return Inertia(I.m(),
                    tmp2,
-                   aEIEt
+                   aEtIE
                    - skew<FloatType>(m_r)*skew<FloatType>(tmp1)
                    - skew<FloatType>(tmp2)*skew<FloatType>(m_r));
   }
