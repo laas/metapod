@@ -28,21 +28,21 @@ namespace metapod
   {
 
     /** \object RotationMatrixAboutY
-	This object implements specific operations related to the rotation matrix about the Y-axis:
-	\f[ 
-	  ry(\theta) = 
-	    \left[
-	      \begin{matrix}
-	        c & 0 & -s \\
-		0 & 1 & 0 \\
-		s & 0 & c 
-	      \end{matrix}
-	    \right]
-	\f]
+        This object implements specific operations related to the rotation matrix about the Y-axis:
+        \f[ 
+          ry(\theta) = 
+            \left[
+              \begin{matrix}
+                c & 0 & -s \\
+                0 & 1 & 0 \\
+                s & 0 & c 
+              \end{matrix}
+            \right]
+        \f]
 
-	The object implements optimized operators for multiplication with the
-	following matrix types:
-	Matrix3d, RotationMatrix, RotationMatrixAboutX
+        The object implements optimized operators for multiplication with the
+        following matrix types:
+        Matrix3d, RotationMatrix, RotationMatrixAboutX
      */
     template <class FloatType>
     struct RotationMatrixAboutYTpl 
@@ -53,42 +53,42 @@ namespace metapod
       FloatType m_c,m_s;
 
       RotationMatrixAboutYTpl(): 
-	m_c(0.0),m_s(0.0) 
+        m_c(0.0),m_s(0.0) 
       {}
 
       RotationMatrixAboutYTpl(const Matrix3d &aR)
       {
-	m_c=aR(0,0);m_s=aR(2,0);
+        m_c=aR(0,0);m_s=aR(2,0);
       }
 
       RotationMatrixAboutYTpl(FloatType c, FloatType s)
       {
-	m_c=c;m_s=s;
+        m_c=c;m_s=s;
       }
 
       /** \brief Random initialization */
       void randomInit()
       {
-	boost::mt19937 rng;
-	boost::uniform_real<> urd(-3.14, 3.14);
+        boost::mt19937 rng;
+        boost::uniform_real<> urd(-3.14, 3.14);
 
-	FloatType theta_x=urd(rng);
-	set(theta_x);
+        FloatType theta_x=urd(rng);
+        set(theta_x);
       }
 
       RotationMatrixAboutYTpl transpose() const
       {
-	return RotationMatrixAboutYTpl(m_c,-m_s);
+        return RotationMatrixAboutYTpl(m_c,-m_s);
       }
 
       RotationMatrixAboutYTpl operator*(FloatType a) const
       {
-	return RotationMatrixAboutYTpl(a*m_c,a*m_s);
+        return RotationMatrixAboutYTpl(a*m_c,a*m_s);
       }
 
       RotationMatrixAboutYTpl operator-() const
       {
-	return RotationMatrixAboutYTpl(-m_c,-m_s);
+        return RotationMatrixAboutYTpl(-m_c,-m_s);
       }
 
       void set(FloatType theta)
@@ -96,94 +96,94 @@ namespace metapod
 
       Matrix3d toMatrix() const
       {
-	Matrix3d r;
-	r(0,0) = m_c; r(0,1) = 0.0;  r(0,2) =-m_s;
-	r(1,0) = 0.0; r(1,1) = 1.0;  r(1,2) = 0.0;
-	r(2,0) = m_s; r(2,1) = 0.0;  r(2,2) = m_c;
-	return r;
+        Matrix3d r;
+        r(0,0) = m_c; r(0,1) = 0.0;  r(0,2) =-m_s;
+        r(1,0) = 0.0; r(1,1) = 1.0;  r(1,2) = 0.0;
+        r(2,0) = m_s; r(2,1) = 0.0;  r(2,2) = m_c;
+        return r;
       }
 
       /** \brief Optimized multiplication of the rotation matrix with a general 3x3 matrix.
-	  The total number of operations is 12m + 6a. <br>
-	  Matrix3d = RotationMatrixAboutYTpl * Matrix3d <br>
-	  \f$ {\bf B} = ry(\theta) {\bf A} \f$
-	  \f[ {\bf B} =
-	    \left[
-	      \begin{matrix}
-	      A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
-	      A(1,0) & A(2,0) & A(3,0) \\
-	      A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
-	      \end{matrix}
-	    \right]
-	  \f]
+          The total number of operations is 12m + 6a. <br>
+          Matrix3d = RotationMatrixAboutYTpl * Matrix3d <br>
+          \f$ {\bf B} = ry(\theta) {\bf A} \f$
+          \f[ {\bf B} =
+            \left[
+              \begin{matrix}
+              A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
+              A(1,0) & A(2,0) & A(3,0) \\
+              A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
+              \end{matrix}
+            \right]
+          \f]
        */
       Matrix3d operator*(const Matrix3d &A) const
       {
-	Matrix3d r = A;
-	r.template block<1,3>(1,0) = A.template block<1,3>(1,0);
+        Matrix3d r = A;
+        r.template block<1,3>(1,0) = A.template block<1,3>(1,0);
 
-	for(unsigned int i=0;i<3;i++)
-	  r(0,i) = A(0,i) * m_c - A(2,i) * m_s;
-	
-	for(unsigned int i=0;i<3;i++)
-	  r(2,i) = A(0,i) * m_s + A(2,i) * m_c;
-	
-	return r;
+        for(unsigned int i=0;i<3;i++)
+          r(0,i) = A(0,i) * m_c - A(2,i) * m_s;
+        
+        for(unsigned int i=0;i<3;i++)
+          r(2,i) = A(0,i) * m_s + A(2,i) * m_c;
+        
+        return r;
       }
 
       /** \brief Optimized multiplication of the rotation matrix 
-	  with a general 3x3 matrix.
-	  The total number of operations is 12m + 6a. <br>
-	  RotationMatrix = RotationMatrixAboutY * RotationMatrix <br>
-	  \f$ {\bf B} = ry(\theta) {\bf A} \f$
-	  \f[ {\bf B} =
-	    \left[
-	      \begin{matrix}
-	      A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
-	      A(1,0) & A(2,0) & A(3,0) \\
-	      A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
-	      \end{matrix}
-	    \right]
-	  \f]
+          with a general 3x3 matrix.
+          The total number of operations is 12m + 6a. <br>
+          RotationMatrix = RotationMatrixAboutY * RotationMatrix <br>
+          \f$ {\bf B} = ry(\theta) {\bf A} \f$
+          \f[ {\bf B} =
+            \left[
+              \begin{matrix}
+              A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
+              A(1,0) & A(2,0) & A(3,0) \\
+              A(0,0)c - A(2,0)s & A(0,1)c - A(2,1)s & A(0,2)s - A(2,2)s \\
+              \end{matrix}
+            \right]
+          \f]
        */      
       RotationMatrix 
       operator*(const RotationMatrix &aRM) const
       {
-	Matrix3d r;
-	r = Matrix3d::Zero();
-	const Matrix3d & lrm = aRM.m_rm;
+        Matrix3d r;
+        r = Matrix3d::Zero();
+        const Matrix3d & lrm = aRM.m_rm;
 
-	r.template block<1,3>(1,0) = lrm.template block<1,3>(1,0);
+        r.template block<1,3>(1,0) = lrm.template block<1,3>(1,0);
 
-	for(unsigned int i=0;i<3;i++)
-	  r(0,i) = lrm(0,i) * m_c - lrm(2,i) * m_s;
-	
-	for(unsigned int i=0;i<3;i++)
-	  r(2,i) = lrm(0,i) * m_s + lrm(2,i) * m_c;
+        for(unsigned int i=0;i<3;i++)
+          r(0,i) = lrm(0,i) * m_c - lrm(2,i) * m_s;
+        
+        for(unsigned int i=0;i<3;i++)
+          r(2,i) = lrm(0,i) * m_s + lrm(2,i) * m_c;
 
-	return RotationMatrix(r);
+        return RotationMatrix(r);
       }
 
       RotationMatrixAboutYTpl operator*(const RotationMatrixAboutYTpl &aRM) const
       {
-	FloatType lc,ls;
-	lc = m_c * aRM.m_c - m_s * aRM.m_s;
-	ls = m_c * aRM.m_s + m_s * aRM.m_c;
-	return RotationMatrixAboutYTpl(lc,ls);
+        FloatType lc,ls;
+        lc = m_c * aRM.m_c - m_s * aRM.m_s;
+        ls = m_c * aRM.m_s + m_s * aRM.m_c;
+        return RotationMatrixAboutYTpl(lc,ls);
       }
 
       Vector3d operator*(const Vector3d &aRM) const
       {
-	Vector3d r;
-	r(0) = m_c*aRM(0) -m_s*aRM(2);
-	r(1) =  aRM(1);
-	r(2) = m_s * aRM(0) + m_c * aRM(2);
-	return r;
+        Vector3d r;
+        r(0) = m_c*aRM(0) -m_s*aRM(2);
+        r(1) =  aRM(1);
+        r(2) = m_s * aRM(0) + m_c * aRM(2);
+        return r;
       }
 
       /** \brief Optimized computation of 
-	  \f$ ry(\theta) {\bf A} ry(\theta)^{\top} \f$ 
-	  where \f$ {\bf A} \f$ is a generalized 3x3 matrix.
+          \f$ ry(\theta) {\bf A} ry(\theta)^{\top} \f$ 
+          where \f$ {\bf A} \f$ is a generalized 3x3 matrix.
        The total number of operations is 12m + 12a.
 
        \f$ \alpha_y = cs (A_{20} + A_{02}) + s^2(A_{00} - A_{22}) \f$
@@ -201,108 +201,108 @@ namespace metapod
       */
       Matrix3d rotGeneralMatrix(const Matrix3d &A) const
       {
-	Matrix3d r;
+        Matrix3d r;
 
-	FloatType alpha_y = m_c*m_s*(A(2,0)+A(0,2)) +
-	  m_s*m_s*(A(0,0) - A(2,2));
+        FloatType alpha_y = m_c*m_s*(A(2,0)+A(0,2)) +
+          m_s*m_s*(A(0,0) - A(2,2));
 
-	FloatType beta_y = m_c*m_s*(A(0,0)- A(2,2)) -
-	  m_s*m_s*(A(2,0) + A(0,2));
+        FloatType beta_y = m_c*m_s*(A(0,0)- A(2,2)) -
+          m_s*m_s*(A(2,0) + A(0,2));
 
-	r(0,0) = A(0,0)-alpha_y; 
-	r(0,1) = m_c*A(0,1) - m_s*A(2,1);
-	r(0,2) = A(0,2) + beta_y;
+        r(0,0) = A(0,0)-alpha_y; 
+        r(0,1) = m_c*A(0,1) - m_s*A(2,1);
+        r(0,2) = A(0,2) + beta_y;
 
-	r(1,0) = m_c*A(1,0) - m_s*A(1,2);
-	r(1,1) = A(1,1) ;
-	r(1,2) = m_c*A(1,2) + m_s*A(1,0);
+        r(1,0) = m_c*A(1,0) - m_s*A(1,2);
+        r(1,1) = A(1,1) ;
+        r(1,2) = m_c*A(1,2) + m_s*A(1,0);
 
-	r(2,0) = A(2,0) + beta_y ;
-	r(2,1) = m_c*A(2,1) + m_s*A(0,1);
-	r(2,2) = A(2,2) + alpha_y;
-	return r;
+        r(2,0) = A(2,0) + beta_y ;
+        r(2,1) = m_c*A(2,1) + m_s*A(0,1);
+        r(2,2) = A(2,2) + alpha_y;
+        return r;
       }
 
       /** \brief Optimized computation of 
-	  \f$ ry(\theta) {\bf A} ry(\theta)^{\top} \f$ 
-	  where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
-	  \f$ \alpha_y = 2csA_{20} + s^2 (A_{00} - A_{22})\f$
-	  \f$ \beta_y = cs(A_{00} - A_{22}) + (1-2s^2)A_{20} \f$
-	  \f[
-	    lt(ry(\theta){\bf A}ry(\theta)^{\top}) =
-	       \left[
-	         \begin{matrix}
-		    A_{00} - \alpha_y & \cdotp & \cdotp \\
-		    cA_{10} - sA_{12} & A_{11}  & \cdotp \\
-		    \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y
-		 \end{matrix}
-	       \right]
-	  \f]
+          \f$ ry(\theta) {\bf A} ry(\theta)^{\top} \f$ 
+          where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
+          \f$ \alpha_y = 2csA_{20} + s^2 (A_{00} - A_{22})\f$
+          \f$ \beta_y = cs(A_{00} - A_{22}) + (1-2s^2)A_{20} \f$
+          \f[
+            lt(ry(\theta){\bf A}ry(\theta)^{\top}) =
+               \left[
+                 \begin{matrix}
+                    A_{00} - \alpha_y & \cdotp & \cdotp \\
+                    cA_{10} - sA_{12} & A_{11}  & \cdotp \\
+                    \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y
+                 \end{matrix}
+               \right]
+          \f]
        */
       class ltI<FloatType> rotSymmetricMatrix(const class ltI<FloatType> &A) const
       {
-	class ltI<FloatType> r;
+        class ltI<FloatType> r;
 
-	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
-	  m_s*m_s*(A.m_ltI(0) - A.m_ltI(5));
+        FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
+          m_s*m_s*(A.m_ltI(0) - A.m_ltI(5));
 
-	FloatType beta_y = m_c*m_s*(A.m_ltI(0)- A.m_ltI(5)) +
-	  (1-2*m_s*m_s)*A.m_ltI(3);
-	
-	r.m_ltI(0) = A.m_ltI(0)-alpha_y;
-	r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4); 
-	r.m_ltI(2) = A.m_ltI(2);
-	r.m_ltI(3) = beta_y;
-	r.m_ltI(4) = m_c*A.m_ltI(4) + m_s * A.m_ltI(1);
-	r.m_ltI(5) = A.m_ltI(5) + alpha_y;
-	return r;
+        FloatType beta_y = m_c*m_s*(A.m_ltI(0)- A.m_ltI(5)) +
+          (1-2*m_s*m_s)*A.m_ltI(3);
+        
+        r.m_ltI(0) = A.m_ltI(0)-alpha_y;
+        r.m_ltI(1) = m_c*A.m_ltI(1) - m_s*A.m_ltI(4); 
+        r.m_ltI(2) = A.m_ltI(2);
+        r.m_ltI(3) = beta_y;
+        r.m_ltI(4) = m_c*A.m_ltI(4) + m_s * A.m_ltI(1);
+        r.m_ltI(5) = A.m_ltI(5) + alpha_y;
+        return r;
 
       }      
 
       /** \brief Optimized computation of 
-	  \f$ ry(\theta)^{\top} {\bf A} ry(\theta) \f$ 
-	  where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
-	  \f$ \alpha_y = 2csA_{20} + s^2 (A_{22} - A_{00})\f$
-	  \f$ \beta_y = cs(A_{22} - A_{00}) + (1-2s^2)A_{20} \f$
-	  \f[
-	    lt(ry(\theta){\bf A}ry(\theta)^{\top}) =
-	       \left[
-	         \begin{matrix}
-		    A_{00} - \alpha_y & \cdotp & \cdotp \\
-		    cA_{10} - sA_{12} & A_{11}  & \cdotp \\
-		    \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y
-		 \end{matrix}
-	       \right]
-	  \f]
+          \f$ ry(\theta)^{\top} {\bf A} ry(\theta) \f$ 
+          where \f$ {\bf A} \f$ is a 3x3 symmetric matrix.
+          \f$ \alpha_y = 2csA_{20} + s^2 (A_{22} - A_{00})\f$
+          \f$ \beta_y = cs(A_{22} - A_{00}) + (1-2s^2)A_{20} \f$
+          \f[
+            lt(ry(\theta){\bf A}ry(\theta)^{\top}) =
+               \left[
+                 \begin{matrix}
+                    A_{00} - \alpha_y & \cdotp & \cdotp \\
+                    cA_{10} - sA_{12} & A_{11}  & \cdotp \\
+                    \beta_y & cA_{21} + sA_{01} & A_{22} + \alpha_y
+                 \end{matrix}
+               \right]
+          \f]
        */
       class ltI<FloatType> 
       rotTSymmetricMatrix(const class ltI<FloatType> &A) const
       {
         class ltI<FloatType> r;
 
-	FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
-	  m_s*m_s*(A.m_ltI(5) - A.m_ltI(0));
+        FloatType alpha_y = 2*m_c*m_s*A.m_ltI(3) +
+          m_s*m_s*(A.m_ltI(5) - A.m_ltI(0));
 
-	FloatType beta_y = m_c*m_s*(A.m_ltI(5)- A.m_ltI(0)) +
-	  (1-2*m_s*m_s)*A.m_ltI(3);
-	
-	r.m_ltI(0) = A.m_ltI(0)+alpha_y;
-	r.m_ltI(1) = m_c*A.m_ltI(1) + m_s*A.m_ltI(4); 
-	r.m_ltI(2) = A.m_ltI(2);
-	r.m_ltI(3) = beta_y;
-	r.m_ltI(4) = m_c*A.m_ltI(4) - m_s * A.m_ltI(1);
-	r.m_ltI(5) = A.m_ltI(5) - alpha_y;
-	return r;
+        FloatType beta_y = m_c*m_s*(A.m_ltI(5)- A.m_ltI(0)) +
+          (1-2*m_s*m_s)*A.m_ltI(3);
+
+        r.m_ltI(0) = A.m_ltI(0)+alpha_y;
+        r.m_ltI(1) = m_c*A.m_ltI(1) + m_s*A.m_ltI(4); 
+        r.m_ltI(2) = A.m_ltI(2);
+        r.m_ltI(3) = beta_y;
+        r.m_ltI(4) = m_c*A.m_ltI(4) - m_s * A.m_ltI(1);
+        r.m_ltI(5) = A.m_ltI(5) - alpha_y;
+        return r;
       }      
 
 
       friend std::ostream & operator<<(std::ostream &os,
-				       const struct RotationMatrixAboutYTpl & aRMAX)
+                                       const struct RotationMatrixAboutYTpl & aRMAX)
       {
-	os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << std::endl;
-	os << "0.0 1.0 0.0 " << std::endl;
-	os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << std::endl;
-	return os;
+        os << aRMAX.m_c << " 0.0 " << -aRMAX.m_s << std::endl;
+        os << "0.0 1.0 0.0 " << std::endl;
+        os << aRMAX.m_s << " 0.0 " <<  aRMAX.m_c << std::endl;
+        return os;
       }
       
       
