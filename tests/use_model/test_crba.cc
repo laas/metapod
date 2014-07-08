@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE (test_crba)
   typedef CURRENT_MODEL_ROBOT<LocalFloatType> CURRENT_MODEL_ROBOT_LFT;
   // set configuration vector q to reference value.
   CURRENT_MODEL_ROBOT_LFT::confVector q;
-  std::ifstream qconf(TEST_DIRECTORY "/q_init.conf");
+  std::ifstream qconf(TEST_DIRECTORY "/q.conf");
   initConf<CURRENT_MODEL_ROBOT_LFT>::run(qconf, q);
   qconf.close();
 
@@ -42,6 +42,10 @@ BOOST_AUTO_TEST_CASE (test_crba)
   crba< CURRENT_MODEL_ROBOT_LFT, true >::run(robot, q); // Update geometry and run the CRBA
   const char result_file[] = "crba.log";
   std::ofstream log(result_file, std::ofstream::out);
+
+  const char state_file[] = "crba_robState.log";
+  std::ofstream logState(state_file, std::ofstream::out);
+  printState(robot, logState);
 
   log << "generalized_mass_matrix\n" << robot.H << std::endl;
   log.close();

@@ -440,7 +440,7 @@ class TransformT<FloatType, RotationMatrixAboutYTpl<FloatType> >:
         + lE.m_c*lr(1) * aF(5) ;
 
     M[1] += (lE.m_c*lr(2) + lE.m_s*lr(0)) * aF(3) + 
-        (lE.m_s*lr(2) + lE.m_c*lr(0)) * aF(5) ;
+        (lE.m_s*lr(2) - lE.m_c*lr(0)) * aF(5) ;
 
     M[2] += lr(0)* aF(4) + 
         -lE.m_c*lr(1) * aF(3) 
@@ -477,10 +477,10 @@ class TransformT<FloatType, RotationMatrixAboutZTpl<FloatType> >:
     const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutZ >::m_r;
 
     M[0] = lE.m_c*aF(0) - lE.m_s*aF(1);
-    M[1] =-lE.m_s*aF(0) + lE.m_c*aF(1);
+    M[1] = lE.m_s*aF(0) + lE.m_c*aF(1);
     M[2] = aF(2);
     
-    M[0] += lr(2) * lE.m_s * aF(3) 
+    M[0] += - lr(2) * lE.m_s * aF(3)
         - lr(2) * lE.m_c*aF(4) 
         + lr(1) * aF(5) ;
     
@@ -488,7 +488,7 @@ class TransformT<FloatType, RotationMatrixAboutZTpl<FloatType> >:
         - lE.m_s*lr(2) * aF(4)
         - lr(0)* aF(5) ;
     
-    M[2] += (-lE.m_c*lr(1) - lE.m_s*lr(0)) * aF(3) + 
+    M[2] += (-lE.m_c*lr(1) + lE.m_s*lr(0)) * aF(3) +
       (lE.m_s*lr(1) + lE.m_c*lr(0)) * aF(4) ;
     
     M[3] = lE.m_c*aF(3) - lE.m_s*aF(4);
