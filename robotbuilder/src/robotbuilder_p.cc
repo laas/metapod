@@ -29,6 +29,14 @@ std::string to_string(T x)
   return ss.str();
 }
 
+template <>
+std::string to_string<bool>(bool x)
+{
+  std::ostringstream ss;
+  x? ss << "true" : ss << "false";
+  return ss.str();
+}
+
 bool isLetter(char c)
 {
   return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z');
@@ -262,6 +270,7 @@ RobotBuilder::Status RobotBuilderP::addLink(const std::string& parent_body_name,
                                             const Eigen::Vector3d & body_center_of_mass,
                                             const Eigen::Matrix3d & body_rotational_inertia,
                                             const Eigen::Vector3d & joint_axis,
+                                            bool fwdDyn,
                                             int dof_index)
 {
 
@@ -389,6 +398,7 @@ RobotBuilder::Status RobotBuilderP::addLink(const std::string& parent_body_name,
                        body_center_of_mass,
                        body_rotational_inertia,
                        joint_axis,
+                       fwdDyn,
                        joint_position_in_conf));
   nb_dof_ += joint_nb_dof;
   return RobotBuilder::STATUS_SUCCESS;
@@ -432,7 +442,8 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
   repl["joint_type"] = joint_type;
   repl["joint_rotation_type"] = joint_rotation_type;
   repl["joint_name"] = model_.joint_name(link_id);
-
+  repl["jointFwdDyn"] = ::to_string(model_.fwdDyn(link_id));
+  
   const Eigen::Matrix3d &R_joint_parent = model_.R_joint_parent(link_id);
   if (R_joint_parent.isApprox(Eigen::Matrix3d::Identity())) {
     repl["R_joint_parent_type"] = "Spatial::RotationMatrixIdentityTpl<FloatType>";
@@ -489,6 +500,8 @@ void RobotBuilderP::writeLink(int link_id, const ReplMap &replacements,
       "    Node@node_id@();\n"
       "    static const int id = @node_id@;\n"
       "    static const std::string joint_name;\n"
+      "    static const bool jointFwdDyn = @jointFwdDyn@; // <dynamics> fwd_dyn field, used by chda\n"
+      "    static const bool jointNuOfFwdDyn = initNuFwdDyn< @ROBOT_CLASS_NAME@<FloatType>, @ROBOT_CLASS_NAME@<FloatType>::Node@node_id@ >::value; // subtree supported by at least one fwdDyn joint\n"
       "    static const std::string body_name;\n"
       "    static const @X_joint_parent_type@ Xt;\n"
       "    static const int q_idx = @dof_index@;\n"

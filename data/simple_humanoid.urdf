@@ -256,6 +256,7 @@
     <parent link="NP"/>
     <child link="WAIST_LINK0"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
   <joint name="RLEG_HIP_R" type="revolute">
     <origin xyz="0 -0.09 0" rpy="0 0 0"/>
@@ -263,6 +264,7 @@
     <parent link="WAIST_LINK0"/>
     <child link="RLEG_LINK1"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RLEG_HIP_P" type="revolute">
@@ -271,6 +273,7 @@
     <parent link="RLEG_LINK1"/>
     <child link="RLEG_LINK2"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RLEG_HIP_Y" type="revolute">
@@ -279,6 +282,7 @@
     <parent link="RLEG_LINK2"/>
     <child link="RLEG_LINK3"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RLEG_KNEE" type="revolute">
@@ -287,6 +291,7 @@
     <parent link="RLEG_LINK3"/>
     <child link="RLEG_LINK4"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RLEG_ANKLE_P" type="revolute">
@@ -295,6 +300,7 @@
     <parent link="RLEG_LINK4"/>
     <child link="RLEG_LINK5"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="RLEG_ANKLE_R" type="revolute">
@@ -303,6 +309,7 @@
     <parent link="RLEG_LINK5"/>
     <child link="RLEG_LINK6"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="RARM_SHOULDER_P" type="revolute">
@@ -311,6 +318,7 @@
     <parent link="WAIST_LINK3"/>
     <child link="RARM_LINK1"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RARM_SHOULDER_R" type="revolute">
@@ -319,6 +327,7 @@
     <parent link="RARM_LINK1"/>
     <child link="RARM_LINK2"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RARM_SHOULDER_Y" type="revolute">
@@ -327,6 +336,7 @@
     <parent link="RARM_LINK2"/>
     <child link="RARM_LINK3"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RARM_ELBOW" type="revolute">
@@ -335,6 +345,7 @@
     <parent link="RARM_LINK3"/>
     <child link="RARM_LINK4"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="RARM_WRIST_Y" type="revolute">
@@ -343,6 +354,7 @@
     <parent link="RARM_LINK4"/>
     <child link="RARM_LINK5"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RARM_WRIST_P" type="revolute">
@@ -351,6 +363,7 @@
     <parent link="RARM_LINK5"/>
     <child link="RARM_LINK6"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="RARM_WRIST_R" type="revolute">
@@ -359,6 +372,7 @@
     <parent link="RARM_LINK6"/>
     <child link="RARM_LINK7"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LLEG_HIP_R" type="revolute">
@@ -367,6 +381,7 @@
     <parent link="WAIST_LINK0"/>
     <child link="LLEG_LINK1"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LLEG_HIP_P" type="revolute">
@@ -375,6 +390,7 @@
     <parent link="LLEG_LINK1"/>
     <child link="LLEG_LINK2"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LLEG_HIP_Y" type="revolute">
@@ -383,6 +399,7 @@
     <parent link="LLEG_LINK2"/>
     <child link="LLEG_LINK3"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LLEG_KNEE" type="revolute">
@@ -391,6 +408,7 @@
     <parent link="LLEG_LINK3"/>
     <child link="LLEG_LINK4"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="LLEG_ANKLE_P" type="revolute">
@@ -399,6 +417,7 @@
     <parent link="LLEG_LINK4"/>
     <child link="LLEG_LINK5"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LLEG_ANKLE_R" type="revolute">
@@ -407,6 +426,7 @@
     <parent link="LLEG_LINK5"/>
     <child link="LLEG_LINK6"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LARM_SHOULDER_P" type="revolute">
@@ -415,6 +435,7 @@
     <parent link="WAIST_LINK3"/>
     <child link="LARM_LINK1"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="LARM_SHOULDER_R" type="revolute">
@@ -423,6 +444,7 @@
     <parent link="LARM_LINK1"/>
     <child link="LARM_LINK2"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="LARM_SHOULDER_Y" type="revolute">
@@ -431,6 +453,7 @@
     <parent link="LARM_LINK2"/>
     <child link="LARM_LINK3"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="1"></dynamics>
   </joint>
 
   <joint name="LARM_ELBOW" type="revolute">
@@ -439,6 +462,7 @@
     <parent link="LARM_LINK3"/>
     <child link="LARM_LINK4"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LARM_WRIST_Y" type="revolute">
@@ -447,6 +471,7 @@
     <parent link="LARM_LINK4"/>
     <child link="LARM_LINK5"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LARM_WRIST_P" type="revolute">
@@ -455,6 +480,7 @@
     <parent link="LARM_LINK5"/>
     <child link="LARM_LINK6"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="LARM_WRIST_R" type="revolute">
@@ -463,6 +489,7 @@
     <parent link="LARM_LINK6"/>
     <child link="LARM_LINK7"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="WAIST_P" type="revolute">
@@ -471,6 +498,7 @@
     <parent link="WAIST_LINK0"/>
     <child link="WAIST_LINK1"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="WAIST_R" type="revolute">
@@ -479,6 +507,7 @@
     <parent link="WAIST_LINK1"/>
     <child link="WAIST_LINK2"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
   <joint name="CHEST" type="revolute">
@@ -487,6 +516,7 @@
     <parent link="WAIST_LINK2"/>
     <child link="WAIST_LINK3"/>
     <limit effort="30" lower="0" upper="0" velocity="0" />
+    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 
 </robot>

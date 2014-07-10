@@ -19,6 +19,7 @@
 
 # include <metapod/tools/common.hh>
 # include <metapod/tools/joint.hh>
+# include <metapod/tools/initnufwddyn.hh>
 
 // by default, boost fusion vector only provides constructor for vectors with
 // up to 10 elements.

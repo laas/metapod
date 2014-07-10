@@ -38,6 +38,7 @@ public:
   Eigen::Vector3d body_center_of_mass_;
   Eigen::Matrix3d body_rotational_inertia_;
   Eigen::Vector3d joint_axis_;
+  bool fwdDyn_; // <dynamics> fwd_dyn
   int dof_index_;
   std::vector<int> child_id_; // children
 
@@ -53,6 +54,7 @@ public:
     const Eigen::Vector3d & body_center_of_mass,
     const Eigen::Matrix3d & body_rotational_inertia,
     const Eigen::Vector3d & joint_axis,
+    bool fwdDyn, // <dynamics> fwd_dyn
     int dof_index);
 };
 
@@ -70,6 +72,7 @@ public:
   const Eigen::Vector3d& body_center_of_mass(int link_id) const;
   const Eigen::Matrix3d& body_rotational_inertia(int link_id) const;
   const Eigen::Vector3d& joint_axis(int link_id) const;
+  bool fwdDyn(int link_id) const; // <dynamics> fwd_dyn
   int dof_index(int link_id) const;
   int nb_children(int link_id) const;
   int child_id(int link_id, unsigned int rank) const;

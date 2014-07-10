@@ -40,6 +40,20 @@ namespace metapod
     static const bool value = true;
   };
 
+  /// \brief type member variable is the parent node type of Node. If Node has no parent,
+  /// type is the Node type itself.
+  template < typename Robot, typename Node, bool hasParent >
+  struct myParent
+  {
+    typedef typename boost::fusion::result_of::value_at_c<typename Robot::NodeVector, Node::parent_id>::type type;
+  };
+
+  template < typename Robot, typename Node >
+  struct myParent<Robot, Node, false>
+  {
+    typedef Node type;
+  };
+
   /// \brief value member variable is false if Node has no parent. That is, if
   /// it's parent is NP (no parent) and true otherwise.
   template < typename Robot, int node_id >
@@ -47,7 +61,9 @@ namespace metapod
   {
     typedef typename Nodes<Robot, node_id>::type Node;
     static const bool value = !is_NO_PARENT<Robot, Node::parent_id>::value;
+    typedef typename myParent<Robot, Node, value>::type type;
   };
+
 } // end of namespace metapod.
 
 #endif

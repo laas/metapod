@@ -6,6 +6,8 @@ INCLUDE_DIRECTORIES(
     ${PROJECT_BINARY_DIR}/robotbuilder/include
     ${Boost_INCLUDE_DIRS}) # Eigen is already in the include path
 
+ADD_DEFINITIONS(" -DJOINT_FWD_DYN_FROM_URDF_ON_OFF=${MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF}")
+
 ADD_EXECUTABLE(metapodfromurdf
   src/metapodfromurdf.cpp)
 TARGET_LINK_LIBRARIES(metapodfromurdf

@@ -33,6 +33,11 @@
 #include <metapod/robotbuilder/robotbuilder.hh>
 
 
+#define ALL_ON true
+#define ALL_OFF false
+#define FROM_URDF (jnt->dynamics->fwdDyn)
+
+
 typedef metapod::RobotBuilder::Status Status;
 const Status STATUS_SUCCESS = metapod::RobotBuilder::STATUS_SUCCESS;
 const Status STATUS_FAILURE = metapod::RobotBuilder::STATUS_FAILURE;
@@ -198,7 +203,9 @@ Status addSubTree(
       center_of_mass,
       rotational_inertia,
       toEigen(jnt->axis),
+      JOINT_FWD_DYN_FROM_URDF_ON_OFF,
       dof_index);
+
   if (status == STATUS_FAILURE)
     return STATUS_FAILURE;
 

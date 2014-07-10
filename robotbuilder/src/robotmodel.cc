@@ -55,6 +55,7 @@ Link::Link(
     const Eigen::Vector3d & body_center_of_mass,
     const Eigen::Matrix3d & body_rotational_inertia,
     const Eigen::Vector3d & joint_axis,
+    bool fwdDyn, // <dynamics> fwd_dyn
     int dof_index):
   id_(id),
   parent_id_(parent_id),
@@ -67,6 +68,7 @@ Link::Link(
   body_center_of_mass_(body_center_of_mass),
   body_rotational_inertia_(body_rotational_inertia),
   joint_axis_(joint_axis),
+  fwdDyn_(fwdDyn), // <dynamics> fwd_dyn
   dof_index_(dof_index)
 {}
 
@@ -137,6 +139,12 @@ const Eigen::Vector3d& RobotModel::joint_axis(int link_id) const
 {
   assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
   return links_[link_id].joint_axis_;
+}
+
+bool RobotModel::fwdDyn(int link_id) const
+{
+  assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
+  return links_[link_id].fwdDyn_;
 }
 
 int RobotModel::dof_index(int link_id) const

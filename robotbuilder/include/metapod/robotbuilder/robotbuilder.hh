@@ -77,6 +77,7 @@ public:
       const Eigen::Vector3d & body_center_of_mass,
       const Eigen::Matrix3d & body_rotational_inertia,
       const Eigen::Vector3d & joint_axis=axisX(),
+      bool fwdDyn=false, // <dynamics> fwd_dyn
       int dof_index=-1);
   Status write();
 private:
