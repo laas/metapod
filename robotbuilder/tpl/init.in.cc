@@ -14,10 +14,16 @@
 
 namespace metapod {
 
-@init_nodes@
+  @init_nodes@
 
-template <> Spatial::InertiaTpl<FloatType> @ROBOT_CLASS_NAME@<FloatType>::inertias[@node_id@] = {
-@init_inertias@};
+
+  template <> Spatial::InertiaTpl<FloatType> @ROBOT_CLASS_NAME@<FloatType>::inertias[@node_id@] = {
+    @init_inertias@};
+
+  template <> @ROBOT_CLASS_NAME@<FloatType>::VectorNBDOFf @ROBOT_CLASS_NAME@<FloatType>::fdNodesFirst = @ROBOT_CLASS_NAME@<FloatType>::VectorNBDOFf::Zero();
+  template <> @ROBOT_CLASS_NAME@<FloatType>::VectorNBDOFf @ROBOT_CLASS_NAME@<FloatType>::idNodes = @ROBOT_CLASS_NAME@<FloatType>::VectorNBDOFf::Zero();
+  template <> @ROBOT_CLASS_NAME@<FloatType>::PermutationMatrixNBDOFf @ROBOT_CLASS_NAME@<FloatType>::Q = @ROBOT_CLASS_NAME@<FloatType>::PermutationMatrixNBDOFf();
+  template <> @ROBOT_CLASS_NAME@<FloatType>::PermutationMatrixNBDOFf @ROBOT_CLASS_NAME@<FloatType>::Qt = Q.transpose();
 }
 
 #ifdef _MSC_VER
