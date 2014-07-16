@@ -1,6 +1,7 @@
-// Copyright 2012,
+// Copyright 2012, 2014
 //
 // Olivier Stasse
+// Nuno Guedelha
 //
 // LAAS, CNRS
 //

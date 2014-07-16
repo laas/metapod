@@ -1,8 +1,9 @@
-// Copyright 2012,
+// Copyright 2012, 2014
 //
 // Maxime Reis
 // Antonio El Khoury
 // Olivier Stasse
+// Nuno Guedelha
 //
 // JRL/LAAS, CNRS/AIST
 //

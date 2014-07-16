@@ -1,4 +1,8 @@
-// Copyright (c) 2012, 2013 Aldebaran Robotics. All rights reserved
+// Copyright (c) 2012, 2013, 2014
+// 
+// Aldebaran Robotics. All rights reserved
+// Nuno Guedelha (LAAS, CNRS)
+// 
 // Use of this source code is governed by a BSD-style license that can be
 // found in the COPYING.bsd file
 #include <iostream>

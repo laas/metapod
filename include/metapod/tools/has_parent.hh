@@ -1,6 +1,7 @@
-// Copyright 2012, 2013
+// Copyright 2012, 2013, 2014
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify

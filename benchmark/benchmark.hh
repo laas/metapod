@@ -1,7 +1,8 @@
-// Copyright 2012, 2013
+// Copyright 2012, 2013, 2014
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -100,7 +101,7 @@ namespace metapod
                const confVector& q,
                const confVector& dq,
                confVector& ddq,
-	       confVector& torques)
+               confVector& torques)
       {
         if (!outer_loop_count_)
           timer_->start();
@@ -181,13 +182,13 @@ namespace metapod
         runners.push_back(Runner<Robot>(
             boost::bind<void>(crba<Robot, false>::run, _1, _2),
             std::string("crba (without jcalc)")));
-	runners.push_back(Runner<Robot>(
-	    boost::bind<void>(chda<Robot, true>::run, _1, _2, _3, _4, _5),
-	    std::string("chda")));
-	runners.push_back(Runner<Robot>(
-	    boost::bind<void>(chda<Robot, false>::run, _1, _2, _3, _4, _5),
-	    std::string("chda (without jcalc)")));
-	runners.push_back(Runner<Robot>(
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(chda<Robot, true>::run, _1, _2, _3, _4, _5),
+            std::string("chda")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(chda<Robot, false>::run, _1, _2, _3, _4, _5),
+            std::string("chda (without jcalc)")));
+        runners.push_back(Runner<Robot>(
             boost::bind<void>(jac_wrapper<Robot>::run, _1),
             std::string("jac (without jcalc)")));
         runners.push_back(Runner<Robot>(

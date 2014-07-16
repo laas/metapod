@@ -1,6 +1,6 @@
 // Copyright 2014
 //
-// Nuno Guedelha (JRL/LAAS, CNRS/AIST)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify

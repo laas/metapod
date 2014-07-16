@@ -1,7 +1,8 @@
-// Copyright 2011, 2012, 2013
+// Copyright 2011, 2012, 2013, 2014
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -49,7 +50,7 @@ struct InitConfHybridParamsVisitor
     if( (isTorque && Node::jointFwdDyn) || (!isTorque && !Node::jointFwdDyn) )
     {
       for(int i=0; i<NB_DOF; ++i)
-	log >> v[Node::q_idx+i];
+        log >> v[Node::q_idx+i];
     }
     else
     {

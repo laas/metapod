@@ -1,6 +1,6 @@
 // Copyright 2014
 //
-// Nuno Guedelha (CNRS)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -127,6 +127,6 @@ BOOST_AUTO_TEST_CASE (test_chda)
   }
   double total_time_us = timer->elapsed_wall_clock_time_in_us();
   std::cout << "CHDA average execution time is : "
-	    << total_time_us/double(inner_loop_count * outer_loop_count)
-	    << "µs\n";
+            << total_time_us/double(inner_loop_count * outer_loop_count)
+            << "µs\n";
 }
