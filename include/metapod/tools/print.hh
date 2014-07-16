@@ -44,6 +44,8 @@ template < typename Robot, int node_id > struct PrintStateVisitor
        << "vi :\n" << node.body.vi << "\n"
        << "ai :\n" << node.body.ai << "\n"
        << "I :\n" << robot.inertias[node_id] << "\n"
+       << "Ic:\n" << node.body.Iic << "\n"
+       << "joint_F:\n" << node.joint_F << "\n"
        << "f :\n" << node.joint.f << "\n"
        << "τ :\n" << node.joint.torque << "\n"
        << std::endl;
