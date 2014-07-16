@@ -78,12 +78,24 @@ IF(WITH_SIMPLE_HUMANOID)
             ${_benchname}.cc
             benchmark.hh)
         TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
-        SET(_benchname "benchmark_${_libname}2")
-        ADD_EXECUTABLE(benchmark_${_libname}2
+
+        # Benchmark CRBA
+        SET(_benchname "benchmark_${_libname}_CRBA")
+        ADD_EXECUTABLE(benchmark_${_libname}_CRBA
             ${_benchname}.cc
             benchmark.hh)
         IF (UNIX)
-          SET_TARGET_PROPERTIES(benchmark_${_libname}2 PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=core2 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
+          SET_TARGET_PROPERTIES(benchmark_${_libname}_CRBA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
+        ENDIF(UNIX)
+        TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
+        
+        # Benchmark RNEA
+        SET(_benchname "benchmark_${_libname}_RNEA")
+        ADD_EXECUTABLE(benchmark_${_libname}_RNEA
+            ${_benchname}.cc
+            benchmark.hh)
+        IF (UNIX)
+          SET_TARGET_PROPERTIES(benchmark_${_libname}_RNEA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
         ENDIF(UNIX)
         TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
 
