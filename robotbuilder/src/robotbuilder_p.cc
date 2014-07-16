@@ -344,21 +344,13 @@ RobotBuilder::Status RobotBuilderP::addLink(const std::string& parent_body_name,
     }
 
   // deal with joint type
-  unsigned int joint_nb_dof;
   switch (joint_type) {
   case RobotBuilder::REVOLUTE_AXIS_ANY:
   case RobotBuilder::REVOLUTE_AXIS_X:
   case RobotBuilder::REVOLUTE_AXIS_Y:
   case RobotBuilder::REVOLUTE_AXIS_Z:
-    {
-      joint_nb_dof = 1;
-      break;
-    }
   case RobotBuilder::FREE_FLYER:
-    {
-      joint_nb_dof = 6;
-      break;
-    }
+    break;
   default:
     {
       std::cerr
@@ -400,7 +392,7 @@ RobotBuilder::Status RobotBuilderP::addLink(const std::string& parent_body_name,
                        joint_axis,
                        fwdDyn,
                        joint_position_in_conf));
-  nb_dof_ += joint_nb_dof;
+  nb_dof_ += model_.joint_dof(link_id);
   return RobotBuilder::STATUS_SUCCESS;
 }
 
@@ -611,6 +603,7 @@ RobotBuilder::Status RobotBuilderP::write() const
   repl["nodeid_enum_definition"] = streams.nodeid_enum_definition.str();
   repl["node_type_definitions"] = streams.node_type_definitions.str();
   repl["nodes_type_list"] = streams.nodes_type_list.str();
+  repl["fwdDyn_joints_dof"] = ::to_string(model_.fwdDyn_joints_dof());
   repl["map_node_id_to_type"] = streams.map_node_id_to_type.str();
 
   for (int i = 0; i<MAX_NB_CHILDREN_PER_NODE; ++i) {

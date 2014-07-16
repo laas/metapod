@@ -78,12 +78,15 @@ public:
   NodeVector nodes;
   Eigen::Matrix< FloatType, NBDOF, NBDOF > H; // used by crba
   
-  // permutation matrix Q: used by Hybrid Dynamics algorithm (hybrid_dyn.hh).
+  // permutation matrix Q
   typedef Eigen::Matrix<FloatType, 1, NBDOF> VectorNBDOFf;
   typedef Eigen::Matrix<FloatType, NBDOF, NBDOF> MatrixNBDOFf;
   typedef Eigen::PermutationMatrix<NBDOF, NBDOF, FloatType> PermutationMatrixNBDOFf;
+  static const int nbFdDOF = @fwdDyn_joints_dof@;
   static VectorNBDOFf fdNodesFirst; // permutation indexes for building Q matrix
   static VectorNBDOFf idNodes; // permutation indexes for building Q matrix
+  static int fdNodesFirstFillIndex;
+  static int idNodesFillIndex;
   static PermutationMatrixNBDOFf Q;
   static PermutationMatrixNBDOFf Qt; // transpose of Q
   

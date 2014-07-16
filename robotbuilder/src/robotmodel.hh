@@ -31,6 +31,7 @@ public:
   int parent_id_;
   std::string joint_name_;
   unsigned int joint_type_;
+  unsigned int joint_dof_;
   Eigen::Matrix3d R_joint_parent_;
   Eigen::Vector3d r_parent_joint_;
   std::string body_name_;
@@ -61,10 +62,13 @@ public:
 class RobotModel
 {
 public:
+  RobotModel();
   int nb_links() const; // NP does not count
+  int fwdDyn_joints_dof() const;
   int parent_id(int link_id) const;
   const std::string& joint_name(int link_id) const;
-  int joint_type(int link_id) const;
+  unsigned int joint_type(int link_id) const;
+  unsigned int joint_dof(int link_id) const;
   const Eigen::Matrix3d& R_joint_parent(int link_id) const;
   const Eigen::Vector3d& r_parent_joint(int link_id) const;
   const std::string& body_name(int link_id) const;
@@ -83,6 +87,7 @@ public:
 
 private:
   static const std::string NP_;
+  int fwdDyn_joints_dof_;
   std::vector<int> roots_id_;
   std::vector<Link> links_; // link_id -> Link mapping
 };

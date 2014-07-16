@@ -97,24 +97,24 @@ class Body
 template <typename Robot, int id>
 struct Nodes {};
 
-template <typename FloatType>
+template <typename FloatType, int gravity>
 inline Spatial::MotionTpl<FloatType> set_gravity()
 {
-  const FloatType GRAVITY_CST = 9.81;
+  const FloatType g = (FloatType)gravity/100;
   class Vector6dTpl<FloatType>::Type g_tmp;
-  g_tmp << 0,0,0,0,0,GRAVITY_CST;
+  g_tmp << 0,0,0,0,0,g;
   return Spatial::MotionTpl<FloatType>(g_tmp);
 }
 
-template <typename FloatType>
+template <typename FloatType, int gravity>
 class GravityConstant
 {
 public:
   static const Spatial::MotionTpl<FloatType> minus_g;
 };
 
-template<typename FloatType> 
-const Spatial::MotionTpl<FloatType> GravityConstant<FloatType>::minus_g = set_gravity<FloatType>();
+template<typename FloatType, int gravity>
+const Spatial::MotionTpl<FloatType> GravityConstant<FloatType, gravity>::minus_g = set_gravity<FloatType, gravity>();
 
 template <typename FloatType>
 inline class Matrix3dTpl<FloatType>::Type 

@@ -24,6 +24,8 @@ namespace metapod {
   template <> @ROBOT_CLASS_NAME@<FloatType>::VectorNBDOFf @ROBOT_CLASS_NAME@<FloatType>::idNodes = @ROBOT_CLASS_NAME@<FloatType>::VectorNBDOFf::Zero();
   template <> @ROBOT_CLASS_NAME@<FloatType>::PermutationMatrixNBDOFf @ROBOT_CLASS_NAME@<FloatType>::Q = @ROBOT_CLASS_NAME@<FloatType>::PermutationMatrixNBDOFf();
   template <> @ROBOT_CLASS_NAME@<FloatType>::PermutationMatrixNBDOFf @ROBOT_CLASS_NAME@<FloatType>::Qt = Q.transpose();
+  template <> int @ROBOT_CLASS_NAME@<FloatType>::fdNodesFirstFillIndex = 0;
+  template <> int @ROBOT_CLASS_NAME@<FloatType>::idNodesFillIndex = 0;
 }
 
 #ifdef _MSC_VER
