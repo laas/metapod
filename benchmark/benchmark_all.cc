@@ -37,9 +37,14 @@
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
+#ifdef METAPOD_DEFAULT_FLOAT_TYPE
+typedef METAPOD_DEFAULT_FLOAT_TYPE FloatType;
+#else
+#define double FloatType
+#endif 
+
 int main()
 {
-  typedef @METAPOD_DEFAULT_FLOAT_TYPE@ FloatType;
 
 #ifdef WITH_SIMPLE_HUMANOID
   benchmark<metapod::simple_humanoid<FloatType> >::run();

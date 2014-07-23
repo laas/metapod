@@ -24,7 +24,7 @@ INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/robotbuilder/include)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
 INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
-SET(benchmark_cc_definitions "")
+SET(benchmark_cc_definitions "-D METAPOD_DEFAULT_FLOAT_TYPE=${METAPOD_DEFAULT_FLOAT_TYPE}")
 
 IF(WITH_METAPOD_BINARYTREEMODEL)
     SET(depth_list 1 2 3 4)
@@ -59,7 +59,7 @@ IF(WITH_METAPOD_BINARYTREEMODEL)
          ENDIF()
     ENDFOREACH()
     SET(benchmark_cc_definitions
-        "${benchmark_cc_definitions} -DWITH_METAPOD_BINARYTREEMODEL")
+        "${benchmark_cc_definitions} -DWITH_METAPOD_BINARYTREEMODEL ")
 ENDIF()
 
 # add simple humanoid model
@@ -81,22 +81,30 @@ IF(WITH_SIMPLE_HUMANOID)
 
         # Benchmark CRBA
         SET(_benchname "benchmark_${_libname}_CRBA")
+        SET(_bench_cc_def "-D METAPOD_DEFAULT_FLOAT_TYPE=${METAPOD_DEFAULT_FLOAT_TYPE}")
         ADD_EXECUTABLE(benchmark_${_libname}_CRBA
             ${_benchname}.cc
             benchmark.hh)
         IF (UNIX)
-          SET_TARGET_PROPERTIES(benchmark_${_libname}_CRBA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
+          SET(_bench_cc_def  
+            " ${_bench_cc_def} -msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
         ENDIF(UNIX)
+        SET_TARGET_PROPERTIES(benchmark_${_libname}_CRBA 
+          PROPERTIES COMPILE_FLAGS "${_bench_cc_def}")
         TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
         
         # Benchmark RNEA
         SET(_benchname "benchmark_${_libname}_RNEA")
+        SET(_bench_cc_def "-D METAPOD_DEFAULT_FLOAT_TYPE=${METAPOD_DEFAULT_FLOAT_TYPE}")
         ADD_EXECUTABLE(benchmark_${_libname}_RNEA
             ${_benchname}.cc
             benchmark.hh)
         IF (UNIX)
-          SET_TARGET_PROPERTIES(benchmark_${_libname}_RNEA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
+          SET(_bench_cc_def  
+            " ${_bench_cc_def} -msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
         ENDIF(UNIX)
+        SET_TARGET_PROPERTIES(benchmark_${_libname}_CRBA 
+          PROPERTIES COMPILE_FLAGS "${_bench_cc_def}")
         TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
 
     ENDIF()
@@ -104,13 +112,8 @@ ENDIF()
 
 # and finally, a benchmark which runs all models at once
 IF(BUILD_MULTI_MODEL_BENCHMARK AND _model_libs)
-  CONFIGURE_FILE(
-    ${CMAKE_CURRENT_SOURCE_DIR}/benchmark_all.in.cc
-    ${CMAKE_CURRENT_BINARY_DIR}/benchmark_all.cc
-    @ONLY)
-
-    SET_SOURCE_FILES_PROPERTIES("benchmark_all.cc" PROPERTIES
+  SET_SOURCE_FILES_PROPERTIES("benchmark_all.cc" PROPERTIES
         COMPILE_FLAGS "${benchmark_cc_definitions}")
-    ADD_EXECUTABLE(benchmark ${CMAKE_CURRENT_BINARY_DIR}/benchmark_all.cc benchmark.hh)
+    ADD_EXECUTABLE(benchmark benchmark_all.cc benchmark.hh)
     TARGET_LINK_LIBRARIES(benchmark metapod_timer ${_model_libs})
 ENDIF()

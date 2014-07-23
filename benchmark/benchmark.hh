@@ -211,4 +211,10 @@ namespace metapod
   } // end of namespace benchmark
 } // end of namespace metapod
 
+#ifdef METAPOD_DEFAULT_FLOAT_TYPE
+typedef METAPOD_DEFAULT_FLOAT_TYPE FloatType;
+#else
+#define double FloatType
+#endif 
+
 #endif

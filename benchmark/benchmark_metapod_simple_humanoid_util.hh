@@ -30,8 +30,13 @@
 #include "benchmark.hh"
 using namespace metapod::benchmark;
 
-typedef double LocalFloatType;
-typedef typename metapod::simple_humanoid<LocalFloatType> Robot;
+#ifdef METAPOD_DEFAULT_FLOAT_TYPE
+typedef METAPOD_DEFAULT_FLOAT_TYPE FloatType;
+#else
+#define double FloatType
+#endif 
+
+typedef typename metapod::simple_humanoid<FloatType> Robot;
 typedef typename Robot::confVector confVector;
 
 #define MODE_READ 0
