@@ -152,6 +152,10 @@ ELSE()
   FIND_GENERATOR(METAPOD_BINARYTREEMODEL)
 ENDIF()
 
+SET(JOINT_FWD_DYN_VALUES "FROM_URDF;ALL_ON;ALL_OFF")
+SET(MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF "ALL_OFF" CACHE STRING "Set the joint fwd_dyn type from URDF model or hard value. Possible values are: ${JOINT_FWD_DYN_VALUES}")
+SET_PROPERTY(CACHE MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF PROPERTY STRINGS ${JOINT_FWD_DYN_VALUES})
+
 # Even when not cross compiling, we cannot always build metapodfromurdf,
 # because it depends on ROS bits, which are not always available.
 SET(BUILD_METAPODFROMURDF_DEFAULT FALSE)
@@ -205,9 +209,6 @@ OPTION(BUILD_MULTI_MODEL_BENCHMARK
     "Generate and build the multi-model benchmark" TRUE)
 OPTION(BUILD_SINGLE_MODEL_BENCHMARKS
     "Generate and build the single-model benchmarks" TRUE)
-
-SET(MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF "ALL_OFF" CACHE STRING "Set the joint fwd_dyn type from URDF model or hard value")
-SET_PROPERTY(CACHE MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF PROPERTY STRINGS FROM_URDF ALL_ON ALL_OFF)
 
 
 IF(WITH_SIMPLE_ARM)
