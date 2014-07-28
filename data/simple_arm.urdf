@@ -31,20 +31,17 @@
     <child link="ARM"></child>
     <origin rpy="0 -1.5707963267948966 0" xyz="0 0 1"></origin>
     <axis xyz="1 0 0"></axis>
-    <dynamics fwd_dyn="0"></dynamics>
   </joint>
   <joint type="continuous" name="ELBOW">
     <parent link="ARM"></parent>
     <child link="FOREARM"></child>
     <origin rpy="0 0 0" xyz="0 0 -0.45"></origin>
     <axis xyz="1 0 0"></axis>
-    <dynamics fwd_dyn="1"></dynamics>
   </joint>
   <joint type="continuous" name="WRIST">
     <parent link="FOREARM"></parent>
     <child link="HAND"></child>
     <origin rpy="0 0 0" xyz="0 0 -0.4"></origin>
     <axis xyz="1 0 0"></axis>
-    <dynamics fwd_dyn="0"></dynamics>
   </joint>
 </robot>
