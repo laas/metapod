@@ -1,7 +1,8 @@
-// Copyright 2011, 2012, 2013
+// Copyright 2011, 2012, 2013, 2014
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -24,6 +25,7 @@
 # define METAPOD_PRINT_HH
 
 #include <metapod/tools/depth_first_traversal.hh>
+#include <metapod/tools/has_parent.hh>
 
 namespace metapod {
 
@@ -81,6 +83,35 @@ void printConf(const struct VectorNTpl<typename Robot::RobotFloatType>::Type & q
                std::ostream & os)
 {
   depth_first_traversal<internal::PrintConfVisitor, Robot>::run(q, os);
+}
+
+// Print compiled fd and nu(fd) parameters of the robot joints in a stream, compute
+// respective reference parameters and print them also.
+namespace internal {
+template < typename Robot, int node_id> struct PrintNuFwdDynVisitor
+{
+  typedef typename Nodes<Robot, node_id>::type Node;
+
+  static void discover(std::ostream& os, std::ostream& refOs)
+  {
+    os << Node::joint_name << "\n"
+       << Node::jointFwdDyn << "\n"
+       << Node::jointNuOfFwdDyn << "\n"
+       << std::endl;
+    refOs << Node::joint_name << "\n"
+          << Node::jointFwdDyn << "\n"
+          << (Node::jointFwdDyn || (metapod::has_parent<Robot, node_id>::value 
+                                    &&  metapod::has_parent<Robot, node_id>::type::jointNuOfFwdDyn)? true : false) << "\n"
+          << std::endl;
+  }
+  static void finish(std::ostream &, std::ostream &) {}
+};
+} // end of namespace metapod::internal.
+
+template< typename Robot >
+void printNuFwdDyn(std::ostream & os, std::ostream& refOs)
+{
+  depth_first_traversal<internal::PrintNuFwdDynVisitor, Robot>::run(os, refOs);
 }
 
 // Print Transforms of the robot bodies in a stream.

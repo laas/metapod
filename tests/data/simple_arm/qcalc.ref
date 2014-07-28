@@ -1,0 +1,12 @@
+permutation matrix Q
+0 1 0
+1 0 0
+0 0 1
+initial vector ddq
+0
+1.1
+2
+re-ordered vector ddqprime
+1.1
+0
+2

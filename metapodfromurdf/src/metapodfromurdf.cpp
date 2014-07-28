@@ -1,4 +1,8 @@
-// Copyright (c) 2012, 2013 Aldebaran Robotics. All rights reserved
+// Copyright (c) 2012, 2013, 2014
+// 
+// Aldebaran Robotics. All rights reserved
+// Nuno Guedelha (LAAS, CNRS)
+// 
 // Use of this source code is governed by a BSD-style license that can be
 // found in the COPYING.bsd file
 #include <iostream>
@@ -31,6 +35,11 @@
 # include <urdf_parser/urdf_parser.h>
 #endif
 #include <metapod/robotbuilder/robotbuilder.hh>
+
+
+#define ALL_ON true
+#define ALL_OFF false
+#define FROM_URDF (jnt->dynamics->fwdDyn)
 
 
 typedef metapod::RobotBuilder::Status Status;
@@ -198,7 +207,9 @@ Status addSubTree(
       center_of_mass,
       rotational_inertia,
       toEigen(jnt->axis),
+      JOINT_FWD_DYN_FROM_URDF_ON_OFF,
       dof_index);
+
   if (status == STATUS_FAILURE)
     return STATUS_FAILURE;
 

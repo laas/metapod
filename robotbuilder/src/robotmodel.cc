@@ -1,4 +1,5 @@
 #include "robotmodel.hh"
+#include <metapod/robotbuilder/robotbuilder.hh>
 #include <cassert>
 #include <metapod/tools/constants.hh>
 #include <limits>
@@ -55,6 +56,7 @@ Link::Link(
     const Eigen::Vector3d & body_center_of_mass,
     const Eigen::Matrix3d & body_rotational_inertia,
     const Eigen::Vector3d & joint_axis,
+    bool fwdDyn, // <dynamics> fwd_dyn
     int dof_index):
   id_(id),
   parent_id_(parent_id),
@@ -67,15 +69,46 @@ Link::Link(
   body_center_of_mass_(body_center_of_mass),
   body_rotational_inertia_(body_rotational_inertia),
   joint_axis_(joint_axis),
+  fwdDyn_(fwdDyn), // <dynamics> fwd_dyn
   dof_index_(dof_index)
-{}
+{
+  // set the joint DOF from the joint type
+  switch (joint_type)
+    {
+    case RobotBuilder::REVOLUTE_AXIS_ANY:
+    case RobotBuilder::REVOLUTE_AXIS_X:
+    case RobotBuilder::REVOLUTE_AXIS_Y:
+    case RobotBuilder::REVOLUTE_AXIS_Z:
+      {
+	joint_dof_ = 1;
+	break;
+      }
+    case RobotBuilder::FREE_FLYER:
+      {
+	joint_dof_ = 6;
+	break;
+      }
+    default:
+      {
+	joint_dof_ = 1;
+	break;
+      }
+    }
+}
 
+RobotModel::RobotModel()
+  : fwdDyn_joints_dof_(0)
+{}
 
 const std::string RobotModel::NP_ = "NP";
 
 int RobotModel::nb_links() const
 {
   return static_cast<int>(links_.size());
+}
+int RobotModel::fwdDyn_joints_dof() const
+{
+  return fwdDyn_joints_dof_;
 }
 int RobotModel::parent_id(int link_id) const
 {
@@ -89,10 +122,16 @@ const std::string& RobotModel::joint_name(int link_id) const
   return links_[link_id].joint_name_;
 }
 
-int RobotModel::joint_type(int link_id) const
+unsigned int RobotModel::joint_type(int link_id) const
 {
   assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
   return links_[link_id].joint_type_;
+}
+
+unsigned int RobotModel::joint_dof(int link_id) const
+{
+  assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
+  return links_[link_id].joint_dof_;
 }
 
 const Eigen::Matrix3d& RobotModel::R_joint_parent(int link_id) const
@@ -139,6 +178,12 @@ const Eigen::Vector3d& RobotModel::joint_axis(int link_id) const
   return links_[link_id].joint_axis_;
 }
 
+bool RobotModel::fwdDyn(int link_id) const
+{
+  assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
+  return links_[link_id].fwdDyn_;
+}
+
 int RobotModel::dof_index(int link_id) const
 {
   assert(link_id >= 0 && static_cast<size_t>(link_id) < links_.size());
@@ -169,6 +214,9 @@ int RobotModel::child_id(int link_id, unsigned int rank) const
 
 void RobotModel::add_link(const Link& link)
 {
+  // update number of joints in forward dynamics mode
+  if(link.fwdDyn_) {fwdDyn_joints_dof_ += link.joint_dof_;}
+  
   // we assume the caller as filled the link with the proper id.
   // We might want to change this policy in the following way: set the id
   // ourselves and return it to the caller.

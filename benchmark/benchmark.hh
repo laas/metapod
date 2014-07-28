@@ -1,7 +1,8 @@
-// Copyright 2012, 2013
+// Copyright 2012, 2013, 2014
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -45,12 +46,14 @@
 # include <iostream>
 # include <boost/bind.hpp>
 # include <boost/function.hpp>
+# include <cmath>
 
 # include <metapod/timer/timer.hh>
 # include <metapod/tools/jcalc.hh>
 # include <metapod/tools/bcalc.hh>
 # include <metapod/algos/rnea.hh>
 # include <metapod/algos/crba.hh>
+# include <metapod/algos/chda.hh>
 # include <metapod/algos/jac.hh>
 # include <metapod/tools/jac_point_robot.hh>
 
@@ -66,7 +69,8 @@ namespace metapod
       typedef boost::function<void(Robot& robot,
                                    const confVector& q,
                                    const confVector& dq,
-                                   const confVector& ddq)> functor_t;
+                                   confVector& ddq,
+                                   confVector& torques)> functor_t;
 
       Runner(functor_t f, const::std::string & msg):
         timer_(make_timer()),
@@ -96,14 +100,15 @@ namespace metapod
       void run(Robot& robot,
                const confVector& q,
                const confVector& dq,
-               const confVector& ddq)
+               confVector& ddq,
+               confVector& torques)
       {
         if (!outer_loop_count_)
           timer_->start();
         else
           timer_->resume();
         for(int j=0; j<inner_loop_max_; ++j)
-          func_(robot, q, dq, ddq);
+          func_(robot, q, dq, ddq, torques);
         timer_->stop();
         ++outer_loop_count_;
       }
@@ -156,7 +161,7 @@ namespace metapod
       static void run()
       {
         Robot robot;
-        confVector q, dq, ddq;
+        confVector q, dq, ddq, torques;
         // vector of the algorithms we want to benchmark
         std::vector< Runner<Robot> > runners;
         runners.push_back(Runner<Robot>(
@@ -178,6 +183,12 @@ namespace metapod
             boost::bind<void>(crba<Robot, false>::run, _1, _2),
             std::string("crba (without jcalc)")));
         runners.push_back(Runner<Robot>(
+            boost::bind<void>(chda<Robot, true>::run, _1, _2, _3, _4, _5),
+            std::string("chda")));
+        runners.push_back(Runner<Robot>(
+            boost::bind<void>(chda<Robot, false>::run, _1, _2, _3, _4, _5),
+            std::string("chda (without jcalc)")));
+        runners.push_back(Runner<Robot>(
             boost::bind<void>(jac_wrapper<Robot>::run, _1),
             std::string("jac (without jcalc)")));
         runners.push_back(Runner<Robot>(
@@ -188,14 +199,15 @@ namespace metapod
                   << "Model NBDOF : " << Robot::NBDOF << std::endl;
         for(int i=0; i<100; ++i)
         {
-          q = confVector::Random();
+          q = confVector::Random() * M_PI;
           dq = confVector::Random();
           ddq = confVector::Random();
+          torques = confVector::Random();
           for(typename std::vector< Runner<Robot> >::iterator runner=runners.begin();
               runner != runners.end();
               ++runner)
           {
-            runner->run(robot, q, dq, ddq);
+            runner->run(robot, q, dq, ddq, torques);
           }
         }
         // print result

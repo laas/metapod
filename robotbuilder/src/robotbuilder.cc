@@ -1,7 +1,8 @@
-// Copyright 2011, 2012, 2013
+// Copyright 2011, 2012, 2013, 2014
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -68,6 +69,7 @@ RobotBuilder::Status RobotBuilder::addLink(
     const Eigen::Vector3d & body_center_of_mass,
     const Eigen::Matrix3d & body_rotational_inertia,
     const Eigen::Vector3d & joint_axis,
+    bool fwdDyn, // <dynamics> fwd_dyn
     int dof_index)
 {
   return pimpl_->addLink(
@@ -81,6 +83,7 @@ RobotBuilder::Status RobotBuilder::addLink(
     body_center_of_mass,
     body_rotational_inertia,
     joint_axis,
+    fwdDyn,
     dof_index);
 }
 

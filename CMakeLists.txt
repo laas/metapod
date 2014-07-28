@@ -1,8 +1,9 @@
-# Copyright 2011, 2012, 2013
+# Copyright 2011, 2012, 2013, 2014
 #
 # Maxime Reis (JRL/LAAS, CNRS/AIST)
 # Antonio El Khoury (JRL/LAAS, CNRS/AIST)
 # Sébastien Barthélémy (Aldebaran Robotics)
+# Nuno Guedelha (LAAS, CNRS)
 #
 # This file is part of metapod.
 # metapod is free software: you can redistribute it and/or modify
@@ -150,6 +151,10 @@ IF(NOT CMAKE_CROSSCOMPILING)
 ELSE()
   FIND_GENERATOR(METAPOD_BINARYTREEMODEL)
 ENDIF()
+
+SET(JOINT_FWD_DYN_VALUES "FROM_URDF;ALL_ON;ALL_OFF")
+SET(MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF "ALL_OFF" CACHE STRING "Set the joint fwd_dyn type from URDF model or hard value. Possible values are: ${JOINT_FWD_DYN_VALUES}")
+SET_PROPERTY(CACHE MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF PROPERTY STRINGS ${JOINT_FWD_DYN_VALUES})
 
 # Even when not cross compiling, we cannot always build metapodfromurdf,
 # because it depends on ROS bits, which are not always available.

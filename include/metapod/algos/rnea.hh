@@ -1,7 +1,8 @@
-// Copyright 2011, 2012, 2013
+// Copyright 2011, 2012, 2013, 2014
 //
 // Maxime Reis (JRL/LAAS, CNRS/AIST)
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -26,15 +27,17 @@
 # include "metapod/tools/depth_first_traversal.hh"
 # include "metapod/tools/jcalc.hh"
 
+#define GRAVITY_CST 981
+
 namespace metapod {
 
 /// Templated Recursive Newton-Euler Algorithm.
 /// Takes the multibody tree type as template parameter,
 /// and recursively proceeds on the Nodes.
 
-template< typename Robot, bool jcalc = true > struct rnea{};
+template< typename Robot, bool jcalc = true, int gravity =  GRAVITY_CST > struct rnea{};
 
-template< typename Robot > struct rnea< Robot, false >
+template< typename Robot, int gravity > struct rnea< Robot, false, gravity >
 {
   typedef typename Robot::RobotFloatType FloatType;
   METAPOD_TYPEDEFS;
@@ -84,10 +87,10 @@ template< typename Robot > struct rnea< Robot, false >
       // detailed explanation of how the gravity force is applied)
       node.body.iX0 = node.sXp;
       node.body.vi = node.joint.vj;
-      node.body.ai = sum((node.body.iX0 * GravityConstant<typename Robot::RobotFloatType>::minus_g),
-                          Motion(node.joint.S.S() * ddqi),
-                          node.joint.cj,
-                          (node.body.vi^node.joint.vj));
+      node.body.ai = sum((node.body.iX0 * GravityConstant<typename Robot::RobotFloatType, gravity>::minus_g),
+                         Motion(node.joint.S.S() * ddqi),
+                         node.joint.cj,
+                         (node.body.vi^node.joint.vj));
     }
 
   };
@@ -164,7 +167,7 @@ template< typename Robot > struct rnea< Robot, false >
   }
 };
 
-template< typename Robot > struct rnea< Robot, true >
+template< typename Robot, int gravity > struct rnea< Robot, true, gravity >
 {
   static void run(Robot & robot,
                   const typename Robot::confVector & q,
@@ -172,7 +175,7 @@ template< typename Robot > struct rnea< Robot, true >
                   const typename Robot::confVector & ddq)
   {
     jcalc< Robot >::run(robot, q, dq);
-    rnea< Robot, false >::run(robot, q, dq, ddq);
+    rnea< Robot, false, gravity >::run(robot, q, dq, ddq);
   }
 };
 

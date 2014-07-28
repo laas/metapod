@@ -1,6 +1,7 @@
-// Copyright 2013
+// Copyright 2013, 2014
 //
 // Sébastien Barthélémy (Aldebaran Robotics)
+// Nuno Guedelha (LAAS, CNRS)
 //
 // This file is part of metapod.
 // metapod is free software: you can redistribute it and/or modify
@@ -77,6 +78,7 @@ public:
       const Eigen::Vector3d & body_center_of_mass,
       const Eigen::Matrix3d & body_rotational_inertia,
       const Eigen::Vector3d & joint_axis=axisX(),
+      bool fwdDyn=false, // <dynamics> fwd_dyn
       int dof_index=-1);
   Status write();
 private:

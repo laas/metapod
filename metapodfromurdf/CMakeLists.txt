@@ -1,10 +1,16 @@
-## Copyright (c) 2012, 2013 Aldebaran Robotics. All rights reserved
+## Copyright (c) 2012, 2013, 2014
+## 
+## Aldebaran Robotics. All rights reserved
+## Nuno Guedelha (LAAS, CNRS)
+## 
 ## Use of this source code is governed by a BSD-style license that can be
 ## found in the COPYING.bsd file
 INCLUDE_DIRECTORIES(
     ${PROJECT_SOURCE_DIR}/robotbuilder/include
     ${PROJECT_BINARY_DIR}/robotbuilder/include
     ${Boost_INCLUDE_DIRS}) # Eigen is already in the include path
+
+ADD_DEFINITIONS(" -DJOINT_FWD_DYN_FROM_URDF_ON_OFF=${MODEL_JOINT_FWD_DYN_FROM_URDF_ON_OFF}")
 
 ADD_EXECUTABLE(metapodfromurdf
   src/metapodfromurdf.cpp)

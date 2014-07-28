@@ -1,6 +1,7 @@
-# Copyright 2012, 2013
+# Copyright 2012, 2013, 2014
 #
 # Sébastien Barthélémy (Aldebaran Robotics)
+# Nuno Guedelha (LAAS, CNRS)
 #
 # This file is part of metapod.
 # metapod is free software: you can redistribute it and/or modify
@@ -17,6 +18,8 @@
 
 # let tests find the model model headers
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/${CURRENT_MODEL}/include)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/timer/include)
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/timer/include)
 
 ADD_DEFINITIONS(" -DCURRENT_MODEL_ROBOT=${CURRENT_MODEL}")
 ADD_DEFINITIONS(
@@ -39,12 +42,14 @@ ADD_DEFINITIONS(" -DCURRENT_MODEL_IS_${CURRENT_MODEL_UPPER}=1")
 MACRO(ADD_MODEL_TESTCASE NAME)
   SET(NEW_NAME ${NAME}_${CURRENT_MODEL})
   ADD_TESTCASE(${NEW_NAME} ${NAME}.cc common.hh)
-  TARGET_LINK_LIBRARIES(${NEW_NAME} metapod_${CURRENT_MODEL})
+  TARGET_LINK_LIBRARIES(${NEW_NAME} metapod_timer metapod_${CURRENT_MODEL})
 ENDMACRO(ADD_MODEL_TESTCASE)
 
 ADD_MODEL_TESTCASE(test_rnea)
 ADD_MODEL_TESTCASE(test_crba)
+ADD_MODEL_TESTCASE(test_chda)
 ADD_MODEL_TESTCASE(test_bcalc)
+ADD_MODEL_TESTCASE(test_qcalc)
 ADD_MODEL_TESTCASE(test_jac)
 ADD_MODEL_TESTCASE(test_jac_point)
 IF(${CURRENT_MODEL} STREQUAL "simple_humanoid")
@@ -52,6 +57,7 @@ IF(${CURRENT_MODEL} STREQUAL "simple_humanoid")
 ENDIF()
 ADD_MODEL_TESTCASE(test_printstate)
 ADD_MODEL_TESTCASE(test_initconf)
+ADD_MODEL_TESTCASE(test_initnufwddyn)
 ADD_MODEL_TESTCASE(test_depth_first_traversal)
 ADD_MODEL_TESTCASE(test_backward_traversal)
 ADD_MODEL_TESTCASE(test_backward_traversal_prev)
