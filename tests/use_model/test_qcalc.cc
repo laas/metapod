@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE (test_qcalc)
   CURRENT_MODEL_ROBOT_LFT::confVector occurenceCounter = CURRENT_MODEL_ROBOT_LFT::confVector::Zero();
   for(int i=0; i<confSize; i++)
   {
-    occurenceCounter(CURRENT_MODEL_ROBOT_LFT::fdNodesFirst(i))++;
+    occurenceCounter((int)CURRENT_MODEL_ROBOT_LFT::fdNodesFirst(i))++;
   }
   assert(occurenceCounter == CURRENT_MODEL_ROBOT_LFT::confVector::Constant(1));
 

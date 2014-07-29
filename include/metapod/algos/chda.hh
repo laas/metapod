@@ -24,7 +24,7 @@
 # define METAPOD_MAIN_HDA_HH
 
 # include "metapod/tools/common.hh"
-# include "metapod/tools/print.hh";
+# include "metapod/tools/print.hh"
 # include "metapod/tools/jcalc.hh"
 # include "metapod/tools/depth_first_traversal.hh"
 # include "metapod/tools/backward_traversal_prev.hh"
