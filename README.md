@@ -126,13 +126,9 @@ Known Bugs
 
  * Benchmark times different with different combination of outer and inner loop.
 
- Martin Felis pointed out that an outer loop of one, with an inner
- loop of 100000 was not equivalent with the benchmarks, to
- an outer loop of 100 and an inner loop of 1000.
-
- He also found out that it is related to a bug with timers in boost 1.40.
- Please use boot 1.48 to fix it.
- 
+ Please do not use benchmark/benchmark to make performances comparisons.
+ The programs benchmark/benchmark_metapod_simple_humanoid_CRBA
+ and benchmark/benchmark_metapod_simple_humanoid_RNEA are more coherent.
 
  * NP is mandatory
  
