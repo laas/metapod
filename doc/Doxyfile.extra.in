@@ -9,3 +9,8 @@ HTML_HEADER            = @CMAKE_SOURCE_DIR@/doc/header.html
 HTML_FOOTER            = @CMAKE_SOURCE_DIR@/doc/footer.html
 
 TAGFILES               = 
+#LAYOUT_FILE            = "@CMAKE_SOURCE_DIR@/doc/metapoddox_layout.xml"
+ALPHABETICAL_INDEX     = YES
+TEMPLATE_RELATIONS     = YES
+
+

@@ -21,7 +21,7 @@
 /**
 \page installation Installation
 
-\subsection Dependencies
+\section Dependencies
 This package depends upon :
 <ul>
    <li> System tools:
@@ -42,19 +42,21 @@ This package depends upon :
 
 If you want to build the urdf converter, you'll need to install ROS too, and to run
 
+\verbatim
 source /opt/ros/fuerte/setup.bash
+\endverbatim
 
 before running cmake.
 
 There is no currently no binary package.
 
-\subsection getting_the_code Getting the code
+\section getting_the_code Getting the code
 To compile the code you can clone it from github:
 \verbatim
-git clone https://github.com/laas/metapod.git
+git clone https://github.com/laas/metapod.git --submodule
 \endverbatim
 
-\subsection building Building
+\section building Building
 To compile this package, it is recommended to create a separate build directory:
 \verbatim
 mkdir _build

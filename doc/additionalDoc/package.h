@@ -28,10 +28,11 @@ Metapod is targeted for complex redundant mechanical systems such as humanoid ro
 
 The metapod package aims at providing an efficient template based C++ implementation of the rigid body dynamics algorithms described by Roy Featherstone in his book "Rigid Body Dynamics". The goal is to include this software in high-frequency control loop up to 1 Khz.
 
-Metapod provides the support for the two following algorithms:
+Metapod provides the support for the three following algorithms:
 <ul>
   <li> Composite Rigid Body Algorithm (CRBA) </li>
   <li> Recursive Newton Euler Algorithm (RNEA) </li>
+  <li> Composite Hybrid Dynamics Algorithm (CHDA) </li>
 </ul>
 
 Metapod may optionally create efficient C++ robot models based on their URDF file.
@@ -42,10 +43,31 @@ It relies on the URDF parser provided by ROS.
 The installation procedure is currently only available by compiling the source code.
 See \ref installation for further explanations.
 
+\section using_metapod Using metapod
+
+   You will have to first generate a model of your robot.
+   For this the easiest way is to use the tool metapodfromurdf.
+   Once your model is generated you can use the templates provided
+   by metapod to perform various computations as described in \ref gettingstarted.
+
 \section Authors
-Maxime Reis
-Olivier Stasse
-Sébastion Barthélemy
-Antonio El Khoury
+<ul>
+
+<li>Maxime Reis <br>
+Starting of the project </li>
+
+<li>Olivier Stasse <br>
+Project management </li>
+
+<li>Sébastion Barthélemy <br>
+Adaptation to Naoqi, Visitor pattern, Model & data independency </li>
+
+<li>Antonio El Khoury<br>
+Jacobian implementation </li>
+
+<li>Nuno Guedelha<br>
+Hybrid dynamics</li>
+
+</ul>
 */
 
