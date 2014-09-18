@@ -93,16 +93,19 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/${PROJECT_NAME}/tools/fwd.hh
   include/${PROJECT_NAME}/tools/has_parent.hh
   include/${PROJECT_NAME}/tools/initconf.hh
+  include/${PROJECT_NAME}/tools/initnodeidconf.hh
+  include/${PROJECT_NAME}/tools/initnufwddyn.hh
   include/${PROJECT_NAME}/tools/is_ancestor.hh
   include/${PROJECT_NAME}/tools/jac_point_robot.hh
   include/${PROJECT_NAME}/tools/jcalc.hh
   include/${PROJECT_NAME}/tools/joint.hh
-  include/${PROJECT_NAME}/tools/joint-freeflyer.hh
   include/${PROJECT_NAME}/tools/joint-aboutxaxis.hh
   include/${PROJECT_NAME}/tools/joint-aboutyaxis.hh
   include/${PROJECT_NAME}/tools/joint-aboutzaxis.hh
   include/${PROJECT_NAME}/tools/joint-anyaxis.hh
+  include/${PROJECT_NAME}/tools/joint-freeflyer.hh
   include/${PROJECT_NAME}/tools/print.hh
+  include/${PROJECT_NAME}/tools/qcalc.hh
   include/${PROJECT_NAME}/tools/spatial.hh
   include/${PROJECT_NAME}/tools/static_assert.hh
   )
