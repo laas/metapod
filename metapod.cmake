@@ -62,24 +62,52 @@ ENDFUNCTION()
 #
 # Call metapodfromurdf to create one of the sample models
 #
-# NAME: the name of the model. Either simple_arm or simple_humanoid.
-FUNCTION(ADD_SAMPLEURDFMODEL name)
-  IF(NOT WITH_METAPODFROMURDF)
-    ERROR("Could not find metapodfromurdf")
-  ENDIF()
+# name: the name of the model. Either simple_arm or simple_humanoid.
+# arg1: path to urdf file 
+# arg2: path to data files : config and license_file
+# arg3: path to the directory where the model will be generated
+FUNCTION(ADD_SAMPLEURDFMODEL name )
   SET(_libname "metapod_${name}")
-  SET(_urdf_file "${PROJECT_SOURCE_DIR}/data/${name}.urdf")
-  SET(_config_file "${PROJECT_SOURCE_DIR}/data/${name}.config")
-  SET(_license_file "${PROJECT_SOURCE_DIR}/data/metapod_license_file.txt")
-  SET(_model_dir "${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/${name}")
+  
+  # Checking the path to the urdf file
+  IF(${arg1})
+    SET(_urdf_file "${arg1}/${name}.urdf")
+  ELSE()
+    SET(_urdf_file "${PROJECT_SOURCE_DIR}/data/${name}.urdf")
+  ENDIF()
+  
+  # Checking the path to the config file and the license
+  IF(${arg2})
+    SET(_config_file "${arg2}/${name}.config")
+    SET(_license_file "${arg2}/metapod_license_file.txt")
+  ELSE()
+    SET(_config_file "${PROJECT_SOURCE_DIR}/data/${name}.config")
+    SET(_license_file "${PROJECT_SOURCE_DIR}/data/metapod_license_file.txt")
+  ENDIF()
+
+  # Checking the path where to generate the files
+  IF(${arg3})
+    SET(_model_dir "${arg3}/${name}")
+  ELSE()
+    SET(_model_dir "${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/${name}")
+  ENDIF()
+  
   INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
+  FIND_PROGRAM(LMETAPODFROMURDF_EXECUTABLE metapodfromurdf HINTS ${PROJECT_BINARY_DIR}/metapodfromurdf)
+  IF(NOT LMETAPODFROMURDF_EXECUTABLE)
+    IF(NOT BUILD_METAPODFROMURDF)
+      MESSAGE(ERROR " Could not find metapodfromurdf")
+    ELSE()
+      SET(LMETAPODFROMURDF_EXECUTABLE ${METAPODFROMURDF_EXECUTABLE})
+    ENDIF()
+  ENDIF()
   SET(_sources
     ${_model_dir}/config.hh
     ${_model_dir}/${name}.hh
     ${_model_dir}/${name}.cc)
   ADD_CUSTOM_COMMAND(
     OUTPUT ${_sources}
-    COMMAND ${METAPODFROMURDF_EXECUTABLE}
+    COMMAND ${LMETAPODFROMURDF_EXECUTABLE}
     --name ${name}
     --libname ${_libname}
     --directory ${_model_dir}
