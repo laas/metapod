@@ -26,7 +26,7 @@ INCLUDE(cmake/base.cmake)
 INCLUDE(cmake/cpack.cmake)
 INCLUDE(cmake/boost.cmake)
 INCLUDE(cmake/ros.cmake)
-INCLUDE(cmakeutils.cmake)
+INCLUDE(metapod.cmake)
 INCLUDE(CMakeDependentOption)
 
 SET(PROJECT_NAME metapod)
@@ -141,6 +141,11 @@ INSTALL(FILES ${${PROJECT_NAME}_TOOLS_HEADERS}
 INSTALL(FILES ${${PROJECT_NAME}_SPATIAL_HEADERS}
   DESTINATION include/${PROJECT_NAME}/tools/spatial
   )
+
+INSTALL(FILES metapod.cmake
+  DESTINATION share/cmake/
+ )
+
 
 INCLUDE_DIRECTORIES("include" "${CMAKE_CURRENT_BINARY_DIR}/include")
 
