@@ -19,7 +19,7 @@
 */
 
 /**
-\mainpage
+\mainpage Metapod documentation
 
 This is the documentation of Metapod, a template based library for efficient dynamic computation.
 Metapod is targeted for complex redundant mechanical systems such as humanoid robots.
