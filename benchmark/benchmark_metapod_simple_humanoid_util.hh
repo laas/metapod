@@ -31,8 +31,8 @@
 using namespace metapod::benchmark;
 
 typedef double LocalFloatType;
-typedef typename metapod::simple_humanoid<LocalFloatType> Robot;
-typedef typename Robot::confVector confVector;
+typedef metapod::simple_humanoid<LocalFloatType> Robot;
+typedef Robot::confVector confVector;
 
 #define MODE_READ 0
 #define MODE_WRITE 1
