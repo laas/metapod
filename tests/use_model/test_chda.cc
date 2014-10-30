@@ -66,11 +66,8 @@ BOOST_AUTO_TEST_CASE (test_chda)
   printConf<Robot>(ddq, logDdqFdIdInit);
   logDdqFdIdInit.close();
 
-  
   // Apply the CHDA (Hybrid Dynamics) to the metapod multibody and print the result in a log file.
-
   chda<Robot, false>::run(robot, q, dq, ddq, torques);
-  
   // Inertia H results
   const char H_result_file[] = "chdaH.log";
   std::ofstream logH(H_result_file, std::ofstream::out);
@@ -98,7 +95,7 @@ BOOST_AUTO_TEST_CASE (test_chda)
   int outer_loop_count;
   int inner_loop_count;
 
-  for(outer_loop_count=1; outer_loop_count<100; ++outer_loop_count)
+  for(outer_loop_count=1; outer_loop_count<10; ++outer_loop_count)
   {
     q = Robot::confVector::Random() * M_PI;
     dq = Robot::confVector::Random();
@@ -109,7 +106,7 @@ BOOST_AUTO_TEST_CASE (test_chda)
     initConf<Robot, HYBRID_DDQ, Robot::confVector>::run(ref_ddq, ddq);
     initConf<Robot, HYBRID_TORQUES, Robot::confVector>::run(ref_torques, torques);
 
-    for(inner_loop_count=1; inner_loop_count<1000; inner_loop_count++)
+    for(inner_loop_count=1; inner_loop_count<10; inner_loop_count++)
     {
       timer->resume();
 
@@ -117,6 +114,8 @@ BOOST_AUTO_TEST_CASE (test_chda)
       chda<Robot, true>::run(robot, q, dq, ddq, torques);
 
       timer->stop();
+      if (inner_loop_count%5==0)
+        std::cout << "+1 iteration OK" << std::endl;
     }
 
     // compare results to ref data
