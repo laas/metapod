@@ -85,7 +85,7 @@ IF(WITH_SIMPLE_HUMANOID)
             ${_benchname}.cc
             benchmark.hh)
         IF (UNIX)
-          SET_TARGET_PROPERTIES(benchmark_${_libname}_CRBA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
+          SET_TARGET_PROPERTIES(benchmark_${_libname}_CRBA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
         ENDIF(UNIX)
         TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
         
@@ -95,7 +95,7 @@ IF(WITH_SIMPLE_HUMANOID)
             ${_benchname}.cc
             benchmark.hh)
         IF (UNIX)
-          SET_TARGET_PROPERTIES(benchmark_${_libname}_RNEA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -march=corei7 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
+          SET_TARGET_PROPERTIES(benchmark_${_libname}_RNEA PROPERTIES COMPILE_FLAGS "-msse -msse2 -msse3 -mfpmath=sse -fwhole-program -fivopts -ftree-loop-im -fipa-pta ")
         ENDIF(UNIX)
         TARGET_LINK_LIBRARIES(${_benchname} metapod_timer ${_libname})
 
