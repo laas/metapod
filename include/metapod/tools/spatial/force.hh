@@ -33,10 +33,10 @@ namespace metapod
       public:
         // Constructors
         ForceTpl() : m_n(), m_f() {}
-        ForceTpl(const Vector3d & n, 
+        ForceTpl(const Vector3d & n,
               const Vector3d & f) : m_n(n), m_f(f) {}
-        ForceTpl(const Vector6d & v) : m_n(v.segment<3>(0)),
-                                    m_f(v.segment<3>(3)) {}
+        ForceTpl(const Vector6d & v) : m_n(v.template head<3>()),
+                                    m_f(v.template tail<3>()) {}
 
         // initializers
         static const ForceTpl Zero() { return ForceTpl(Vector3d::Zero(), Vector3d::Zero()); }
