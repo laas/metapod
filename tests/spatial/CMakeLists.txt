@@ -17,7 +17,6 @@
 # along with metapod.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Creation: 17/12/2012
-
+ADD_TESTCASE(test_transform test_transform.cc)
 ADD_TESTCASE(test_rotation test_rotation.cc)
 ADD_TESTCASE(test_doubledef test_doubledef.cc doubledef.cc doubledef.hh)
-ADD_TESTCASE(test_transform test_transform.cc)

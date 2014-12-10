@@ -50,6 +50,8 @@ MACRO(ADD_TESTCASE NAME)
   TARGET_LINK_LIBRARIES(${NAME} ${Boost_LIBRARIES})
 ENDMACRO(ADD_TESTCASE)
 
+ADD_SUBDIRECTORY(spatial)
+
 # the "use_model" subfolder is included once per tested model. The tests
 # defined within it should use the "CURRENT_MODEL" macro to use the
 # corresponding solver.
@@ -64,5 +66,4 @@ IF(${WITH_SIMPLE_ARM})
   SET(CURRENT_MODEL "simple_arm")
   ADD_SUBDIRECTORY(use_model use_simple_arm)
 ENDIF()
-ADD_SUBDIRECTORY(spatial)
 ADD_SUBDIRECTORY(tools)

@@ -57,15 +57,15 @@ class TransformT_helper
  public:
   // Constructors
   TransformT_helper() : m_E(), m_r() {}
-  TransformT_helper(const Matrix3d & E, const Vector3d & r) : m_E(E), m_r(r) {}
-  TransformT_helper(const RotationClass & E, const Vector3d & r) : m_E(E), m_r(r) {}
+  TransformT_helper(const Matrix3d & E, const typename Vector3dTpl<FloatType>::Type & r) : m_E(E), m_r(r) {}
+  TransformT_helper(const RotationClass & E, const typename Vector3dTpl<FloatType>::Type & r) : m_E(E), m_r(r) {}
   static const TransformT_helper Identity()
   {
     return TransformT_helper (Matrix3d::Identity(), Vector3d::Zero());
   }
 
   // Getters
-  const Vector3d & r() const { return m_r; }
+  const typename Vector3dTpl<FloatType>::Type & r() const { return m_r; }
   const RotationClass & E() const { return m_E; }
 
   // Transformations
@@ -74,32 +74,34 @@ class TransformT_helper
   Motion apply(const Motion & mv) const
   {
     return Motion(m_E * mv.w(),
-                             m_E * (mv.v() - m_r.cross(mv.w())));
+                  m_E * (mv.v() - m_r.cross(mv.w())).eval());
   }
 
   /// Fb = bXa.apply(Fa)
   Force apply(const Force & fv) const
   {
-    return Force(m_E*(fv.n() - m_r.cross(fv.f())), m_E*fv.f());
+    return Force(m_E*(fv.n() - m_r.cross(fv.f())).eval(), m_E*fv.f());
   }
 
   /// Ib = bXa.apply(Ia)
   Inertia apply(const Inertia & I) const
   {
-    Vector3d tmp = I.h() - I.m()*m_r;
+    typename Vector3dTpl<FloatType>::Type tmp = I.h() - I.m()*m_r;
+    const Matrix3d E3(I.I()
+                      +skew<FloatType>(r())*skew<FloatType>(I.h())
+                      +skew<FloatType>(tmp)*skew<FloatType>(m_r));
+    const Matrix3d E4(m_E*E3);
 
-    return Inertia(I.m(),
-                              m_E*tmp,
-                              m_E*(I.I()
-                                   + skew(m_r)*skew(I.h())
-                                   + skew(tmp)*skew(m_r))*m_E.transpose());
+    return Inertia(I.m(), m_E*tmp,E4*m_E.toMatrix().transpose());
   }
 
   /// Pb = bXa.apply(Pa)
-  Vector3d apply(const Vector3d& p) const
+  typename Vector3dTpl<FloatType>::Type
+  apply(const typename Vector3dTpl<FloatType>::Type & p) const
   {
-    return m_E*static_cast<Vector3d>((p - m_r));
+    return m_E*static_cast<typename Vector3dTpl<FloatType>::Type >((p - m_r));
   }
+
 
   /// Sb = bXa.apply(Sa)
   ///
@@ -108,7 +110,7 @@ class TransformT_helper
   {
     Vector6d tmp;
     tmp.template head<3>() = 
-        m_E*static_cast<Vector3d>(S.S().template head<3> () );
+      m_E*static_cast<typename Vector3dTpl<FloatType>::Type >(S.S().template head<3> () );
     tmp.template tail<3>() = -(m_E*m_r.cross(S.S().template head<3>() ) );
     return tmp;
   }
@@ -120,7 +122,7 @@ class TransformT_helper
   {
     Vector6d tmp;
     tmp.template head<3>() = m_E.col(0);
-    tmp.template tail<3>() = m_E*Vector3d(0,-m_r[2],m_r[1]);
+    tmp.template tail<3>() = m_E*typename Vector3dTpl<FloatType>::Type(0,-m_r[2],m_r[1]);
     return tmp;
   }
 
@@ -131,7 +133,7 @@ class TransformT_helper
   {
     Vector6d tmp;
     tmp.template head<3>() = m_E.col(1);
-    tmp.template tail<3>() = m_E*Vector3d(m_r[2], 0, -m_r[0]);
+    tmp.template tail<3>() = m_E*typename Vector3dTpl<FloatType>::Type(m_r[2], 0, -m_r[0]);
     return tmp;
   }
 
@@ -142,7 +144,7 @@ class TransformT_helper
   {
     Vector6d tmp;
     tmp.template head<3>() = m_E.col(2);
-    tmp.template tail<3>() = m_E*Vector3d(-m_r[1], m_r[0], 0);
+    tmp.template tail<3>() = m_E*typename Vector3dTpl<FloatType>::Type(-m_r[1], m_r[0], 0);
     return tmp;
   }
 
@@ -199,22 +201,22 @@ class TransformT_helper
   /// Va = bXa.applyInv(Vb)
   Motion applyInv(const Motion & mv) const
   {
-    Vector3d ET_w = static_cast<Vector3d>(m_E.transpose()*mv.w());
+    typename Vector3dTpl<FloatType>::Type ET_w = static_cast<typename Vector3dTpl<FloatType>::Type >(m_E.transpose()*mv.w());
     return Motion(ET_w, m_E.transpose()*mv.v() + m_r.cross(ET_w));
   }
 
   /// Fa = bXa.applyInv(Fb)
   Force applyInv(const Force & fv) const
   {
-    Vector3d ET_f = static_cast<Vector3d>(m_E.transpose()*fv.f());
+    typename Vector3dTpl<FloatType>::Type ET_f = static_cast<typename Vector3dTpl<FloatType>::Type >(m_E.transpose()*fv.f());
     return Force(m_E.transpose()*fv.n() + m_r.cross(ET_f), ET_f);
   }
 
   /// Ia = bXa.applyInv(Ib)
   Inertia applyInv(const Inertia & I) const
   {
-    Vector3d tmp1 = static_cast<Vector3d>(m_E.transpose()*I.h());
-    Vector3d tmp2 = static_cast<Vector3d>(tmp1 + I.m()*m_r);
+    typename Vector3dTpl<FloatType>::Type tmp1 = static_cast<typename Vector3dTpl<FloatType>::Type >(m_E.transpose()*I.h());
+    typename Vector3dTpl<FloatType>::Type tmp2 = static_cast<typename Vector3dTpl<FloatType>::Type >(tmp1 + I.m()*m_r);
     ltI<FloatType> aEtIE = m_E.rotTSymmetricMatrix(I.I());
     return Inertia(I.m(),
                    tmp2,
@@ -225,12 +227,13 @@ class TransformT_helper
 
 
   /// Pa = bXa.applyInv(Pb)
-  Vector3d applyInv(const Vector3d& p) const
+  typename Vector3dTpl<FloatType>::Type 
+  applyInv(const typename Vector3dTpl<FloatType>::Type & p) const
   {
     return m_E.transpose()*p + m_r;
   }
       
-      
+       
   /// aXb = bXa.inverse()
   template <template <typename LFloatType, typename LRotationClass> class T >
   T<FloatType, RotationClass> inverse() const
@@ -247,33 +250,28 @@ class TransformT_helper
   /// cXb == TransformT(Eye, Pb)
   /// cXa == cXb * bXa == bXa.toPointFrame(Pb)
   template <template <typename U, typename C> class T>
-  T<FloatType, RotationClass> toPointFrame(const Vector3d& p) const
+  T<FloatType, RotationClass> toPointFrame(const Vector3dTpl<FloatType>& p) const
   {
     return T<FloatType,RotationClass> (m_E, m_r + m_E.transpose()*p);
   }
 
-  /*TransformT_helper toPointFrame(const Vector3d& p) const
-  {
-    return TransformT_helper(m_E, m_r + m_E.transpose()*p);
-    }*/
-
   /// Vb = bXa * Va
   Motion operator*(const Motion & mv) const
   {
-    return Motion(m_E * mv.w(), m_E * static_cast<Vector3d>(mv.v() - m_r.cross(mv.w())));
+    return Motion(m_E * mv.w(), m_E * static_cast<typename Vector3dTpl<FloatType>::Type >(mv.v() - m_r.cross(mv.w())));
   }
 
   /// Fb = bXa * Fa
   Force operator*(const Force & fv) const
   {
-    Vector3d lf = fv.f();
-    return Force(m_E*static_cast<Vector3d>(fv.n() - m_r.cross(lf)), m_E*lf);
+    typename Vector3dTpl<FloatType>::Type lf = fv.f();
+    return Force(m_E*static_cast<typename Vector3dTpl<FloatType>::Type >(fv.n() - m_r.cross(lf)), m_E*lf);
   }
 
   /// Ib = bXa * Ia
   Inertia operator*(const Inertia & I) const
   {
-    Vector3d tmp = I.h() - I.m()*m_r;
+    typename Vector3dTpl<FloatType>::Type tmp = I.h() - I.m()*m_r;
     return Inertia(I.m(),
                    m_E*tmp,
                    m_E*(I.I()
@@ -288,7 +286,8 @@ class TransformT_helper
   {
     typedef typename rm_mul_op<FloatType,RotationClass,S>::rm RMResult;
     RMResult aR= m_E*aTsf.E(); 
-    Vector3d aV= (Vector3d)(aTsf.r() +  aTsf.E().transpose()*m_r);
+    typename Vector3dTpl<FloatType>::Type 
+      aV= (typename Vector3dTpl<FloatType>::Type)(aTsf.r() +  aTsf.E().transpose()*m_r);
     return TransformT<FloatType, RMResult>(aR,aV);
   }
 
@@ -303,7 +302,7 @@ class TransformT_helper
   // Private members
   // Matrix3d m_E;
   RotationClass m_E;
-  Vector3d m_r;
+  typename Vector3dTpl<FloatType>::Type m_r;
 };
 
 } // namespace internal
@@ -320,9 +319,9 @@ class TransformT: public internal::TransformT_helper<FloatType, RotationClass >
 
  public:
   TransformT(): internal::TransformT_helper<FloatType,RotationClass >() {}
-  TransformT(const Matrix3d & E, const Vector3d & r) : 
+  TransformT(const Matrix3d & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationClass >(E,r) {}
-  TransformT(const RotationClass & E, const Vector3d & r) : 
+  TransformT(const RotationClass & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationClass >(E,r) {}
 
   typename Vector6dTpl<FloatType>::Type mulMatrixTransposeBy(typename Vector6dTpl<FloatType>::Type &aF) const
@@ -333,7 +332,7 @@ class TransformT: public internal::TransformT_helper<FloatType, RotationClass >
   TransformT operator*(FloatType a) const
   {
     RotationClass &LM_E=internal::TransformT_helper<FloatType,RotationClass>::m_E;
-    Vector3d &LM_R=internal::TransformT_helper<FloatType,RotationClass>::m_r;
+    Vector3dTpl<FloatType> &LM_R=internal::TransformT_helper<FloatType,RotationClass>::m_r;
 
     return TransformT(a*LM_E, a*LM_R);
   }
@@ -343,7 +342,7 @@ class TransformT: public internal::TransformT_helper<FloatType, RotationClass >
   TransformT operator*(const TransformT & X) const
   {
     return TransformT(LM_E*X.E(), 
-                      (Vector3d)(X.r() + X.E().transpose()*LM_R));
+                      (Vector3dTpl<FloatType>)(X.r() + X.E().transpose()*LM_R));
                       }*/
 
 
@@ -353,10 +352,10 @@ class TransformT: public internal::TransformT_helper<FloatType, RotationClass >
   {
     typedef typename rm_mul_op<FloatType,RotationClass,S>::rm RMResult;
     RotationClass &LM_E=internal::TransformT_helper<FloatType,RotationClass>::m_E;
-    Vector3d &LM_R=internal::TransformT_helper<FloatType,RotationClass>::m_r;
+    Vector3dTpl<FloatType> &LM_R=internal::TransformT_helper<FloatType,RotationClass>::m_r;
 
     RMResult  aR= LM_E*aTsf.E(); 
-    Vector3d aV= (Vector3d)(aTsf.r() +  aTsf.E().transpose()*LM_R);
+    Vector3dTpl<FloatType> aV= (Vector3dTpl<FloatType>)(aTsf.r() +  aTsf.E().transpose()*LM_R);
     return TransformT<FloatType, RMResult>(aR,aV);
   }
 
@@ -373,9 +372,9 @@ public internal::TransformT_helper<FloatType, RotationMatrixAboutXTpl<FloatType>
   METAPOD_SPATIAL_ROTATION_TYPEDEFS;
  public:
   TransformT(): internal::TransformT_helper<FloatType,RotationMatrixAboutX >() {}
-  TransformT(const Matrix3d & E, const Vector3d & r) : 
+  TransformT(const Matrix3d & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrixAboutX >(E,r) {}
-  TransformT(const RotationMatrixAboutX & E, const Vector3d & r) : 
+  TransformT(const RotationMatrixAboutX & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrixAboutX >(E,r) {}
 
   typename Vector6dTpl<FloatType>::Type mulMatrixTransposeBy(typename Vector6dTpl<FloatType>::Type &aF) const
@@ -383,7 +382,7 @@ public internal::TransformT_helper<FloatType, RotationMatrixAboutXTpl<FloatType>
     EIGEN_METAPOD_TYPEDEFS;
     Vector6d M;
     const RotationMatrixAboutX &lE = internal::TransformT_helper<FloatType,RotationMatrixAboutX >::m_E;
-    const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutX >::m_r;
+    const typename Vector3dTpl<FloatType>::Type &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutX >::m_r;
 
     M[0] = aF(0);
     M[1] = lE.m_c*aF(1) - lE.m_s*aF(2);
@@ -420,16 +419,16 @@ class TransformT<FloatType, RotationMatrixAboutYTpl<FloatType> >:
   METAPOD_SPATIAL_ROTATION_TYPEDEFS;
  public:
   TransformT(): internal::TransformT_helper<FloatType,RotationMatrixAboutY >() {}
-  TransformT(const Matrix3d & E, const Vector3d & r) : 
+  TransformT(const Matrix3d & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrixAboutY >(E,r) {}
-  TransformT(const RotationMatrixAboutY & E, const Vector3d & r) : 
+  TransformT(const RotationMatrixAboutY & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrixAboutY >(E,r) {}
 
   typename Vector6dTpl<FloatType>::Type mulMatrixTransposeBy(typename Vector6dTpl<FloatType>::Type &aF) const
   {
     Vector6d M;
     const RotationMatrixAboutY &lE = internal::TransformT_helper<FloatType,RotationMatrixAboutY >::m_E;
-    const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutY >::m_r;
+    const typename Vector3dTpl<FloatType>::Type &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutY >::m_r;
 
     M[0] = lE.m_c*aF(0) + lE.m_s*aF(2);
     M[1] = aF(1);
@@ -465,16 +464,16 @@ class TransformT<FloatType, RotationMatrixAboutZTpl<FloatType> >:
   METAPOD_SPATIAL_ROTATION_TYPEDEFS;
  public:
   TransformT(): internal::TransformT_helper<FloatType,RotationMatrixAboutZ >() {}
-  TransformT(const Matrix3d & E, const Vector3d & r) : 
+  TransformT(const Matrix3d & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrixAboutZ >(E,r) {}
-  TransformT(const RotationMatrixAboutZ & E, const Vector3d & r) : 
+  TransformT(const RotationMatrixAboutZ & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrixAboutZ >(E,r) {}
 
   Vector6d  mulMatrixTransposeBy(Vector6d &aF) const
   {
     Vector6d M;
     const RotationMatrixAboutZ &lE = internal::TransformT_helper<FloatType,RotationMatrixAboutZ >::m_E;
-    const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutZ >::m_r;
+    const typename Vector3dTpl<FloatType>::Type &lr = internal::TransformT_helper<FloatType,RotationMatrixAboutZ >::m_r;
 
     M[0] = lE.m_c*aF(0) - lE.m_s*aF(1);
     M[1] = lE.m_s*aF(0) + lE.m_c*aF(1);
@@ -510,16 +509,16 @@ class TransformT<FloatType, RotationMatrixTpl<FloatType> >:
   METAPOD_SPATIAL_ROTATION_TYPEDEFS;
  public:
   TransformT(): internal::TransformT_helper<FloatType,RotationMatrix >() {}
-  TransformT(const Matrix3d & E, const Vector3d & r) : 
+  TransformT(const Matrix3d & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrix >(E,r) {}
-  TransformT(const RotationMatrix & E, const Vector3d & r) : 
+  TransformT(const RotationMatrix & E, const typename Vector3dTpl<FloatType>::Type & r) : 
       internal::TransformT_helper<FloatType,RotationMatrix >(E,r) {}
 
   Vector6d  mulMatrixTransposeBy(Vector6d &aF) const
   {
     Vector6d M;
     const RotationMatrix &lE = internal::TransformT_helper<FloatType,RotationMatrix >::m_E;
-    const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrix >::m_r;
+    const typename Vector3dTpl<FloatType>::Type &lr = internal::TransformT_helper<FloatType,RotationMatrix >::m_r;
     
     M[0] = lE(0,0)*aF(0) + lE(1,0)*aF(1) + lE(2,0)*aF(2);
     M[1] = lE(0,1)*aF(0) + lE(1,1)*aF(1) + lE(2,1)*aF(2);
@@ -549,16 +548,16 @@ class TransformT<FloatType, RotationMatrixTpl<FloatType> >:
   TransformT<FloatType, RotationMatrix> inverse() const
   {
     const RotationMatrix &lE = internal::TransformT_helper<FloatType,RotationMatrix >::m_E;
-    const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrix >::m_r;
+    const typename Vector3dTpl<FloatType>::Type &lr = internal::TransformT_helper<FloatType,RotationMatrix >::m_r;
 
     return TransformT<FloatType, RotationMatrix>(lE.transpose(), -(lE*lr));
   }
 
   
-  TransformT<FloatType, RotationMatrix> toPointFrame(const Vector3d& p) const
+  TransformT<FloatType, RotationMatrix> toPointFrame(const typename Vector3dTpl<FloatType>::Type& p) const
   {
     const RotationMatrix &lE = internal::TransformT_helper<FloatType,RotationMatrix >::m_E;
-    const Vector3d &lr = internal::TransformT_helper<FloatType,RotationMatrix >::m_r;
+    const typename Vector3dTpl<FloatType>::Type &lr = internal::TransformT_helper<FloatType,RotationMatrix >::m_r;
 
     return TransformT<FloatType,RotationMatrix> (lE, lr + lE.transpose()*p);
   }

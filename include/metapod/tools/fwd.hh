@@ -59,16 +59,16 @@ namespace metapod
   { typedef Eigen::Matrix< FloatType, Eigen::Dynamic, 1 > Type; };
 
 #define EIGEN_METAPOD_TYPEDEFS \
-  typedef struct Vector1dTpl<FloatType>::Type Vector1d;      \
-  typedef struct Vector3dTpl<FloatType>::Type Vector3d;      \
-  typedef struct Vector6dTpl<FloatType>::Type Vector6d;      \
-  typedef struct Vector6dtTpl<FloatType>::Type Vector6dt;    \
-  typedef struct Matrix2dTpl<FloatType>::Type Matrix2d;      \
-  typedef struct Matrix3_2dTpl<FloatType>::Type Matrix3_2d;  \
-  typedef struct Matrix3dTpl<FloatType>::Type Matrix3d;      \
-  typedef struct Matrix6dTpl<FloatType>::Type Matrix6d;      \
-  typedef struct MatrixNTpl<FloatType>::Type MatrixN;        \
-  typedef struct VectorNTpl<FloatType>::Type VectorN          
+  typedef struct metapod::Vector1dTpl<FloatType>::Type Vector1d; \
+  typedef struct metapod::Vector3dTpl<FloatType>::Type Vector3d; \
+  typedef struct metapod::Vector6dTpl<FloatType>::Type Vector6d; \
+  typedef struct metapod::Vector6dtTpl<FloatType>::Type Vector6dt;    \
+  typedef struct metapod::Matrix2dTpl<FloatType>::Type Matrix2d;      \
+  typedef struct metapod::Matrix3_2dTpl<FloatType>::Type Matrix3_2d;  \
+  typedef struct metapod::Matrix3dTpl<FloatType>::Type Matrix3d;      \
+  typedef struct metapod::Matrix6dTpl<FloatType>::Type Matrix6d;      \
+  typedef struct metapod::MatrixNTpl<FloatType>::Type MatrixN;        \
+  typedef struct metapod::VectorNTpl<FloatType>::Type VectorN
 
   namespace Spatial
   {
@@ -81,8 +81,8 @@ namespace metapod
 
     // Tool methods
     template <typename FloatType>
-    inline class Matrix3dTpl<FloatType>::Type 
-    skew(const class Vector3dTpl<FloatType>::Type & v)
+    inline typename Matrix3dTpl<FloatType>::Type 
+    skew(const typename Vector3dTpl<FloatType>::Type & v)
     {
       EIGEN_METAPOD_TYPEDEFS;
       Matrix3d m;
@@ -91,6 +91,7 @@ namespace metapod
       m(2,0) = -v(1);m(2,1)=  v(0) ; m(2,2) =  0 ;
       return m;
     }
+
   } // end of namespace Spatial
 
 }
