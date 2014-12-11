@@ -1,4 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$a00108.html" title="metapod::Spatial::internal::TransformT_helper\&lt; FloatType, RotationMatrixAboutXTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="5,5,632,35"/>
-<area shape="rect" id="node3" href="$a00104.html" title="metapod::Spatial::TransformT\&lt; FloatType, RotationMatrixAboutXTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="680,5,1211,35"/>
+<area shape="rect" id="node1" href="$a00099.html" title="metapod::myParent\&lt; Robot, Node, false \&gt;" alt="" coords="7,5,281,35"/>
 </map>

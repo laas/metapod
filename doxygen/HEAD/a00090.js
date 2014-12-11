@@ -1,5 +1,6 @@
 var a00090 =
 [
-    [ "ind", "a00090.html#ad326bcce6e762bed05c687e873c6d017", null ],
-    [ "value", "a00090.html#ab1d51f2aad279f7f777e1567c3d74d84", null ]
+    [ "Node", "a00090.html#ad76142fbbbe464121d6c64b31f4958f8", null ],
+    [ "discover", "a00090.html#a3bb07ac48a1dcafc5e656c0d83d10be6", null ],
+    [ "finish", "a00090.html#aafd7f28e2c0e93eed088234708f1b8f5", null ]
 ];

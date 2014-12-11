@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$a00151.html" title="joint.hh" alt="" coords="40,86,101,117"/>
+<map id="structs" name="structs">
+<area shape="rect" id="node3" href="$a00222.html" title="The following joints use specific rotations matrices which implement the method recommended in Feathe..." alt="" coords="308,5,385,35"/>
+<area shape="rect" id="node2" href="$a00220.html" title="This module implements the spatial algebra as described in Featherstone book." alt="" coords="5,5,120,35"/>
 </map>

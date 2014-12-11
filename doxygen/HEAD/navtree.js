@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "metapod", "index.html", [
-    [ "Main Page", "index.html", null ],
+    [ "Metapod documentation", "index.html", null ],
     [ "Related Pages", "pages.html", "pages" ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [

@@ -1,6 +1,5 @@
 var a00074 =
 [
-    [ "Node", "a00074.html#aa2ff3095b89ccf627353f229a1865410", null ],
-    [ "discover", "a00074.html#a7699e8fb0c37d4430cb27db9f938c8cf", null ],
-    [ "finish", "a00074.html#a39268ede77479cbf96632ebefe272014", null ]
+    [ "discover", "a00074.html#ac9c08ffe37ff30eea6e2113a786de0fb", null ],
+    [ "finish", "a00074.html#a147b87d055a4cc04d02940257ed57517", null ]
 ];

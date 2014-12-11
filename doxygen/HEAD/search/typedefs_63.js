@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['confvector',['confVector',['../a00093.html#aa3350e08a72c42eb766542fe875a7c9d',1,'metapod::rnea&lt; Robot, false &gt;']]]
+  ['confvector',['confVector',['../a00126.html#afdf04df7f5bbf88f94eb7e39cf0ed648',1,'metapod::rnea&lt; Robot, false, gravity &gt;']]]
 ];

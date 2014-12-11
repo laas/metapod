@@ -1,4 +1,6 @@
 var a00064 =
 [
-    [ "Type", "a00064.html#aa47337c444c645d59f43d371c9d1ea85", null ]
+    [ "Node", "a00064.html#a42ec98e6d9b90496367f849323f1f4bc", null ],
+    [ "type", "a00064.html#a265733836a424742a0293a62d9bccd49", null ],
+    [ "value", "a00064.html#ac029db892030b6575b6f1aba50a6df9b", null ]
 ];

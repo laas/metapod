@@ -1,4 +1,4 @@
 var a00115 =
 [
-    [ "Type", "a00115.html#ab0d3d21e3dccdc593bb29a451a98ebbb", null ]
+    [ "rm", "a00115.html#aeb2b40959b40941d833757328ce5e289", null ]
 ];

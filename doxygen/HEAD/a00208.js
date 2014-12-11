@@ -1,0 +1,4 @@
+var a00208 =
+[
+    [ "METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF", "a00208.html#a67a80b2ffd1ebccb77eb63b4fd947122", null ]
+];

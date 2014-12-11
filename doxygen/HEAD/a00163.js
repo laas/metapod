@@ -1,4 +1,6 @@
 var a00163 =
 [
-    [ "METAPOD_SPATIAL_ROTATION_MATRIX_I_TYPEDEF", "a00163.html#ad1665016d08adf09262e7e2fd5204855", null ]
+    [ "operator*", "a00220.html#a7d8fc8985525385d684f91ed9c26cd47", null ],
+    [ "operator^", "a00220.html#a6f87c50c7fc3987dddd981d98a7ad699", null ],
+    [ "operator", "a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8", null ]
 ];

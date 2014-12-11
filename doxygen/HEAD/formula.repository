@@ -50,3 +50,24 @@
 \form#49:$ iX, iY, iZ, lX, lY, lZ, rc$
 \form#50:$ lX, lY, lZ \in \{ -1,1 \}, rc \in \{0,1\} $
 \form#51:\[ \begin{matrix} A(0,iX) = lX & A(0,j) = 0 \text{ if } j \neq iX \\ A(1,iY) = lY & A(1,j) = 0 \text{ if } j \neq iY \\ A(2,iZ) = lZ & A(2,j) = 0 \text{ if } j \neq iZ \\ \end{matrix} \]
+\form#52:$\tau$
+\form#53:$({\bf q},\dot{\bf q},\ddot{\bf q})$
+\form#54:$M$
+\form#55:$F$
+\form#56:$A$
+\form#57:$B$
+\form#58:${\bf p}$
+\form#59:${\bf R}$
+\form#60:$R_{\theta_x,\theta_y}(\theta_x,\theta_y)$
+\form#61:\[ R_{\theta_x,\theta_y}(\theta_x,\theta_y) = R_x(\theta_x) R_y(\theta_y) = \left[ \begin{matrix} 1 & 0 & 0 \\ 0 & c_x & s_x \\ 0 & -s_x & c_x \end{matrix} \right] \left[ \begin{matrix} c_y & 0 & -s_y \\ 0 & 1 & 0 \\ s_y & 0 & c_y \end{matrix} \right] = \left[ \begin{matrix} c_y & 0 & -s_y \\ s_xs_y & c_x & s_xc_y \\ c_xs_y & -s_x & c_xc_y \end{matrix} \right] \]
+\form#62:\[ R_{\theta_y,\theta_x}(\theta_y,\theta_x) = R_y(\theta_y) R_x(\theta_x) = \left[ \begin{matrix} c_y & 0 & -s_y \\ 0 & 1 & 0 \\ s_y & 0 & c_y \end{matrix} \right] \left[ \begin{matrix} 1 & 0 & 0 \\ 0 & c_x & s_x \\ 0 & -s_x & c_x \end{matrix} \right] = \left[ \begin{matrix} c_y & s_xs_y & -c_xs_y \\ 0 & c_x & s_x \\ s_y & -s_xc_y & c_xc_y \end{matrix} \right] \]
+\form#63:$q$
+\form#64:$j^{th}$
+\form#65:$id^{th}$
+\form#66:$ ^{B}X_{A} = \begin{bmatrix} ^{B}R_{A} & 0 \\ -^{B}R_{A} * ^{A}r_{\overrightarrow{ab}} & ^{B}R_{A} \end{bmatrix} $
+\form#67:$^{B}X_{A}$
+\form#68:$^{B}R_{A}$
+\form#69:$^{A}r_{\overrightarrow{ab}}$
+\form#70:$ ^{i}X_{0}$
+\form#71:$ ^{i}R_{0}$
+\form#72:$ ^{0}r_{\overrightarrow{ob_i}} $

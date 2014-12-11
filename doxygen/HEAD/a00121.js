@@ -1,6 +1,5 @@
 var a00121 =
 [
-    [ "sum", "a00172.html#aba8b1ed29a252023f06fe769121cb9ff", null ],
-    [ "sum", "a00172.html#a59644328eed6e3c40c351a1b49f1e1ba", null ],
-    [ "sum", "a00172.html#aab1a8ff80ed5bea4cc3e5144a3de3cce", null ]
+    [ "ind", "a00121.html#aad5c9b5169edb815208e0602855b8019", null ],
+    [ "value", "a00121.html#a1f75f8fceeb2c36689c9a242e00d14d1", null ]
 ];

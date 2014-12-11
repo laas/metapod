@@ -1,6 +1,6 @@
 var a00007 =
 [
-    [ "run", "a00007.html#a90864ee33633ed03d5bb48c8381c08da", null ],
-    [ "run", "a00007.html#a7f39cb0d6b5954f8603611a25ba90ee9", null ],
-    [ "run", "a00007.html#a86b2940274dccb484ffe021e2db4502e", null ]
+    [ "Inverse dynamics: how to read the torques of your model.", "a00002.html", null ],
+    [ "bcalc: how to compute the forward kinematics of your model.", "a00001.html", null ],
+    [ "Nodes : read information of you robot model during run time.", "a00006.html", null ]
 ];
