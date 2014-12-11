@@ -58,7 +58,7 @@ namespace metapod
       S.setlocalR(localR);
       Xj = Transform(localR, qi.template segment<3>(0));
     }
-
+ 
     inline void jcalc(const Vector6d& qi,
                       const Vector6d& dqi)
     {

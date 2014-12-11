@@ -76,6 +76,19 @@ namespace metapod
                  msh(i,2)*a.S()[2];
       return r;
     }
+
+    /// Cross operator between motion and constraint motion free flyer.
+    template <class FloatType>
+    inline class Vector6dTpl<FloatType>::Type operator^(const MotionTpl<FloatType> &m,
+                                                        const ConstraintMotionAnyAxis<FloatType> &a) 
+    {
+      EIGEN_METAPOD_TYPEDEFS;
+      Vector6d r;
+      r.template segment<3>(0)=m.w().cross( a.S().template segment<3>(0) );
+      r.template segment<3>(3)=m.v().cross( a.S().template segment<3>(0) );
+      return r;
+    }
+
   }
 }
 

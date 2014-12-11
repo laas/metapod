@@ -101,6 +101,39 @@ namespace metapod
       r[3] = -m.h()(1); r[4] = m.h()(0); r[5] = 0.0;
       return r;
     }
+
+    
+    // Operator cross product between motion and a constrained motion
+    template <class FloatType>
+    inline class Vector6dTpl<FloatType>::Type operator^(const MotionTpl<FloatType> & m,
+                                                        const struct ConstraintMotionAxisXTpl<FloatType>::Type &)
+    { 
+      EIGEN_METAPOD_TYPEDEFS;
+      Vector6d r(Vector6d::Zero());
+      r[1]=m.w()[2];r[2]=-m.w()[1];
+      return r;
+    }
+
+    template <class FloatType>
+    inline class Vector6dTpl<FloatType>::Type operator^(const MotionTpl<FloatType> & m,
+                                                        const struct ConstraintMotionAxisYTpl<FloatType>::Type &)
+    {
+      EIGEN_METAPOD_TYPEDEFS;
+      Vector6d r(Vector6d::Zero());
+      r[0]=-m.w()[2];r[2]=m.w()[0];
+      return r;
+    }
+    
+    template <class FloatType>
+    inline class Vector6dTpl<FloatType>::Type operator^(const MotionTpl<FloatType> & m,
+                                                        const struct ConstraintMotionAxisZTpl<FloatType>::Type &)
+    {
+      EIGEN_METAPOD_TYPEDEFS;
+      Vector6d r(Vector6d::Zero());
+      r[0]=m.w()[1];r[1]=-m.w()[0];
+      return r;
+    }
+
   }
 }
 #endif

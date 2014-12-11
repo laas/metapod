@@ -49,6 +49,7 @@ template < typename Robot, int node_id > struct PrintStateVisitor
        << "Ic:\n" << node.body.Iic << "\n"
        << "joint_F:\n" << node.joint_F << "\n"
        << "f :\n" << node.joint.f << "\n"
+       << "vi :\n" << node.joint.vj <<"\n"
        << "τ :\n" << node.joint.torque << "\n"
        << std::endl;
   }

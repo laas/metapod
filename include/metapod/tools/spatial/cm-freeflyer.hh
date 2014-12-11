@@ -72,6 +72,21 @@ namespace metapod
       r.template block<3,3>(3,3) = -skew<FloatType>(m.h())*a.S().template block<3,3>(0,3);
       return r;
     }
+
+    /// Cross operator between motion and constraint motion free flyer.
+    template <class FloatType>
+    inline class Matrix6dTpl<FloatType>::Type operator^(const MotionTpl<FloatType> &m,
+                                                        const ConstraintMotionFreeFlyerTpl<FloatType> &a) 
+    {
+      EIGEN_METAPOD_TYPEDEFS;
+      Matrix6d r;
+      r.template block<3,3>(0,0) = skew<FloatType>(m.v())*a.S().template block<3,3>(3,0);
+      r.template block<3,3>(0,3) = skew<FloatType>(m.w())*a.S().template block<3,3>(3,0);
+      r.template block<3,3>(3,0) = skew<FloatType>(m.w())*a.S().template block<3,3>(3,0);
+      r.template block<3,3>(3,3) = Matrix3d::Zero();
+      return r;
+    }
+
   } // End of spatial namespace
 } // End of metapod namespace
 #endif /* METAPOD_SPATIAL_ALGEBRA_CONSTRAINT_MOTION_FREE_FLYER_HH */
