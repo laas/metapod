@@ -69,6 +69,11 @@ namespace metapod
         return MotionTpl(-m_w, -m_v);
       }
 
+      MotionTpl operator-(const MotionTpl & mv) const
+      {
+        return MotionTpl(m_w-mv.w(), m_v-mv.v());
+      }
+
       MotionTpl operator+(const MotionTpl & mv) const
       {
         return MotionTpl(m_w+mv.w(), m_v+mv.v());
