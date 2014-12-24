@@ -27,7 +27,7 @@ namespace metapod {
 namespace internal {
 
 // Look for a string in a std::ofstream
-void findString(std::string s_, std::ifstream & is)
+inline void findString(std::string s_, std::ifstream & is)
 {
   is.clear(); is.seekg(0);
   std::string s;
