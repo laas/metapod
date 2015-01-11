@@ -51,5 +51,10 @@
    \code
      getTorques(robot,torques);
    \endcode
+
+   If you wish to add external forces:
+   \code
    
+   \endcode
+
 */

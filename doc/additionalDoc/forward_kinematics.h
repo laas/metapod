@@ -1,22 +1,20 @@
-/** \page forward_kinematics bcalc: how to compute the forward kinematics of your model.
+/** \page forward_kinematics <b>bcalc</b>: how to compute the forward kinematics of your model.
 
    Let us assume that you are using the simple_arm model and that you want to compute
-
    the position and orientation of each part of your robot knowing \f$q\f$ the configuration vector
-
    include the joint angles and the position and orientation of the base.
 
-   First the header which describes the model has to be specified:
+   First the header describing the model has to be specified:
    \code
    #include <metapod/models/simple_arm.hh>
    \endcode
 
-   Secondly we call the bcalc include:
+   Secondly we include the header related to the bcalc algorithm:
    \code
    #include <metapod/tools/bcalc.hh>
    \endcode
 
-   for the tutorial we used the metapod namespace :
+   to simplify the tutorial code we used the metapod namespace :
    \code
    using namespace metapod;
    \endcode
