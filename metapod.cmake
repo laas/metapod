@@ -66,28 +66,30 @@ ENDFUNCTION()
 # arg1: path to urdf file 
 # arg2: path to data files : config and license_file
 # arg3: path to the directory where the model will be generated
-FUNCTION(ADD_SAMPLEURDFMODEL name )
+FUNCTION(ADD_SAMPLEURDFMODEL name)
   SET(_libname "metapod_${name}")
   
+
   # Checking the path to the urdf file
-  IF(${arg1})
-    SET(_urdf_file "${arg1}/${name}.urdf")
+  IF(ARGV1)
+    SET(_urdf_file "${ARGV1}/${name}.urdf")
   ELSE()
     SET(_urdf_file "${PROJECT_SOURCE_DIR}/data/${name}.urdf")
   ENDIF()
-  
+  MESSAGE(STATUS "_urdf_file: ${_urdf_file}")
+
   # Checking the path to the config file and the license
-  IF(${arg2})
-    SET(_config_file "${arg2}/${name}.config")
-    SET(_license_file "${arg2}/metapod_license_file.txt")
+  IF(ARGV2)
+    SET(_config_file "${ARGV2}/${name}.config")
+    SET(_license_file "${ARGV2}/${name}_license_file.txt")
   ELSE()
     SET(_config_file "${PROJECT_SOURCE_DIR}/data/${name}.config")
     SET(_license_file "${PROJECT_SOURCE_DIR}/data/metapod_license_file.txt")
   ENDIF()
 
   # Checking the path where to generate the files
-  IF(${arg3})
-    SET(_model_dir "${arg3}/${name}")
+  IF(argv3)
+    SET(_model_dir "${ARGV3}/${name}")
   ELSE()
     SET(_model_dir "${CMAKE_CURRENT_BINARY_DIR}/include/metapod/models/${name}")
   ENDIF()
