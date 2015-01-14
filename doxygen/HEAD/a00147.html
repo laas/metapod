@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::UpdateBodyAbsolutePose&lt; Robot, node_id, has_parent &gt; Struct Template Reference</title>
+<title>metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -60,53 +60,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::UpdateBodyAbsolutePose&lt; Robot, node_id, has_parent &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::UpdateBodyAbsolutePose" -->
-<p><code>#include &lt;metapod/tools/bcalc.hh&gt;</code></p>
+<!-- doxytag: class="metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt;" -->
+<p><code>#include &lt;metapod/algos/rnea.hh&gt;</code></p>
 
-<p><a href="a00400.html">List of all members.</a></p>
+<p><a href="a00339.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00100.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
-::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html#ab3e18242223bfb22eb0e07b677b02a09">Node</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00100.html">Nodes</a>&lt; Robot, <br class="typebreak"/>
-Node::parent_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html#a18d9454639832ae189a7919ab2de809e">Parent</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00101.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html#a1952e9b79e5c5a08cdcaf4392ecf0aeb">Node</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html#a44407958d0ea0571c082311be8faaf88">run</a> (Robot &amp;robot)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html#a0b506e5a0eb352aee0a66ace52426c59">run</a> (Robot &amp;robot, const Eigen::Matrix&lt; typename Robot::RobotFloatType, Node::Joint::NBDOF, 1 &gt; &amp;ddqi)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html#ae8ceea57efe1f560ad132f75db408bc5">METAPOD_TYPEDEFS</a></td></tr>
 </table>
-<h3>template&lt;typename Robot, int node_id, bool has_parent = true&gt;<br/>
- struct metapod::internal::UpdateBodyAbsolutePose&lt; Robot, node_id, has_parent &gt;</h3>
+<h3>template&lt;typename Robot, int gravity&gt;<br/>
+template&lt;int node_id&gt;<br/>
+ struct metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt;</h3>
 
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="ab3e18242223bfb22eb0e07b677b02a09"></a><!-- doxytag: member="metapod::internal::UpdateBodyAbsolutePose::Node" ref="ab3e18242223bfb22eb0e07b677b02a09" args="" -->
+<a class="anchor" id="a1952e9b79e5c5a08cdcaf4392ecf0aeb"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt;::Node" ref="a1952e9b79e5c5a08cdcaf4392ecf0aeb" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id, bool has_parent = true&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00100.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00147.html">metapod::internal::UpdateBodyAbsolutePose</a>&lt; Robot, node_id, <a class="el" href="a00064.html">has_parent</a> &gt;::<a class="el" href="a00147.html#ab3e18242223bfb22eb0e07b677b02a09">Node</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a18d9454639832ae189a7919ab2de809e"></a><!-- doxytag: member="metapod::internal::UpdateBodyAbsolutePose::Parent" ref="a18d9454639832ae189a7919ab2de809e" args="" -->
-<div class="memitem">
-<div class="memproto">
+template&lt;typename Robot , int gravity&gt; </div>
 <div class="memtemplate">
-template&lt;typename Robot , int node_id, bool has_parent = true&gt; </div>
+template&lt;int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00100.html">Nodes</a>&lt;Robot, Node::parent_id&gt;::type <a class="el" href="a00147.html">metapod::internal::UpdateBodyAbsolutePose</a>&lt; Robot, node_id, <a class="el" href="a00064.html">has_parent</a> &gt;::<a class="el" href="a00147.html#a18d9454639832ae189a7919ab2de809e">Parent</a></td>
+          <td class="memname">typedef <a class="el" href="a00101.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00126.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, <a class="el" href="a00221.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00147.html#a1952e9b79e5c5a08cdcaf4392ecf0aeb">Node</a></td>
         </tr>
       </table>
 </div>
@@ -115,18 +105,50 @@ template&lt;typename Robot , int node_id, bool has_parent = true&gt; </div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a44407958d0ea0571c082311be8faaf88"></a><!-- doxytag: member="metapod::internal::UpdateBodyAbsolutePose::run" ref="a44407958d0ea0571c082311be8faaf88" args="(Robot &amp;robot)" -->
+<a class="anchor" id="a0b506e5a0eb352aee0a66ace52426c59"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt;::run" ref="a0b506e5a0eb352aee0a66ace52426c59" args="(Robot &amp;robot, const Eigen::Matrix&lt; typename Robot::RobotFloatType, Node::Joint::NBDOF, 1 &gt; &amp;ddqi)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id, bool has_parent = true&gt; </div>
+template&lt;typename Robot , int gravity&gt; </div>
+<div class="memtemplate">
+template&lt;int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00147.html">metapod::internal::UpdateBodyAbsolutePose</a>&lt; Robot, node_id, <a class="el" href="a00064.html">has_parent</a> &gt;::<a class="el" href="a00147.html#a44407958d0ea0571c082311be8faaf88">run</a> </td>
+          <td class="memname">static void <a class="el" href="a00126.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, <a class="el" href="a00221.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00127.html#a8c6f891a0a571923893cf22f103daf68">run</a> </td>
           <td>(</td>
           <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em></td><td>)</td>
-          <td><code> [inline, static]</code></td>
+          <td class="paramname"><em>robot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; typename Robot::RobotFloatType, Node::Joint::NBDOF, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ddqi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>References <a class="el" href="a00223.html#aba8b1ed29a252023f06fe769121cb9ff">metapod::Spatial::sum()</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ae8ceea57efe1f560ad132f75db408bc5"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, NO_PARENT &gt;::METAPOD_TYPEDEFS" ref="ae8ceea57efe1f560ad132f75db408bc5" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int gravity&gt; </div>
+<div class="memtemplate">
+template&lt;int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00126.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_kinematics&lt; node_id, <a class="el" href="a00221.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00127.html#a99ea8b3027fa5cb71c4c7624e91015b5">METAPOD_TYPEDEFS</a></td>
         </tr>
       </table>
 </div>
@@ -152,9 +174,9 @@ template&lt;typename Robot , int node_id, bool has_parent = true&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00219.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00147.html">UpdateBodyAbsolutePose</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00127.html">rnea&lt; Robot, false, gravity &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00147.html">update_kinematics&lt; node_id, NO_PARENT &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,8 +1,6 @@
 var a00008 =
 [
-    [ "METAPOD_STATIC_ASSERT", "a00008.html#a7414f5e056bc25bdb78060fc5ccae501", null ],
-    [ "run", "a00008.html#aa2099b4eb1974af572a45179ce86ddce", null ],
-    [ "run", "a00008.html#a8ab1e62ae6c7c2facdc073332df4d90f", null ],
-    [ "run", "a00008.html#ad73ffd64a218e5400b8ceb6a9ed5ecdd", null ],
-    [ "run", "a00008.html#ac08ca0f83f3fc1d0d5c53dd56a8fcc21", null ]
+    [ "Inverse dynamics: how to read the torques of your model.", "a00003.html", null ],
+    [ "<b>bcalc</b>: how to compute the forward kinematics of your model.", "a00002.html", null ],
+    [ "Nodes : read information of you robot model during run time.", "a00007.html", null ]
 ];

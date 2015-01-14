@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal Namespace Reference</title>
+<title>transform.hh File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -14,9 +14,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -37,8 +37,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="namespaces.html"><span>Namespace&#160;List</span></a></li>
-      <li><a href="namespacemembers.html"><span>Namespace&#160;Members</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -58,119 +58,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal Namespace Reference<div class="ingroups"><a class="el" href="a00227.html">Point in Chain Articular Jacobian Algorithm</a></div></div>  </div>
+<div class="title">transform.hh File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
+<code>#include &quot;<a class="el" href="a00168.html">metapod/tools/spatial/constraintmotion.hh</a>&quot;</code><br/>
+<code>#include &lt;<a class="el" href="a00215.html">metapod/tools/spatial/rotation-matrix.hh</a>&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for transform.hh:</div>
+<div class="dyncontent">
+<div class="center"><img src="a00316.png" border="0" usemap="#transform_8hh" alt=""/></div>
+<map name="transform_8hh" id="transform_8hh">
+<area shape="rect" id="node5" href="a00168.html" title="metapod/tools/spatial/constraintmotion.hh" alt="" coords="275,86,544,117"/><area shape="rect" id="node18" href="a00215.html" title="metapod/tools/spatial/rotation&#45;matrix.hh" alt="" coords="2283,86,2536,117"/><area shape="rect" id="node7" href="a00176.html" title="metapod/tools/fwd.hh" alt="" coords="366,246,515,277"/><area shape="rect" id="node11" href="a00165.html" title="metapod/tools/spatial/cm&#45;oneaxis.hh" alt="" coords="288,166,531,197"/><area shape="rect" id="node13" href="a00164.html" title="metapod/tools/spatial/cm&#45;freeflyer.hh" alt="" coords="24,166,264,197"/><area shape="rect" id="node16" href="a00163.html" title="metapod/tools/spatial/cm&#45;anyaxis.hh" alt="" coords="555,166,795,197"/><area shape="rect" id="node33" href="a00198.html" title="metapod/tools/spatial/lti.hh" alt="" coords="870,166,1051,197"/><area shape="rect" id="node40" href="a00211.html" title="metapod/tools/spatial/rm&#45;general.hh" alt="" coords="1992,246,2227,277"/><area shape="rect" id="node42" href="a00206.html" title="metapod/tools/spatial/rm&#45;aboutxaxis.hh" alt="" coords="2251,246,2504,277"/><area shape="rect" id="node44" href="a00207.html" title="metapod/tools/spatial/rm&#45;aboutyaxis.hh" alt="" coords="2528,246,2782,277"/><area shape="rect" id="node46" href="a00208.html" title="metapod/tools/spatial/rm&#45;aboutzaxis.hh" alt="" coords="2806,246,3059,277"/><area shape="rect" id="node48" href="a00212.html" title="metapod/tools/spatial/rm&#45;identity.hh" alt="" coords="3083,246,3315,277"/><area shape="rect" id="node50" href="a00210.html" title="metapod/tools/spatial/rm&#45;chgaxis.hh" alt="" coords="3339,246,3576,277"/><area shape="rect" id="node52" href="a00209.html" title="metapod/tools/spatial/rm&#45;binaryop.hh" alt="" coords="3083,166,3326,197"/><area shape="rect" id="node54" href="a00213.html" title="metapod/tools/spatial/rm&#45;mulop.hh" alt="" coords="2680,166,2907,197"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="a00317.png" border="0" usemap="#transform_8hhdep" alt=""/></div>
+<map name="transform_8hhdep" id="transform_8hhdep">
+<area shape="rect" id="node3" href="a00216.html" title="spatial.hh" alt="" coords="1319,86,1396,117"/><area shape="rect" id="node5" href="a00166.html" title="common.hh" alt="" coords="1312,166,1403,197"/><area shape="rect" id="node7" href="a00162.html" title="chda.hh" alt="" coords="344,486,414,517"/><area shape="rect" id="node9" href="a00171.html" title="depth_first_traversal.hh" alt="" coords="323,246,480,277"/><area shape="rect" id="node17" href="a00214.html" title="rnea.hh" alt="" coords="126,406,192,437"/><area shape="rect" id="node20" href="a00169.html" title="crba.hh" alt="" coords="476,406,540,437"/><area shape="rect" id="node31" href="a00189.html" title="jac_point_relative.hh" alt="" coords="1071,406,1212,437"/><area shape="rect" id="node33" href="a00188.html" title="jac_point_chain.hh" alt="" coords="1328,486,1459,517"/><area shape="rect" id="node35" href="a00190.html" title="jac_point_robot.hh" alt="" coords="947,486,1075,517"/><area shape="rect" id="node42" href="a00179.html" title="has_parent.hh" alt="" coords="674,246,778,277"/><area shape="rect" id="node46" href="a00160.html" title="backward_traversal_prev.hh" alt="" coords="784,326,974,357"/><area shape="rect" id="node50" href="a00186.html" title="is_ancestor.hh" alt="" coords="1156,246,1263,277"/><area shape="rect" id="node53" href="a00159.html" title="backward_traversal.hh" alt="" coords="1328,326,1486,357"/><area shape="rect" id="node55" href="a00172.html" title="djac.hh" alt="" coords="1392,406,1456,437"/><area shape="rect" id="node57" href="a00187.html" title="jac.hh" alt="" coords="1514,406,1570,437"/><area shape="rect" id="node60" href="a00170.html" title="deepest_common_ancestor.hh" alt="" coords="1099,326,1304,357"/><area shape="rect" id="node72" href="a00192.html" title="joint&#45;aboutxaxis.hh" alt="" coords="2246,246,2376,277"/><area shape="rect" id="node74" href="a00197.html" title="joint.hh" alt="" coords="2064,326,2126,357"/><area shape="rect" id="node76" href="a00193.html" title="joint&#45;aboutyaxis.hh" alt="" coords="1662,246,1792,277"/><area shape="rect" id="node79" href="a00194.html" title="joint&#45;aboutzaxis.hh" alt="" coords="1816,246,1947,277"/><area shape="rect" id="node82" href="a00195.html" title="joint&#45;anyaxis.hh" alt="" coords="1971,246,2083,277"/><area shape="rect" id="node85" href="a00196.html" title="joint&#45;freeflyer.hh" alt="" coords="2107,246,2222,277"/><area shape="rect" id="node11" href="a00203.html" title="print.hh" alt="" coords="555,326,616,357"/><area shape="rect" id="node14" href="a00191.html" title="jcalc.hh" alt="" coords="312,326,379,357"/><area shape="rect" id="node24" href="a00204.html" title="qcalc.hh" alt="" coords="380,406,452,437"/><area shape="rect" id="node29" href="a00161.html" title="bcalc.hh" alt="" coords="691,326,760,357"/><area shape="rect" id="node37" href="a00182.html" title="initconf.hh" alt="" coords="62,326,142,357"/><area shape="rect" id="node39" href="a00183.html" title="initnodeidconf.hh" alt="" coords="166,326,288,357"/></map>
+</div>
+</div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00024.html">chda_internal</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025.html">chda_internal&lt; Robot, jcalc, gravity, NBDOF, 0 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00026.html">chda_internal&lt; Robot, jcalc, gravity, NBDOF, NBDOF &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00039.html">crba_update_parent_inertia</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html">crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086.html">jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal point in chain articular jacobian algorithm routine.  <a href="a00086.html#details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html">jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of jac_point_chain_internal_free-flyer: do nothing if freeflyer joint is not included in jacobian.  <a href="a00085.html#details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00034.html">convert_to_world</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html">convert_to_world&lt; Robot, NO_PARENT &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00010.html">backward_traversal_internal</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html">backward_traversal_internal&lt; Visitor, Robot, end_node_id, end_node_id &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00014.html">backward_traversal_prev_internal</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00015.html">backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html">UpdateBodyAbsolutePose</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00148.html">UpdateBodyAbsolutePose&lt; Robot, node_id, false &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00018.html">BcalcVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html">deepest_common_ancestor_internal</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html">deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, true &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html">depth_first_traversal_internal</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00046.html">depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html">InitConfHybridParamsVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html">InitConfVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00075.html">InitNodeIdConfVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html">InitNodeIdConfReordRefVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00149.html">updateNuOfFwdDynFromParentOrLocal</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html">updateNuOfFwdDynFromParentOrLocal&lt; Robot, Node, NO_PARENT &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00090.html">JcalcVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00103.html">PrintStateVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00101.html">PrintConfVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html">PrintNuFwdDynVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00105.html">PrintTransformsVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104.html">PrintTorquesVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056.html">GetTorquesVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00058.html">HandleJointToQmatrix</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00062.html">HandleJointToQmatrix&lt; Robot, q_idx, nbdof, ADD, true &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html">HandleJointToQmatrix&lt; Robot, q_idx, nbdof, ADD, false &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html">HandleJointToQmatrix&lt; Robot, q_idx, 0, ADD, false &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00060.html">HandleJointToQmatrix&lt; Robot, q_idx, 0, ADD, true &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html">HandleJointToQmatrix&lt; Robot, q_idx, nbdof, BUILD, fwdDyn &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00107.html">QcalcVisitor</a></td></tr>
-<tr><td colspan="2"><h2><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00219.html#abfdb48af9dbf222c0afa3c09faa889af">Qoperation</a> { <br/>
-&#160;&#160;<a class="el" href="a00219.html#abfdb48af9dbf222c0afa3c09faa889afae003b93aa469e376c6f025f1df21436f">ADD</a> =  0, 
-<br/>
-&#160;&#160;<a class="el" href="a00219.html#abfdb48af9dbf222c0afa3c09faa889afa1a1d6b6804d8c5b1719dde429a9bc637">BUILD</a>
-<br/>
- }</td></tr>
-<tr><td colspan="2"><h2><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00219.html#ae45e492678b3799e552edd915f5fddff">findString</a> (std::string s_, std::ifstream &amp;is)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00143.html">metapod::Spatial::internal::TransformT_helper&lt; FloatType, RotationClass &gt;</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Given two frames a and b, one can define the transform bXa, which changes coordinates between the two.  <a href="a00143.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html">metapod::Spatial::TransformT&lt; FloatType, RotationClass &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00139.html">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutXTpl&lt; FloatType &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140.html">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutYTpl&lt; FloatType &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00141.html">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixAboutZTpl&lt; FloatType &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00142.html">metapod::Spatial::TransformT&lt; FloatType, RotationMatrixTpl&lt; FloatType &gt; &gt;</a></td></tr>
+<tr><td colspan="2"><h2><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00221.html">metapod</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Templated Hybrid Dynamics Algorithm. </p>
+<br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00223.html">metapod::Spatial</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00224.html">metapod::Spatial::internal</a></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00219.html#a4d7c6ca2698c1f40423db374487c88c0">EIGEN_METAPOD_TRANSFORM_TYPEDEFS</a></td></tr>
 </table>
-<hr/><h2>Enumeration Type Documentation</h2>
-<a class="anchor" id="abfdb48af9dbf222c0afa3c09faa889af"></a><!-- doxytag: member="metapod::internal::Qoperation" ref="abfdb48af9dbf222c0afa3c09faa889af" args="" -->
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a4d7c6ca2698c1f40423db374487c88c0"></a><!-- doxytag: member="transform.hh::EIGEN_METAPOD_TRANSFORM_TYPEDEFS" ref="a4d7c6ca2698c1f40423db374487c88c0" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="a00219.html#abfdb48af9dbf222c0afa3c09faa889af">metapod::internal::Qoperation</a></td>
+          <td class="memname">#define <a class="el" href="a00219.html#a4d7c6ca2698c1f40423db374487c88c0">EIGEN_METAPOD_TRANSFORM_TYPEDEFS</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="abfdb48af9dbf222c0afa3c09faa889afae003b93aa469e376c6f025f1df21436f"></a><!-- doxytag: member="ADD" ref="abfdb48af9dbf222c0afa3c09faa889afae003b93aa469e376c6f025f1df21436f" args="" -->ADD</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="abfdb48af9dbf222c0afa3c09faa889afa1a1d6b6804d8c5b1719dde429a9bc637"></a><!-- doxytag: member="BUILD" ref="abfdb48af9dbf222c0afa3c09faa889afa1a1d6b6804d8c5b1719dde429a9bc637" args="" -->BUILD</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-</div>
-</div>
-<hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ae45e492678b3799e552edd915f5fddff"></a><!-- doxytag: member="metapod::internal::findString" ref="ae45e492678b3799e552edd915f5fddff" args="(std::string s_, std::ifstream &amp;is)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="a00219.html#ae45e492678b3799e552edd915f5fddff">metapod::internal::findString</a> </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>s_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::ifstream &amp;&#160;</td>
-          <td class="paramname"><em>is</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00070.html#aef26cc28e4b7ff68d1151df3ff23663b">metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt;::discover()</a>, and <a class="el" href="a00071.html#a7cbdc8f8148f119865a17c5655f43595">metapod::internal::InitConfVisitor&lt; Robot, node_id &gt;::discover()</a>.</p>
-
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">typedef</span> <span class="keyword">class </span>Spatial::TransformT&lt;FloatType, Spatial::RotationMatrixTpl&lt;FloatType&gt; &gt; <a class="code" href="a00137.html">Transform</a>; \
+  typedef class Spatial::TransformT&lt;FloatType, Spatial::RotationMatrixAboutXTpl&lt;FloatType&gt; &gt; TransformX; \
+  typedef class Spatial::TransformT&lt;FloatType, Spatial::RotationMatrixAboutYTpl&lt;FloatType&gt; &gt; TransformY; \
+  typedef class Spatial::TransformT&lt;FloatType, Spatial::RotationMatrixAboutZTpl&lt;FloatType&gt; &gt; TransformZ; \
+  typedef class Spatial::TransformT&lt;FloatType, Spatial::RotationMatrixIdentityTpl&lt;FloatType&gt; &gt; TransformId
+</pre></div>
 </div>
 </div>
 </div><!-- contents -->
@@ -191,8 +139,7 @@ Functions</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00219.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00219.html">transform.hh</a>      </li>
 <br><br>
 <hr>
 <center>

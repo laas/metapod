@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>How to include a metapod model of your robot in your code</title>
+<title>Getting Started</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -51,40 +51,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">How to include a metapod model of your robot in your code </div>  </div>
+<div class="title">Getting Started </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>In the remainder of this section, it is assumed that you are using CMake as a compilation environment.</p>
-<p>For a continuous integration of your model in your code, a good practice is to generate automatically the C++ code for your robot based on the URDF model. <br/>
- To do that you should add the following line to the CMakeLists.txt of your project: <br/>
-</p>
-<div class="fragment"><pre class="fragment">   include(path_to_your_metapod_install/share/cmake/metapod.cmake)
-</pre></div><p>Then at the CMakeLists.txt where you need to use the model, you should add: </p>
-<div class="fragment"><pre class="fragment">   <span class="keyword">set</span>(model_name <span class="stringliteral">&quot;the_name_of_your_robot&quot;</span>)
-   add_sampleurdfmodel(${model_name} ${urdf_path} ${data_path} ${gen_dir}$ )
-</pre></div><p>where </p>
+<div class="textblock"><h2><a class="anchor" id="GettingStartedInstallation"></a>
+Preparing a robot model.</h2>
+<p>In order to use Metapod, you will need to extract the source file and install the header files. <br/>
+ You also need a robot model. They are two ways to build a robot model. </p>
 <ul>
 <li>
-<em>the_name_of_your_robot</em> is the prefix of your robot model file,  </li>
+You can do it by yourself from the examples, but this is not recommanded.  </li>
 <li>
-<em>urdf_path</em> is the directory where the <em>${name}</em>.config file and the file <em>metapod_license_file.txt</em> are located.  </li>
-<li>
-<em>gen_dir</em> is the location where the headers and the sources files are generated.  </li>
+In order to make your/our life easier, metapod integrates a tool calls metapodfromurdf to generate models from a urdf file. <br/>
+ Two urdf models are included in the initial repository: a simple planar arm, and a humanoid robot.  </li>
 </ul>
-<p>If you do not specify ${urdf_path}, ${data_path} and ${gen_dir} then they are set to the following default values: </p>
-<ul>
-<li>
-<em>urdf_path:</em> ${PROJECT_SOURCE_DIR}/data/${name}.urdf </li>
-<li>
-<em>data_path:</em> ${PROJECT_SOURCE_DIR}/data/ </li>
-<li>
-<em>gen_dir:</em> ${CMAKE_CURRENT_DIR}/include/metapod/models/ </li>
-</ul>
-<p>To force cmake to create the C++ headers and code related to your robot model, you should add or modify the TARGET_LINK_LIBRARIES of your target: </p>
-<div class="fragment"><pre class="fragment">   TARGET_LINK_LIBRARIES(your_target metapod_${model_name} ${the_other_libraries})
-</pre></div><p>To see how to modify the code depending on your target, please look at the tutorials page. </p>
+<p>Once your robot model is available, using Metapod is very similar to Eigen. You do not need additional library. <br/>
+ Follow the tutorial on <a class="el" href="a00005.html">How to include a metapod model of your robot in your code</a> to use your URDF robot model with metapod. The remaining examples use a robot model provided with metapod.</p>
+<h2><a class="anchor" id="Examples"></a>
+Examples</h2>
+<p>A set of <a class="el" href="a00008.html">Tutorials</a> is available. </p>
 </div></div><!-- contents -->
-</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -99,9 +85,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00003.html">Getting Started</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,13 +1,13 @@
 var a00111 =
 [
-    [ "RevoluteAxisZJoint", "a00111.html#a45ef268526456a4bc6da1c5b717e636d", null ],
-    [ "bcalc", "a00111.html#af8420cd3e63177d6adf38abd23852a07", null ],
-    [ "jcalc", "a00111.html#a9c60532e87f6e5ccfe9ffe0ed401c70a", null ],
-    [ "cj", "a00111.html#aa16f396179cd887e90fb11e3c2df5c7b", null ],
-    [ "f", "a00111.html#a12af0bfc487136c0a9a502bfa206d0aa", null ],
-    [ "NBDOF", "a00111.html#a793a1a37a64c56c0703904f3b49f2718", null ],
-    [ "S", "a00111.html#a87abf0d360edf500510f516c5d32019d", null ],
-    [ "torque", "a00111.html#a75a999ba600d1912b1c0ac2d4f87fa80", null ],
-    [ "vj", "a00111.html#aaf3c57fc8a862c295260498f11d1c68b", null ],
-    [ "Xj", "a00111.html#a42719b16df76e293b4000ade25a6d1ca", null ]
+    [ "RevoluteAxisYJoint", "a00111.html#a6ba5b6a7599608aebc6977bfaa84221f", null ],
+    [ "bcalc", "a00111.html#ac71ff6e0de5e91ca056bd0d36b582d4e", null ],
+    [ "jcalc", "a00111.html#a6864e6d4fc1de9b0a57317f10cf1343a", null ],
+    [ "cj", "a00111.html#a1eab344a4d1dcaca5a9009d4c5da49a7", null ],
+    [ "f", "a00111.html#a22ec10a761d23a62ed47174f7db6b34f", null ],
+    [ "NBDOF", "a00111.html#a699d12b562f4d1d5196720d358d5e8f6", null ],
+    [ "S", "a00111.html#a7f64fd3760a4944611850b2c6dc4f813", null ],
+    [ "torque", "a00111.html#ae72f21220de62412ef3df711b4add710", null ],
+    [ "vj", "a00111.html#abe985463aa053ae7d74968527a68f27d", null ],
+    [ "Xj", "a00111.html#acf4ba33fb54a8a95afbf4fae2a58bc3a", null ]
 ];

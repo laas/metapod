@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::deepest_common_ancestor&lt; Robot, node_a_id, node_b_id &gt; Struct Template Reference</title>
+<title>metapod::internal::crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,54 +59,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::deepest_common_ancestor&lt; Robot, node_a_id, node_b_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::deepest_common_ancestor" -->
-<p>Deepest common ancestor node of two nodes A and B. The member.  
- <a href="a00041.html#details">More...</a></p>
+<!-- doxytag: class="metapod::internal::crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt;" -->
+<p><code>#include &lt;metapod/algos/crba.hh&gt;</code></p>
 
-<p><code>#include &lt;metapod/tools/deepest_common_ancestor.hh&gt;</code></p>
-
-<p><a href="a00346.html">List of all members.</a></p>
+<p><a href="a00395.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html#a0a5744ad8aff209085a77cfe7026b265">value</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html#a99f39abe31320abb4e126974174f015a">run</a> (Robot &amp;)</td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Robot, int node_a_id, int node_b_id&gt;<br/>
-struct metapod::deepest_common_ancestor&lt; Robot, node_a_id, node_b_id &gt;</h3>
+<h3>template&lt;typename Robot, int node_id&gt;<br/>
+ struct metapod::internal::crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt;</h3>
 
-<p>Deepest common ancestor node of two nodes A and B. The member. </p>
-<dl class=""><dt><b>Template Parameters:</b></dt><dd>
-  <table class="">
-    <tr><td class="paramname">Robot</td><td></td></tr>
-    <tr><td class="paramname">node</td><td>A id </td></tr>
-    <tr><td class="paramname">node</td><td>B id </td></tr>
-  </table>
-  </dd>
-</dl>
-</div><hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a0a5744ad8aff209085a77cfe7026b265"></a><!-- doxytag: member="metapod::deepest_common_ancestor::value" ref="a0a5744ad8aff209085a77cfe7026b265" args="" -->
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a99f39abe31320abb4e126974174f015a"></a><!-- doxytag: member="metapod::internal::crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt;::run" ref="a99f39abe31320abb4e126974174f015a" args="(Robot &amp;)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_a_id, int node_b_id&gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const int <a class="el" href="a00041.html">metapod::deepest_common_ancestor</a>&lt; Robot, node_a_id, node_b_id &gt;::<a class="el" href="a00041.html#a0a5744ad8aff209085a77cfe7026b265">value</a><code> [static]</code></td>
+          <td class="memname">static void <a class="el" href="a00040.html">metapod::internal::crba_update_parent_inertia</a>&lt; Robot, <a class="el" href="a00221.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a>, node_id &gt;::<a class="el" href="a00041.html#a99f39abe31320abb4e126974174f015a">run</a> </td>
+          <td>(</td>
+          <td class="paramtype">Robot &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Initial value:</b><div class="fragment"><pre class="fragment"> internal::deepest_common_ancestor_internal&lt;
-      Robot, node_a_id, node_b_id,
-      is_ancestor&lt;Robot, node_a_id, node_b_id&gt;::value
-      &gt;<a class="code" href="a00041.html#a0a5744ad8aff209085a77cfe7026b265">::value</a>
-</pre></div>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -127,8 +114,9 @@ template&lt;typename Robot , int node_a_id, int node_b_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00041.html">deepest_common_ancestor</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00041.html">crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

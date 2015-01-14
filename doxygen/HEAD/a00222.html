@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::Internal Namespace Reference</title>
+<title>metapod::internal Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -57,18 +57,122 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::Internal Namespace Reference</div>  </div>
+<div class="title">metapod::internal Namespace Reference<div class="ingroups"><a class="el" href="a00231.html">Point in Chain Articular Jacobian Algorithm</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html">rmca_traits_ref&lt; traits, 0 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122.html">rmca_traits_ref&lt; traits, 1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html">rmca_traits_ref&lt; traits, 2 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025.html">chda_internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00026.html">chda_internal&lt; Robot, jcalc, gravity, NBDOF, 0 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00027.html">chda_internal&lt; Robot, jcalc, gravity, NBDOF, NBDOF &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html">crba_update_parent_inertia</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html">crba_update_parent_inertia&lt; Robot, NO_PARENT, node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00087.html">jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, true &gt;</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal point in chain articular jacobian algorithm routine.  <a href="a00087.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086.html">jac_point_chain_internal_freeflyer&lt; Robot, start_node_id, end_node_id, offset, false &gt;</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of jac_point_chain_internal_free-flyer: do nothing if freeflyer joint is not included in jacobian.  <a href="a00086.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html">convert_to_world</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00036.html">convert_to_world&lt; Robot, NO_PARENT &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00011.html">backward_traversal_internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00012.html">backward_traversal_internal&lt; Visitor, Robot, end_node_id, end_node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00015.html">backward_traversal_prev_internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00016.html">backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00148.html">UpdateBodyAbsolutePose</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00149.html">UpdateBodyAbsolutePose&lt; Robot, node_id, false &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html">BcalcVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html">deepest_common_ancestor_internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00044.html">deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, true &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00046.html">depth_first_traversal_internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047.html">depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071.html">InitConfHybridParamsVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072.html">InitConfVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076.html">InitNodeIdConfVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00075.html">InitNodeIdConfReordRefVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html">updateNuOfFwdDynFromParentOrLocal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00151.html">updateNuOfFwdDynFromParentOrLocal&lt; Robot, Node, NO_PARENT &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html">JcalcVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104.html">PrintStateVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html">PrintConfVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00103.html">PrintNuFwdDynVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106.html">PrintTransformsVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00105.html">PrintTorquesVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html">GetTorquesVisitor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html">HandleJointToQmatrix</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html">HandleJointToQmatrix&lt; Robot, q_idx, nbdof, ADD, true &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00062.html">HandleJointToQmatrix&lt; Robot, q_idx, nbdof, ADD, false &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00060.html">HandleJointToQmatrix&lt; Robot, q_idx, 0, ADD, false &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html">HandleJointToQmatrix&lt; Robot, q_idx, 0, ADD, true &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00064.html">HandleJointToQmatrix&lt; Robot, q_idx, nbdof, BUILD, fwdDyn &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html">QcalcVisitor</a></td></tr>
+<tr><td colspan="2"><h2><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00222.html#abfdb48af9dbf222c0afa3c09faa889af">Qoperation</a> { <br/>
+&#160;&#160;<a class="el" href="a00222.html#abfdb48af9dbf222c0afa3c09faa889afae003b93aa469e376c6f025f1df21436f">ADD</a> =  0, 
+<br/>
+&#160;&#160;<a class="el" href="a00222.html#abfdb48af9dbf222c0afa3c09faa889afa1a1d6b6804d8c5b1719dde429a9bc637">BUILD</a>
+<br/>
+ }</td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00222.html#ae45e492678b3799e552edd915f5fddff">findString</a> (std::string s_, std::ifstream &amp;is)</td></tr>
 </table>
+<hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="abfdb48af9dbf222c0afa3c09faa889af"></a><!-- doxytag: member="metapod::internal::Qoperation" ref="abfdb48af9dbf222c0afa3c09faa889af" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="a00222.html#abfdb48af9dbf222c0afa3c09faa889af">metapod::internal::Qoperation</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="abfdb48af9dbf222c0afa3c09faa889afae003b93aa469e376c6f025f1df21436f"></a><!-- doxytag: member="ADD" ref="abfdb48af9dbf222c0afa3c09faa889afae003b93aa469e376c6f025f1df21436f" args="" -->ADD</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="abfdb48af9dbf222c0afa3c09faa889afa1a1d6b6804d8c5b1719dde429a9bc637"></a><!-- doxytag: member="BUILD" ref="abfdb48af9dbf222c0afa3c09faa889afa1a1d6b6804d8c5b1719dde429a9bc637" args="" -->BUILD</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ae45e492678b3799e552edd915f5fddff"></a><!-- doxytag: member="metapod::internal::findString" ref="ae45e492678b3799e552edd915f5fddff" args="(std::string s_, std::ifstream &amp;is)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00222.html#ae45e492678b3799e552edd915f5fddff">metapod::internal::findString</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ifstream &amp;&#160;</td>
+          <td class="paramname"><em>is</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="a00071.html#aef26cc28e4b7ff68d1151df3ff23663b">metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt;::discover()</a>, and <a class="el" href="a00072.html#a7cbdc8f8148f119865a17c5655f43595">metapod::internal::InitConfVisitor&lt; Robot, node_id &gt;::discover()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -87,9 +191,8 @@ Classes</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00220.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00222.html">Internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
 <br><br>
 <hr>
 <center>

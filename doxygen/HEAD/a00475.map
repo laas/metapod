@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$a00138.html" title="metapod::Spatial::TransformT\&lt; FloatType, RotationClass \&gt;" alt="" coords="987,5,1368,35"/>
+<area shape="rect" id="node5" href="$a00143.html" title="metapod::Spatial::internal::TransformT_helper\&lt; FloatType, RotationMatrixAboutXTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="864,58,1491,89"/>
+<area shape="rect" id="node9" href="$a00143.html" title="metapod::Spatial::internal::TransformT_helper\&lt; FloatType, RotationMatrixTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="887,111,1468,142"/>
+<area shape="rect" id="node13" href="$a00143.html" title="metapod::Spatial::internal::TransformT_helper\&lt; FloatType, RotationMatrixAboutYTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="864,165,1491,195"/>
+<area shape="rect" id="node17" href="$a00143.html" title="metapod::Spatial::internal::TransformT_helper\&lt; FloatType, RotationMatrixAboutZTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="864,218,1491,249"/>
+<area shape="rect" id="node7" href="$a00139.html" title="metapod::Spatial::TransformT\&lt; FloatType, RotationMatrixAboutXTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="1541,58,2072,89"/>
+<area shape="rect" id="node11" href="$a00142.html" title="metapod::Spatial::TransformT\&lt; FloatType, RotationMatrixTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="1563,111,2051,142"/>
+<area shape="rect" id="node15" href="$a00140.html" title="metapod::Spatial::TransformT\&lt; FloatType, RotationMatrixAboutYTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="1541,165,2072,195"/>
+<area shape="rect" id="node19" href="$a00141.html" title="metapod::Spatial::TransformT\&lt; FloatType, RotationMatrixAboutZTpl\&lt; FloatType \&gt; \&gt;" alt="" coords="1541,218,2072,249"/>
+</map>

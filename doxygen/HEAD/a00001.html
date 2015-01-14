@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>bcalc: how to compute the forward kinematics of your model.</title>
+<title>&lt;bf&gt;bcalc&lt;/bf&gt;:  .</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -51,17 +51,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">bcalc: how to compute the forward kinematics of your model. </div>  </div>
+<div class="title">&lt;bf&gt;bcalc&lt;/bf&gt;: . </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Let us assume that you are using the simple_arm model and that you want to compute</p>
-<p>the position and orientation of each part of your robot knowing <img class="formulaInl" alt="$q$" src="form_63.png"/> the configuration vector</p>
-<p>include the joint angles and the position and orientation of the base.</p>
-<p>First the header which describes the model has to be specified: </p>
+<div class="textblock"><p>Let us assume that you are using the simple_arm model and that you want to compute the position and orientation of each part of your robot knowing <img class="formulaInl" alt="$q$" src="form_52.png"/> the configuration vector include the joint angles and the position and orientation of the base.</p>
+<p>First the header describing the model has to be specified: </p>
 <div class="fragment"><pre class="fragment"><span class="preprocessor">   #include &lt;metapod/models/simple_arm.hh&gt;</span>
-</pre></div><p>Secondly we call the bcalc include: </p>
-<div class="fragment"><pre class="fragment"><span class="preprocessor">   #include &lt;<a class="code" href="a00160.html">metapod/tools/bcalc.hh</a>&gt;</span>
-</pre></div><p>for the tutorial we used the metapod namespace : </p>
+</pre></div><p>Secondly we include the header related to the bcalc algorithm: </p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">   #include &lt;<a class="code" href="a00161.html">metapod/tools/bcalc.hh</a>&gt;</span>
+</pre></div><p>to simplify the tutorial code we used the metapod namespace : </p>
 <div class="fragment"><pre class="fragment">   <span class="keyword">using namespace </span>metapod;
 </pre></div><p>Then the way real are represented in the model has to be set: </p>
 <div class="fragment"><pre class="fragment"> <span class="keyword">typedef</span> simple_humanoid&lt;double&gt; Robot;
@@ -90,7 +88,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><pre class="fragment">     bcalc&lt;robot&gt;::run(arobot,q);
 </pre></div><p>see this page to access to the position </p>
 </div></div><!-- contents -->
-</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -105,10 +102,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00003.html">Getting Started</a>      </li>
-      <li class="navelem"><a class="el" href="a00007.html">Tutorials</a>      </li>
 <br><br>
 <hr>
 <center>

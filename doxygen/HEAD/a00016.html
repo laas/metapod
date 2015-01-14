@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::backward_traversal_previous&lt; Visitor, Robot, start_node_id, end_node_id &gt; Struct Template Reference</title>
+<title>metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,69 +59,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::backward_traversal_previous&lt; Visitor, Robot, start_node_id, end_node_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::backward_traversal_previous" -->
+<!-- doxytag: class="metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;" -->
 <p><code>#include &lt;metapod/tools/backward_traversal_prev.hh&gt;</code></p>
 
-<p><a href="a00339.html">List of all members.</a></p>
+<p><a href="a00403.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00016.html#ac61f59c7bfcbde4eaaab0b7c76ad6df6">METAPOD_STATIC_ASSERT</a> ((<a class="el" href="a00077.html">is_ancestor</a>&lt; Robot, end_node_id, start_node_id &gt;::value),&quot;end node should be an ancestor if start node&quot;)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00016.html#a64a40843a0f72d551b30b652c3788dbd">run</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00016.html#a961bda0336b728978a04cae04d9d060a">run</a> ()</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename Arg0 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00016.html#aab30c71108672267a6f2f1d75c8d7960">run</a> (Arg0 &amp;arg0)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00016.html#a9bf45f8dd48aa65d1b38ea9836da9946">run</a> (Arg0 &amp;)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename Arg0 , typename Arg1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00016.html#af030a5966b2dc5c3ac8ff1f62a7639c9">run</a> (Arg0 &amp;arg0, Arg1 &amp;arg1)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00016.html#a412cff01b3f2b0249d20ae075f6576e3">run</a> (Arg0 &amp;, Arg1 &amp;)</td></tr>
 </table>
-<h3>template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot, int start_node_id, int end_node_id = NO_PARENT&gt;<br/>
- struct metapod::backward_traversal_previous&lt; Visitor, Robot, start_node_id, end_node_id &gt;</h3>
+<h3>template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot, int prev_node_id, int end_node_id&gt;<br/>
+ struct metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;</h3>
 
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac61f59c7bfcbde4eaaab0b7c76ad6df6"></a><!-- doxytag: member="metapod::backward_traversal_previous::METAPOD_STATIC_ASSERT" ref="ac61f59c7bfcbde4eaaab0b7c76ad6df6" args="((is_ancestor&lt; Robot, end_node_id, start_node_id &gt;::value),&quot;end node should be an ancestor if start node&quot;)" -->
+<a class="anchor" id="a961bda0336b728978a04cae04d9d060a"></a><!-- doxytag: member="metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;::run" ref="a961bda0336b728978a04cae04d9d060a" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int start_node_id, int end_node_id = NO_PARENT&gt; </div>
+template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int prev_node_id, int end_node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00016.html">metapod::backward_traversal_previous</a>&lt; Visitor, Robot, start_node_id, end_node_id &gt;::<a class="el" href="a00016.html#ac61f59c7bfcbde4eaaab0b7c76ad6df6">METAPOD_STATIC_ASSERT</a> </td>
-          <td>(</td>
-          <td class="paramtype">(<a class="el" href="a00077.html">is_ancestor</a>&lt; Robot, end_node_id, start_node_id &gt;::value)&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;end node should be an ancestor if start node&quot;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a64a40843a0f72d551b30b652c3788dbd"></a><!-- doxytag: member="metapod::backward_traversal_previous::run" ref="a64a40843a0f72d551b30b652c3788dbd" args="()" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int start_node_id, int end_node_id = NO_PARENT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00016.html">metapod::backward_traversal_previous</a>&lt; Visitor, Robot, start_node_id, end_node_id &gt;::<a class="el" href="a00016.html#a64a40843a0f72d551b30b652c3788dbd">run</a> </td>
+          <td class="memname">static void <a class="el" href="a00015.html">metapod::internal::backward_traversal_prev_internal</a>&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;::<a class="el" href="a00016.html#a961bda0336b728978a04cae04d9d060a">run</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inline, static]</code></td>
@@ -130,52 +97,48 @@ template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_i
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="a00016.html#aab30c71108672267a6f2f1d75c8d7960">metapod::backward_traversal_previous&lt; Visitor, Robot, start_node_id, end_node_id &gt;::run()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="aab30c71108672267a6f2f1d75c8d7960"></a><!-- doxytag: member="metapod::backward_traversal_previous::run" ref="aab30c71108672267a6f2f1d75c8d7960" args="(Arg0 &amp;arg0)" -->
+<a class="anchor" id="a9bf45f8dd48aa65d1b38ea9836da9946"></a><!-- doxytag: member="metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;::run" ref="a9bf45f8dd48aa65d1b38ea9836da9946" args="(Arg0 &amp;)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int start_node_id, int end_node_id = NO_PARENT&gt; </div>
+template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int prev_node_id, int end_node_id&gt; </div>
 <div class="memtemplate">
 template&lt;typename Arg0 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00016.html">metapod::backward_traversal_previous</a>&lt; Visitor, Robot, start_node_id, end_node_id &gt;::<a class="el" href="a00016.html#a64a40843a0f72d551b30b652c3788dbd">run</a> </td>
+          <td class="memname">static void <a class="el" href="a00015.html">metapod::internal::backward_traversal_prev_internal</a>&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;::<a class="el" href="a00016.html#a961bda0336b728978a04cae04d9d060a">run</a> </td>
           <td>(</td>
           <td class="paramtype">Arg0 &amp;&#160;</td>
-          <td class="paramname"><em>arg0</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00016.html#a64a40843a0f72d551b30b652c3788dbd">metapod::backward_traversal_previous&lt; Visitor, Robot, start_node_id, end_node_id &gt;::run()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="af030a5966b2dc5c3ac8ff1f62a7639c9"></a><!-- doxytag: member="metapod::backward_traversal_previous::run" ref="af030a5966b2dc5c3ac8ff1f62a7639c9" args="(Arg0 &amp;arg0, Arg1 &amp;arg1)" -->
+<a class="anchor" id="a412cff01b3f2b0249d20ae075f6576e3"></a><!-- doxytag: member="metapod::internal::backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;::run" ref="a412cff01b3f2b0249d20ae075f6576e3" args="(Arg0 &amp;, Arg1 &amp;)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int start_node_id, int end_node_id = NO_PARENT&gt; </div>
+template&lt;template&lt; typename AnyRobot, int any_node_id, int any_prev_node_id &gt; class Visitor, typename Robot , int prev_node_id, int end_node_id&gt; </div>
 <div class="memtemplate">
 template&lt;typename Arg0 , typename Arg1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00016.html">metapod::backward_traversal_previous</a>&lt; Visitor, Robot, start_node_id, end_node_id &gt;::<a class="el" href="a00016.html#a64a40843a0f72d551b30b652c3788dbd">run</a> </td>
+          <td class="memname">static void <a class="el" href="a00015.html">metapod::internal::backward_traversal_prev_internal</a>&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;::<a class="el" href="a00016.html#a961bda0336b728978a04cae04d9d060a">run</a> </td>
           <td>(</td>
           <td class="paramtype">Arg0 &amp;&#160;</td>
-          <td class="paramname"><em>arg0</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Arg1 &amp;&#160;</td>
-          <td class="paramname"><em>arg1</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -185,8 +148,6 @@ template&lt;typename Arg0 , typename Arg1 &gt; </div>
       </table>
 </div>
 <div class="memdoc">
-
-<p>References <a class="el" href="a00016.html#a64a40843a0f72d551b30b652c3788dbd">metapod::backward_traversal_previous&lt; Visitor, Robot, start_node_id, end_node_id &gt;::run()</a>.</p>
 
 </div>
 </div>
@@ -208,8 +169,9 @@ template&lt;typename Arg0 , typename Arg1 &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00016.html">backward_traversal_previous</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00016.html">backward_traversal_prev_internal&lt; Visitor, Robot, end_node_id, prev_node_id, end_node_id &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

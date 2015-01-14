@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Point in Chain Articular Jacobian Algorithm</title>
+<title>metapodfromurdf</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -50,30 +50,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">Point in Chain Articular Jacobian Algorithm</div>  </div>
+<div class="title">metapodfromurdf</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Compute articular jacobian J of a point (in body coordinates) attached to a body in a specific sub-chain of the robot kinematic tree.  
-<a href="#details">More...</a></p>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00084.html">metapod::jac_point_chain&lt; Robot, start_node_id, end_node_id, offset, includeFreeFlyer, call_bcalc &gt;</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Point in Chain Articular Jacobian Algorithm.  <a href="a00084.html#details">More...</a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00219.html">metapod::internal</a></td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<p>Compute articular jacobian J of a point (in body coordinates) attached to a body in a specific sub-chain of the robot kinematic tree. </p>
-<p>This jacobian is such that v = J*dq is the point frame spatial motion vector in world coordinates, under the sole influence of joints in the sub-chain and (optionally) a fictive free-flyer joint at the base of the sub-chain.</p>
-<p>Such a jacobian can be used to control the relative pose of a body with respect to another body.</p>
-<p>Note that the 6 first degrees of freedom of the jacobian are always wiped out: they are either excluded from the jacobian or overwritten by the fictive free-flyer contribution. As a consequence, this function is probably only useful for systems with a root free flyer joint. It will not compile if the robot has less than 6 degrees of freedom. It is included for compatibility with the jrl-dynamics library. </p>
+<h2><a class="anchor" id="usage"></a>
+Usage:</h2>
+<p>metapodfromurdf [options] input-file</p>
+<h2><a class="anchor" id="introduction"></a>
+Introduction</h2>
+<p>metapodfromurdf is using urdfdom to parse the urdf file <b>input-file</b> and generate a C++ data structure. This data structure can be used by templates providing highly efficient implementations of algorithms such as inverse dynamics (RNEA), the inertia matrix (CRBA), and the hydrid dynamics (CHDA). This directory is specified by the option <b>--directory</b>.</p>
+<h2><a class="anchor" id="options"></a>
+Options:</h2>
+<ul>
+<li>
+<p class="startli">--help <br/>
+ produce help message </p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--config-file arg <br/>
+ a config file which can store options </p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--name arg <br/>
+ Option specifying the robot name (<b>arg</b>).</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--libname arg <br/>
+ the library name (<b>arg</b>) used for DLL symbol import/export. If omitted, the value of the name option will be used. </p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--directory arg<br/>
+ <b>arg</b> is the name of the directory where the files will be generated</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--license-file arg<br/>
+ <b>arg</b> specify the license text, which will be copied on top of every generated file </p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--joint-dof-index arg<br/>
+ <b>arg</b> is mapping joint name to dof index, in the form joint_name:dof_index, this option should be passed either for every joint of for none at all</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--joint arg<br/>
+ <b>arg</b> is the joint name, pass several of them to specify joints ordering </p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">--prefer-fixed-axis<br/>
+ use REVOLUTE_AXIS_X instead of REVOLUTE_AXIS_ANY when possible.</p>
+<p class="endli"></p>
+</li>
+</ul>
 </div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"

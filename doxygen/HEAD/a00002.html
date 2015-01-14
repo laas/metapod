@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Inverse dynamics: how to read the torques of your model.</title>
+<title>&lt;b&gt;bcalc&lt;/b&gt;: how to compute the forward kinematics of your model.</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -51,20 +51,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">Inverse dynamics: how to read the torques of your model. </div>  </div>
+<div class="title"><b>bcalc</b>: how to compute the forward kinematics of your model. </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Let us assume that you are using the simple_arm model and that you want to compute the torques of your robot <img class="formulaInl" alt="$\tau$" src="form_52.png"/> for a given set of <img class="formulaInl" alt="$({\bf q},\dot{\bf q},\ddot{\bf q})$" src="form_53.png"/>.</p>
-<p>First the header which describes the model has to be specified: </p>
+<div class="textblock"><p>Let us assume that you are using the simple_arm model and that you want to compute the position and orientation of each part of your robot knowing <img class="formulaInl" alt="$q$" src="form_52.png"/> the configuration vector include the joint angles and the position and orientation of the base.</p>
+<p>First the header describing the model has to be specified: </p>
 <div class="fragment"><pre class="fragment"><span class="preprocessor">   #include &lt;metapod/models/simple_arm.hh&gt;</span>
-</pre></div><p>Then the way real are represented in the model has to be set:</p>
+</pre></div><p>Secondly we include the header related to the bcalc algorithm: </p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">   #include &lt;<a class="code" href="a00161.html">metapod/tools/bcalc.hh</a>&gt;</span>
+</pre></div><p>to simplify the tutorial code we used the metapod namespace : </p>
+<div class="fragment"><pre class="fragment">   <span class="keyword">using namespace </span>metapod;
+</pre></div><p>Then the way real are represented in the model has to be set: </p>
 <div class="fragment"><pre class="fragment"> <span class="keyword">typedef</span> simple_humanoid&lt;double&gt; Robot;
 </pre></div><p>It is now possible to create an instance of the robot from the newly defined type: </p>
 <div class="fragment"><pre class="fragment">   <span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
    {
       Robot arobot;
 </pre></div><p>To specify a robot state we can defined the configuration vectors related to the robot: </p>
-<div class="fragment"><pre class="fragment">     Robot::confVector q,dq,ddq, torques;
+<div class="fragment"><pre class="fragment">     Robot::confVector q ;
 </pre></div><p>The configuration vector can be initialized by reading files for instance.</p>
 <div class="fragment"><pre class="fragment">     std::ifstream qconf(TEST_DIRECTORY <span class="stringliteral">&quot;/q.conf&quot;</span>);
      std::ifstream dqconf(TEST_DIRECTORY <span class="stringliteral">&quot;/dq.conf&quot;</span>);
@@ -77,11 +81,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      qconf.close();
      dqconf.close();
      ddqconf.close();`
-</pre></div><p>RNEA is the algorithm computing the inverse dynamics. To apply it to the robot, the rnea template is instanciated with the model of the robot like this: </p>
-<div class="fragment"><pre class="fragment">     rnea&lt; Robot, true &gt;::run(robot, q, dq, ddq);
-</pre></div><p>To get the torques: </p>
-<div class="fragment"><pre class="fragment">     <a class="code" href="a00218.html#a534602abbab503ad8c015cb1c0a2fae4">getTorques</a>(robot,torques);
-</pre></div> </div></div><!-- contents -->
+</pre></div><p>you can acces the configuration vector by simply doing : </p>
+<div class="fragment"><pre class="fragment">        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0 ; i &lt; qconf.size(); ++i)
+            q(i,0) = InitialPosition(i) ;
+</pre></div><p>bcalc is the algorithm computing the forward kinematics. To apply it to the robot, the bcalc template is instanciated with the model of the robot like this: </p>
+<div class="fragment"><pre class="fragment">     bcalc&lt;robot&gt;::run(arobot,q);
+</pre></div><p>see this page to access to the position </p>
+</div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -99,8 +105,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00003.html">Getting Started</a>      </li>
-      <li class="navelem"><a class="el" href="a00007.html">Tutorials</a>      </li>
+      <li class="navelem"><a class="el" href="a00004.html">Getting Started</a>      </li>
+      <li class="navelem"><a class="el" href="a00008.html">Tutorials</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,4 +1,4 @@
 var a00215 =
 [
-    [ "METAPOD_STATIC_ASSERT", "a00215.html#a36de25171e40cd710bd16112d5bab005", null ]
+    [ "METAPOD_SPATIAL_ROTATION_TYPEDEFS", "a00215.html#a685453c8450199f7a8cfe11e9b4c0932", null ]
 ];

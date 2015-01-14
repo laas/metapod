@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::myParent&lt; Robot, Node, false &gt; Struct Template Reference</title>
+<title>metapod::myParent&lt; Robot, Node, hasParent &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -61,30 +61,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::myParent&lt; Robot, Node, false &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::myParent&lt; Robot, Node, hasParent &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::myParent&lt; Robot, Node, false &gt;" -->
+<!-- doxytag: class="metapod::myParent" -->
+<p>type member variable is the parent node type of Node.  
+ <a href="a00099.html#details">More...</a></p>
+
 <p><code>#include &lt;metapod/tools/has_parent.hh&gt;</code></p>
 
-<p><a href="a00361.html">List of all members.</a></p>
+<p><a href="a00364.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Node&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00099.html#af9b008be6b6ce9f59c3914dabffb61ab">type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+boost::fusion::result_of::value_at_c<br class="typebreak"/>
+&lt; typename Robot::NodeVector, <br class="typebreak"/>
+Node::parent_id &gt;::<a class="el" href="a00099.html#af425f23d12d984a6de8083eac6cab271">type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00099.html#af425f23d12d984a6de8083eac6cab271">type</a></td></tr>
 </table>
-<h3>template&lt;typename Robot, typename Node&gt;<br/>
- struct metapod::myParent&lt; Robot, Node, false &gt;</h3>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Robot, typename Node, bool hasParent&gt;<br/>
+struct metapod::myParent&lt; Robot, Node, hasParent &gt;</h3>
 
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="af9b008be6b6ce9f59c3914dabffb61ab"></a><!-- doxytag: member="metapod::myParent&lt; Robot, Node, false &gt;::type" ref="af9b008be6b6ce9f59c3914dabffb61ab" args="" -->
+<p>type member variable is the parent node type of Node. </p>
+<p>If Node has no parent, type is the Node type itself. </p>
+</div><hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="af425f23d12d984a6de8083eac6cab271"></a><!-- doxytag: member="metapod::myParent::type" ref="af425f23d12d984a6de8083eac6cab271" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , typename Node &gt; </div>
+template&lt;typename Robot, typename Node, bool hasParent&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Node <a class="el" href="a00098.html">metapod::myParent</a>&lt; Robot, Node, false &gt;::<a class="el" href="a00099.html#af9b008be6b6ce9f59c3914dabffb61ab">type</a></td>
+          <td class="memname">typedef boost::fusion::result_of::value_at_c&lt;typename Robot::NodeVector, Node::parent_id&gt;::<a class="el" href="a00099.html#af425f23d12d984a6de8083eac6cab271">type</a> <a class="el" href="a00099.html">metapod::myParent</a>&lt; Robot, Node, hasParent &gt;::<a class="el" href="a00099.html#af425f23d12d984a6de8083eac6cab271">type</a></td>
         </tr>
       </table>
 </div>
@@ -110,8 +119,8 @@ template&lt;typename Robot , typename Node &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00099.html">myParent&lt; Robot, Node, false &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00099.html">myParent</a>      </li>
 <br><br>
 <hr>
 <center>

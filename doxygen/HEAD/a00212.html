@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>rotation-matrix.hh File Reference</title>
+<title>rm-identity.hh File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -57,63 +57,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Defines</a>  </div>
   <div class="headertitle">
-<div class="title">rotation-matrix.hh File Reference</div>  </div>
+<div class="title">rm-identity.hh File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;boost/random/mersenne_twister.hpp&gt;</code><br/>
-<code>#include &lt;boost/random/linear_congruential.hpp&gt;</code><br/>
-<code>#include &lt;boost/random/uniform_int.hpp&gt;</code><br/>
-<code>#include &lt;boost/random/uniform_real.hpp&gt;</code><br/>
-<code>#include &lt;boost/random/variate_generator.hpp&gt;</code><br/>
-<code>#include &lt;boost/generator_iterator.hpp&gt;</code><br/>
-<code>#include &quot;<a class="el" href="a00174.html">metapod/tools/fwd.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00196.html">metapod/tools/spatial/lti.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00208.html">metapod/tools/spatial/rm-general.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00203.html">metapod/tools/spatial/rm-aboutxaxis.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00204.html">metapod/tools/spatial/rm-aboutyaxis.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00205.html">metapod/tools/spatial/rm-aboutzaxis.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00209.html">metapod/tools/spatial/rm-identity.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00207.html">metapod/tools/spatial/rm-chgaxis.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00206.html">metapod/tools/spatial/rm-binaryop.hh</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="a00210.html">metapod/tools/spatial/rm-mulop.hh</a>&quot;</code><br/>
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for rotation-matrix.hh:</div>
-<div class="dyncontent">
-<div class="center"><img src="a00306.png" border="0" usemap="#rotation-matrix_8hh" alt=""/></div>
-<map name="rotation-matrix_8hh" id="rotation-matrix_8hh">
-<area shape="rect" id="node15" href="a00174.html" title="metapod/tools/fwd.hh" alt="" coords="1025,166,1175,197"/><area shape="rect" id="node19" href="a00196.html" title="metapod/tools/spatial/lti.hh" alt="" coords="1509,86,1691,117"/><area shape="rect" id="node26" href="a00208.html" title="metapod/tools/spatial/rm&#45;general.hh" alt="" coords="1383,166,1617,197"/><area shape="rect" id="node28" href="a00203.html" title="metapod/tools/spatial/rm&#45;aboutxaxis.hh" alt="" coords="1641,166,1895,197"/><area shape="rect" id="node30" href="a00204.html" title="metapod/tools/spatial/rm&#45;aboutyaxis.hh" alt="" coords="1919,166,2172,197"/><area shape="rect" id="node32" href="a00205.html" title="metapod/tools/spatial/rm&#45;aboutzaxis.hh" alt="" coords="2196,166,2449,197"/><area shape="rect" id="node34" href="a00209.html" title="metapod/tools/spatial/rm&#45;identity.hh" alt="" coords="2473,166,2705,197"/><area shape="rect" id="node36" href="a00207.html" title="metapod/tools/spatial/rm&#45;chgaxis.hh" alt="" coords="2729,166,2967,197"/><area shape="rect" id="node38" href="a00206.html" title="metapod/tools/spatial/rm&#45;binaryop.hh" alt="" coords="2297,86,2540,117"/><area shape="rect" id="node40" href="a00210.html" title="metapod/tools/spatial/rm&#45;mulop.hh" alt="" coords="1895,86,2121,117"/></map>
-</div>
-</div><div class="textblock"><div class="dynheader">
+<div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="a00307.png" border="0" usemap="#rotation-matrix_8hhdep" alt=""/></div>
-<map name="rotation-matrix_8hhdep" id="rotation-matrix_8hhdep">
-<area shape="rect" id="node3" href="a00216.html" title="transform.hh" alt="" coords="2028,86,2122,117"/><area shape="rect" id="node76" href="a00195.html" title="joint.hh" alt="" coords="1966,406,2027,437"/><area shape="rect" id="node5" href="a00213.html" title="spatial.hh" alt="" coords="1608,166,1686,197"/><area shape="rect" id="node7" href="a00165.html" title="common.hh" alt="" coords="1387,246,1478,277"/><area shape="rect" id="node9" href="a00161.html" title="chda.hh" alt="" coords="462,566,531,597"/><area shape="rect" id="node11" href="a00170.html" title="depth_first_traversal.hh" alt="" coords="235,326,392,357"/><area shape="rect" id="node19" href="a00211.html" title="rnea.hh" alt="" coords="358,486,424,517"/><area shape="rect" id="node22" href="a00168.html" title="crba.hh" alt="" coords="499,486,563,517"/><area shape="rect" id="node33" href="a00187.html" title="jac_point_relative.hh" alt="" coords="1195,486,1336,517"/><area shape="rect" id="node35" href="a00186.html" title="jac_point_chain.hh" alt="" coords="1232,566,1363,597"/><area shape="rect" id="node37" href="a00188.html" title="jac_point_robot.hh" alt="" coords="1062,566,1190,597"/><area shape="rect" id="node44" href="a00177.html" title="has_parent.hh" alt="" coords="788,326,892,357"/><area shape="rect" id="node48" href="a00159.html" title="backward_traversal_prev.hh" alt="" coords="899,406,1088,437"/><area shape="rect" id="node52" href="a00184.html" title="is_ancestor.hh" alt="" coords="1238,326,1344,357"/><area shape="rect" id="node55" href="a00158.html" title="backward_traversal.hh" alt="" coords="1443,406,1600,437"/><area shape="rect" id="node57" href="a00171.html" title="djac.hh" alt="" coords="1510,486,1574,517"/><area shape="rect" id="node59" href="a00185.html" title="jac.hh" alt="" coords="1619,486,1675,517"/><area shape="rect" id="node62" href="a00169.html" title="deepest_common_ancestor.hh" alt="" coords="1214,406,1419,437"/><area shape="rect" id="node74" href="a00190.html" title="joint&#45;aboutxaxis.hh" alt="" coords="1571,326,1702,357"/><area shape="rect" id="node78" href="a00191.html" title="joint&#45;aboutyaxis.hh" alt="" coords="1776,326,1907,357"/><area shape="rect" id="node81" href="a00192.html" title="joint&#45;aboutzaxis.hh" alt="" coords="1931,326,2062,357"/><area shape="rect" id="node84" href="a00193.html" title="joint&#45;anyaxis.hh" alt="" coords="2086,326,2198,357"/><area shape="rect" id="node87" href="a00194.html" title="joint&#45;freeflyer.hh" alt="" coords="2222,326,2336,357"/><area shape="rect" id="node13" href="a00200.html" title="print.hh" alt="" coords="720,406,782,437"/><area shape="rect" id="node16" href="a00189.html" title="jcalc.hh" alt="" coords="427,406,494,437"/><area shape="rect" id="node26" href="a00201.html" title="qcalc.hh" alt="" coords="66,486,138,517"/><area shape="rect" id="node31" href="a00160.html" title="bcalc.hh" alt="" coords="806,406,875,437"/><area shape="rect" id="node39" href="a00180.html" title="initconf.hh" alt="" coords="24,406,104,437"/><area shape="rect" id="node41" href="a00181.html" title="initnodeidconf.hh" alt="" coords="128,406,251,437"/></map>
+<div class="center"><img src="a00305.png" border="0" usemap="#rm-identity_8hhdep" alt=""/></div>
+<map name="rm-identity_8hhdep" id="rm-identity_8hhdep">
+<area shape="rect" id="node3" href="a00215.html" title="rotation&#45;matrix.hh" alt="" coords="2194,166,2316,197"/><area shape="rect" id="node94" href="a00213.html" title="rm&#45;mulop.hh" alt="" coords="2251,86,2344,117"/><area shape="rect" id="node5" href="a00219.html" title="transform.hh" alt="" coords="1738,246,1831,277"/><area shape="rect" id="node78" href="a00197.html" title="joint.hh" alt="" coords="1966,566,2027,597"/><area shape="rect" id="node7" href="a00216.html" title="spatial.hh" alt="" coords="1511,326,1588,357"/><area shape="rect" id="node9" href="a00166.html" title="common.hh" alt="" coords="1387,406,1478,437"/><area shape="rect" id="node11" href="a00162.html" title="chda.hh" alt="" coords="462,726,531,757"/><area shape="rect" id="node13" href="a00171.html" title="depth_first_traversal.hh" alt="" coords="235,486,392,517"/><area shape="rect" id="node21" href="a00214.html" title="rnea.hh" alt="" coords="358,646,424,677"/><area shape="rect" id="node24" href="a00169.html" title="crba.hh" alt="" coords="499,646,563,677"/><area shape="rect" id="node35" href="a00189.html" title="jac_point_relative.hh" alt="" coords="1195,646,1336,677"/><area shape="rect" id="node37" href="a00188.html" title="jac_point_chain.hh" alt="" coords="1232,726,1363,757"/><area shape="rect" id="node39" href="a00190.html" title="jac_point_robot.hh" alt="" coords="1062,726,1190,757"/><area shape="rect" id="node46" href="a00179.html" title="has_parent.hh" alt="" coords="788,486,892,517"/><area shape="rect" id="node50" href="a00160.html" title="backward_traversal_prev.hh" alt="" coords="899,566,1088,597"/><area shape="rect" id="node54" href="a00186.html" title="is_ancestor.hh" alt="" coords="1238,486,1344,517"/><area shape="rect" id="node57" href="a00159.html" title="backward_traversal.hh" alt="" coords="1443,566,1600,597"/><area shape="rect" id="node59" href="a00172.html" title="djac.hh" alt="" coords="1510,646,1574,677"/><area shape="rect" id="node61" href="a00187.html" title="jac.hh" alt="" coords="1619,646,1675,677"/><area shape="rect" id="node64" href="a00170.html" title="deepest_common_ancestor.hh" alt="" coords="1214,566,1419,597"/><area shape="rect" id="node76" href="a00192.html" title="joint&#45;aboutxaxis.hh" alt="" coords="1571,486,1702,517"/><area shape="rect" id="node80" href="a00193.html" title="joint&#45;aboutyaxis.hh" alt="" coords="1776,486,1907,517"/><area shape="rect" id="node83" href="a00194.html" title="joint&#45;aboutzaxis.hh" alt="" coords="1931,486,2062,517"/><area shape="rect" id="node86" href="a00195.html" title="joint&#45;anyaxis.hh" alt="" coords="2086,486,2198,517"/><area shape="rect" id="node89" href="a00196.html" title="joint&#45;freeflyer.hh" alt="" coords="2222,486,2336,517"/><area shape="rect" id="node15" href="a00203.html" title="print.hh" alt="" coords="720,566,782,597"/><area shape="rect" id="node18" href="a00191.html" title="jcalc.hh" alt="" coords="427,566,494,597"/><area shape="rect" id="node28" href="a00204.html" title="qcalc.hh" alt="" coords="66,646,138,677"/><area shape="rect" id="node33" href="a00161.html" title="bcalc.hh" alt="" coords="806,566,875,597"/><area shape="rect" id="node41" href="a00182.html" title="initconf.hh" alt="" coords="24,566,104,597"/><area shape="rect" id="node43" href="a00183.html" title="initnodeidconf.hh" alt="" coords="128,566,251,597"/></map>
 </div>
 </div><table class="memberdecls">
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00134.html">metapod::Spatial::RotationMatrixIdentityTpl&lt; FloatType &gt;</a></td></tr>
+<tr><td colspan="2"><h2><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00221.html">metapod</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Templated Hybrid Dynamics Algorithm. </p>
+<br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00223.html">metapod::Spatial</a></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00212.html#a685453c8450199f7a8cfe11e9b4c0932">METAPOD_SPATIAL_ROTATION_TYPEDEFS</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00212.html#ad1665016d08adf09262e7e2fd5204855">METAPOD_SPATIAL_ROTATION_MATRIX_I_TYPEDEF</a>&#160;&#160;&#160;typedef Spatial::RotationMatrixIdentityTpl&lt;FloatType&gt; RotationMatrixIdentity</td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
-<a class="anchor" id="a685453c8450199f7a8cfe11e9b4c0932"></a><!-- doxytag: member="rotation&#45;matrix.hh::METAPOD_SPATIAL_ROTATION_TYPEDEFS" ref="a685453c8450199f7a8cfe11e9b4c0932" args="" -->
+<a class="anchor" id="ad1665016d08adf09262e7e2fd5204855"></a><!-- doxytag: member="rm&#45;identity.hh::METAPOD_SPATIAL_ROTATION_MATRIX_I_TYPEDEF" ref="ad1665016d08adf09262e7e2fd5204855" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define <a class="el" href="a00212.html#a685453c8450199f7a8cfe11e9b4c0932">METAPOD_SPATIAL_ROTATION_TYPEDEFS</a></td>
+          <td class="memname">#define <a class="el" href="a00212.html#ad1665016d08adf09262e7e2fd5204855">METAPOD_SPATIAL_ROTATION_MATRIX_I_TYPEDEF</a>&#160;&#160;&#160;typedef Spatial::RotationMatrixIdentityTpl&lt;FloatType&gt; RotationMatrixIdentity</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="a00208.html#a67a80b2ffd1ebccb77eb63b4fd947122">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a>; \
-  METAPOD_SPATIAL_ROTATION_MATRIX_X_TYPEDEF; \
-  METAPOD_SPATIAL_ROTATION_MATRIX_Y_TYPEDEF; \
-  METAPOD_SPATIAL_ROTATION_MATRIX_Z_TYPEDEF; \
-  METAPOD_SPATIAL_ROTATION_MATRIX_I_TYPEDEF
-</pre></div>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -134,7 +117,7 @@ Defines</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00212.html">rotation-matrix.hh</a>      </li>
+      <li class="navelem"><a class="el" href="a00212.html">rm-identity.hh</a>      </li>
 <br><br>
 <hr>
 <center>

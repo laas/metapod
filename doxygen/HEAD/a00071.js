@@ -1,7 +1,9 @@
 var a00071 =
 [
-    [ "discover", "a00071.html#a7cbdc8f8148f119865a17c5655f43595", null ],
-    [ "discover", "a00071.html#a9500cc9d2a2dbd640788c5f9c9358121", null ],
-    [ "finish", "a00071.html#a6a50f7e86eeeb73c76bebe5d100f57ab", null ],
-    [ "finish", "a00071.html#a536596e55502b101ef51cd7b0a031c25", null ]
+    [ "Node", "a00071.html#a3236529963dd8ebe95d0455a01314e6b", null ],
+    [ "discover", "a00071.html#aef26cc28e4b7ff68d1151df3ff23663b", null ],
+    [ "discover", "a00071.html#a698b5e9260497bd6b3f7bcf95bba2f90", null ],
+    [ "finish", "a00071.html#afda38db79504a4844f2188de8b1f71b5", null ],
+    [ "finish", "a00071.html#aa743ebb3c04e7f521071d0dd41348f67", null ],
+    [ "NB_DOF", "a00071.html#a1319e20fc6ba9d7edd236335011e870e", null ]
 ];

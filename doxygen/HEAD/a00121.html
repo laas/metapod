@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt; Struct Template Reference</title>
+<title>metapod::Spatial::rmca_traits_mul&lt; traits_op1, traits_op2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,33 +59,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::rmca_traits_mul&lt; traits_op1, traits_op2 &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;" -->
+<!-- doxytag: class="metapod::Spatial::rmca_traits_mul" -->
 <p><code>#include &lt;metapod/tools/spatial/rm-chgaxis.hh&gt;</code></p>
 
-<p><a href="a00474.html">List of all members.</a></p>
+<p><a href="a00448.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00119.html">rmca_traits</a><br class="typebreak"/>
+&lt; Internal::rmca_traits_ref<br class="typebreak"/>
+&lt; traits_op1, <br class="typebreak"/>
+traits_op2::ind_X &gt;::ind, <br class="typebreak"/>
+Internal::rmca_traits_ref<br class="typebreak"/>
+&lt; traits_op1, <br class="typebreak"/>
+traits_op2::ind_Y &gt;::ind, <br class="typebreak"/>
+Internal::rmca_traits_ref<br class="typebreak"/>
+&lt; traits_op1, <br class="typebreak"/>
+traits_op2::ind_Z &gt;::ind, <br class="typebreak"/>
+traits_op2::value_X <br class="typebreak"/>
+*Internal::rmca_traits_ref<br class="typebreak"/>
+&lt; traits_op1, <br class="typebreak"/>
+traits_op2::ind_X &gt;::value, <br class="typebreak"/>
+traits_op2::value_Y <br class="typebreak"/>
+*Internal::rmca_traits_ref<br class="typebreak"/>
+&lt; traits_op1, <br class="typebreak"/>
+traits_op2::ind_Y &gt;::value, <br class="typebreak"/>
+traits_op2::value_Z <br class="typebreak"/>
+*Internal::rmca_traits_ref<br class="typebreak"/>
+&lt; traits_op1, <br class="typebreak"/>
+traits_op2::ind_Z &gt;::value &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#ae364d5e7e33eb5eb262471435971df99">ltraits</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#aad5c9b5169edb815208e0602855b8019">ind</a> = traits::ind_X</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#a1f75f8fceeb2c36689c9a242e00d14d1">value</a> = traits::value_X</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#afaed878e1788e037022b185751b8bf56">ind_X</a> = <a class="el" href="a00119.html#a193f8ceef09144bc27110e668498d06b">ltraits::ind_X</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#a2c2986ae0bdaa68fddc021279e1bb55a">value_X</a> = <a class="el" href="a00119.html#ad0f0041df73eebc9dbe612c381863309">ltraits::value_X</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#afecefc5cbc559c53f21b485eadab8951">ind_Y</a> = <a class="el" href="a00119.html#a7ccf18404b49a37d254638381b6339ae">ltraits::ind_Y</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#a2cc5c6e9c98b72817cdd438fccd53296">value_Y</a> = <a class="el" href="a00119.html#a3781e5090870ca38e83cdbbcfaee2fc1">ltraits::value_Y</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#a83e1fbf587a14a8fb6f5d2c6c8223a45">ind_Z</a> = <a class="el" href="a00119.html#a0246e588828cf79c818a136048c8635b">ltraits::ind_Z</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html#a5ec86cc015548c72b6380d31b9f3efbe">value_Z</a> = <a class="el" href="a00119.html#a26bb0c1457aff28c3a5a70b91cedf119">ltraits::value_Z</a></td></tr>
 </table>
-<h3>template&lt;typename traits&gt;<br/>
- struct metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;</h3>
+<h3>template&lt;typename traits_op1, typename traits_op2&gt;<br/>
+ struct metapod::Spatial::rmca_traits_mul&lt; traits_op1, traits_op2 &gt;</h3>
 
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aad5c9b5169edb815208e0602855b8019"></a><!-- doxytag: member="metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::ind" ref="aad5c9b5169edb815208e0602855b8019" args="" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="ae364d5e7e33eb5eb262471435971df99"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::ltraits" ref="ae364d5e7e33eb5eb262471435971df99" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits &gt; </div>
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::<a class="el" href="a00121.html#aad5c9b5169edb815208e0602855b8019">ind</a> = traits::ind_X<code> [static]</code></td>
+          <td class="memname">typedef <a class="el" href="a00119.html">rmca_traits</a>&lt;Internal::rmca_traits_ref&lt;traits_op1,traits_op2::ind_X&gt;::ind, Internal::rmca_traits_ref&lt;traits_op1,traits_op2::ind_Y&gt;::ind, Internal::rmca_traits_ref&lt;traits_op1,traits_op2::ind_Z&gt;::ind, traits_op2::value_X*Internal::rmca_traits_ref&lt;traits_op1,traits_op2::ind_X&gt;::value, traits_op2::value_Y*Internal::rmca_traits_ref&lt;traits_op1,traits_op2::ind_Y&gt;::value, traits_op2::value_Z*Internal::rmca_traits_ref&lt;traits_op1,traits_op2::ind_Z&gt;::value &gt; <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#ae364d5e7e33eb5eb262471435971df99">ltraits</a></td>
         </tr>
       </table>
 </div>
@@ -93,14 +122,90 @@ template&lt;typename traits &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a1f75f8fceeb2c36689c9a242e00d14d1"></a><!-- doxytag: member="metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::value" ref="a1f75f8fceeb2c36689c9a242e00d14d1" args="" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="afaed878e1788e037022b185751b8bf56"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::ind_X" ref="afaed878e1788e037022b185751b8bf56" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename traits &gt; </div>
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const metapod::Spatial::Internal::rmca_traits_ref&lt; traits, 0 &gt;::<a class="el" href="a00121.html#a1f75f8fceeb2c36689c9a242e00d14d1">value</a> = traits::value_X<code> [static]</code></td>
+          <td class="memname">int const <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#afaed878e1788e037022b185751b8bf56">ind_X</a> = <a class="el" href="a00119.html#a193f8ceef09144bc27110e668498d06b">ltraits::ind_X</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afecefc5cbc559c53f21b485eadab8951"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::ind_Y" ref="afecefc5cbc559c53f21b485eadab8951" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int const <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#afecefc5cbc559c53f21b485eadab8951">ind_Y</a> = <a class="el" href="a00119.html#a7ccf18404b49a37d254638381b6339ae">ltraits::ind_Y</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a83e1fbf587a14a8fb6f5d2c6c8223a45"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::ind_Z" ref="a83e1fbf587a14a8fb6f5d2c6c8223a45" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int const <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#a83e1fbf587a14a8fb6f5d2c6c8223a45">ind_Z</a> = <a class="el" href="a00119.html#a0246e588828cf79c818a136048c8635b">ltraits::ind_Z</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2c2986ae0bdaa68fddc021279e1bb55a"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::value_X" ref="a2c2986ae0bdaa68fddc021279e1bb55a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int const <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#a2c2986ae0bdaa68fddc021279e1bb55a">value_X</a> = <a class="el" href="a00119.html#ad0f0041df73eebc9dbe612c381863309">ltraits::value_X</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2cc5c6e9c98b72817cdd438fccd53296"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::value_Y" ref="a2cc5c6e9c98b72817cdd438fccd53296" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int const <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#a2cc5c6e9c98b72817cdd438fccd53296">value_Y</a> = <a class="el" href="a00119.html#a3781e5090870ca38e83cdbbcfaee2fc1">ltraits::value_Y</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ec86cc015548c72b6380d31b9f3efbe"></a><!-- doxytag: member="metapod::Spatial::rmca_traits_mul::value_Z" ref="a5ec86cc015548c72b6380d31b9f3efbe" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename traits_op1 , typename traits_op2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int const <a class="el" href="a00121.html">metapod::Spatial::rmca_traits_mul</a>&lt; traits_op1, traits_op2 &gt;::<a class="el" href="a00121.html#a5ec86cc015548c72b6380d31b9f3efbe">value_Z</a> = <a class="el" href="a00119.html#a26bb0c1457aff28c3a5a70b91cedf119">ltraits::value_Z</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -126,10 +231,9 @@ template&lt;typename traits &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00220.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00222.html">Internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00121.html">rmca_traits_ref&lt; traits, 0 &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00223.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00121.html">rmca_traits_mul</a>      </li>
 <br><br>
 <hr>
 <center>

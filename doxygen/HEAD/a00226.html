@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Rotations</title>
+<title>Spatial Algebra</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -50,45 +50,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
 <div id="doc-content">
 <div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a>  </div>
   <div class="headertitle">
-<div class="title">Rotations</div>  </div>
-<div class="ingroups"><a class="el" href="a00225.html">Transforms</a></div></div><!--header-->
+<div class="title">Spatial Algebra</div>  </div>
+</div><!--header-->
 <div class="contents">
 
-<p>The following joints use specific rotations matrices which implement the method recommended in Featherstone's Book Appendix.2.  
+<p>This module implements the spatial algebra as described in Featherstone book.  
 <a href="#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for Rotations:</div>
+Collaboration diagram for Spatial Algebra:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="a00226.png" border="0" alt="" usemap="#a00226"/>
 <map name="a00226" id="a00226">
-<area shape="rect" id="node1" href="a00225.html" title="Transforms" alt="" coords="5,5,96,35"/></map>
+<area shape="rect" id="node1" href="a00227.html" title="Transforms" alt="" coords="168,5,259,35"/></map>
 </td></tr></table></center>
 </div>
-<p>The following joints use specific rotations matrices which implement the method recommended in Featherstone's Book Appendix.2. </p>
-<ul>
-<li>
-<p class="startli">RevoluteAxisXJoint : Implements specific rotation around x-axis.</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli">RevoluteAxisYJoint : Implements specific rotation around y-axis.</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli">RevoluteAxisXJoint : Implements specific rotation around z-axis.</p>
-<p class="endli"></p>
-</li>
-</ul>
-<p>An extension would be to write planar motion <img class="formulaInl" alt="$R_{\theta_x,\theta_y}(\theta_x,\theta_y)$" src="form_60.png"/> such that: </p>
-<p class="formulaDsp">
-<img class="formulaDsp" alt="\[ R_{\theta_x,\theta_y}(\theta_x,\theta_y) = R_x(\theta_x) R_y(\theta_y) = \left[ \begin{matrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; c_x &amp; s_x \\ 0 &amp; -s_x &amp; c_x \end{matrix} \right] \left[ \begin{matrix} c_y &amp; 0 &amp; -s_y \\ 0 &amp; 1 &amp; 0 \\ s_y &amp; 0 &amp; c_y \end{matrix} \right] = \left[ \begin{matrix} c_y &amp; 0 &amp; -s_y \\ s_xs_y &amp; c_x &amp; s_xc_y \\ c_xs_y &amp; -s_x &amp; c_xc_y \end{matrix} \right] \]" src="form_61.png"/>
-</p>
-<p> On the other hand </p>
-<p class="formulaDsp">
-<img class="formulaDsp" alt="\[ R_{\theta_y,\theta_x}(\theta_y,\theta_x) = R_y(\theta_y) R_x(\theta_x) = \left[ \begin{matrix} c_y &amp; 0 &amp; -s_y \\ 0 &amp; 1 &amp; 0 \\ s_y &amp; 0 &amp; c_y \end{matrix} \right] \left[ \begin{matrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; c_x &amp; s_x \\ 0 &amp; -s_x &amp; c_x \end{matrix} \right] = \left[ \begin{matrix} c_y &amp; s_xs_y &amp; -c_xs_y \\ 0 &amp; c_x &amp; s_x \\ s_y &amp; -s_xc_y &amp; c_xc_y \end{matrix} \right] \]" src="form_62.png"/>
-</p>
- </div><!-- contents -->
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="groups"></a>
+Modules</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00227.html">Transforms</a></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<p>This module implements the spatial algebra as described in Featherstone book. </p>
+<h2><a class="anchor" id="Definitions"></a>
+Definitions</h2>
+<p>The motion space <img class="formulaInl" alt="$M$" src="form_64.png"/> is used to represent velocity, acceleration, infinitesimal displacement, and finally directions of motion freedom and constraint.</p>
+<p>The elements of <img class="formulaInl" alt="$F$" src="form_65.png"/> describe the forces acting on a solid body, and the related quantities: momentum, impulse, and directions of force freedom and constraint.</p>
+<p>A very important object is the <em><a class="el" href="a00137.html">Transform</a></em> which allows to transfer a spatial vector in the motion space <img class="formulaInl" alt="$M$" src="form_64.png"/> or in the force space <img class="formulaInl" alt="$F$" src="form_65.png"/> from frame <img class="formulaInl" alt="$A$" src="form_66.png"/> to another frame <img class="formulaInl" alt="$B$" src="form_67.png"/>.</p>
+<p>The <a class="el" href="a00137.html">Transform</a> uses Plucker coordinates to represent motion with a point <img class="formulaInl" alt="${\bf p}$" src="form_68.png"/> and a rotation matrix <img class="formulaInl" alt="${\bf R}$" src="form_69.png"/>.</p>
+<h2><a class="anchor" id="quick_start"></a>
+Quick start</h2>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">   #include &lt;<a class="code" href="a00215.html">metapod/tools/spatial.hh</a>&gt;</span>
+</pre></div> </div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"

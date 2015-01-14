@@ -1,10 +1,6 @@
 var a00164 =
 [
-    [ "AxisType", "a00220.html#af7b10dc8a0150cd8856cc44c515cfb5e", null ],
-    [ "operator*", "a00220.html#aff68c98d75f014ee8bab7e15719a5a47", null ],
-    [ "operator*", "a00220.html#ad966a3c2da86aa7232d0ad8df04b5305", null ],
-    [ "operator*", "a00220.html#ab6d57bae35d6d7bce6bf84383c13b572", null ],
-    [ "operator^", "a00220.html#ae8efdfee657abb715022f915a64fcbdd", null ],
-    [ "operator^", "a00220.html#a362aa4e298df29ce68e207deadfa9b1d", null ],
-    [ "operator^", "a00220.html#a93a0a2433de6fdd7d651b95a6f3fedfe", null ]
+    [ "operator*", "a00223.html#a7d8fc8985525385d684f91ed9c26cd47", null ],
+    [ "operator^", "a00223.html#a6f87c50c7fc3987dddd981d98a7ad699", null ],
+    [ "operator", "a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8", null ]
 ];

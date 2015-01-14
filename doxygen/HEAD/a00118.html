@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::rmca_traits&lt; IX, IY, IZ, LX, LY, LZ &gt; Struct Template Reference</title>
+<title>metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,112 +59,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-types">Public Types</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::rmca_traits&lt; IX, IY, IZ, LX, LY, LZ &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::rmca_traits" -->
-<p><code>#include &lt;metapod/tools/spatial/rm-chgaxis.hh&gt;</code></p>
+<!-- doxytag: class="metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;" -->
+<p><code>#include &lt;metapod/tools/spatial/rm-mulop.hh&gt;</code></p>
 
-<p><a href="a00443.html">List of all members.</a></p>
+<p><a href="a00456.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#a193f8ceef09144bc27110e668498d06b">ind_X</a> = IX</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#ad0f0041df73eebc9dbe612c381863309">value_X</a> = LX</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#a7ccf18404b49a37d254638381b6339ae">ind_Y</a> = IY</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#a3781e5090870ca38e83cdbbcfaee2fc1">value_Y</a> = LY</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#a0246e588828cf79c818a136048c8635b">ind_Z</a> = IZ</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static int const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#a26bb0c1457aff28c3a5a70b91cedf119">value_Z</a> = LZ</td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef op2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html#a59bedf281093bfd4cfa78816be425b11">rm</a></td></tr>
 </table>
-<h3>template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt;<br/>
- struct metapod::Spatial::rmca_traits&lt; IX, IY, IZ, LX, LY, LZ &gt;</h3>
+<h3>template&lt;typename FloatType, class op2&gt;<br/>
+ struct metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;</h3>
 
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a193f8ceef09144bc27110e668498d06b"></a><!-- doxytag: member="metapod::Spatial::rmca_traits::ind_X" ref="a193f8ceef09144bc27110e668498d06b" args="" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a59bedf281093bfd4cfa78816be425b11"></a><!-- doxytag: member="metapod::Spatial::rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;::rm" ref="a59bedf281093bfd4cfa78816be425b11" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
+template&lt;typename FloatType , class op2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int const <a class="el" href="a00118.html">metapod::Spatial::rmca_traits</a>&lt; IX, IY, IZ, LX, LY, LZ &gt;::<a class="el" href="a00118.html#a193f8ceef09144bc27110e668498d06b">ind_X</a> = IX<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a7ccf18404b49a37d254638381b6339ae"></a><!-- doxytag: member="metapod::Spatial::rmca_traits::ind_Y" ref="a7ccf18404b49a37d254638381b6339ae" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">int const <a class="el" href="a00118.html">metapod::Spatial::rmca_traits</a>&lt; IX, IY, IZ, LX, LY, LZ &gt;::<a class="el" href="a00118.html#a7ccf18404b49a37d254638381b6339ae">ind_Y</a> = IY<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0246e588828cf79c818a136048c8635b"></a><!-- doxytag: member="metapod::Spatial::rmca_traits::ind_Z" ref="a0246e588828cf79c818a136048c8635b" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">int const <a class="el" href="a00118.html">metapod::Spatial::rmca_traits</a>&lt; IX, IY, IZ, LX, LY, LZ &gt;::<a class="el" href="a00118.html#a0246e588828cf79c818a136048c8635b">ind_Z</a> = IZ<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad0f0041df73eebc9dbe612c381863309"></a><!-- doxytag: member="metapod::Spatial::rmca_traits::value_X" ref="ad0f0041df73eebc9dbe612c381863309" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">int const <a class="el" href="a00118.html">metapod::Spatial::rmca_traits</a>&lt; IX, IY, IZ, LX, LY, LZ &gt;::<a class="el" href="a00118.html#ad0f0041df73eebc9dbe612c381863309">value_X</a> = LX<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3781e5090870ca38e83cdbbcfaee2fc1"></a><!-- doxytag: member="metapod::Spatial::rmca_traits::value_Y" ref="a3781e5090870ca38e83cdbbcfaee2fc1" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">int const <a class="el" href="a00118.html">metapod::Spatial::rmca_traits</a>&lt; IX, IY, IZ, LX, LY, LZ &gt;::<a class="el" href="a00118.html#a3781e5090870ca38e83cdbbcfaee2fc1">value_Y</a> = LY<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a26bb0c1457aff28c3a5a70b91cedf119"></a><!-- doxytag: member="metapod::Spatial::rmca_traits::value_Z" ref="a26bb0c1457aff28c3a5a70b91cedf119" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">int const <a class="el" href="a00118.html">metapod::Spatial::rmca_traits</a>&lt; IX, IY, IZ, LX, LY, LZ &gt;::<a class="el" href="a00118.html#a26bb0c1457aff28c3a5a70b91cedf119">value_Z</a> = LZ<code> [static]</code></td>
+          <td class="memname">typedef op2 <a class="el" href="a00113.html">metapod::Spatial::rm_mul_op</a>&lt; FloatType, <a class="el" href="a00134.html">RotationMatrixIdentityTpl</a>&lt; FloatType &gt;, op2 &gt;::<a class="el" href="a00118.html#a59bedf281093bfd4cfa78816be425b11">rm</a></td>
         </tr>
       </table>
 </div>
@@ -190,9 +110,9 @@ template&lt;int IX, int IY, int IZ, int LX, int LY, int LZ&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00220.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00118.html">rmca_traits</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00223.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00118.html">rm_mul_op&lt; FloatType, RotationMatrixIdentityTpl&lt; FloatType &gt;, op2 &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>depth_first_traversal.hh File Reference</title>
+<title>deepest_common_ancestor.hh File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -60,36 +60,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">depth_first_traversal.hh File Reference</div>  </div>
+<div class="title">deepest_common_ancestor.hh File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00165.html">metapod/tools/common.hh</a>&quot;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="a00166.html">metapod/tools/common.hh</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="a00186.html">metapod/tools/is_ancestor.hh</a>&gt;</code><br/>
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for depth_first_traversal.hh:</div>
+Include dependency graph for deepest_common_ancestor.hh:</div>
 <div class="dyncontent">
-<div class="center"><img src="a00251.png" border="0" usemap="#depth__first__traversal_8hh" alt=""/></div>
-<map name="depth__first__traversal_8hh" id="depth__first__traversal_8hh">
-<area shape="rect" id="node3" href="a00165.html" title="metapod/tools/common.hh" alt="" coords="1424,86,1605,117"/><area shape="rect" id="node7" href="a00174.html" title="metapod/tools/fwd.hh" alt="" coords="1020,486,1169,517"/><area shape="rect" id="node11" href="a00166.html" title="metapod/tools/constants.hh" alt="" coords="1577,166,1764,197"/><area shape="rect" id="node13" href="a00197.html" title="metapod/macro.hh" alt="" coords="1788,166,1921,197"/><area shape="rect" id="node15" href="a00215.html" title="metapod/tools/static_assert.hh" alt="" coords="1945,166,2148,197"/><area shape="rect" id="node21" href="a00213.html" title="metapod/tools/spatial.hh" alt="" coords="844,166,1012,197"/><area shape="rect" id="node24" href="a00198.html" title="metapod/tools/spatial/motion.hh" alt="" coords="991,246,1201,277"/><area shape="rect" id="node26" href="a00172.html" title="metapod/tools/spatial/force.hh" alt="" coords="1121,326,1324,357"/><area shape="rect" id="node30" href="a00179.html" title="metapod/tools/spatial/inertia.hh" alt="" coords="889,326,1097,357"/><area shape="rect" id="node40" href="a00216.html" title="metapod/tools/spatial/transform.hh" alt="" coords="1225,246,1452,277"/><area shape="rect" id="node44" href="a00167.html" title="metapod/tools/spatial/constraintmotion.hh" alt="" coords="488,326,757,357"/><area shape="rect" id="node93" href="a00157.html" title="metapod/tools/backward.hh" alt="" coords="628,246,815,277"/><area shape="rect" id="node33" href="a00196.html" title="metapod/tools/spatial/lti.hh" alt="" coords="1309,406,1491,437"/><area shape="rect" id="node54" href="a00212.html" title="metapod/tools/spatial/rotation&#45;matrix.hh" alt="" coords="2244,326,2497,357"/><area shape="rect" id="node47" href="a00164.html" title="metapod/tools/spatial/cm&#45;oneaxis.hh" alt="" coords="211,406,453,437"/><area shape="rect" id="node49" href="a00163.html" title="metapod/tools/spatial/cm&#45;freeflyer.hh" alt="" coords="741,406,981,437"/><area shape="rect" id="node52" href="a00162.html" title="metapod/tools/spatial/cm&#45;anyaxis.hh" alt="" coords="477,406,717,437"/><area shape="rect" id="node70" href="a00208.html" title="metapod/tools/spatial/rm&#45;general.hh" alt="" coords="3536,486,3771,517"/><area shape="rect" id="node72" href="a00203.html" title="metapod/tools/spatial/rm&#45;aboutxaxis.hh" alt="" coords="3795,486,4048,517"/><area shape="rect" id="node74" href="a00204.html" title="metapod/tools/spatial/rm&#45;aboutyaxis.hh" alt="" coords="1769,486,2023,517"/><area shape="rect" id="node76" href="a00205.html" title="metapod/tools/spatial/rm&#45;aboutzaxis.hh" alt="" coords="2444,486,2697,517"/><area shape="rect" id="node78" href="a00209.html" title="metapod/tools/spatial/rm&#45;identity.hh" alt="" coords="2920,486,3152,517"/><area shape="rect" id="node80" href="a00207.html" title="metapod/tools/spatial/rm&#45;chgaxis.hh" alt="" coords="3275,486,3512,517"/><area shape="rect" id="node82" href="a00206.html" title="metapod/tools/spatial/rm&#45;binaryop.hh" alt="" coords="1720,406,1963,437"/><area shape="rect" id="node84" href="a00210.html" title="metapod/tools/spatial/rm&#45;mulop.hh" alt="" coords="3440,406,3667,437"/></map>
+<div class="center"><img src="a00253.png" border="0" usemap="#deepest__common__ancestor_8hh" alt=""/></div>
+<map name="deepest__common__ancestor_8hh" id="deepest__common__ancestor_8hh">
+<area shape="rect" id="node3" href="a00166.html" title="metapod/tools/common.hh" alt="" coords="1424,166,1605,197"/><area shape="rect" id="node97" href="a00186.html" title="metapod/tools/is_ancestor.hh" alt="" coords="1484,86,1681,117"/><area shape="rect" id="node7" href="a00176.html" title="metapod/tools/fwd.hh" alt="" coords="1020,566,1169,597"/><area shape="rect" id="node11" href="a00167.html" title="metapod/tools/constants.hh" alt="" coords="1577,246,1764,277"/><area shape="rect" id="node13" href="a00199.html" title="metapod/macro.hh" alt="" coords="1788,246,1921,277"/><area shape="rect" id="node15" href="a00218.html" title="metapod/tools/static_assert.hh" alt="" coords="1945,246,2148,277"/><area shape="rect" id="node21" href="a00216.html" title="metapod/tools/spatial.hh" alt="" coords="844,246,1012,277"/><area shape="rect" id="node24" href="a00201.html" title="metapod/tools/spatial/motion.hh" alt="" coords="991,326,1201,357"/><area shape="rect" id="node26" href="a00174.html" title="metapod/tools/spatial/force.hh" alt="" coords="1121,406,1324,437"/><area shape="rect" id="node30" href="a00181.html" title="metapod/tools/spatial/inertia.hh" alt="" coords="889,406,1097,437"/><area shape="rect" id="node40" href="a00219.html" title="metapod/tools/spatial/transform.hh" alt="" coords="1225,326,1452,357"/><area shape="rect" id="node44" href="a00168.html" title="metapod/tools/spatial/constraintmotion.hh" alt="" coords="488,406,757,437"/><area shape="rect" id="node93" href="a00158.html" title="metapod/tools/backward.hh" alt="" coords="628,326,815,357"/><area shape="rect" id="node33" href="a00198.html" title="metapod/tools/spatial/lti.hh" alt="" coords="1309,486,1491,517"/><area shape="rect" id="node54" href="a00215.html" title="metapod/tools/spatial/rotation&#45;matrix.hh" alt="" coords="2244,406,2497,437"/><area shape="rect" id="node47" href="a00165.html" title="metapod/tools/spatial/cm&#45;oneaxis.hh" alt="" coords="211,486,453,517"/><area shape="rect" id="node49" href="a00164.html" title="metapod/tools/spatial/cm&#45;freeflyer.hh" alt="" coords="741,486,981,517"/><area shape="rect" id="node52" href="a00163.html" title="metapod/tools/spatial/cm&#45;anyaxis.hh" alt="" coords="477,486,717,517"/><area shape="rect" id="node70" href="a00211.html" title="metapod/tools/spatial/rm&#45;general.hh" alt="" coords="3536,566,3771,597"/><area shape="rect" id="node72" href="a00206.html" title="metapod/tools/spatial/rm&#45;aboutxaxis.hh" alt="" coords="3795,566,4048,597"/><area shape="rect" id="node74" href="a00207.html" title="metapod/tools/spatial/rm&#45;aboutyaxis.hh" alt="" coords="1769,566,2023,597"/><area shape="rect" id="node76" href="a00208.html" title="metapod/tools/spatial/rm&#45;aboutzaxis.hh" alt="" coords="2444,566,2697,597"/><area shape="rect" id="node78" href="a00212.html" title="metapod/tools/spatial/rm&#45;identity.hh" alt="" coords="2920,566,3152,597"/><area shape="rect" id="node80" href="a00210.html" title="metapod/tools/spatial/rm&#45;chgaxis.hh" alt="" coords="3275,566,3512,597"/><area shape="rect" id="node82" href="a00209.html" title="metapod/tools/spatial/rm&#45;binaryop.hh" alt="" coords="1720,486,1963,517"/><area shape="rect" id="node84" href="a00213.html" title="metapod/tools/spatial/rm&#45;mulop.hh" alt="" coords="3440,486,3667,517"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="a00252.png" border="0" usemap="#depth__first__traversal_8hhdep" alt=""/></div>
-<map name="depth__first__traversal_8hhdep" id="depth__first__traversal_8hhdep">
-<area shape="rect" id="node3" href="a00200.html" title="print.hh" alt="" coords="331,166,392,197"/><area shape="rect" id="node5" href="a00161.html" title="chda.hh" alt="" coords="189,246,259,277"/><area shape="rect" id="node7" href="a00189.html" title="jcalc.hh" alt="" coords="128,86,195,117"/><area shape="rect" id="node10" href="a00211.html" title="rnea.hh" alt="" coords="5,166,72,197"/><area shape="rect" id="node13" href="a00168.html" title="crba.hh" alt="" coords="147,166,211,197"/><area shape="rect" id="node17" href="a00201.html" title="qcalc.hh" alt="" coords="235,166,307,197"/><area shape="rect" id="node22" href="a00160.html" title="bcalc.hh" alt="" coords="484,86,553,117"/><area shape="rect" id="node28" href="a00188.html" title="jac_point_robot.hh" alt="" coords="581,246,709,277"/><area shape="rect" id="node30" href="a00180.html" title="initconf.hh" alt="" coords="683,86,763,117"/><area shape="rect" id="node32" href="a00181.html" title="initnodeidconf.hh" alt="" coords="787,86,909,117"/><area shape="rect" id="node24" href="a00187.html" title="jac_point_relative.hh" alt="" coords="467,166,608,197"/><area shape="rect" id="node26" href="a00186.html" title="jac_point_chain.hh" alt="" coords="427,246,557,277"/></map>
+<div class="center"><img src="a00254.png" border="0" usemap="#deepest__common__ancestor_8hhdep" alt=""/></div>
+<map name="deepest__common__ancestor_8hhdep" id="deepest__common__ancestor_8hhdep">
+<area shape="rect" id="node3" href="a00189.html" title="jac_point_relative.hh" alt="" coords="76,86,217,117"/><area shape="rect" id="node5" href="a00188.html" title="jac_point_chain.hh" alt="" coords="5,166,136,197"/><area shape="rect" id="node7" href="a00190.html" title="jac_point_robot.hh" alt="" coords="160,166,288,197"/></map>
 </div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html">metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, node_id &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00046.html">metapod::internal::depth_first_traversal_internal&lt; Visitor, Robot, NO_CHILD &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00044.html">metapod::depth_first_traversal&lt; Visitor, Robot &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html">metapod::internal::deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, a_is_ancestor_of_b &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00044.html">metapod::internal::deepest_common_ancestor_internal&lt; Robot, node_a_id, node_b_id, true &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html">metapod::deepest_common_ancestor&lt; Robot, node_a_id, node_b_id &gt;</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deepest common ancestor node of two nodes A and B. The member.  <a href="a00042.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00218.html">metapod</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00221.html">metapod</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Templated Hybrid Dynamics Algorithm. </p>
 <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00219.html">metapod::internal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00222.html">metapod::internal</a></td></tr>
 </table>
 </div><!-- contents -->
 </div>
@@ -109,7 +111,7 @@ Namespaces</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00170.html">depth_first_traversal.hh</a>      </li>
+      <li class="navelem"><a class="el" href="a00170.html">deepest_common_ancestor.hh</a>      </li>
 <br><br>
 <hr>
 <center>

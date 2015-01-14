@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
+<title>metapod::initConf&lt; Robot, NOT_HYBRID, ConfTypeStreamOrVector &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,77 +59,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::initConf&lt; Robot, NOT_HYBRID, ConfTypeStreamOrVector &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::InitConfHybridParamsVisitor" -->
+<!-- doxytag: class="metapod::initConf&lt; Robot, NOT_HYBRID, ConfTypeStreamOrVector &gt;" -->
 <p><code>#include &lt;metapod/tools/initconf.hh&gt;</code></p>
 
-<p><a href="a00407.html">List of all members.</a></p>
+<p><a href="a00367.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
-boost::fusion::result_of::value_at_c<br class="typebreak"/>
-&lt; typename Robot::NodeVector, <br class="typebreak"/>
-node_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#a3236529963dd8ebe95d0455a01314e6b">Node</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#aef26cc28e4b7ff68d1151df3ff23663b">discover</a> (std::ifstream &amp;log, typename Robot::confVector &amp;v, const bool &amp;isTorque)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#a698b5e9260497bd6b3f7bcf95bba2f90">discover</a> (typename Robot::confVector &amp;log, typename Robot::confVector &amp;v, const bool &amp;isTorque)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#afda38db79504a4844f2188de8b1f71b5">finish</a> (std::ifstream &amp;, typename Robot::confVector &amp;, const bool &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#aa743ebb3c04e7f521071d0dd41348f67">finish</a> (typename Robot::confVector &amp;, typename Robot::confVector &amp;, const bool &amp;)</td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#a1319e20fc6ba9d7edd236335011e870e">NB_DOF</a> = Node::Joint::NBDOF</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#a234d01c2ea083e0d1778f52be218050e">run</a> (ConfTypeStreamOrVector &amp;log, typename Robot::confVector &amp;v)</td></tr>
 </table>
-<h3>template&lt;typename Robot, int node_id&gt;<br/>
- struct metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt;</h3>
+<h3>template&lt;typename Robot, typename ConfTypeStreamOrVector&gt;<br/>
+ struct metapod::initConf&lt; Robot, NOT_HYBRID, ConfTypeStreamOrVector &gt;</h3>
 
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a3236529963dd8ebe95d0455a01314e6b"></a><!-- doxytag: member="metapod::internal::InitConfHybridParamsVisitor::Node" ref="a3236529963dd8ebe95d0455a01314e6b" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef boost::fusion::result_of::value_at_c&lt;typename Robot::NodeVector, node_id&gt;::type <a class="el" href="a00070.html">metapod::internal::InitConfHybridParamsVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00070.html#a3236529963dd8ebe95d0455a01314e6b">Node</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aef26cc28e4b7ff68d1151df3ff23663b"></a><!-- doxytag: member="metapod::internal::InitConfHybridParamsVisitor::discover" ref="aef26cc28e4b7ff68d1151df3ff23663b" args="(std::ifstream &amp;log, typename Robot::confVector &amp;v, const bool &amp;isTorque)" -->
+<a class="anchor" id="a234d01c2ea083e0d1778f52be218050e"></a><!-- doxytag: member="metapod::initConf&lt; Robot, NOT_HYBRID, ConfTypeStreamOrVector &gt;::run" ref="a234d01c2ea083e0d1778f52be218050e" args="(ConfTypeStreamOrVector &amp;log, typename Robot::confVector &amp;v)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
+template&lt;typename Robot , typename ConfTypeStreamOrVector &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00070.html">metapod::internal::InitConfHybridParamsVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00070.html#aef26cc28e4b7ff68d1151df3ff23663b">discover</a> </td>
+          <td class="memname">static void <a class="el" href="a00067.html">metapod::initConf</a>&lt; Robot, <a class="el" href="a00221.html#af1319acf53e493e92fad384aacb7dc84a70c32c92b14dae2946c3c64115e1238b">NOT_HYBRID</a>, ConfTypeStreamOrVector &gt;::<a class="el" href="a00070.html#a234d01c2ea083e0d1778f52be218050e">run</a> </td>
           <td>(</td>
-          <td class="paramtype">std::ifstream &amp;&#160;</td>
+          <td class="paramtype">ConfTypeStreamOrVector &amp;&#160;</td>
           <td class="paramname"><em>log</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname"><em>isTorque</em>&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,131 +103,6 @@ template&lt;typename Robot , int node_id&gt; </div>
       </table>
 </div>
 <div class="memdoc">
-
-<p>References <a class="el" href="a00219.html#ae45e492678b3799e552edd915f5fddff">metapod::internal::findString()</a>, and <a class="el" href="a00070.html#a1319e20fc6ba9d7edd236335011e870e">metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt;::NB_DOF</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a698b5e9260497bd6b3f7bcf95bba2f90"></a><!-- doxytag: member="metapod::internal::InitConfHybridParamsVisitor::discover" ref="a698b5e9260497bd6b3f7bcf95bba2f90" args="(typename Robot::confVector &amp;log, typename Robot::confVector &amp;v, const bool &amp;isTorque)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00070.html">metapod::internal::InitConfHybridParamsVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00070.html#aef26cc28e4b7ff68d1151df3ff23663b">discover</a> </td>
-          <td>(</td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>log</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname"><em>isTorque</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="afda38db79504a4844f2188de8b1f71b5"></a><!-- doxytag: member="metapod::internal::InitConfHybridParamsVisitor::finish" ref="afda38db79504a4844f2188de8b1f71b5" args="(std::ifstream &amp;, typename Robot::confVector &amp;, const bool &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00070.html">metapod::internal::InitConfHybridParamsVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00070.html#afda38db79504a4844f2188de8b1f71b5">finish</a> </td>
-          <td>(</td>
-          <td class="paramtype">std::ifstream &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aa743ebb3c04e7f521071d0dd41348f67"></a><!-- doxytag: member="metapod::internal::InitConfHybridParamsVisitor::finish" ref="aa743ebb3c04e7f521071d0dd41348f67" args="(typename Robot::confVector &amp;, typename Robot::confVector &amp;, const bool &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00070.html">metapod::internal::InitConfHybridParamsVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00070.html#afda38db79504a4844f2188de8b1f71b5">finish</a> </td>
-          <td>(</td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a1319e20fc6ba9d7edd236335011e870e"></a><!-- doxytag: member="metapod::internal::InitConfHybridParamsVisitor::NB_DOF" ref="a1319e20fc6ba9d7edd236335011e870e" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int node_id&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const int <a class="el" href="a00070.html">metapod::internal::InitConfHybridParamsVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00070.html#a1319e20fc6ba9d7edd236335011e870e">NB_DOF</a> = Node::Joint::NBDOF<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00070.html#aef26cc28e4b7ff68d1151df3ff23663b">metapod::internal::InitConfHybridParamsVisitor&lt; Robot, node_id &gt;::discover()</a>.</p>
 
 </div>
 </div>
@@ -285,9 +124,8 @@ template&lt;typename Robot , int node_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00219.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00070.html">InitConfHybridParamsVisitor</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00070.html">initConf&lt; Robot, NOT_HYBRID, ConfTypeStreamOrVector &gt;</a>      </li>
 <br><br>
 <hr>
 <center>

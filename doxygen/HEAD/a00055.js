@@ -1,13 +1,17 @@
 var a00055 =
 [
-    [ "FreeFlyerJoint", "a00055.html#af1ea08c794814167ffe6389dd1afc534", null ],
-    [ "bcalc", "a00055.html#ad76fbbbc58846010a97d1360b91f08f9", null ],
-    [ "jcalc", "a00055.html#a243b7600790e584cb4d63491e80521b6", null ],
-    [ "cj", "a00055.html#ab53847027d5f8141834dcfb8d1333498", null ],
-    [ "f", "a00055.html#a0721e3e9adff4cd363877e8298078741", null ],
-    [ "NBDOF", "a00055.html#a1a67ecce27d643672aa1769ede913504", null ],
-    [ "S", "a00055.html#a1d9b60b27d2d086a479f13be6c26bdd6", null ],
-    [ "torque", "a00055.html#a1ef24c1d2ec3487283a5de3a8e70c312", null ],
-    [ "vj", "a00055.html#a1b0f4216c8c1f81ff7c1b96ab50f8ab9", null ],
-    [ "Xj", "a00055.html#a059bb5e24a69ae6d933a9323c39dbcfc", null ]
+    [ "ForceTpl", "a00055.html#a5df765ac31982e04471dd9af84260fea", null ],
+    [ "ForceTpl", "a00055.html#aa573a93b7b19bb4d961dc6bc63172595", null ],
+    [ "ForceTpl", "a00055.html#a3addc47e0ee567df94353214ef024bc4", null ],
+    [ "f", "a00055.html#a9e31078a24cc41ba3c38a55820f53957", null ],
+    [ "n", "a00055.html#a62a51d57d20c9b8d962dc495a292bb79", null ],
+    [ "operator*", "a00055.html#acb9784ef861c89a1d7f783de6b40d3e3", null ],
+    [ "operator+", "a00055.html#ab24e33bc80063cc20b0118d1a8da2317", null ],
+    [ "operator-", "a00055.html#a6b2061d57cf908ba1cbb5d3393a5ee7c", null ],
+    [ "operator-", "a00055.html#adebaa85f5914e5129f2a3b83eeb11516", null ],
+    [ "operator=", "a00055.html#a43ead6dcf601907e53dbb4917a4ab625", null ],
+    [ "toVector", "a00055.html#a81d5157ef278fc0ecdd8632849939841", null ],
+    [ "Zero", "a00055.html#a35e313ca8e355429adb2abeabd0ccd78", null ],
+    [ "operator*", "a00055.html#aa863862a32519bc18c9dfc1aa3514fa0", null ],
+    [ "operator<<", "a00055.html#a91b6bc27d49a7648bff07d9d3d26078d", null ]
 ];

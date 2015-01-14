@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::convert_to_world&lt; Robot, node_id &gt; Struct Template Reference</title>
+<title>metapod::Spatial::ConstraintMotionOneAxis&lt; axis, FloatType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,33 +59,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a>  </div>
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::convert_to_world&lt; Robot, node_id &gt; Struct Template Reference<div class="ingroups"><a class="el" href="a00228.html">Point in Chain Articular Jacobian Algorithm</a></div></div>  </div>
+<div class="title">metapod::Spatial::ConstraintMotionOneAxis&lt; axis, FloatType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::convert_to_world" -->
-<p><code>#include &lt;metapod/algos/jac_point_relative.hh&gt;</code></p>
+<!-- doxytag: class="metapod::Spatial::ConstraintMotionOneAxis" -->
+<p><code>#include &lt;metapod/tools/spatial/cm-oneaxis.hh&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for metapod::Spatial::ConstraintMotionOneAxis&lt; axis, FloatType &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="a00434.png" border="0" usemap="#metapod_1_1_spatial_1_1_constraint_motion_one_axis_3_01axis_00_01_float_type_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="metapod_1_1_spatial_1_1_constraint_motion_one_axis_3_01axis_00_01_float_type_01_4_inherit__map" id="metapod_1_1_spatial_1_1_constraint_motion_one_axis_3_01axis_00_01_float_type_01_4_inherit__map">
+<area shape="rect" id="node3" href="a00034.html" title="metapod::Spatial::ConstraintMotionOneAxis\&lt; Spatial::AxisZ, FloatType \&gt;" alt="" coords="640,5,1101,35"/><area shape="rect" id="node5" href="a00034.html" title="metapod::Spatial::ConstraintMotionOneAxis\&lt; Spatial::AxisY, FloatType \&gt;" alt="" coords="640,58,1101,89"/><area shape="rect" id="node7" href="a00034.html" title="metapod::Spatial::ConstraintMotionOneAxis\&lt; Spatial::AxisX, FloatType \&gt;" alt="" coords="640,111,1101,142"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
-<p><a href="a00394.html">List of all members.</a></p>
+<p><a href="a00435.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga99956fbf71069037fd1b73254ee1c2b1">FloatType</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00100.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
-::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga2b74c3382623767dbf0c23cec7ae8264">Node</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga84462f2e9613c32e93a28673d512d5fa">run</a> (const Robot &amp;robot, const Vector3d &amp;b_p)</td></tr>
-<tr><td colspan="2"><h2><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga97b1b86e62b930c2128d7ca79b360d28">METAPOD_TYPEDEFS</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00034.html#a76f6161c6401932e89839972375fec93">ConstraintMotionOneAxis</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const Vector6d &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00034.html#a19d04fa151fd85b5623a88a31356aeeb">S</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector6dt&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00034.html#acf7c7edafacfc7d11e8c45785dfc20e6">transpose</a> () const </td></tr>
 </table>
-<h3>template&lt;typename Robot, int node_id&gt;<br/>
- struct metapod::internal::convert_to_world&lt; Robot, node_id &gt;</h3>
+<h3>template&lt;int axis, class FloatType&gt;<br/>
+ class metapod::Spatial::ConstraintMotionOneAxis&lt; axis, FloatType &gt;</h3>
 
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a76f6161c6401932e89839972375fec93"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionOneAxis::ConstraintMotionOneAxis" ref="a76f6161c6401932e89839972375fec93" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int axis, class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00034.html">metapod::Spatial::ConstraintMotionOneAxis</a>&lt; axis, FloatType &gt;::<a class="el" href="a00034.html">ConstraintMotionOneAxis</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a19d04fa151fd85b5623a88a31356aeeb"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionOneAxis::S" ref="a19d04fa151fd85b5623a88a31356aeeb" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int axis, class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const Vector6d&amp; <a class="el" href="a00034.html">metapod::Spatial::ConstraintMotionOneAxis</a>&lt; axis, FloatType &gt;::<a class="el" href="a00034.html#a19d04fa151fd85b5623a88a31356aeeb">S</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acf7c7edafacfc7d11e8c45785dfc20e6"></a><!-- doxytag: member="metapod::Spatial::ConstraintMotionOneAxis::transpose" ref="acf7c7edafacfc7d11e8c45785dfc20e6" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int axis, class FloatType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector6dt <a class="el" href="a00034.html">metapod::Spatial::ConstraintMotionOneAxis</a>&lt; axis, FloatType &gt;::<a class="el" href="a00034.html#acf7c7edafacfc7d11e8c45785dfc20e6">transpose</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -104,9 +159,9 @@ Public Attributes</h2></td></tr>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00219.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00034.html">convert_to_world</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00223.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00034.html">ConstraintMotionOneAxis</a>      </li>
 <br><br>
 <hr>
 <center>

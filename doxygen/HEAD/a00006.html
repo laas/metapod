@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Nodes : read information of you robot model during run time.</title>
+<title>Installation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -51,88 +51,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">Nodes : read information of you robot model during run time. </div>  </div>
+<div class="title">Installation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Let us assume that you are using the simple_arm model and that you</p>
-<p>have computed the forward kinematics for example, and you to display or save</p>
-<p>the state of your robot somewhere.</p>
-<p>we assume that you have read the tutorial here : <a class="el" href="a00001.html">tutorial on forward kinematics </a></p>
-<p>First the headers: </p>
-<div class="fragment"><pre class="fragment"><span class="preprocessor">        #include &lt;metapod/models/simple_arm.hh&gt;</span>
-</pre></div><p>for the tutorial we used the metapod namespace : </p>
-<div class="fragment"><pre class="fragment">        <span class="keyword">using namespace </span>metapod;
-</pre></div><p>Then the way real are represented in the model has to be set: </p>
-<div class="fragment"><pre class="fragment"> <span class="keyword">typedef</span> simple_humanoid&lt;double&gt; Robot;
-</pre></div><p>It is now possible to create an instance of the robot from the newly defined type: </p>
-<div class="fragment"><pre class="fragment">        <span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
-        {
-        Robot arobot;
-</pre></div><p>To specify a robot state we can defined the configuration vectors related to the robot: </p>
-<div class="fragment"><pre class="fragment">        Robot::confVector q ;
-</pre></div><p>After initialization you can call whatever suitable function you need, e.g. bcalc, jcalc, rnea...</p>
-<p>Then you want to access to one of the body position. A body, as well as a joint is attached to "Node". One node contains every information concerning the <img class="formulaInl" alt="$j^{th}$" src="form_64.png"/> joint and the <img class="formulaInl" alt="$j^{th}$" src="form_64.png"/> body.</p>
-<p>In order to access one node we need to introduce a "typedef" that will describe one node in the kinematic tree. </p>
-<div class="fragment"><pre class="fragment">        <span class="keyword">typedef</span> Nodes&lt; Robot, id &gt;::type Node_id;
-</pre></div><p>this type will be used to instanciated a reference pointing to the <img class="formulaInl" alt="$id^{th}$" src="form_65.png"/> "Node"</p>
-<div class="fragment"><pre class="fragment">        Node_id &amp; a_node_id = boost::fusion::at_c&lt;id&gt;(arobot.nodes);;
-</pre></div><p> carefull: here we use both a type "Robot" and a instance of this type "arobot". A classic mistake is to mix up the type and the instance. All the possible id are describe in the include file in the Robot class.</p>
-<p>Here is a list (non exhaustive) of information you can extract (for more information read the code : metapod/models/simple_arm.hh) ;</p>
-<div class="fragment"><pre class="fragment">        a_node_id.id              ;  <span class="comment">// the id of the node</span>
-        a_node_id.jointFwdDyn     ;  <span class="comment">// &lt;dynamics&gt; fwd_dyn field, used by chda</span>
-        a_node_id.jointNuOfFwdDyn ;  <span class="comment">// subtree supported by at least one fwdDyn joint</span>
-        a_node_id.joint_name      ;  <span class="comment">// the name of the id_th joint</span>
-        a_node_id.body_name       ;  <span class="comment">// the name of the id_th body</span>
-        a_node_id.parent_id       ;  <span class="comment">// the id of the parent node in the kinematic tree</span>
-        a_node_id.childX_id       ;  <span class="comment">// the ids of the child nodes in the kinematic tree, X in {1,...,4}</span>
-        a_node_id.q_idx           ;  <span class="comment">// &quot;TODO complete this part&quot;</span>
-        a_node_id.joint_F         ;  <span class="comment">// &quot;TODO complete this part&quot;</span>
-        <span class="comment">//...</span>
-        a_node_id.body            ;  <span class="comment">// id_th body</span>
-        a_node_id.joint           ;  <span class="comment">// id_th joint</span>
-        <span class="comment">//...</span>
-        a_node_id.joint.f         ;  <span class="comment">// force apllied to the id_th joint</span>
-        a_node_id.Xt              ;  <span class="comment">// transform from base i to the body 0 (see below)</span>
-        a_node_id.sXp             ;  <span class="comment">// transform from the successor frame to the predecessor frame (see below)</span>
-        a_node_id.joint.Xj        ;  <span class="comment">// transform relative to the joint (see below)</span>
-        a_node_id.joint.iX0       ;  <span class="comment">// transform from base 0 to the body i (see below)</span>
-</pre></div><p>The transform needs a little bit more explanation (see the Featherstone book): <img class="formulaInl" alt="$ ^{B}X_{A} = \begin{bmatrix} ^{B}R_{A} &amp; 0 \\ -^{B}R_{A} * ^{A}r_{\overrightarrow{ab}} &amp; ^{B}R_{A} \end{bmatrix} $" src="form_66.png"/></p>
-<p>with :</p>
+<div class="textblock"><h2><a class="anchor" id="Dependencies"></a>
+Dependencies</h2>
+<p>This package depends upon : </p>
 <ul>
-<li><img class="formulaInl" alt="$^{B}X_{A}$" src="form_67.png"/>, being the transformation from frame A to frame B,</li>
-<li><img class="formulaInl" alt="$^{B}R_{A}$" src="form_68.png"/>, the rotational matrix from frame A to frame B,</li>
-<li><img class="formulaInl" alt="$^{A}r_{\overrightarrow{ab}}$" src="form_69.png"/>, the vector {ab} where a is the origin of the frame A and b the origin of the frame B This vector is expressed in the frame A</li>
+<li>
+System tools: <ul>
+<li>
+CMake (&gt;=2.6)  </li>
+<li>
+pkg-config  </li>
+<li>
+usual compilation tools  </li>
 </ul>
-<p>This is why when you print the trnasformation <img class="formulaInl" alt="$ ^{i}X_{0}$" src="form_70.png"/> </p>
-<div class="fragment"><pre class="fragment">        cout &lt;&lt; a_node_id.joint.iX0 &lt;&lt; endl ;
-</pre></div><p> you get the rotation matrix : <img class="formulaInl" alt="$ ^{i}R_{0}$" src="form_71.png"/>. And the vector : <img class="formulaInl" alt="$ ^{0}r_{\overrightarrow{ob_i}} $" src="form_72.png"/> which is the position of the body "i" in the world frame.</p>
-<p>In the case where you want to display every nodes, you will need to use a templated structure like this one : </p>
-<div class="fragment"><pre class="fragment">        <span class="keyword">struct </span>print_iXo
-        {
-            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-            <span class="keywordtype">void</span> operator()(T &amp; x)<span class="keyword"> const</span>
-<span class="keyword">            </span>{
-                std::cout &lt;&lt; <span class="stringliteral">&quot;body.iX0 = \n&quot;</span> &lt;&lt; x.body.iX0 ;
-            }
-        };
-</pre></div><p>In the main : </p>
-<div class="fragment"><pre class="fragment">        <span class="comment">//...</span>
-<span class="preprocessor">        #include &lt;boost/fusion/algorithm/iteration/for_each.hpp&gt;</span>
-<span class="preprocessor">        #include &lt;boost/fusion/include/for_each.hpp&gt;</span>
-        <span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
-        {
-            Robot arobot;
-            Robot::confVector q_init ;
-
-            <span class="comment">// .. init the q_init here ..</span>
-
-            bcalc&lt;Robot&gt;::run(arobot,q_init);
-
-            boost::fusion::for_each(arobot.nodes ,  print_iXo() );
-        }
-</pre></div><p>see <a href="http://www.boost.org/doc/libs/1_55_0/libs/fusion/doc/html/fusion/quick_start.html">link Boost fusion web site</a> for more information </p>
+</li>
+<li>
+Libraries: <ul>
+<li>
+Eigen (&gt;=3.0.0)  </li>
+<li>
+Boost (1.40.0 and 1.46.0) Boost Test is used in the test suite  </li>
+<li>
+Optionally liburdf, as provided by ROS  </li>
+</ul>
+</li>
+</ul>
+<p>If you want to build the urdf converter, you'll need to install ROS too, and to run</p>
+<div class="fragment"><pre class="fragment">
+source /opt/ros/fuerte/setup.bash
+</pre></div><p>before running cmake.</p>
+<p>There is no currently no binary package.</p>
+<h2><a class="anchor" id="getting_the_code"></a>
+Getting the code</h2>
+<p>To compile the code you can clone it from github: </p>
+<div class="fragment"><pre class="fragment">
+git clone https://github.com/laas/metapod.git --submodule
+</pre></div><h2><a class="anchor" id="building"></a>
+Building</h2>
+<p>To compile this package, it is recommended to create a separate build directory: </p>
+<div class="fragment"><pre class="fragment">
+mkdir _build
+cd _build
+cmake -DBUILD_METAPODFROMURDF=OFF
+make install
+</pre></div><p>Please note that CMake produces a CMakeCache.txt file which should be deleted to reconfigure a package from scratch. </p>
 </div></div><!-- contents -->
-</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -147,10 +113,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00003.html">Getting Started</a>      </li>
-      <li class="navelem"><a class="el" href="a00007.html">Tutorials</a>      </li>
 <br><br>
 <hr>
 <center>

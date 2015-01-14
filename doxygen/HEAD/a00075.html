@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::internal::InitNodeIdConfVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
+<title>metapod::internal::InitNodeIdConfReordRefVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -61,35 +61,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::internal::InitNodeIdConfVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::InitNodeIdConfReordRefVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::internal::InitNodeIdConfVisitor" -->
+<!-- doxytag: class="metapod::internal::InitNodeIdConfReordRefVisitor" -->
 <p><code>#include &lt;metapod/tools/initnodeidconf.hh&gt;</code></p>
 
-<p><a href="a00409.html">List of all members.</a></p>
+<p><a href="a00414.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00075.html#a42e5fe5450b93f685f540dfa2ed4aa7f">discover</a> (typename Robot::confVector &amp;v)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00075.html#adc94ce21dd888ebdc475f035d4ecc2fd">finish</a> (typename Robot::confVector &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00075.html#ac9c08ffe37ff30eea6e2113a786de0fb">discover</a> (typename Robot::confVector &amp;v, bool jointFwdDyn, int &amp;v_idx)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00075.html#a147b87d055a4cc04d02940257ed57517">finish</a> (typename Robot::confVector &amp;, bool, int &amp;)</td></tr>
 </table>
 <h3>template&lt;typename Robot, int node_id&gt;<br/>
- struct metapod::internal::InitNodeIdConfVisitor&lt; Robot, node_id &gt;</h3>
+ struct metapod::internal::InitNodeIdConfReordRefVisitor&lt; Robot, node_id &gt;</h3>
 
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a42e5fe5450b93f685f540dfa2ed4aa7f"></a><!-- doxytag: member="metapod::internal::InitNodeIdConfVisitor::discover" ref="a42e5fe5450b93f685f540dfa2ed4aa7f" args="(typename Robot::confVector &amp;v)" -->
+<a class="anchor" id="ac9c08ffe37ff30eea6e2113a786de0fb"></a><!-- doxytag: member="metapod::internal::InitNodeIdConfReordRefVisitor::discover" ref="ac9c08ffe37ff30eea6e2113a786de0fb" args="(typename Robot::confVector &amp;v, bool jointFwdDyn, int &amp;v_idx)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00075.html">metapod::internal::InitNodeIdConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00075.html#a42e5fe5450b93f685f540dfa2ed4aa7f">discover</a> </td>
+          <td class="memname">static void <a class="el" href="a00075.html">metapod::internal::InitNodeIdConfReordRefVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00075.html#ac9c08ffe37ff30eea6e2113a786de0fb">discover</a> </td>
           <td>(</td>
           <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td><code> [inline, static]</code></td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>jointFwdDyn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>v_idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -97,18 +113,34 @@ template&lt;typename Robot , int node_id&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="adc94ce21dd888ebdc475f035d4ecc2fd"></a><!-- doxytag: member="metapod::internal::InitNodeIdConfVisitor::finish" ref="adc94ce21dd888ebdc475f035d4ecc2fd" args="(typename Robot::confVector &amp;)" -->
+<a class="anchor" id="a147b87d055a4cc04d02940257ed57517"></a><!-- doxytag: member="metapod::internal::InitNodeIdConfReordRefVisitor::finish" ref="a147b87d055a4cc04d02940257ed57517" args="(typename Robot::confVector &amp;, bool, int &amp;)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00075.html">metapod::internal::InitNodeIdConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00075.html#adc94ce21dd888ebdc475f035d4ecc2fd">finish</a> </td>
+          <td class="memname">static void <a class="el" href="a00075.html">metapod::internal::InitNodeIdConfReordRefVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00075.html#a147b87d055a4cc04d02940257ed57517">finish</a> </td>
           <td>(</td>
           <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline, static]</code></td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -134,9 +166,9 @@ template&lt;typename Robot , int node_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00219.html">internal</a>      </li>
-      <li class="navelem"><a class="el" href="a00075.html">InitNodeIdConfVisitor</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00075.html">InitNodeIdConfReordRefVisitor</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::GravityConstant&lt; FloatType, gravity &gt; Class Template Reference</title>
+<title>metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,33 +59,97 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::GravityConstant&lt; FloatType, gravity &gt; Class Template Reference</div>  </div>
+<div class="title">metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::GravityConstant" -->
-<p><code>#include &lt;metapod/tools/common.hh&gt;</code></p>
+<!-- doxytag: class="metapod::internal::GetTorquesVisitor" -->
+<p><code>#include &lt;metapod/tools/print.hh&gt;</code></p>
 
-<p><a href="a00345.html">List of all members.</a></p>
+<p><a href="a00423.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const <br class="typebreak"/>
-<a class="el" href="a00097.html">Spatial::MotionTpl</a>&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#a7fd57c31c4abf05f20191861a3f13903">minus_g</a> = <a class="el" href="a00218.html#a571f24ed8d7ad31b6f472d4fe156f23d">set_gravity</a>&lt;FloatType, gravity&gt;()</td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00101.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#a3920ce52f2ab969c25f7091af0a5e58c">Node</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#ae5f364b3557597661e37a95480a9201f">discover</a> (const Robot &amp;robot, typename Robot::confVector &amp;v)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html#ad634a09f88cb5496e87354174d2254cf">finish</a> (const Robot &amp;, typename Robot::confVector &amp;)</td></tr>
 </table>
-<h3>template&lt;typename FloatType, int gravity&gt;<br/>
- class metapod::GravityConstant&lt; FloatType, gravity &gt;</h3>
+<h3>template&lt;typename Robot, int node_id&gt;<br/>
+ struct metapod::internal::GetTorquesVisitor&lt; Robot, node_id &gt;</h3>
 
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a7fd57c31c4abf05f20191861a3f13903"></a><!-- doxytag: member="metapod::GravityConstant::minus_g" ref="a7fd57c31c4abf05f20191861a3f13903" args="" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a3920ce52f2ab969c25f7091af0a5e58c"></a><!-- doxytag: member="metapod::internal::GetTorquesVisitor::Node" ref="a3920ce52f2ab969c25f7091af0a5e58c" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FloatType , int gravity&gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00097.html">Spatial::MotionTpl</a>&lt; FloatType &gt; <a class="el" href="a00057.html">metapod::GravityConstant</a>&lt; FloatType, gravity &gt;::<a class="el" href="a00057.html#a7fd57c31c4abf05f20191861a3f13903">minus_g</a> = <a class="el" href="a00218.html#a571f24ed8d7ad31b6f472d4fe156f23d">set_gravity</a>&lt;FloatType, gravity&gt;()<code> [static]</code></td>
+          <td class="memname">typedef <a class="el" href="a00101.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00057.html">metapod::internal::GetTorquesVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00057.html#a3920ce52f2ab969c25f7091af0a5e58c">Node</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ae5f364b3557597661e37a95480a9201f"></a><!-- doxytag: member="metapod::internal::GetTorquesVisitor::discover" ref="ae5f364b3557597661e37a95480a9201f" args="(const Robot &amp;robot, typename Robot::confVector &amp;v)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00057.html">metapod::internal::GetTorquesVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00057.html#ae5f364b3557597661e37a95480a9201f">discover</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Robot &amp;&#160;</td>
+          <td class="paramname"><em>robot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad634a09f88cb5496e87354174d2254cf"></a><!-- doxytag: member="metapod::internal::GetTorquesVisitor::finish" ref="ad634a09f88cb5496e87354174d2254cf" args="(const Robot &amp;, typename Robot::confVector &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00057.html">metapod::internal::GetTorquesVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00057.html#ad634a09f88cb5496e87354174d2254cf">finish</a> </td>
+          <td>(</td>
+          <td class="paramtype">const Robot &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -111,8 +175,9 @@ template&lt;typename FloatType , int gravity&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00057.html">GravityConstant</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00057.html">GetTorquesVisitor</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Installation</title>
+<title>How to include a metapod model of your robot in your code</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -51,54 +51,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">Installation </div>  </div>
+<div class="title">How to include a metapod model of your robot in your code </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="Dependencies"></a>
-Dependencies</h2>
-<p>This package depends upon : </p>
+<div class="textblock"><p>In the remainder of this section, it is assumed that you are using CMake as a compilation environment.</p>
+<p>For a continuous integration of your model in your code, a good practice is to generate automatically the C++ code for your robot based on the URDF model. <br/>
+ To do that you should add the following line to the CMakeLists.txt of your project: <br/>
+</p>
+<div class="fragment"><pre class="fragment">   include(path_to_your_metapod_install/share/cmake/metapod.cmake)
+</pre></div><p>Then at the CMakeLists.txt where you need to use the model, you should add: </p>
+<div class="fragment"><pre class="fragment">   <span class="keyword">set</span>(model_name <span class="stringliteral">&quot;the_name_of_your_robot&quot;</span>)
+   add_sampleurdfmodel(${model_name} ${urdf_path} ${data_path} ${gen_dir}$ )
+</pre></div><p>where </p>
 <ul>
 <li>
-System tools: <ul>
+<em>the_name_of_your_robot</em> is the prefix of your robot model file,  </li>
 <li>
-CMake (&gt;=2.6)  </li>
+<em>urdf_path</em> is the directory where the <em>${name}</em>.config file and the file <em>metapod_license_file.txt</em> are located.  </li>
 <li>
-pkg-config  </li>
-<li>
-usual compilation tools  </li>
+<em>gen_dir</em> is the location where the headers and the sources files are generated.  </li>
 </ul>
-</li>
+<p>If you do not specify ${urdf_path}, ${data_path} and ${gen_dir} then they are set to the following default values: </p>
+<ul>
 <li>
-Libraries: <ul>
+<em>urdf_path:</em> ${PROJECT_SOURCE_DIR}/data/${name}.urdf </li>
 <li>
-Eigen (&gt;=3.0.0)  </li>
+<em>data_path:</em> ${PROJECT_SOURCE_DIR}/data/ </li>
 <li>
-Boost (1.40.0 and 1.46.0) Boost Test is used in the test suite  </li>
-<li>
-Optionally liburdf, as provided by ROS  </li>
+<em>gen_dir:</em> ${CMAKE_CURRENT_DIR}/include/metapod/models/ </li>
 </ul>
-</li>
-</ul>
-<p>If you want to build the urdf converter, you'll need to install ROS too, and to run</p>
-<div class="fragment"><pre class="fragment">
-source /opt/ros/fuerte/setup.bash
-</pre></div><p>before running cmake.</p>
-<p>There is no currently no binary package.</p>
-<h2><a class="anchor" id="getting_the_code"></a>
-Getting the code</h2>
-<p>To compile the code you can clone it from github: </p>
-<div class="fragment"><pre class="fragment">
-git clone https://github.com/laas/metapod.git --submodule
-</pre></div><h2><a class="anchor" id="building"></a>
-Building</h2>
-<p>To compile this package, it is recommended to create a separate build directory: </p>
-<div class="fragment"><pre class="fragment">
-mkdir _build
-cd _build
-cmake -DBUILD_METAPODFROMURDF=OFF
-make install
-</pre></div><p>Please note that CMake produces a CMakeCache.txt file which should be deleted to reconfigure a package from scratch. </p>
+<p>To force cmake to create the C++ headers and code related to your robot model, you should add or modify the TARGET_LINK_LIBRARIES of your target: </p>
+<div class="fragment"><pre class="fragment">   TARGET_LINK_LIBRARIES(your_target metapod_${model_name} ${the_other_libraries})
+</pre></div><p>To see how to modify the code depending on your target, please look at the tutorials page. </p>
 </div></div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -113,9 +99,9 @@ make install
 </iframe>
 </div>
 
-</div>
   <div id="nav-path" class="navpath">
     <ul>
+      <li class="navelem"><a class="el" href="a00004.html">Getting Started</a>      </li>
 <br><br>
 <hr>
 <center>

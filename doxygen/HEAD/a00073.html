@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::initNodeIdConfReordRef&lt; Robot &gt; Struct Template Reference</title>
+<title>metapod::initNodeIdConf&lt; Robot &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -61,36 +61,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::initNodeIdConfReordRef&lt; Robot &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::initNodeIdConf&lt; Robot &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::initNodeIdConfReordRef" -->
-<p>Extracts the robot model node IDs into a configuration vector.  
+<!-- doxytag: class="metapod::initNodeIdConf" -->
+<p>Extracts the robot model node IDs into a configuration vector, as per node id to q_idx mapping.  
  <a href="a00073.html#details">More...</a></p>
 
 <p><code>#include &lt;metapod/tools/initnodeidconf.hh&gt;</code></p>
 
-<p><a href="a00367.html">List of all members.</a></p>
+<p><a href="a00370.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a62710fc74613eaba0de92c2c7ad292f5">run</a> (typename Robot::confVector &amp;v)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a57b6ed5dfacccb9d76dbb014a96d9b98">run</a> (typename Robot::confVector &amp;v)</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Robot&gt;<br/>
-struct metapod::initNodeIdConfReordRef&lt; Robot &gt;</h3>
+struct metapod::initNodeIdConf&lt; Robot &gt;</h3>
 
-<p>Extracts the robot model node IDs into a configuration vector. </p>
-<p>It sorts first the node IDs directly supported by a joint in forward dynamics (jointFwdDyn = true). Sorting is done as per kinematic tree depth first traversal order. Non forward dynamics joint nodes are sorted last. </p>
+<p>Extracts the robot model node IDs into a configuration vector, as per node id to q_idx mapping. </p>
+<p>Each element of the output column vector "v" is formatted as follows: (RobotFloatType) v[v_idx] = &lt;node_id&gt;.1 if jointFwdDyn=true v[v_idx] = &lt;node_id&gt; if jointFwdDyn=false the choice of RobotFloatType type is for compatibility with the permutation matrix Q type. </p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a62710fc74613eaba0de92c2c7ad292f5"></a><!-- doxytag: member="metapod::initNodeIdConfReordRef::run" ref="a62710fc74613eaba0de92c2c7ad292f5" args="(typename Robot::confVector &amp;v)" -->
+<a class="anchor" id="a57b6ed5dfacccb9d76dbb014a96d9b98"></a><!-- doxytag: member="metapod::initNodeIdConf::run" ref="a57b6ed5dfacccb9d76dbb014a96d9b98" args="(typename Robot::confVector &amp;v)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Robot &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00073.html">metapod::initNodeIdConfReordRef</a>&lt; Robot &gt;::<a class="el" href="a00073.html#a62710fc74613eaba0de92c2c7ad292f5">run</a> </td>
+          <td class="memname">static void <a class="el" href="a00073.html">metapod::initNodeIdConf</a>&lt; Robot &gt;::<a class="el" href="a00073.html#a57b6ed5dfacccb9d76dbb014a96d9b98">run</a> </td>
           <td>(</td>
           <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
@@ -120,8 +120,8 @@ template&lt;typename Robot &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00073.html">initNodeIdConfReordRef</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00073.html">initNodeIdConf</a>      </li>
 <br><br>
 <hr>
 <center>

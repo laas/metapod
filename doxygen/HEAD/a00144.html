@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, NO_PARENT &gt; Struct Template Reference</title>
+<title>metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, parent_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,38 +59,80 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, NO_PARENT &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, parent_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, NO_PARENT &gt;" -->
+<!-- doxytag: class="metapod::rnea&lt; Robot, false, gravity &gt;::update_force" -->
 <p><code>#include &lt;metapod/algos/rnea.hh&gt;</code></p>
 
-<p><a href="a00333.html">List of all members.</a></p>
+<p><a href="a00336.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00101.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00144.html#a9cbaa1df3334524477b8a1bdc26d723e">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00101.html">Nodes</a>&lt; Robot, <br class="typebreak"/>
+parent_id &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00144.html#ad0bab6856c5ef11981e96142d3dd6e1d">Parent</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00144.html#af52157df7124580cfd675fea4ecda3fb">run</a> (Robot &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00144.html#a807ebc198fe485628eafc57cdcb8817e">run</a> (Robot &amp;robot)</td></tr>
 </table>
 <h3>template&lt;typename Robot, int gravity&gt;<br/>
-template&lt;int node_id&gt;<br/>
- struct metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, NO_PARENT &gt;</h3>
+template&lt;int node_id, int parent_id&gt;<br/>
+ struct metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, parent_id &gt;</h3>
 
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af52157df7124580cfd675fea4ecda3fb"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_force&lt; node_id, NO_PARENT &gt;::run" ref="af52157df7124580cfd675fea4ecda3fb" args="(Robot &amp;)" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a9cbaa1df3334524477b8a1bdc26d723e"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_force::Node" ref="a9cbaa1df3334524477b8a1bdc26d723e" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Robot , int gravity&gt; </div>
 <div class="memtemplate">
-template&lt;int node_id&gt; </div>
+template&lt;int node_id, int parent_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00125.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_force&lt; node_id, <a class="el" href="a00218.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00126.html#a8c6f891a0a571923893cf22f103daf68">run</a> </td>
+          <td class="memname">typedef <a class="el" href="a00101.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00126.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_force&lt; node_id, parent_id &gt;::<a class="el" href="a00144.html#a9cbaa1df3334524477b8a1bdc26d723e">Node</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad0bab6856c5ef11981e96142d3dd6e1d"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_force::Parent" ref="ad0bab6856c5ef11981e96142d3dd6e1d" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int gravity&gt; </div>
+<div class="memtemplate">
+template&lt;int node_id, int parent_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00101.html">Nodes</a>&lt;Robot, parent_id&gt;::type <a class="el" href="a00126.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_force&lt; node_id, parent_id &gt;::<a class="el" href="a00144.html#ad0bab6856c5ef11981e96142d3dd6e1d">Parent</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a807ebc198fe485628eafc57cdcb8817e"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::update_force::run" ref="a807ebc198fe485628eafc57cdcb8817e" args="(Robot &amp;robot)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int gravity&gt; </div>
+<div class="memtemplate">
+template&lt;int node_id, int parent_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00126.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::update_force&lt; node_id, parent_id &gt;::<a class="el" href="a00127.html#a8c6f891a0a571923893cf22f103daf68">run</a> </td>
           <td>(</td>
           <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramname"><em>robot</em></td><td>)</td>
           <td><code> [inline, static]</code></td>
         </tr>
       </table>
@@ -117,9 +159,9 @@ template&lt;int node_id&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00126.html">rnea&lt; Robot, false, gravity &gt;</a>      </li>
-      <li class="navelem"><a class="el" href="a00144.html">update_force&lt; node_id, NO_PARENT &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00127.html">rnea&lt; Robot, false, gravity &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00144.html">update_force</a>      </li>
 <br><br>
 <hr>
 <center>

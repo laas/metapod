@@ -1,5 +1,6 @@
 var pages =
 [
-    [ "Getting Started", "a00003.html", "a00003" ],
-    [ "Installation", "a00005.html", null ]
+    [ "<bf>bcalc</bf>:  .", "a00001.html", null ],
+    [ "Getting Started", "a00004.html", "a00004" ],
+    [ "Installation", "a00006.html", null ]
 ];

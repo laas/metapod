@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt; Struct Template Reference</title>
+<title>metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -63,75 +63,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::Spatial::RotationMatrixAboutZTpl" -->
-<p>RotationMatrixAboutZ This object implements specific operations related to the rotation matrix about the Z-axis: <br/>
- </p>
+<!-- doxytag: class="metapod::Spatial::RotationMatrixAboutYTpl" -->
+<p>RotationMatrixAboutY This object implements specific operations related to the rotation matrix about the Y-axis: </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ rz(\theta) = \left[ \begin{matrix} c &amp; s &amp; 0 \\ -s &amp; c &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{matrix} \right] \]" src="form_34.png"/>
+<img class="formulaDsp" alt="\[ ry(\theta) = \left[ \begin{matrix} c &amp; 0 &amp; -s \\ 0 &amp; 1 &amp; 0 \\ s &amp; 0 &amp; c \end{matrix} \right] \]" src="form_19.png"/>
 </p>
   
  <a href="a00131.html#details">More...</a></p>
 
-<p><code>#include &lt;metapod/tools/spatial/rm-aboutzaxis.hh&gt;</code></p>
+<p><code>#include &lt;metapod/tools/spatial/rm-aboutyaxis.hh&gt;</code></p>
 
-<p><a href="a00441.html">List of all members.</a></p>
+<p><a href="a00444.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#ad316631073212298e0688bd3ee1756c6">RotationMatrixAboutZTpl</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a403be967a0ecbd02a53fc421b5e73fd8">RotationMatrixAboutZTpl</a> (const Matrix3d &amp;aR)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a82921630036a317b79ac08a55c638d2f">RotationMatrixAboutZTpl</a> (FloatType c, FloatType s)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#aba9b1cbe8ceadabb0edd458d711d84de">randomInit</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Random initialization.  <a href="#aba9b1cbe8ceadabb0edd458d711d84de"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a550849b6b46e23f95f6b612f92783063">transpose</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#adb2d484db57ce31d0a74536e83af1a5e">operator*</a> (FloatType a) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#af10db2296ac5664c309c840d680ce607">operator-</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a8b57e370486d714571cedd5f55ec235b">set</a> (FloatType theta)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a6404594063442aa626fd3dec77c79022">toMatrix</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a6cf77aba678e8cf20d413d05f5a52a3d">operator*</a> (const Matrix3d &amp;A) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized multiplication of the rotation matrix with a general 3x3 matrix.  <a href="#a6cf77aba678e8cf20d413d05f5a52a3d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">RotationMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a91642927a5f9479bc2417b5097527e40">operator*</a> (const RotationMatrix &amp;aRM) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized multiplication of the rotation matrix with a general 3x3 matrix.  <a href="#a91642927a5f9479bc2417b5097527e40"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a2d2906999bcc1ad90e25b423514c3c62">operator*</a> (const <a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> &amp;aRM) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#abf9c2d3c5c774b383e5b798563c34a3f">operator*</a> (const Vector3d &amp;aRM) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a1f6eb832a160518517db0c116e7a8df0">rotGeneralMatrix</a> (const Matrix3d &amp;A) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized computation of <img class="formulaInl" alt="$ R {\bf A} R^{\top} $" src="form_38.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a generalized 3x3 matrix.  <a href="#a1f6eb832a160518517db0c116e7a8df0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#ae5b6f9651de9508fb87bc380df1b4182">rotSymmetricMatrix</a> (const class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt; &amp;A) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized computation of <img class="formulaInl" alt="$ rz(\theta) {\bf A} rz(\theta)^{\top} $" src="form_42.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix.  <a href="#ae5b6f9651de9508fb87bc380df1b4182"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a7b72176224f2ec31bb639eae7fa5c769">rotTSymmetricMatrix</a> (const class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt; &amp;A) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized computation of <img class="formulaInl" alt="$ rz(\theta)^{\top} {\bf A} rz(\theta) $" src="form_46.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix.  <a href="#a7b72176224f2ec31bb639eae7fa5c769"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a069bd6b28cbba21a73db26c355aa5dd0">RotationMatrixAboutYTpl</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#abd675a45fc73ec5b8dfa665ee279bf84">RotationMatrixAboutYTpl</a> (const Matrix3d &amp;aR)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a17e955712f9066905adda45ee2d70e75">RotationMatrixAboutYTpl</a> (FloatType c, FloatType s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a63350b00c8a0d33791f05ed265d294a8">randomInit</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Random initialization.  <a href="#a63350b00c8a0d33791f05ed265d294a8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#aaf13de6130a536cf7294df331efa9f89">transpose</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#abfcfe8f37e3acda66b282f16c75d0ae3">operator*</a> (FloatType a) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#aef97ad164ecebe904e29ee576bb09455">operator-</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#afa78522f10397099bbe1cd52524329d8">set</a> (FloatType theta)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a79b953d6e9aabdbeee24b37ece0d12b9">toMatrix</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a1d9bed0de4c9420cef43923e2afd6521">operator*</a> (const Matrix3d &amp;A) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized multiplication of the rotation matrix with a general 3x3 matrix.  <a href="#a1d9bed0de4c9420cef43923e2afd6521"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">RotationMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a08046dc4cb375386a92a90b2525a9c63">operator*</a> (const RotationMatrix &amp;aRM) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized multiplication of the rotation matrix with a general 3x3 matrix.  <a href="#a08046dc4cb375386a92a90b2525a9c63"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a7fbef5d9fdd889545d70f5f4fba762da">operator*</a> (const <a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> &amp;aRM) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#acdaf0e64eaf58f8f5da8ac22b1d44ca3">operator*</a> (const Vector3d &amp;aRM) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#aa988a5d7e82cd38ef2e047d41bf2a8e7">rotGeneralMatrix</a> (const Matrix3d &amp;A) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized computation of <img class="formulaInl" alt="$ ry(\theta) {\bf A} ry(\theta)^{\top} $" src="form_24.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a generalized 3x3 matrix.  <a href="#aa988a5d7e82cd38ef2e047d41bf2a8e7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#ac2cdde8b3d74116b05431462ebbc912e">rotSymmetricMatrix</a> (const class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt; &amp;A) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized computation of <img class="formulaInl" alt="$ ry(\theta) {\bf A} ry(\theta)^{\top} $" src="form_24.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix.  <a href="#ac2cdde8b3d74116b05431462ebbc912e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#aa9d7a34c271d601f2c0664c87945aec5">rotTSymmetricMatrix</a> (const class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt; &amp;A) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized computation of <img class="formulaInl" alt="$ ry(\theta)^{\top} {\bf A} ry(\theta) $" src="form_31.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix.  <a href="#aa9d7a34c271d601f2c0664c87945aec5"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a46a3e8f45df9934cbe15f11e362ed311">EIGEN_METAPOD_TYPEDEFS</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#afee03daf1ea3ec0480ce448c34ae7840">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">m_c</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Store directly <img class="formulaInl" alt="$ cos(\theta) $" src="form_1.png"/> and <img class="formulaInl" alt="$ sin(\theta) $" src="form_2.png"/>.  <a href="#a90d6b4002d29f20a6500a102f6473799"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">m_s</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a5726c1ad3a8bbe97de76a76d04bdcf7a">EIGEN_METAPOD_TYPEDEFS</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a49dcb976ab7580b0224af3dba363fdb7">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">m_c</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Store directly <img class="formulaInl" alt="$ m_c = cos(\theta) $" src="form_20.png"/> and <img class="formulaInl" alt="$m_s = sin(\theta) $" src="form_21.png"/>.  <a href="#a00a57fc2d0ba73c1e574f5f0f4e21509"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">m_s</a></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a620a781d7dfbac726170d8ef85e2fdc4">operator&lt;&lt;</a> (std::ostream &amp;os, const struct <a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> &amp;aRMAX)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html#a185151d974126997a499461011fb71bd">operator&lt;&lt;</a> (std::ostream &amp;os, const struct <a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> &amp;aRMAX)</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class FloatType&gt;<br/>
-struct metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;</h3>
+struct metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;</h3>
 
-<p>RotationMatrixAboutZ This object implements specific operations related to the rotation matrix about the Z-axis: <br/>
- </p>
+<p>RotationMatrixAboutY This object implements specific operations related to the rotation matrix about the Y-axis: </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ rz(\theta) = \left[ \begin{matrix} c &amp; s &amp; 0 \\ -s &amp; c &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{matrix} \right] \]" src="form_34.png"/>
+<img class="formulaDsp" alt="\[ ry(\theta) = \left[ \begin{matrix} c &amp; 0 &amp; -s \\ 0 &amp; 1 &amp; 0 \\ s &amp; 0 &amp; c \end{matrix} \right] \]" src="form_19.png"/>
 </p>
- </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad316631073212298e0688bd3ee1756c6"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::RotationMatrixAboutZTpl" ref="ad316631073212298e0688bd3ee1756c6" args="()" -->
+ <p>The object implements optimized operators for multiplication with the following matrix types: Matrix3d, RotationMatrix, RotationMatrixAboutX </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a069bd6b28cbba21a73db26c355aa5dd0"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::RotationMatrixAboutYTpl" ref="a069bd6b28cbba21a73db26c355aa5dd0" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> </td>
+          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inline]</code></td>
@@ -140,18 +139,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="a00131.html#adb2d484db57ce31d0a74536e83af1a5e">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00131.html#af10db2296ac5664c309c840d680ce607">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::operator-()</a>, and <a class="el" href="a00131.html#a550849b6b46e23f95f6b612f92783063">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::transpose()</a>.</p>
+<p>Referenced by <a class="el" href="a00131.html#abfcfe8f37e3acda66b282f16c75d0ae3">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00131.html#aef97ad164ecebe904e29ee576bb09455">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::operator-()</a>, and <a class="el" href="a00131.html#aaf13de6130a536cf7294df331efa9f89">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::transpose()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a403be967a0ecbd02a53fc421b5e73fd8"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::RotationMatrixAboutZTpl" ref="a403be967a0ecbd02a53fc421b5e73fd8" args="(const Matrix3d &amp;aR)" -->
+<a class="anchor" id="abd675a45fc73ec5b8dfa665ee279bf84"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::RotationMatrixAboutYTpl" ref="abd675a45fc73ec5b8dfa665ee279bf84" args="(const Matrix3d &amp;aR)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> </td>
+          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> </td>
           <td>(</td>
           <td class="paramtype">const Matrix3d &amp;&#160;</td>
           <td class="paramname"><em>aR</em></td><td>)</td>
@@ -161,18 +160,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a82921630036a317b79ac08a55c638d2f"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::RotationMatrixAboutZTpl" ref="a82921630036a317b79ac08a55c638d2f" args="(FloatType c, FloatType s)" -->
+<a class="anchor" id="a17e955712f9066905adda45ee2d70e75"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::RotationMatrixAboutYTpl" ref="a17e955712f9066905adda45ee2d70e75" args="(FloatType c, FloatType s)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> </td>
+          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> </td>
           <td>(</td>
           <td class="paramtype">FloatType&#160;</td>
           <td class="paramname"><em>c</em>, </td>
@@ -192,19 +191,19 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="adb2d484db57ce31d0a74536e83af1a5e"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator*" ref="adb2d484db57ce31d0a74536e83af1a5e" args="(FloatType a) const " -->
+<a class="anchor" id="abfcfe8f37e3acda66b282f16c75d0ae3"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator*" ref="abfcfe8f37e3acda66b282f16c75d0ae3" args="(FloatType a) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
           <td>(</td>
           <td class="paramtype">FloatType&#160;</td>
           <td class="paramname"><em>a</em></td><td>)</td>
@@ -214,18 +213,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#ad316631073212298e0688bd3ee1756c6">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::RotationMatrixAboutZTpl()</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#a069bd6b28cbba21a73db26c355aa5dd0">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::RotationMatrixAboutYTpl()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6cf77aba678e8cf20d413d05f5a52a3d"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator*" ref="a6cf77aba678e8cf20d413d05f5a52a3d" args="(const Matrix3d &amp;A) const " -->
+<a class="anchor" id="a1d9bed0de4c9420cef43923e2afd6521"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator*" ref="a1d9bed0de4c9420cef43923e2afd6521" args="(const Matrix3d &amp;A) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Matrix3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td class="memname">Matrix3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
           <td>(</td>
           <td class="paramtype">const Matrix3d &amp;&#160;</td>
           <td class="paramname"><em>A</em></td><td>)</td>
@@ -237,24 +236,24 @@ template&lt;class FloatType &gt; </div>
 
 <p>Optimized multiplication of the rotation matrix with a general 3x3 matrix. </p>
 <p>The total number of operations is 12m + 6a. <br/>
- Matrix3d = <a class="el" href="a00131.html" title="RotationMatrixAboutZ This object implements specific operations related to the rotation matrix about ...">RotationMatrixAboutZTpl</a> * Matrix3d <br/>
- <img class="formulaInl" alt="$ {\bf B} = rz(\theta) {\bf A} $" src="form_35.png"/> </p>
+ Matrix3d = <a class="el" href="a00131.html" title="RotationMatrixAboutY This object implements specific operations related to the rotation matrix about ...">RotationMatrixAboutYTpl</a> * Matrix3d <br/>
+ <img class="formulaInl" alt="$ {\bf B} = ry(\theta) {\bf A} $" src="form_22.png"/> </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf B} = \left[ \begin{matrix} A(0,0)c + A(1,0)s &amp; A(0,1)c + A(1,1)s &amp; A(1,2)c + A(1,2)s \\ -A(0,0)s + A(1,0)c &amp; -A(0,1)s + A(1,1)c &amp; -A(0,2)s + A(1,2)c \ \ A(2,0) &amp; A(2,1) &amp; A(2,2) \\ \end{matrix} \right] \]" src="form_36.png"/>
+<img class="formulaDsp" alt="\[ {\bf B} = \left[ \begin{matrix} A(0,0)c - A(2,0)s &amp; A(0,1)c - A(2,1)s &amp; A(0,2)s - A(2,2)s \\ A(1,0) &amp; A(2,0) &amp; A(3,0) \\ A(0,0)c - A(2,0)s &amp; A(0,1)c - A(2,1)s &amp; A(0,2)s - A(2,2)s \\ \end{matrix} \right] \]" src="form_23.png"/>
 </p>
  
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a91642927a5f9479bc2417b5097527e40"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator*" ref="a91642927a5f9479bc2417b5097527e40" args="(const RotationMatrix &amp;aRM) const " -->
+<a class="anchor" id="a08046dc4cb375386a92a90b2525a9c63"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator*" ref="a08046dc4cb375386a92a90b2525a9c63" args="(const RotationMatrix &amp;aRM) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RotationMatrix <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td class="memname">RotationMatrix <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
           <td>(</td>
           <td class="paramtype">const RotationMatrix &amp;&#160;</td>
           <td class="paramname"><em>aRM</em></td><td>)</td>
@@ -266,26 +265,26 @@ template&lt;class FloatType &gt; </div>
 
 <p>Optimized multiplication of the rotation matrix with a general 3x3 matrix. </p>
 <p>The total number of operations is 12m + 6a. <br/>
- RotationMatrix = <a class="el" href="a00131.html" title="RotationMatrixAboutZ This object implements specific operations related to the rotation matrix about ...">RotationMatrixAboutZTpl</a> * RotationMatrix <br/>
- <img class="formulaInl" alt="$ {\bf B} = rz(\theta) {\bf A} $" src="form_35.png"/> </p>
+ RotationMatrix = RotationMatrixAboutY * RotationMatrix <br/>
+ <img class="formulaInl" alt="$ {\bf B} = ry(\theta) {\bf A} $" src="form_22.png"/> </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf B} = \left[ \begin{matrix} A(0,0)c + A(1,0)s &amp; A(0,1)c + A(1,1)s &amp; A(1,2)c + A(1,2)s \\ -A(0,0)s + A(1,0)c &amp;-A(0,1)s + A(1,1)c &amp;-A(0,2)s + A(1,2)c \\ A(2,0) &amp; A(2,1) &amp; A(2,2) \\ \end{matrix} \right] \]" src="form_37.png"/>
+<img class="formulaDsp" alt="\[ {\bf B} = \left[ \begin{matrix} A(0,0)c - A(2,0)s &amp; A(0,1)c - A(2,1)s &amp; A(0,2)s - A(2,2)s \\ A(1,0) &amp; A(2,0) &amp; A(3,0) \\ A(0,0)c - A(2,0)s &amp; A(0,1)c - A(2,1)s &amp; A(0,2)s - A(2,2)s \\ \end{matrix} \right] \]" src="form_23.png"/>
 </p>
  
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2d2906999bcc1ad90e25b423514c3c62"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator*" ref="a2d2906999bcc1ad90e25b423514c3c62" args="(const RotationMatrixAboutZTpl &amp;aRM) const " -->
+<a class="anchor" id="a7fbef5d9fdd889545d70f5f4fba762da"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator*" ref="a7fbef5d9fdd889545d70f5f4fba762da" args="(const RotationMatrixAboutYTpl &amp;aRM) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>&lt; FloatType &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>&lt; FloatType &gt; &amp;&#160;</td>
           <td class="paramname"><em>aRM</em></td><td>)</td>
           <td> const<code> [inline]</code></td>
         </tr>
@@ -293,18 +292,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#ad316631073212298e0688bd3ee1756c6">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::RotationMatrixAboutZTpl()</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#a069bd6b28cbba21a73db26c355aa5dd0">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::RotationMatrixAboutYTpl()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abf9c2d3c5c774b383e5b798563c34a3f"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator*" ref="abf9c2d3c5c774b383e5b798563c34a3f" args="(const Vector3d &amp;aRM) const " -->
+<a class="anchor" id="acdaf0e64eaf58f8f5da8ac22b1d44ca3"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator*" ref="acdaf0e64eaf58f8f5da8ac22b1d44ca3" args="(const Vector3d &amp;aRM) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Vector3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
+          <td class="memname">Vector3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>* </td>
           <td>(</td>
           <td class="paramtype">const Vector3d &amp;&#160;</td>
           <td class="paramname"><em>aRM</em></td><td>)</td>
@@ -314,18 +313,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af10db2296ac5664c309c840d680ce607"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator&#45;" ref="af10db2296ac5664c309c840d680ce607" args="() const " -->
+<a class="anchor" id="aef97ad164ecebe904e29ee576bb09455"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator&#45;" ref="aef97ad164ecebe904e29ee576bb09455" args="() const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>- </td>
+          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>- </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [inline]</code></td>
@@ -334,18 +333,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#ad316631073212298e0688bd3ee1756c6">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::RotationMatrixAboutZTpl()</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#a069bd6b28cbba21a73db26c355aa5dd0">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::RotationMatrixAboutYTpl()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aba9b1cbe8ceadabb0edd458d711d84de"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::randomInit" ref="aba9b1cbe8ceadabb0edd458d711d84de" args="()" -->
+<a class="anchor" id="a63350b00c8a0d33791f05ed265d294a8"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::randomInit" ref="a63350b00c8a0d33791f05ed265d294a8" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#aba9b1cbe8ceadabb0edd458d711d84de">randomInit</a> </td>
+          <td class="memname">void <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a63350b00c8a0d33791f05ed265d294a8">randomInit</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inline]</code></td>
@@ -358,14 +357,14 @@ template&lt;class FloatType &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a1f6eb832a160518517db0c116e7a8df0"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::rotGeneralMatrix" ref="a1f6eb832a160518517db0c116e7a8df0" args="(const Matrix3d &amp;A) const " -->
+<a class="anchor" id="aa988a5d7e82cd38ef2e047d41bf2a8e7"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::rotGeneralMatrix" ref="aa988a5d7e82cd38ef2e047d41bf2a8e7" args="(const Matrix3d &amp;A) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Matrix3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a1f6eb832a160518517db0c116e7a8df0">rotGeneralMatrix</a> </td>
+          <td class="memname">Matrix3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#aa988a5d7e82cd38ef2e047d41bf2a8e7">rotGeneralMatrix</a> </td>
           <td>(</td>
           <td class="paramtype">const Matrix3d &amp;&#160;</td>
           <td class="paramname"><em>A</em></td><td>)</td>
@@ -375,27 +374,27 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Optimized computation of <img class="formulaInl" alt="$ R {\bf A} R^{\top} $" src="form_38.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a generalized 3x3 matrix. </p>
+<p>Optimized computation of <img class="formulaInl" alt="$ ry(\theta) {\bf A} ry(\theta)^{\top} $" src="form_24.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a generalized 3x3 matrix. </p>
 <p>The total number of operations is 12m + 12a.</p>
-<p><img class="formulaInl" alt="$ \alpha_z = cs (A_{01} + A_{10}) + s^2(A_{11} - A_{00}) $" src="form_39.png"/> <img class="formulaInl" alt="$ \beta_z = cs (A_{11} - A_{00}) - s^2(A_{01} + A_{10}) $" src="form_40.png"/> </p>
+<p><img class="formulaInl" alt="$ \alpha_y = cs (A_{20} + A_{02}) + s^2(A_{00} - A_{22}) $" src="form_25.png"/> <img class="formulaInl" alt="$ \beta_y = cs (A_{00} - A_{22}) - s^2(A_{20} + A_{02}) $" src="form_26.png"/> </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ rz(\theta) {\bf A} rz(\theta)^{\top} = \left[ \begin{matrix} A_{00} + \beta_z &amp; A_{01} + \beta_z &amp; cA_{02} + sA_{12} \\ A_{10} + \beta_z &amp; A_{11} - \alpha_z &amp; A_{12} - sA_{02} \\ cA_{20} + sA_{21} &amp; cA_{21} -sA_{20} &amp; A_{22}\\ \end{matrix} \right] \]" src="form_41.png"/>
+<img class="formulaDsp" alt="\[ ry(\theta) {\bf A} ry(\theta)^{\top} = \left[ \begin{matrix} A_{00} - \alpha_y &amp; cA_{01} - sA_{21} &amp; A_{02} + \beta_y \\ cA_{10} - sA_{12} &amp; A_{11} &amp; cA_{12} + sA_{10} \\ cA_{20} + \beta_y &amp; cA_{21} + sA_{01} &amp; A_{22} + \alpha_y \end{matrix} \right] \]" src="form_27.png"/>
 </p>
  
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae5b6f9651de9508fb87bc380df1b4182"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::rotSymmetricMatrix" ref="ae5b6f9651de9508fb87bc380df1b4182" args="(const class ltI&lt; FloatType &gt; &amp;A) const " -->
+<a class="anchor" id="ac2cdde8b3d74116b05431462ebbc912e"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::rotSymmetricMatrix" ref="ac2cdde8b3d74116b05431462ebbc912e" args="(const class ltI&lt; FloatType &gt; &amp;A) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt; <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#ae5b6f9651de9508fb87bc380df1b4182">rotSymmetricMatrix</a> </td>
+          <td class="memname">class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt; <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#ac2cdde8b3d74116b05431462ebbc912e">rotSymmetricMatrix</a> </td>
           <td>(</td>
-          <td class="paramtype">const class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt; &amp;&#160;</td>
+          <td class="paramtype">const class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt; &amp;&#160;</td>
           <td class="paramname"><em>A</em></td><td>)</td>
           <td> const<code> [inline]</code></td>
         </tr>
@@ -403,26 +402,26 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Optimized computation of <img class="formulaInl" alt="$ rz(\theta) {\bf A} rz(\theta)^{\top} $" src="form_42.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix. </p>
-<p><img class="formulaInl" alt="$ \alpha_z = 2csA_{10} + s^2 (A_{11} - A_{00})$" src="form_43.png"/> <img class="formulaInl" alt="$ \beta_z = cs(A_{11} - A_{00}) + (1-2s^2)A_{10} $" src="form_44.png"/> </p>
+<p>Optimized computation of <img class="formulaInl" alt="$ ry(\theta) {\bf A} ry(\theta)^{\top} $" src="form_24.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix. </p>
+<p><img class="formulaInl" alt="$ \alpha_y = 2csA_{20} + s^2 (A_{00} - A_{22})$" src="form_28.png"/> <img class="formulaInl" alt="$ \beta_y = cs(A_{00} - A_{22}) + (1-2s^2)A_{20} $" src="form_29.png"/> </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ lt(rz(\theta){\bf A}rz(\theta)^{\top}) = \left[ \begin{matrix} A_{00} + \alpha_z &amp; \cdotp &amp; \cdotp \\ \beta_z &amp; A_{11} - \alpha_z &amp; \cdotp \\ cA_{20} + sA_{21} &amp; cA_{21} -sA_{20} &amp; A_{22} \\ \end{matrix} \right] \]" src="form_45.png"/>
+<img class="formulaDsp" alt="\[ lt(ry(\theta){\bf A}ry(\theta)^{\top}) = \left[ \begin{matrix} A_{00} - \alpha_y &amp; \cdotp &amp; \cdotp \\ cA_{10} - sA_{12} &amp; A_{11} &amp; \cdotp \\ \beta_y &amp; cA_{21} + sA_{01} &amp; A_{22} + \alpha_y \end{matrix} \right] \]" src="form_30.png"/>
 </p>
  
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00091.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00092.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7b72176224f2ec31bb639eae7fa5c769"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::rotTSymmetricMatrix" ref="a7b72176224f2ec31bb639eae7fa5c769" args="(const class ltI&lt; FloatType &gt; &amp;A) const " -->
+<a class="anchor" id="aa9d7a34c271d601f2c0664c87945aec5"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::rotTSymmetricMatrix" ref="aa9d7a34c271d601f2c0664c87945aec5" args="(const class ltI&lt; FloatType &gt; &amp;A) const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt; <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a7b72176224f2ec31bb639eae7fa5c769">rotTSymmetricMatrix</a> </td>
+          <td class="memname">class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt; <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#aa9d7a34c271d601f2c0664c87945aec5">rotTSymmetricMatrix</a> </td>
           <td>(</td>
-          <td class="paramtype">const class <a class="el" href="a00091.html">ltI</a>&lt; FloatType &gt; &amp;&#160;</td>
+          <td class="paramtype">const class <a class="el" href="a00092.html">ltI</a>&lt; FloatType &gt; &amp;&#160;</td>
           <td class="paramname"><em>A</em></td><td>)</td>
           <td> const<code> [inline]</code></td>
         </tr>
@@ -430,24 +429,24 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Optimized computation of <img class="formulaInl" alt="$ rz(\theta)^{\top} {\bf A} rz(\theta) $" src="form_46.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix. </p>
-<p><img class="formulaInl" alt="$ \alpha_z = 2csA_{10} + s^2 (A_{11} - A_{00})$" src="form_43.png"/> <img class="formulaInl" alt="$ \beta_z = cs(A_{11} - A_{00}) + (1-2s^2)A_{10} $" src="form_44.png"/> </p>
+<p>Optimized computation of <img class="formulaInl" alt="$ ry(\theta)^{\top} {\bf A} ry(\theta) $" src="form_31.png"/> where <img class="formulaInl" alt="$ {\bf A} $" src="form_9.png"/> is a 3x3 symmetric matrix. </p>
+<p><img class="formulaInl" alt="$ \alpha_y = 2csA_{20} + s^2 (A_{22} - A_{00})$" src="form_32.png"/> <img class="formulaInl" alt="$ \beta_y = cs(A_{22} - A_{00}) + (1-2s^2)A_{20} $" src="form_33.png"/> </p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ lt(rz(\theta){\bf A}rz(\theta)^{\top}) = \left[ \begin{matrix} A_{00} + \alpha_z &amp; \cdotp &amp; \cdotp \\ \beta_z &amp; A_{11} - \alpha_z &amp; \cdotp \\ cA_{20} + sA_{21} &amp; cA_{21} -sA_{20} &amp; A_{22} \\ \end{matrix} \right] \]" src="form_45.png"/>
+<img class="formulaDsp" alt="\[ lt(ry(\theta){\bf A}ry(\theta)^{\top}) = \left[ \begin{matrix} A_{00} - \alpha_y &amp; \cdotp &amp; \cdotp \\ cA_{10} - sA_{12} &amp; A_{11} &amp; \cdotp \\ \beta_y &amp; cA_{21} + sA_{01} &amp; A_{22} + \alpha_y \end{matrix} \right] \]" src="form_30.png"/>
 </p>
  
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00091.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00092.html#a92656a9dab6c96b1a16ce6d0e74edcc9">metapod::Spatial::ltI&lt; FloatType &gt;::m_ltI</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8b57e370486d714571cedd5f55ec235b"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::set" ref="a8b57e370486d714571cedd5f55ec235b" args="(FloatType theta)" -->
+<a class="anchor" id="afa78522f10397099bbe1cd52524329d8"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::set" ref="afa78522f10397099bbe1cd52524329d8" args="(FloatType theta)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a8b57e370486d714571cedd5f55ec235b">set</a> </td>
+          <td class="memname">void <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#afa78522f10397099bbe1cd52524329d8">set</a> </td>
           <td>(</td>
           <td class="paramtype">FloatType&#160;</td>
           <td class="paramname"><em>theta</em></td><td>)</td>
@@ -457,18 +456,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6404594063442aa626fd3dec77c79022"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::toMatrix" ref="a6404594063442aa626fd3dec77c79022" args="() const " -->
+<a class="anchor" id="a79b953d6e9aabdbeee24b37ece0d12b9"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::toMatrix" ref="a79b953d6e9aabdbeee24b37ece0d12b9" args="() const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Matrix3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a6404594063442aa626fd3dec77c79022">toMatrix</a> </td>
+          <td class="memname">Matrix3d <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a79b953d6e9aabdbeee24b37ece0d12b9">toMatrix</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [inline]</code></td>
@@ -477,18 +476,18 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, and <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a550849b6b46e23f95f6b612f92783063"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::transpose" ref="a550849b6b46e23f95f6b612f92783063" args="() const " -->
+<a class="anchor" id="aaf13de6130a536cf7294df331efa9f89"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::transpose" ref="aaf13de6130a536cf7294df331efa9f89" args="() const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a550849b6b46e23f95f6b612f92783063">transpose</a> </td>
+          <td class="memname"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a> <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#aaf13de6130a536cf7294df331efa9f89">transpose</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [inline]</code></td>
@@ -497,19 +496,19 @@ template&lt;class FloatType &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#ad316631073212298e0688bd3ee1756c6">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::RotationMatrixAboutZTpl()</a>.</p>
+<p>References <a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_c</a>, <a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::m_s</a>, and <a class="el" href="a00131.html#a069bd6b28cbba21a73db26c355aa5dd0">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::RotationMatrixAboutYTpl()</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a620a781d7dfbac726170d8ef85e2fdc4"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::operator&lt;&lt;" ref="a620a781d7dfbac726170d8ef85e2fdc4" args="(std::ostream &amp;os, const struct RotationMatrixAboutZTpl &amp;aRMAX)" -->
+<a class="anchor" id="a185151d974126997a499461011fb71bd"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::operator&lt;&lt;" ref="a185151d974126997a499461011fb71bd" args="(std::ostream &amp;os, const struct RotationMatrixAboutYTpl &amp;aRMAX)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::ostream&amp; <a class="el" href="a00220.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>&lt;&lt; </td>
+          <td class="memname">std::ostream&amp; <a class="el" href="a00223.html#a6fb2aec355c0bc561a3ff852217c4cd8">operator</a>&lt;&lt; </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>os</em>, </td>
@@ -517,7 +516,7 @@ template&lt;class FloatType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>&lt; FloatType &gt; &amp;&#160;</td>
+          <td class="paramtype">const struct <a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>&lt; FloatType &gt; &amp;&#160;</td>
           <td class="paramname"><em>aRMAX</em>&#160;</td>
         </tr>
         <tr>
@@ -532,14 +531,14 @@ template&lt;class FloatType &gt; </div>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a46a3e8f45df9934cbe15f11e362ed311"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::EIGEN_METAPOD_TYPEDEFS" ref="a46a3e8f45df9934cbe15f11e362ed311" args="" -->
+<a class="anchor" id="a5726c1ad3a8bbe97de76a76d04bdcf7a"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::EIGEN_METAPOD_TYPEDEFS" ref="a5726c1ad3a8bbe97de76a76d04bdcf7a" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a46a3e8f45df9934cbe15f11e362ed311">EIGEN_METAPOD_TYPEDEFS</a></td>
+          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a5726c1ad3a8bbe97de76a76d04bdcf7a">EIGEN_METAPOD_TYPEDEFS</a></td>
         </tr>
       </table>
 </div>
@@ -547,50 +546,50 @@ template&lt;class FloatType &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a90d6b4002d29f20a6500a102f6473799"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::m_c" ref="a90d6b4002d29f20a6500a102f6473799" args="" -->
+<a class="anchor" id="a00a57fc2d0ba73c1e574f5f0f4e21509"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::m_c" ref="a00a57fc2d0ba73c1e574f5f0f4e21509" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">FloatType <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a90d6b4002d29f20a6500a102f6473799">m_c</a></td>
+          <td class="memname">FloatType <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a00a57fc2d0ba73c1e574f5f0f4e21509">m_c</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Store directly <img class="formulaInl" alt="$ cos(\theta) $" src="form_1.png"/> and <img class="formulaInl" alt="$ sin(\theta) $" src="form_2.png"/>. </p>
+<p>Store directly <img class="formulaInl" alt="$ m_c = cos(\theta) $" src="form_20.png"/> and <img class="formulaInl" alt="$m_s = sin(\theta) $" src="form_21.png"/>. </p>
 
-<p>Referenced by <a class="el" href="a00131.html#adb2d484db57ce31d0a74536e83af1a5e">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00131.html#af10db2296ac5664c309c840d680ce607">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::operator-()</a>, <a class="el" href="a00131.html#a403be967a0ecbd02a53fc421b5e73fd8">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::RotationMatrixAboutZTpl()</a>, <a class="el" href="a00131.html#a1f6eb832a160518517db0c116e7a8df0">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotGeneralMatrix()</a>, <a class="el" href="a00131.html#ae5b6f9651de9508fb87bc380df1b4182">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00131.html#a7b72176224f2ec31bb639eae7fa5c769">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00131.html#a8b57e370486d714571cedd5f55ec235b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::set()</a>, <a class="el" href="a00131.html#a6404594063442aa626fd3dec77c79022">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::toMatrix()</a>, and <a class="el" href="a00131.html#a550849b6b46e23f95f6b612f92783063">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::transpose()</a>.</p>
+<p>Referenced by <a class="el" href="a00131.html#abfcfe8f37e3acda66b282f16c75d0ae3">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00131.html#aef97ad164ecebe904e29ee576bb09455">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::operator-()</a>, <a class="el" href="a00131.html#abd675a45fc73ec5b8dfa665ee279bf84">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::RotationMatrixAboutYTpl()</a>, <a class="el" href="a00131.html#aa988a5d7e82cd38ef2e047d41bf2a8e7">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotGeneralMatrix()</a>, <a class="el" href="a00131.html#ac2cdde8b3d74116b05431462ebbc912e">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00131.html#aa9d7a34c271d601f2c0664c87945aec5">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00131.html#afa78522f10397099bbe1cd52524329d8">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::set()</a>, <a class="el" href="a00131.html#a79b953d6e9aabdbeee24b37ece0d12b9">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::toMatrix()</a>, and <a class="el" href="a00131.html#aaf13de6130a536cf7294df331efa9f89">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::transpose()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae5370b266ae05f207b14e9008ad7793b"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::m_s" ref="ae5370b266ae05f207b14e9008ad7793b" args="" -->
+<a class="anchor" id="a4db67a6c5a5d131ceec2e9381a1d50ad"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::m_s" ref="a4db67a6c5a5d131ceec2e9381a1d50ad" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">FloatType <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#ae5370b266ae05f207b14e9008ad7793b">m_s</a></td>
+          <td class="memname">FloatType <a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a4db67a6c5a5d131ceec2e9381a1d50ad">m_s</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="a00131.html#adb2d484db57ce31d0a74536e83af1a5e">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00131.html#af10db2296ac5664c309c840d680ce607">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::operator-()</a>, <a class="el" href="a00131.html#a403be967a0ecbd02a53fc421b5e73fd8">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::RotationMatrixAboutZTpl()</a>, <a class="el" href="a00131.html#a1f6eb832a160518517db0c116e7a8df0">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotGeneralMatrix()</a>, <a class="el" href="a00131.html#ae5b6f9651de9508fb87bc380df1b4182">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00131.html#a7b72176224f2ec31bb639eae7fa5c769">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00131.html#a8b57e370486d714571cedd5f55ec235b">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::set()</a>, <a class="el" href="a00131.html#a6404594063442aa626fd3dec77c79022">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::toMatrix()</a>, and <a class="el" href="a00131.html#a550849b6b46e23f95f6b612f92783063">metapod::Spatial::RotationMatrixAboutZTpl&lt; FloatType &gt;::transpose()</a>.</p>
+<p>Referenced by <a class="el" href="a00131.html#abfcfe8f37e3acda66b282f16c75d0ae3">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::operator*()</a>, <a class="el" href="a00131.html#aef97ad164ecebe904e29ee576bb09455">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::operator-()</a>, <a class="el" href="a00131.html#abd675a45fc73ec5b8dfa665ee279bf84">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::RotationMatrixAboutYTpl()</a>, <a class="el" href="a00131.html#aa988a5d7e82cd38ef2e047d41bf2a8e7">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotGeneralMatrix()</a>, <a class="el" href="a00131.html#ac2cdde8b3d74116b05431462ebbc912e">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotSymmetricMatrix()</a>, <a class="el" href="a00131.html#aa9d7a34c271d601f2c0664c87945aec5">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::rotTSymmetricMatrix()</a>, <a class="el" href="a00131.html#afa78522f10397099bbe1cd52524329d8">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::set()</a>, <a class="el" href="a00131.html#a79b953d6e9aabdbeee24b37ece0d12b9">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::toMatrix()</a>, and <a class="el" href="a00131.html#aaf13de6130a536cf7294df331efa9f89">metapod::Spatial::RotationMatrixAboutYTpl&lt; FloatType &gt;::transpose()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afee03daf1ea3ec0480ce448c34ae7840"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutZTpl::METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF" ref="afee03daf1ea3ec0480ce448c34ae7840" args="" -->
+<a class="anchor" id="a49dcb976ab7580b0224af3dba363fdb7"></a><!-- doxytag: member="metapod::Spatial::RotationMatrixAboutYTpl::METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF" ref="a49dcb976ab7580b0224af3dba363fdb7" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class FloatType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutZTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#afee03daf1ea3ec0480ce448c34ae7840">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a></td>
+          <td class="memname"><a class="el" href="a00131.html">metapod::Spatial::RotationMatrixAboutYTpl</a>&lt; FloatType &gt;::<a class="el" href="a00131.html#a49dcb976ab7580b0224af3dba363fdb7">METAPOD_SPATIAL_ROTATION_MATRIX_TYPEDEF</a></td>
         </tr>
       </table>
 </div>
@@ -616,9 +615,9 @@ template&lt;class FloatType &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00220.html">Spatial</a>      </li>
-      <li class="navelem"><a class="el" href="a00131.html">RotationMatrixAboutZTpl</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00223.html">Spatial</a>      </li>
+      <li class="navelem"><a class="el" href="a00131.html">RotationMatrixAboutYTpl</a>      </li>
 <br><br>
 <hr>
 <center>

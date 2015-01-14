@@ -1,8 +1,10 @@
 var a00165 =
 [
-    [ "matrix3dMaker", "a00218.html#a9a940a453dc5a3b322cbb86b4fb27dd6", null ],
-    [ "set_gravity", "a00218.html#a571f24ed8d7ad31b6f472d4fe156f23d", null ],
-    [ "Skew", "a00218.html#a316f26eec405faa57151f64b8404ba6e", null ],
-    [ "spatialInertiaMaker", "a00218.html#a3f3bcbb6b45160c88c95e39c71020e93", null ],
-    [ "vector6dMaker", "a00218.html#a38c1d3663fb4b76ef01d8212b1488dfe", null ]
+    [ "AxisType", "a00223.html#af7b10dc8a0150cd8856cc44c515cfb5e", null ],
+    [ "operator*", "a00223.html#aff68c98d75f014ee8bab7e15719a5a47", null ],
+    [ "operator*", "a00223.html#ad966a3c2da86aa7232d0ad8df04b5305", null ],
+    [ "operator*", "a00223.html#ab6d57bae35d6d7bce6bf84383c13b572", null ],
+    [ "operator^", "a00223.html#ae8efdfee657abb715022f915a64fcbdd", null ],
+    [ "operator^", "a00223.html#a362aa4e298df29ce68e207deadfa9b1d", null ],
+    [ "operator^", "a00223.html#a93a0a2433de6fdd7d651b95a6f3fedfe", null ]
 ];

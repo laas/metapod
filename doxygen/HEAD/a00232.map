@@ -1,7 +1,30 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$a00171.html" title="djac.hh" alt="" coords="5,86,69,117"/>
-<area shape="rect" id="node5" href="$a00185.html" title="jac.hh" alt="" coords="93,86,149,117"/>
-<area shape="rect" id="node7" href="$a00187.html" title="jac_point_relative.hh" alt="" coords="173,86,315,117"/>
-<area shape="rect" id="node9" href="$a00186.html" title="jac_point_chain.hh" alt="" coords="101,166,232,197"/>
-<area shape="rect" id="node11" href="$a00188.html" title="jac_point_robot.hh" alt="" coords="256,166,384,197"/>
+<area shape="rect" id="node3" href="$a00215.html" title="spatial.hh" alt="" coords="1319,86,1396,117"/>
+<area shape="rect" id="node5" href="$a00166.html" title="common.hh" alt="" coords="1312,166,1403,197"/>
+<area shape="rect" id="node7" href="$a00162.html" title="chda.hh" alt="" coords="344,486,414,517"/>
+<area shape="rect" id="node9" href="$a00171.html" title="depth_first_traversal.hh" alt="" coords="323,246,480,277"/>
+<area shape="rect" id="node17" href="$a00213.html" title="rnea.hh" alt="" coords="126,406,192,437"/>
+<area shape="rect" id="node20" href="$a00169.html" title="crba.hh" alt="" coords="476,406,540,437"/>
+<area shape="rect" id="node31" href="$a00189.html" title="jac_point_relative.hh" alt="" coords="1071,406,1212,437"/>
+<area shape="rect" id="node33" href="$a00188.html" title="jac_point_chain.hh" alt="" coords="1328,486,1459,517"/>
+<area shape="rect" id="node35" href="$a00190.html" title="jac_point_robot.hh" alt="" coords="947,486,1075,517"/>
+<area shape="rect" id="node42" href="$a00179.html" title="has_parent.hh" alt="" coords="674,246,778,277"/>
+<area shape="rect" id="node46" href="$a00160.html" title="backward_traversal_prev.hh" alt="" coords="784,326,974,357"/>
+<area shape="rect" id="node50" href="$a00186.html" title="is_ancestor.hh" alt="" coords="1156,246,1263,277"/>
+<area shape="rect" id="node53" href="$a00159.html" title="backward_traversal.hh" alt="" coords="1328,326,1486,357"/>
+<area shape="rect" id="node55" href="$a00172.html" title="djac.hh" alt="" coords="1392,406,1456,437"/>
+<area shape="rect" id="node57" href="$a00187.html" title="jac.hh" alt="" coords="1514,406,1570,437"/>
+<area shape="rect" id="node60" href="$a00170.html" title="deepest_common_ancestor.hh" alt="" coords="1099,326,1304,357"/>
+<area shape="rect" id="node72" href="$a00192.html" title="joint&#45;aboutxaxis.hh" alt="" coords="2246,246,2376,277"/>
+<area shape="rect" id="node74" href="$a00197.html" title="joint.hh" alt="" coords="2064,326,2126,357"/>
+<area shape="rect" id="node76" href="$a00193.html" title="joint&#45;aboutyaxis.hh" alt="" coords="1662,246,1792,277"/>
+<area shape="rect" id="node79" href="$a00194.html" title="joint&#45;aboutzaxis.hh" alt="" coords="1816,246,1947,277"/>
+<area shape="rect" id="node82" href="$a00195.html" title="joint&#45;anyaxis.hh" alt="" coords="1971,246,2083,277"/>
+<area shape="rect" id="node85" href="$a00196.html" title="joint&#45;freeflyer.hh" alt="" coords="2107,246,2222,277"/>
+<area shape="rect" id="node11" href="$a00202.html" title="print.hh" alt="" coords="555,326,616,357"/>
+<area shape="rect" id="node14" href="$a00191.html" title="jcalc.hh" alt="" coords="312,326,379,357"/>
+<area shape="rect" id="node24" href="$a00203.html" title="qcalc.hh" alt="" coords="380,406,452,437"/>
+<area shape="rect" id="node29" href="$a00161.html" title="bcalc.hh" alt="" coords="691,326,760,357"/>
+<area shape="rect" id="node37" href="$a00182.html" title="initconf.hh" alt="" coords="62,326,142,357"/>
+<area shape="rect" id="node39" href="$a00183.html" title="initnodeidconf.hh" alt="" coords="166,326,288,357"/>
 </map>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::initNuFwdDyn&lt; Robot, Node &gt; Struct Template Reference</title>
+<title>metapod::internal::InitNodeIdConfVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,37 +59,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::initNuFwdDyn&lt; Robot, Node &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::internal::InitNodeIdConfVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::initNuFwdDyn" -->
-<p>init the "nuFwdDyn" parameter for Node's joint  
- <a href="a00076.html#details">More...</a></p>
+<!-- doxytag: class="metapod::internal::InitNodeIdConfVisitor" -->
+<p><code>#include &lt;metapod/tools/initnodeidconf.hh&gt;</code></p>
 
-<p><code>#include &lt;metapod/tools/initnufwddyn.hh&gt;</code></p>
-
-<p><a href="a00368.html">List of all members.</a></p>
+<p><a href="a00413.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076.html#a9983d6fe9da9d228bf34369e8216a753">value</a> = <a class="el" href="a00149.html">internal::updateNuOfFwdDynFromParentOrLocal</a>&lt;Robot, Node, Node::parent_id&gt;::<a class="el" href="a00076.html#a9983d6fe9da9d228bf34369e8216a753">value</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076.html#a42e5fe5450b93f685f540dfa2ed4aa7f">discover</a> (typename Robot::confVector &amp;v)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076.html#adc94ce21dd888ebdc475f035d4ecc2fd">finish</a> (typename Robot::confVector &amp;)</td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Robot, typename Node&gt;<br/>
-struct metapod::initNuFwdDyn&lt; Robot, Node &gt;</h3>
+<h3>template&lt;typename Robot, int node_id&gt;<br/>
+ struct metapod::internal::InitNodeIdConfVisitor&lt; Robot, node_id &gt;</h3>
 
-<p>init the "nuFwdDyn" parameter for Node's joint </p>
-</div><hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a9983d6fe9da9d228bf34369e8216a753"></a><!-- doxytag: member="metapod::initNuFwdDyn::value" ref="a9983d6fe9da9d228bf34369e8216a753" args="" -->
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a42e5fe5450b93f685f540dfa2ed4aa7f"></a><!-- doxytag: member="metapod::internal::InitNodeIdConfVisitor::discover" ref="a42e5fe5450b93f685f540dfa2ed4aa7f" args="(typename Robot::confVector &amp;v)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Robot , typename Node &gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00076.html">metapod::initNuFwdDyn</a>&lt; Robot, Node &gt;::<a class="el" href="a00076.html#a9983d6fe9da9d228bf34369e8216a753">value</a> = <a class="el" href="a00149.html">internal::updateNuOfFwdDynFromParentOrLocal</a>&lt;Robot, Node, Node::parent_id&gt;::<a class="el" href="a00076.html#a9983d6fe9da9d228bf34369e8216a753">value</a><code> [static]</code></td>
+          <td class="memname">static void <a class="el" href="a00076.html">metapod::internal::InitNodeIdConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00076.html#a42e5fe5450b93f685f540dfa2ed4aa7f">discover</a> </td>
+          <td>(</td>
+          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adc94ce21dd888ebdc475f035d4ecc2fd"></a><!-- doxytag: member="metapod::internal::InitNodeIdConfVisitor::finish" ref="adc94ce21dd888ebdc475f035d4ecc2fd" args="(typename Robot::confVector &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot , int node_id&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00076.html">metapod::internal::InitNodeIdConfVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00076.html#adc94ce21dd888ebdc475f035d4ecc2fd">finish</a> </td>
+          <td>(</td>
+          <td class="paramtype">typename Robot::confVector &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
@@ -115,8 +134,9 @@ template&lt;typename Robot , typename Node &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00076.html">initNuFwdDyn</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00076.html">InitNodeIdConfVisitor</a>      </li>
 <br><br>
 <hr>
 <center>

@@ -1,6 +1,9 @@
 var a00033 =
 [
-    [ "ConstraintMotionOneAxis", "a00033.html#a76f6161c6401932e89839972375fec93", null ],
-    [ "S", "a00033.html#a19d04fa151fd85b5623a88a31356aeeb", null ],
-    [ "transpose", "a00033.html#acf7c7edafacfc7d11e8c45785dfc20e6", null ]
+    [ "ConstraintMotionFreeFlyerTpl", "a00033.html#a5c4a480263850686e003652d8b43893d", null ],
+    [ "operator*", "a00033.html#abb866a06f9e4fa14ae4e6eddbb02d5bc", null ],
+    [ "operator*", "a00033.html#ae5b3e7a970748e78f9dcb65124bc8019", null ],
+    [ "S", "a00033.html#a614788b7178e5e76aca927fb0197e91d", null ],
+    [ "setlocalR", "a00033.html#a004dcd353fe435e6c9f1a66e3db1f2f9", null ],
+    [ "transpose", "a00033.html#a8c394d1789e386b13fc73a66672a98fd", null ]
 ];

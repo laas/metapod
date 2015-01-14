@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt;::EndToAncestorVisitor&lt; AnyRobot, node_id &gt; Struct Template Reference</title>
+<title>metapod::djac&lt; Robot &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,35 +59,118 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt;::EndToAncestorVisitor&lt; AnyRobot, node_id &gt; Struct Template Reference<div class="ingroups"><a class="el" href="a00228.html">Point in Chain Articular Jacobian Algorithm</a></div></div>  </div>
+<div class="title">metapod::djac&lt; Robot &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::jac_point_relative::EndToAncestorVisitor" -->
-<p><code>#include &lt;metapod/algos/jac_point_relative.hh&gt;</code></p>
+<!-- doxytag: class="metapod::djac" -->
+<p><code>#include &lt;metapod/algos/djac.hh&gt;</code></p>
 
-<p><a href="a00328.html">List of all members.</a></p>
+<p><a href="a00324.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html">DftVisitor</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef AnyRobot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga4baabddd239f778f5b88e6629fd5ec50">FloatType</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00100.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
-::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga7c036dcae37878e8708191a4e902b2a3">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html#a5a35477f78b2db4ad095f78c2d74c265">FloatType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix<br class="typebreak"/>
+&lt; <a class="el" href="a00053.html#a5a35477f78b2db4ad095f78c2d74c265">FloatType</a>, <br class="typebreak"/>
+6 *Robot::NBBODIES, <br class="typebreak"/>
+Robot::NBDOF &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html#ae949296504ce6f1a4b142f6186748581">dJacobian</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga947f7527add7df4bc8964115c2184a6b">discover</a> (Robot &amp;robot, const Vector3d &amp;p, <a class="el" href="a00228.html#ga5c46e11ad8bade8327553863d835bcf1">Jacobian</a> &amp;J)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#gad747759934ba9ef82d514c0f1f935f2a">finish</a> (Robot &amp;, const Vector3d &amp;, <a class="el" href="a00228.html#ga5c46e11ad8bade8327553863d835bcf1">Jacobian</a> &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html#afe09cd5d33384db2a1537b8fe8564429">run</a> (Robot &amp;robot, <a class="el" href="a00053.html#ae949296504ce6f1a4b142f6186748581">dJacobian</a> &amp;dJ)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00228.html#ga27e39190417444c7ca9492501f4870d0">METAPOD_TYPEDEFS</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00053.html#a73134d1f6ec4f3134348ccbd0d30565f">METAPOD_TYPEDEFS</a></td></tr>
 </table>
-<h3>template&lt;typename Robot, int start_node_id, int end_node_id, int offset = 0, bool call_bcalc = true&gt;<br/>
-template&lt;typename AnyRobot, int node_id&gt;<br/>
- struct metapod::jac_point_relative&lt; Robot, start_node_id, end_node_id, offset, call_bcalc &gt;::EndToAncestorVisitor&lt; AnyRobot, node_id &gt;</h3>
+<h3>template&lt;typename Robot&gt;<br/>
+ struct metapod::djac&lt; Robot &gt;</h3>
 
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="ae949296504ce6f1a4b142f6186748581"></a><!-- doxytag: member="metapod::djac::dJacobian" ref="ae949296504ce6f1a4b142f6186748581" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef Eigen::Matrix&lt;<a class="el" href="a00053.html#a5a35477f78b2db4ad095f78c2d74c265">FloatType</a>, 6 * Robot::NBBODIES, Robot::NBDOF&gt; <a class="el" href="a00053.html">metapod::djac</a>&lt; Robot &gt;::<a class="el" href="a00053.html#ae949296504ce6f1a4b142f6186748581">dJacobian</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5a35477f78b2db4ad095f78c2d74c265"></a><!-- doxytag: member="metapod::djac::FloatType" ref="a5a35477f78b2db4ad095f78c2d74c265" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef Robot::RobotFloatType <a class="el" href="a00053.html">metapod::djac</a>&lt; Robot &gt;::<a class="el" href="a00053.html#a5a35477f78b2db4ad095f78c2d74c265">FloatType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="afe09cd5d33384db2a1537b8fe8564429"></a><!-- doxytag: member="metapod::djac::run" ref="afe09cd5d33384db2a1537b8fe8564429" args="(Robot &amp;robot, dJacobian &amp;dJ)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00053.html">metapod::djac</a>&lt; Robot &gt;::<a class="el" href="a00053.html#afe09cd5d33384db2a1537b8fe8564429">run</a> </td>
+          <td>(</td>
+          <td class="paramtype">Robot &amp;&#160;</td>
+          <td class="paramname"><em>robot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00053.html#ae949296504ce6f1a4b142f6186748581">dJacobian</a> &amp;&#160;</td>
+          <td class="paramname"><em>dJ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Referenced by <a class="el" href="a00051.html#a7d683fc80b79fd3fed7ff518992d0483">metapod::djac&lt; Robot &gt;::DftVisitor&lt; AnyRobot, node_id &gt;::discover()</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a73134d1f6ec4f3134348ccbd0d30565f"></a><!-- doxytag: member="metapod::djac::METAPOD_TYPEDEFS" ref="a73134d1f6ec4f3134348ccbd0d30565f" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Robot &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00053.html">metapod::djac</a>&lt; Robot &gt;::<a class="el" href="a00053.html#a73134d1f6ec4f3134348ccbd0d30565f">METAPOD_TYPEDEFS</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -106,9 +189,8 @@ template&lt;typename AnyRobot, int node_id&gt;<br/>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00087.html">jac_point_relative</a>      </li>
-      <li class="navelem"><a class="el" href="a00053.html">EndToAncestorVisitor</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00053.html">djac</a>      </li>
 <br><br>
 <hr>
 <center>

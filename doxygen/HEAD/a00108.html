@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::RevoluteAxisAnyJoint&lt; FloatType &gt; Class Template Reference</title>
+<title>metapod::internal::QcalcVisitor&lt; Robot, node_id &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,264 +59,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt; Class Template Reference</div>  </div>
+<div class="title">metapod::internal::QcalcVisitor&lt; Robot, node_id &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::RevoluteAxisAnyJoint" -->
-<p><code>#include &lt;metapod/tools/joint-anyaxis.hh&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;:</div>
-<div class="dyncontent">
-<div class="center"><img src="a00382.png" border="0" usemap="#metapod_1_1_revolute_axis_any_joint_3_01_float_type_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="metapod_1_1_revolute_axis_any_joint_3_01_float_type_01_4_coll__map" id="metapod_1_1_revolute_axis_any_joint_3_01_float_type_01_4_coll__map">
-<area shape="rect" id="node2" href="a00028.html" title="metapod::Spatial::ConstraintMotionAnyAxis\&lt; FloatType \&gt;" alt="" coords="5,6,371,37"/><area shape="rect" id="node4" href="a00136.html" title="Transform" alt="" coords="395,6,477,37"/></map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<!-- doxytag: class="metapod::internal::QcalcVisitor" -->
+<p><code>#include &lt;metapod/tools/qcalc.hh&gt;</code></p>
 
-<p><a href="a00383.html">List of all members.</a></p>
+<p><a href="a00429.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a5221e3e547d392555481d7f59b08c856">RevoluteAxisAnyJoint</a> (double axis_x, double axis_y, double axis_z)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a29b5e551c38753199c6bc45868653954">bcalc</a> (const Vector1d &amp;qi)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#aff7a5b6c734b090a6722b51d9f064b8d">jcalc</a> (const Vector1d &amp;qi, const Vector1d &amp;dqi)</td></tr>
-<tr><td colspan="2"><h2><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00136.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a5640bd3e01dbc5d9747b4457a3033e17">Xj</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Motion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#ad0b8dcf1a34002ccacfe052f4d9947a1">cj</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Motion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#af63f0c558d68480c33e414e304cc1a66">vj</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00027.html">Spatial::ConstraintMotionAnyAxis</a><br class="typebreak"/>
-&lt; FloatType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a3c9ba4ac1453707032701a7dfcd491cd">S</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Force&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a3243e0adda468e80ae55fcdd18e67599">f</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Vector1d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#abdbb5e6190518bea7546d1cdcd78ba43">torque</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a6f606fb3abf0efeb2f7dc6869804b178">axis_</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a5bf611e40446e574e7e599c4fb7b0374">NBDOF</a> = 1</td></tr>
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00101.html">Nodes</a>&lt; Robot, node_id &gt;<br class="typebreak"/>
+::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#ac5f3d271e7076e2eea1c5246dc0f2593">Node</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#aafa20330246ca2eb53e9d931d0031137">discover</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html#a848379a9b5c0acc89c48f8270cf6deda">finish</a> ()</td></tr>
 </table>
-<h3>template&lt;typename FloatType&gt;<br/>
- class metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;</h3>
+<h3>template&lt;typename Robot, int node_id&gt;<br/>
+ struct metapod::internal::QcalcVisitor&lt; Robot, node_id &gt;</h3>
 
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a5221e3e547d392555481d7f59b08c856"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::RevoluteAxisAnyJoint" ref="a5221e3e547d392555481d7f59b08c856" args="(double axis_x, double axis_y, double axis_z)" -->
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="ac5f3d271e7076e2eea1c5246dc0f2593"></a><!-- doxytag: member="metapod::internal::QcalcVisitor::Node" ref="ac5f3d271e7076e2eea1c5246dc0f2593" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html">RevoluteAxisAnyJoint</a> </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>axis_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>axis_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>axis_z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline]</code></td>
+          <td class="memname">typedef <a class="el" href="a00101.html">Nodes</a>&lt;Robot, node_id&gt;::type <a class="el" href="a00108.html">metapod::internal::QcalcVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00108.html#ac5f3d271e7076e2eea1c5246dc0f2593">Node</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>References <a class="el" href="a00108.html#af63f0c558d68480c33e414e304cc1a66">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::vj</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a29b5e551c38753199c6bc45868653954"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::bcalc" ref="a29b5e551c38753199c6bc45868653954" args="(const Vector1d &amp;qi)" -->
+<a class="anchor" id="aafa20330246ca2eb53e9d931d0031137"></a><!-- doxytag: member="metapod::internal::QcalcVisitor::discover" ref="aafa20330246ca2eb53e9d931d0031137" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00017.html">bcalc</a> </td>
+          <td class="memname">static void <a class="el" href="a00108.html">metapod::internal::QcalcVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00108.html#aafa20330246ca2eb53e9d931d0031137">discover</a> </td>
           <td>(</td>
-          <td class="paramtype">const Vector1d &amp;&#160;</td>
-          <td class="paramname"><em>qi</em></td><td>)</td>
-          <td><code> [inline]</code></td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>References <a class="el" href="a00108.html#a6f606fb3abf0efeb2f7dc6869804b178">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::axis_</a>, and <a class="el" href="a00108.html#a5640bd3e01dbc5d9747b4457a3033e17">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::Xj</a>.</p>
-
-<p>Referenced by <a class="el" href="a00108.html#aff7a5b6c734b090a6722b51d9f064b8d">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::jcalc()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="aff7a5b6c734b090a6722b51d9f064b8d"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::jcalc" ref="aff7a5b6c734b090a6722b51d9f064b8d" args="(const Vector1d &amp;qi, const Vector1d &amp;dqi)" -->
+<a class="anchor" id="a848379a9b5c0acc89c48f8270cf6deda"></a><!-- doxytag: member="metapod::internal::QcalcVisitor::finish" ref="a848379a9b5c0acc89c48f8270cf6deda" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
+template&lt;typename Robot , int node_id&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00089.html">jcalc</a> </td>
+          <td class="memname">static void <a class="el" href="a00108.html">metapod::internal::QcalcVisitor</a>&lt; Robot, node_id &gt;::<a class="el" href="a00108.html#a848379a9b5c0acc89c48f8270cf6deda">finish</a> </td>
           <td>(</td>
-          <td class="paramtype">const Vector1d &amp;&#160;</td>
-          <td class="paramname"><em>qi</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Vector1d &amp;&#160;</td>
-          <td class="paramname"><em>dqi</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline]</code></td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>References <a class="el" href="a00108.html#a6f606fb3abf0efeb2f7dc6869804b178">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::axis_</a>, <a class="el" href="a00108.html#a29b5e551c38753199c6bc45868653954">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::bcalc()</a>, and <a class="el" href="a00108.html#af63f0c558d68480c33e414e304cc1a66">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::vj</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a6f606fb3abf0efeb2f7dc6869804b178"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::axis_" ref="a6f606fb3abf0efeb2f7dc6869804b178" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Vector3d <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#a6f606fb3abf0efeb2f7dc6869804b178">axis_</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00108.html#a29b5e551c38753199c6bc45868653954">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::bcalc()</a>, and <a class="el" href="a00108.html#aff7a5b6c734b090a6722b51d9f064b8d">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::jcalc()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad0b8dcf1a34002ccacfe052f4d9947a1"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::cj" ref="ad0b8dcf1a34002ccacfe052f4d9947a1" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Motion <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#ad0b8dcf1a34002ccacfe052f4d9947a1">cj</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3243e0adda468e80ae55fcdd18e67599"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::f" ref="a3243e0adda468e80ae55fcdd18e67599" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Force <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#a3243e0adda468e80ae55fcdd18e67599">f</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5bf611e40446e574e7e599c4fb7b0374"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::NBDOF" ref="a5bf611e40446e574e7e599c4fb7b0374" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const int <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#a5bf611e40446e574e7e599c4fb7b0374">NBDOF</a> = 1<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3c9ba4ac1453707032701a7dfcd491cd"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::S" ref="a3c9ba4ac1453707032701a7dfcd491cd" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00027.html">Spatial::ConstraintMotionAnyAxis</a>&lt;FloatType&gt; <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#a3c9ba4ac1453707032701a7dfcd491cd">S</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abdbb5e6190518bea7546d1cdcd78ba43"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::torque" ref="abdbb5e6190518bea7546d1cdcd78ba43" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Vector1d <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#abdbb5e6190518bea7546d1cdcd78ba43">torque</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af63f0c558d68480c33e414e304cc1a66"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::vj" ref="af63f0c558d68480c33e414e304cc1a66" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Motion <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#af63f0c558d68480c33e414e304cc1a66">vj</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00108.html#aff7a5b6c734b090a6722b51d9f064b8d">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::jcalc()</a>, and <a class="el" href="a00108.html#a5221e3e547d392555481d7f59b08c856">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::RevoluteAxisAnyJoint()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5640bd3e01dbc5d9747b4457a3033e17"></a><!-- doxytag: member="metapod::RevoluteAxisAnyJoint::Xj" ref="a5640bd3e01dbc5d9747b4457a3033e17" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename FloatType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00136.html">Transform</a> <a class="el" href="a00108.html">metapod::RevoluteAxisAnyJoint</a>&lt; FloatType &gt;::<a class="el" href="a00108.html#a5640bd3e01dbc5d9747b4457a3033e17">Xj</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00108.html#a29b5e551c38753199c6bc45868653954">metapod::RevoluteAxisAnyJoint&lt; FloatType &gt;::bcalc()</a>.</p>
 
 </div>
 </div>
@@ -338,8 +153,9 @@ template&lt;typename FloatType &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00108.html">RevoluteAxisAnyJoint</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00222.html">internal</a>      </li>
+      <li class="navelem"><a class="el" href="a00108.html">QcalcVisitor</a>      </li>
 <br><br>
 <hr>
 <center>

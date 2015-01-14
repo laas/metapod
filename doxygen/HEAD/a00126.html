@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::rnea&lt; Robot, false, gravity &gt; Struct Template Reference</title>
+<title>metapod::rnea&lt; Robot, jcalc, gravity &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -58,131 +58,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::rnea&lt; Robot, false, gravity &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::rnea&lt; Robot, jcalc, gravity &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::rnea&lt; Robot, false, gravity &gt;" -->
+<!-- doxytag: class="metapod::rnea" -->
+<p>Templated Recursive Newton-Euler Algorithm.  
+ <a href="a00126.html#details">More...</a></p>
+
 <p><code>#include &lt;metapod/algos/rnea.hh&gt;</code></p>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Robot, bool jcalc = true, int gravity = GRAVITY_CST&gt;<br/>
+struct metapod::rnea&lt; Robot, jcalc, gravity &gt;</h3>
 
-<p><a href="a00330.html">List of all members.</a></p>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047.html">DftVisitor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00143.html">update_force</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00144.html">update_force&lt; node_id, NO_PARENT &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html">update_kinematics</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00146.html">update_kinematics&lt; node_id, NO_PARENT &gt;</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00126.html#a6acc53bec68319e2e24a87341f391947">FloatType</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::confVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00126.html#afdf04df7f5bbf88f94eb7e39cf0ed648">confVector</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00126.html#a8c6f891a0a571923893cf22f103daf68">run</a> (Robot &amp;robot, const typename Robot::confVector &amp;q, const typename Robot::confVector &amp;dq, const typename Robot::confVector &amp;ddq)</td></tr>
-<tr><td colspan="2"><h2><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00126.html#a99ea8b3027fa5cb71c4c7624e91015b5">METAPOD_TYPEDEFS</a></td></tr>
-</table>
-<h3>template&lt;typename Robot, int gravity&gt;<br/>
- struct metapod::rnea&lt; Robot, false, gravity &gt;</h3>
-
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="afdf04df7f5bbf88f94eb7e39cf0ed648"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::confVector" ref="afdf04df7f5bbf88f94eb7e39cf0ed648" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int gravity&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef Robot::confVector <a class="el" href="a00125.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::<a class="el" href="a00126.html#afdf04df7f5bbf88f94eb7e39cf0ed648">confVector</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a6acc53bec68319e2e24a87341f391947"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::FloatType" ref="a6acc53bec68319e2e24a87341f391947" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int gravity&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef Robot::RobotFloatType <a class="el" href="a00125.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::<a class="el" href="a00126.html#a6acc53bec68319e2e24a87341f391947">FloatType</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a8c6f891a0a571923893cf22f103daf68"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::run" ref="a8c6f891a0a571923893cf22f103daf68" args="(Robot &amp;robot, const typename Robot::confVector &amp;q, const typename Robot::confVector &amp;dq, const typename Robot::confVector &amp;ddq)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int gravity&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00125.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::<a class="el" href="a00126.html#a8c6f891a0a571923893cf22f103daf68">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>dq</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const typename Robot::confVector &amp;&#160;</td>
-          <td class="paramname"><em>ddq</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a99ea8b3027fa5cb71c4c7624e91015b5"></a><!-- doxytag: member="metapod::rnea&lt; Robot, false, gravity &gt;::METAPOD_TYPEDEFS" ref="a99ea8b3027fa5cb71c4c7624e91015b5" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot , int gravity&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00125.html">metapod::rnea</a>&lt; Robot, false, gravity &gt;::<a class="el" href="a00126.html#a99ea8b3027fa5cb71c4c7624e91015b5">METAPOD_TYPEDEFS</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+<p>Templated Recursive Newton-Euler Algorithm. </p>
+<p>Takes the multibody tree type as template parameter, and recursively proceeds on the <a class="el" href="a00101.html">Nodes</a>. </p>
+</div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -200,8 +91,8 @@ template&lt;typename Robot , int gravity&gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00126.html">rnea&lt; Robot, false, gravity &gt;</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00126.html">rnea</a>      </li>
 <br><br>
 <hr>
 <center>

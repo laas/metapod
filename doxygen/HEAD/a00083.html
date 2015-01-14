@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>metapod::jac&lt; Robot &gt; Struct Template Reference</title>
+<title>metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <img src="pictures/metapod-title.png" height="50" alt="footer">
@@ -59,111 +59,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a>  </div>
+<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
-<div class="title">metapod::jac&lt; Robot &gt; Struct Template Reference</div>  </div>
+<div class="title">metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="metapod::jac" -->
-<p><code>#include &lt;metapod/algos/jac.hh&gt;</code></p>
+<!-- doxytag: class="metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt;" -->
+<p><code>#include &lt;metapod/tools/has_parent.hh&gt;</code></p>
 
-<p><a href="a00323.html">List of all members.</a></p>
+<p><a href="a00363.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html">DftVisitor</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Robot::RobotFloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html#a905ab669f1b24196e2347e2a1c1b5dd9">FloatType</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix<br class="typebreak"/>
-&lt; <a class="el" href="a00083.html#a905ab669f1b24196e2347e2a1c1b5dd9">FloatType</a>, <br class="typebreak"/>
-6 *Robot::NBBODIES, <br class="typebreak"/>
-Robot::NBDOF &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html#a12c46939173f7ce7b52bbf95dbc7a141">Jacobian</a></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html#aeeae19d094c83a881329220a93792800">run</a> (Robot &amp;robot, <a class="el" href="a00083.html#a12c46939173f7ce7b52bbf95dbc7a141">Jacobian</a> &amp;J)</td></tr>
-<tr><td colspan="2"><h2><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html#a34c1d40c0bc8fa6f17d2290024a533a4">METAPOD_TYPEDEFS</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html#a553d7f5d47f37ef9021a4bac92c15afc">value</a> = true</td></tr>
 </table>
 <h3>template&lt;typename Robot&gt;<br/>
- struct metapod::jac&lt; Robot &gt;</h3>
+ struct metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt;</h3>
 
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a905ab669f1b24196e2347e2a1c1b5dd9"></a><!-- doxytag: member="metapod::jac::FloatType" ref="a905ab669f1b24196e2347e2a1c1b5dd9" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef Robot::RobotFloatType <a class="el" href="a00083.html">metapod::jac</a>&lt; Robot &gt;::<a class="el" href="a00083.html#a905ab669f1b24196e2347e2a1c1b5dd9">FloatType</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a12c46939173f7ce7b52bbf95dbc7a141"></a><!-- doxytag: member="metapod::jac::Jacobian" ref="a12c46939173f7ce7b52bbf95dbc7a141" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef Eigen::Matrix&lt;<a class="el" href="a00083.html#a905ab669f1b24196e2347e2a1c1b5dd9">FloatType</a>, 6 * Robot::NBBODIES, Robot::NBDOF&gt; <a class="el" href="a00083.html">metapod::jac</a>&lt; Robot &gt;::<a class="el" href="a00083.html#a12c46939173f7ce7b52bbf95dbc7a141">Jacobian</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aeeae19d094c83a881329220a93792800"></a><!-- doxytag: member="metapod::jac::run" ref="aeeae19d094c83a881329220a93792800" args="(Robot &amp;robot, Jacobian &amp;J)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Robot &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void <a class="el" href="a00083.html">metapod::jac</a>&lt; Robot &gt;::<a class="el" href="a00083.html#aeeae19d094c83a881329220a93792800">run</a> </td>
-          <td>(</td>
-          <td class="paramtype">Robot &amp;&#160;</td>
-          <td class="paramname"><em>robot</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00083.html#a12c46939173f7ce7b52bbf95dbc7a141">Jacobian</a> &amp;&#160;</td>
-          <td class="paramname"><em>J</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Referenced by <a class="el" href="a00051.html#a186ed1e3eb4361ae4c13a28c91350833">metapod::jac&lt; Robot &gt;::DftVisitor&lt; AnyRobot, node_id &gt;::discover()</a>.</p>
-
-</div>
-</div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a34c1d40c0bc8fa6f17d2290024a533a4"></a><!-- doxytag: member="metapod::jac::METAPOD_TYPEDEFS" ref="a34c1d40c0bc8fa6f17d2290024a533a4" args="" -->
+<a class="anchor" id="a553d7f5d47f37ef9021a4bac92c15afc"></a><!-- doxytag: member="metapod::is_NO_PARENT&lt; Robot, NO_PARENT &gt;::value" ref="a553d7f5d47f37ef9021a4bac92c15afc" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Robot &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00083.html">metapod::jac</a>&lt; Robot &gt;::<a class="el" href="a00083.html#a34c1d40c0bc8fa6f17d2290024a533a4">METAPOD_TYPEDEFS</a></td>
+          <td class="memname">const bool <a class="el" href="a00082.html">metapod::is_NO_PARENT</a>&lt; Robot, <a class="el" href="a00221.html#ae66857284e2cc4bda86da0d0cbf6fd81">NO_PARENT</a> &gt;::<a class="el" href="a00083.html#a553d7f5d47f37ef9021a4bac92c15afc">value</a> = true<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -189,8 +110,8 @@ template&lt;typename Robot &gt; </div>
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="a00218.html">metapod</a>      </li>
-      <li class="navelem"><a class="el" href="a00083.html">jac</a>      </li>
+      <li class="navelem"><a class="el" href="a00221.html">metapod</a>      </li>
+      <li class="navelem"><a class="el" href="a00083.html">is_NO_PARENT&lt; Robot, NO_PARENT &gt;</a>      </li>
 <br><br>
 <hr>
 <center>
