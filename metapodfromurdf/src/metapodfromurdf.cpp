@@ -135,11 +135,6 @@ Status addSubTree(
   // convert the joint
   boost::shared_ptr<urdf::Joint> jnt = root->parent_joint;
   unsigned int metapod_joint_type;
-
-  // Force root to be of type floating.
-  if (parent_body_name=="GROUND")
-    jnt->type=urdf::Joint::FLOATING;
-
   switch (jnt->type) {
     case urdf::Joint::REVOLUTE:
     case urdf::Joint::CONTINUOUS: {
@@ -171,7 +166,7 @@ Status addSubTree(
       break;
     }
     default: {
-      logError("Joint '%s' is of unknown type with parent %s", jnt->name.c_str(),parent_body_name.c_str());
+      logError("Joint '%s' is of unknown type", jnt->name.c_str());
       return STATUS_FAILURE;
       break;
     }
