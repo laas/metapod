@@ -28,7 +28,7 @@ Content
     robotbuilder library.
 
   * metapodfromurdf: an utility executable based on robotbuilder and liburdf
-    which generates the the source code of robot model classes from an URDF
+    which generates the source code of robot model classes from an URDF
     description.
 
   * binarytreemodel: an utility executable based on robotbuilder which
